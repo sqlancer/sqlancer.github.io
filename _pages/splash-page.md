@@ -30,7 +30,7 @@ feature_row:
     alt: "fully responsive"
     title: "Hundreds of bugs"
     excerpt: "SQLancer has founds hundreds of bugs."
-    url: "/docs/layouts/"
+    url: "/bugs/"
     btn_class: "btn--primary"
     btn_label: "Learn more"    
 ---
