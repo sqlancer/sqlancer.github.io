@@ -23,7 +23,7 @@ feature_row:
     alt: "Supported database systems"
     title: "Over twenty database systems"
     excerpt: "SQLancer can automatically generate test cases for many of the most popular database systems."
-    url: "/docs/configuration/"
+    url: "/supported-databases"
     btn_class: "btn--primary"
     btn_label: "Learn more"
   - image_path: /assets/images/bugs.png
