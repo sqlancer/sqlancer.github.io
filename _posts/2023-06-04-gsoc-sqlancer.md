@@ -36,11 +36,11 @@ I might keep on contributing to open-source projects. I hope this experience wil
 
 I would first continue my study. After successfully completing my master's degree, I am excited to transition into the professional world and pursue opportunities in the IT industry.
 
-# Zhenglin
+# Zhenglin Li
 
 ## Could you introduce yourself?
 
-My name is Zhenglin. I am currently a senior year undergraduate student majoring in software engineering at SCU.
+My name is Zhenglin Li. I am currently a senior year undergraduate student majoring in software engineering at SCU.
 I have been accepted for graduate studies at TAMU, starting 23 fall, where I will be specializing in computer science.
 I have a strong passion for open source projects. I have actively contributed to several projects, including SQLancer, Casbin, Beam, and so on.
 
