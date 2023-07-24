@@ -1,5 +1,5 @@
 ---
-title: 'GSoC 2023, Support of StoneDB, Midterm Report'
+title: 'GSoC 2023: Midterm Report on Support of StoneDB by Zhenglin Li'
 date: 2023-06-04
 categories:
   - blog
@@ -7,17 +7,17 @@ tags:
   - gsoc
 ---
 
-# Support of StoneDB Midterm Report
+# Support of StoneDB Midterm Report by Zhenglin Li
 
 SQLancer is an open-source tool for testing the correctness of SQL database systems and supports close to 20 database systems. The goal of this project is to add support for StoneDB to SQLancer and test StoneDB to find potential bugs.
 
-StoneDB is an open-source hybrid transaction/analytical processing (HTAP) database designed and developed by StoneAtom based on the MySQL kernel. It provides features such as optimal performance and real-time analytics, offering you a one-stop solution to process online transaction processing (OLTP), online analytical processing (OLAP), and HTAP workloads.
+StoneDB is an open-source hybrid transaction/analytical processing (HTAP) database designed and developed by StoneAtom based on the MySQL kernel. It provides features such as high efficiency and real-time analytics, offering a one-stop solution to process online transaction processing (OLTP), online analytical processing (OLAP), and HTAP workloads.
 
 ## Things Achieved
 
-See detailed description of supported syntax here: [Functions Supported by SQLancer for StoneDB](https://docs.google.com/document/d/12OpiDYs_Civor-saKZFmZPZd5ElVJAc9RDpDIwikh9Y/edit?usp=sharing)
+See the detailed description of supported syntax here: [Functions Supported by SQLancer for StoneDB](https://docs.google.com/document/d/12OpiDYs_Civor-saKZFmZPZd5ElVJAc9RDpDIwikh9Y/edit?usp=sharing)
 
-See detailed description of bugs found here: [Bugs Found in StoneDB by SQLancer](https://docs.google.com/document/d/1N-oUGVATV0l6tG87uOtPNmfLS7g_fuo7HIckFobD-Yo/edit?usp=sharing)
+See the detailed description of bugs found here: [Bugs Found in StoneDB by SQLancer](https://docs.google.com/document/d/1N-oUGVATV0l6tG87uOtPNmfLS7g_fuo7HIckFobD-Yo/edit?usp=sharing)
 
 ## Encountered Challenges and Solutions
 
@@ -48,9 +48,9 @@ The `ExpressionGenerator` is an interface, and `TypedExpressionGenerator` and `U
 
 When implementing the concrete generator, we have to decide which generator to inherit from, the `TypedExpressionGenerator` or the `UntypedExpressionGenerator`.
 
-A **typed generator** is a generator which is **associated with a specific data type or set of data types**. One characteristic is that it allows for type checking. On the other hand, an **untyped generator** **does not** have a specific data type associated with it. It can yield values of any type.
+A **typed generator** is a generator which is **associated with a specific data type or set of data types**. One characteristic is that it allows for generating values of the type that is expected in a specific context. On the other hand, an **untyped generator** **does not** have a specific data type associated with it. It can yield values of any type.
 
-The choice between using a typed or untyped generator **depends on the requirements of the program**. Typed generators provide the advantage of type safety when the expected types of yielded values are important. Untyped generators, on the other hand, offer more **flexibility** and can be useful in scenarios where the type of yielded values may vary or is not known in advance.
+The choice between using a typed or untyped generator **depends on the requirements of the DBMS under test**. Typed generators provide the advantage of generating expected types when this is important. Untyped generators, on the other hand, offer more **flexibility** and can be useful in scenarios where the type of yielded values may vary or is not known in advance.
 
 Ultimately, I decided to use the untyped generator because it can yield values of any type, allowing us to test the support of unexpected types of a DBMS.
 
