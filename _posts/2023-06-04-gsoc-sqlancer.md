@@ -9,7 +9,7 @@ tags:
 
 ![alt]({{ site.url }}{{ site.baseurl }}/assets/images/2023-gsoc-contributors.jpg)
 
-For the first time, SQLancer is participating as a [Google Summer of Code (GSoC)](https://summerofcode.withgoogle.com/programs/2023/organizations/sqlancer) organization. We are excited that we will be working with two contributors: [Zhenglin Li](https://github.com/HT-Tomas) and [Yutan Yang](https://github.com/ColinYoungTaro). Find out more about them below!
+For the first time, SQLancer is participating as a [Google Summer of Code (GSoC)](https://summerofcode.withgoogle.com/programs/2023/organizations/sqlancer) organization. We are excited that we will be working with two contributors: [Zhenglin Li](https://github.com/ZhengLin-Li) and [Yutan Yang](https://github.com/ColinYoungTaro). Find out more about them below!
 
 
 # Yutan Yang
