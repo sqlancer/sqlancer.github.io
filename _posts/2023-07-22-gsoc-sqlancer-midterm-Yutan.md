@@ -13,7 +13,7 @@ SQLancer generates a large number of statements, but not all of them are relevan
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom: 60%;" 
-    src="../assets/imgs-yutan-midterm/logs.png" alt="logs">
+    src="/assets/imgs-yutan-midterm/logs.png" alt="logs">
     <br>
     <div style="
     border-bottom: 1px;
@@ -35,7 +35,7 @@ An earlier version of sqlite3 (version 3.28.0) are used to test the statement re
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom: 60%;" 
-    src="../assets/imgs-yutan-midterm/sqlite3-original.png" alt="logs">
+    src="/assets/imgs-yutan-midterm/sqlite3-original.png" alt="logs">
     <br>
     <div style="
     border-bottom: 1px;
@@ -61,7 +61,7 @@ After the statement reducing pass, the rest of the statements could still be lon
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom: 67%;" 
-    src="../assets/imgs-yutan-midterm/unreduced.png" alt="unreduced">
+    src="/assets/imgs-yutan-midterm/unreduced.png" alt="unreduced">
     <br>
     <div style="
     border-bottom: 1px;
@@ -76,7 +76,7 @@ This reducer operates by parsing the SQL string into an abstract syntax tree (AS
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom: 67%;" 
-    src="../assets/imgs-yutan-midterm/ASTreduced.png" alt="ASTreduced" >
+    src="/assets/imgs-yutan-midterm/ASTreduced.png" alt="ASTreduced" >
     <br>
     <div style="
     border-bottom: 1px;
@@ -93,7 +93,7 @@ A virtual database engine is designed to test the functionality of reducers. Ins
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="../assets/imgs-yutan-midterm/test-statement-reducer.png" alt="test-statement-reducer">
+    src="/assets/imgs-yutan-midterm/test-statement-reducer.png" alt="test-statement-reducer">
     <br>
     <div style="
     border-bottom: 1px;
