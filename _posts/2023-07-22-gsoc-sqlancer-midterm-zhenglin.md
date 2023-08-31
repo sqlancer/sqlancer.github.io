@@ -1,13 +1,14 @@
 ---
-title: 'GSoC 2023: Midterm Report on Support of StoneDB by Zhenglin Li'
+title: 'GSoC 2023: Midterm Report on Support of StoneDB'
 date: 2023-06-04
+author: Zhenglin Li
 categories:
   - blog
 tags:
   - gsoc
 ---
 
-# Support of StoneDB Midterm Report by Zhenglin Li
+# Support of StoneDB Midterm Report
 
 SQLancer is an open-source tool for testing the correctness of SQL database systems and supports close to 20 database systems. The goal of this project is to add support for StoneDB to SQLancer and test StoneDB to find potential bugs.
 
@@ -82,6 +83,6 @@ This section will cover opportunities for potential future changes.
 
 2. Support more statement categories and syntax. For example, referring to the docs of MySQL, there are some optional arguments that we may not currently support. We can support them in the future.
 
-3. Another example is that, we can support more functions, refer to: https://stonedb.io/docs/SQL-reference/functions/advanced-functions
+3. Another example is that, we can support more functions, refer to: [https://stonedb.io/docs/SQL-reference/functions/advanced-functions](https://stonedb.io/docs/SQL-reference/functions/advanced-functions)
 
 4. Refine the code implementation. For example, we can discuss if we can reuse some code that is common to all DBMS implementations.
