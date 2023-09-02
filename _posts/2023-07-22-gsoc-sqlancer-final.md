@@ -70,9 +70,9 @@ If test-case reduction is enabled, each time the reducer performs a reduction st
 The log files will be stored in the following format: `logs/<DBMS>/reduce/<database>-reduce.log`. For instance, if the tested DBMS is SQLite3 and the current database is named database0, the log file will be located at `logs/sqlite3/reduce/database0-reduce.log`.
 
 ## Usage
-Test-case reduction is disabled by default. The statement reducer can be enabled by passing `--use-reducer` when starting SQLancer. 
+Test-case reduction is disabled by default. The reducers only works for DBMSs that have implemented the `Reproducer` class. 
 
-If you wish to further shorten each statements, you need to additionally pass the `--reduce-ast` parameter so that the AST-based reduction is applied. 
+The statement reducer can be enabled by passing `--use-reducer` when starting SQLancer.  If you wish to further shorten each statements, you need to additionally pass the `--reduce-ast` parameter so that the AST-based reduction is applied. 
 
 Note: if `--reduce-ast` is set, `--use-reducer` option must be enabled first.
 
