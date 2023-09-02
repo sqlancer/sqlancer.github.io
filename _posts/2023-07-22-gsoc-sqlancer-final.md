@@ -10,7 +10,7 @@ tags:
 
 ## Overview
 
-SQLancer generates a large number of statements, but not all of them are relevant to the bug. To automatically reduce the test cases, [Yutan Yang](https://github.com/ColinYoungTaro) implemented two reducers in SQLancer, the statement reducer and the AST-based reducer.
+SQLancer generates a large number of statements, but not all of them are relevant to the bug. To automatically reduce the test cases, I implemented two reducers in SQLancer, the statement reducer and the AST-based reducer.
 
 
 ## Statement Reducer
@@ -26,21 +26,31 @@ Using the statement reducer, SQLancer reduces the set of statements to a minimal
 ## AST-Based Reducer
 
 The AST-based reducer can shorten a statement by applying AST level transformations. They are mostly implemented using [JSQLParser](https://github.com/JSQLParser/JSqlParser), a RDBMS agnostic SQL statement parser that can translate SQL statements into a traversable hierarchy of Java classes. JSQLParser provides support for the SQL standard as well as major SQL dialects. The AST-based reducer works for any SQL dialects that can be parsed by this tool.
-q
 
 Currently, the AST-based transformations include:
 
 + Remove union selects.  e.g., 
+  
   `SELECT 1 UNION SELECT 2` -> `SELECT 1` 
+  
 + Remove irrelevant clauses.  e.g., 
+  
   `SELECT * FROM t OFFSET 20 LIMIT 5` -> `SELECT * FROM t`
+  
 + Remove list elements.  e.g.,
+   
    `SELECT a, b, c FROM t` -> `SELECT a FROM t`
-+ Remove rows of an insert statement.  e.g., 
+   
++ Remove rows of an insert statement.  e.g.,
+  
   `INSERT INTO t VALUES (1, 2), (3, 4)` -> `INSERT INTO t VALUES (1, 2)`
+  
 + Replace complicated expressions with their sub expressions.  e.g., 
+  
   `(a+b)+c` -> `c`
-+ Simplify constant values.  e.g., 
+  
++ Simplify constant values.  e.g.,
+  
   `3.27842156` -> `3.278`
 
 The AST-based reducer is designed with extensibility. It walks through the list of transformations and applies them to statements until a fixed point is reached. Adding new transformations is straightforward. Simply create a new transformation and include it in the list. This flexibility allows for easy customization and expansion of the reducer's functionality. Additionally, it is also possible to support transformations that do not depend on JSQLParser.
@@ -49,7 +59,7 @@ The AST-based reducer is designed with extensibility. It walks through the list 
 
 ## Framework for reducers Testing
 
-Yutan designed a virtual database engine to facilitate the testing of reducers. Instead of executing the statements, this engine records them for analysis. One of its notable features is the ability to customize the conditions that trigger a bug. For instance, the testing framework allows specifying an interestingness check that tests whether certain words are part of the reduced SQL test case.
+I designed a virtual database engine to facilitate the testing of reducers. Instead of executing the statements, this engine records them for analysis. One of its notable features is the ability to customize the conditions that trigger a bug. For instance, the testing framework allows specifying an interestingness check that tests whether certain words are part of the reduced SQL test case.
 
 This approach provides a testing environment and allows for thorough evaluation of the reducers' performance. It offers convenience and flexibility in refining and polishing the functionality of the reducers without impacting real databases.
 
@@ -68,4 +78,4 @@ Note: if `--reduce-ast` is set, `--use-reducer` option must be enabled first.
 
 There are also options to define timeout seconds and max steps of reduction for both statement reducer and AST-based reducer.
 
-For more details, you can refer to this [doc](https://github.com/sqlancer/sqlancer/blob/main/docs/testCaseReduction.md).
+For more details, you can refer to this [doc](https://github.com/sqlancer/sqlancer/blob/7804a3adec0962ad6d24687c42ec473aa49669fe/docs/testCaseReduction.md).
