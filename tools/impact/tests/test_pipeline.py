@@ -1804,9 +1804,17 @@ class IntakeReportingTest(unittest.TestCase):
     """
 
     def _pdf(self, tmp, name, text):
-        """A one-page PDF whose page text is ``text``."""
-        import pypdf
-        from pypdf.generic import DecodedStreamObject, NameObject
+        """A one-page PDF whose page text is ``text``.
+
+        Skips rather than fails without pypdf. Every production caller treats
+        the package as optional and degrades to "no full text", so a checkout
+        without it is a supported state, not a broken one.
+        """
+        try:
+            import pypdf
+            from pypdf.generic import DecodedStreamObject, NameObject
+        except ImportError:
+            self.skipTest("pypdf is not installed; PDF reading is optional")
         writer = pypdf.PdfWriter()
         writer.add_blank_page(width=612, height=792)
         stream = DecodedStreamObject()

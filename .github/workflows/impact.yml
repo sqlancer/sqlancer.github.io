@@ -38,7 +38,9 @@ concurrency:
 
 jobs:
   collect:
-    runs-on: ubuntu-latest
+    # 22.04 because this job also builds the site, and setup-ruby ships no
+    # Ruby 3.0 for 24.04 -- see the pin below for why 3.0 is required.
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
 
@@ -123,7 +125,13 @@ jobs:
         if: steps.changes.outputs.dirty == 'true'
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.2"
+        # Pinned low on purpose. The site is built with the github-pages
+        # gem, which pins liquid 4.0.3 -- and liquid 4.0.3 calls
+        # Object#tainted?, removed in Ruby 3.2. Its jekyll 3.9.0 also predates
+        # the Psych 4 shipped with Ruby 3.1. Ruby 3.0 is the newest that
+        # satisfies both, so it is what GitHub Pages itself effectively builds
+        # with; raising it here breaks the build without touching the site.
+          ruby-version: "3.0"
           bundler-cache: true
 
       - name: Build the website
