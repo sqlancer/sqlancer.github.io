@@ -1,0 +1,1048 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-10T15:03:29Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3802034",
+    "title": "DBugScribe: Automatic Database Bug Reproduction from Community Reports",
+    "authors": [
+      "Suyang Zhong",
+      "Mo Sha",
+      "Sheng Wang",
+      "Fangyuan Zhou",
+      "Feifei Li",
+      "Kian-Lee Tan"
+    ],
+    "year": 2026,
+    "venue": "Proceedings of the ACM on Management of Data",
+    "doi": "10.1145/3802034",
+    "arxiv_id": null,
+    "s2_paper_id": "8f02d1ed0dfacfff322cccdddf971240b3c8136d",
+    "url": "https://doi.org/10.1145/3802034",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3802034",
+      "retrieved_at": "2026-09-10T15:03:29Z",
+      "chars": 97615,
+      "content_sha256": "sha256:8309339282d6a8a73415144eb5cd6677c4303040bdd17ad922bf2d08895b487c"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 26,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 3474
+      },
+      {
+        "number": "2",
+        "title": "Preliminaries",
+        "start": 11506
+      },
+      {
+        "number": "2.1",
+        "title": "Problem Formulation",
+        "start": 11522
+      },
+      {
+        "number": "2.2",
+        "title": "Scope and Assumptions",
+        "start": 15194
+      },
+      {
+        "number": "3",
+        "title": "The DBugScribe Framework",
+        "start": 16319
+      },
+      {
+        "number": "3.1",
+        "title": "Design Philosophy",
+        "start": 16346
+      },
+      {
+        "number": "3.2",
+        "title": "System Architecture",
+        "start": 19717
+      },
+      {
+        "number": "3.3",
+        "title": "DBugScribe DSL: DBMS Bug Scenarios",
+        "start": 21484
+      },
+      {
+        "number": "3.4",
+        "title": "LLM-Driven Synthesis Pipeline",
+        "start": 32378
+      },
+      {
+        "number": "3.5",
+        "title": "Execution and Validation Engine",
+        "start": 39120
+      },
+      {
+        "number": "4",
+        "title": "Experimental Evaluation",
+        "start": 44028
+      },
+      {
+        "number": "4.1",
+        "title": "Dataset Construction and Curation",
+        "start": 44934
+      },
+      {
+        "number": "4.2",
+        "title": "Reproduction Effectiveness Analysis",
+        "start": 49204
+      },
+      {
+        "number": "4.3",
+        "title": "Fine-Grained Performance Analysis",
+        "start": 56560
+      },
+      {
+        "number": "4.4",
+        "title": "Extended Applications and Discoveries",
+        "start": 60808
+      },
+      {
+        "number": "5",
+        "title": "Discussion",
+        "start": 69968
+      },
+      {
+        "number": "6",
+        "title": "Related Work",
+        "start": 73067
+      },
+      {
+        "number": "7",
+        "title": "Conclusion",
+        "start": 78129
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Abdulaziz Alaboudi and Thomas D. LaToza. 2023. What constitutes debugging? An exploratory study of debugging episodes.Empir. Softw. Eng.28, 5 (2023), 117.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Arvind Arasu, Raghav Kaushik, and Jian Li. 2011. Data generation using declarative constraints. InProceedings of the 2011 ACMSIGMOD International Conference on Management of Data(Athens, Greece)(SIGMOD ’11). Association for Computing Machinery, New York, NY, USA, 685–696.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. InProceedings of the 45th International Conference on Software Engineering(Melbourne, Victoria, Australia)(ICSE ’23). IEEE Press, 2060–2071.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 4,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering(Lisbon, Portugal)(ICSE ’24). Association for Computing Machinery, New York, NY, USA, Article 133, 13 pages.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 5,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 6,
+      "text": "Earl T. Barr, Mark Harman, Yue Jia, Alexandru Marginean, and Justyna Petke. 2015. Automated Software Transplantation. InProceedings of the 2015 International Symposium on Software Testing and Analysis(Baltimore, MD, USA)(ISSTA 2015). Association for Computing Machinery, New York, NY, USA, 257–269.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Kaiwen Chen, Yueting Chen, Nick Koudas, and Xiaohui Yu. 2025. Reliable Text-to-SQL with Adaptive Abstention.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Sibei Chen, Ju Fan, Bin Wu, Nan Tang, Chao Deng, Pengyi Wang, Ye Li, Jian Tan, Feifei Li, Jingren Zhou, and Xiaoyong Du. 2025. Automatic Database Configuration Debugging using Retrieval-Augmented Language Models. 2025), 27 pages.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Jack Clark, Alastair F. Donaldson, John Wickerson, and Manuel Rigger. 2024. Validating Database System Isolation Level Implementations with Version Certificate Recovery. InProceedings of the Nineteenth European Conference on Computer Systems(Athens, Greece)(EuroSys ’24). Association for Computing Machinery, New York, NY, USA, 754–768.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 10,
+      "text": "Ziyu Cui, Wensheng Dou, Yu Gao, Rui Yang, Yingying Zheng, Jiansen Song, Yuan Feng, and Jun Wei. 2025. Simple Testing Can Expose Most Critical Transaction Bugs: Understanding and Detecting Write-Specific Serializability Violations in Database Systems.Proc. VLDB Endow.18, 8 (Sept. 2025), 2547–2560.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Wenjing Deng, Qiuyang Mang, Chengyu Zhang, and Manuel Rigger. 2024. Finding Logic Bugs in Spatial Database Engines via Affine Equivalent Inputs. 2024), 26 pages.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 12,
+      "text": "Han Fu, Chang Liu, Bin Wu, Feifei Li, Jian Tan, and Jianling Sun. 2023. CatSQL: Towards Real World Natural Language to SQL Applications.Proc. VLDB Endow.16, 6 (Feb. 2023), 1534–1547.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Yanyang Zhao, Shanshan Li, and Yu Jiang. 2025. Understanding and Detecting SQL Function Bugs: Using Simple Boundary Arguments to Trigger Hundreds of DBMS Bugs. InProceedings of the Twentieth European Conference on Computer Systems(Rotterdam, Netherlands)(EuroSys ’25). Association for Computing Machinery, New York, NY, USA, 1061–1076.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 14,
+      "text": "Dawei Gao, Haibin Wang, Yaliang Li, Xiuyu Sun, Yichen Qian, Bolin Ding, and Jingren Zhou. 2024. Text-to-SQL Empowered by Large Language Models: A Benchmark Evaluation.Proc. VLDB Endow.17, 5 (Jan. 2024), 1132–1145.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Xiyue Gao, Zhuang Liu, Yiran Shen, Hui Li, Yingfan Liu, Hongjun Xiao, Yanguo Peng, and Jiangtao Cui. 2025. Fucci: Database Transaction Fuzzing via Random Conflict Construction and Multilevel Constraint Solving.Proc. VLDB Endow. 18, 6 (Aug. 2025), 1879–1891.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Victor Giannakouris and Immanuel Trummer. 2025. 𝜆-Tune: Harnessing Large Language Models for Automated Database System Tuning. 2025), 26 pages.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Yue Gong, Chuan Lei, Xiao Qin, Kapil Vaidya, Balakrishnan Narayanaswamy, and Tim Kraska. 2025. SQLens: An End-to-End Framework for Error Detection and Correction in Text-to-SQL. InAdvances in Neural Information Processing Systems (NeurIPS).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Zongyin Hao, Quanfeng Huang, Chengpeng Wang, Jianfeng Wang, Yushan Zhang, Rongxin Wu, and Charles Zhang. 2023. Pinolo: Detecting Logical Bugs in Database Management Systems with Approximate Query Synthesis. In2023 USENIX Annual Technical Conference (USENIX ATC 23). 345–358.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Zijin Hong, Zheng Yuan, Qinggang Zhang, Hao Chen, Junnan Dong, Feiran Huang, and Xiao Huang. 2025. NextGeneration Database Interfaces: A Survey of LLM-based Text-to-SQL.IEEE Transactions on Knowledge and Data Engineering37, 12 (2025), 7328–7345.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. 2023. DynSQL: Stateful Fuzzing for Database Management Systems with Complex and Valid SQL Query Generation. In32nd USENIX Security Symposium (USENIX Security 23). USENIX Association, Anaheim, CA, 4949–4965.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23). USENIX Association, Boston, MA, 397–417. 4, No. 3 (SIGMOD), Article 157. Publication date: June 2026. 157:24 Suyang Zhong et al.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 22,
+      "text": "Zu-Ming Jiang and Zhendong Su. 2024. Detecting Logic Bugs in Database Engines via Equivalent Expression Transformation. In18th USENIX Symposium on Operating Systems Design and Implementation (OSDI 24). USENIX Association, Santa Clara, CA, 821–835.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Guoliang Jin, Linhai Song, Xiaoming Shi, Joel Scherpelz, and Shan Lu. 2012. Understanding and detecting real-world performance bugs. InACM SIGPLAN Conference on Programming Language Design and Implementation, PLDI ’12, Beijing, China-June 11 - 16, 2012. ACM, 77–88.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2019. APOLLO: automatic detection and diagnosis of performance regressions in database systems.Proc. VLDB Endow.13, 1 (Sept. 2019), 57–70.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Sungmin Kang, Juyeon Yoon, and Shin Yoo. 2023. Large Language Models are Few-Shot Testers: Exploring LLM-Based General Bug Reproduction. InProceedings of the 45th International Conference on Software Engineering(Melbourne, Victoria, Australia)(ICSE ’23). IEEE Press, 2312–2323.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Jiale Lao, Yibo Wang, Yufei Li, Jianping Wang, Yunjia Zhang, Zhiyuan Cheng, Wanghu Chen, Mingjie Tang, and Jianguo Wang. 2024. GPTuner: A Manual-Reading Database Tuning System via GPT-Guided Bayesian Optimization. Proc. VLDB Endow.17, 8 (April 2024), 1939–1952.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Tanakorn Leesatapornwongsa, Xiang Ren, and Suman Nath. 2022. FlakeRepro: automated and efficient reproduction of concurrency-related flaky tests. InProceedings of the 30th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Singapore, Singapore)(ESEC/FSE 2022). Association for Computing Machinery, New York, NY, USA, 1509–1520.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Haoyang Li, Jing Zhang, Cuiping Li, and Hong Chen. 2023. RESDSQL: Decoupling Schema Linking and Skeleton Parsing for Text-to-SQL. InProceedings of the 37th AAAI Conference on Artificial Intelligence (AAAI). AAAI Press, 13067–13075.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Jinyang Li, Binyuan Hui, Ge Qu, Jiaxi Yang, Binhua Li, Bowen Li, Bailin Wang, Bowen Qin, Ruiying Geng, Nan Huo, Xuanhe Zhou, Chenhao Ma, Guoliang Li, Kevin C.C. Chang, Fei Huang, Reynold Cheng, and Yongbin Li. 2023. Can LLM already serve as a database interface? a big bench for large-scale database grounded text-to-SQLs. InProceedings of the 37th International Conference on Neural Information Proc",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Zhaodonghui Li, Haitao Yuan, Huiming Wang, Gao Cong, and Lidong Bing. 2024. LLM-R2: A Large Language Model Enhanced Rule-based Rewrite System for Boosting Query Efficiency.Proc. VLDB Endow.18, 1 (2024), 53–65.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. 2023. Sequence-Oriented DBMS Fuzzing. In Engineering (ICDE). 668–681.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Jie Liang, Zhiyong Wu, Jingzhou Fu, Yiyuan Bai, Qiang Zhang, and Yu Jiang. 2024. WingFuzz: Implementing Continuous Fuzzing for DBMSs. In2024 USENIX Annual Technical Conference (USENIX ATC 24). USENIX Association, Santa Clara, CA, 479–492.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. 2022. Automatic Detection of Performance Bugs in Database Systems Using Equivalent Queries. InProceedings of the 44th International Conference on Software Engineering (Pittsburgh, Pennsylvania)(ICSE ’22). Association for Computing Machinery, New York, NY, USA, 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Yuyu Luo, Guoliang Li, Ju Fan, Chengliang Chai, and Nan Tang. 2025. Natural Language to SQL: State of the Art and Open Problems.Proc. VLDB Endow.18, 12 (2025), 5466–5471.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Kyle Luoma and Arun Kumar. 2025. SNAILS: Schema Naming Assessments for Improved LLM-Based SQL Inference.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Qiuyang Mang, Jinsheng Ba, Pinjia He, and Manuel Rigger. 2025. Finding Logic Bugs in Graph-processing Systems via Graph-cutting.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 37,
+      "text": "Niels Mündler, Mark Müller, Jingxuan He, and Martin Vechev. 2024. SWT-bench: Testing and validating real-world bug-fixes with code agents.Advances in Neural Information Processing Systems37 (2024), 81857–81887.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Chris Parnin and Alessandro Orso. 2011. Are automated debugging techniques actually helping programmers?. In Proceedings of the 20th International Symposium on Software Testing and Analysis, ISSTA 2011, Toronto, ON, Canada, July 17-21, 2011. ACM, 199–209.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Mohammad Masudur Rahman, Foutse Khomh, and Marco Castelluccio. 2022. Works for Me! Cannot Reproduce-A Large Scale Empirical Study of Non-reproducible Bugs.Empir. Softw. Eng.27, 5 (2022), 111.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Shanto Rahman, Saikat Dutta, and August Shi. 2025. Understanding and Improving Flaky Test Classification.Proc. ACM Program. Lang.9, OOPSLA2, Article 320 (Oct. 2025), 27 pages.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Virtual Event, USA)(ESEC/FSE 2020). Association for Computing Machinery, New York, NY, USA, 1140–1152. 4, No. 3 (SIGMOD)",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 42,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proc. ACM Program. Lang.4, OOPSLA, Article 211 (nov 2020), 30 pages.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 43,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 44,
+      "text": "Anupam Sanghi, Raghav Sood, Jayant Haritsa, and Srikanta Tirthapura. 2018. Scalable and dynamic regeneration of big data volumes. (2018).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Torsten Scholak, Nathan Schucher, and Dzmitry Bahdanau. 2021. PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models. InProceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP). ACL, 9895–9901.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Andreas Seltenreich. 2022. Sqlsmith. https://github.com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Peter Shaw, Ming-Wei Chang, Panupong Pasupat, and Kristina Toutanova. 2021. Compositional Generalization and Natural Language Variation: Can a Semantic Parsing Approach Handle Both?. InProceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (ACL-IJCNLP). ACL, 922–938.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Jiansen Song, Wensheng Dou, Yu Gao, Ziyu Cui, Yingying Zheng, Dong Wang, Wei Wang, Jun Wei, and Tao Huang. 2024. Detecting Metadata-Related Logic Bugs in Database Systems via Raw Database Construction.Proc. VLDB Endow. 17, 8 (may 2024), 1884–1897.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Jiansen Song, Wensheng Dou, Yingying Zheng, Yu Gao, Ziyu Cui, Wei Wang, and Jun Wei. 2025. Detecting SchemaRelated Logic Bugs in Relational DBMSs via Equivalent Database Construction.Proc. VLDB Endow.18, 7 (Aug. 2025), 2281–2294.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Ruoxi Sun, Sercan Ö. Arik, Alexandre Muzio, Lesly Miculicich, Satya Kesav Gundabathula, Pengcheng Yin, Hanjun Dai, Hootan Nakhost, Rajarishi Sinha, Zifeng Wang, and Tomas Pfister. 2024. SQL-PaLM: Improved large language model adaptation for Text-to-SQL.Trans. Mach. Learn. Res.2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Xiu Tang, Sai Wu, Dongxiang Zhang, Feifei Li, and Gang Chen. 2023. Detecting Logic Bugs of Join Optimizations in DBMS.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Bailin Wang, Richard Shin, Xiaodong Liu, Oleksandr Polozov, and Matthew Richardson. 2020. RAT-SQL: Relation-Aware Schema Encoding and Linking for Text-to-SQL Parsers. InProceedings of the 58th Annual Meeting of the Association for Computational Linguistics (ACL). ACL, 7567–7578.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Xinchen Wang, Pengfei Gao, Xiangxin Meng, Chao Peng, Ruida Hu, Yun Lin, and Cuiyun Gao. 2025. AEGIS: An Agent-based Framework for Bug Reproduction from Issue Descriptions. InProceedings of the 33rd ACM International Conference on the Foundations of Software Engineering(Clarion Hotel Trondheim, Trondheim, Norway)(FSE Companion ’25). Association for Computing Machinery, New York, NY, USA, 331–342.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Zhiyong Wu, Jie Liang, Jingzhou Fu, Wenqian Deng, and Yu Jiang. 2025. DDLumos: Understanding and Detecting Atomic DDL Bugs in DBMSs. In2025 USENIX Annual Technical Conference (USENIX ATC 25). 1327–1341.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Zhiyong Wu, Jie Liang, Jingzhou Fu, Wenqian Deng, and Yu Jiang. 2025. Fawkes: Finding Data Durability Bugs in DBMSs via Recovered Data State Verification. InProceedings of the ACMSIGOPS 31st Symposium on Operating Systems Principles(Lotte Hotel World, Seoul, Republic of Korea)(SOSP ’25). Association for Computing Machinery, New York, NY, USA, 670–684.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "John Yang, Carlos Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, and Ofir Press. 2024. Swe-agent: Agent-computer interfaces enable automated software engineering.Advances in Neural Information Processing Systems37 (2024), 50528–50652.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Jingyi Yang, Peizhi Wu, Gao Cong, Tieying Zhang, and Xiao He. 2022. SAM: Database Generation from Query Workloads with Supervised Autoregressive Models. InProceedings of the 2022 International Conference on Management of Data(Philadelphia, PA, USA)(SIGMOD ’22). Association for Computing Machinery, New York, NY, USA, 1542–1555.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Xiao Yang, Mo Sha, Yiran Li, Suyang Zhong, Sheng Wang, Fangyuan Zhou, and Feifei Li. 2026. SQLens: Continuous Code-to-SQL Visibility in the Wild. InProceedings of the 2026 ACMSIGMOD International Conference on Management of Data(Bengaluru, India)(SIGMOD ’26).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Yicun Yang, Zhaoguo Wang, Yu Xia, Zhuoran Wei, Haoran Ding, Ruzica Piskac, Haibo Chen, and Jinyang Li. 2025. Automated Validating and Fixing of Text-to-SQL Translation with Execution Consistency.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Tao Yu, Rui Zhang, Kai Yang, Michihiro Yasunaga, Dongxu Wang, Zifan Li, James Ma, Irene Li, Qingning Yao, Shanelle Roman, Zilin Zhang, and Dragomir Radev. 2018. Spider: A Large-Scale Human-Labeled Dataset for Complex and Cross-Domain Semantic Parsing and Text-to-SQL Task. InProceedings of the 2018 Conference on Empirical Methods in Natural Language Processing. Association for Computational Linguis",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Tao Yu, Rui Zhang, Michihiro Yasunaga, Yi Chern Tan, Xi Victoria Lin, Suyi Li, Heyang Er, Irene Li, Bo Pang, Tao Chen, Emily Ji, Shreya Dixit, David Proctor, Sungrok Shim, Jonathan Kraft, Vincent Zhang, Caiming Xiong, Richard Socher, and Dragomir Radev. 2019. SParC: Cross-Domain Semantic Parsing in Context. InProceedings of the 57th 4, No. 3 (SIGMOD), Article 157. Publication date: June 2026. 157:",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Chao Zhang, Yuren Mao, Yijiang Fan, Yu Mi, Yunjun Gao, Lu Chen, Dongfang Lou, and Jinshu Lin. 2024. FinSQL: Model-Agnostic LLMs-based Text-to-SQL Framework for Financial Analysis. InCompanion of the 2024 International Conference on Management of Data(Santiago AA, Chile)(SIGMOD ’24). Association for Computing Machinery, New York, NY, USA, 93–105.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Chi Zhang and Manuel Rigger. 2025. Constant Optimization Driven Database System Testing. 2025), 24 pages.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 64,
+      "text": "Xinyi Zhang, Tiantian Chen, Zhentao Han, Zhaoyan Hong, Wei Lu, Sheng Wang, Mo Sha, Anni Wang, Shuang Liu, Yakun Zhang, Feifei Li, and Xiaoyong Du. 2026. Why Database Manuals Are Not Enough: Efficient and Reliable Configuration Tuning for DBMSs via Code-Driven LLM Agents.Proc. VLDB Endow.19, 6 (2026), 1358–1371.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao Zhuang, Zi Lin, Zhuohan Li, Dacheng Li, Eric Xing, et al .2023. Judging llm-as-a-judge with mt-bench and chatbot arena.Advances in neural information processing systems36 (2023), 46595–46623.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. InProceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security(Virtual Event, USA)(CCS ’20). Association for Computing Machinery, New York, NY, USA, 955–970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Suyang Zhong and Manuel Rigger. 2024. Understanding and Reusing Test Suites Across Database Systems. 2024), 26 pages.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 68,
+      "text": "Suyang Zhong and Manuel Rigger. 2026. Scaling Automated Database System Testing. InProceedings of the 31st ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2(USA) (ASPLOS ’26). Association for Computing Machinery, New York, NY, USA, 1677–1692.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 69,
+      "text": "Victor Zhong, Caiming Xiong, and Richard Socher. 2017. Seq2SQL: Generating Structured Queries from Natural Language using Reinforcement Learning.arXiv preprint arXiv:1709.00103(2017).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Wei Zhou, Yuyang Gao, Xuanhe Zhou, and Guoliang Li. 2025. Cracking SQL Barriers: An LLM-based Dialect Translation System.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Zeyang Zhuang, Penghui Li, Pingchuan Ma, Wei Meng, and Shuai Wang. 2023. Testing Graph Database Systems via Graph-Aware Metamorphic Relations.Proc. VLDB Endow.17, 4 (Dec. 2023), 836–848.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Thomas Zimmermann, Rahul Premraj, Nicolas Bettenburg, Sascha Just, Adrian Schröter, and Cathrin Weiss. 2010. What Makes a Good Bug Report?IEEE Trans. Software Eng.36, 5 (2010), 618–643. Received October 2025; revised January 2026; accepted February 2026 4, No. 3 (SIGMOD), Article 157. Publication date: June 2026.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 3,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. InProceedings of the 45th International Conference on Software Engineering(Melbourne, Victoria, Australia)(ICSE ’23). IEEE Press, 2060–2071.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 4,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering(Lisbon, Portugal)(ICSE ’24). Association for Computing Machinery, New York, NY, USA, Article 133, 13 pages.",
+      "technique": "cert",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing cert"
+      ]
+    },
+    {
+      "number": 5,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans.",
+      "technique": "dqp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing dqp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 9,
+      "text": "Jack Clark, Alastair F. Donaldson, John Wickerson, and Manuel Rigger. 2024. Validating Database System Isolation Level Implementations with Version Certificate Recovery. InProceedings of the Nineteenth European Conference on Computer Systems(Athens, Greece)(EuroSys ’24). Association for Computing Machinery, New York, NY, USA, 754–768.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 11,
+      "text": "Wenjing Deng, Qiuyang Mang, Chengyu Zhang, and Manuel Rigger. 2024. Finding Logic Bugs in Spatial Database Engines via Affine Equivalent Inputs. 2024), 26 pages.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 13,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Yanyang Zhao, Shanshan Li, and Yu Jiang. 2025. Understanding and Detecting SQL Function Bugs: Using Simple Boundary Arguments to Trigger Hundreds of DBMS Bugs. InProceedings of the Twentieth European Conference on Computer Systems(Rotterdam, Netherlands)(EuroSys ’25). Association for Computing Machinery, New York, NY, USA, 1061–1076.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 21,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23). USENIX Association, Boston, MA, 397–417. 4, No. 3 (SIGMOD), Article 157. Publication date: June 2026. 157:24 Suyang Zhong et al.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 36,
+      "text": "Qiuyang Mang, Jinsheng Ba, Pinjia He, and Manuel Rigger. 2025. Finding Logic Bugs in Graph-processing Systems via Graph-cutting.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 41,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Virtual Event, USA)(ESEC/FSE 2020). Association for Computing Machinery, New York, NY, USA, 1140–1152. 4, No. 3 (SIGMOD), Article 157. Publication date: June 2026. DBugScribe: Automatic Database Bug Reproduction from Community Reports 157:25",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 42,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proc. ACM Program. Lang.4, OOPSLA, Article 211 (nov 2020), 30 pages.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 43,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 63,
+      "text": "Chi Zhang and Manuel Rigger. 2025. Constant Optimization Driven Database System Testing. 2025), 24 pages.",
+      "technique": "coddtest",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing coddtest",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 67,
+      "text": "Suyang Zhong and Manuel Rigger. 2024. Understanding and Reusing Test Suites Across Database Systems. 2024), 26 pages.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 68,
+      "text": "Suyang Zhong and Manuel Rigger. 2026. Scaling Automated Database System Testing. InProceedings of the 31st ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2(USA) (ASPLOS ’26). Association for Computing Machinery, New York, NY, USA, 1677–1692.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing sqlancer_pp"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 3,41–43,48,49,63]",
+      "technique": "qpg",
+      "sentence": "This inherent complexity makes them prone to various categories of defects, including logic bugs [ 3,41–43,48,49,63] and crash bugs [ 20,46,66].",
+      "context_before": "hina; Feifei Li, lifeifei@alibaba-inc.com, Alibaba Cloud, China; Kian-Lee Tan, dcstankl@nus.edu.sg, National University of Singapore, Singapore. This work is licensed under a Creative Commons Attribution 4.0 International License. ©2026 Copyright held by the owner/author(s). ACM 2836-6573/2026/6-ART157 https://doi.org/10.1145/3802034 4, No. 3 (SIGMOD), Article 157. Publication date: June 2026. 157:2 Suyang Zhong et al. 1 Introduction Database management systems (DBMSs) are among the most complex and critical software systems in operation today, with codebases often spanning millions of lines.",
+      "context_after": "Despite decades of research and engineering effort, mainstream DBMSs continue to receive large volumes of bug reports every year. However, the process of handling these reports remains highly inefficient. Empirical studies show that developers spend nearly half of their overall programming time on debugging, with a non-trivial fraction of this effort dedicated specifically to reproducing and validating reported issues [ 1,38]. Analyses of large-scale software repositories further indicate that a significant portion of reported bugs cannot be reliably reproduced [ 23,39,72], either because the",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 3650,
+      "cited_reference": {
+        "number": 3,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. InProceedings of the 45th International Conference on Software Engineering(Melbourne, Victoria, Australia)(ICSE ’23). IEEE Press, 2060–2071.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 10,13,54]",
+      "technique": null,
+      "sentence": "While recent bug-detection tools analyze large corpora of DBMS bugs [ 10,13,54], they primarily focus on manual categorization and statistical characterization rather than automated reproduction.",
+      "context_before": "nterpret each report, reconstruct the necessary database environment, and attempt reproduction through labor-intensive trial and error. Given these challenges, one might look to automated bug reproduction techniques for relief. However, existing automated bug reproduction frameworks focus on general-purpose software with well-defined APIs and stateless execution contexts,e.g., LIBRO [ 25], AEGIS [ 53], and SWEagent [ 56]. These approaches cannot handle the distinctive challenges of database systems, where failures depend on intricate dependencies among schema design and configuration settings.",
+      "context_after": "This gap highlights the need for a systematic framework to translate bug descriptions into structured and automated reproduction pipelines. Fortunately, recent advances in natural language processing offer a promising path to bridge this gap. Large Language Models (LLMs) have demonstrated the ability to parse unstructured text and translate informal descriptions into formal representations,e.g., through Text-to-SQL systems [ 14, 19,29,60]. We leverage this capability for a novel purpose: applying it to debugging contexts, translating bug behavior descriptions into candidate executable queries",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 6106,
+      "cited_reference": {
+        "number": 13,
+        "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Yanyang Zhao, Shanshan Li, and Yu Jiang. 2025. Understanding and Detecting SQL Function Bugs: Using Simple Boundary Arguments to Trigger Hundreds of DBMS Bugs. InProceedings of the Twentieth European Conference on Computer Systems(Rotterdam, Netherlands)(EuroSys ’",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 67]",
+      "technique": null,
+      "sentence": "Prior work [ 67] has demonstrated the potential for cross-DBMS test reuse.",
+      "context_before": "ngs can affect string comparison results. Reproduction therefore requires precise environmental specification and isolation. (4) Cross-system portability: General software test cases rarely transfer across systems because of incompatible APIs and substantially different software architectures. Database bugs, by contrast, often stem from shared SQL semantics despite dialect-level differences, making cross-DBMS reproduction possible. Moreover, many DBMSs share similar underlying architectures and optimization strategies (e.g., MySQL and MariaDB), allowing related bugs to manifest across systems.",
+      "context_after": "Nevertheless, automatically adapting real-world bug scenarios to different DBMSs remains an open challenge. These four characteristics make database bug reproduction a distinct problem requiring specialized treatment beyond general-purpose techniques. Our framework addresses these challenges through formal scenario specification, automated synthesis, containerized execution, and cross DBMS abstraction. Section 3 presents the complete architecture and end-to-end pipeline. 4, No. 3 (SIGMOD), Article 157. Publication date: June 2026. DBugScribe: Automatic Database Bug Reproduction from Community",
+      "section": "2.1 Problem Formulation",
+      "page": 4,
+      "char_offset": 14504,
+      "cited_reference": {
+        "number": 67,
+        "text": "Suyang Zhong and Manuel Rigger. 2024. Understanding and Reusing Test Suites Across Database Systems. 2024), 26 pages.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 67]",
+      "technique": null,
+      "sentence": "SQuaLity [ 67] represents an initial attempt to address the test reuse problem; however, its ability is limited, as it is hard to automatically 4, No.",
+      "context_before": "synthesis through few-shot learning and template reuse. 3.3 DBugScribe DSL: DBMS Bug Scenarios We now detail the DBugScribeDSL that serves as the structured intermediate representation (Rationale 1), establishing formal foundations for bug scenario specification. 3.3.1 Motivation and Design Goals.Existing representations for database testing occupy two extremes. SQL test suites (e.g., MySQL regression tests) provide concrete cases but lack structured metadata: schema dependencies are implicit, oracles are embedded in expected output files, and cross-DBMS portability requires manual adaptation.",
+      "context_after": "3 (SIGMOD), Article 157. Publication date: June 2026. DBugScribe: Automatic Database Bug Reproduction from Community Reports 157:7 expand the test cases. Automated testing tools (e.g., SQLsmith [ 46] and SQLancer [ 41–43]) provide automation test generation in bug discovery, but the generated scenarios are transient. Once a bug is detected, it is often difficult to deterministically reproduce the generation paths. OurDBugScribeDSL navigates this trade-off throughdeclarative specifications with formal semantics. Three design goals guide our approach, with measurable success criteria:(1) Expres",
+      "section": "3.3 DBugScribe DSL: DBMS Bug Scenarios",
+      "page": 6,
+      "char_offset": 22027,
+      "cited_reference": {
+        "number": 67,
+        "text": "Suyang Zhong and Manuel Rigger. 2024. Understanding and Reusing Test Suites Across Database Systems. 2024), 26 pages.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ", SQLsmith [ 46] and SQLancer [ 41–43]) provide automation test generation in bug discovery, but the generated scenarios are transient.",
+      "context_before": "testing occupy two extremes. SQL test suites (e.g., MySQL regression tests) provide concrete cases but lack structured metadata: schema dependencies are implicit, oracles are embedded in expected output files, and cross-DBMS portability requires manual adaptation. SQuaLity [ 67] represents an initial attempt to address the test reuse problem; however, its ability is limited, as it is hard to automatically 4, No. 3 (SIGMOD), Article 157. Publication date: June 2026. DBugScribe: Automatic Database Bug Reproduction from Community Reports 157:7 expand the test cases. Automated testing tools (e.g.",
+      "context_after": "Once a bug is detected, it is often difficult to deterministically reproduce the generation paths. OurDBugScribeDSL navigates this trade-off throughdeclarative specifications with formal semantics. Three design goals guide our approach, with measurable success criteria:(1) Expressiveness: our DBugScribeDSL covers schema definitions, data state, operation sequences, configuration parameters, and oracle predicates, thereby capturing all five components of the formal bug scenario representation.(2) Simplicity: a compact YAML-based syntax maintains human readability while enabling automated parsin",
+      "section": "3.3 DBugScribe DSL: DBMS Bug Scenarios",
+      "page": 7,
+      "char_offset": 22363,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "DBugScribe: Automatic Database Bug Reproduction from Community Reports 157:13 TiDB MySQLMariaDBCombdb2SQLite Clickhouse CockroachDBPostgreSQLDuckDBPolarDB Oceanbase0153045607590Reported bugs78 6 1 3 1321 1 1 LEGO[31] (ICDE ’23) Pinolo[18] (ATC ’23) TQS[51] (SIGMOD ’23) DQP[5] (SIGMOD ’24) EET[22] (OSDI ’24) Radar[48] (VLDB ’24) DDLCheck[49] (VLDB ’25) CODDTest[63] (SIGMOD ’25) Fig.",
+      "context_before": "calls to prevent data leakage. For DBMS execution environments, we use Dockerized instances for MySQL and MariaDB, and TiUP3, TiDB’s package manager, for TiDB. All target DBMS versions are pre-installed before the reproduction experiments. 4.1 Dataset Construction and Curation To evaluate DBugScribe, we constructedBugBench, a curated dataset of bugs from three relational DBMSs: MySQL, TiDB, and MariaDB. Our methodology for constructingBugBenchwas guided by 2https://openai.com/gpt-5 3https://docs.pingcap.com/tidb/stable/tiup-overview/ 4, No. 3 (SIGMOD), Article 157. Publication date: June 2026.",
+      "context_after": "4. Testing targets of recent DBMS testing tools. Table 1. Bug Reproduction Dataset Statistics across DBMSs DBMS Collected Reported Conf. Fixed Dupl. FP N/A MySQL 62 91 53 6 3 0 29 TiDB 91 94 53 34 4 3 0 MariaDB 65 84 20 12 33 2 17 Total218 269 127 51 40 5 46 the principle of collecting bugs that are both recent and significant enough to be of interest to the database research community. Selection Criteria.Rather than randomly sampling from public trackers, we source bugs from recent state-of-the-art database testing tools, which helps ensure non-triviality and prior vetting by researchers. We",
+      "section": "4.1 Dataset Construction and Curation",
+      "page": 12,
+      "char_offset": 45294,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp",
+        "coddtest"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker",
+      "surface": "[ 5,18,22,\n31,48,49,51,63]",
+      "technique": "dqp",
+      "sentence": "Applying the above criteria, we identified in total eight recent tools [ 5,18,22, 31,48,49,51,63] that reported confirmed bugs in widely used open-source relational DBMSs.",
+      "context_before": "ligning with the database community; and (iii) our selection spans three reporting platforms (e.g., GitHub, Jira, and MySQL forums) and eight DBMS testing tools, capturing diverse reporting formats for evaluating DBugScribe. We include tools that (1) were published at top-tier database (SIGMOD, VLDB, ICDE) or systems (OSDI, SOSP, ATC, EuroSys) venues in the past three years, (2) provide publicly accessible reports with explicit developer confirmation (excluding tools without public links or identifiers), and (3) target relational DBMSs (excluding NoSQL systems such as graph DBMSs). Tool Survey.",
+      "context_after": "Among surveyed papers, we excluded three tools [ 11,36,71] that aim for NoSQL systems (e.g., Graph DBMSs), three tools [ 9,10,15] that aim for detecting transactional anomalies, and four tools [ 13,32,54,55] without publicly available links or artifacts related to the bug reports. Fig. 4 shows each tool’s targets and the number of reported bugs. MySQL, TiDB, and MariaDB are the most frequently targeted systems, each tested by at least six tools and averaging 86 reported bugs. As noted above, the resulting reports span multiple bug-tracking platforms and reporting styles, providing a diverse b",
+      "section": "4.1 Dataset Construction and Curation",
+      "page": 13,
+      "char_offset": 47126,
+      "cited_reference": {
+        "number": 5,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing dqp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 11,36,71]",
+      "technique": null,
+      "sentence": "Among surveyed papers, we excluded three tools [ 11,36,71] that aim for NoSQL systems (e.",
+      "context_before": "diverse reporting formats for evaluating DBugScribe. We include tools that (1) were published at top-tier database (SIGMOD, VLDB, ICDE) or systems (OSDI, SOSP, ATC, EuroSys) venues in the past three years, (2) provide publicly accessible reports with explicit developer confirmation (excluding tools without public links or identifiers), and (3) target relational DBMSs (excluding NoSQL systems such as graph DBMSs). Tool Survey.Applying the above criteria, we identified in total eight recent tools [ 5,18,22, 31,48,49,51,63] that reported confirmed bugs in widely used open-source relational DBMSs.",
+      "context_after": "g., Graph DBMSs), three tools [ 9,10,15] that aim for detecting transactional anomalies, and four tools [ 13,32,54,55] without publicly available links or artifacts related to the bug reports. Fig. 4 shows each tool’s targets and the number of reported bugs. MySQL, TiDB, and MariaDB are the most frequently targeted systems, each tested by at least six tools and averaging 86 reported bugs. As noted above, the resulting reports span multiple bug-tracking platforms and reporting styles, providing a diverse basis for evaluating DBugScribe. We therefore selected these three DBMSs for constructingBug",
+      "section": "4.1 Dataset Construction and Curation",
+      "page": 13,
+      "char_offset": 47297,
+      "cited_reference": {
+        "number": 11,
+        "text": "Wenjing Deng, Qiuyang Mang, Chengyu Zhang, and Manuel Rigger. 2024. Finding Logic Bugs in Spatial Database Engines via Affine Equivalent Inputs. 2024), 26 pages.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 9,10,15]",
+      "technique": null,
+      "sentence": ", Graph DBMSs), three tools [ 9,10,15] that aim for detecting transactional anomalies, and four tools [ 13,32,54,55] without publicly available links or artifacts related to the bug reports.",
+      "context_before": "d at top-tier database (SIGMOD, VLDB, ICDE) or systems (OSDI, SOSP, ATC, EuroSys) venues in the past three years, (2) provide publicly accessible reports with explicit developer confirmation (excluding tools without public links or identifiers), and (3) target relational DBMSs (excluding NoSQL systems such as graph DBMSs). Tool Survey.Applying the above criteria, we identified in total eight recent tools [ 5,18,22, 31,48,49,51,63] that reported confirmed bugs in widely used open-source relational DBMSs. Among surveyed papers, we excluded three tools [ 11,36,71] that aim for NoSQL systems (e.g.",
+      "context_after": "Fig. 4 shows each tool’s targets and the number of reported bugs. MySQL, TiDB, and MariaDB are the most frequently targeted systems, each tested by at least six tools and averaging 86 reported bugs. As noted above, the resulting reports span multiple bug-tracking platforms and reporting styles, providing a diverse basis for evaluating DBugScribe. We therefore selected these three DBMSs for constructingBugBench. 4, No. 3 (SIGMOD), Article 157. Publication date: June 2026. 157:14 Suyang Zhong et al. Table 2. Bug Reproduction Performance across Methods Method Success Rate (%)F→P (%) Time (s) Ove",
+      "section": "4.1 Dataset Construction and Curation",
+      "page": 13,
+      "char_offset": 47389,
+      "cited_reference": {
+        "number": 9,
+        "text": "Jack Clark, Alastair F. Donaldson, John Wickerson, and Manuel Rigger. 2024. Validating Database System Isolation Level Implementations with Version Certificate Recovery. InProceedings of the Nineteenth European Conference on Computer Systems(Athens, Greece)(EuroSys ’24). Association for Computing Ma",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "This bug was found by DQP [ 5] and marked as critical by developers.",
+      "context_before": "-5 mini), while Stages 2 and 4 use the full GPT-5 model, which explains the lower parsing cost relative to instantiation and refinement. 4.4 Extended Applications and Discoveries By capturing bugs as persistent, executable DBugScribeDSL scenarios rather than ephemeral manual steps,DBugScribeenables systematic quality assurance capabilities and cross-system bug discovery previously infeasible with manual reproduction. 4.4.1 Flaky Bug Reproduction.To demonstrate DBugScribe’s ability to handle complex and even non-deterministic bugs, we present a case study of a flaky bug from TiDB5(see Fig. 7(a)).",
+      "context_after": "The original bug report provides 5https://github.com/pingcap/tidb/issues/46580 4, No. 3 (SIGMOD), Article 157. Publication date: June 2026. 157:18 Suyang Zhong et al. (a) Ambiguous user report ### Minimal reproduce step CREATE TABLE t0(c0 INT); ... SELECT /*+ MERGE_JOIN(t1, t0, v0)*/v0.c2, t1.c0 FROM v0, t0... ### What did you see instead Executing the above test case multiple times and the results are not the same. Sometimes it returns 4 rows. Sometimes it returns empty: {}. (b) DBugScribe DSL # ... operations: - step_id: op_run1 sql_query: SELECT /*+ MERGE_JOIN(t1, t0, v0)*/ ...; - step_id",
+      "section": "4.4 Extended Applications and Discoveries",
+      "page": 17,
+      "char_offset": 61271,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 13,54]",
+      "technique": null,
+      "sentence": "Recent work [ 13,54] highlights the benefits of mining historical bug patterns to inform automated testing tools.",
+      "context_before": "been a long-standing challenge in general software research [ 27,40] and DBugScribeuses a best-effort strategy based on bounded repetitions and cross-run comparisons: it targets flaky behaviors that manifest with non-trivial probability within a practical repetition budget, and it is not intended to cover extremely rare flakes (e.g., once in 1K or 1M runs). DBugScribecan reproduce certain flaky bugs from ambiguous descriptions by synthesizing bounded-repetition scenarios. 4.4.2 Automatic Bug Analysis.DBugScribeenables automated bug analysis through its structured, executable DSL representation.",
+      "context_after": "DBugScribefacilitates this direction by providing standardized, machine-readable bug scenarios that can be systematically analyzed. For example, 4, No. 3 (SIGMOD), Article 157. Publication date: June 2026. DBugScribe: Automatic Database Bug Reproduction from Community Reports 157:19 Table 6. SQL Function Usage by Bug Type Type Bugs # Funcs Top Functions (# occurrence) Logic 105 39cast(10),date_add(8),date_sub(4) Error 18 6cast(5),reverse(2),acos(1) Crash 36 29strcmp(2),hex(2),from_days(2) given bugs successfully reproduced in the DBugScribeDSL, one can prompt an LLM: “Implement a script that i",
+      "section": "4.4 Extended Applications and Discoveries",
+      "page": 18,
+      "char_offset": 63655,
+      "cited_reference": {
+        "number": 13,
+        "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Yanyang Zhao, Shanshan Li, and Yu Jiang. 2025. Understanding and Detecting SQL Function Bugs: Using Simple Boundary Arguments to Trigger Hundreds of DBMS Bugs. InProceedings of the Twentieth European Conference on Computer Systems(Rotterdam, Netherlands)(EuroSys ’",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "citation_marker",
+      "surface": "[ 67,68]",
+      "technique": null,
+      "sentence": "Key challenges include differences in supported statements, functions, operators, and type systems [ 67,68].",
+      "context_before": "atches, to converge to stable and diagnostic reproductions. Cross-dialect portability.Our current cross-DBMS bug discovery experiment (Section 4.4.5) is limited to MySQL-compatible systems, including MySQL, MariaDB, and TiDB, where modifying only the environment fields in setup allowed more than half of the bug-inducing cases to execute successfully without error. Reusing bug-inducing cases across different SQL dialect families is feasible but non-trivial. It requires rewriting the sql_query strings in schema_data_steps and operations, and validating or adapting oracles when semantics diverge.",
+      "context_after": "However, reuse within a dialect family is often practical, since these systems typically share core semantics and differ mainly in dialect-specific features. For example, analogous to the MySQL family,DBugScribe can likely reuse bugs within the PostgreSQL family (e.g., PostgreSQL, DuckDB, and CockroachDB) and execute them across systems. Reproduction benefits.We identify the below actionable insights. First,DBugScribecan provide earlier, machine-checkable reproduction artifacts for new reports. Second,DBugScribecan support triage and confirmation workflows by providing ready-to-run scenarios",
+      "section": "5 Discussion",
+      "page": 21,
+      "char_offset": 71934,
+      "cited_reference": {
+        "number": 68,
+        "text": "Suyang Zhong and Manuel Rigger. 2026. Scaling Automated Database System Testing. InProceedings of the 31st ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2(USA) (ASPLOS ’26). Association for Computing Machinery, New York, NY, USA, 1677–1",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing sqlancer_pp"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": ", PQS [ 43], TLP [ 42], and NoREC [ 41], with recent work further specializing in optimizer-centric settings [ 3,5,22,48,49, 51,63].",
+      "context_before": "tructured DBugScribe DSL representation provides a natural substrate for duplicate analysis (e.g., clustering scenarios by structural similarity), which may support future duplicate detection and triage. Third,DBugScribe enables large-scale studies of bug characteristics and detection tools by automating reproduction. 6 Related Work Database Bug Detection.Automated DBMS testing has progressed from random query generation [ 46] to techniques that leverage language-validity feedback [ 66] and stateful fuzzing [ 20] for crash detection. Logic bugs are commonly exposed via oracle-based testing,e.g.",
+      "context_after": "Transactional correctness relies on graph-based oracles and isolation checking [ 9,10,21], while performance issues are targeted via regression and cardinality-estimation testing [ 4,24,33]. In contrast,DBugScribefocuses on reproducing already-reported bugs by extracting and synthesizing complete, executable scenarios from unstructured natural-language reports. Database Bug Studies.Large-scale studies of DBMS bugs provide empirical guidance for testing and debugging. For example, Fu et al. [ 13] analyze built-in SQL function bugs, Wu et al. [ 54] study atomic DDL bugs under concurrent schema",
+      "section": "6 Related Work",
+      "page": 21,
+      "char_offset": 73348,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "tlp",
+        "norec",
+        "qpg"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 9,10,21]",
+      "technique": null,
+      "sentence": "Transactional correctness relies on graph-based oracles and isolation checking [ 9,10,21], while performance issues are targeted via regression and cardinality-estimation testing [ 4,24,33].",
+      "context_before": "similarity), which may support future duplicate detection and triage. Third,DBugScribe enables large-scale studies of bug characteristics and detection tools by automating reproduction. 6 Related Work Database Bug Detection.Automated DBMS testing has progressed from random query generation [ 46] to techniques that leverage language-validity feedback [ 66] and stateful fuzzing [ 20] for crash detection. Logic bugs are commonly exposed via oracle-based testing,e.g., PQS [ 43], TLP [ 42], and NoREC [ 41], with recent work further specializing in optimizer-centric settings [ 3,5,22,48,49, 51,63].",
+      "context_after": "In contrast,DBugScribefocuses on reproducing already-reported bugs by extracting and synthesizing complete, executable scenarios from unstructured natural-language reports. Database Bug Studies.Large-scale studies of DBMS bugs provide empirical guidance for testing and debugging. For example, Fu et al. [ 13] analyze built-in SQL function bugs, Wu et al. [ 54] study atomic DDL bugs under concurrent schema changes, and Cui et al. [ 10] characterize transaction bugs via write-specific serializability violations. These efforts emphasize characterization and detection, whereas DBugScribetranslates",
+      "section": "6 Related Work",
+      "page": 21,
+      "char_offset": 73480,
+      "cited_reference": {
+        "number": 9,
+        "text": "Jack Clark, Alastair F. Donaldson, John Wickerson, and Manuel Rigger. 2024. Validating Database System Isolation Level Implementations with Version Certificate Recovery. InProceedings of the Nineteenth European Conference on Computer Systems(Athens, Greece)(EuroSys ’24). Association for Computing Ma",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored",
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 13]",
+      "technique": null,
+      "sentence": "[ 13] analyze built-in SQL function bugs, Wu et al.",
+      "context_before": "NoREC [ 41], with recent work further specializing in optimizer-centric settings [ 3,5,22,48,49, 51,63]. Transactional correctness relies on graph-based oracles and isolation checking [ 9,10,21], while performance issues are targeted via regression and cardinality-estimation testing [ 4,24,33]. In contrast,DBugScribefocuses on reproducing already-reported bugs by extracting and synthesizing complete, executable scenarios from unstructured natural-language reports. Database Bug Studies.Large-scale studies of DBMS bugs provide empirical guidance for testing and debugging. For example, Fu et al.",
+      "context_after": "[ 54] study atomic DDL bugs under concurrent schema changes, and Cui et al. [ 10] characterize transaction bugs via write-specific serializability violations. These efforts emphasize characterization and detection, whereas DBugScribetranslates unstructured reports into executable scenarios, enabling systematic validation and accumulating structured artifacts for downstream analysis. Automated Bug Reproduction.Automated reproduction has been studied extensively in general software [ 6], with recent LLM-based systems such as LIBRO [ 25], AEGIS [ 53], and SWT-Bench [ 37]. Complementarily, bug rep",
+      "section": "6 Related Work",
+      "page": 21,
+      "char_offset": 73975,
+      "cited_reference": {
+        "number": 13,
+        "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Yanyang Zhao, Shanshan Li, and Yu Jiang. 2025. Understanding and Detecting SQL Function Bugs: Using Simple Boundary Arguments to Trigger Hundreds of DBMS Bugs. InProceedings of the Twentieth European Conference on Computer Systems(Rotterdam, Netherlands)(EuroSys ’",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:57:35Z",
+    "is_model_written": true,
+    "summary": "DBugScribe reproduces database bugs automatically from the reports people file. Bug reports carry the setup, the query and the symptom in prose and fragments rather than as a runnable script, so reproducing one is manual work; DBugScribe parses a report into a domain-specific language describing the scenario and executes it. Its dataset is drawn from bugs that eight recent testing tools reported in widely used open-source relational DBMSs.",
+    "narrative": "SQLancer appears in two roles, neither of them reuse. As background it is one of the automated generators whose test scenarios the paper calls transient -- the contrast that motivates working from durable community reports instead. More substantially, tools descended from SQLancer supply the evaluation corpus: DQP and CODDTest are among the eight tools whose confirmed bug reports DBugScribe reproduces, and one reproduced bug is noted as found by DQP and marked critical by developers. PQS, TLP and NoREC are cited as the oracle line that recent optimizer-centric work specialises.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "background",
+      "M4": "background",
+      "M5": "motivation",
+      "M6": "incidental",
+      "M7": "background",
+      "M8": "incidental",
+      "M9": "incidental",
+      "M10": "incidental",
+      "M11": "background",
+      "M12": "background",
+      "M13": "definition",
+      "M14": "background",
+      "M15": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "What DBugScribe consumes is the bug reports these tools produced, as evaluation data. That is not reuse of SQLancer's code, its generator or its workload."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The contribution is reproducing reported bugs from prose, which shares no mechanism with any SQLancer oracle."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The tools supply the corpus of bugs to reproduce rather than serving as baselines; no run of SQLancer or its oracles is reported against DBugScribe."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is described as providing automated test generation whose scenarios are transient, which is a limitation rather than a standing claim."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

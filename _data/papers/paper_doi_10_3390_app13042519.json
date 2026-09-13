@@ -1,0 +1,522 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:33:19Z",
+  "paper": {
+    "id": "paper:doi:10.3390/app13042519",
+    "title": "Squill: Testing DBMS with Correctness Feedback and Accurate Instantiation",
+    "authors": [
+      "Shihao Wen",
+      "Peng Jia",
+      "Pin Yang",
+      "Chi Hu"
+    ],
+    "year": 2023,
+    "venue": "Applied Sciences",
+    "doi": "10.3390/app13042519",
+    "arxiv_id": null,
+    "s2_paper_id": "b3692c4bdaaff8e7e0f9fdf68bd810d3d8275ebd",
+    "url": "https://doi.org/10.3390/app13042519",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.3390/app13042519",
+      "retrieved_at": "2026-09-09T01:33:19Z",
+      "chars": 77794,
+      "content_sha256": "sha256:d1c845f7f539c88906bf8c016618462c972020430be23df4cd6f13b31ad8c4e0"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 23,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2460
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 10761
+      },
+      {
+        "number": "2.1",
+        "title": "Overview of Squirrel",
+        "start": 11035
+      },
+      {
+        "number": "2.1.1",
+        "title": "Mutation of Squirrel",
+        "start": 12046
+      },
+      {
+        "number": "2.1.2",
+        "title": "Instantiation of Squirrel",
+        "start": 13136
+      },
+      {
+        "number": "2.2",
+        "title": "Motivation",
+        "start": 14988
+      },
+      {
+        "number": "2.2.1",
+        "title": "Correctness Feedback",
+        "start": 15004
+      },
+      {
+        "number": "2.2.2",
+        "title": "Limitation of Squirrel’s Instantiation",
+        "start": 19229
+      },
+      {
+        "number": "3",
+        "title": "Design of Squill",
+        "start": 22210
+      },
+      {
+        "number": "3.1",
+        "title": "Correctness-Guided Mutation",
+        "start": 23824
+      },
+      {
+        "number": "3.1.1",
+        "title": "Correctness-Focused Seed Selection",
+        "start": 24114
+      },
+      {
+        "number": "3.1.2",
+        "title": "Mutation with Interesting Material Library",
+        "start": 27110
+      },
+      {
+        "number": "3.2",
+        "title": "Semantics-Aware Instantiation",
+        "start": 30467
+      },
+      {
+        "number": "3.2.1",
+        "title": "Instantiation of Simple Semantics",
+        "start": 32895
+      },
+      {
+        "number": "3.2.2",
+        "title": "Instantiation of Complicated Semantics",
+        "start": 34343
+      },
+      {
+        "number": "4",
+        "title": "Implementation",
+        "start": 41662
+      },
+      {
+        "number": "5",
+        "title": "Evaluation",
+        "start": 42580
+      },
+      {
+        "number": "5.1",
+        "title": "DBMS Bugs",
+        "start": 44088
+      },
+      {
+        "number": "5.2",
+        "title": "Comparison with Existing Tools",
+        "start": 49831
+      },
+      {
+        "number": "5.3",
+        "title": "Contribution of Correctness-Guided Mutation",
+        "start": 53847
+      },
+      {
+        "number": "5.4",
+        "title": "Contribution of Semantics-Aware Instantiation",
+        "start": 57025
+      },
+      {
+        "number": "6",
+        "title": "Discussion",
+        "start": 60405
+      },
+      {
+        "number": "7",
+        "title": "Related Work",
+        "start": 62803
+      },
+      {
+        "number": "8",
+        "title": "Conclusions",
+        "start": 65932
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Seltenreich, A. SQLSmith. Available online: https://github.com/anse1/sqlsmith (accessed on 22 November 2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Rigger, M.; Su, Z. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/FSE 2020, Virtual Event, 8–13 November 2020; Association for Computing Machinery: New York, NY, USA, 2020; pp. 1140–1152. [CrossRef",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 3,
+      "text": "Rigger, M.; Su, Z. Testing Database Engines via Pivoted Query Synthesis. In Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation, OSDI’20, Virtual, 4–6 November 2020; USENIX Association: Berkeley, CA, USA, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 4,
+      "text": "Rigger, M.; Su, Z. Finding Bugs in Database Systems via Query Partitioning. Proc. ACM Program. Lang. 2020 ,4, 1–30. [CrossRef]",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 5,
+      "text": "Wikipedia. Fuzzing. Available online: https://en.wikipedia.org/wiki/Fuzzing (accessed on 22 November 2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Zalewski, M. American Fuzzy Lop. Available online: https://github.com/google/AFL (accessed on 22 November 2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Consortium, S. How SQLite Is Tested. Available online: https://www.sqlite.org/testing.html (accessed on 22 November 2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "LLVM. LibFuzzer. Available online: https://www.llvm.org/docs/LibFuzzer.html (accessed on 22 November 2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Google. Honggfuzz. Available online: https://github.com/google/honggfuzz (accessed on 22 November 2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Fioraldi, A.; Maier, D.; Eißfeldt, H.; Heuse, M., AFL++: Combining Incremental Steps of Fuzzing Research. In Proceedings of the 14th USENIX Conference on Offensive Technologies, Berkeley, CA, USA, 11 August 2020; USENIX Association: Berkeley, CA, USA, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Zhong, R.; Chen, Y.; Hu, H.; Zhang, H.; Lee, W.; Wu, D. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Proceedings of the CCS ’20: 2020 ACMSIGSAC Conference on Computer and Communications Security, Virtual Event, 9–13 November 2020; Ligatti, J., Ou, X., Katz, J., Vigna, G., Eds.; ACM: New York, NY, USA, 2020; pp. 955–970.. [CrossRef]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Oracle. MySQL Server. Available online: https://github.com/mysql/mysql-server (accessed on 22 November 2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Foundation, M. MariaDB. Available online: https://github.com/MariaDB/server (accessed on 22 November 2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Group, A. OceanBase. Available online: https://github.com/oceanbase/oceanbase (accessed on 22 November 2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Lemieux, C.; Sen, K. FairFuzz: A Targeted Mutation Strategy for Increasing Greybox Fuzz Testing Coverage. In Proceedings of the 33rd ACM/IEEE International Conference on Automated Software Engineering, ASE 2018, Montpellier, France, 3–7 September 2018; Association for Computing Machinery: New York, NY, USA, 2018; pp. 475–485. [CrossRef]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Wang, Y.; Jia, X.; Liu, Y.; Zeng, K.; Bao, T.; Wu, D.; Su, P. Not All Coverage Measurements Are Equal: Fuzzing by Coverage Accounting for Input Prioritization. In Proceedings of the 27th Annual Network and Distributed System Security Symposium, NDSS 2020, San Diego, CA, USA, 23–26 February 2020; The Internet Society: Washington, DC, USA, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Yue, T.; Wang, P .; Tang, Y.; Wang, E.; Yu, B.; Lu, K.; Zhou, X. EcoFuzz: Adaptive Energy-Saving Greybox Fuzzing as a Variant of the Adversarial Multi-Armed Bandit. In Proceedings of the 29th USENIX Conference on Security Symposium, SEC’20, San Diego, CA, USA, 12–14 August 2020; USENIX Association: Berkeley, CA, USA, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Liang, Y.; Liu, S.; Hu, H. Detecting Logical Bugs of DBMS with Coverage-based Guidance. In Proceedings of the 31st USENIX Security Symposium (USENIX Security 22), Boston, MA, USA, 10–12 August 2022; USENIX Association: Boston, MA, USA, 2022; pp. 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Google. AddressSanitizer. Available online: https://github.com/google/sanitizers/wiki/AddressSanitizer (accessed on 22 November 2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Foundation, F.S. GDB: The GNU Project Debugger. Available online: http://www.sourceware.org/gdb/ (accessed on 22 November 2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Klees, G.; Ruef, A.; Cooper, B.; Wei, S.; Hicks, M. Evaluating Fuzz Testing. In Proceedings of the 2018 ACMSIGSAC Conference on Computer and Communications Security, CCS ’18, Toronto, ON, Canada, 15–19 October 2018; Association for Computing Machinery: New York, NY, USA, 2018; pp. 2123–2138. [CrossRef]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Yan, L.; Ahmad, M.W.; Jawarneh, M.; Shabaz, M.; Rafﬁk, R.; Kishore, K.H.; Azeem, I. Single-Input Single-Output System with Multiple Time Delay PID Control Methods for UAV Cluster Multiagent Systems. Secur. Commun. Netw. 2022 ,2022, 3935143. [CrossRef]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Gao, H.; Kareem, A.; Jawarneh, M.; Ofori, I.; Rafﬁk, R.; Kishore, K.H. Metaheuristics Based Modeling and Simulation Analysis of New Integrated Mechanized Operation Solution and Position Servo System. Math. Probl. Eng. 2022 ,2022, 1466775. [CrossRef]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Aschermann, C.; Frassetto, T.; Holz, T.; Jauernig, P .; Sadeghi, A.; Teuchert, D. NAUTILUS: Fishing for Deep Bugs with Grammars. In Proceedings of the 26th Annual Network and Distributed System Security Symposium, NDSS 2019, San Diego, CA, USA, 24–27 February 2019; The Internet Society: Washington, DC, USA, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Slutz, D. Massive Stochastic Testing of SQL; Technical Report MSR-TR-98-21; Publisher: Burlington, MA, USA, 1998. Appl. Sci. 2023 ,13, 2519 23 of 23",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Ghit, B.; Poggi, N.; Rosen, J.; Xin, R.; Boncz, P. SparkFuzz: Searching Correctness Regressions in Modern Query Engines. In Proceedings of the Workshop on Testing Database Systems, DBTest ’20, Portland, OR, USA, 19 June 2020; Association for Computing Machinery: New York, NY, USA, 2020. [CrossRef]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Liu, X.; Zhou, Q.; Arulraj, J.; Orso, A. Automatic Detection of Performance Bugs in Database Systems Using Equivalent Queries. In Proceedings of the 44th International Conference on Software Engineering, ICSE ’22, Pittsburgh, PA, USA, 25–27 May 2022; Association for Computing Machinery: New York, NY, USA, 2022; pp. 225–236. [CrossRef]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Gan, S.; Zhang, C.; Qin, X.; Tu, X.; Li, K.; Pei, Z.; Chen, Z. CollAFL: Path Sensitive Fuzzing. In Proceedings of the 2018 IEEE Symposium on Security and Privacy (SP), San Francisco, CA, USA, 20–24 May 2018; pp. 679–696. [CrossRef]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Manès, V .J.M.; Kim, S.; Cha, S.K. Ankou: Guiding Grey-Box Fuzzing towards Combinatorial Difference. In Proceedings of the ACM/IEEE 42nd International Conference on Software Engineering, ICSE ’20, Seoul, Republic of Korea, 27 June–19 July 2020; Association for Computing Machinery: New York, NY, USA, 2020; pp. 1024–1036. [CrossRef]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Lyu, C.; Ji, S.; Zhang, C.; Li, Y.; Lee, W.H.; Song, Y.; Beyah, R. MOPT: Optimized Mutation Scheduling for Fuzzers. In Proceedings of the 28th USENIX Conference on Security Symposium, SEC’19, Berkeley, CA, USA, 14–16 August 2019; USENIX Association: Berkeley, CA, USA, 2019; pp. 1949–1966.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Zhou, C.; Wang, M.; Liang, J.; Liu, Z.; Jiang, Y. Zeror: Speed up Fuzzing with Coverage-Sensitive Tracing and Scheduling. In Proceedings of the 35th IEEE/ACM International Conference on Automated Software Engineering, ASE ’20, Melbourne, Australia, 21–25 September 2020; Association for Computing Machinery: New York, NY, USA, 2020; pp. 858–870. [CrossRef]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Aschermann, C.; Schumilo, S.; Blazytko, T.; Gawlik, R.; Holz, T. REDQUEEN: Fuzzing with Input-to-State Correspondence. In Proceedings of the 26th Annual Network and Distributed System Security Symposium, NDSS 2019, San Diego, CA, USA, 24–27 February 2019; The Internet Society: Washington, DC, USA, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Chen, P .; Chen, H. Angora: Efﬁcient Fuzzing by Principled Search. In Proceedings of the Privacy (SP), San Francisco, CA, USA, 20–24 May 2018; pp. 711–725. [CrossRef]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Park, S.; Xu, W.; Yun, I.; Jang, D.; Kim, T. Fuzzing JavaScript Engines with Aspect-preserving Mutation. In Proceedings of the May 2020; pp. 1629–1642. [CrossRef]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Yun, I.; Lee, S.; Xu, M.; Jang, Y.; Kim, T. QSYM: A Practical Concolic Execution Engine Tailored for Hybrid Fuzzing. In Proceedings of the 27th USENIX Security Symposium (USENIX Security 18), Vancouver, BC, Canada, 16–18 August 2017; USENIX Association: Baltimore, MD, USA, 2018; pp. 745–761.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Pham, V .T.; Böhme, M.; Santosa, A.E.; C˘ aciulescu, A.R.; Roychoudhury, A. Smart Greybox Fuzzing. IEEE Trans. Softw. Eng. 2021, 47, 1980–1997. [CrossRef]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Wüstholz, V .; Christakis, M. Harvey: A Greybox Fuzzer for Smart Contracts. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/FSE 2020, Virtual Event, 8–13 November 2020; Association for Computing Machinery: New York, NY, USA, 2020; pp. 1398–1409. [CrossRef]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Fioraldi, A.; Maier, D.; Zhang, D.; Balzarotti, D. LibAFL: A framework to build modular and reusable fuzzers. In Proceedings of the CCS 2022, 29th ACM Conference on Computer and Communications Security, Los Angeles, CA, USA, 7–11 November 2022; ACM: New York, NY, USA, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Padhye, R.; Lemieux, C.; Sen, K.; Papadakis, M.; Le Traon, Y. Semantic Fuzzing with Zest. In Proceedings of the 28th ACMSIGSOFT International Symposium on Software Testing and Analysis, ISSTA 2019, Beijing, China, 15–19 July 2019; Association for Computing Machinery: New York, NY, USA, 2019; pp. 329–340. [CrossRef]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Blazytko, T.; Aschermann, C.; Schlögel, M.; Abbasi, A.; Schumilo, S.; Wörner, S.; Holz, T. GRIMOIRE: Synthesizing Structure while Fuzzing. In Proceedings of the 28th USENIX Security Symposium (USENIX Security 19), Santa Clara, CA, USA, 14–16 August 2019; USENIX Association: Santa Clara, CA, USA, 2019; pp. 1985–2002.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Foundation, F.S. Gnu Bison. Available online: https://www.gnu.org/software/bison (accessed on 22 November 2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Paxson, V. Flex. Available online: https://github.com/westes/ﬂex (accessed on 22 November 2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Wang, M.; Wu, Z.; Xu, X.; Liang, J.; Zhou, C.; Zhang, H.; Jiang, Y. Industry Practice of Coverage-Guided Enterprise-Level DBMS Fuzzing. In Proceedings of the 43rd International Conference on Software Engineering: Software Engineering in Practice, ICSE-SEIP ’21, Madrid, Spain, 22–30 May 2021; IEEE Press: Hoboken, NJ, USA, 2021; pp. 328–337. [CrossRef] Disclaimer/Publisher’s Note: The statements, op",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 2,
+      "text": "Rigger, M.; Su, Z. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/FSE 2020, Virtual Event, 8–13 November 2020; Association for Computing Machinery: New York, NY, USA, 2020; pp. 1140–1152. [CrossRef]",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 3,
+      "text": "Rigger, M.; Su, Z. Testing Database Engines via Pivoted Query Synthesis. In Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation, OSDI’20, Virtual, 4–6 November 2020; USENIX Association: Berkeley, CA, USA, 2020.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 4,
+      "text": "Rigger, M.; Su, Z. Finding Bugs in Database Systems via Query Partitioning. Proc. ACM Program. Lang. 2020 ,4, 1–30. [CrossRef]",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Black-box fuzzing, or generation-based fuzzing, has been extensively used in ﬁnding DBMS bugs, such as SQLsmith [1] and SQLancer [2–4].",
+      "context_before": "overy. Keywords: coverage-based grey-box fuzzing; database testing; vulnerability 1. Introduction Database management systems (DBMSs) are widely used worldwide as the core of modern information systems. Like other complicated computer applications, the security and reliability of DBMSs face severe challenges. Malicious attacks on DBMSs, such as remote code execution or denial of service, will seriously harm the information system. Therefore, it is of great signiﬁcance to efﬁciently detect DBMS vulnerabilities to improve their robustness and the security of the information system built on them.",
+      "context_after": "Security researchers have found a considerable number of bugs using this technique. A black-box fuzzer treats the program as a black box and is unaware of internal program structure [ 5]. It randomly generates a large number of SQL statements and executes them in the DBMS. The current input is saved for subsequent analysis when unexpected behavior occurs, such as a crash. The disadvantage of black-box fuzzing has been thoroughly discussed by the academic circle, which is inefﬁciency. Since the generation of SQL statements is entirely random, considering the complexity of the DBMS, most of the",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 2978,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We did not compare Squill with SQLRight [ 18] and SQLancer, because their target is the logic bug of DBMSs, while Squill, like Squirrel, focuses on the memory error of DBMSs.",
+      "context_before": "was designed to answer the following questions: Q1. Can Squill detect bugs from well-tested DBMSs? (Section 5.1). Q2. Can Squill perform better than existing tools? (Section 5.2). Q3. How does correctness-guided mutation help fuzzing? (Section 5.3). Q4. What is the contribution of semantics-aware instantiation? (Section 5.4). We selected three popular real-world DBMSs for evaluation, including MySQL, MariaDB, and OceanBase. We mainly compared Squill with Squirrel, as Squirrel had been shown to outperform other mutation-based fuzzers, such as AFL, and generation-based fuzzers, such as SQLsmith.",
+      "context_after": "We perform the experiments on three computers with Ubuntu 18.04 system, Intel(R) Core(TM) i7-10700 (2.90 GHz) CPU, and 32 GB memory. We used the llvm mode of AFL to instrument the DBMS. Because of the large codebase of DBMSs, we set the bitmap size to 256 K and used a 20% ratio instrumentation. The DBMS versions in the experiment are all the latest, including MySQL 8.0.29, MariaDB 10.10.0, and OceanBase 3.1.4. In the experiments, due to resource bottleneck, we ran one DBMS and a fuzzer on each machine for 24 h at a time and repeated three times. Squill and Squirrel used the same seed and init",
+      "section": "5 Evaluation",
+      "page": 14,
+      "char_offset": 43285,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "Sqlancer",
+      "technique": null,
+      "sentence": "Sqlancer [ 2–4] constructs different SQL statements of functionally equivalent through several different patterns and inputs them into the same DBMS.",
+      "context_before": "SQL statements into the DBMS to trigger abnormal behaviors (usually crashes) of the DBMS is one method of black-box DBMS fuzzing. Sqlsmith [ 1] is a representative of this kind of black-box DBMS fuzzer. Based on AST, it randomly generates SQL query statements for the initial database through a series of highly customized rules. In addition, differential testing is another standard method used to detect DBMS vulnerabilities in black-box DBMS fuzzing. Rags [ 25] and Sparkfuzz [ 26] send the same SQL query to different DBMSs and detect correctness bugs by comparing the differences in the results.",
+      "context_after": "If the results are different, the DBMS might have a logical bug. Similarly, AMOEBA [ 27] constructs query pairs that are semantically equivalent to each other and then compares their response time on the same database system to detect performance bugs. The main difference between Squill and the works above is that Squill is a grey-box fuzzer with feedback like code coverage. Compared with blind fuzzing, fuzzing with feedback can comprehensively explore program states and trigger the deep logic of DBMSs. Grey-box DBMS Fuzzing. In recent years, grey-box or mutation-based fuzzing has shown its e",
+      "section": "7 Related Work",
+      "page": 21,
+      "char_offset": 63727,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M2"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T17:01:52Z",
+    "is_model_written": true,
+    "summary": "Squill fuzzes DBMSs for memory errors, using correctness feedback to keep generated statements valid and accurate instantiation to fill in values that satisfy the schema. Valid statements reach deeper into the engine, which is where memory errors are found.",
+    "narrative": "SQLancer is named as a leading example of generation-based DBMS fuzzing and described as constructing functionally equivalent SQL statements through several patterns and feeding them to the same DBMS. The paper is explicit that it does not compare against it: SQLancer and SQLRight target logic bugs, while Squill, like Squirrel, targets memory errors, so the two are measured on different things.",
+    "roles": {
+      "M1": "background",
+      "M2": "incidental",
+      "M3": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited as related work; no reuse of its code, generator or workload is described."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No SQLancer technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "M2 states directly that Squill was not compared with SQLancer, because SQLancer targets logic bugs while Squill targets memory errors."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The text does not describe SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,523 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:27:24Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3468264.3468540",
+    "title": "Skeletal approximation enumeration for SMT solver testing",
+    "authors": [
+      "Peisen Yao",
+      "Heqing Huang",
+      "Wensheng Tang",
+      "Qingkai Shi",
+      "Rongxin Wu",
+      "Charles Zhang"
+    ],
+    "year": 2021,
+    "venue": "ESEC/SIGSOFT FSE",
+    "doi": "10.1145/3468264.3468540",
+    "arxiv_id": null,
+    "s2_paper_id": "e6a4ddc65452fb2a01389b6e28e6607b8781710e",
+    "url": "https://doi.org/10.1145/3468264.3468540",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3468264.3468540",
+      "retrieved_at": "2026-09-08T15:27:24Z",
+      "chars": 80216,
+      "content_sha256": "sha256:03f59e372c08721e6f612e739a97a92ee606d9021f7a86c3c8064a9d5ed71381"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 1950
+      },
+      {
+        "number": "2",
+        "title": "PRELIMINARIES",
+        "start": 8595
+      },
+      {
+        "number": "3",
+        "title": "PROBLEM FORMULATION",
+        "start": 12574
+      },
+      {
+        "number": "3.1",
+        "title": "Approximation-based Metamorphic",
+        "start": 12783
+      },
+      {
+        "number": "3.2",
+        "title": "Skeletal Approximation Enumeration",
+        "start": 14212
+      },
+      {
+        "number": "4",
+        "title": "APPROACH",
+        "start": 17824
+      },
+      {
+        "number": "4.1",
+        "title": "Approximation from CNF",
+        "start": 18135
+      },
+      {
+        "number": "4.2",
+        "title": "Literal-level Mutation Strategies",
+        "start": 21697
+      },
+      {
+        "number": "5",
+        "title": "EVALUATION",
+        "start": 40747
+      },
+      {
+        "number": "5.1",
+        "title": "Experimental Setup",
+        "start": 41090
+      },
+      {
+        "number": "5.2",
+        "title": "Results of Bug Finding",
+        "start": 43118
+      },
+      {
+        "number": "5.3",
+        "title": "Comparison to Existing Techniques",
+        "start": 46430
+      },
+      {
+        "number": "5.4",
+        "title": "Threats to Validity",
+        "start": 53601
+      },
+      {
+        "number": "6",
+        "title": "DISCUSSION",
+        "start": 54335
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2014. AFL: american fuzzy lop. http://lcamtuf.coredump.cx/a/. Accessed: 2014.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2021. dd SMT. https://github.com/aniemetz/dd SMT.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "2021. pyDelta. https://github.com/nafur/pydelta.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "2021. SMT-COMP. https://smt-comp.github.io/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "2021. Z3 test scripts. https://github.com/Z3Prover/z3/src/test.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "2021. CVC4 regression test suit. https://github.com/CVC4/CVC4/test/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "2021. Yices2 regression test suit. https://github.com/SRI-CSL/yices2/tests.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "2021. OpenSMT regression test suit. https://github.com/usi-verication-andsecurity/opensmt/regression.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "2021. https://smtfuzz.github.io/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Cornelius Aschermann, Tommaso Frassetto, Thorsten Holz, Patrick Jauernig, Ahmad-Reza Sadeghi, and Daniel Teuchert. 2019. NAUTILUS: Fishing for Deep Bugs with Grammars. In 26th Annual Network and Distributed System Security Symposium, NDSS 2019, San Diego, California, USA, February 24-27, 2019. The Internet Society. https://www.ndss-symposium.org/ndss-paper/nautilus-shingfor-deep-bugs-with-grammars",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Clark Barrett, Christopher Conway, Morgan Deters, Liana Hadarean, Dejan Jovanović, Tim King, Andrew Reynolds, and Cesare Tinelli. 2011. CVC4. In Proceedings of the 23rd International Conference on Computer Aided Verication (Snowbird, UT) (CAV’11). Springer-Verlag, Berlin, Heidelberg, 171–177. http: //dl.acm.org/citation.cfm?id=2032305.2032319",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Clark Barrett, Aaron Stump, and Cesare Tinelli. 2010. The satisability modulo theories library (SMT-LIB). www. SMT-LIB. org 15 (2010), 18–52.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Karthikeyan Bhargavan, Barry Bond, Antoine Delignat-Lavaud, Cédric Fournet, Chris Hawblitzel, Catalin Hritcu, Samin Ishtiaq, Markulf Kohlweiss, Rustan Leino, Jay R. Lorch, Kenji Maillard, Jianyang Pan, Bryan Parno, Jonathan Protzenko, Tahina Ramananandro, Ashay Rane, Aseem Rastogi, Nikhil Swamy, Laure Thompson, Peng Wang, Santiago Zanella Béguelin, and Jean Karim Zinzindohoue. 2017. Everest: Towar",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Tim Blazytko, Moritz Contag, Cornelius Aschermann, and Thorsten Holz. 2017. Syntia: Synthesizing the Semantics of Obfuscated Code. In 26th USENIX Security Symposium, USENIX Security 2017, Vancouver, BC, Canada, August 16-18, 2017, Engin Kirda and Thomas Ristenpart (Eds.). USENIX Association, 643– 659. https://www.usenix.org/conference/usenixsecurity17/technical-sessions/ presentation/blazytko",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Dmitry Blotsky, Federico Mora, Murphy Berzish, Yunhui Zheng, Ifaz Kabir, and Vijay Ganesh. 2018. StringFuzz: A Fuzzer for String Solvers. In Computer Aided Verication-30th International Conference, CAV 2018, Held as Part of the Federated Logic Conference, FloC 2018, Oxford, UK, July 14-17, 2018, Proceedings, Part II (Lecture Notes in Computer Science, Vol. 10982), Hana Chockler and Georg Weissenba",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Cristina Borralleras, Daniel Larraz, Enric Rodríguez-Carbonell, Albert Oliveras, and Albert Rubio. 2019. Incomplete SMT Techniques for Solving Non-Linear Formulas over the Integers. ACM Trans. Comput. Log. 20, 4 (2019), 25:1–25:36. https://doi.org/10.1145/3340923",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Aaron R. Bradley and Zohar Manna. 2007. The calculus of computationdecision procedures with applications to verication. Springer. https://doi.org/10.1007/9783-540-74113-8",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Robert Brummayer and Armin Biere. 2009. Eective Bit-Width and UnderApproximation. In Computer Aided Systems Theory-EUROCAST 2009, 12th International Conference, Las Palmas de Gran Canaria, Spain, February 15-20, 2009, Revised Selected Papers (Lecture Notes in Computer Science, Vol. 5717), Roberto Moreno-Díaz, Franz Pichler, and Alexis Quesada-Arencibia (Eds.). Springer, 304– 311. https://doi.org/1",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Robert Brummayer and Armin Biere. 2009. Fuzzing and Delta-Debugging SMT Solvers. In Proceedings of the 7th International Workshop on Satisability Modulo Theories (Montreal, Canada) (SMT ’09). Association for Computing Machinery, New York, NY, USA, 1–5. https://doi.org/10.1145/1670412.1670413",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Roberto Bruttomesso, Edgar Pek, Natasha Sharygina, and Aliaksei Tsitovich. 2010. The OpenSMT Solver. In Tools and Algorithms for the Construction and Analysis of Systems, 16th International Conference, TACAS 2010, Held as Part of the Joint European Conferences on Theory and Practice of Software, ETAPS 2010, Paphos, Cyprus, March 20-28, 2010. Proceedings (Lecture Notes in Computer Science, Vol. 601",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Randal E. Bryant, Daniel Kroening, Joël Ouaknine, Sanjit A. Seshia, Ofer Strichman, and Bryan A. Brady. 2007. Deciding Bit-Vector Arithmetic with Abstraction. In Tools and Algorithms for the Construction and Analysis of Systems, 13th International Conference, TACAS 2007, Held as Part of the Joint European Conferences on Theory and Practice of Software, ETAPS 2007 Braga, Portugal, March 24 - April ",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Alexandra Bugariu and Peter Müller. 2020. Automatically testing string solvers. InICSE ’20: 42nd International Conference on Software Engineering, Seoul, South Korea, 27 June-19 July, 2020, Gregg Rothermel and Doo-Hwan Bae (Eds.). ACM, 1459–1470. https://doi.org/10.1145/3377811.3380398",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Cristian Cadar, Daniel Dunbar, Dawson R Engler, et al .2008. KLEE: Unassisted and Automatic Generation of High-Coverage Tests for Complex Systems Programs.. InProceedings of the 8th USENIX Conference on Operating Systems Design and Implementation (San Diego, California) (OSDI’08). USENIX Association, Berkeley, CA, USA, 209–224. http://dl.acm.org/citation.cfm?id=1855741.1855756",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "W. K. Chan, S. C. Cheung, and Karl R. P. H. Leung. 2005. Towards a Metamorphic Testing Methodology for Service-Oriented Software Applications. In Fifth International Conference on Quality Software (QSIC 2005), 19-20 September 2005, Melbourne, Australia. IEEE Computer Society, 470–476. https://doi.org/10.1109/ QSIC.2005.67",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Tsong Y Chen, Shing C Cheung, and Shiu Ming Yiu. 2020. Metamorphic testing: a new approach for generating next test cases. arXiv preprint arXiv:2002.12543 (2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Tsong Yueh Chen, Joshua Wing Kei Ho, Huai Liu, and Xiaoyuan Xie. 2009. An innovative approach for testing bioinformatics programs using metamorphic testing. BMC Bioinform. 10 (2009). https://doi.org/10.1186/1471-2105-10-24",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Jürgen Christ, Jochen Hoenicke, and Alexander Nutz. 2012. SMTInterpol: An Interpolating SMT Solver. In Model Checking Software-19th International Workshop, SPIN 2012, Oxford, UK, July 23-24, 2012. Proceedings (Lecture Notes in Computer Science, Vol. 7385), Alastair F. Donaldson and David Parker (Eds.). Springer, 248–254. https://doi.org/10.1007/978-3-642-31759-0_19",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Leonardo De Moura and Nikolaj Bjørner. 2008. Z3: An ecient SMT solver. In Proceedings of the Theory and Practice of Software, 14th International Conference on Tools and Algorithms for the Construction and Analysis of Systems (Budapest, Hungary) (TACAS’08/ETAPS’08). Springer-Verlag, Berlin, Heidelberg, 337–340. http://dl.acm.org/citation.cfm?id=1792734.1792766",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "David Detlefs, Greg Nelson, and James B. Saxe. 2005. Simplify: A Theorem Prover for Program Checking. J. ACM 52, 3 (May 2005), 365–473. https://doi.org/10. 1145/1066100.1066102",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Bruno Dutertre. 2014. Yices2.2. In Proceedings of the 16th International Conference on Computer Aided Verication-Volume 8559. Springer-Verlag, Berlin, Heidelberg, 737–744. https://doi.org/10.1007/978-3-319-08867-9_49",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Anurag Dwarakanath, Manish Ahuja, Samarth Sikand, Raghotham M. Rao, R. P. Jagadeesh Chandra Bose, Neville Dubash, and Sanjay Podder. 2018. Identifying implementation bugs in machine learning based image classiers using metamorphic testing. In Proceedings of the 27th ACMSIGSOFT International Symposium on Software Testing and Analysis, ISSTA 2018, Amsterdam, The Netherlands, July 16-21, 2018, Frank ",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Vijay Ganesh and David L Dill. 2007. A decision procedure for bit-vectors and arrays. In Proceedings of the 19th International Conference on Computer Aided Verication (Berlin, Germany) (CAV’07). Springer-Verlag, Berlin, Heidelberg, 519– 531. http://dl.acm.org/citation.cfm?id=1770351.1770421",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Patrice Godefroid, Nils Klarlund, and Koushik Sen. 2005. DART: directed automated random testing. In Proceedings of the 2005 ACMSIGPLAN Conference on Programming Language Design and Implementation (Chicago, IL, USA) (PLDI ’05). ACM, New York, NY, USA, 213–223. https://doi.org/10.1145/1065010.1065036",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "HyungSeok Han, DongHyeon Oh, and Sang Kil Cha. 2019. CodeAlchemist: Semantics-Aware Code Generation to Find Vulnerabilities in JavaScript Engines. In 26th Annual Network and Distributed System Security Symposium, NDSS 2019, San Diego, California, USA, February 24-27, 2019. The Internet Society. https://www.ndss-symposium.org/ndss-paper/codealchemist-semanticsaware-code-generation-to-nd-vulnerabili",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Heqing Huang, Peisen Yao, Rongxin Wu, Qingkai Shi, and Charles Zhang. 2020. Pangolin: Incremental Hybrid Fuzzing with Polyhedral Path Abstraction. In ay 18-21, 2020. IEEE, 1613–1627. https://doi.org/10.1109/SP40000.2020.00063",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. 2014. Compiler validation via equivalence modulo inputs. In ACMSIGPLAN Conference on Programming Language Design and Implementation, PLDI ’14, Edinburgh, United Kingdom-June 09 - 11, 2014, Michael F. P. O’Boyle and Keshav Pingali (Eds.). ACM, 216–226. https://doi.org/10.1145/2594291.2594334",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Yi Li, Aws Albarghouthi, Zachary Kincaid, Arie Gurnkel, and Marsha Chechik. 2014. Symbolic Optimization with SMT Solvers. In Proceedings of the 41st ACMSIGPLAN-SIGACT Symposium on Principles of Programming Languages (San Diego, California, USA) (POPL ’14). ACM, New York, NY, USA, 607–618. https://doi. org/10.1145/2535838.2535857",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Pingchuan Ma, Shuai Wang, and Jin Liu. 2020. Metamorphic Testing and Certied Mitigation of Fairness Violations in NLP Models. In Proceedings of the TwentyNinth International Joint Conference on Articial Intelligence, IJCAI 2020, Christian Bessiere (Ed.). ijcai.org, 458–465. https://doi.org/10.24963/ijcai.2020/64",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Muhammad Numair Mansur, Maria Christakis, Valentin Wüstholz, and Fuyuan Zhang. 2020. Detecting critical bugs in SMT solvers using blackbox mutational 1152 Skeletal Approximation Enumeration for SMT Solver Testing ESEC/FSE ’21, August 23–28, 2021, Athens, Greece fuzzing. In ESEC/FSE ’20: 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Kenneth L. McMillan. 2006. Lazy Abstraction with Interpolants. In Computer Aided Verication, 18th International Conference, CAV 2006, Seattle, WA, USA, August 17-20, 2006, Proceedings (Lecture Notes in Computer Science, Vol. 4144), Thomas Ball and Robert B. Jones (Eds.). Springer, 123–136. https://doi.org/10. 1007/11817963_14",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Sergey Mechtaev, Jooyong Yi, and Abhik Roychoudhury. 2016. Angelix: Scalable multiline program patch synthesis via symbolic analysis. In Proceedings of the 38th International Conference on Software Engineering (Austin, Texas) (ICSE ’16). ACM, New York, NY, USA, 691–701. https://doi.org/10.1145/2884781.2884807",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Aina Niemetz, Mathias Preiner, and Armin Biere. 2014. Boolector 2.0. J. Satisf. Boolean Model. Comput. 9, 1 (2014), 53–58. https://doi.org/10.3233/sat190101",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Andres Nötzli, Andrew Reynolds, Haniel Barbosa, Aina Niemetz, Mathias Preiner, Clark W. Barrett, and Cesare Tinelli. 2019. Syntax-Guided Rewrite Rule Enumeration for SMT Solvers. In Theory and Applications of Satisability Testing-SAT 2019 - 22nd International Conference, SAT 2019, Lisbon, Portugal, July 9-12, 2019, Proceedings (Lecture Notes in Computer Science, Vol. 11628), Mikolás Janota and Inê",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Rohan Padhye, Caroline Lemieux, Koushik Sen, Mike Papadakis, and Yves Le Traon. 2019. Semantic fuzzing with zest. In Proceedings of the 28th ACMSIGSOFT International Symposium on Software Testing and Analysis, ISSTA 2019, Beijing, China, July 15-19, 2019, Dongmei Zhang and Anders Møller (Eds.). ACM, 329–340. https://doi.org/10.1145/3293882.3330576",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Stuart Pernsteiner, Calvin Loncaric, Emina Torlak, Zachary Tatlock, Xi Wang, Michael D. Ernst, and Jonathan Jacky. 2016. Investigating Safety of a Radiotherapy Machine Using System Models with Pluggable Checkers. In Computer Aided Verication-28th International Conference, CAV 2016, Toronto, ON, Canada, July 17-23, 2016, Proceedings, Part II (Lecture Notes in Computer Science, Vol. 9780), Swarat Ch",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Van-Thuan Pham, Marcel Böhme, Andrew Edward Santosa, Alexandru Razvan Caciulescu, and Abhik Roychoudhury. 2019. Smart greybox fuzzing. IEEE Transactions on Software Engineering (2019), 1–17. https://doi.org/10.1109/TSE.2019. 2941681",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (Nov. 2020), 30 pages. https://doi.org/10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 48,
+      "text": "Joseph Scott, Federico Mora, and Vijay Ganesh. 2020. BanditFuzz: A Reinforcement-Learning Based Performance Fuzzer for SMT Solvers. In Software Verication-12th International Conference, VSTTE 2020, and 13th International Workshop, NSV 2020, Los Angeles, CA, USA, July 20-21, 2020, Revised Selected Papers (Lecture Notes in Computer Science, Vol. 12549), Maria Christakis, Nadia Polikarpova, Parasara ",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Konstantin Serebryany, Derek Bruening, Alexander Potapenko, and Dmitriy Vyukov. 2012. AddressSanitizer: A Fast Address Sanity Checker. In 2012 USENIX Annual Technical Conference, Boston, MA, USA, June 13-15, 2012, Gernot Heiser and Wilson C. Hsieh (Eds.). USENIX Association, 309–318. https://www.usenix. org/conference/atc12/technical-sessions/presentation/serebryany",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Armando Solar-Lezama and Rastislav Bodik. 2008. Program synthesis by sketching. Citeseer.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Chengnian Sun, Vu Le, and Zhendong Su. 2016. Finding compiler bugs via live code mutation. In Proceedings of the 2016 ACMSIGPLAN International Conference on Object-Oriented Programming, Systems, Languages, and Applications, OOPSLA 2016, part of SPLASH 2016, Amsterdam, The Netherlands, October 30 - November 4, 2016, Eelco Visser and Yannis Smaragdakis (Eds.). ACM, 849–863. https: //doi.org/10.1145/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "G Team. 2014. Gcov-using the gnu compiler collection (gcc). Online, disponıvel em http://gcc. gnu. org/onlinedocs/gcc/Gcov. html-Ultimo acesso em 26, 02 (2014), 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Sandro Tolksdorf, Daniel Lehmann, and Michael Pradel. 2019. Interactive metamorphic testing of debuggers. In Proceedings of the 28th ACMSIGSOFT International Symposium on Software Testing and Analysis, ISSTA 2019, Beijing, China, July 15-19, 2019, Dongmei Zhang and Anders Møller (Eds.). ACM, 273–283. https://doi.org/10.1145/3293882.3330567",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Grigori S Tseitin. 1983. On the complexity of derivation in propositional calculus. InAutomation of reasoning. Springer, 466–483. https://doi.org/10.1007/978-3642-81955-1_28",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Muhammad Usman, Wenxi Wang, and Sarfraz Khurshid. 2020. TestMC: Testing Model Counters using Dierential and Metamorphic Testing. In 35th IEEE/ACM International Conference on Automated Software Engineering, ASE 2020, Melbourne, Australia, September 21-25, 2020. IEEE, 709–721. https://doi.org/10.1145/3324884. 3416563",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Junjie Wang, Bihuan Chen, Lei Wei, and Yang Liu. 2019. Superion: grammar-aware greybox fuzzing. In Proceedings of the 41st International Conference on Software Engineering, ICSE 2019, Montreal, QC, Canada, May 25-31, 2019, Joanne M. Atlee, Tevk Bultan, and Jon Whittle (Eds.). IEEE / ACM, 724–735. https://doi.org/10. 1109/ICSE.2019.00081",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Elaine J Weyuker. 1982. On testing non-testable programs. Comput. J. 25, 4 (1982), 465–470. https://doi.org/10.1093/comjnl/25.4.465",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Virginie WIELS, Robert Delmas, David Doose, Pierre-Loïc Garoche, J. Cazin, and Guy Durrieu. 2012. Formal Verication of Critical Aerospace Software. AerospaceLab 4 (May 2012), p. 1–8. https://hal.archives-ouvertes.fr/hal-01184099",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Dominik Winterer, Chengyu Zhang, and Zhendong Su. 2020. On the unusual eectiveness of type-aware operator mutations for testing SMT solvers. Proc. ACM Program. Lang. 4, OOPSLA (2020), 193:1–193:25. https://doi.org/10.1145/ 3428261",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Dominik Winterer, Chengyu Zhang, and Zhendong Su. 2020. Validating SMT solvers via semantic fusion. In Proceedings of the 41st ACMSIGPLAN International Conference on Programming Language Design and Implementation, PLDI 2020, London, UK, June 15-20, 2020, Alastair F. Donaldson and Emina Torlak (Eds.). ACM, 718–730. https://doi.org/10.1145/3385412.3385985",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Peisen Yao, Heqing Huang, Wensheng Tang, Qingkai Shi, Rongxin Wu, and Charles Zhang. 2021. Fuzzing SMT Solvers via Two-Dimensional Input Space Exploration. In ISSTA’21: 30th ACMSIGSOFT International Symposium on Software Testing and Analysis, Virtual Event, USA.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Cunxi Yu, Maciej J. Ciesielski, and Alan Mishchenko. 2018. Fast Algebraic Rewriting Based on And-Inverter Graphs. IEEE Trans. Comput. Aided Des. Integr. Circuits Syst. 37, 9 (2018), 1907–1911. https://doi.org/10.1109/TCAD.2017.2772854",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Andreas Zeller. 1999. Yesterday, My Program Worked. Today, It Does Not. Why? 1687 (1999), 253–267. https://doi.org/10.1007/3-540-48166-4_16 1153",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 47,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (Nov. 2020), 30 pages. https://doi.org/10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 47]",
+      "technique": "tlp",
+      "sentence": "in many application domains such as bioinformatics [ 26], web services [ 24], compilers [ 36,51], debuggers [ 53], databases [ 47], machine learning-based systems [ 31,38], model counters [ 55], and SMT solvers [60].",
+      "context_before": "ure of a seed but can only generate satisable mutants. Compared to the previous works, we present a new technique for the oracleguided approach, which applies to all theories and can generate satisable and unsatisable mutant formulas. Metamorphic Testing .The key idea of metamorphic testing [ 25] is to detect violations of domain-specic metamorphic relations by comparing the outputs between a seed test and its corresponding mutant tests. Metamorphic testing has been successfully applied 2Note that, in theory, it could be possible to extend the idea of semantic fusion to support other theories.",
+      "context_after": "Our approach is an instance of metamorphic testing. A closely related work is semantic fusion [ 60], which generates equi-satisable mutants from the concatenation of two seed formulas. Our approach diers in two aspects. First, semantic fusion mutates variables using the fusion functions, which can only introduce new variables and function symbols in the mutants. In comparison, skeletal approximation enumeration can inject formula snippets, which can contain new variables, function symbols, predicate symbols, and Boolean connectives. Second, semantic fusion requires that the two seeds are both",
+      "section": "6 DISCUSSION",
+      "page": 11,
+      "char_offset": 58638,
+      "cited_reference": {
+        "number": 47,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (Nov. 2020), 30 pages. https://doi.org/10.1145/3428279",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "prints the DOI of the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T17:03:26Z",
+    "is_model_written": true,
+    "summary": "This work tests SMT solvers by enumerating skeletal approximations of a formula -- systematically weakened versions whose satisfiability stands in a known relation to the original -- giving an oracle without a reference solver.",
+    "narrative": "Databases appear in a single sentence listing the application domains where the underlying technique has been used, alongside bioinformatics, compilers, debuggers and machine learning systems. The mention is reachable only through the citation marker and establishes breadth of applicability rather than any relationship to SQLancer.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited as related work; no reuse of its code, generator or workload is described."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No SQLancer technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer or one of its oracles is reported."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The text does not describe SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

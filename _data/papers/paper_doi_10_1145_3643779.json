@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T17:12:10Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3643779",
+    "title": "DTD: Comprehensive and Scalable Testing for Debuggers",
+    "authors": [
+      "Hongyi Lu",
+      "Zhibo Liu",
+      "Shuai Wang",
+      "Fengwei Zhang"
+    ],
+    "year": 2024,
+    "venue": "Proc. ACM Softw. Eng.",
+    "doi": "10.1145/3643779",
+    "arxiv_id": null,
+    "s2_paper_id": "ebb7a876107f751507a0074cc8dbc28ded7115cf",
+    "url": "https://doi.org/10.1145/3643779",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3643779",
+      "retrieved_at": "2026-09-07T17:12:10Z",
+      "chars": 81717,
+      "content_sha256": "sha256:16d81359dc66b7639f66ae6c5467534c95fe6ecf16257ba365a0dbd505556ad1"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 22,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 4130
+      },
+      {
+        "number": "2",
+        "title": "PRELIMINARY",
+        "start": 10148
+      },
+      {
+        "number": "3.1",
+        "title": "Debugger Testing Requirements",
+        "start": 15603
+      },
+      {
+        "number": "3.2",
+        "title": "Review ofExisting Approaches",
+        "start": 18758
+      },
+      {
+        "number": "3.3",
+        "title": "DTDOverview",
+        "start": 23884
+      },
+      {
+        "number": "4.1",
+        "title": "C1: Trace Complexity",
+        "start": 33478
+      },
+      {
+        "number": "4.2",
+        "title": "C2: Randomness in Debugging CPrograms",
+        "start": 41487
+      },
+      {
+        "number": "6.1",
+        "title": "Case Studies",
+        "start": 54079
+      },
+      {
+        "number": "6.2",
+        "title": "Root Causes ofBugs",
+        "start": 59104
+      },
+      {
+        "number": "6.3",
+        "title": "Comparing DTDwithTheState-of-the-ArtWork—Debug2",
+        "start": 62884
+      }
+    ]
+  },
+  "references": [],
+  "sqlancer_references": [],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "author_year_citation",
+      "surface": "Rigger and Su 2020",
+      "technique": null,
+      "sentence": "2019,2016;LiandSu2023; McKeeman 1998 ;Rigger and Su 2020 ;Theodoridiset al .",
+      "context_before": "in Fig. 1are very confusing. They can lead developers tobelievetheir code is wrongevenwhenit isnot. Worse still, debugger bugscan makeithardor impossibletoidentify actualsoftware bugs.Thispaperaimstouncover such debuggerdefects automatically and eﬃciently. We have noticed a line of research works [ Lehmann and Pradel 2018 ;Tolksdorf et al .2019] that focusontestingdebuggers.Furthermore,similarworks[ Assaianteetal .2023;DiLunaetal .2021;Li etal.2020]alsodetectcompiler bugsthatfailtocorrectlyattachdebuggingsymbols inexecutables. Overall,mostexistingworksfollowadiﬀerentialtesting(DT)[ Chenetal .",
+      "context_after": "2022] paradigm, such that two debuggers aretestedbycheckingthe consistency oftheirretrievedprogramstates.Inconsistentlyretrieved program states indicate a bug inone of thetwodebuggers. Existingapproachesintestingdebuggers mainlyfocusonJavaScript(JS)debuggers,ascenario thatisgenerallydistinctfromtestingCdebuggers(Sec. 3.2).Despitethesuccessofthoseapproaches, webelievetheyfallshortintermsof scalability whenconsideringCdebuggers.JavaScriptprograms testedintheseworksareonlyofafewhundredlines,butreal-worldCprogramscaneasilyhave overtenthousandorevenmillionsoflinesofassemblycode.Inotherwords,anaivec",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 6234,
+      "found_by_all": [
+        "author_year_citation"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:16:45Z",
+    "is_model_written": true,
+    "summary": "DTD tests interactive debuggers, which can misretrieve or misinterpret program state and so mislead developers, and for which no scalable comprehensive correctness measurement existed. The authors propose testing criteria covering comprehensiveness of debug information and scalability, then build a differential framework that runs the same C executable through two mainstream debuggers and treats discrepancies as bugs. DTD found 13 bugs in the LLVM toolchain and 5 in the GNU toolchain.",
+    "narrative": "One author-year citation, among the differential-testing work the paper places itself alongside.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,641 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T14:33:45Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3448016.3457559",
+    "title": "FoundationDB: A Distributed Unbundled Transactional Key Value Store",
+    "authors": [
+      "Jingyu Zhou",
+      "Meng Xu",
+      "A. Shraer",
+      "B. Namasivayam",
+      "Alex Miller",
+      "Evan Tschannen",
+      "Steve Atherton",
+      "Andrew J. Beamon",
+      "Rusty Sears",
+      "J. Leach",
+      "D. Rosenthal",
+      "X. Dong",
+      "Willie B. Wilson",
+      "Ben Collins",
+      "David Scherer",
+      "Alec Grieser",
+      "Young Liu",
+      "Alvin Moore",
+      "Bhaskar Muppana",
+      "Xi-sheng Su",
+      "Vishesh Yadav"
+    ],
+    "year": 2021,
+    "venue": "SIGMOD Conference",
+    "doi": "10.1145/3448016.3457559",
+    "arxiv_id": null,
+    "s2_paper_id": "2e2a31b0bb5c2ba3c7f4cf429e2dc81d4327af9d",
+    "url": "https://doi.org/10.1145/3448016.3457559",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3448016.3457559",
+      "retrieved_at": "2026-09-08T14:33:45Z",
+      "chars": 88110,
+      "content_sha256": "sha256:7e2ae2df034e377278a8e8ea67600c2fa7dddcdfef31639b9e166db03b679897"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 14,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2898
+      },
+      {
+        "number": "2",
+        "title": "Design",
+        "start": 10299
+      },
+      {
+        "number": "2.1",
+        "title": "Design Principles",
+        "start": 10890
+      },
+      {
+        "number": "2.2",
+        "title": "System Interface",
+        "start": 12822
+      },
+      {
+        "number": "2.3",
+        "title": "Architecture",
+        "start": 13892
+      },
+      {
+        "number": "2.3.2",
+        "title": "Data Plane FDB targets OLTP workloads that are read-mostly,",
+        "start": 15139
+      },
+      {
+        "number": "2.3.4",
+        "title": "Bootstrapping FDB has no external dependency on other",
+        "start": 17680
+      },
+      {
+        "number": "2.3.5",
+        "title": "Reconfiguration Whenever there is a failure in the TS or",
+        "start": 18607
+      },
+      {
+        "number": "2.4",
+        "title": "Transaction Management",
+        "start": 19382
+      },
+      {
+        "number": "2.4.1",
+        "title": "End-to-end Transaction Processing As illustrated in Figure 1, a",
+        "start": 19558
+      },
+      {
+        "number": "2.4.2",
+        "title": "Support Strict Serializability FDB implements Serializable",
+        "start": 22027
+      },
+      {
+        "number": "2.4.4",
+        "title": "Transaction System Recovery Traditional database systems",
+        "start": 28880
+      },
+      {
+        "number": "2.5",
+        "title": "Replication",
+        "start": 33901
+      },
+      {
+        "number": "2.6",
+        "title": "Other Optimizations",
+        "start": 36664
+      },
+      {
+        "number": "3",
+        "title": "Geo-replication and failover",
+        "start": 38550
+      },
+      {
+        "number": "4",
+        "title": "Simulation Testing",
+        "start": 45504
+      },
+      {
+        "number": "5",
+        "title": "Evaluation",
+        "start": 52742
+      },
+      {
+        "number": "5.1",
+        "title": "Production Measurement",
+        "start": 52932
+      },
+      {
+        "number": "5.2",
+        "title": "Scalability Test",
+        "start": 55613
+      },
+      {
+        "number": "5.3",
+        "title": "Reconfiguration Duration",
+        "start": 59585
+      },
+      {
+        "number": "6",
+        "title": "Lessons Learned",
+        "start": 60731
+      },
+      {
+        "number": "6.1",
+        "title": "Architecture Design",
+        "start": 60925
+      },
+      {
+        "number": "6.2",
+        "title": "Simulation Testing",
+        "start": 61948
+      },
+      {
+        "number": "6.3",
+        "title": "Fast Recovery",
+        "start": 63985
+      },
+      {
+        "number": "7",
+        "title": "Related Work",
+        "start": 66886
+      },
+      {
+        "number": "8",
+        "title": "Conclusions",
+        "start": 71611
+      },
+      {
+        "number": "S",
+        "title": "Sivasubramanian, P. Vosshall, and W. Vogels. Dynamo: amazon’s highly",
+        "start": 78730
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Couchbase. https://www.couchbase.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "CouchDB. https://couchdb.apache.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Distributed system safety research. https://jepsen.io/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Flow. https://github.com/apple/foundationdb/tree/master/flow.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "FoundationDB. https://github.com/apple/foundationdb.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "FoundationDB Document Layer. https://github.com/FoundationDB/fdbdocument-layer.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "FoundationDB Joshua. https://github.com/FoundationDB/fdb-joshua.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Foundationdb storage adapter for janusgraph. https://github.com/JanusGraph/ janusgraph-foundationdb.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Janusgraph. https://janusgraph.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "MongoDB. https://www.mongodb.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Tephra: Transactions for Apache HBase. http://tephra.incubator.apache.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "D. Abadi. Consistency tradeoffs in modern distributed database system design: Cap is only part of the story. Computer, 45(2):37–42, Feb. 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "G. Agha. Actors: A Model of Concurrent Computation in Distributed Systems. MIT Press, Cambridge, MA, USA, 1986.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "A. Alquraan, H. Takruri, M. Alfatafta, and S. Al-Kiswany. An analysis of networkpartitioning failures in cloud systems. In Proceedings of the 13th USENIX Conference on Operating Systems Design and Implementation, OSDI’18, pages 51–68, Carlsbad, CA, USA, 2018. USENIX Association.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "J. Arulraj, M. Perron, and A. Pavlo. Write-behind logging. Proceedings of the VLDB Endowment, 10:337–348, November 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "M. Balakrishnan, D. Malkhi, T. Wobber, M. Wu, V. Prabhakaran, M. Wei, J. D. Davis, S. Rao, T. Zou, and A. Zuck. Tango: Distributed data structures over a shared log. In Proceedings of the Twenty-Fourth ACM Symposium on Operating Systems Principles, pages 325–340, Farminton, PA, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "H. Bati, L. Giakoumakis, S. Herbert, and A. Surna. A genetic approach for random testing of database systems. In Proceedings of the 33rd International Conference on Very Large Data Bases, VLDB ’07, pages 1243–1251, Vienna, Austria, 2007. VLDB Endowment.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "P. A. Bernstein, V. Hadzilacos, and N. Goodman. Concurrency Control and Recovery in Database Systems. Addison-Wesley, 1987.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "P. A. Bernstein, C. W. Reid, and S. Das. Hydera transactional record manager for shared flash. In CIDR, 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "E. Bortnikov, E. Hillel, I. Keidar, I. Kelly, M. Morel, S. Paranjpye, F. Perez-Sorrosal, and O. Shacham. Omid, reloaded: Scalable and highly-available transaction processing. In 15th USENIX Conference on File and Storage Technologies (FAST 17), pages 167–180, Santa Clara, CA, Feb. 2017. USENIX Association.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "L. Braun, T. Etter, G. Gasparis, M. Kaufmann, D. Kossmann, D. Widmer, A. Avitzur, A. Iliopoulos, E. Levy, and N. Liang. Analytics in motion: High performance eventprocessing and real-time analytics in the same database. In Proceedings of the 2015 ACMSIGMOD International Conference on Management of Data, SIGMOD ’15, page 251–264, New York, NY, USA, 2015. Association for Computing Machinery.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "L. Camargos, F. Pedone, and M. Wieloch. Sprint: A middleware for high-performance transaction processing. In Proceedings of the 2nd ACMSIGOPS/EuroSys European Conference on Computer Systems 2007, pages 385–398, Lisbon, Portugal, 2007.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "W. Cao, Z. Liu, P. Wang, S. Chen, C. Zhu, S. Zheng, Y. Wang, and G. Ma. Polarfs: An ultra-low latency and failure resilient distributed file system for shared storage cloud database. Proceedings of the VLDB Endowment, 11(12):1849–1862, Aug. 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "S. Chandrasekaran and R. Bamford. Shared cachethe future of parallel databases. InProceedings 19th International Conference on Data Engineering, pages 840–850, 2003.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "F. Chang, J. Dean, S. Ghemawat, W. C. Hsieh, D. A. Wallach, M. Burrows, T. Chandra, A. Fikes, and R. E. Gruber. Bigtable: A distributed storage system for structured data. In Proceedings of the 7th USENIX Symposium on Operating Systems Design and Implementation (OSDI’06), 2006.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "H. Chen, R. Chen, X. Wei, J. Shi, Y. Chen, Z. Wang, B. Zang, and H. Guan. Fast in-memory transaction processing using rdma and htm. ACM Transactions on Computer Systems, 35(1), July 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "G. Chockler and D. Malkhi. Active disk paxos with infinitely many processes. InProceedings of the Twenty-first Annual Symposium on Principles of Distributed Computing, PODC’02, pages 78–87, New York, NY, USA, 2002. ACM.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "C. Chrysafis, B. Collins, S. Dugas, J. Dunkelberger, M. Ehsan, S. Gray, A. Grieser, O. Herrnstadt, K. Lev-Ari, T. Lin, M. McMahon, N. Schiefer, and A. Shraer. FoundationDB Record Layer: A Multi-Tenant Structured Datastore. In Proceedings of the 2019 International Conference on Management of Data, SIGMOD’19, pages 1787–1802, New York, NY, USA, 2019. ACM.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "A. Cidon, S. Rumble, R. Stutsman, S. Katti, J. Ousterhout, and M. Rosenblum. Copysets: Reducing the frequency of data loss in cloud storage. In Presented as part of the 2013 USENIX Annual Technical Conference, pages 37–48, San Jose, CA, 2013. USENIX.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "B. F. Cooper, R. Ramakrishnan, U. Srivastava, A. Silberstein, P. Bohannon, H.-A. Jacobsen, N. Puz, D. Weaver, and R. Yerneni. PNUTS: Yahoo!’s hosted data serving platform. Proceedings of the VLDB Endowment, 1(2):1277–1288, Aug. 2008.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "J. C. Corbett, J. Dean, M. Epstein, A. Fikes, C. Frost, J. Furman, S. Ghemawat, A. Gubarev, C. Heiser, P. Hochschild, W. Hsieh, S. Kanthak, E. Kogan, H. Li, A. Lloyd, S. Melnik, D. Mwaura, D. Nagle, S. Quinlan, R. Rao, L. Rolig, Y. Saito, M. Szymaniak, C. Taylor, R. Wang, and D. Woodford. Spanner: Google’s globallydistributed database. In 10th USENIX Symposium on Operating Systems Design and Imple",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "J. Dean and L. A. Barroso. The tail at scale. Communications of the ACM, 56(2):74–80, Feb. 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "G. DeCandia, D. Hastorun, M. Jampani, G. Kakulapati, A. Lakshman, A. Pilchin, S. Sivasubramanian, P. Vosshall, and W. Vogels. Dynamo: amazon’s highly available key-value store. ACMSIGOPS Operating Systems Review, 41(6):205–220, 2007.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "C. Diaconu, C. Freedman, E. Ismert, P.-A. Larson, P. Mittal, R. Stonecipher, N. Verma, and M. Zwilling. Hekaton: Sql server’s memory-optimized oltp engine. InProceedings of the 2013 ACMSIGMOD International Conference on Management of Data, SIGMOD ’13, pages 1243–1254, New York, NY, USA, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "A. Dragojević, D. Narayanan, O. Hodson, and M. Castro. Farm: Fast remote memory. In Proceedings of the 11th USENIX Symposium on Networked Systems Design and Implementation, pages 401–414, Seattle, WA, USA, April 2014.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "A. Dragojević, D. Narayanan, E. B. Nightingale, M. Renzelmann, A. Shamis, A. Badam, and M. Castro. No compromises: Distributed transactions with consistency, availability, and performance. In Proceedings of the 25th Symposium on Operating Systems Principles, SOSP ’15, pages 54–70, New York, NY, USA, 2015. Association for Computing Machinery.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "I. Eyal, K. P. Birman, I. Keidar, and R. van Renesse. Ordering transactions with prediction in distributed object stores. In LADIS, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Facebook. Rocksdb. https://rocksdb.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "A. Ganesan, R. Alagappan, A. C. Arpaci-Dusseau, and R. H. Arpaci-Dusseau. Redundancy does not imply fault tolerance: Analysis of distributed storage reactions to single errors and corruptions. In Proceedings of the 15th Usenix Conference on File and Storage Technologies, FAST’17, pages 149–165, Santa clara, CA, USA, 2017. USENIX Association.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "A. Groce, C. Zhang, E. Eide, Y. Chen, and J. Regehr. Swarm testing. In Proceedings of the 2012 International Symposium on Software Testing and Analysis, ISSTA 2012, pages 78–88, Minneapolis, MN, USA, 2012. ACM.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "R. D. Hipp. SQLite. https://www.sqlite.org/index.html, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Y. Huang, C. Kintala, N. Kolettis, and N. D. Fulton. Software rejuvenation: analysis, module and applications. In Twenty-Fifth International Symposium on Fault-Tolerant Computing, pages 381–390, 1995.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "J. W. Josten, C. Mohan, I. Narang, and J. Z. Teng. Db2’s use of the coupling facility for data sharing. IBM Systems Journal, 36(2):327–351, 1997.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "H. T. Kung and J. T. Robinson. On optimistic methods for concurrency control. ACM Transactions on Database Systems, 6(2):213–226, June 1981.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "A. Lakshman and P. Malik. Cassandra: structured storage system on a p2p network. In Proceedings of the 28th ACM symposium on Principles of Distributed Computing, page 5, Jan 2009.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "T. Leesatapornwongsa, M. Hao, P. Joshi, J. F. Lukman, and H. S. Gunawi. Samc: Semantic-aware model checking for fast discovery of deep bugs in cloud systems. In Proceedings of the 11th USENIX Conference on Operating Systems Design and Implementation, OSDI’14, pages 399–414, Broomfield, CO, 2014. USENIX Association.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "K. Lev-Ari, Y. Tian, A. Shraer, C. Douglas, H. Fu, A. Andreev, K. Beranek, S. Dugas, A. Grieser, and J. Hemmo. Quick: a queuing system in cloudkit. In Proceedings of the 2021 International Conference on Management of Data, SIGMOD Conference 2021, Xian, Shanxi, China, June 03 — 05, 2021. ACM, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "J. Levandoski, D. Lomet,, and K. K. Zhao. Deuteronomy: Transaction support for cloud data. In Conference on Innovative Data Systems Research (CIDR). www.crdrdb.org, January 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "S. Loesing, M. Pilman, T. Etter, and D. Kossmann. On the design and scalability of distributed shared-data databases. In SIGMOD Conference, pages 663–676. ACM, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "D. Lomet, A. Fekete, G. Weikum, and M. J. Zwilling. Unbundling transaction services in the cloud. In Fourth Biennial Conference on Innovative Data Systems Research, Asilomar, CA, Jan. 2009.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "D. Lomet and M. F. Mokbel. Locking key ranges with unbundled transaction services. Proceedings of the VLDB Endowment, 2(1):265–276, August 2009.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "N. Malviya, A. Weisberg, S. Madden, and M. Stonebraker. Rethinking main memory oltp recovery. In pages 604–615, Chicago, IL, USA, March 2014.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "C. Mohan, D. Haderle, B. G. Lindsay, H. Pirahesh, and P. M. Schwarz. Aries: A transaction recovery method supporting fine-granularity locking and partial rollbacks using write-ahead logging. ACM Transactions on Database Systems, 17(1):94–162, 1992.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "D. Ongaro, S. M. Rumble, R. Stutsman, J. Ousterhout, and M. Rosenblum. Fast crash recovery in ramcloud. In Proceedings of the Twenty-Third ACM Symposium on Operating Systems Principles, SOSP ’11, page 29–41, New York, NY, USA, 2011. Association for Computing Machinery. Industrial Track Paper SIGMOD ’21, June 20–25, 2021, Virtual Event, China 2665",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "D. Peng and F. Dabek. Large-scale incremental processing using distributed transactions and notifications. In Proceedings of the 9th USENIX Symposium on Operating Systems Design and Implementation, OSDI’10, pages 251–264, Vancouver, BC, Canada, 2010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "W. Pugh. Skip lists: A probabilistic alternative to balanced trees. Communications of the ACM, 33(6):668–676, 1990.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "M. Rigger and Z. Su. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), pages 667–682. USENIX Association, Nov. 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 58,
+      "text": "O. Shacham, Y. Gottesman, A. Bergman, E. Bortnikov, E. Hillel, and I. Keidar. Taking omid to the clouds: Fast, scalable transactions for real-time cloud analytics. Proceedings of the VLDB Endowment, 11(12):1795–1808, Aug. 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "A. Shraer, A. Aybes, B. Davis, C. Chrysafis, D. Browning, E. Krugler, E. Stone, H. Chandler, J. Farkas, J. Quinn, J. Ruben, M. Ford, M. McMahon, N. Williams, N. Favre-Felix, N. Sharma, O. Herrnstadt, P. Seligman, R. Pisolkar, S. Dugas, S. Gray, S. Lu, S. Harkema, V. Kravtsov, V. Hong, Y. Tian, and W. L. Yih. Cloudkit: Structured storage for mobile applications. Proceedings of the VLDB Endowment, 1",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "D. R. Slutz. Massive stochastic testing of SQL. In A. Gupta, O. Shmueli, and J. Widom, editors, VLDB’98, Proceedings of 24rd International Conference on Very Large Data Bases, August 24-27, 1998, New York City, New York, USA, pages 618–622. Morgan Kaufmann, 1998.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "M. Stonebraker, S. Madden, D. J. Abadi, S. Harizopoulos, N. Hachem, and P. Helland. The end of an architectural era: (it’s time for a complete rewrite). In Proceedings of the 33rd International Conference on Very Large Data Bases, VLDB ’07, pages 1150–1160. VLDB Endowment, 2007.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "R. Taft, I. Sharif, A. Matei, N. VanBenschoten, J. Lewis, T. Grieger, K. Niemi, A. Woods, A. Birzin, R. Poss, P. Bardea, A. Ranade, B. Darnell, B. Gruneir, J. Jaffray, L. Zhang, and P. Mattis. Cockroachdb: The resilient geo-distributed SQL database. In Proceedings of the 2020 International Conference on Management of Data, SIGMOD, pages 1493–1509, Portland, OR, USA, June 2020. ACM.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "C. Tan, C. Zhao, S. Mu, and M. Walfish. Cobra: Making transactional key-value stores verifiably serializable. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), pages 63–80. USENIX Association, Nov.2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "A. Thomson, T. Diamond, S.-C. Weng, K. Ren, P. Shao, and D. Abadi. Calvin: Fast distributed transactions for partitioned database systems. In Proceedings of the ACMSIGMOD International Conference on Management of Data, pages 1–12, May 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "S. Tu, W. Zheng, E. Kohler, B. Liskov, and S. Madden. Speedy transactions in multicore in-memory databases. In Proceedings of the Twenty-Fourth ACM Symposium on Operating Systems Principles, pages 18–32, Farminton, PA, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "A. Verbitski, X. Bao, A. Gupta, D. Saha, M. Brahmadesam, K. Gupta, R. Mittal, S. Krishnamurthy, S. Maurice, and T. Kharatishvili. Amazon aurora: Design considerations for high throughput cloud-native relational databases. In Proceedings of the 2017 ACM International Conference on Management of Data, SIGMOD ’17, pages 1041–1052, Chicago, IL, USA, May 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "A. Verbitski, A. Gupta, D. Saha, J. Corey, K. Gupta, M. Brahmadesam, R. Mittal, S. Krishnamurthy, S. Maurice, T. Kharatishvilli, and X. Bao. Amazon aurora: On avoiding distributed consensus for i/os, commits, and membership changes. In Proceedings of the 2018 International Conference on Management of Data, SIGMOD ’18, pages 789–796, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "M. Yabandeh and D. Gómez Ferro. A Critique of Snapshot Isolation. In Proceedings of the 7th ACM European Conference on Computer Systems, EuroSys’12, pages 155–168, Bern, Switzerland, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "J. Yang, T. Chen, M. Wu, Z. Xu, X. Liu, H. Lin, M. Yang, F. Long, L. Zhang, and L. Zhou. MODIST: transparent model checking of unmodified distributed systems. InProceedings of the 6th USENIX Symposium on Networked Systems Design and Implementation, NSDI’09, pages 213–228, Boston, Massachusetts, 2009. USENIX Association.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "M. Zheng, J. Tucek, D. Huang, F. Qin, M. Lillibridge, E. S. Yang, B. W. Zhao, and S. Singh. Torturing databases for fun and profit. In Proceedings of the 11th USENIX Conference on Operating Systems Design and Implementation, OSDI’14, pages 449–464, Broomfield, CO, 2014. USENIX Association.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "T. Zhu, Z. Zhao, F. Li, W. Qian, A. Zhou, D. Xie, R. Stutsman, H. Li, and H. Hu. Solar: Towards a shared-everything database on distributed log-structured storage. In USENIX Annual Technical Conference, pages 795–807. USENIX Association, 2018. Industrial Track Paper SIGMOD ’21, June 20–25, 2021, Virtual Event, China 2666",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 57,
+      "text": "M. Rigger and Z. Su. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), pages 667–682. USENIX Association, Nov. 2020.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 17,57,60]",
+      "technique": "pqs",
+      "sentence": "Finally there are numerous approaches to testing the correctness of database subsystems in the absence of faults, including the query engine [ 17,57,60] and concurrency control mechanism [ 63].",
+      "context_before": "esting. Non-deterministic fault-injection has been widely used in the testing of distributed systems. Various approaches have included faults such as network partition [ 14], power failures [ 70], and storage faults [ 39]. Jepsen [ 3] is a commercial effort that has tested a large number of distributed databases. All of these approaches lack deterministic reproducibility. Model checking has also been widely-applied to distributed systems [ 46,69]. While model checking can be more exhaustive than simulation, it can only verify the correctness of a model rather than of the actual implementation.",
+      "context_after": "The FDB deterministic simulation approach allows verification of database invariants and other properties against the real database code, together with deterministic reproducibility. 8 Conclusions This paper presents FoundationDB, a key value store designed for OLTP cloud services. The main idea is to decouple transaction processing from logging and storage. Such an unbundled architecture enables the separation and horizontal scaling of both read and write handling. The transaction system combines OCC and MVCC to ensure strict serializability. The decoupling of logging and the determinism in",
+      "section": "7 Related Work",
+      "page": 12,
+      "char_offset": 71233,
+      "cited_reference": {
+        "number": 57,
+        "text": "M. Rigger and Z. Su. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), pages 667–682. USENIX Association, Nov. 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T17:03:26Z",
+    "is_model_written": true,
+    "summary": "The FoundationDB paper describes a distributed transactional key-value store built as unbundled components, and is best known for its deterministic simulation testing: the whole system runs in a single-threaded simulation where faults are injected reproducibly, so distributed bugs can be found and replayed exactly.",
+    "narrative": "SQLancer's work is cited once, in related work, as part of the body of approaches for testing the correctness of database subsystems in the absence of faults -- the query engine specifically. That is the contrast the paper draws with its own concern, which is correctness under injected faults. The mention is reachable only through the citation marker.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited as related work; no reuse of its code, generator or workload is described."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No SQLancer technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer or one of its oracles is reported."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The text does not describe SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

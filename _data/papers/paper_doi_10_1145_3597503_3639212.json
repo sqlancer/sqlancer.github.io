@@ -1,0 +1,723 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T14:36:43Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3597503.3639212",
+    "title": "Combining Structured Static Code Information and Dynamic Symbolic Traces for Software Vulnerability Prediction",
+    "authors": [
+      "Huanting Wang",
+      "Zhanyong Tang",
+      "Shin Hwei Tan",
+      "Jie Wang",
+      "Yuzhe Liu",
+      "Hejun Fang",
+      "Chunwei Xia",
+      "Zheng Wang"
+    ],
+    "year": 2024,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1145/3597503.3639212",
+    "arxiv_id": null,
+    "s2_paper_id": "a3f32348f15845519abf3b862fce1682001da1cd",
+    "url": "https://doi.org/10.1145/3597503.3639212",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3597503.3639212",
+      "retrieved_at": "2026-09-08T14:36:43Z",
+      "chars": 82896,
+      "content_sha256": "sha256:9e8e57ebe4fc9e0e2df8a5a06a86c78341822f24d253bd635ebf4ece438743fc"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 2529
+      },
+      {
+        "number": "2",
+        "title": "MOTIVATION",
+        "start": 10712
+      },
+      {
+        "number": "3",
+        "title": "OUR APPROACH",
+        "start": 13573
+      },
+      {
+        "number": "3.1",
+        "title": "Overview of Concoction",
+        "start": 14636
+      },
+      {
+        "number": "3.2",
+        "title": "The Concoction Architecture",
+        "start": 15889
+      },
+      {
+        "number": "3.2.1",
+        "title": "Extractingstaticcodeinformation. Weuseaparserbuiltupon",
+        "start": 16944
+      },
+      {
+        "number": "3.2.2",
+        "title": "Extracting dynamic information. We use KLEE [ 17] to obtain",
+        "start": 19107
+      },
+      {
+        "number": "3.3",
+        "title": "Contrastive Pre-training",
+        "start": 19792
+      },
+      {
+        "number": "3.3.1",
+        "title": "Model inputs. We pair the source code text and flattened",
+        "start": 20283
+      },
+      {
+        "number": "3.3.3",
+        "title": "Trainingtheend-to-enddetectionmodel. Aftertrainingthe",
+        "start": 21979
+      },
+      {
+        "number": "3.4.1",
+        "title": "Overview of pathselection. Figure 5 showsthe workflow of",
+        "start": 23885
+      },
+      {
+        "number": "3.4.3",
+        "title": "Network structure. As our path selection component uses",
+        "start": 25736
+      },
+      {
+        "number": "3.4.6",
+        "title": "Symbolicexecutionforchosenpaths. WeextendedKLEE[ 17]",
+        "start": 29440
+      },
+      {
+        "number": "4",
+        "title": "EXPERIMENTAL SETUP",
+        "start": 32119
+      },
+      {
+        "number": "4.1",
+        "title": "Workloads",
+        "start": 32599
+      },
+      {
+        "number": "4.2",
+        "title": "Competing Baselines",
+        "start": 34907
+      },
+      {
+        "number": "4.3",
+        "title": "Evaluation Methodology",
+        "start": 37450
+      },
+      {
+        "number": "5",
+        "title": "EXPERIMENTAL RESULTS",
+        "start": 40339
+      },
+      {
+        "number": "5.1.1",
+        "title": "Vulnerabilitycount. Table3reportsthedistributionofour",
+        "start": 40732
+      },
+      {
+        "number": "5.1.2",
+        "title": "Vulnerability types. Table 4 categorizes the vulnerabilities",
+        "start": 41048
+      },
+      {
+        "number": "5.2",
+        "title": "Comparison on Open Datasets",
+        "start": 46266
+      },
+      {
+        "number": "5.2.2",
+        "title": "CVE dataset. As explained in Sec. 4.1, test samples in the",
+        "start": 48173
+      },
+      {
+        "number": "5.3",
+        "title": "Comparison on Known CVEs",
+        "start": 49049
+      },
+      {
+        "number": "5.3.1",
+        "title": "Vulnerabilitiesidentified. Table5demonstratesConcoction’s",
+        "start": 49631
+      },
+      {
+        "number": "5.3.2",
+        "title": "Case missed by baselines. Listing 4 shows CVE-2020-35523,",
+        "start": 51274
+      },
+      {
+        "number": "5.3.3",
+        "title": "CasemissedbyConcoction. List5shows CVE-2020-35523,",
+        "start": 51976
+      },
+      {
+        "number": "5.4",
+        "title": "Ablation Study",
+        "start": 52692
+      },
+      {
+        "number": "5.4.1",
+        "title": "DLmodelimplementationchoices. Weconductanablation",
+        "start": 52711
+      },
+      {
+        "number": "5.4.2",
+        "title": "Sensitivityanalysis. Totestthesensitivityof Concoction",
+        "start": 54173
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "[n.d.]. CodeQL, discover vulnerabilities with semantic code analysis engine. https://codeql.github.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "[n.d.]. CommonVulnerabilities and Exposures (CVE). https://cve.mitre.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "[n.d.]. CommonWeakness Enumeration. https://cwe.mitre.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "[n.d.]. Infer, a static program analyzer. https://fbinfer.com/docs/about-Infer",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "[n.d.]. Jenkins, open source automation server. https://www.jenkins.io/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "[n.d.]. Joern(Open-Source Code Querying Engine for C/C++.). https://joern.io/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "[n.d.]. OSS-Fuzz. https://github.com/google/oss-fuzz.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Elena N Akimova, Alexander Yu Bersenev, Artem A Deikov, Konstantin S Kobylkin,AntonVKonygin,IlyaPMezentsev,andVladimirEMisilov.2021. A survey on software defect prediction using deep learning. Mathematics 9, 11 (2021), 1180.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "MiltiadisAllamanis,MarcBrockschmidt,andMahmoudKhademi.2018. Learning to Represent Programs with Graphs. In Proceedings of the ICLR.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Sanjeev Arora, Hrishikesh Khandeparkar, Mikhail Khodak, Orestis Plevrakis,and Nikunj Saunshi. 2019. A theoretical analysis of contrastive unsupervised representation learning. arXivpreprint arXiv:1902.09229 (2019).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Roberto Baldoni, Emilio Coppa, Daniele Cono D’elia, Camil Demetrescu, and IreneFinocchi.2018.Asurveyofsymbolicexecutiontechniques. ACMComputing Surveys (CSUR) 51,3 (2018), 1–39.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "MarcelBöhme,Van-ThuanPham,Manh-DungNguyen,andAbhikRoychoudhury.2017.Directedgreyboxfuzzing.In Proceedingsofthe2017ACMSIGSACConference on Computer and Communications Security. 2329–2344.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "CarlaEBrodleyandMarkAFriedl.1999. Identifyingmislabeledtrainingdata. Journal of artificial intelligence research 11 (1999), 131–167.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "StefanBucur,VladUreche,CristianZamfir,andGeorgeCandea.2011. Parallel Symbolic Execution for Automated Real-World Software Testing. In Proceedings of the Sixth Conference on Computer Systems (Salzburg, Austria) (EuroSys ’11). Association for Computing Machinery, New York, NY, USA, 183–198. https: //doi.org/10.1145/1966445.1966463",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Frank Busse, Pritam Gharat, Cristian Cadar, and Alastair F Donaldson. 2022. Combining static analysis error traces with dynamic symbolic execution (experi-ence paper). In Proceedings of the 31st ACMSIGSOFT International Symposium on Software Testing and Analysis. 568–579. ICSE ’24, April 14–20,2024, Lisbon, Portugal HuantingWang, Zhanyong Tang∗, Shin Hwei Tan, Jie Wang, Yuzhe Liu, Hejun Fang, Chun",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "FrankBusse,MartinNowack,andCristianCadar.2020. Runningsymbolicexecution forever. In Proceedings of the 29th ACMSIGSOFT International Symposium on Software Testing and Analysis. 63–74.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Cristian Cadar, Daniel Dunbar, Dawson R Engler, et al .2008. Klee: unassisted and automatic generation of high-coverage tests for complex systems programs.. InOSDI, Vol. 8. 209–224.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Cristian Cadar and Koushik Sen. 2013. Symbolic execution for software testing: three decades later. Commun.ACM 56,2 (2013), 82–90.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Mathilde Caron, Ishan Misra, Julien Mairal, Priya Goyal, Piotr Bojanowski, and Armand Joulin. 2020. Unsupervised Learning of Visual Features by Contrasting Cluster Assignments. https://doi.org/10.48550/ARXIV.2006.09882",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "DavideCastelvecchi. 2016. Can we open the black boxof AI? Nature News 538, 7623 (2016), 20.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Saikat Chakraborty, Rahul Krishna, Yangruibo Ding, and Baishakhi Ray. 2021. Deep learning based vulnerability detection: Are we there yet. IEEE Transactions on Software Engineering (2021).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "TingChen,SimonKornblith,MohammadNorouzi,andGeoffreyHinton.2020. A simple frameworkfor contrastive learning ofvisual representations. In International conference on machine learning. PMLR, 1597–1607.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "XiaoCheng,GuanqinZhang,HaoyuWang,andYuleiSui.2022. Path-Sensitive Code Embedding via Contrastive Learning for Software Vulnerability Detection. InProceedings of the 31st ACMSIGSOFT International Symposium on Software TestingandAnalysis (Virtual,SouthKorea) (ISSTA2022).AssociationforComputingMachinery,NewYork,NY,USA,519–531. https://doi.org/10.1145/3533767. 3534371",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "KhushbooChitre,PiyusKedia,andRahulPurandare.2022. Theroadnottaken: exploring alias analysis based optimizations missed by the compiler. Proceedings of the ACM on Programming Languages 6, OOPSLA2 (2022), 786–810.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Nathan Cooper, Carlos Bernal-Cárdenas, Oscar Chaparro, Kevin Moran, and DenysPoshyvanyk.2021. Ittakestwototango:Combiningvisualandtextual informationfordetectingduplicatevideo-basedbugreports.In 2021IEEE/ACM 43rd International Conference on Software Engineering (ICSE). IEEE, 957–969.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Chris Cummins, Pavlos Petoumenos, Zheng Wang, and Hugh Leather. 2017. End-to-enddeeplearningofoptimizationheuristics.In 201726thInternational Conference on Parallel Architectures and Compilation Techniques (PACT). IEEE, 219–232.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Chris Cummins, Pavlos Petoumenos, Zheng Wang, and Hugh Leather. 2017. Synthesizingbenchmarksforpredictivemodeling.In 2017IEEE/ACMInternational Symposium on Code Generation and Optimization (CGO). IEEE, 86–99.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "LeonardoDeMouraandNikolajBjørner.2008. Z3:AnEfficientSMTSolver.In ProceedingsoftheTheoryandPractice ofSoftware,14thInternationalConference onToolsandAlgorithmsfortheConstructionandAnalysisofSystems (Budapest, Hungary) (TACAS’08/ETAPS’08). Springer-Verlag, Berlin, Heidelberg, 337–340.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Chunrong Fang, Zixi Liu, Yangyang Shi, Jeff Huang, and Qingkai Shi. 2020. Functionalcodeclonedetectionwithsyntaxandsemanticsfusionlearning.In Proceedingsofthe29thACMSIGSOFTInternationalSymposiumonSoftwareTesting and Analysis. 516–527.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Farzaneh S. Fard, Paul Hollensen, Stuart Mcilory, and Thomas Trappenberg. 2017. Impact of biased mislabeling on learning with deep networks. In 2017 International Joint Conference on Neural Networks (IJCNN). 2652–2657. https: //doi.org/10.1109/IJCNN.2017.7966180",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Andrea Fioraldi, Dominik Maier, Heiko Eißfeldt, and Marc Heuse. 2020. AFL++: Combining Incremental Steps of Fuzzing Research. In Proceedings of the 14th USENIXConferenceonOffensiveTechnologies (WOOT’20).USENIXAssociation, USA, Article 10,1 pages.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Benoît Frénay and Michel Verleysen. 2013. Classification in the presence of label noise:asurvey. IEEEtransactionsonneuralnetworksandlearningsystems 25,5 (2013), 845–869.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Michael Fu and Chakkrit Tantithamthavorn. 2022. Linevul: A transformer-based line-level vulnerability prediction. In Proceedings of the 19th International Conference on Mining Software Repositories. 608–620.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Tianyu Gao, Xingcheng Yao, and Danqi Chen. 2021. SimCSE: Simple Contrastive Learning of Sentence Embeddings. In Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing. Association for Computational Linguistics, Online and Punta Cana, Dominican Republic, 6894–6910. https://doi.org/10.18653/v1/2021.emnlp-main.552",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "John Giorgi, Osvald Nitski, Bo Wang, and Gary Bader. 2020. Declutr: Deepcontrastive learning for unsupervised textual representations. arXiv preprint arXiv:2006.03659 (2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Ross Girshick, Jeff Donahue, Trevor Darrell, and Jitendra Malik. 2014. Rich featurehierarchiesforaccurateobjectdetectionandsemanticsegmentation.In Proceedings of the IEEE conference on computer vision and pattern recognition. 580–587.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "WeiweiGu,AdityaTandon,Yong-YeolAhn,andFilippoRadicchi.2021. Principled approach to the selection of the embedding dimension of networks. Nature Communications 12,1 (2021), 3772.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "NadeeshaanGunasingheandNipunaMarcus.2021. LanguageServerProtocoland Implementation. Springer.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Daya Guo, Shuo Ren, Shuai Lu, Zhangyin Feng, Duyu Tang, Shujie Liu, Long Zhou, Nan Duan, Alexey Svyatkovskiy, Shengyu Fu, Michele Tufano, Shao Kun Deng, Colin B. Clement, Dawn Drain, Neel Sundaresan, Jian Yin, Daxin Jiang, andMingZhou.2021. GraphCodeBERT:Pre-trainingCodeRepresentationswithDataFlow.In 9thInternationalConferenceonLearningRepresentations,ICLR2021, VirtualEvent,Austria,May3-7,2021.Ope",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Hazim Hanif, Mohd Hairul Nizam Md Nasir, Mohd Faizal Ab Razak, Ahmad Firdaus, and Nor Badrul Anuar. 2021. The rise of software vulnerability: Taxonomy of software vulnerabilities detection and machine learning approaches. Journal of Network and Computer Applications 179 (2021),103009.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "JingxuanHe,GishorSivanrupan,PetarTsankov,andMartinVechev.2021. Learning to Explore Paths for Symbolic Execution. In Proceedings of the 2021 ACMSIGSAC Conference on Computer and Communications Security. 2526–2540.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Kaiming He, Haoqi Fan, Yuxin Wu, Saining Xie, and Ross Girshick. 2020. Momentum contrast for unsupervised visual representation learning. In Proceedings ofthe IEEE/CVFconferenceoncomputervisionandpatternrecognition.9729–9738.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "David Hin, Andrey Kan, Huaming Chen, and M Ali Babar. 2022. LineVD: Statement-level vulnerability detection using graph neural networks. In Proceedings of the 19th International Conference on Mining Software Repositories. 596–607.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "MichaelHind,MichaelBurke, Paul Carini,and Jong-Deok Choi. 1999. Interproceduralpointeraliasanalysis. ACMTransactionsonProgrammingLanguagesand Systems (TOPLAS) 21,4 (1999), 848–894.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "MIrlbecketal .2015. Deconstructingdynamicsymbolicexecution. Dependable Software Systems Engineering 40,2015 (2015),26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "AshishJaiswal,AshwinRameshBabu,MohammadZakiZadeh,DebapriyaBanerjee, and Fillia Makedon. 2020. A survey on contrastive self-supervised learning. Technologies 9, 1 (2020), 2.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "PrannayKhosla,PiotrTeterwak,ChenWang,AaronSarna,YonglongTian,Phillip Isola,AaronMaschinot,CeLiu,andDilipKrishnan.2020. Supervisedcontrastive learning. Advances in Neural Information Processing Systems 33 (2020), 18661– 18673.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "SeulbaeKim,SeunghoonWoo,HeejoLee,andHakjooOh.2017.Vuddy:Ascalable approach for vulnerable code clone discovery. In Proceedings of the 2017 IEEE Symposiumon Security and Privacy (SP). IEEE, 595–614.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Sun Hyoung Kim, Dongrui Zeng, Cong Sun, and Gang Tan. 2022. Binpointer: towards precise, sound, and scalable binary-level pointer analysis. In Proceedings of the 31st ACMSIGPLAN International Conference on Compiler Construction. 169–180.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Chris Lattner.2008. LLVMandClang:Nextgeneration compilertechnology.In TheBSD conference, Vol. 5. 1–20.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Changsheng Li, Handong Ma, Zhao Kang, Ye Yuan, Xiao-Yu Zhang, and Guoren Wang. 2021. On deep unsupervised active learning. In Proceedings of the TwentyNinth International Conference on International Joint Conferences on Artificial Intelligence. 2626–2632.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "GuorenLi,HangZhang,JinmengZhou,WenboShen,YuleiSui,andZhiyunQian. 2023. A hybrid alias analysis and its application to global variable protection in the linux kernel. In 32nd USENIX Security Symposium (USENIX Security 23). 4211–4228.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Ning Li, Martin Shepperd, and Yuchen Guo. 2020. A systematic review of unsupervisedlearningtechniquesforsoftwaredefectprediction. Informationand Software Technology 122 (2020),106287.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "YiLi,ShaohuaWang,TienNNguyen,andSonVanNguyen.2019. Improvingbug detection via context-based code representation learning and attention-based neuralnetworks. ProceedingsoftheACMonProgrammingLanguages 3,OOPSLA (2019), 1–30.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Zhuohua Li, Jincheng Wang, Mingshen Sun, and John CS Lui. 2021. MirChecker: detecting bugs in Rust programs via static analysis. In Proceedings of the 2021 ACMSIGSAC Conference on Computer and Communications Security. 2183–2196.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Zhen Li, Deqing Zou, Shouhuai Xu, Hai Jin, Hanchao Qi, and Jie Hu. 2016. VulPecker:anautomatedvulnerabilitydetectionsystembasedoncodesimilarity analysis. In Proceedings of the 32nd Annual Conference on Computer Security Applications. 201–213.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Zhen Li, Deqing Zou, Shouhuai Xu, Xinyu Ou, Hai Jin, Sujuan Wang, Zhijun Deng, and Yuyi Zhong. 2018. VulDeePecker: A Deep Learning-Based System for Vulnerability Detection. Proceedings of the NDSS (2018).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Guanjun Lin, Sheng Wen, Qing-Long Han, Jun Zhang, and Yang Xiang. 2020. Softwarevulnerabilitydetectionusingdeepneuralnetworks:asurvey. Proc.IEEE 108, 10 (2020), 1825–1848.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "GuanjunLin,JunZhang,Wei Luo,Lei Pan,Olivier DeVel,PaulMontague,and YangXiang.2019. Softwarevulnerabilitydiscoveryvialearningmulti-domain knowledge bases. Proceedings of the IEEE Transactions on Dependable and Secure Computing (2019).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Shuai Lu, Daya Guo, Shuo Ren, Junjie Huang, Alexey Svyatkovskiy, Ambrosio Blanco, Colin Clement, Dawn Drain, Daxin Jiang, Duyu Tang, et al .2021. CodeXGLUE: A Machine Learning Benchmark Dataset for Code UnderstandingandGeneration.In Thirty-fifthConferenceonNeuralInformationProcessing CombiningStructured Static Code Information and Dynamic Symbolic Traces for Software Vulnerability Prediction ICSE ",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Kasper Luckow, Marko Dimjašević, Dimitra Giannakopoulou, Falk Howar, Malte Isberner,TemesghenKahsai,ZvonimirRakamarić,andVishwanathRaman.2016. JDart:adynamicsymbolicanalysisframework.In ToolsandAlgorithmsforthe Construction and Analysis of Systems: 22nd International Conference, TACAS 2016, Held as Part of the European Joint Conferences on Theory and Practice of Software, ETAPS 2016, Eindhoven, Th",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Andrew A Neath and Joseph E Cavanaugh. 2012. The Bayesian information criterion: background, derivation, and applications. Wiley Interdisciplinary Reviews: ComputationalStatistics 4, 2 (2012), 199–203.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Van-Anh Nguyen,DaiQuocNguyen,VanNguyen,TrungLe,QuanHungTran, and Dinh Phung. 2022. ReGVD: Revisiting Graph Neural Networks for VulnerabilityDetection.In Proceedingsofthe44thInternationalConferenceonSoftware EngineeringCompanion (ICSE ’22 Companion).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "NIST. [n.d.]. Software Assurance Reference Dataset Project. https://samate.nist. gov/SRD/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Hristina Palikarevaand CristianCadar. 2013. Multi-solversupport insymbolic execution. In Computer Aided Verification: 25th International Conference, CAV 2013, Saint Petersburg,Russia, July 13-19, 2013.Proceedings 25. Springer, 53–68.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "XiaojiangPeng,KaiWang,ZhaoyangZeng,QingLi,JianfeiYang,andYuQiao. 2020. Suppressing mislabeled data via grouping and self-attention. In Computer Vision–ECCV2020:16thEuropeanConference,Glasgow,UK,August23–28,2020, Proceedings, Part XVI 16. Springer, 786–802.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "HenningPerl,SergejDechand,MatthewSmith,DanielArp,FabianYamaguchi, Konrad Rieck, Sascha Fahl, and Yasemin Acar. 2015. Vccfinder: Finding potential vulnerabilities in open-source projects to assist code audits. In Proceedings of the 22nd ACMSIGSAC Conference on Computer and Communications Security. 426–437.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "GabrielPoesiaandFernandoMagnoQuintãoPereira.2020. Dynamicdispatch of context-sensitive optimizations. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 1–28.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "Zichao Qi, Fan Long, Sara Achour, and Martin Rinard. 2015. An analysis of patch plausibility and correctness for generate-and-validate patch generation systems.In Proceedingsofthe2015InternationalSymposiumonSoftwareTesting and Analysis. 24–36.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Leslie Rice, Eric Wong, and Zico Kolter. 2020. Overfitting in adversarially robust deep learning. In Proceedings of the 37th International Conference on Machine Learning (Proceedings of Machine Learning Research, Vol. 119), Hal Daumé III and AartiSingh(Eds.).PMLR,8093–8104. https://proceedings.mlr.press/v119/rice20a. html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "ManuelRiggerandZhendongSu.2020. TestingDatabaseEnginesviaPivoted Query Synthesis.. In OSDI, Vol. 20. 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 72,
+      "text": "Iqbal H Sarker. 2021. Machine learning: Algorithms, real-world applications and research directions. SN Computer Science 2, 3 (2021), 1–21.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Koushik Sen, Swaroop Kalasapur, Tasneem Brutch, and Simon Gibbs. 2013. Jalangi: A Selective Record-Replay and Dynamic Analysis Framework for JavaScript.In Proceedingsofthe20139thJointMeetingonFoundationsofSoftware Engineering (Saint Petersburg, Russia) (ESEC/FSE 2013). Association for ComputingMachinery,NewYork,NY,USA,488–498. https://doi.org/10.1145/2491411. 2491447",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "RidwanShariffdeen,YannicNoller,LarsGrunske,andAbhikRoychoudhury.2021. Concolic program repair. In Proceedings of the 42nd ACMSIGPLAN International Conference on Programming Language Design and Implementation. 390–405.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "Ke Shi, Yang Lu, Jingfei Chang, and Zhen Wei. 2020. PathPair2Vec: An AST path pair-basedcoderepresentationmethodfordefectprediction. JournalofComputer Languages 59 (2020), 100979. https://doi.org/10.1016/j.cola.2020.100979",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "Wilson L Taylor. 1953. “Cloze procedure”: A new tool for measuring readability. Journalism quarterly 30, 4 (1953), 415–433.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "David A Tomassi and Cindy Rubio-González. 2021. On the Real-World Effectiveness of Static Bug Detectors at Finding Null Pointer Exceptions. In 2021 36th IEEE/ACM International Conference on Automated Software Engineering (ASE). IEEE, 292–303.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. Attention is all youneed. Advances in neural information processing systems 30 (2017).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "Huanting Wang, Zhanyong Tang, Cheng Zhang, Jiaqi Zhao, Chris Cummins, Hugh Leather, and Zheng Wang. 2022. Automating reinforcement learning architecturedesignforcodeoptimization.In Proceedingsofthe31stACMSIGPLAN InternationalConference on Compiler Construction. 129–143.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "H. Wang, G. Ye, Z. Tang, S. H. Tan, S. Huang, D. Fang, Y. Feng, L. Bian, and Z. Wang.2021. CombiningGraph-BasedLearningWithAutomatedDataCollection for Code Vulnerability Detection. IEEE Transactions on Information Forensics and Security16 (2021), 1943–1958. https://doi.org/10.1109/TIFS.2020.3044773",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 81,
+      "text": "Ke Wang and Zhendong Su. 2020. Blended, Precise Semantic Program Embeddings.In Proceedingsofthe41stACMSIGPLANConferenceonProgramming LanguageDesignand Implementation (London,UK) (PLDI2020). Association for ComputingMachinery,NewYork,NY,USA,121–134. https://doi.org/10.1145/3385412.3385999",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 82,
+      "text": "ZhengWangandMichaelO’Boyle.2018. Machinelearningincompileroptimization.Proc. IEEE 106,11 (2018), 1879–1901.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 83,
+      "text": "GuixinYe,ZhanyongTang,ShinHweiTan,SongfangHuang,DingyiFang,Xiaoyang Sun, Lizhong Bian, Haibo Wang, and Zheng Wang. 2021. Automatedconformance testing for JavaScript engines via deep compiler fuzzing. In Proceedings of the 42nd ACMSIGPLAN International Conference on Programming Language Designand Implementation. 435–450.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 84,
+      "text": "GuixinYe,ZhanyongTang,HuantingWang,DingyiFang,JianbinFang,SongfangHuang,andZhengWang.2020. Deepprogramstructuremodelingthroughmultirelationalgraph-basedlearning.In ProceedingsoftheACMInternationalconference on parallel architectures and compilation techniques. 111–123.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 85,
+      "text": "ZhengranZeng,YuqunZhang,HaotianZhang,andLingmingZhang.2021. Deep just-in-timedefectprediction:howfararewe?.In Proceedingsofthe30thACM SIGSOFT International Symposium on Software Testing and Analysis. 427–438.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 86,
+      "text": "Dan Zhang, Qing-Guo Wang, Gang Feng, Yang Shi, and Athanasios V Vasilakos. 2021. Asurveyonattackdetection,estimationandcontrolofindustrialcyber– physical systems. ISA transactions 116 (2021),1–16.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 87,
+      "text": "Yu Zhao, Tingting Yu, Ting Su, Yang Liu, Wei Zheng, Jingzhi Zhang, and William GJ Halfond. 2019. Recdroid: automatically reproducing android application crashes from bug reports. In Software Engineering (ICSE). IEEE, 128–139.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 88,
+      "text": "Yaqin Zhou, Shangqing Liu, Jingkai Siow, Xiaoning Du, and Yang Liu. 2019. Devign:Effectivevulnerabilityidentificationbylearningcomprehensiveprogram semanticsviagraphneuralnetworks. In ProceedingsoftheAdvancesinNeural InformationProcessing Systems. 10197–10207.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 71,
+      "text": "ManuelRiggerandZhendongSu.2020. TestingDatabaseEnginesviaPivoted Query Synthesis.. In OSDI, Vol. 20. 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 69,71]",
+      "technique": "pqs",
+      "sentence": "These projects contain 35 CVEs reported by independent users, which were also used by prior work [ 69,71].",
+      "context_before": "n Sec. 5.1). This informationenhances precision by reducing the false positive rate and helps discover more vulnerabilities with a higher true positive rate than static information alone, resulting in a higher recall. Among thebaseline methods, LIGER performs best, but its F1 score is 10.4%lower than that of Concoction. This shows that Concoction strikes a better balance between false and negative positives, leveraging the advantages of structured static source code information. 5.3 Comparison on Known CVEs We compare Concoction to the baselines on three open-source projects listed in Table 2.",
+      "context_after": "WeapplyallmethodstofunctionsassociatedwithaCVEandusethe reported CVEs to compute evaluation metrics (Sec. 4.3). To ensure a fair comparison, we train all methods, including Concoction, onthesametrainingdataset,butweexcludetheseprojectsfrom the training data. For the dynamic methods listed in Sec. 4.2, we allocate 200 hoursof machine time for each project. 5.3.1 Vulnerabilitiesidentified. Table5demonstratesConcoction’s advantagesoverothermethodsinidentifyingvulnerabilitiesacross thethreeopen-sourceprojectsevaluated.Concoctionachieved 100% precision and 89% recall, correctly detecting 31 out of",
+      "section": "5.3 Comparison on Known CVEs",
+      "page": 9,
+      "char_offset": 49165,
+      "cited_reference": {
+        "number": 71,
+        "text": "ManuelRiggerandZhendongSu.2020. TestingDatabaseEnginesviaPivoted Query Synthesis.. In OSDI, Vol. 20. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:17:50Z",
+    "is_model_written": true,
+    "summary": "Concoction learns program representations for bug detection by combining static source code information with dynamic symbolic execution traces, addressing the limitation that existing deep-learning representations either miss precise semantics or do not scale. Unsupervised active learning picks a subset of important paths for trace collection, and a focused symbolic execution implementation keeps the cost down. Applied to C programs from 20 open-source projects it found 54 unique vulnerabilities and 37 new CVE IDs.",
+    "narrative": "One citation, noting that the CVEs used for evaluation were also used by prior work, SQLancer's among the references.",
+    "roles": {
+      "M1": "incidental"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

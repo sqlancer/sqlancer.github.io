@@ -1,0 +1,729 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-10T15:27:01Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3533767.3534409",
+    "title": "Finding bugs in Gremlin-based graph database systems via Randomized differential testing",
+    "authors": [
+      "Yingying Zheng",
+      "Wensheng Dou",
+      "Yicheng Wang",
+      "Zheng Qin",
+      "Leile Tang",
+      "Yu Gao",
+      "Dong Wang",
+      "Wei Wang",
+      "Jun Wei"
+    ],
+    "year": 2022,
+    "venue": "International Symposium on Software Testing and Analysis",
+    "doi": "10.1145/3533767.3534409",
+    "arxiv_id": null,
+    "s2_paper_id": "e67a2817089312746d69b38ce9abfdc4b1bc69c3",
+    "url": "https://doi.org/10.1145/3533767.3534409",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3533767.3534409",
+      "retrieved_at": "2026-09-10T15:27:01Z",
+      "chars": 68181,
+      "content_sha256": "sha256:f0ada6841461bdcbe9b9767156fe53e5951f307fb9ef43f484ead8ed4864af50"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 3920
+      },
+      {
+        "number": "2",
+        "title": "PRELIMINARIES",
+        "start": 10356
+      },
+      {
+        "number": "2.1",
+        "title": "GraphModels in GraphDatabaseSystems",
+        "start": 10464
+      },
+      {
+        "number": "2.2",
+        "title": "GraphQueryLanguages",
+        "start": 13059
+      },
+      {
+        "number": "3",
+        "title": "APPROACH",
+        "start": 16492
+      },
+      {
+        "number": "3.1",
+        "title": "GraphDatabaseGeneration",
+        "start": 18332
+      },
+      {
+        "number": "3.2",
+        "title": "Model-BasedQueryGeneration",
+        "start": 23248
+      },
+      {
+        "number": "3.2.1",
+        "title": "TraversalModelinGremlin. Inthissection,weexplainthe",
+        "start": 24817
+      },
+      {
+        "number": "3.2.2",
+        "title": "QueryGeneration. Basedontheabovetraversalmodel,we",
+        "start": 29680
+      },
+      {
+        "number": "3.3",
+        "title": "Differential TestingforGDBs",
+        "start": 34856
+      },
+      {
+        "number": "4",
+        "title": "IMPLEMENTATION",
+        "start": 37662
+      },
+      {
+        "number": "5",
+        "title": "EVALUATION",
+        "start": 39511
+      },
+      {
+        "number": "5.1",
+        "title": "Methodology",
+        "start": 39638
+      },
+      {
+        "number": "5.2",
+        "title": "OverallBug DetectionResults",
+        "start": 43050
+      },
+      {
+        "number": "5.3",
+        "title": "Bug Analysis",
+        "start": 47239
+      },
+      {
+        "number": "5.4",
+        "title": "Coverage",
+        "start": 50569
+      },
+      {
+        "number": "6",
+        "title": "DISCUSSION",
+        "start": 51506
+      },
+      {
+        "number": "6.1",
+        "title": "Generalizing Grandto more GDBs",
+        "start": 51626
+      },
+      {
+        "number": "6.2",
+        "title": "Threatsto Validity",
+        "start": 52514
+      },
+      {
+        "number": "6.3",
+        "title": "Limitations",
+        "start": 53396
+      },
+      {
+        "number": "7",
+        "title": "RELATED WORK",
+        "start": 54264
+      },
+      {
+        "number": "7.1",
+        "title": "TestingofDBMS",
+        "start": 54344
+      },
+      {
+        "number": "7.2",
+        "title": "Performance TestingofGDB",
+        "start": 56205
+      },
+      {
+        "number": "8",
+        "title": "CONCLUSION",
+        "start": 57647
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2021. BenchmarkingTigerGraphUsingtheLikedDataBenchmarkCouncilSocial Network Benchmark. Retrieved June 23, 2021 from https://www.tigergraph.com/ benchmark/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2021.Cypher Query Language. Retrieved June 23, 2021 from https://neo4j.com/ developer/cypher/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "2021.HugeGraph. Retrieved August 17, 2021 from https://hugegraph.github.io/ hugegraph-doc/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "2021.HugeGraph-Client Quick Start. Retrieved August 5, 2021 from https: //hugegraph.github.io/hugegraph-doc/quickstart/hugegraph-client.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "2021.JaCoCo is a free code coverage library for Java. Retrieved June 23, 2022 fromhttps://www.jacoco.org/jacoco/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "2021. JanusGraph. Retrieved June23,2021 from https://janusgraph.org",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "2021. Neo4j. Retrieved August 5,2021 from https://neo4j.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "2021.Neo4j-Gremlin. Retrieved August 5, 2021 from https://github.com/ thinkaurelius/neo4j-gremlin-plugin",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "2021.TheNextGenerationMulti-ModelDatabaseSupportingGraphsKey/Value, Documents and Time-Series. Retrieved June 23, 2022 from https://arcadedb.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "2021.Open Source, Distributed, Scalable, Lightning Fast. Retrieved June 23, 2021 fromhttps://nebula-graph.io/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "2021. OrientDB. Retrieved August 18,2021 from https://orientdb.org",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "2021.RDFTripleStoresvs.LabeledPropertyGraphs:What’stheDifference? Retrieved August 5, 2021 from https://neo4j.com/blog/rdf-triple-store-vs-labeledproperty-graph-difference/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "2021.SQLancer. Retrieved August 5, 2021 from https://github.com/sqlancer/ sqlancer",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 14,
+      "text": "2021.SQLsmith. RetrievedAugust5,2021from https://github.com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "2021.TigerGraph. Retrieved September4, 2021from https://www.tigergraph. com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "2021.TinkerGraph. RetrievedAugust17,2021from https://github.com/tinkerpop/ blueprints/wiki/tinkergraph",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "2021. TinkerPop. Retrieved June23,2021 from https://tinkerpop.apache.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "2021.TinkerPopDocumentation. RetrievedAugust5,2021from https://tinkerpop. apache.org/docs/3.4.10/reference/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "2021.TinkerPop Github. Retrieved August 5, 2021 from https://github.com/ tinkerpop",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "2021.TITAN: Distributed Graph Database. Retrieved June 23, 2021 from http: //titan.thinkaurelius.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "2021.WhatisopenCypher? RetrievedJune23,2021from http://www.opencypher. org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "2022.DB-Engines Ranking of Graph DBMS. Retrieved January 5, 2022 from https://db-engines.com/en/ranking/graph+ dbms",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "2022.ISSTA 22 Artifact for \"Finding Bugs in Gremlin-Based Graph Database Systems via Randomized Differential Testing\". Retrieved June 21, 2022 from https://doi.org/10.5281/zenodo.6534721",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Ibrahim Abdelaziz, Razen Harbi, Zuhair Khayyat, and Panos Kalnis. 2017. A Survey and Experimental Comparison of Distributed SPARQL Engines for Very LargeRDFData. Proc. VLDBEndow. 10,13(2017), 2049ś2060.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Ibrahim Abdelaziz, Essam Mansour, Mourad Ouzzani, Ashraf Aboulnaga, and Panos Kalnis. 2017. Query Optimizations over Decentralized RDF Graphs. In InternationalConference onData Engineering (ICDE). 139ś142.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Renzo Angles, Peter A. Boncz,Josep Lluís Larriba-Pey,Irini Fundulaki, Thomas Neumann, Orri Erling, Peter Neubauer, Norbert Martínez-Bazan, Venelin Kotsev, andIoanToma.2014. TheLinkedDataBenchmarkCouncil:AGraphandRDF IndustryBenchmarking Effort. ACMSIGMODRecord 43,1 (2014), 27ś31.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Renzo Angles, Arnau Prat-Pérez, David Dominguez-Sal, and Josep Lluís LarribaPey. 2013. Benchmarking Database Systems for Social Network Applications. In ProceedingsofInternationalWorkshoponGraphDataManagementExperiences and Systems(GRADES). 15.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Marcelo Arenas, ClaudioGutiérrez, and JuanF.Sequeda. 2021. Queryingin the Age of Graph Databases and Knowledge Graphs. In Proceedings of International Conference onManagementofData (SIGMODE). 2821ś2828.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Shafiul Azam Chowdhury, SoumikMohian, Sidharth Mehra, Siddhant Gawsane, Taylor T. Johnson,andChristoph Csallner.2018. Automatically findingbugsin a commercial cyber-physical system development tool chain with SLforge. In Proceedings of the 40th International Conference on Software Engineering, ICSE 2018, Gothenburg,Sweden, May 27 -June 03,2018. 981ś992.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Christoph Csallner and Yannis Smaragdakis. 2004. JCrasher: an automatic robustness tester for Java. Softw. Pract.Exp. 34,11(2004), 1025ś1050.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "PascalCuoq,BenjaminMonate,AnnePacalet,VirgilePrevosto,JohnRegehr,Boris Yakobowski,andXuejunYang.2012. TestingStaticAnalyzerswithRandomly Generated Programs. In NASA Formal Methods-4th International Symposium (NFM). 120ś125.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Alin Deutsch. 2018. Querying Graph Databases with the GSQL Query Language. InSimpósio BrasileirodeBanco deDados(SBBD). 313.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "OrriErling,AlexAverbuch,JosepLluísLarriba-Pey,HassanChafi,AndreyGubichev, Arnau Prat-Pérez, Minh-Duc Pham, and Peter A. Boncz. 2015. The LDBC SocialNetworkBenchmark:InteractiveWorkload.In ProceedingsofACMSIGMOD InternationalConference onManagementofData (SIGMOD). 619ś630.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Orri Erling and Ivan Mikhailov. 2009. RDF Support in the Virtuoso DBMS. In NetworkedKnowledge-NetworkedMedia. 7ś24.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Diogo Fernandes and Jorge Bernardino. 2018. Graph Databases Comparison: AllegroGraph,ArangoDB,InfiniteGraph,Neo4J,andOrientDB.In Proceedings ofInternationalConference onDataScience, TechnologyandApplications(DATE). 373ś380.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Nadime Francis, Alastair Green, Paolo Guagliardo, Leonid Libkin, Tobias Lindaaker, Victor Marsault, Stefan Plantikow, Mats Rydberg, Petra Selmer, and Andrés Taylor.2018. Cypher: AnEvolvingQueryLanguage forPropertyGraphs. InProceedings of International Conference on Management of Data (SIGMOD). 1433ś1445.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woon-Hak Kang. 2019. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in DatabaseSystems. Proc. VLDBEndow. 13,1 (2019), 57ś70.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "TimotejKapusandCristianCadar.2017. Automatictestingofsymbolicexecution engines via program generation and differential testing. In International Conference onAutomatedSoftwareEngineering (ASE). 590ś600.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Shadi Abdul Khalek, Bassem Elkarablieh, Yai O. Laleye, and Sarfraz Khurshid. 2008. Query-Aware Test Generation Using a Relational Constraint Solver. In InternationalConference onAutomatedSoftwareEngineering (ASE). 238ś247.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Norman Köster. 2020. An Extensible Graph Query Language for Model-Based Information Retrieval in Intelligent Environments. Ph.D. Dissertation. Bielefeld University, Germany.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Tibor Kovács, Gábor Simon, and Gergely Mezei. 2019. Benchmarking Graph DatabaseBackends-WhatWorksWellwithWikidata? ActaCybern. 24,1(2019), 43ś60.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Matteo Lissandrini, Martin Brugnara, and Yannis Velegrakis. 2018. Beyond Macrobenchmarks:Microbenchmark-BasedGraphDatabaseEvaluation. Proc. VLDBEndow. 12,4 (2018), 390ś403.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Baozhu Liu, Xin Wang, Pengkai Liu, Sizhuo Li, Qiang Fu, and Yunpeng Chai. 2021. UniKG: A Unified Interoperable Knowledge Graph Database System. In ProceedingsofIEEEInternationalConferenceonDataEngineering(ICDE) .2681ś 2684.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Muhammad Numair Mansur, Maria Christakis, and Valentin Wüstholz. 2021. Metamorphic testing of Datalog engines. In ESEC/FSE ’21: 29th ACM Joint European Software Engineering Conference and Symposium on the Foundations of SoftwareEngineering, Athens,Greece, August 23-28, 2021. 639ś650.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "William M. McKeeman. 1998. Differential Testing for Software. Digit. Tech. J. 10, 1 (1998), 100ś107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Anil Pacaci, Alice Zhou, Jimmy Lin, and M. Tamer Özsu. 2017. Do We Need SpecializedGraphDatabases?BenchmarkingReal-Time SocialNetworkingApplications. In Proceedings of InternationalWorkshop on GraphData-management Experiences and Systems(GRADES). 12:1ś12:7.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Yuxiang Ren, Hao Zhu, Jiawei Zhang, Peng Dai, and Liefeng Bo. 2021. EnsemFDet: An Ensemble Approach to Fraud Detection based on Bipartite Graph. InInternationalConference onData Engineering (ICDE). 2039ś2044.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "ManuelRiggerandZhendongSu.2020. DetectingOptimizationBugsinDatabase EnginesviaNon-OptimizingReferenceEngineConstruction.In Proceedingsof ACM Joint European Software Engineering Conference and Symposium on the FoundationsofSoftwareEngineering (ESEC/FSE). 1140ś1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 49,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA, Article211(2020), 30pages.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 50,
+      "text": "ManuelRiggerandZhendongSu.2020. TestingDatabaseEnginesviaPivoted Query Synthesis. In Proceedings of USENIX Symposium on Operating Systems Designand Implementation(OSDI). 667ś682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 51,
+      "text": "Marko A. Rodriguez. 2015. The Gremlin Graph Traversal Machine and Language (Invited Talk). In Proceedings of the Symposium on Database Programming Languages. 1ś10.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Donald S. Slutz. 1998. Massive Stochastic Testing of SQL. In Proceedings of InternationalConference onVeryLarge Data Bases (VLDB). 618ś622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "ThodorisSotiropoulos,StefanosChaliasos,VaggelisAtlidakis,DimitrisMitropoulos,andDiomidisSpinellis.2021. Data-OrientedDifferentialTestingofObjectRelationalMappingSystems.In ProceedingsofIEEE/ACMInternationalConference onSoftwareEngineering (ICSE). 1535ś1547.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Harsh Thakkar, Renzo Angles, Marko Rodriguez, Stephen Mallette, and Jens Lehmann. 2020. Let’s Build Bridges, not Walls: SPARQL Querying of TinkerPop Graph Databases with SPARQL-Gremlin. In Proceedings of IEEE International Conference onSemantic Computing(ICSC). 408ś415.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Ran Wang, Zhengyi Yang, Wenjie Zhang, and Xuemin Lin. 2020. An Empirical Study on Recent Graph Database Systems. In Proceedings of International ConferenceonKnowledgeScience,EngineeringandManagement(KSEM) .328ś340. 313",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 13,
+      "text": "2021.SQLancer. Retrieved August 5, 2021 from https://github.com/sqlancer/ sqlancer",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 48,
+      "text": "ManuelRiggerandZhendongSu.2020. DetectingOptimizationBugsinDatabase EnginesviaNon-OptimizingReferenceEngineConstruction.In Proceedingsof ACM Joint European Software Engineering Conference and Symposium on the FoundationsofSoftwareEngineering (ESEC/FSE). 1140ś1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec"
+      ]
+    },
+    {
+      "number": 49,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA, Article211(2020), 30pages.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 50,
+      "text": "ManuelRiggerandZhendongSu.2020. TestingDatabaseEnginesviaPivoted Query Synthesis. In Proceedings of USENIX Symposium on Operating Systems Designand Implementation(OSDI). 667ś682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 13]",
+      "technique": null,
+      "sentence": "For relational database systems that utilize Structured Query Language (SQL) to create, access, and modify data, researchers havedevelopedseveraltools,suchas RAGS[ 52]and SQLancer[ 13], toeffectivelydiscoverlogicbugs.",
+      "context_before": "wefoundinHugeGraph[ 3].Inthistestcase,wefirstcreateagraph schema with a vertex label 𝑣𝐿𝑎𝑏𝑒𝑙and its property 𝑝𝑟𝑜𝑝(Line 1). Wefurthercreatean 𝑖𝑛𝑑𝑒𝑥onproperty 𝑝𝑟𝑜𝑝(Line2).Basedonthis graph schema, we create three vertices 𝑣1,𝑣2and𝑣3with different𝑝𝑟𝑜𝑝of5,1,and3,respectively(Line4-6),andaddtheminto thegraph(Line7).Wecounttheverticeswhoseproperty 𝑝𝑟𝑜𝑝is between 0 and 4, or less than 2 (Line 9). We can see that vertex 𝑣2 and𝑣3satisfy thiscondition, and thisquery should return 2. However, HugeGraph returns an incorrect result 3 because HugeGraph forgets to deduplicateoverlappingvaluesfor ORoperation.",
+      "context_after": "RAGSusesdifferentialtestingfor detectingbugs inrelationaldatabasesystems,while SQLanceroffers three oracles, i.e., Pivoted Query Synthesis (PQS) [ 50], Ternary LogicPartitioning(TLP)[ 49],andNon-OptimizingReferenceEngine Construction (NoREC) [ 48] to find logic bugs. However, no available toolscan be appliedon GDBs to detectlogic bugs. LogicbugsinGDBsaredifficulttodetectautomaticallydueto the following reasons: (1) Unlike relational database systems, there is no standardized way to query graph data. These widely-used GDBsusuallyutilizetheirownquerylanguages.Forexample,Neo4j developsCypher[ 36],a",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 6157,
+      "cited_reference": {
+        "number": 13,
+        "text": "2021.SQLancer. Retrieved August 5, 2021 from https://github.com/sqlancer/ sqlancer",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "Pivoted Query Synthesis",
+      "technique": "pqs",
+      "sentence": ", Pivoted Query Synthesis (PQS) [ 50], Ternary LogicPartitioning(TLP)[ 49],andNon-OptimizingReferenceEngine Construction (NoREC) [ 48] to find logic bugs.",
+      "context_before": "eswhoseproperty 𝑝𝑟𝑜𝑝is between 0 and 4, or less than 2 (Line 9). We can see that vertex 𝑣2 and𝑣3satisfy thiscondition, and thisquery should return 2. However, HugeGraph returns an incorrect result 3 because HugeGraph forgets to deduplicateoverlappingvaluesfor ORoperation. For relational database systems that utilize Structured Query Language (SQL) to create, access, and modify data, researchers havedevelopedseveraltools,suchas RAGS[ 52]and SQLancer[ 13], toeffectivelydiscoverlogicbugs.RAGSusesdifferentialtestingfor detectingbugs inrelationaldatabasesystems,while SQLanceroffers three oracles, i.e.",
+      "context_after": "However, no available toolscan be appliedon GDBs to detectlogic bugs. LogicbugsinGDBsaredifficulttodetectautomaticallydueto the following reasons: (1) Unlike relational database systems, there is no standardized way to query graph data. These widely-used GDBsusuallyutilizetheirownquerylanguages.Forexample,Neo4j developsCypher[ 36],andTigerGraphusesGSQL[ 32].Fortunately, most GDBs, e.g., 66% (23/35) GDBs in the DB-Engine Ranking of Graph DBMSs [ 22], support a common query language, Gremlin [51],whichisdevelopedbyApacheTinkerPop[ 17]andprovides a group of Gremlin APIs to query graph data. (2) G",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 6485,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[ 13,14,52]",
+      "technique": null,
+      "sentence": "2 Model-BasedQueryGeneration Randomquerygenerationisacommonly-usedapproachfortesting databases [ 13,14,52].",
+      "context_before": "ropGeneration( 𝑃𝑇𝑆𝑒𝑡)do 20𝑝𝑟𝑜𝑝𝑠←∅; 21foreach𝑝𝑇𝑦𝑝𝑒∈𝑃𝑇𝑆𝑒𝑡do 22 𝑝𝑁𝑎𝑚𝑒←𝑝𝑇𝑦𝑝𝑒.𝑛𝑎𝑚𝑒(); 23 𝑝𝑉𝑎𝑙𝑢𝑒←𝑔𝑒𝑛𝑒𝑟𝑎𝑡𝑒𝐶𝑜𝑛𝑠𝑡𝑎𝑛𝑡(𝑝𝑇𝑦𝑝𝑒.𝑡𝑦𝑝𝑒())); 24 𝑝𝑟𝑜𝑝𝑠.𝑎𝑑𝑑(𝑝𝑁𝑎𝑚𝑒,𝑝𝑉𝑎𝑙𝑢𝑒); 25end 26return𝑝𝑟𝑜𝑝𝑠; 27end select one vertex that conform 𝑒𝑑𝑔𝑒’s incoming/outgoing vertex type (Line 15-16). Note that, for any two vertices, we only add one edge withthe same type. Note that, the maximal numbers of vertex types, edge types, propertytypes,vertices,edgesinagraphdatabase,canbespecified by GDBtesters.Inourexperiment,wegenerateatmost10vertex types, 20 edge types, 20 property types, 100 vertices, and 200 edges for agraph database. 3.",
+      "context_after": "However, the effectiveness of GDB testing heavily relies onthequality ofquery generation.Gremlin hasflexibleprogramminginterfaces,whichconsistsofasequenceof(potentiallynested)GremlinAPIcallsactingonagraphtraversalsource 𝑔. AlthoughwecanextractgrammarconstraintsamongGremlinAPIs with automated tools (e.g., JCrasher [ 30]), a completely random Gremlin query generation based on the grammar for Gremlin APIs cancausetwoissues.First,wecaneasilygenerategrammatically correct but meaningless queries, e.g., 𝑔.𝑉().𝑉().𝑉(). Second, from theGremlingrammar,wecannotknowthesemanticsofGremlin APIs and their pa",
+      "section": "3.2 Model-BasedQueryGeneration",
+      "page": 5,
+      "char_offset": 23250,
+      "cited_reference": {
+        "number": 13,
+        "text": "2021.SQLancer. Retrieved August 5, 2021 from https://github.com/sqlancer/ sqlancer",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "providetwometamorphictestingapproaches[ 48, 49], namely Ternary LogicPartitioning (TLP) and Non-optimizing ReferenceEngineConstruction(NoREC),totest DBMS.",
+      "context_before": "reliesonpassingthesameinputtothedifferenttestingobjects andcomparingtheoutput.Adifferenceindicatesapotentialbug. Slutz first presents RAGS [ 52] to find bugs in DBMS by differential testing. APOLLO [ 37] uses differential testing to find performance regressionbugsin DBMS.CYNTHIA[ 53]usesdifferentialtesting fortestingObject-RelationalMappingsystems.SinceGDBsadopt different storage structures and query languages, these approaches cannotbe easily adoptedinto GDB testing. Metamorphic testing of DBMS. Metamorphic testing [ 44] testssoftwaresystemsbymutatingtestcasesviametamorphicrelations.Riggeretal.",
+      "context_after": "TLP[ 49] partitions a query into three sub-queries, and detects bugs by comparing the combination of results of three sub-queries with the result of the original query. NoREC [ 48] compares the execution results of a given optimized query with its non-optimized version, to detect optimization bugs in DBMS. All the above approaches targetrelationaldatabasesystems,andcanpotentiallybeapplicable on GDBs. Other testing of DBMS. SQLSmith [ 14] is a fuzzing tool for testing DBMS. It can randomly generate SQL queries as inputs. SQLanceroffersPivotedQuerySynthesis(PQS)[ 50]approachto findlogicbugsbyrand",
+      "section": "7.1 TestingofDBMS",
+      "page": 11,
+      "char_offset": 55088,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP[ 49] partitions a query into three sub-queries, and detects bugs by comparing the combination of results of three sub-queries with the result of the original query.",
+      "context_before": "bugs in DBMS by differential testing. APOLLO [ 37] uses differential testing to find performance regressionbugsin DBMS.CYNTHIA[ 53]usesdifferentialtesting fortestingObject-RelationalMappingsystems.SinceGDBsadopt different storage structures and query languages, these approaches cannotbe easily adoptedinto GDB testing. Metamorphic testing of DBMS. Metamorphic testing [ 44] testssoftwaresystemsbymutatingtestcasesviametamorphicrelations.Riggeretal.providetwometamorphictestingapproaches[ 48, 49], namely Ternary LogicPartitioning (TLP) and Non-optimizing ReferenceEngineConstruction(NoREC),totest DBMS.",
+      "context_after": "NoREC [ 48] compares the execution results of a given optimized query with its non-optimized version, to detect optimization bugs in DBMS. All the above approaches targetrelationaldatabasesystems,andcanpotentiallybeapplicable on GDBs. Other testing of DBMS. SQLSmith [ 14] is a fuzzing tool for testing DBMS. It can randomly generate SQL queries as inputs. SQLanceroffersPivotedQuerySynthesis(PQS)[ 50]approachto findlogicbugsbyrandomlyselectingapivotrowasoracleandgenerating random queriescontainingthe selectedrowtotest DBMS.ADUSA [ 39] translates SQL query to Alloy specification, generates Alloy",
+      "section": "7.1 TestingofDBMS",
+      "page": 11,
+      "char_offset": 55241,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC [ 48] compares the execution results of a given optimized query with its non-optimized version, to detect optimization bugs in DBMS.",
+      "context_before": "ct-RelationalMappingsystems.SinceGDBsadopt different storage structures and query languages, these approaches cannotbe easily adoptedinto GDB testing. Metamorphic testing of DBMS. Metamorphic testing [ 44] testssoftwaresystemsbymutatingtestcasesviametamorphicrelations.Riggeretal.providetwometamorphictestingapproaches[ 48, 49], namely Ternary LogicPartitioning (TLP) and Non-optimizing ReferenceEngineConstruction(NoREC),totest DBMS.TLP[ 49] partitions a query into three sub-queries, and detects bugs by comparing the combination of results of three sub-queries with the result of the original query.",
+      "context_after": "All the above approaches targetrelationaldatabasesystems,andcanpotentiallybeapplicable on GDBs. Other testing of DBMS. SQLSmith [ 14] is a fuzzing tool for testing DBMS. It can randomly generate SQL queries as inputs. SQLanceroffersPivotedQuerySynthesis(PQS)[ 50]approachto findlogicbugsbyrandomlyselectingapivotrowasoracleandgenerating random queriescontainingthe selectedrowtotest DBMS.ADUSA [ 39] translates SQL query to Alloy specification, generates Alloy instance satisfying queryconditions inAlloy specification, and further obtains the expected result from Alloy instance. All theabovetoolsta",
+      "section": "7.1 TestingofDBMS",
+      "page": 11,
+      "char_offset": 55409,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "SQLanceroffersPivotedQuerySynthesis(PQS)[ 50]approachto findlogicbugsbyrandomlyselectingapivotrowasoracleandgenerating random queriescontainingthe selectedrowtotest DBMS.",
+      "context_before": "ning (TLP) and Non-optimizing ReferenceEngineConstruction(NoREC),totest DBMS.TLP[ 49] partitions a query into three sub-queries, and detects bugs by comparing the combination of results of three sub-queries with the result of the original query. NoREC [ 48] compares the execution results of a given optimized query with its non-optimized version, to detect optimization bugs in DBMS. All the above approaches targetrelationaldatabasesystems,andcanpotentiallybeapplicable on GDBs. Other testing of DBMS. SQLSmith [ 14] is a fuzzing tool for testing DBMS. It can randomly generate SQL queries as inputs.",
+      "context_after": "ADUSA [ 39] translates SQL query to Alloy specification, generates Alloy instance satisfying queryconditions inAlloy specification, and further obtains the expected result from Alloy instance. All theabovetoolstargetrelationaldatabasesystems,andcannotbe appliedon GDBs. 7.2 Performance TestingofGDB Performance benchmarks for GDB. Angles et al. launch the Linked Data Benchmark Council (LDBC) [ 26] project to develop benchmarksforgraphand RDFdatamanagementsystems.Inthe project,LDBCsocialnetworkbenchmark(LDBCSNB)[ 33]consists of a synthetic social network dataset and three workloads with complexgrap",
+      "section": "7.1 TestingofDBMS",
+      "page": 11,
+      "char_offset": 55765,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": {
+    "url": "https://github.com/choeoe/Grand",
+    "markers": [
+      "renamed_sqlancer_package",
+      "sqlancer_source_content_match"
+    ],
+    "evidence": [
+      {
+        "source_url": "https://github.com/choeoe/Grand",
+        "source_type": "github_repository",
+        "excerpt": "# Grand",
+        "note": "Repository is named after Grand, the tool this paper says it built, and is about database testing.",
+        "retrieved_at": "2026-09-10T15:15:32Z",
+        "first_seen": "2026-09-10T15:15:32Z",
+        "last_verified": "2026-09-10T15:15:32Z",
+        "excerpt_is_verbatim": true
+      },
+      {
+        "source_url": "https://github.com/choeoe/Grand/blob/main/src/main/java/org/gdbtesting/Randomly.java",
+        "source_type": "github_code",
+        "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.SOPHISTICATED;",
+        "excerpt_is_verbatim": true,
+        "note": "src/main/java/org/gdbtesting/Randomly.java is SQLancer's Randomly.java, with the package renamed to org.gdbtesting (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+        "content_sha256": "sha256:79cab1e9e63a88331ad883d12218247ae29913a268fb5ffc6cba313b8660e826",
+        "retrieved_at": "2026-09-10T15:15:32Z",
+        "first_seen": "2026-09-10T15:15:32Z",
+        "last_verified": "2026-09-10T15:15:32Z"
+      }
+    ]
+  },
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:22:16Z",
+    "is_model_written": true,
+    "summary": "Grand finds logic bugs in Gremlin-based graph database systems by constructing semantically equivalent databases across several systems and comparing the results of the same query on each; differing results point to a logic bug. It adds model-based query generation, producing valid queries likely to return non-empty results, and a data mapping approach that unifies result formats across systems. Across six widely used graph systems including Neo4j and HugeGraph it found 21 previously unknown logic bugs, 18 confirmed.",
+    "narrative": "SQLancer's three oracles are the relational precedent Grand carries into graph databases, each described in its related work. The reuse goes further than the text says: Grand's repository holds SQLancer's own source under a renamed package, which is the only evidence of it.",
+    "roles": {
+      "M1": "background",
+      "M2": "definition",
+      "M3": "background",
+      "M4": "definition",
+      "M5": "definition",
+      "M6": "definition",
+      "M7": "definition",
+      "ARTIFACT": "reuse_implementation"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "ARTIFACT"
+        ],
+        "quotes": [
+          {
+            "mention_id": "ARTIFACT",
+            "sentence": "Artifact https://github.com/choeoe/Grand carries: renamed_sqlancer_package, sqlancer_source_content_match",
+            "section": "artifact inspection",
+            "page": null
+          }
+        ],
+        "reasoning": "Nothing in the text claims reuse -- SQLancer appears only in related work. The repository carries SQLancer's source under a renamed package, which is what establishes it, and is why the claim cites the artifact rather than a sentence.",
+        "reuse_kind": "implementation"
+      },
+      "extends_technique": {
+        "value": "uncertain",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Grand applies differential testing across graph systems rather than generalising PQS, NoREC or TLP, but with the codebase reused and no statement of what was changed, the boundary is not settled by what is here."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer's oracles are described as relational precedent; no run against them is reported."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The oracles are described by what they do rather than as the state of the art."
+      }
+    },
+    "disagreements": [
+      "No regex fired on this paper at all, because its text never claims reuse. The artifact is what carries the claim."
+    ],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

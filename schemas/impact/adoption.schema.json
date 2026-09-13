@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sqlancer.github.io/schemas/impact/adoption.schema.json",
+  "title": "DBMS project adoption of SQLancer",
+  "description": "Evidence that a database system's own developers use or integrate SQLancer. Support for a DBMS by SQLancer is NOT adoption and is tracked separately in dbms.json.",
+  "type": "object",
+  "required": ["schema_version", "policy_version", "adoption"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "$ref": "common.schema.json#/definitions/schema_version" },
+    "policy_version": { "type": "string", "maxLength": 40 },
+    "adoption": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "dbms", "relationship", "summary", "evidence", "provenance"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "common.schema.json#/definitions/record_id" },
+          "dbms": {
+            "$ref": "common.schema.json#/definitions/slug",
+            "description": "Must reference an id in dbms.json."
+          },
+          "project_repository": { "$ref": "common.schema.json#/definitions/url" },
+          "relationship": {
+            "type": "string",
+            "description": "Controlled vocabulary for how the DBMS project uses SQLancer. 'planned_adoption' is the one entry that is not use: a project has proposed adopting SQLancer but has not been shown to have done so, and it is counted separately everywhere.",
+            "enum": [
+              "official_ci",
+              "official_testing",
+              "developer_use",
+              "integration_contributed_by_dbms_team",
+              "planned_adoption"
+            ]
+          },
+          "finder": {
+            "anyOf": [
+              { "$ref": "common.schema.json#/definitions/slug" },
+              { "type": "null" }
+            ],
+            "description": "Umbrella tool being adopted, when the evidence identifies a specific one."
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 600,
+            "description": "Factual description of what the evidence shows. Not a substitute for the verbatim excerpt."
+          },
+          "since_year": {
+            "anyOf": [
+              { "$ref": "common.schema.json#/definitions/year" },
+              { "type": "null" }
+            ]
+          },
+          "active": {
+            "type": ["boolean", "null"],
+            "description": "Whether the integration was still present at last verification. Null when not determined."
+          },
+          "evidence": { "$ref": "common.schema.json#/definitions/evidence_list" },
+          "classifier": { "$ref": "common.schema.json#/definitions/classifier_record" },
+          "provenance": { "$ref": "common.schema.json#/definitions/provenance" }
+        }
+      }
+    }
+  }
+}

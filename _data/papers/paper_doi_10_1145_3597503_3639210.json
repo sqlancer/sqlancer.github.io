@@ -1,0 +1,569 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:31:34Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3597503.3639210",
+    "title": "Sedar: Obtaining High-Quality Seeds for DBMS Fuzzing via Cross-DBMS SQL Transfer",
+    "authors": [
+      "Jingzhou Fu",
+      "Jie Liang",
+      "Zhiyong Wu",
+      "Yu Jiang"
+    ],
+    "year": 2024,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1145/3597503.3639210",
+    "arxiv_id": null,
+    "s2_paper_id": "368ae600b0d2ac9e8e228f2c84e32a270403d7fa",
+    "url": "https://doi.org/10.1145/3597503.3639210",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3597503.3639210",
+      "retrieved_at": "2026-09-09T01:31:34Z",
+      "chars": 69156,
+      "content_sha256": "sha256:4a8b655acf4a1a6b82b8061eca6b5c7af615bb5ee1f4c7b0a3248ddd37244d21"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 3434
+      },
+      {
+        "number": "2",
+        "title": "BACKGROUND ANDMOTIVATION",
+        "start": 10955
+      },
+      {
+        "number": "3",
+        "title": "DESIGN",
+        "start": 16643
+      },
+      {
+        "number": "3.1",
+        "title": "SchemaCapture",
+        "start": 16833
+      },
+      {
+        "number": "3.2",
+        "title": "SQLTransfer with LLM",
+        "start": 21379
+      },
+      {
+        "number": "3.3",
+        "title": "MutabilityRefinement",
+        "start": 26081
+      },
+      {
+        "number": "4",
+        "title": "IMPLEMENTATION",
+        "start": 30469
+      },
+      {
+        "number": "5",
+        "title": "EVALUATION",
+        "start": 31607
+      },
+      {
+        "number": "5.1",
+        "title": "EvaluationSetup",
+        "start": 32200
+      },
+      {
+        "number": "5.2",
+        "title": "DBMSVulnerabilities",
+        "start": 34185
+      },
+      {
+        "number": "5.3",
+        "title": "Overall Experiments",
+        "start": 38316
+      },
+      {
+        "number": "5.4",
+        "title": "Contributionof SQL Transfer",
+        "start": 47072
+      },
+      {
+        "number": "5.5",
+        "title": "Effectivenessof Mutability Refinement",
+        "start": 50826
+      },
+      {
+        "number": "6",
+        "title": "DISCUSSION",
+        "start": 53128
+      },
+      {
+        "number": "7",
+        "title": "RELATED WORK",
+        "start": 56160
+      },
+      {
+        "number": "8",
+        "title": "CONCLUSION",
+        "start": 59806
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "ANSI. 2022. ANSI Standard. https://www .ansi.org/. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "JinshengBaandManuelRigger.2023. Testingdatabaseenginesviaqueryplan guidance. In Proceedings of International Conference on Software Engineering (ICSE).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 3,
+      "text": "MonetDBB.V.2023. MonetDBWebsite. https://www .monetdb.org. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "ClickHouse. 2021. Fuzzing: Practical Approaches in ClickHouse. https:// presentations .clickhouse .com/cpp_siberia_2021/index _en.html. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "DuckDB. 2023. DuckDB Fuzzers. https://github .com/duckdb/duckdb-fuzzer/ issues. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "DuckDB. 2023. DuckDB WebSite. https://www .duckdb.org/. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Zhiyu Fan, Xiang Gao, Martin Mirchev, Abhik Roychoudhury, and Shin Hwei Tan.2023. Automatedrepairofprogramsfromlargelanguagemodels.In. IEEE, 1469–1481.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Andrea Fioraldi, Dominik Maier, Heiko Eißfeldt, and Marc Heuse. 2020. AFL++: Combining Incremental Steps of Fuzzing Research. In USENIX Workshop on Offensive Technologies (WOOT).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-Free DBMS Fuzzing. In 37th IEEE/ACM International Conference on Automated Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "ClickHouseInc.2023. ClickHouseWebsite. https://clickhouse .com. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Free Software Foundation Inc. 2023. Error Recovery. https://www .gnu.org/ software/bison/manual/html _node/Error-Recovery .html. Accessed:January4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Solid IT. 2022. DB-Engines Ranking. https://db-engines .com/en/ranking. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "SolidIT.2022. DB-EnginesRankingofRelationalDBMS. https://db-engines .com/ en/ranking/relational +dbms. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. 2023. DynSQL: Stateful Fuzzing for DatabaseManagementSystemswithComplexandValidSQLQueryGeneration.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2020. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems (to appear). In Proceedings of the 46th International Conference on Very Large Data Bases (VLDB). Tokyo, Japan.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "SungminKang,JuyeonYoon,andShinYoo.2023. Largelanguagemodelsarefewshottesters:Exploringllm-basedgeneralbugreproduction.In 2023IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2312–2323.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Caroline Lemieux, Jeevana Priya Inala, Shuvendu K Lahiri, and Siddhartha Sen. 2023. CODAMOSA: Escaping coverage plateaus in test generation with pretrainedlargelanguagemodels.In Internationalconferenceonsoftwareengineering (ICSE).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "JohnRLevine,TonyMason,andDougBrown.1992. Lex&yacc. \"O’ReillyMedia, Inc.\".",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "JieLiang,YaoguangChen,ZhiyongWu,JingzhouFu,MingzheWang,YuJiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. 2023. Sequenceoriented DBMS fuzzing. In Proceedings of IEEE International Conference on Data Engineering (ICDE).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "YuLiang,SongLiu,andHongHu.2022. DetectingLogicalBugsof {DBMS}with Coverage-based Guidance. In 31st USENIX Security Symposium (USENIX Security 22). 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "XuweiLiu,WeiYou,ZhuoZhang,andXiangyuZhang.2022.TensileFuzz:facilitatingseedinputgenerationinfuzzingviastringconstraintsolving.In Proceedingsof the 31st ACMSIGSOFT International Symposium on Software Testing and Analysis. 391–403.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "XinyuLiu,QiZhou,JoyArulraj,andAlessandroOrso.2022. AutomaticDetection of Performance Bugs in Database Systems using Equivalent Queries. (2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "MySQL.2023. MySQLGithub. https://github .com/mysql/mysql-server. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "MySQL. 2023. The MySQL Test Suite. https://dev .mysql.com/doc/dev/mysqlserver/latest/PAGE_MYSQL_TEST_RUN_PL .html. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Shankara Pailoor, Andrew Aday, and Suman Jana. 2018. Moonshine: Optimiz-ing OS fuzzer seed selection with trace distillation. In 27th USENIX Security Symposium (USENIX Security 18). 729–743.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "JorgePérez,MarceloArenas,andClaudioGutierrez.2009. SemanticsandcomplexityofSPARQL. ACMTransactionsonDatabaseSystems(TODS) 34,3(2009), 1–45. ICSE ’24, April 14–20, 2024, Lisbon, Portugal Jingzhou Fu, Jie Liang, Zhiyong Wu, and Yu Jiang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "PostgreSQL. 2023. PostgreSQL GitHub. https://github .com/postgres/postgres. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "PostgreSQL. 2023. Regression Tests. https://www .postgresql .org/docs/current/ regress-run .html. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Nitarshan Rajkumar, Raymond Li, and Dzmitry Bahdanau. 2022. Evaluating the text-to-sql capabilities of large language models. arXiv preprint arXiv:2204.00498 (2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 31,
+      "text": "ManuelRiggerandZhendongSu.2020. FindingBugsinDatabaseSystemsvia Query Partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (2020). https://doi .org/10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 32,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 33,
+      "text": "Baptiste Roziere, Jonas Gehring, Fabian Gloeckle, Sten Sootla, Itai Gat, Xiaoqing Ellen Tan, Yossi Adi, Jingyu Liu, Tal Remez, Jérémy Rapin, et al .2023. Code llama: Open foundation models for code. arXiv preprint arXiv:2308.12950 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Andreas Seltenreich, Bo Tang, and Sjoerd Mullender. 2018. SQLsmith: a random SQL query generator. https://github .com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "OpenLink Software. 2023. ChatGLM2 repository. https://github .com/THUDM/ ChatGLM2-6B/blob/main/README_EN .md. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "OpenLink Software. 2023. Virtuoso Open-Source Edition. https:// vos.openlinksw .com/owiki/wiki/VOS. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "JiansenSong,WenshengDou,ZiyuCui,QianwangDai,WeiWang,JunWei,Hua Zhong,andTaoHuang.2023. TestingDatabaseSystemsviaDifferentialQuery Execution. In Proceedings of International Conference on Software Engineering (ICSE).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "SQLite.2023. HowSQLiteIsTested. https://www .sqlite.org/testing .html. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "SQLite. 2023. SQLite Github. https://github .com/sqlite/sqlite. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "The Clang Team. 2023. SanitizerCoverage. https://clang .llvm.org/docs/ SanitizerCoverage .html. Accessed: January 4, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "HugoTouvron,LouisMartin,KevinStone,PeterAlbert,AmjadAlmahairi,Yasmine Babaei, Nikolay Bashlykov, Soumya Batra, Prajjwal Bhargava, Shruti Bhosa l e ,e ta l.2023. Llama 2: Open foundation and fine-tuned chat models. arXiv preprint arXiv:2307.09288 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Junjie Wang, Bihuan Chen, Lei Wei, and Yang Liu. 2017. Skyfire: Data-driven seedgenerationforfuzzing.In 2017IEEESymposiumonSecurityandPrivacy(SP). IEEE, 579–594.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "MingzheWang,JieLiang,YuanliangChen,YuJiang,XunJiao,HanLiu,Xibin Zhao, and Jiaguang Sun. 2018. SAFL: increasing and accelerating testing cov-erage with symbolic execution and guided fuzzing. In Proceedings of the 40th International Conference on Software Engineering: Companion Proceeedings, ICSE 2018, Gothenburg, Sweden. ACM, 61–64.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, andYuJiang.2021. IndustryPracticeofCoverage-GuidedEnterprise-LevelDBMSFuzzing.In 2021IEEE/ACM43rdInternationalConferenceonSoftwareEngineering: Software Engineering in Practice (ICSE-SEIP). IEEE, 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "ZhiyongWu,JieLiang,MingzheWang,ChijinZhou,andYuJiang.2022. Unicorn: detect runtime errors in time-series databases with hybrid input synthesis. In ISSTA’22:31stACMSIGSOFTInternationalSymposiumonSoftwareTestingand Analysis, Virtual Event, South Korea, July 18 - 22, 2022, Sukyoung Ryu and Yannis Smaragdakis (Eds.). ACM, 251–262. https://doi .org/10.1145/3533767 .3534364",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "WeiYou,XuweiLiu,ShiqingMa,DavidPerry,XiangyuZhang,andBinLiang. 2019. SLF:Fuzzingwithoutvalidseedinputs.In 2019IEEE/ACM41stInternational Conferenceon Software Engineering (ICSE). IEEE, 712–723.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Aohan Zeng, Xiao Liu, Zhengxiao Du, Zihan Wang, Hanyu Lai, Ming Ding, Zhuoyi Yang, Yifan Xu, Wendi Zheng, Xiao Xia, et al .2022. Glm-130b: An open bilingual pre-trained model. arXiv preprint arXiv:2210.02414 (2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "RuiZhong,YonghengChen,HongHu,HangfanZhang,WenkeLee,andDinghao Wu. 2020. Squirrel: Testing Database Management Systems with Language Validity and Coverage Feedback. In The ACM Conference on Computer and Communications Security (CCS), 2020.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 2,
+      "text": "JinshengBaandManuelRigger.2023. Testingdatabaseenginesviaqueryplan guidance. In Proceedings of International Conference on Software Engineering (ICSE).",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg"
+      ]
+    },
+    {
+      "number": 30,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 31,
+      "text": "ManuelRiggerandZhendongSu.2020. FindingBugsinDatabaseSystemsvia Query Partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (2020). https://doi .org/10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp"
+      ]
+    },
+    {
+      "number": 32,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 2,9,14,19,20,44,45,48]",
+      "technique": "qpg",
+      "sentence": "The mutation-based fuzzing techniques [ 2,9,14,19,20,44,45,48] have been successfully appliedto DBMSsforeffectivetestingandbugfinding.",
+      "context_before": "and Figure 7 on several state-of-the-art LLMs including Llama 2[41],ChatGLM2 [35,47], and CodeLlama [33], with the results listed in Table 8. As illustrated, the LLMs finetuned for code tasks (e.g. CodeLlama ) and the LLMs with more parameters(e.g. ChatGLM2-130B )producebetterresults.Webelieve thatSedarcanperformwellwiththesemodelsontheSQLtransfer task. Moreover, to enhance the performance, we can fine-tune the LLMs with the documentation, tutorials, and native test cases ofthe target DBMSs, especially for new DBMS features or newly developed DBMSs. 7 RELATED WORK Mutation-Based DBMS Fuzzing.",
+      "context_after": "Sqirrel[ 48] mutates SQL statements by translating SQL statements into theIntermediate Representation (IR) for SQL, mutating the IRs, and re-translating the mutated IRs into syntactically and semantically correct SQLstatements.Lego[ 19]proposesthetypeaffinityof SQL sequencesandemploysittoguidethegenerationof SQLstatements withabundant SQLtypesequences.Griffin[ 9]utilizesagrammarfreewaytomutate SQLstatementswithstatement reshuffleand metadata-basedsubstitution.SQLRight[ 20]employstestoraclesto mutation-basedfuzzerstodetectlogicbugs.Whiletheaboveare allcoverage-guidedapproaches,QPG[ 2]proposestheconc",
+      "section": "7 RELATED WORK",
+      "page": 10,
+      "char_offset": 56203,
+      "cited_reference": {
+        "number": 2,
+        "text": "JinshengBaandManuelRigger.2023. Testingdatabaseenginesviaqueryplan guidance. In Proceedings of International Conference on Software Engineering (ICSE).",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "Whiletheaboveare allcoverage-guidedapproaches,QPG[ 2]proposestheconceptof query plan guidance to guide the fuzzing other than code coverage.",
+      "context_before": "ve been successfully appliedto DBMSsforeffectivetestingandbugfinding.Sqirrel[ 48] mutates SQL statements by translating SQL statements into theIntermediate Representation (IR) for SQL, mutating the IRs, and re-translating the mutated IRs into syntactically and semantically correct SQLstatements.Lego[ 19]proposesthetypeaffinityof SQL sequencesandemploysittoguidethegenerationof SQLstatements withabundant SQLtypesequences.Griffin[ 9]utilizesagrammarfreewaytomutate SQLstatementswithstatement reshuffleand metadata-basedsubstitution.SQLRight[ 20]employstestoraclesto mutation-basedfuzzerstodetectlogicbugs.",
+      "context_after": "Generation-Based DBMS Testing. Some generation-based approaches[ 15,22,30–32,34,37]areproposedtofindspecifictypes of DBMSbugs.SQLsmith[ 34]generates SELECTstatementswith Sedar: Obtaining High-Quality Seeds for DBMS Fuzzing via Cross-DBMS SQL Transfer ICSE ’24, April 14–20, 2024, Lisbon, Portugal complexstructuresfromapredefinedAbstractSyntaxTree(AST)to findcrashbugs.NoREC[ 30]isdesignedtodetectoptimizationbugs bygenerating SQLqueriesaswellastheequivalentonesthatcannotbeoptimized.PQS[ 32]generatesqueriesthatshouldfetchaspecific row, and indicates a bug triggered when the row is not included in r",
+      "section": "7 RELATED WORK",
+      "page": 10,
+      "char_offset": 56869,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[ 15,22,30–32,34,37]",
+      "technique": "norec",
+      "sentence": "Some generation-based approaches[ 15,22,30–32,34,37]areproposedtofindspecifictypes of DBMSbugs.",
+      "context_before": "IR) for SQL, mutating the IRs, and re-translating the mutated IRs into syntactically and semantically correct SQLstatements.Lego[ 19]proposesthetypeaffinityof SQL sequencesandemploysittoguidethegenerationof SQLstatements withabundant SQLtypesequences.Griffin[ 9]utilizesagrammarfreewaytomutate SQLstatementswithstatement reshuffleand metadata-basedsubstitution.SQLRight[ 20]employstestoraclesto mutation-basedfuzzerstodetectlogicbugs.Whiletheaboveare allcoverage-guidedapproaches,QPG[ 2]proposestheconceptof query plan guidance to guide the fuzzing other than code coverage. Generation-Based DBMS Testing.",
+      "context_after": "SQLsmith[ 34]generates SELECTstatementswith Sedar: Obtaining High-Quality Seeds for DBMS Fuzzing via Cross-DBMS SQL Transfer ICSE ’24, April 14–20, 2024, Lisbon, Portugal complexstructuresfromapredefinedAbstractSyntaxTree(AST)to findcrashbugs.NoREC[ 30]isdesignedtodetectoptimizationbugs bygenerating SQLqueriesaswellastheequivalentonesthatcannotbeoptimized.PQS[ 32]generatesqueriesthatshouldfetchaspecific row, and indicates a bug triggered when the row is not included in resultsets.DQE[ 37]focusesonlogicbugsin UPDATEandDELETE queriesbyverifyingthatthesamerowsareaccessedwiththesame predicate. Amoe",
+      "section": "7 RELATED WORK",
+      "page": 10,
+      "char_offset": 57040,
+      "cited_reference": {
+        "number": 30,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC[ 30]isdesignedtodetectoptimizationbugs bygenerating SQLqueriesaswellastheequivalentonesthatcannotbeoptimized.",
+      "context_before": "basedsubstitution.SQLRight[ 20]employstestoraclesto mutation-basedfuzzerstodetectlogicbugs.Whiletheaboveare allcoverage-guidedapproaches,QPG[ 2]proposestheconceptof query plan guidance to guide the fuzzing other than code coverage. Generation-Based DBMS Testing. Some generation-based approaches[ 15,22,30–32,34,37]areproposedtofindspecifictypes of DBMSbugs.SQLsmith[ 34]generates SELECTstatementswith Sedar: Obtaining High-Quality Seeds for DBMS Fuzzing via Cross-DBMS SQL Transfer ICSE ’24, April 14–20, 2024, Lisbon, Portugal complexstructuresfromapredefinedAbstractSyntaxTree(AST)to findcrashbugs.",
+      "context_after": "PQS[ 32]generatesqueriesthatshouldfetchaspecific row, and indicates a bug triggered when the row is not included in resultsets.DQE[ 37]focusesonlogicbugsin UPDATEandDELETE queriesbyverifyingthatthesamerowsareaccessedwiththesame predicate. Amoeba [ 22] discovers performance bugs by generating equivalent SQL queries and comparing their execution times. InitialSeedGeneration. Severalexistingworks[ 21,25,43,46] concentrate on generating high-quality seeds for general-purpose mutation-based fuzzing. SAFL [ 43] employs symbolic execution to generate qualified initial seeds that provide valuable expl",
+      "section": "7 RELATED WORK",
+      "page": 11,
+      "char_offset": 57378,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS[ 32]generatesqueriesthatshouldfetchaspecific row, and indicates a bug triggered when the row is not included in resultsets.",
+      "context_before": "erage-guidedapproaches,QPG[ 2]proposestheconceptof query plan guidance to guide the fuzzing other than code coverage. Generation-Based DBMS Testing. Some generation-based approaches[ 15,22,30–32,34,37]areproposedtofindspecifictypes of DBMSbugs.SQLsmith[ 34]generates SELECTstatementswith Sedar: Obtaining High-Quality Seeds for DBMS Fuzzing via Cross-DBMS SQL Transfer ICSE ’24, April 14–20, 2024, Lisbon, Portugal complexstructuresfromapredefinedAbstractSyntaxTree(AST)to findcrashbugs.NoREC[ 30]isdesignedtodetectoptimizationbugs bygenerating SQLqueriesaswellastheequivalentonesthatcannotbeoptimized.",
+      "context_after": "DQE[ 37]focusesonlogicbugsin UPDATEandDELETE queriesbyverifyingthatthesamerowsareaccessedwiththesame predicate. Amoeba [ 22] discovers performance bugs by generating equivalent SQL queries and comparing their execution times. InitialSeedGeneration. Severalexistingworks[ 21,25,43,46] concentrate on generating high-quality seeds for general-purpose mutation-based fuzzing. SAFL [ 43] employs symbolic execution to generate qualified initial seeds that provide valuable explorationdirections. SLF [ 46] generates valid seeds by automatically identifyinginputvaliditychecksofprogramsandinputfieldsrelat",
+      "section": "7 RELATED WORK",
+      "page": 11,
+      "char_offset": 57492,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:20:36Z",
+    "is_model_written": true,
+    "summary": "Sedar produces high-quality initial seeds for DBMS fuzzing by transferring test cases from other DBMSs, addressing the problem that many systems lack comprehensive built-in test suites. The insight is that DBMSs share many features, so a seed reaching deep paths in one can be adapted for another. Sedar executes existing test cases in their original DBMS while capturing schema information, uses an LLM guided by that information to generate new cases, and comments out unparsable sections so fuzzers can mutate them. It found 70 new vulnerabilities.",
+    "narrative": "Three citations in related work describing SQLancer's oracles -- NoREC, PQS and query plan guidance -- as the generation-based approaches aimed at specific bug types, in contrast to Sedar's coverage-guided seed transfer.",
+    "roles": {
+      "M1": "definition",
+      "M2": "background",
+      "M3": "definition",
+      "M4": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

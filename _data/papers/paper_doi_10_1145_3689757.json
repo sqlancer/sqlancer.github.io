@@ -1,0 +1,637 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T17:06:58Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3689757",
+    "title": "PolyJuice: Detecting Mis-compilation Bugs in Tensor Compilers with Equality Saturation Based Rewriting",
+    "authors": [
+      "Chijin Zhou",
+      "Bingzhou Qian",
+      "Gwihwan Go",
+      "Quan Zhang",
+      "Shanshan Li",
+      "Yu Jiang"
+    ],
+    "year": 2024,
+    "venue": "Proc. ACM Program. Lang.",
+    "doi": "10.1145/3689757",
+    "arxiv_id": null,
+    "s2_paper_id": "9889059fce1930bbb29d7cbcc33e5fc1ed168f2a",
+    "url": "https://doi.org/10.1145/3689757",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3689757",
+      "retrieved_at": "2026-09-07T17:06:58Z",
+      "chars": 109508,
+      "content_sha256": "sha256:dc385935b82e4fff8265497f02d64ff9a486426e4e80992dc14da5732a6a9293"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 27,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2252
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 12764
+      },
+      {
+        "number": "2.1",
+        "title": "Tensor Program Compilation",
+        "start": 12777
+      },
+      {
+        "number": "2.2",
+        "title": "Equality Saturation",
+        "start": 14335
+      },
+      {
+        "number": "3",
+        "title": "Motivation",
+        "start": 16485
+      },
+      {
+        "number": "4",
+        "title": "Approach",
+        "start": 24014
+      },
+      {
+        "number": "4.1",
+        "title": "Graph Conversion",
+        "start": 26573
+      },
+      {
+        "number": "4.2",
+        "title": "Computation Expression Rewriting",
+        "start": 30999
+      },
+      {
+        "number": "4.3",
+        "title": "Complexity Aware Graph Extraction",
+        "start": 39668
+      },
+      {
+        "number": "4.4",
+        "title": "Testcase Generation",
+        "start": 43844
+      },
+      {
+        "number": "5",
+        "title": "Implementation",
+        "start": 45127
+      },
+      {
+        "number": "6",
+        "title": "Evaluation",
+        "start": 46822
+      },
+      {
+        "number": "6.1",
+        "title": "Mis-Compilation Bug Detection",
+        "start": 49013
+      },
+      {
+        "number": "6.2",
+        "title": "Comparative Study",
+        "start": 61561
+      },
+      {
+        "number": "6.3",
+        "title": "Effectiveness of Equality Saturation Based Rewriting",
+        "start": 64286
+      },
+      {
+        "number": "6.4",
+        "title": "Overhead During Testing",
+        "start": 75963
+      },
+      {
+        "number": "7",
+        "title": "Discussion",
+        "start": 77886
+      },
+      {
+        "number": "8",
+        "title": "Related Work",
+        "start": 83405
+      },
+      {
+        "number": "9",
+        "title": "Conclusion",
+        "start": 89596
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2024. PolyJuice: Detecting Mis-Compilation Bugs in Tensor Compilers with Equality Saturation Based Rewriting. Zenodo. https://doi.org/10.5281/zenodo.12671619",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Lukas Bernhard, Tobias Scharnowski, Moritz Schloegel, Tim Blazytko, and Thorsten Holz. 2022. JIT-Picking: Differential Fuzzing of JavaScript Engines. In 2022 ACMSIGSAC Conference on Computer and Communications Security, CCS 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Paul E Black. 1999. Algorithms and theory of computation handbook, \"Levenshtein distance\". CRC press. https: //www.nist.gov/dads/HTML/Levenshtein.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Junming Cao, Bihuan Chen, Chao Sun, Longjie Hu, Shuaihong Wu, and Xin Peng. 2022. Understanding performance problems in deep learning systems. In 30th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/FSE 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Tianqi Chen, Thierry Moreau, Ziheng Jiang, Lianmin Zheng, Eddie Q. Yan, Haichen Shen, Meghan Cowan, Leyuan Wang, Yuwei Hu, Luis Ceze, Carlos Guestrin, and Arvind Krishnamurthy. 2018. TVM: An Automated End-to-End Optimizing Compiler for Deep Learning. In 13th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Yinlin Deng, Chunqiu Steven Xia, Chenyuan Yang, Shizhuo Dylan Zhang, Shujing Yang, and Lingming Zhang. 2024. Large language models are edge-case generators: Crafting unusual programs for fuzzing deep learning libraries. In 46th IEEE/ACM International Conference on Software Engineering, ICSE 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Yaoyao Ding, Cody Hao Yu, Bojian Zheng, Yizhi Liu, Yida Wang, and Gennady Pekhimenko. 2023. Hidet: Task-Mapping Programming Paradigm for Deep Learning Tensor Programs. In 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2, ASPLOS 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-Free DBMS Fuzzing. In 37th IEEE/ACM International Conference on Automated Software Engineering, ASE 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Jiazhen Gu, Xuchuan Luo, Yangfan Zhou, and Xin Wang. 2022. Muffin: Testing Deep Learning Libraries via Neural Architecture Fuzzing. In 44th IEEE/ACM 44th International Conference on Software Engineering, ICSE 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Hao Guan, Ying Xiao, Jiaying Li, Yepang Liu, and Guangdong Bai. 2023. A Comprehensive Study of Real-World Bugs in Machine Learning Model Optimization. In 45th IEEE/ACM International Conference on Software Engineering, ICSE 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Qianyu Guo, Xiaofei Xie, Yi Li, Xiaoyu Zhang, Yang Liu, Xiaohong Li, and Chao Shen. 2020. Audee: Automated Testing for Deep Learning Frameworks. In 35th IEEE/ACM International Conference on Automated Software Engineering, ASE 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "HyungSeok Han, DongHyeon Oh, and Sang Kil Cha. 2019. CodeAlchemist: Semantics-Aware Code Generation to Find Vulnerabilities in JavaScript Engines. In 26th Annual Network and Distributed System Security Symposium, NDSS 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "The IEEE and The Open Group. 2023. diffcompare two files. https://pubs.opengroup.org/onlinepubs/009604499/utilit ies/diff.html. (visited on September 1, 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Zhihao Jia, Oded Padon, James Thomas, Todd Warszawski, Matei Zaharia, and Alex Aiken. 2019. TASO: optimizing deep learning computation with automatic generation of graph substitutions. In 27th ACM Symposium on Operating Systems Principles, SOSP 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Zhihao Jia, James Thomas, Todd Warszawski, Mingyu Gao, Matei Zaharia, and Alex Aiken. 2019. Optimizing DNN Computation with Relaxed Graph Substitutions. In Proceedings of Machine Learning and Systems 2019, MLSys 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Wookeun Jung, Thanh Tuan Dao, and Jaejin Lee. 2021. DeepCuts: a deep learning optimization framework for versatile GPU workloads. In 42nd ACMSIGPLAN International Conference on Programming Language Design and Implementation, PLDI 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Seulbae Kim, Meng Xu, Sanidhya Kashyap, Jungyeon Yoon, Wen Xu, and Taesoo Kim. 2019. Finding semantic bugs in file systems with an extensible fuzzing framework. In 27th ACM Symposium on Operating Systems Principles, SOSP 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Fredrik Kjolstad, Shoaib Kamil, Stephen Chou, David Lugato, and Saman P. Amarasinghe. 2017. The tensor algebra compiler. Proc. ACM Program. Lang. 1, OOPSLA (2017), 77:1–77:29.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Thomas Koehler, Andrés Goens, Siddharth Bhat, Tobias Grosser, Phil Trinder, and Michel Steuwer. 2024. Guided Equality Saturation. Proc. ACM Program. Lang. 8, POPL (2024), 1727–1758.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Sameer Kulkarni and John Cavazos. 2012. Mitigating the compiler optimization phase-ordering problem using machine learning. In 27th Annual ACMSIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications, OOPSLA 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. 2014. Compiler validation via equivalence modulo inputs. In 35th ACMSIGPLAN Conference on Programming Language Design and Implementation, PLDI 2014.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Cong Li, Yanyan Jiang, Chang Xu, and Zhendong Su. 2023. Validating JIT Compilers via Compilation Space Exploration. In29th Symposium on Operating Systems Principles, SOSP 2023, Koblenz, Germany, October 23-26, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Cong Li, Yanyan Jiang, Chang Xu, and Zhendong Su. 2023. Validating JIT Compilers via Compilation Space Exploration. In29th Symposium on Operating Systems Principles, SOSP 2023. Proc. ACM Program. Lang., Vol. 8, No. OOPSLA2, Article 317. Publication date: October 2024. PolyJuice: Detecting Mis-compilation Bugs in Tensor Compilers with Equality Saturation Based Rewriting 317:25",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Mingzhen Li, Yi Liu, Xiaoyan Liu, Qingxiao Sun, Xin You, Hailong Yang, Zhongzhi Luan, Lin Gan, Guangwen Yang, and Depei Qian. 2021. The Deep Learning Compiler: A Comprehensive Survey. IEEE Trans. Parallel Distributed Syst. 32, 3 (2021), 708–727.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Shaohua Li and Zhendong Su. 2023. Accelerating Fuzzing through Prefix-Guided Execution. Proc. ACM Program. Lang. 7, OOPSLA1 (2023), 1–27.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Jie Liang, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Chengnian Sun, and Yu Jiang. 2024. Mozi: Discovering DBMS Bugs via Configuration-Based Equivalent Transformation. In 46th IEEE/ACM International Conference on Software Engineering, ICSE 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Jiawei Liu, Jinkun Lin, Fabian Ruffy, Cheng Tan, Jinyang Li, Aurojit Panda, and Lingming Zhang. 2023. NNSmith: Generating Diverse and Valid Test Cases for Deep Learning Compilers. In 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2, ASPLOS 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Jiawei Liu, Yuxiang Wei, Sen Yang, Yinlin Deng, and Lingming Zhang. 2022. Coverage-guided tensor compiler fuzzing with joint IR-pass mutation. Proc. ACM Program. Lang. 6, OOPSLA1 (2022), 1–26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Weisi Luo, Dong Chai, Xiaoyue Run, Jiang Wang, Chunrong Fang, and Zhenyu Chen. 2021. Graph-based Fuzz Testing for Deep Learning Inference Engines. In 43rd IEEE/ACM International Conference on Software Engineering, ICSE 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Haoyang Ma, Qingchao Shen, Yongqiang Tian, Junjie Chen, and Shing-Chi Cheung. 2023. Fuzzing Deep Learning Compilers with HirGen. In 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis, ISSTA 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "microsoft. 2023. ONNX Runtime: cross-platform, high performance ML inferencing and training accelerator. https: //github.com/microsoft/onnxruntime. (visited on September 1, 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Jayashree Mohan, Ashlie Martinez, Soujanya Ponnapalli, Pandian Raju, and Vijay Chidambaram. 2018. Finding Crash-Consistency Bugs with Bounded Black-Box Crash Testing. In 13th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Nvidia. 2023. NVIDIA TensorRT. https://developer.nvidia.com/tensorrt. (visited on September 1, 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "open std. 2023. ISO/IEC 9899:TC3. https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf. (visited on September 1, 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Anjali Pal, Brett Saiki, Ryan Tjoa, Cynthia Richey, Amy Zhu, Oliver Flatt, Max Willsey, Zachary Tatlock, and Chandrakana Nandi. 2023. Equality Saturation Theory Exploration à la Carte. Proc. ACM Program. Lang. 7, OOPSLA2 (2023), 1034–1062.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Pavel Panchekha, Alex Sanchez-Stern, James R. Wilcox, and Zachary Tatlock. 2015. Automatically improving accuracy for floating point expressions. In 36th ACMSIGPLAN Conference on Programming Language Design and Implementation, PLDI 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Douglas M. Priest. 1992. On properties of floating point arithmetics: numerical stability and the cost of accurate computations. Ph. D. Dissertation. USA. UMI Order No. GAX93-30692.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "PyTorch. 2023. Accelerated CPU Inference with PyTorch Inductor using torch.compile. https://pytorch.org/blog/accel erated-cpu-inference/. (visited on September 1, 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "PyTorch. 2023. Glow-Compiler for Neural Network hardware accelerators. https://github.com/pytorch/glow. (visited on September 1, 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Jonathan Ragan-Kelley, Connelly Barnes, Andrew Adams, Sylvain Paris, Frédo Durand, and Saman P. Amarasinghe. 2013. Halide: a language and compiler for optimizing parallelism, locality, and recomputation in image processing pipelines. In 34th ACMSIGPLAN Conference on Programming Language Design and Implementation, PLDI 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "James K. Reed, Zachary DeVito, Horace He, Ansley Ussery, and Jason Ansel. 2022. torch.fx: Practical Program Capture and Transformation for Deep Learning in Python. In Proceedings of Machine Learning and Systems 2022, MLSys 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Albert Reuther, Peter Michaleas, Michael Jones, Vijay Gadepally, Siddharth Samsi, and Jeremy Kepner. 2020. Survey of Machine Learning Accelerators. In.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 44,
+      "text": "Junru Shao, Xiyou Zhou, Siyuan Feng, Bohan Hou, Ruihang Lai, Hongyi Jin, Wuwei Lin, Masahiro Masuda, Cody Hao Yu, and Tianqi Chen. 2022. Tensor Program Optimization with Probabilistic Programs. In NeurIPS.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Qingchao Shen, Haoyang Ma, Junjie Chen, Yongqiang Tian, Shing-Chi Cheung, and Xiang Chen. 2021. A comprehensive study of deep learning compiler bugs. In 29th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/FSE 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Hao Sun, Yiru Xu, Jianzhong Liu, Yuheng Shen, Nan Guan, and Yu Jiang. 2024. Finding Correctness Bugs in eBPF Verifier with Structured and Sanitized Program. In 19th European Conference on Computer Systems, EuroSys 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Ross Tate, Michael Stepp, Zachary Tatlock, and Sorin Lerner. 2009. Equality saturation: a new approach to optimization. In36th ACMSIGPLAN-SIGACT Symposium on Principles of Programming Languages, POPL 2009.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Tensorflow. 2023. https://www.tensorflow.org/xla. https://www.tensorflow.org/xla. (visited on September 1, 2023). Proc. ACM Program. Lang., Vol. 8, No. OOPSLA2, Article 317. Publication date: October 2024. 317:26 Chijin Zhou, Bingzhou Qian, Gwihwan Go, Quan Zhang, Shanshan Li, and Yu Jiang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Theodoros Theodoridis, Manuel Rigger, and Zhendong Su. 2022. Finding missed optimizations through the lens of dead code elimination. In 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, ASPLOS 2022. ACM.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 50,
+      "text": "tvm. 2023. PR: Fix a bug of iter map floormod(x,2) simplify. https://github.com/apache/tvm/pull/14571. (visited on September 1, 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Colin Unger, Zhihao Jia, Wei Wu, Sina Lin, Mandeep Baines, Carlos Efrain Quintero Narvaez, Vinay Ramakrishnaiah, Nirmal Prajapati, Patrick S. McCormick, Jamaludin Mohd-Yusof, Xi Luo, Dheevatsa Mudigere, Jongsoo Park, Misha Smelyanskiy, and Alex Aiken. 2022. Unity: Accelerating DNN Training Through Joint Optimization of Algebraic Transformations and Parallelization. In 16th USENIX Symposium on Oper",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Alexa VanHattum, Rachit Nigam, Vincent T. Lee, James Bornholt, and Adrian Sampson. 2021. Vectorization for digital signal processors via equality saturation. In 26th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, ASPLOS 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Haojie Wang, Jidong Zhai, Mingyu Gao, Zixuan Ma, Shizhi Tang, Liyan Zheng, Yuanzhi Li, Kaiyuan Rong, Yuanyong Chen, and Zhihao Jia. 2021. PET: Optimizing Tensor Programs with Partially Equivalent Transformations and Automated Corrections. In 15th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Jiannan Wang, Thibaud Lutellier, Shangshu Qian, Hung Viet Pham, and Lin Tan. 2022. EAGLE: Creating Equivalent Graphs to Test Deep Learning Libraries. In 44th IEEE/ACM 44th International Conference on Software Engineering, ICSE 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Mingzhe Wang, Jie Liang, Chijin Zhou, Yu Jiang, Rui Wang, Chengnian Sun, and Jiaguang Sun. 2021. RIFF: Reduced Instruction Footprint for Coverage-Guided Fuzzing. In 2021 USENIX Annual Technical Conference, USENIX ATC 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Mingzhe Wang, Jie Liang, Chijin Zhou, Zhiyong Wu, Jingzhou Fu, Zhuo Su, Qing Liao, Bin Gu, Bodong Wu, and Yu Jiang. 2024. Data Coverage for Guided Fuzzing. In 33rd USENIX Security Symposium, USENIX Security 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Mingzhe Wang, Jie Liang, Chijin Zhou, Zhiyong Wu, Xinyi Xu, and Yu Jiang. 2022. Odin: on-demand instrumentation with on-the-fly recompilation. In 43rd ACMSIGPLAN International Conference on Programming Language Design and Implementation, PLDI 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. 2021. Industry Practice of Coverage-Guided Enterprise-Level DBMS Fuzzing. In 43rd IEEE/ACM International Conference on Software Engineering: Software Engineering in Practice, ICSE (SEIP) 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Zan Wang, Ming Yan, Junjie Chen, Shuang Liu, and Dongdi Zhang. 2020. Deep learning library testing via effective model generation. In 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/FSE 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Max Willsey, Chandrakana Nandi, Yisu Remy Wang, Oliver Flatt, Zachary Tatlock, and Pavel Panchekha. 2021. egg: Fast and extensible equality saturation. Proc. ACM Program. Lang. 5, POPL (2021), 1–29.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Dongwei Xiao, Zhibo Liu, Yuanyuan Yuan, Qi Pang, and Shuai Wang. 2022. Metamorphic Testing of Deep Learning Compilers. Proc. ACM Meas. Anal. Comput. Syst. 6, 1 (2022), 15:1–15:28.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. 2011. Finding and understanding bugs in C compilers. In 32nd ACMSIGPLAN Conference on Programming Language Design and Implementation, PLDI 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Yichen Yang, Phitchaya Mangpo Phothilimthana, Yisu Remy Wang, Max Willsey, Sudip Roy, and Jacques Pienaar. 2021. Equality Saturation for Tensor Graph Superoptimization. In Proceedings of Machine Learning and Systems 2021, MLSys 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Chen Zhang, Lingxiao Ma, Jilong Xue, Yining Shi, Ziming Miao, Fan Yang, Jidong Zhai, Zhi Yang, and Mao Yang. 2023. Cocktailer: Analyzing and Optimizing Dynamic Control Flow in Deep Learning. In 17th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Yihong Zhang, Yisu Remy Wang, Oliver Flatt, David Cao, Philip Zucker, Eli Rosenthal, Zachary Tatlock, and Max Willsey. 2023. Better Together: Unifying Datalog and Equality Saturation. Proc. ACM Program. Lang. 7, PLDI (2023), 468–492.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Jie Zhao and Peng Di. 2020. Optimizing the Memory Hierarchy by Compositing Automatic Transformations on Computations and Data. In 53rd Annual IEEE/ACM International Symposium on Microarchitecture, MICRO 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Jie Zhao, Xiong Gao, Ruijie Xia, Zhaochuang Zhang, Deshi Chen, Lei Chen, Renwei Zhang, Zhen Geng, Bin Cheng, and Xuefeng Jin. 2022. Apollo: Automatic Partition-based Operator Fusion through Layer by Layer Optimization. In Proceedings of Machine Learning and Systems 2022, MLSys 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "Lianmin Zheng, Chengfan Jia, Minmin Sun, Zhao Wu, Cody Hao Yu, Ameer Haj-Ali, Yida Wang, Jun Yang, Danyang Zhuo, Koushik Sen, Joseph E. Gonzalez, and Ion Stoica. 2020. Ansor: Generating High-Performance Tensor Programs for Deep Learning. In 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020. USENIX Association. Proc. ACM Program. Lang., Vol. 8, No. OOPSLA2, Article 317",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "Lianmin Zheng, Zhuohan Li, Hao Zhang, Yonghao Zhuang, Zhifeng Chen, Yanping Huang, Yida Wang, Yuanzhong Xu, Danyang Zhuo, Eric P. Xing, Joseph E. Gonzalez, and Ion Stoica. 2022. Alpa: Automating Interand Intra-Operator Parallelism for Distributed Deep Learning. In 16th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Liyan Zheng, Haojie Wang, Jidong Zhai, Muyan Hu, Zixuan Ma, Tuowei Wang, Shuhong Huang, Xupeng Miao, Shizhi Tang, Kezhao Huang, and Zhihao Jia. 2023. EINNET: Optimizing Tensor Programs with Derivation-Based Transformations. In 17th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Ningxin Zheng, Huiqiang Jiang, Quanlu Zhang, Zhenhua Han, Lingxiao Ma, Yuqing Yang, Fan Yang, Chengruidong Zhang, Lili Qiu, Mao Yang, and Lidong Zhou. 2023. PIT: Optimization of Dynamic Sparse Deep Learning Models via Permutation Invariant Transformation. In 29th Symposium on Operating Systems Principles, SOSP 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Chijin Zhou, Mingzhe Wang, Jie Liang, Zhe Liu, and Yu Jiang. 2020. Zeror: Speed Up Fuzzing with Coverage-sensitive Tracing and Scheduling. In 35th IEEE/ACM International Conference on Automated Software Engineering, ASE 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Chijin Zhou, Quan Zhang, Lihua Guo, Mingzhe Wang, Yu Jiang, Qing Liao, Zhiyong Wu, Shanshan Li, and Bin Gu. 2023. Towards Better Semantics Exploration for Browser Fuzzing. Proc. ACM Program. Lang. 7, OOPSLA2 (2023), 604–631.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "Chijin Zhou, Quan Zhang, Bingzhou Qian, and Yu Jiang. 2025. Janus: Detecting Rendering Bugs in Web Browsers via Visual Delta Consistency. In 47th IEEE/ACM International Conference on Software Engineering, ICSE 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "Chijin Zhou, Quan Zhang, Mingzhe Wang, Lihua Guo, Jie Liang, Zhe Liu, Mathias Payer, and Yu Jiang. 2022. Minerva: browser API fuzzing with dynamic mod-ref analysis. In 30th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/FSE 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "Hongyu Zhu, Ruofan Wu, Yijia Diao, Shanbin Ke, Haoyu Li, Chen Zhang, Jilong Xue, Lingxiao Ma, Yuqing Xia, Wei Cui, Fan Yang, Mao Yang, Lidong Zhou, Asaf Cidon, and Gennady Pekhimenko. 2022. ROLLER: Fast and Efficient Tensor Compilation for Deep Learning. In 16th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2022. Received 2024-04-05; accepted 2024-08-18 Proc. ACM Program. L",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 43,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 49,
+      "text": "Theodoros Theodoridis, Manuel Rigger, and Zhendong Su. 2022. Finding missed optimizations through the lens of dead code elimination. In 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, ASPLOS 2022. ACM.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 21,22,49]",
+      "technique": null,
+      "sentence": "Traditional compiler testing techniques [ 21,22,49] often construct equivalent programs by inserting dead code, e.",
+      "context_before": "sors. These changes are supposed not to influence the outputs. If these two models, when passed to the same compiler in the same execution environment, produce different results for the same inputs, it indicates the presence of a mis-compilation bug in the compiler. This approach eliminates the need for a separate reference executor, thereby avoiding the false positives often caused by cross-platform numerical accuracy variations, enhancing the reliability of bug detection. Constructing equivalent tensor programs that can efficiently detect mis-compilation bugs is challenging. (1) Equivalence.",
+      "context_after": "g., if(false){...}, into a given program. However, this approach cannot be directly applicable to tensor programs. Tensor compilers primarily analyze the flow of tensors, and as such, ignore control-flow-wise dead code by design. An intuitive thought is to modify the tensors’ flow of a tensor program, but it is non-trivial to maintain programs’ equivalence after the modification. (2) Test Efficiency. The testing throughput for tensor compilers is much lower than for other applications (roughly 4 testcases per second [ 27] v.s. 10,000 testcases per second [ 72]). Therefore, each pair of equival",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 8459,
+      "cited_reference": {
+        "number": 49,
+        "text": "Theodoros Theodoridis, Manuel Rigger, and Zhendong Su. 2022. Finding missed optimizations through the lens of dead code elimination. In 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, ASPLOS 2022. ACM.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "For database engine testing, PQS [ 43] was introduced to generate queries that are designed to retrieve a specific data entity for verifying the integrity of the database engine; Mozi [ 8,26,58] constructs equivalent database engines through adjusting configurations to detect correctness bugs.",
+      "context_before": "-preserving code into Java programs to efficiently explore compilation space in order to detect crashes or mis-compilation bugs in JVM. Our work differs from these techniques in that we focus on tensor compilers and our proposed test oracle is based on tensor-compiler domain-specific knowledge, i.e., arithmetic and structural invariant instead of dead code insertion. New Oracle for Testing Other Systems. Since correctness bugs are often silent in complex systems, many research efforts are paid to combine domain knowledge to design new test oracle to detect correctness bugs in specific systems.",
+      "context_after": "For operating system testing, B3 [ 32] and Hydra [ 17] finds different test oracle such as formal specifications and crash consistencies to validate correctness of filesystems; BVF [ 46] leverages structured and sanitized Programs to verify the correctness of eBPF programs. For web browser testing, Janus [ 73–75] leverages rendering change statuses of two web pages to conduct differential testing to detect rendering logic bugs in web browsers. Our work serves as a new test oracle for tensor compilers, which can inspire the design of test oracles for other complex systems. Term Rewriting Syste",
+      "section": "8 Related Work",
+      "page": 23,
+      "char_offset": 88099,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:19:46Z",
+    "is_model_written": true,
+    "summary": "PolyJuice detects mis-compilation bugs in tensor compilers by constructing semantically equivalent computation graphs and checking the compiler treats them alike. The difficulty is producing equivalent graphs that exercise different optimisation logic, which the authors address with arithmetic and structural rewrite rules and an equality saturation framework that finds the most simplified and most complex equivalent graphs. Across five industrial and two academic compilers it found 84 non-crash mis-compilation bugs.",
+    "narrative": "One citation in related work describing PQS as generating queries designed to retrieve a specific data entity for verification -- the database counterpart to PolyJuice's equivalent-graph oracle.",
+    "roles": {
+      "M1": "background",
+      "M2": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

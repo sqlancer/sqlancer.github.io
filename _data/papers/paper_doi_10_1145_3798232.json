@@ -1,0 +1,829 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:28:58Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3798232",
+    "title": "Beacon: Detecting Broken Access Control Vulnerabilities in DBMSs via System Catalog Consistency Validation",
+    "authors": [
+      "Zongrui Peng",
+      "Jingzhou Fu",
+      "Zhiyong Wu",
+      "Jie Liang",
+      "Xiangdong Huang",
+      "Dalong Shi",
+      "Yu Jiang"
+    ],
+    "year": 2026,
+    "venue": "Proceedings of the ACM on Programming Languages",
+    "doi": "10.1145/3798232",
+    "arxiv_id": null,
+    "s2_paper_id": "804bc6d1f6c1acde45f1fabcab8b0d3ed5f647c9",
+    "url": "https://doi.org/10.1145/3798232",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3798232",
+      "retrieved_at": "2026-09-09T01:28:58Z",
+      "chars": 111469,
+      "content_sha256": "sha256:30ff25fd949c413dffa49b2a4b0b400c2cf70005ebd485c0fcd70ad9d95f4614"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 29,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 3675
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 12556
+      },
+      {
+        "number": "3",
+        "title": "Motivation",
+        "start": 18947
+      },
+      {
+        "number": "4.2",
+        "title": "Privilege-Aware Test Case Generation",
+        "start": 31046
+      },
+      {
+        "number": "4.3",
+        "title": "Unauthorized Object Identification",
+        "start": 40804
+      },
+      {
+        "number": "4.4",
+        "title": "Catalog Consistency Validation",
+        "start": 46215
+      },
+      {
+        "number": "6.1",
+        "title": "Evaluation Setup",
+        "start": 57858
+      },
+      {
+        "number": "6.2",
+        "title": "BAC Vulnerability Detection",
+        "start": 58859
+      },
+      {
+        "number": "6.3",
+        "title": "Selected Vulnerabilities Found byBeacon",
+        "start": 64500
+      },
+      {
+        "number": "6.4",
+        "title": "Design Choice Analysis",
+        "start": 70850
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Ahmed Anas, Salwa Elgamal, and Basheer Youssef. 2024. Survey on detecting and preventing web application broken access control attacks.International Journal of Electrical and Computer Engineering (IJECE)14, 1 (2024), 772–781. doi:10.11591/ijece.v14i1.pp772-781",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering (ICSE). 1–13. doi:10.1145/3597503.3639076",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 3,
+      "text": "Elisa Bertino, Gabriel Ghinita, Ashish Kamra, et al .2011. Access control for databases: Concepts and systems. Foundations and Trends®in Databases3, 1–2 (2011), 1–148. doi:10.1561/9781601984173",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Elisa Bertino and Ravi Sandhu. 2005. Database security-concepts, approaches, and challenges.IEEE Transactions on Dependable and secure computing2, 1 (2005), 2–19. doi:10.1109/TDSC.2005.9",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Jianneng Cao, Barbara Carminati, Elena Ferrari, and Kian-Lee Tan. 2009. Acstream: Enforcing access control over data streams. In. IEEE, 1495–1498. doi:10 .1109/ ICDE.2009.25",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "MariaDB Corporation. 2025. MariaDB. https://mariadb.org/. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "The MITRE Corporation. 2026. CWE-284: Improper Access Control. https://cwe .mitre .org/data/definitions/284 .html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Dameng. 2025. DM8 - A New-Generation Large General Relational Database. https://en .dameng .com/. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Dameng. 2025. Privileges for using ArcGIS with Dameng. https://pro .arcgis .com/en/pro-app/latest/help/data/databases/ privileges-dameng.htm. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Wenqian Deng, Jie Liang, Zhiyong Wu, Jingzhou Fu, and Yu Jiang. 2025. Detecting Logic Bugs in DBMSs via Equivalent Data Construction.Proceedings of the ACM on Management of Data3, 6 (2025), 1–25. doi:10.1145/3769779",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Sabrina De Capitani Di Vimercati, Sara Foresti, Sushil Jajodia, Stefano Paraboschi, and Pierangela Samarati. 2007. Over-encryption: Management of access control evolution on outsourced data. InProceedings of the 33rd International Conference on Very Large Data Bases (VLDB). 123–134. https://dl.acm.org/doi/10.5555/1325851.1325869",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Docker. 2025. Docker Hub. https://hub.docker.com/. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Joint Task Force. 2020.Security and privacy controls for information systems and organizations. Technical Report. National Institute of Standards and Technology. doi:10.6028/NIST.SP.800-53r5",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "The Apache Software Foundation. 2025. Apache CouchDB. https://couchdb.apache.org. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, and Yu Jiang. 2024. Sedar: Obtaining High-Quality Seeds for DBMS Fuzzing via Cross-DBMS SQL Transfer. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–12. doi:10.1145/3597503.3639210",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-free DBMS fuzzing. In Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering (ASE). 1–12. doi:10 .1145/ 3551349.3560431",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Yanyang Zhao, Shanshan Li, and Yu Jiang. 2025. Understanding and Detecting SQL Function Bugs: Using Simple Boundary Arguments to Trigger Hundreds of DBMS Bugs. InProceedings of the Twentieth European Conference on Computer Systems (EuroSys). 1061–1076. doi:10.1145/3689031.3696064",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 18,
+      "text": "Ying Fu, Zhiyong Wu, Yuanliang Zhang, Jie Liang, Jingzhou Fu, Yu Jiang, Shanshan Li, and Xiangke Liao. 2025. THANOS: DBMS Bug Detection via Storage Engine Rotation Based Differential Testing. InProceedings of the IEEE/ACM 47th International Conference on Software Engineering (ICSE). 1–12. doi:10.1109/ICSE55347.2025.00257",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "The PostgreSQL Global Development Group. 2025. PostgreSQL Documentation: Role Attributes. https:// www.postgresql.org/docs/current/role-attributes.html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "The PostgreSQL Global Development Group. 2025. PostgreSQL Documentation: Row Security Policies. https:// www.postgresql.org/docs/current/ddl-rowsecurity.html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Yang Hu, Wenxi Wang, Casen Hunger, Riley Wood, Sarfraz Khurshid, and Mohit Tiwari. 2021. ACHyb: A hybrid analysis approach to detect kernel access control vulnerabilities. InProceedings of the 29th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 316–327. doi:10.1145/3468264.3468627",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Yongheng Huang, Chenghang Shi, Jie Lu, Haofeng Li, Haining Meng, and Lian Li. 2024. Detecting Broken Object-Level Authorization Vulnerabilities in Database-Backed Applications. InProceedings of the 2024 on ACMSIGSAC Conference on Computer and Communications Security (CCS). 2934–2948. doi:10.1145/3658644.3690227",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "ISO/IEC. 2023. Information technology — Database languages — SQL — Part 2: Foundation (ISO/IEC 9075-2:2023). https://www.iso.org/standard/76584.html. ISO/IEC Standard.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2020. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems. InProceedings of the 46th International Conference on Very Large Proc. ACM Program. Lang., Vol. 10, No. OOPSLA1, Article 124. Publication date: April 2026. Beacon: Detecting Broken Access Control Vulnerabilities in DBMSs via System Catalog ",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Jinhui Lai, Chi Zhang, Bingyan Li, Chenglin Liang, Jie Liang, Zhiyong Wu, Jingzhou Fu, Yu Jiang, and Zichen Xu. 2025. SRS: Detecting Logic Bugs of Join Implementation in DBMSs via Set Relation Synthesis.Proceedings of the ACM on Management of Data3, 6 (2025), 1–24. doi:10.1145/3769828",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Vu Le, Chengnian Sun, and Zhendong Su. 2015. Finding deep compiler bugs via guided stochastic program mutation. Acm Sigplan Notices50, 10 (2015), 386–399. doi:10.1145/2858965.2814319",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. 2023. Sequence-oriented DBMS fuzzing. InProceedings of IEEE International Conference on Data Engineering (ICDE). 668–681. doi:10.1109/ICDE55515.2023.00057",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Jie Liang, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Chengnian Sun, and Yu Jiang. 2024. Mozi: Discovering DBMS Bugs via Configuration-Based Equivalent Transformation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering (ICSE). 1–12. doi:10.1145/3597503.3639112",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. 2022. Automatic detection of performance bugs in database systems using equivalent queries. InProceedings of the 44th International Conference on Software Engineering (ICSE). 225–236. doi:10.1145/3510003.3510093",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "ProxySQL LLC. 2025. ProxySQL: Firewall Whitelist. https://proxysql .com/documentation/Firewall-whitelist/. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Jie Lu, Haofeng Li, Chen Liu, Lian Li, and Kun Cheng. 2022. Detecting missing-permission-check vulnerabilities in distributed cloud systems. InProceedings of the 2022 ACMSIGSAC Conference on Computer and Communications Security (CCS). 2145–2158. doi:10.1145/3548606.3560589",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Toby Mao. 2023. SQLGlot Website. https://sqlglot.com/sqlglot.html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "MariaDB. 2025. MariaDB Community Audit. https://mariadb .com/docs/server/reference/plugins/mariadb-audit-plugin. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Trend Micro. 2026. About Trend Micro. https://www.trendmicro.com/en_us/about.html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Trend Micro. 2026. Apache CouchDB Vulnerabilities Permit Monero Mining. https://www .trendmicro .com/en/ research/18/b/vulnerabilities-apache-couchdb-open-door-monero-miners.html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "MITRE. 2025. CWE-200: Exposure of Sensitive Information to an Unauthorized Actor. https://cwe .mitre .org/data/ definitions/200.html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "MITRE. 2025. Privilege Escalation. https://attack.mitre.org/tactics/TA0004/. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "MonetDB 2025. The Database System to speed up your Analytical Jobs. https://www .monetdb .org/. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Maliheh Monshizadeh, Prasad Naldurg, and VN Venkatakrishnan. 2014. Mace: Detecting privilege escalation vulnerabilities in web applications. InProceedings of the 2014 ACMSIGSAC Conference on Computer and Communications Security (CCS). 690–701. doi:10.1145/2660267.2660337",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Rimma V. Nehme, Hyo-Sang Lim, and Elisa Bertino. 2010. FENCE: Continuous access control enforcement in dynamic data stream environments. InProceedings of IEEE 26th International Conference on Data Engineering (ICDE). 940–943. doi:10.1109/ICDE.2010.5447899",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "National Vulnerability Database (NVD). 2025. CVE-2017-12635 Detail. https://nvd .nist.gov/vuln/detail/CVE-2017-12635. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "OceanBase. 2025. CREATE TRIGGER. https://en .oceanbase .com/docs/common-oceanbase-database10000000001974512. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 43,
+      "text": "OceanBase. 2025. The Multi-cloud Distributed Database for Mission-critical Workloads at Any Scale. https: //en.oceanbase.com/. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "OceanBase. 2025. OceanBase Security Response Protocol. https://en .oceanbase .com/security. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Oracle 2025. MySQL. https://www.mysql.com/. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Oracle. 2025. MySQL Documentation: Access Control and Account Management. https://dev .mysql .com/doc/refman/ 9.2/en/access-control.html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Oracle. 2025. MySQL Documentation: GRANT Statement. https://dev .mysql .com/doc/refman/9 .2/en/grant .html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Oracle. 2025. MySQL Documentation: INFORMATION_SCHEMA Introduction. https://dev .mysql .com/doc/refman/ 9.2/en/information-schema-introduction.html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Oracle. 2025. MySQL Documentation: INFORMATION_SCHEMA Table Reference. https://dev .mysql .com/doc/refman/ 9.2/en/information-schema-table-reference.html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Oracle. 2025. MySQL Documentation: MySQL Enterprise Firewall. https://dev .mysql .com/doc/refman/9 .2/en/ firewall.html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Oracle. 2025. MySQL Documentation: Privileges Provided by MySQL. https://dev .mysql .com/doc/refman/9 .2/en/ privileges-provided.html. Accessed: Feb. 27, 2026. Proc. ACM Program. Lang., Vol. 10, No. OOPSLA1, Article 124. Publication date: April 2026. 124:28 Zongrui Peng, Jingzhou Fu, Zhiyong Wu, Jie Liang, Xiangdong Huang, Dalong Shi, and Yu Jiang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Oracle. 2025. MySQL Documentation: Show Open Tables Statements. https://dev .mysql .com/doc/refman/9 .2/en/showopen-tables.html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Oracle. 2025. MySQL Documentation: The INFORMATION_SCHEMA COLUMNS Table. https://dev .mysql .com/doc/ refman/9.2/en/information-schema-columns-table.html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Oracle. 2025. MySQL Documentation: Using Roles. https://dev .mysql .com/doc/refman/9 .2/en/roles .html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Oracle. 2025. MySQL Enterprise Audit. https://www .mysql .com/products/enterprise/audit .html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Oracle. 2025. Oracle Database Firewall. https://www .oracle .com/technetwork/cn/products/database-firewall/overview/ index.html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Oracle. 2025. Using Fine-Grained Auditing. https://www .oracle .com/technical-resources/articles/middleware/idmfga-otn.html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Oracle. 2026. MySQL Documentation: ALTER TABLE Statement. https://dev .mysql .com/doc/refman/9 .2/en/altertable.html. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "OWASP. 2026. OWASP Foundation. https://owasp.org/. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "OWASP. 2026. Testing for SQL Injection. https://owasp .org/www-project-web-security-testing-guide/latest/4Web_Application _Security _Testing/07-Input _Validation _Testing/05-Testing _for_SQL_Injection. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Andrei Paduroiu, Sungheun Wi, Yan Yan, Roni Burd, Ruhollah Farchtchi, and Giovanni Matteo Fumarola. 2024. Membrane-Safe and Performant Data Access Controls in Apache Spark in the Presence of Imperative Code.Proc. VLDB Endow.17, 12 (2024), 3813–3826. doi:10.14778/3685800.3685808",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Primal Pappachan, Roberto Yus, Sharad Mehrotra, and Johann-Christoph Freytag. 2020. Sieve: a middleware approach to scalable access control for database management systems.Proc. VLDB Endow.13, 12 (2020), 2424–2437. doi:10 .14778/ 3407790.3407835",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Primal Pappachan, Shufan Zhang, Xi He, and Sharad Mehrotra. 2022. Don’t be a tattle-tale: Preventing leakages through data dependencies on access control protected data.Proc. VLDB Endow.15, 11 (2022), 2437–2449. doi:10 .14778/ 3551793.3551805",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Zongrui Peng, Jingzhou Fu, Zhiyong Wu, Jie Liang, Xiangdong Huang, Dalong Shi, and Yu Jiang. 2026. Beacon: Detecting Broken Access Control Vulnerabilities in DBMSs via System Catalog Consistency Validation. doi:10 .5281/ zenodo.18669646",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "PingCAP. 2026. TiDB. https://github.com/pingcap/tidb. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "PortSwigger. 2025. Access control vulnerabilities and privilege escalation. https://portswigger .net/web-security/accesscontrol. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "PortSwigger. 2026. Examining the database in SQL injection attacks. https://portswigger .net/web-security/sqlinjection/examining-the-database. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "PortSwigger. 2026. PortSwigger. https://portswigger.net/. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "PostgreSQL 2026. PostgreSQL. https://www.postgresql.org/. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 1140–1152. doi:10.1145/3368089.3409710",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 71,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proceedings of the ACM on Programming Languages4, OOPSLA (2020), 1–30. doi:10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 72,
+      "text": "Jerome H Saltzer and Michael D Schroeder. 1975. The protection of information in computer systems.Proc. IEEE63, 9 (1975), 1278–1308. doi:10.1109/PROC.1975.9939",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Ravi S Sandhu. 1998. Role-based access control. InAdvances in computers. Vol. 46. Elsevier, 237–286. doi:10 .1016/S00652458(08)60206-5",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "Andreas Seltenreich, Bo Tang, and Sjoerd Mullender. 2018. SQLsmith: a random SQL query generator. https: //github.com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "Abraham Silberschatz, Henry F Korth, Shashank Sudarshan, et al .2002.Database system concepts. Vol. 5. McGraw-Hill New York.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "StarRocks 2025. Fast, Fresh, and Flexible: Analytics With No Compromise. https://www .starrocks .io/. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "StarRocks. 2025. Manage audit logs within StarRocks via AuditLoader. https://docs .starrocks .io/docs/administration/ management/audit_loader/. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "StarRocks. 2025. StarRocks Documentation: Information Schema. https://docs .starrocks .io/docs/sql-reference/ information_schema/. Accessed: Feb. 27, 2026. Proc. ACM Program. Lang., Vol. 10, No. OOPSLA1, Article 124. Publication date: April 2026. Beacon: Detecting Broken Access Control Vulnerabilities in DBMSs via System Catalog Consistency Validation 124:29",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "StarRocks. 2025. StarRocks Documentation: Privileges supported by StarRocks. https://docs .starrocks .io/docs/ administration/user_privs/privilege_item/. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "StarRocks. 2025. StarRocks Test Suite. https://github .com/StarRocks/starrocks/blob/main/test/sql/test _rbac/R/ test_view_privilege. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 81,
+      "text": "Chengnian Sun, Vu Le, and Zhendong Su. 2016. Finding compiler bugs via live code mutation. InProceedings of the 2016 ACMSIGPLAN international conference on object-oriented programming, systems, languages, and applications. 849–863. doi:10.1145/3022671.2984038",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 82,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. 2021. Industry Practice of Coverage-Guided Enterprise-Level DBMS Fuzzing. In43rd IEEE/ACM International Conference on Software Engineering: Software Engineering in Practice, ICSE (SEIP) 2021, Madrid, Spain, May 25-28, 2021. IEEE, 328–337. doi:10 .1109/ICSESEIP52600.2021.00042",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 83,
+      "text": "Qihua Wang, Ting Yu, Ninghui Li, Jorge Lobo, Elisa Bertino, Keith Irwin, and Ji-Won Byun. 2007. On the correctness criteria of fine-grained access control in relational databases. InProceedings of the 33rd international conference on Very large data bases (VLDB). 555–566. https://dl.acm.org/doi/10.5555/1325851.1325915",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 84,
+      "text": "Wikipedia. 2024. Database. https://en.wikipedia.org/wiki/Database. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 85,
+      "text": "Wikipedia. 2025. Data control language. https://en .wikipedia .org/wiki/Data _control _language. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 86,
+      "text": "Wikipedia. 2025. Data definition language. https://en .wikipedia .org/wiki/Data _definition _language. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 87,
+      "text": "Wikipedia. 2025. Data manipulation language. https://en .wikipedia .org/wiki/Data _manipulation _language. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 88,
+      "text": "Wikipedia. 2025. Data query language. https://en .wikipedia .org/wiki/Data _query _language. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 89,
+      "text": "Wikipedia. 2025. Role-based access control. https://en .wikipedia .org/wiki/Role-based _access _control. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 90,
+      "text": "Wikipedia. 2025. SQL. https://en.wikipedia.org/wiki/SQL. Accessed: Feb. 27, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 91,
+      "text": "Zhiyong Wu, Jie Liang, Jingzhou Fu, Mingzhe Wang, and Yu Jiang. 2025. Hulk: Exploring Data-Sensitive Performance Anomalies in DBMSs via Data-Driven Analysis.Proceedings of the ACM on Software Engineering2, ISSTA (2025), 2181–2202. doi:10.1145/3728973",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 92,
+      "text": "Zhiyong Wu, Jie Liang, Jingzhou Fu, Mingzhe Wang, and Yu Jiang. 2025. PUPPY: Finding Performance Degradation Bugs in DBMSs via Limited-Optimization Plan Construction. InProceedings of the IEEE/ACM 47th International Conference on Software Engineering (ICSE). 1–12. doi:10.1109/ICSE55347.2025.00045",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 93,
+      "text": "Zhiyong Wu, Jie Liang, Mingzhe Wang, Chijin Zhou, and Yu Jiang. 2022. Unicorn: detect runtime errors in time-series databases with hybrid input synthesis. InProceedings of the 31st ACMSIGSOFT International Symposium on Software Testing and Analysis. 251–262. doi:10.1145/3533767.3534364",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 94,
+      "text": "Tong Zhang, Wenbo Shen, Dongyoon Lee, Changhee Jung, Ahmed M Azab, and Ruowen Wang. 2019. PeX: A permission check analysis framework for linux kernel. InProceedings of the 28th USENIX Conference on Security Symposium (USENIX Security). 1205–1220.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 95,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. Squirrel: Testing Database Management Systems with Language Validity and Coverage Feedback. InProceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security (CCS). 955–970. doi:10.1145/3372297.3417260 Proc. ACM Program. Lang., Vol. 10, No. OOPSLA1, Article 124. Publication date: April 2026.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering (ICSE). 1–13. doi:10.1145/3597503.3639076",
+      "technique": "cert",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing cert",
+        "prints the DOI of the paper introducing cert"
+      ]
+    },
+    {
+      "number": 17,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Yanyang Zhao, Shanshan Li, and Yu Jiang. 2025. Understanding and Detecting SQL Function Bugs: Using Simple Boundary Arguments to Trigger Hundreds of DBMS Bugs. InProceedings of the Twentieth European Conference on Computer Systems (EuroSys). 1061–1076. doi:10.1145/3689031.3696064",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 42,
+      "text": "OceanBase. 2025. CREATE TRIGGER. https://en .oceanbase .com/docs/common-oceanbase-database10000000001974512. Accessed: Feb. 27, 2026.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 70,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 1140–1152. doi:10.1145/3368089.3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 71,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proceedings of the ACM on Programming Languages4, OOPSLA (2020), 1–30. doi:10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 42]",
+      "technique": null,
+      "sentence": "Specifically, the user creates a trigger [ 42] containing SELECT operations that require the privileges of another user’s table.",
+      "context_before": "sing from failures to enforce proper access control, are collectively known asBroken Access Control(BAC) [ 7] vulnerabilities. For instance, according to Trend Micro [ 34], a BAC vulnerability in Apache CouchDB [ 14] enabled hundreds of real-world attacks that abused victim machines in organizations for cryptocurrency mining, causing severe resource exhaustion and device slowdowns [35, 41]. Figure 1 illustrates a BAC vulnerability in OceanBase where a regular user (with only basic privileges to manage their own tables) can bypass access control to retrieve information in tables of other users.",
+      "context_after": "When the trigger is activated, OceanBase skips permission checks on the SELECTcommand inside, resulting in the unauthorized disclosure of data. The root cause of this BAC vulnerability lies in the implementation of OceanBase, which enforces only the CREATE TRIGGER privilege at creation time, without validating the privileges required for the operations inside the trigger’s definition. This vulnerability can be exploited to bypass access control during trigger execution. For instance, a regular user can embed SELECT ,UPDATE, or DELETE operations on another user’s table inside a trigger defined on",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 5224,
+      "cited_reference": {
+        "number": 42,
+        "text": "OceanBase. 2025. CREATE TRIGGER. https://en .oceanbase .com/docs/common-oceanbase-database10000000001974512. Accessed: Feb. 27, 2026.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[ 26,70,71,81]",
+      "technique": "norec",
+      "sentence": "Another test case generation approach for detecting consistency issues is mutation-based testing, which has been widely used in compiler testing and optimization testing [ 26,70,71,81].",
+      "context_before": "during execution. However, this reflects the expected behavior of MySQL’s access control since the tablea2is a temporary table used solely for handling the alias in the SELECTcommand. Test Case Generation Approaches.In our approach, we adopt a bottom-up generation method to compose test cases from DDL, DML, DQL, and DCL commands, thereby covering a wide range of SQL operations and object types in a unified workflow. Moreover, by leveraging catalog consistency as the test oracle, our approach can detect BAC vulnerabilities without explicitly modeling the underlying privilege model of each DBMS.",
+      "context_after": "Specifically, mutation-based methods for consistency testing transform a test case into semantically equivalent variants through certain mutation strategies, and then check whether execution results remain consistent before and after mutation. By accumulating non-trivial mutations over multiple iterations, the resulting test inputs can become more complex, which helps exercise deeper execution paths. However, adapting these methods to BAC testing presents several challenges. For instance, the mutations must preserve the privilege-relevant behaviors under the DBMS privilege model, which requir",
+      "section": "6.4 Design Choice Analysis",
+      "page": 23,
+      "char_offset": 80819,
+      "cited_reference": {
+        "number": 70,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 1140–115",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[ 10,15,18,25,28,70,71]",
+      "technique": "norec",
+      "sentence": "Logic bug testing [ 10,15,18,25,28,70,71] focuses on verifying the correctness of execution results.",
+      "context_before": "ntly of any fixed permission models. Instead of analyzing code paths,Beacondirectly detects inconsistencies by comparing the execution results of SQL commands with the permission information in system catalogs. This dynamic approach allowsBeaconto adapt to various flexible authorization scenarios. Additionally, verifying the consistency between system catalogs and actual operations ensures cross-DBMS compatibility. DBMS Testing.DBMSs are complex software systems and thus prone to problems. DBMS testing efforts can be categorized into three types: testing for logic, crash, and performance bugs.",
+      "context_after": "These studies typically concentrate on constructing logic test oracles. For example,NoREC[ 70] detects differences in result sets between optimizing and non-optimizing query versions, and TLP[ 71] detects whether composed results of partitioning queries are equivalent to the original query’s results. Crash bug testing [ 16,17,27,74,82,93,95] aims to identify circumstances under which DBMSs might crash. These approaches focus on generating valid SQL commands and monitoring DBMS crashes. For instance, SQLsmith [ 74] generates SQL commands based on syntax modeling, andSqirrel[ 95] uses coverage f",
+      "section": "6.4 Design Choice Analysis",
+      "page": 24,
+      "char_offset": 86668,
+      "cited_reference": {
+        "number": 70,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 1140–115",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "For example,NoREC[ 70] detects differences in result sets between optimizing and non-optimizing query versions, and TLP[ 71] detects whether composed results of partitioning queries are equivalent to the original query’s results.",
+      "context_before": "ssion information in system catalogs. This dynamic approach allowsBeaconto adapt to various flexible authorization scenarios. Additionally, verifying the consistency between system catalogs and actual operations ensures cross-DBMS compatibility. DBMS Testing.DBMSs are complex software systems and thus prone to problems. DBMS testing efforts can be categorized into three types: testing for logic, crash, and performance bugs. Logic bug testing [ 10,15,18,25,28,70,71] focuses on verifying the correctness of execution results. These studies typically concentrate on constructing logic test oracles.",
+      "context_after": "Crash bug testing [ 16,17,27,74,82,93,95] aims to identify circumstances under which DBMSs might crash. These approaches focus on generating valid SQL commands and monitoring DBMS crashes. For instance, SQLsmith [ 74] generates SQL commands based on syntax modeling, andSqirrel[ 95] uses coverage feedback to guide the mutation of SQL commands. Performance bug testing [ 2,24,29,91,92] checks whether execution results are returned within reasonable time limits. For example,Apollo[24] compares the execution time of different DBMS versions. In contrast to traditional DBMS testing approaches,Beacon",
+      "section": "6.4 Design Choice Analysis",
+      "page": 24,
+      "char_offset": 86841,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 16,17,27,74,82,93,95]",
+      "technique": null,
+      "sentence": "Crash bug testing [ 16,17,27,74,82,93,95] aims to identify circumstances under which DBMSs might crash.",
+      "context_before": "S compatibility. DBMS Testing.DBMSs are complex software systems and thus prone to problems. DBMS testing efforts can be categorized into three types: testing for logic, crash, and performance bugs. Logic bug testing [ 10,15,18,25,28,70,71] focuses on verifying the correctness of execution results. These studies typically concentrate on constructing logic test oracles. For example,NoREC[ 70] detects differences in result sets between optimizing and non-optimizing query versions, and TLP[ 71] detects whether composed results of partitioning queries are equivalent to the original query’s results.",
+      "context_after": "These approaches focus on generating valid SQL commands and monitoring DBMS crashes. For instance, SQLsmith [ 74] generates SQL commands based on syntax modeling, andSqirrel[ 95] uses coverage feedback to guide the mutation of SQL commands. Performance bug testing [ 2,24,29,91,92] checks whether execution results are returned within reasonable time limits. For example,Apollo[24] compares the execution time of different DBMS versions. In contrast to traditional DBMS testing approaches,Beacondirectly targets BAC vulnerabilities. We leverage an observable invariant in DBMS catalogs: each user sh",
+      "section": "6.4 Design Choice Analysis",
+      "page": 24,
+      "char_offset": 87070,
+      "cited_reference": {
+        "number": 17,
+        "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Yanyang Zhao, Shanshan Li, and Yu Jiang. 2025. Understanding and Detecting SQL Function Bugs: Using Simple Boundary Arguments to Trigger Hundreds of DBMS Bugs. InProceedings of the Twentieth European Conference on Computer Systems (EuroSys). 1061–1076. doi:10.1145",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker",
+      "surface": "[ 2,24,29,91,92]",
+      "technique": "cert",
+      "sentence": "Performance bug testing [ 2,24,29,91,92] checks whether execution results are returned within reasonable time limits.",
+      "context_before": "ucting logic test oracles. For example,NoREC[ 70] detects differences in result sets between optimizing and non-optimizing query versions, and TLP[ 71] detects whether composed results of partitioning queries are equivalent to the original query’s results. Crash bug testing [ 16,17,27,74,82,93,95] aims to identify circumstances under which DBMSs might crash. These approaches focus on generating valid SQL commands and monitoring DBMS crashes. For instance, SQLsmith [ 74] generates SQL commands based on syntax modeling, andSqirrel[ 95] uses coverage feedback to guide the mutation of SQL commands.",
+      "context_after": "For example,Apollo[24] compares the execution time of different DBMS versions. In contrast to traditional DBMS testing approaches,Beacondirectly targets BAC vulnerabilities. We leverage an observable invariant in DBMS catalogs: each user should only view and operate on the objects that the user is authorized to access. By correlating catalog visibility with the executability of privileged commands, our technique uncovers subtle BAC vulnerabilities that have evaded detection in prior testing frameworks. DBMS Access Control.Recent research on DBMS access control has primarily focused on develop",
+      "section": "6.4 Design Choice Analysis",
+      "page": 24,
+      "char_offset": 87415,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering (ICSE). 1–13. doi:10.1145/3597503.3639076",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing cert",
+          "prints the DOI of the paper introducing cert"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:20:36Z",
+    "is_model_written": true,
+    "summary": "Beacon detects broken access control vulnerabilities in DBMSs by checking SQL operations against the system catalogs. Its premise is that catalog visibility should agree with a user's privileges: if an object is invisible to a user in the catalogs, that user should have no access to it, so any inconsistency indicates a privilege they should not have. Applied to eight DBMSs it uncovered 39 previously unknown vulnerabilities, all confirmed by vendors.",
+    "narrative": "Cited in the design discussion as the logic-bug testing line of work, with NoREC and TLP described by what each compares -- the correctness dimension Beacon sets beside its own access-control one.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "definition",
+      "M4": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

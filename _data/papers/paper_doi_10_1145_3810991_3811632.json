@@ -1,0 +1,1318 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T16:59:46Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3810991.3811632",
+    "title": "DIRT: Database-Integrated Random Testing",
+    "authors": [
+      "A. Keles",
+      "Ethan Chou",
+      "Harrison Goldstein",
+      "Leonidas Lampropoulos"
+    ],
+    "year": 2026,
+    "venue": "DBTest@SIGMOD",
+    "doi": "10.1145/3810991.3811632",
+    "arxiv_id": "2604.16373",
+    "s2_paper_id": "7f0ecde1aadab94fe2464b9a8e4183e68159d931",
+    "url": "https://doi.org/10.1145/3810991.3811632",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2604.16373",
+      "retrieved_at": "2026-09-07T16:59:46Z",
+      "chars": 42097,
+      "content_sha256": "sha256:9178e442303b16928be908a52992b6e82f0b2684eee07bcc15561716b03abd7a"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 8,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 1577
+      },
+      {
+        "number": "2",
+        "title": "Background and Related Work",
+        "start": 4645
+      },
+      {
+        "number": "2.1",
+        "title": "Fuzzing and Property-Based Testing",
+        "start": 4864
+      },
+      {
+        "number": "2.2",
+        "title": "SQLancer",
+        "start": 6585
+      },
+      {
+        "number": "3",
+        "title": "Specifying Correctness Oracles",
+        "start": 8376
+      },
+      {
+        "number": "3.1",
+        "title": "Definitions of Oracles in DIRT",
+        "start": 13052
+      },
+      {
+        "number": "3.2",
+        "title": "Query Generation",
+        "start": 15312
+      },
+      {
+        "number": "4",
+        "title": "Evaluation",
+        "start": 18709
+      },
+      {
+        "number": "4.1",
+        "title": "RQ1: DoesDIRTfind bugs in Turso?",
+        "start": 18906
+      },
+      {
+        "number": "4.2",
+        "title": "RQ2: How does DIRTcompare to SQLancer?",
+        "start": 25212
+      },
+      {
+        "number": "5",
+        "title": "Discussion",
+        "start": 27139
+      },
+      {
+        "number": "6",
+        "title": "Conclusion and Future Work",
+        "start": 32929
+      }
+    ]
+  },
+  "references": [],
+  "sqlancer_references": [],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Traditional testing tools like SQLancer and SQLSmith are highly effective for mature databases, but they struggle with high false positive rates and low actionability when applied to evolving systems.",
+      "context_before": "DIRT: Database-Integrated Random Testing Alperen Keles University of Maryland, College Park College Park, USA akeles@umd.eduEthan Chou University of Maryland, College Park College Park, USA echou1@umd.edu Harrison Goldstein University of Buffalo Buffalo, USA hgoldste@buffalo.eduLeonidas Lampropoulos University of Maryland, College Park College Park, USA leonidas@umd.edu Abstract Database management systems (DBMSs) are notoriously complex, making them difficult to test effectively, especially during early development when many features are incomplete.",
+      "context_after": "We present DIRT, a paradigm designed specifically for testing databases during development, which integrates a testing framework directly into the DBMS, enabling the random testing process to evolve in tandem with the system and reducing false positives by construction. We introduce generation actions, an abstraction for allowing database developers rather than testing experts to specify correctness properties. We evaluate DIRTon Turso, an actively developed SQLite-compatible OLTP engine, and show that it finds 23 unique, confirmed bugs–significantly outperforming off-the-shelf SQLancer varian",
+      "section": null,
+      "page": 1,
+      "char_offset": 556,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We evaluate DIRTon Turso, an actively developed SQLite-compatible OLTP engine, and show that it finds 23 unique, confirmed bugs–significantly outperforming off-the-shelf SQLancer variants in terms of true positive rate and usefulness of bug reports.",
+      "context_before": "ting tools like SQLancer and SQLSmith are highly effective for mature databases, but they struggle with high false positive rates and low actionability when applied to evolving systems. We present DIRT, a paradigm designed specifically for testing databases during development, which integrates a testing framework directly into the DBMS, enabling the random testing process to evolve in tandem with the system and reducing false positives by construction. We introduce generation actions, an abstraction for allowing database developers rather than testing experts to specify correctness properties.",
+      "context_after": "Our results demonstrate that embedding testing infrastructure within the DBMS can dramatically improve its effectiveness and usability during development. 1 Introduction Database Management Systems (DBMSs) are complex systems, and inevitably, such complexity leads to bugs. To discover bugs, DBMSs have historically used random testing, with approaches ranging from binary fuzzing with AFL [ 6] to structured query generation in SQLSmith [ 24], and to the powerful test oracles of SQLancer [ 22]. Within prior work, SQLancer is distinguished by using specialized test oracles that reveal logic bugs",
+      "section": null,
+      "page": 1,
+      "char_offset": 1172,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "To discover bugs, DBMSs have historically used random testing, with approaches ranging from binary fuzzing with AFL [ 6] to structured query generation in SQLSmith [ 24], and to the powerful test oracles of SQLancer [ 22].",
+      "context_before": "ase developers rather than testing experts to specify correctness properties. We evaluate DIRTon Turso, an actively developed SQLite-compatible OLTP engine, and show that it finds 23 unique, confirmed bugs–significantly outperforming off-the-shelf SQLancer variants in terms of true positive rate and usefulness of bug reports. Our results demonstrate that embedding testing infrastructure within the DBMS can dramatically improve its effectiveness and usability during development. 1 Introduction Database Management Systems (DBMSs) are complex systems, and inevitably, such complexity leads to bugs.",
+      "context_after": "Within prior work, SQLancer is distinguished by using specialized test oracles that reveal logic bugs in DBMSs, and it has proven extremely successful at finding bugs in mature databases. Unfortunately, off-the-shelf testing frameworks are not as effective at finding actionable bugs in DBMSs that are actively being developed and have many missing features. When the space of randomly generated inputs is larger than the system under test supports, many of the generated tests lie in the unimplemented portion of the system, registering as false positives. Naturally, such false counterexamples are",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 1695,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Within prior work, SQLancer is distinguished by using specialized test oracles that reveal logic bugs in DBMSs, and it has proven extremely successful at finding bugs in mature databases.",
+      "context_before": "erforming off-the-shelf SQLancer variants in terms of true positive rate and usefulness of bug reports. Our results demonstrate that embedding testing infrastructure within the DBMS can dramatically improve its effectiveness and usability during development. 1 Introduction Database Management Systems (DBMSs) are complex systems, and inevitably, such complexity leads to bugs. To discover bugs, DBMSs have historically used random testing, with approaches ranging from binary fuzzing with AFL [ 6] to structured query generation in SQLSmith [ 24], and to the powerful test oracles of SQLancer [ 22].",
+      "context_after": "Unfortunately, off-the-shelf testing frameworks are not as effective at finding actionable bugs in DBMSs that are actively being developed and have many missing features. When the space of randomly generated inputs is larger than the system under test supports, many of the generated tests lie in the unimplemented portion of the system, registering as false positives. Naturally, such false counterexamples are of no help to developers of DBMSs. One way to alleviate this issue is to tailor the testing framework to the DBMS under test, ensuring that the testing framework only tests implemented fe",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 1918,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "5% with only one new bug, and running SQLancerTurso, an existing independently developed SQLancer integration for Turso, without modifications led to a false positive rate of 58% with six newly discovered bugs.",
+      "context_before": "e this tight integration to empower developers to write their own oracles by developing a domain-specific language (DSL) for expressing properties customized to particular features being developed. We study this problem in the context of Turso, an open-source SQLite3-compatible OLTP database engine in active development. With an average of more than 30 commits a day, Turso is a rapidly evolving target for testing.DIRThelped find 23 confirmed bugs, all of which were subsequently fixed. In comparison, running SQLancerSQLite3 with minimal modifications in Turso led to a false positive rate of 96.",
+      "context_after": "In summary, our contributions are as follows: (1)We propose DIRT, a paradigm for testing databases during development which integrates a testing framework within the database and provides convenient and flexible abstractions to developers. (2)We implement DIRTfor Turso, an open source SQLite3compatible OLTP database under active development. (3)We evaluate the effectiveness of DIRTby finding actionable bugs in Turso: we found 23 unique confirmed bugs with very few false positives compared to the state-of-the-art. 2 Background and Related Work We begin by providing background: first on coverage-g",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 3918,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "2 Background and Related Work We begin by providing background: first on coverage-guided fuzzing and property-based testing at a high level, and then focusing on SQLancer, the prominent framework for testing databases.",
+      "context_before": "ut modifications led to a false positive rate of 58% with six newly discovered bugs. In summary, our contributions are as follows: (1)We propose DIRT, a paradigm for testing databases during development which integrates a testing framework within the database and provides convenient and flexible abstractions to developers. (2)We implement DIRTfor Turso, an open source SQLite3compatible OLTP database under active development. (3)We evaluate the effectiveness of DIRTby finding actionable bugs in Turso: we found 23 unique confirmed bugs with very few false positives compared to the state-of-the-art.",
+      "context_after": "2.1 Fuzzing and Property-Based Testing In Fuzz Testing [ 25], the primary focus is on smart and effective test-case generation that can work out of the box with minimal user inputs. The key idea is to leverageruntime feedback, usually in the form of branch coverage [ 4,6], though not always [ 19], to keep track of inputs that exhibit interesting behavior (e.g. uncovered new paths) and then mutate them in the hopes of discovering evenarXiv:2604.16373v1 [cs.DB] 23 Mar 2026 Conference’17, July 2017, Washington, DC, USA Alperen Keles, Ethan Chou, Harrison Goldstein, and Leonidas Lampropoulos more",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 4644,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Such approaches have been tried recently with great success [ 14,18], and in the context of database testing, both SQLancer and DIRTfollow such a hybrid viewpoint.",
+      "context_before": "wering users to write their own oracles [ 5,12]. PBT frameworks usually offer DSLs for expressing oracles in the form of universally quantified executable predicates, as well as infrastructure for writinggeneratorsprograms that generate test inputs to test such predicates [ 5,15]. Although traditionally these communities have been mostly distinct, the lines between them are increasingly blurred. In fact, fuzzing can be viewed as an instance of PBT where the property is fixed (e.g. the program does not crash) and PBT can be improved by extending its generation with coverage-guided capabilities.",
+      "context_after": "2.2 SQLancer SQLancer is a multi-year research project by Rigger et. al that set the bar for automated random testing of databases since its inception in 2020. It hosts an extensible core with adapters for many production DBMSs including but not limited to ClickHouse, Apache Datafusion, MySQL, PostgreSQL, and SQLite. Within the last five years, SQLancer has not only grown with respect to the breadth of databases it supports, but it has also widened its arsenal of oracles. It started with Pivoted Query Synthesis (PQS) [ 23], a rather \"simple\" containment property over databases that has found",
+      "section": "2.1 Fuzzing and Property-Based Testing",
+      "page": 2,
+      "char_offset": 6421,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "2 SQLancer SQLancer is a multi-year research project by Rigger et.",
+      "context_before": "as well as infrastructure for writinggeneratorsprograms that generate test inputs to test such predicates [ 5,15]. Although traditionally these communities have been mostly distinct, the lines between them are increasingly blurred. In fact, fuzzing can be viewed as an instance of PBT where the property is fixed (e.g. the program does not crash) and PBT can be improved by extending its generation with coverage-guided capabilities. Such approaches have been tried recently with great success [ 14,18], and in the context of database testing, both SQLancer and DIRTfollow such a hybrid viewpoint. 2.",
+      "context_after": "al that set the bar for automated random testing of databases since its inception in 2020. It hosts an extensible core with adapters for many production DBMSs including but not limited to ClickHouse, Apache Datafusion, MySQL, PostgreSQL, and SQLite. Within the last five years, SQLancer has not only grown with respect to the breadth of databases it supports, but it has also widened its arsenal of oracles. It started with Pivoted Query Synthesis (PQS) [ 23], a rather \"simple\" containment property over databases that has found at least 121 unique logic bugs in production databases. Two metamorph",
+      "section": "2.2 SQLancer",
+      "page": 2,
+      "char_offset": 6587,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Within the last five years, SQLancer has not only grown with respect to the breadth of databases it supports, but it has also widened its arsenal of oracles.",
+      "context_before": ".g. the program does not crash) and PBT can be improved by extending its generation with coverage-guided capabilities. Such approaches have been tried recently with great success [ 14,18], and in the context of database testing, both SQLancer and DIRTfollow such a hybrid viewpoint. 2.2 SQLancer SQLancer is a multi-year research project by Rigger et. al that set the bar for automated random testing of databases since its inception in 2020. It hosts an extensible core with adapters for many production DBMSs including but not limited to ClickHouse, Apache Datafusion, MySQL, PostgreSQL, and SQLite.",
+      "context_after": "It started with Pivoted Query Synthesis (PQS) [ 23], a rather \"simple\" containment property over databases that has found at least 121 unique logic bugs in production databases. Two metamorphic oracles followed: Non-Optimizing Reference Engine Construction (NoREC) [ 20], which found 51 optimization bugs, and Ternary Logic Partitioning (TLP) [21], which discovered 77 novel logic bugs. SQLancer currently supports Query Plan Guidance (QPG) [ 1] for feedback-guided generation, Cardinality Estimation Restriction Testing (CERT) [ 2] for finding performance bugs in DBMSs, Differential Query Plans (D",
+      "section": "2.2 SQLancer",
+      "page": 2,
+      "char_offset": 6903,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "Pivoted Query Synthesis",
+      "technique": "pqs",
+      "sentence": "It started with Pivoted Query Synthesis (PQS) [ 23], a rather \"simple\" containment property over databases that has found at least 121 unique logic bugs in production databases.",
+      "context_before": "y with great success [ 14,18], and in the context of database testing, both SQLancer and DIRTfollow such a hybrid viewpoint. 2.2 SQLancer SQLancer is a multi-year research project by Rigger et. al that set the bar for automated random testing of databases since its inception in 2020. It hosts an extensible core with adapters for many production DBMSs including but not limited to ClickHouse, Apache Datafusion, MySQL, PostgreSQL, and SQLite. Within the last five years, SQLancer has not only grown with respect to the breadth of databases it supports, but it has also widened its arsenal of oracles.",
+      "context_after": "Two metamorphic oracles followed: Non-Optimizing Reference Engine Construction (NoREC) [ 20], which found 51 optimization bugs, and Ternary Logic Partitioning (TLP) [21], which discovered 77 novel logic bugs. SQLancer currently supports Query Plan Guidance (QPG) [ 1] for feedback-guided generation, Cardinality Estimation Restriction Testing (CERT) [ 2] for finding performance bugs in DBMSs, Differential Query Plans (DQP) [ 3] for detecting bugs in join optimizations, and Constant Optimization Driven Database System Testing (CODDTest) [ 26] for finding logic bugs in optimizations. As SQLancer",
+      "section": "2.2 SQLancer",
+      "page": 2,
+      "char_offset": 7061,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "Non-Optimizing Reference Engine Construction",
+      "technique": "norec",
+      "sentence": "Two metamorphic oracles followed: Non-Optimizing Reference Engine Construction (NoREC) [ 20], which found 51 optimization bugs, and Ternary Logic Partitioning (TLP) [21], which discovered 77 novel logic bugs.",
+      "context_before": "by Rigger et. al that set the bar for automated random testing of databases since its inception in 2020. It hosts an extensible core with adapters for many production DBMSs including but not limited to ClickHouse, Apache Datafusion, MySQL, PostgreSQL, and SQLite. Within the last five years, SQLancer has not only grown with respect to the breadth of databases it supports, but it has also widened its arsenal of oracles. It started with Pivoted Query Synthesis (PQS) [ 23], a rather \"simple\" containment property over databases that has found at least 121 unique logic bugs in production databases.",
+      "context_after": "SQLancer currently supports Query Plan Guidance (QPG) [ 1] for feedback-guided generation, Cardinality Estimation Restriction Testing (CERT) [ 2] for finding performance bugs in DBMSs, Differential Query Plans (DQP) [ 3] for detecting bugs in join optimizations, and Constant Optimization Driven Database System Testing (CODDTest) [ 26] for finding logic bugs in optimizations. As SQLancer focuses on testing large classes of behaviors across a variety of databases, each oracle amounts to a significant research contribution in a new research paper. Integrating a new DBMS to SQLancer is a time-con",
+      "section": "2.2 SQLancer",
+      "page": 2,
+      "char_offset": 7239,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer currently supports Query Plan Guidance (QPG) [ 1] for feedback-guided generation, Cardinality Estimation Restriction Testing (CERT) [ 2] for finding performance bugs in DBMSs, Differential Query Plans (DQP) [ 3] for detecting bugs in join optimizations, and Constant Optimization Driven Database System Testing (CODDTest) [ 26] for finding logic bugs in optimizations.",
+      "context_before": "ouse, Apache Datafusion, MySQL, PostgreSQL, and SQLite. Within the last five years, SQLancer has not only grown with respect to the breadth of databases it supports, but it has also widened its arsenal of oracles. It started with Pivoted Query Synthesis (PQS) [ 23], a rather \"simple\" containment property over databases that has found at least 121 unique logic bugs in production databases. Two metamorphic oracles followed: Non-Optimizing Reference Engine Construction (NoREC) [ 20], which found 51 optimization bugs, and Ternary Logic Partitioning (TLP) [21], which discovered 77 novel logic bugs.",
+      "context_after": "As SQLancer focuses on testing large classes of behaviors across a variety of databases, each oracle amounts to a significant research contribution in a new research paper. Integrating a new DBMS to SQLancer is a time-consuming process. At a minimum, SQLancer integration requires implementing AST connectors, generation APIs for the relevant queries, and the oracles to use for detecting bugs. SQLancer also has a notion ofexpected errors, bugs that the users can deem as expected, so SQLancer does not report them as errors and continues testing. 3 Specifying Correctness Oracles Rather than expec",
+      "section": "2.2 SQLancer",
+      "page": 2,
+      "char_offset": 7448,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "qpg",
+        "cert",
+        "dqp",
+        "coddtest"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "As SQLancer focuses on testing large classes of behaviors across a variety of databases, each oracle amounts to a significant research contribution in a new research paper.",
+      "context_before": "on databases. Two metamorphic oracles followed: Non-Optimizing Reference Engine Construction (NoREC) [ 20], which found 51 optimization bugs, and Ternary Logic Partitioning (TLP) [21], which discovered 77 novel logic bugs. SQLancer currently supports Query Plan Guidance (QPG) [ 1] for feedback-guided generation, Cardinality Estimation Restriction Testing (CERT) [ 2] for finding performance bugs in DBMSs, Differential Query Plans (DQP) [ 3] for detecting bugs in join optimizations, and Constant Optimization Driven Database System Testing (CODDTest) [ 26] for finding logic bugs in optimizations.",
+      "context_after": "Integrating a new DBMS to SQLancer is a time-consuming process. At a minimum, SQLancer integration requires implementing AST connectors, generation APIs for the relevant queries, and the oracles to use for detecting bugs. SQLancer also has a notion ofexpected errors, bugs that the users can deem as expected, so SQLancer does not report them as errors and continues testing. 3 Specifying Correctness Oracles Rather than expecting database developers to modify SQLancer to suit their particular needs, we instead wanted to offer them flexible and extensible abstractions so that they test their data",
+      "section": "2.2 SQLancer",
+      "page": 2,
+      "char_offset": 7826,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Integrating a new DBMS to SQLancer is a time-consuming process.",
+      "context_before": "(TLP) [21], which discovered 77 novel logic bugs. SQLancer currently supports Query Plan Guidance (QPG) [ 1] for feedback-guided generation, Cardinality Estimation Restriction Testing (CERT) [ 2] for finding performance bugs in DBMSs, Differential Query Plans (DQP) [ 3] for detecting bugs in join optimizations, and Constant Optimization Driven Database System Testing (CODDTest) [ 26] for finding logic bugs in optimizations. As SQLancer focuses on testing large classes of behaviors across a variety of databases, each oracle amounts to a significant research contribution in a new research paper.",
+      "context_after": "At a minimum, SQLancer integration requires implementing AST connectors, generation APIs for the relevant queries, and the oracles to use for detecting bugs. SQLancer also has a notion ofexpected errors, bugs that the users can deem as expected, so SQLancer does not report them as errors and continues testing. 3 Specifying Correctness Oracles Rather than expecting database developers to modify SQLancer to suit their particular needs, we instead wanted to offer them flexible and extensible abstractions so that they test their database throughout its development.DIRTwas created to provide such",
+      "section": "2.2 SQLancer",
+      "page": 2,
+      "char_offset": 7999,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M15",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "At a minimum, SQLancer integration requires implementing AST connectors, generation APIs for the relevant queries, and the oracles to use for detecting bugs.",
+      "context_before": "ntly supports Query Plan Guidance (QPG) [ 1] for feedback-guided generation, Cardinality Estimation Restriction Testing (CERT) [ 2] for finding performance bugs in DBMSs, Differential Query Plans (DQP) [ 3] for detecting bugs in join optimizations, and Constant Optimization Driven Database System Testing (CODDTest) [ 26] for finding logic bugs in optimizations. As SQLancer focuses on testing large classes of behaviors across a variety of databases, each oracle amounts to a significant research contribution in a new research paper. Integrating a new DBMS to SQLancer is a time-consuming process.",
+      "context_after": "SQLancer also has a notion ofexpected errors, bugs that the users can deem as expected, so SQLancer does not report them as errors and continues testing. 3 Specifying Correctness Oracles Rather than expecting database developers to modify SQLancer to suit their particular needs, we instead wanted to offer them flexible and extensible abstractions so that they test their database throughout its development.DIRTwas created to provide such random testing infrastructure that evolves alongside the DBMS and produces actionable bug reports for the database developers. Thisevolution involves not only",
+      "section": "2.2 SQLancer",
+      "page": 2,
+      "char_offset": 8063,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M16",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer also has a notion ofexpected errors, bugs that the users can deem as expected, so SQLancer does not report them as errors and continues testing.",
+      "context_before": "gs in DBMSs, Differential Query Plans (DQP) [ 3] for detecting bugs in join optimizations, and Constant Optimization Driven Database System Testing (CODDTest) [ 26] for finding logic bugs in optimizations. As SQLancer focuses on testing large classes of behaviors across a variety of databases, each oracle amounts to a significant research contribution in a new research paper. Integrating a new DBMS to SQLancer is a time-consuming process. At a minimum, SQLancer integration requires implementing AST connectors, generation APIs for the relevant queries, and the oracles to use for detecting bugs.",
+      "context_after": "3 Specifying Correctness Oracles Rather than expecting database developers to modify SQLancer to suit their particular needs, we instead wanted to offer them flexible and extensible abstractions so that they test their database throughout its development.DIRTwas created to provide such random testing infrastructure that evolves alongside the DBMS and produces actionable bug reports for the database developers. Thisevolution involves not only tailoring the input space of SQL generation to the currently implemented portion of Turso for reducing false positives, but also tailoring the correctnes",
+      "section": "2.2 SQLancer",
+      "page": 2,
+      "char_offset": 8221,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M17",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "3 Specifying Correctness Oracles Rather than expecting database developers to modify SQLancer to suit their particular needs, we instead wanted to offer them flexible and extensible abstractions so that they test their database throughout its development.",
+      "context_before": "est) [ 26] for finding logic bugs in optimizations. As SQLancer focuses on testing large classes of behaviors across a variety of databases, each oracle amounts to a significant research contribution in a new research paper. Integrating a new DBMS to SQLancer is a time-consuming process. At a minimum, SQLancer integration requires implementing AST connectors, generation APIs for the relevant queries, and the oracles to use for detecting bugs. SQLancer also has a notion ofexpected errors, bugs that the users can deem as expected, so SQLancer does not report them as errors and continues testing.",
+      "context_after": "DIRTwas created to provide such random testing infrastructure that evolves alongside the DBMS and produces actionable bug reports for the database developers. Thisevolution involves not only tailoring the input space of SQL generation to the currently implemented portion of Turso for reducing false positives, but also tailoring the correctness oracles to new features as they are added, decreasing false negatives. In this section, we introducegeneration actions, an imperative formulation for properties that do not just describewhatthe property tests, buthowto test it. We begin by using a very s",
+      "section": "2.2 SQLancer",
+      "page": 2,
+      "char_offset": 8375,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "Pivoted Query Synthesis",
+      "technique": "pqs",
+      "sentence": "assert(r in RS) Figure 1: Pivoted Query Synthesis as a universally quantified property (left) and as a generation action (right).",
+      "context_before": ", USA 𝑑𝑏:𝐷𝑎𝑡𝑎𝑏𝑎𝑠𝑒 𝑡1,𝑡2...𝑡𝑛:𝑇𝑎𝑏𝑙𝑒 𝑐1,𝑐2...𝑐𝑛:𝐶𝑜𝑙𝑢𝑚𝑛 𝑝1,𝑝2...𝑝𝑛:𝐸𝑥𝑝𝑟𝑒𝑠𝑠𝑖𝑜𝑛 𝑟:𝑅𝑜𝑤 ∀𝑑𝑏,𝑡 1,𝑡2...𝑡𝑛,𝑐1,𝑐2...𝑐𝑛,𝑝1,𝑝2...𝑝𝑛,𝑟. 𝑡1,𝑡2...𝑡𝑛∈𝑑𝑏 ∧𝑐 1∈𝑡 1∧𝑐 2∈𝑡 2...∧𝑐 𝑛∈𝑡𝑛 ∧𝑟.𝑐 1∈𝑡 1.𝑐1∧𝑟.𝑐 2∈𝑡 2.𝑐2...∧𝑟.𝑐 𝑛∈𝑡𝑛.𝑐𝑛 ∧𝑝 1(𝑟)=𝑇𝑅𝑈𝐸∧𝑝 2(𝑟)=𝑇𝑅𝑈𝐸...∧𝑝 𝑛(𝑟)=𝑇𝑅𝑈𝐸 =⇒𝑟∈𝑆𝐸𝐿𝐸𝐶𝑇∗𝐹𝑅𝑂𝑀 𝑡 1.𝑐1...𝑡𝑛.𝑐𝑛𝑊𝐻𝐸𝑅𝐸𝑝 1...𝐴𝑁𝐷 𝑝 𝑛gen property db: (t1, t2)←(pick db.tables, pick db.tables) (c1, c2)←(pick t1.columns, pick t2.columns) (r1, r2)←(gen row t1, gen row t2) r := (r1.c1, r2.c2)! INSERT INTO t1 VALUES r1! INSERT INTO t2 VALUES r2 p1←gen expression (t1, r1) p2←gen expression (t2, r2)! RS := SELECT r FROM t1, t2 WHERE p1 AND p2!",
+      "context_after": "DIRTas part of the DSL for generation actions, as exemplified by the header initialization bug studied in §4.1. 3.1 Definitions of Oracles in DIRT In this subsection, we go over definitions of five different oracles written as sequences of generation actions, three of which are reimplementations of existing oracles in SQLancer. We start by defining the first of the three SQLancer oracles we implemented, Pivoted Query Synthesis (PQS) [ 23], as a universally quantified proposition in Fig. 1. PQS states that given a set of tables in the database, SELECT ing for a row constructed from the contents",
+      "section": "3 Specifying Correctness Oracles",
+      "page": 3,
+      "char_offset": 12809,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "1 Definitions of Oracles in DIRT In this subsection, we go over definitions of five different oracles written as sequences of generation actions, three of which are reimplementations of existing oracles in SQLancer.",
+      "context_before": "=⇒𝑟∈𝑆𝐸𝐿𝐸𝐶𝑇∗𝐹𝑅𝑂𝑀 𝑡 1.𝑐1...𝑡𝑛.𝑐𝑛𝑊𝐻𝐸𝑅𝐸𝑝 1...𝐴𝑁𝐷 𝑝 𝑛gen property db: (t1, t2)←(pick db.tables, pick db.tables) (c1, c2)←(pick t1.columns, pick t2.columns) (r1, r2)←(gen row t1, gen row t2) r := (r1.c1, r2.c2)! INSERT INTO t1 VALUES r1! INSERT INTO t2 VALUES r2 p1←gen expression (t1, r1) p2←gen expression (t2, r2)! RS := SELECT r FROM t1, t2 WHERE p1 AND p2! assert(r in RS) Figure 1: Pivoted Query Synthesis as a universally quantified property (left) and as a generation action (right). DIRTas part of the DSL for generation actions, as exemplified by the header initialization bug studied in §4.1. 3.",
+      "context_after": "We start by defining the first of the three SQLancer oracles we implemented, Pivoted Query Synthesis (PQS) [ 23], as a universally quantified proposition in Fig. 1. PQS states that given a set of tables in the database, SELECT ing for a row constructed from the contents of those tables should contain the row. Fig. 1 shows two formulations of PQS side by side, the propositional formulation with universally quantified variables that define what PQS is on the left and a GA formulation of PQS with two tables/columns as generation actions that definehow PQS is tested on the right, modeling the imple",
+      "section": "3.1 Definitions of Oracles in DIRT",
+      "page": 3,
+      "char_offset": 13054,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M20",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We start by defining the first of the three SQLancer oracles we implemented, Pivoted Query Synthesis (PQS) [ 23], as a universally quantified proposition in Fig.",
+      "context_before": "NTO t1 VALUES r1! INSERT INTO t2 VALUES r2 p1←gen expression (t1, r1) p2←gen expression (t2, r2)! RS := SELECT r FROM t1, t2 WHERE p1 AND p2! assert(r in RS) Figure 1: Pivoted Query Synthesis as a universally quantified property (left) and as a generation action (right). DIRTas part of the DSL for generation actions, as exemplified by the header initialization bug studied in §4.1. 3.1 Definitions of Oracles in DIRT In this subsection, we go over definitions of five different oracles written as sequences of generation actions, three of which are reimplementations of existing oracles in SQLancer.",
+      "context_after": "1. PQS states that given a set of tables in the database, SELECT ing for a row constructed from the contents of those tables should contain the row. Fig. 1 shows two formulations of PQS side by side, the propositional formulation with universally quantified variables that define what PQS is on the left and a GA formulation of PQS with two tables/columns as generation actions that definehow PQS is tested on the right, modeling the implementation of PQS that tests Turso today. The propositional formulation quantifies over a database and a sequence of tables, columns, and expressions, under the co",
+      "section": "3.1 Definitions of Oracles in DIRT",
+      "page": 3,
+      "char_offset": 13268,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M21",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS states that given a set of tables in the database, SELECT ing for a row constructed from the contents of those tables should contain the row.",
+      "context_before": "1: Pivoted Query Synthesis as a universally quantified property (left) and as a generation action (right). DIRTas part of the DSL for generation actions, as exemplified by the header initialization bug studied in §4.1. 3.1 Definitions of Oracles in DIRT In this subsection, we go over definitions of five different oracles written as sequences of generation actions, three of which are reimplementations of existing oracles in SQLancer. We start by defining the first of the three SQLancer oracles we implemented, Pivoted Query Synthesis (PQS) [ 23], as a universally quantified proposition in Fig. 1.",
+      "context_after": "Fig. 1 shows two formulations of PQS side by side, the propositional formulation with universally quantified variables that define what PQS is on the left and a GA formulation of PQS with two tables/columns as generation actions that definehow PQS is tested on the right, modeling the implementation of PQS that tests Turso today. The propositional formulation quantifies over a database and a sequence of tables, columns, and expressions, under the constraint that the expressions will return 𝑇𝑅𝑈𝐸 when tested against a row 𝑟. The corresponding GA closely follows along, but ensures these constraints",
+      "section": "3.1 Definitions of Oracles in DIRT",
+      "page": 3,
+      "char_offset": 13433,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M22",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "1 shows two formulations of PQS side by side, the propositional formulation with universally quantified variables that define what PQS is on the left and a GA formulation of PQS with two tables/columns as generation actions that definehow PQS is tested on the right, modeling the implementation of PQS that tests Turso today.",
+      "context_before": "s, as exemplified by the header initialization bug studied in §4.1. 3.1 Definitions of Oracles in DIRT In this subsection, we go over definitions of five different oracles written as sequences of generation actions, three of which are reimplementations of existing oracles in SQLancer. We start by defining the first of the three SQLancer oracles we implemented, Pivoted Query Synthesis (PQS) [ 23], as a universally quantified proposition in Fig. 1. PQS states that given a set of tables in the database, SELECT ing for a row constructed from the contents of those tables should contain the row. Fig.",
+      "context_after": "The propositional formulation quantifies over a database and a sequence of tables, columns, and expressions, under the constraint that the expressions will return 𝑇𝑅𝑈𝐸 when tested against a row 𝑟. The corresponding GA closely follows along, but ensures these constraints are satisfied by construction. We start by picking tables t1, t2 from the state db.tables, followed by picking columns from the respective table. gen row t and gen expression (t, r) are dependent generation primitives, where the former generates a row based on the table t, and the latter generates an expression that will evalu",
+      "section": "3.1 Definitions of Oracles in DIRT",
+      "page": 3,
+      "char_offset": 13584,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M23",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "2, we provide definitions of SQLancer oracles as GAs in addition to the other oracles we implemented for DIRT.",
+      "context_before": "s over a database and a sequence of tables, columns, and expressions, under the constraint that the expressions will return 𝑇𝑅𝑈𝐸 when tested against a row 𝑟. The corresponding GA closely follows along, but ensures these constraints are satisfied by construction. We start by picking tables t1, t2 from the state db.tables, followed by picking columns from the respective table. gen row t and gen expression (t, r) are dependent generation primitives, where the former generates a row based on the table t, and the latter generates an expression that will evaluate to TRUEfor rowrof the tablet. In Fig.",
+      "context_after": "Fig. 2a demonstrates how to write Non-Optimizing Reference Engine Construction Generation (NoREC) [ 20] as a GA. Fig. 2b presents the GA for WHERE Extended case of Ternary Logic Partitioning (TLP) [ 21] oracle from SQLancer. We can express other properties that are not present in SQLancer, including those fundamental to key-value stores such asDeleted rows should not be in the tablepresented in Fig. 2c. Properties, depending on how they are constructed, mightsometimes be invalid. In Fig. 2d, applying WHERE or UNION ALL operation for composing the results of multiple WHERE queries require both s",
+      "section": "3.1 Definitions of Oracles in DIRT",
+      "page": 3,
+      "char_offset": 14548,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M24",
+      "found_by": "technique",
+      "surface": "Non-Optimizing Reference Engine Construction",
+      "technique": "norec",
+      "sentence": "2a demonstrates how to write Non-Optimizing Reference Engine Construction Generation (NoREC) [ 20] as a GA.",
+      "context_before": "l return 𝑇𝑅𝑈𝐸 when tested against a row 𝑟. The corresponding GA closely follows along, but ensures these constraints are satisfied by construction. We start by picking tables t1, t2 from the state db.tables, followed by picking columns from the respective table. gen row t and gen expression (t, r) are dependent generation primitives, where the former generates a row based on the table t, and the latter generates an expression that will evaluate to TRUEfor rowrof the tablet. In Fig. 2, we provide definitions of SQLancer oracles as GAs in addition to the other oracles we implemented for DIRT. Fig.",
+      "context_after": "Fig. 2b presents the GA for WHERE Extended case of Ternary Logic Partitioning (TLP) [ 21] oracle from SQLancer. We can express other properties that are not present in SQLancer, including those fundamental to key-value stores such asDeleted rows should not be in the tablepresented in Fig. 2c. Properties, depending on how they are constructed, mightsometimes be invalid. In Fig. 2d, applying WHERE or UNION ALL operation for composing the results of multiple WHERE queries require both sides of the WHEREs to have the same number of columns. 3.2 Query Generation We designed our query generation algor",
+      "section": "3.1 Definitions of Oracles in DIRT",
+      "page": 3,
+      "char_offset": 14663,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M25",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "2b presents the GA for WHERE Extended case of Ternary Logic Partitioning (TLP) [ 21] oracle from SQLancer.",
+      "context_before": "nts are satisfied by construction. We start by picking tables t1, t2 from the state db.tables, followed by picking columns from the respective table. gen row t and gen expression (t, r) are dependent generation primitives, where the former generates a row based on the table t, and the latter generates an expression that will evaluate to TRUEfor rowrof the tablet. In Fig. 2, we provide definitions of SQLancer oracles as GAs in addition to the other oracles we implemented for DIRT. Fig. 2a demonstrates how to write Non-Optimizing Reference Engine Construction Generation (NoREC) [ 20] as a GA. Fig.",
+      "context_after": "We can express other properties that are not present in SQLancer, including those fundamental to key-value stores such asDeleted rows should not be in the tablepresented in Fig. 2c. Properties, depending on how they are constructed, mightsometimes be invalid. In Fig. 2d, applying WHERE or UNION ALL operation for composing the results of multiple WHERE queries require both sides of the WHEREs to have the same number of columns. 3.2 Query Generation We designed our query generation algorithm with three goals in mind. First, we wanted each automatically generated database interaction to respect da",
+      "section": "3.1 Definitions of Oracles in DIRT",
+      "page": 3,
+      "char_offset": 14776,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M26",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We can express other properties that are not present in SQLancer, including those fundamental to key-value stores such asDeleted rows should not be in the tablepresented in Fig.",
+      "context_before": "picking columns from the respective table. gen row t and gen expression (t, r) are dependent generation primitives, where the former generates a row based on the table t, and the latter generates an expression that will evaluate to TRUEfor rowrof the tablet. In Fig. 2, we provide definitions of SQLancer oracles as GAs in addition to the other oracles we implemented for DIRT. Fig. 2a demonstrates how to write Non-Optimizing Reference Engine Construction Generation (NoREC) [ 20] as a GA. Fig. 2b presents the GA for WHERE Extended case of Ternary Logic Partitioning (TLP) [ 21] oracle from SQLancer.",
+      "context_after": "2c. Properties, depending on how they are constructed, mightsometimes be invalid. In Fig. 2d, applying WHERE or UNION ALL operation for composing the results of multiple WHERE queries require both sides of the WHEREs to have the same number of columns. 3.2 Query Generation We designed our query generation algorithm with three goals in mind. First, we wanted each automatically generated database interaction to respect database state (e.g. we should not select from a table that does not exist unless a user-written generation action explicitly calls for it). Second, we did not want to rely on quer",
+      "section": "3.1 Definitions of Oracles in DIRT",
+      "page": 3,
+      "char_offset": 14882,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M27",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "count(1)) (a) Non-Optimizing Reference Engine Construction (NoREC)gen property db: t←pick db.",
+      "context_before": "(𝑠𝑡𝑎𝑡𝑒)⊲Update the shadow state 𝑖𝑛𝑡𝑒𝑟𝑎𝑐𝑡𝑖𝑜𝑛𝑠.𝑝𝑢𝑠ℎ(𝑖) 𝑁←𝑁−1 end while Database developers can specify three parameters, 𝑅,𝑊, and𝐶, describing the proportion of read, write, and create instructions that should appear in the generated interactions. The algorithm iteratively generates one or more interactions compatible with the Conference’17, July 2017, Washington, DC, USA Alperen Keles, Ethan Chou, Harrison Goldstein, and Leonidas Lampropoulos gen property db: t←pick db.tables r←pick t.rows p←gen expression (t, r)! RS1 = SELECT * FROM t WHERE p! RS2 = SELECT p FROM t! assert(RS1.length() == RS2.",
+      "context_after": "tables p←gen expression (t) p'←gen expression! RS1 = SELECT * FROM t WHERE p! RS2 = SELECT * FROM t WHERE p AND p'UNION ALL SELECT * FROM t WHERE p AND (NOT p') UNION ALL SELECT * FROM t WHERE p AND (p'is NULL)! assert(RS1.length() == RS2.count(1)) (b) Ternary Logic Partitioning (TLP) WHERE Extended gen property db: t←pick db.tables r←pick t.rows p←gen expression (t, r)! DELETE * FROM t WHERE P! RS = SELECT * FROM t WHERE p! assert(r not in RS) (c) \"Deletes rows should not be in the table\"gen property db: s1←gen SELECT db.tables s2←gen SELECT db.tables! RS3 = s1 UNION ALL s2! assume(s1.first()",
+      "section": "3.2 Query Generation",
+      "page": 4,
+      "char_offset": 17207,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M28",
+      "found_by": "technique",
+      "surface": "Ternary Logic Partitioning",
+      "technique": "tlp",
+      "sentence": "count(1)) (b) Ternary Logic Partitioning (TLP) WHERE Extended gen property db: t←pick db.",
+      "context_before": "rence’17, July 2017, Washington, DC, USA Alperen Keles, Ethan Chou, Harrison Goldstein, and Leonidas Lampropoulos gen property db: t←pick db.tables r←pick t.rows p←gen expression (t, r)! RS1 = SELECT * FROM t WHERE p! RS2 = SELECT p FROM t! assert(RS1.length() == RS2.count(1)) (a) Non-Optimizing Reference Engine Construction (NoREC)gen property db: t←pick db.tables p←gen expression (t) p'←gen expression! RS1 = SELECT * FROM t WHERE p! RS2 = SELECT * FROM t WHERE p AND p'UNION ALL SELECT * FROM t WHERE p AND (NOT p') UNION ALL SELECT * FROM t WHERE p AND (p'is NULL)! assert(RS1.length() == RS2.",
+      "context_after": "tables r←pick t.rows p←gen expression (t, r)! DELETE * FROM t WHERE P! RS = SELECT * FROM t WHERE p! assert(r not in RS) (c) \"Deletes rows should not be in the table\"gen property db: s1←gen SELECT db.tables s2←gen SELECT db.tables! RS3 = s1 UNION ALL s2! assume(s1.first().length() == s1.first().length())! assert(RS1.length() + RS2.length() == RS3.length()) (d) \"UNION ALL preserves cardinality\" Figure 2: Definitions of Oracles as Generation Actions current shadow state, updates the state to account for the new interactions, and repeats until enough interactions have been generated. SQLancer doe",
+      "section": "3.2 Query Generation",
+      "page": 4,
+      "char_offset": 17539,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M29",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer does not keep a separate state [ 23], but instead uses the database APIs for querying the current state, such as the table names in sqlite_master, due to the implementation effort for the shadow model.",
+      "context_before": "b: t←pick db.tables r←pick t.rows p←gen expression (t, r)! DELETE * FROM t WHERE P! RS = SELECT * FROM t WHERE p! assert(r not in RS) (c) \"Deletes rows should not be in the table\"gen property db: s1←gen SELECT db.tables s2←gen SELECT db.tables! RS3 = s1 UNION ALL s2! assume(s1.first().length() == s1.first().length())! assert(RS1.length() + RS2.length() == RS3.length()) (d) \"UNION ALL preserves cardinality\" Figure 2: Definitions of Oracles as Generation Actions current shadow state, updates the state to account for the new interactions, and repeats until enough interactions have been generated.",
+      "context_after": "We opted for the shadow state because it allows for complex reasoning over the database state for constructing arbitrary queries and properties, and because it gives us a canonical property over the database state: the shadow state is identical to the database at any given moment. 4 Evaluation In order to evaluate the effectiveness of DIRT, we explored the answers to the following questions: •RQ1: DoesDIRTfind bugs in Turso? •RQ2: How does DIRTcompare to the state-of-the-art? 4.1 RQ1: DoesDIRTfind bugs in Turso? We have collected over 23 confirmed and fixed unique bugs found by DIRTin Turso over",
+      "section": "3.2 Query Generation",
+      "page": 4,
+      "char_offset": 18215,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M30",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "The bug was discovered as a result of our the PQS implementation in Turso augmented with validity preserving queries between the INSERT and SELECT statements.",
+      "context_before": "ite uses [ 10]). The bytecode compilation is error-prone, as small changes to the compiled SQL expression can greatly affect the generated bytecode. The bug stemmed from an error in the bytecode compilation of DELETE, specifically in the case of constant expressions in the WHERE terms. Constant expressions can be compiled to run before the main execution loop of the query, but instead the compilation step just skipped them. This caused DELETE with a constant that evaluates to FALSEto be incorrectly executed. This bug was automatically reported by DIRTrunning in Turso CI and fixed within the week.",
+      "context_after": "The random tester added a naive DELETE operation that should not have affected the results of the SELECT, keeping the containment property intact, but the assertion that the inserted row should be in the result of the SELECTfailed, triggering the bug report. Case 2: Interior node replacement caused self-reference when depth exceeded 2.The second bug manifested in the balancing logic of the B-tree implementation of Turso, but only because the generated interactions were paced to match the state of the Turso development. When Turso added database indexes as an experimental feature, we extended g",
+      "section": "4.1 RQ1: DoesDIRTfind bugs in Turso?",
+      "page": 4,
+      "char_offset": 20721,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M31",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "This resulted in triggering a crash failure in the core B-tree data structure that could result in data DIRT: Database-Integrated Random Testing Conference’17, July 2017, Washington, DC, USA Bug Id Description Oracle Module 466 TRUE not accepted as catch-all predicate No Error Query Compiler 548 Infinite loop when checkpointing on Linux No Infinite Loop I/O Subsystem 629 Query Optimizer broke TRUE in predicates No Panic Query Optimizer 662 SELECT with nested Boolean expressions sometimes gave no results PQS Query Optimizer 681 Storage Engine (B-tree) insert caused subtract with overflow No Panic Storage Engine (B-tree) 682 Faulty recursive binop logic caused SELECT to miss rows PQS Query Compiler 924 Storage Engine (B-tree) balancing caused page corruption when deleting No Panic Storage Engine (B-tree) 1040 LIKE operator did not work for non-text values No Panic Query Executor 1203 Storage Engine (B-tree) balancing error No Panic Storage Engine (B-tree) 1629 Storage Engine (B-tree) cell updates caused infinite loop in UPDATE No Infinite Loop Storage Engine (B-tree) 1734 DELETE did not emit conditional jumps if WHERE term was constant Delete-Select Query Compiler 1815 Storage Engine (B-tree) failed to balance when insert caused cell overflow No Panic Storage Engine (B-tree) 1818 Always read DB header and schema from file instead of memory page No Panic Page Manager 1975 Storage Engine (B-tree) expected table or index leaf page No Panic Storage Engine (B-tree) 1991 Use after free when validating B-tree balance No Panic Storage Engine (B-tree) 2024 SELECT .",
+      "context_before": "failed, triggering the bug report. Case 2: Interior node replacement caused self-reference when depth exceeded 2.The second bug manifested in the balancing logic of the B-tree implementation of Turso, but only because the generated interactions were paced to match the state of the Turso development. When Turso added database indexes as an experimental feature, we extended generation to support statements such as SELECT DISTINCT, CREATE INDEX, and compound operators such as UNION or UNION ALL to the space of generated inputs, and started generating larger tables to take advantage of the indexes.",
+      "context_after": ".. LIMIT resulted in different rows from SQLite Differential Query Executor 2026 UPDATE then SELECT resulted in different rows from SQLite Differential Query Executor 2047 Overflow cell with divider cell was not found due to faulty validation No Panic Storage Engine (B-tree) 2074 SELECT hung with long text, CacheFull error No Panic Page Manager 2075 Large table with 128 columns handled incorrectly No Panic Page Manager 2088 Incorrect record header size calculation No Panic Page Manager 2106 Interior node replacement caused self-reference when depth exceeded 2 No Panic Storage Engine (B-tree) 2",
+      "section": "4.1 RQ1: DoesDIRTfind bugs in Turso?",
+      "page": 4,
+      "char_offset": 21704,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M32",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "2 RQ2: How does DIRTcompare to SQLancer?",
+      "context_before": "is the result of such a situation, where metadata like database size and schema is out-of-date at the time of reading, leading to incorrect operations.DIRTfound this bug through an assertion failure in the freelist structure in the database header. As a result, the developer reporting the original bug has written the first example of aregression property, added a new fault primitive ReopenDatabase that closes down existing connections with the database and reopens them later, enabling the detection of any future bugs that might be a result of an error in the persistent state logic of Turso. 4.",
+      "context_after": "We answer RQ2 by comparing the rate of true positives and false positives reports from three different random testing configurations:DIRT, the default SQLite3 integration of SQLancer with pragmas disabled (denoted SQLancer-SQLite), and the fork of a work-in-progress Turso integration of SQLancer by a Turso contributor (denoted SQLancer-Turso). Pragmas had to be removed for SQLancer-SQLite because most of them were unimplemented in Turso, causing all reported bugs to be false positives in our testing. We define an actionable bug report from the tools as a sequence of SQL statements thatwould h",
+      "section": "4.2 RQ2: How does DIRTcompare to SQLancer?",
+      "page": 5,
+      "char_offset": 25214,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M33",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We answer RQ2 by comparing the rate of true positives and false positives reports from three different random testing configurations:DIRT, the default SQLite3 integration of SQLancer with pragmas disabled (denoted SQLancer-SQLite), and the fork of a work-in-progress Turso integration of SQLancer by a Turso contributor (denoted SQLancer-Turso).",
+      "context_before": "e metadata like database size and schema is out-of-date at the time of reading, leading to incorrect operations.DIRTfound this bug through an assertion failure in the freelist structure in the database header. As a result, the developer reporting the original bug has written the first example of aregression property, added a new fault primitive ReopenDatabase that closes down existing connections with the database and reopens them later, enabling the detection of any future bugs that might be a result of an error in the persistent state logic of Turso. 4.2 RQ2: How does DIRTcompare to SQLancer?",
+      "context_after": "Pragmas had to be removed for SQLancer-SQLite because most of them were unimplemented in Turso, causing all reported bugs to be false positives in our testing. We define an actionable bug report from the tools as a sequence of SQL statements thatwould have beensubmitted and confirmed as abug at the time of its original report. We used the 23 bug reports we analyzed as the ground truth, finding commits which are known to have bugs. The bugs span over 20 Turso commits, 6 of which do not provide Java bindings necessary for connecting with SQLancer. We ran all three tools on the remaining 14 comm",
+      "section": "4.2 RQ2: How does DIRTcompare to SQLancer?",
+      "page": 5,
+      "char_offset": 25253,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M34",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Pragmas had to be removed for SQLancer-SQLite because most of them were unimplemented in Turso, causing all reported bugs to be false positives in our testing.",
+      "context_before": "ReopenDatabase that closes down existing connections with the database and reopens them later, enabling the detection of any future bugs that might be a result of an error in the persistent state logic of Turso. 4.2 RQ2: How does DIRTcompare to SQLancer? We answer RQ2 by comparing the rate of true positives and false positives reports from three different random testing configurations:DIRT, the default SQLite3 integration of SQLancer with pragmas disabled (denoted SQLancer-SQLite), and the fork of a work-in-progress Turso integration of SQLancer by a Turso contributor (denoted SQLancer-Turso).",
+      "context_after": "We define an actionable bug report from the tools as a sequence of SQL statements thatwould have beensubmitted and confirmed as abug at the time of its original report. We used the 23 bug reports we analyzed as the ground truth, finding commits which are known to have bugs. The bugs span over 20 Turso commits, 6 of which do not provide Java bindings necessary for connecting with SQLancer. We ran all three tools on the remaining 14 commits in the commit history. We analyzed the results of each run and separated them into three bins:True Positivesthat would have been submitted and confirmed as",
+      "section": "4.2 RQ2: How does DIRTcompare to SQLancer?",
+      "page": 5,
+      "char_offset": 25599,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M35",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The bugs span over 20 Turso commits, 6 of which do not provide Java bindings necessary for connecting with SQLancer.",
+      "context_before": "er with pragmas disabled (denoted SQLancer-SQLite), and the fork of a work-in-progress Turso integration of SQLancer by a Turso contributor (denoted SQLancer-Turso). Pragmas had to be removed for SQLancer-SQLite because most of them were unimplemented in Turso, causing all reported bugs to be false positives in our testing. We define an actionable bug report from the tools as a sequence of SQL statements thatwould have beensubmitted and confirmed as abug at the time of its original report. We used the 23 bug reports we analyzed as the ground truth, finding commits which are known to have bugs.",
+      "context_after": "We ran all three tools on the remaining 14 commits in the commit history. We analyzed the results of each run and separated them into three bins:True Positivesthat would have been submitted and confirmed as bugs,False Positivesthat are reported as failures by the tools but do not constitute bugs as they are unimplemented features, andNo Bugsthat did not report a failure, provided in the stacked bar chart in Fig. 3. SQLancer-SQLite achieves a true positive rate below 10% across all 14 commits. SQLancer-Turso performs better, with a 42% true positive rate, but still yields many more false posit",
+      "section": "4.2 RQ2: How does DIRTcompare to SQLancer?",
+      "page": 5,
+      "char_offset": 26034,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M36",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer-SQLite achieves a true positive rate below 10% across all 14 commits.",
+      "context_before": "the ground truth, finding commits which are known to have bugs. The bugs span over 20 Turso commits, 6 of which do not provide Java bindings necessary for connecting with SQLancer. We ran all three tools on the remaining 14 commits in the commit history. We analyzed the results of each run and separated them into three bins:True Positivesthat would have been submitted and confirmed as bugs,False Positivesthat are reported as failures by the tools but do not constitute bugs as they are unimplemented features, andNo Bugsthat did not report a failure, provided in the stacked bar chart in Fig. 3.",
+      "context_after": "SQLancer-Turso performs better, with a 42% true positive rate, but still yields many more false positives than DIRT(58% vs. under 1%).DIRTalso finds substantially more actionable bugs: 25 unique bugs, compared with six found by the two SQLancer configurations combined (§A.1). This does not mean that DIRThas better generators or oracles than SQLancer. Rather, it shows that for rapidly evolving databases with many missing features, database-integrated testing yields more actionable bugs. 5 Discussion DIRTis a paradigm for testing databases during development, even though we use DIRTthe paradigm an",
+      "section": "4.2 RQ2: How does DIRTcompare to SQLancer?",
+      "page": 5,
+      "char_offset": 26570,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M37",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer-Turso performs better, with a 42% true positive rate, but still yields many more false positives than DIRT(58% vs.",
+      "context_before": "over 20 Turso commits, 6 of which do not provide Java bindings necessary for connecting with SQLancer. We ran all three tools on the remaining 14 commits in the commit history. We analyzed the results of each run and separated them into three bins:True Positivesthat would have been submitted and confirmed as bugs,False Positivesthat are reported as failures by the tools but do not constitute bugs as they are unimplemented features, andNo Bugsthat did not report a failure, provided in the stacked bar chart in Fig. 3. SQLancer-SQLite achieves a true positive rate below 10% across all 14 commits.",
+      "context_after": "under 1%).DIRTalso finds substantially more actionable bugs: 25 unique bugs, compared with six found by the two SQLancer configurations combined (§A.1). This does not mean that DIRThas better generators or oracles than SQLancer. Rather, it shows that for rapidly evolving databases with many missing features, database-integrated testing yields more actionable bugs. 5 Discussion DIRTis a paradigm for testing databases during development, even though we use DIRTthe paradigm and DIRTfor Turso interchangeably throughout the paper. We compare the performance of DIRT for Turso against SQLancer with mini",
+      "section": "4.2 RQ2: How does DIRTcompare to SQLancer?",
+      "page": 5,
+      "char_offset": 26649,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M38",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "DIRTalso finds substantially more actionable bugs: 25 unique bugs, compared with six found by the two SQLancer configurations combined (§A.",
+      "context_before": "emaining 14 commits in the commit history. We analyzed the results of each run and separated them into three bins:True Positivesthat would have been submitted and confirmed as bugs,False Positivesthat are reported as failures by the tools but do not constitute bugs as they are unimplemented features, andNo Bugsthat did not report a failure, provided in the stacked bar chart in Fig. 3. SQLancer-SQLite achieves a true positive rate below 10% across all 14 commits. SQLancer-Turso performs better, with a 42% true positive rate, but still yields many more false positives than DIRT(58% vs. under 1%).",
+      "context_after": "1). This does not mean that DIRThas better generators or oracles than SQLancer. Rather, it shows that for rapidly evolving databases with many missing features, database-integrated testing yields more actionable bugs. 5 Discussion DIRTis a paradigm for testing databases during development, even though we use DIRTthe paradigm and DIRTfor Turso interchangeably throughout the paper. We compare the performance of DIRT for Turso against SQLancer with minimal modifications, which begets some questions worth discussing. Why not integrate SQLancer to the development process instead of developing a random",
+      "section": "4.2 RQ2: How does DIRTcompare to SQLancer?",
+      "page": 5,
+      "char_offset": 26783,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M39",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "This does not mean that DIRThas better generators or oracles than SQLancer.",
+      "context_before": "e been submitted and confirmed as bugs,False Positivesthat are reported as failures by the tools but do not constitute bugs as they are unimplemented features, andNo Bugsthat did not report a failure, provided in the stacked bar chart in Fig. 3. SQLancer-SQLite achieves a true positive rate below 10% across all 14 commits. SQLancer-Turso performs better, with a 42% true positive rate, but still yields many more false positives than DIRT(58% vs. under 1%).DIRTalso finds substantially more actionable bugs: 25 unique bugs, compared with six found by the two SQLancer configurations combined (§A.1).",
+      "context_after": "Rather, it shows that for rapidly evolving databases with many missing features, database-integrated testing yields more actionable bugs. 5 Discussion DIRTis a paradigm for testing databases during development, even though we use DIRTthe paradigm and DIRTfor Turso interchangeably throughout the paper. We compare the performance of DIRT for Turso against SQLancer with minimal modifications, which begets some questions worth discussing. Why not integrate SQLancer to the development process instead of developing a random testing framework from scratch?As we briefly discussed earlier, SQLancer is no",
+      "section": "4.2 RQ2: How does DIRTcompare to SQLancer?",
+      "page": 5,
+      "char_offset": 26925,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M40",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We compare the performance of DIRT for Turso against SQLancer with minimal modifications, which begets some questions worth discussing.",
+      "context_before": "itive rate, but still yields many more false positives than DIRT(58% vs. under 1%).DIRTalso finds substantially more actionable bugs: 25 unique bugs, compared with six found by the two SQLancer configurations combined (§A.1). This does not mean that DIRThas better generators or oracles than SQLancer. Rather, it shows that for rapidly evolving databases with many missing features, database-integrated testing yields more actionable bugs. 5 Discussion DIRTis a paradigm for testing databases during development, even though we use DIRTthe paradigm and DIRTfor Turso interchangeably throughout the paper.",
+      "context_after": "Why not integrate SQLancer to the development process instead of developing a random testing framework from scratch?As we briefly discussed earlier, SQLancer is not designed for the constant evolution of the random testing infrastructure along with the project. It is a project with its own trajectory, development, new algorithms, Conference’17, July 2017, Washington, DC, USA Alperen Keles, Ethan Chou, Harrison Goldstein, and Leonidas Lampropoulos Commit 0%10%20%30%40%50%60%70%80%90%100%% of Tests09b341c6a62313c30e45324273ae3e489606b967731e675b868ac0994262b0971e2d8dLimbo SQLancer (Modified) SQ",
+      "section": "5 Discussion",
+      "page": 5,
+      "char_offset": 27301,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M41",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Why not integrate SQLancer to the development process instead of developing a random testing framework from scratch?",
+      "context_before": "unique bugs, compared with six found by the two SQLancer configurations combined (§A.1). This does not mean that DIRThas better generators or oracles than SQLancer. Rather, it shows that for rapidly evolving databases with many missing features, database-integrated testing yields more actionable bugs. 5 Discussion DIRTis a paradigm for testing databases during development, even though we use DIRTthe paradigm and DIRTfor Turso interchangeably throughout the paper. We compare the performance of DIRT for Turso against SQLancer with minimal modifications, which begets some questions worth discussing.",
+      "context_after": "As we briefly discussed earlier, SQLancer is not designed for the constant evolution of the random testing infrastructure along with the project. It is a project with its own trajectory, development, new algorithms, Conference’17, July 2017, Washington, DC, USA Alperen Keles, Ethan Chou, Harrison Goldstein, and Leonidas Lampropoulos Commit 0%10%20%30%40%50%60%70%80%90%100%% of Tests09b341c6a62313c30e45324273ae3e489606b967731e675b868ac0994262b0971e2d8dLimbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo S",
+      "section": "5 Discussion",
+      "page": 5,
+      "char_offset": 27436,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M42",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "As we briefly discussed earlier, SQLancer is not designed for the constant evolution of the random testing infrastructure along with the project.",
+      "context_before": "has better generators or oracles than SQLancer. Rather, it shows that for rapidly evolving databases with many missing features, database-integrated testing yields more actionable bugs. 5 Discussion DIRTis a paradigm for testing databases during development, even though we use DIRTthe paradigm and DIRTfor Turso interchangeably throughout the paper. We compare the performance of DIRT for Turso against SQLancer with minimal modifications, which begets some questions worth discussing. Why not integrate SQLancer to the development process instead of developing a random testing framework from scratch?",
+      "context_after": "It is a project with its own trajectory, development, new algorithms, Conference’17, July 2017, Washington, DC, USA Alperen Keles, Ethan Chou, Harrison Goldstein, and Leonidas Lampropoulos Commit 0%10%20%30%40%50%60%70%80%90%100%% of Tests09b341c6a62313c30e45324273ae3e489606b967731e675b868ac0994262b0971e2d8dLimbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer",
+      "section": "5 Discussion",
+      "page": 5,
+      "char_offset": 27553,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M43",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "It is a project with its own trajectory, development, new algorithms, Conference’17, July 2017, Washington, DC, USA Alperen Keles, Ethan Chou, Harrison Goldstein, and Leonidas Lampropoulos Commit 0%10%20%30%40%50%60%70%80%90%100%% of Tests09b341c6a62313c30e45324273ae3e489606b967731e675b868ac0994262b0971e2d8dLimbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original)True Positive False Positive No Bugclass Figure 3: Comparison of True Positives, False Positives and No Bugs for DIRT, SQLancer-SQLite, SQLancer-Turso generators, and oracles.",
+      "context_before": "ted testing yields more actionable bugs. 5 Discussion DIRTis a paradigm for testing databases during development, even though we use DIRTthe paradigm and DIRTfor Turso interchangeably throughout the paper. We compare the performance of DIRT for Turso against SQLancer with minimal modifications, which begets some questions worth discussing. Why not integrate SQLancer to the development process instead of developing a random testing framework from scratch?As we briefly discussed earlier, SQLancer is not designed for the constant evolution of the random testing infrastructure along with the project.",
+      "context_after": "DIRTaims to empower the database developers themselves by giving them a mechanism to test the database, instead of giving them bugs to solve. There are additional practical barriers; Java bindings for Turso are not complete at the moment, so we had to fix bugs in the SQLancer-Turso integration implemented by one of the Turso developers that relied on incomplete features that silently failed, panics in Turso caused SQLancer to terminate, so it was not possible to minimize the counterexamples with SQLancer reducers without further changes. Given that SQLancer supports expected errors for reducin",
+      "section": "5 Discussion",
+      "page": 5,
+      "char_offset": 27698,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M44",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "There are additional practical barriers; Java bindings for Turso are not complete at the moment, so we had to fix bugs in the SQLancer-Turso integration implemented by one of the Turso developers that relied on incomplete features that silently failed, panics in Turso caused SQLancer to terminate, so it was not possible to minimize the counterexamples with SQLancer reducers without further changes.",
+      "context_before": "Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original) Limbo SQLancer (Modified) SQLancer (Original)True Positive False Positive No Bugclass Figure 3: Comparison of True Positives, False Positives and No Bugs for DIRT, SQLancer-SQLite, SQLancer-Turso generators, and oracles.DIRTaims to empower the database developers themselves by giving them a mechanism to test the database, instead of giving them bugs to solve.",
+      "context_after": "Given that SQLancer supports expected errors for reducing false positives, could we use expected errors for known bugs and false positives we found to discover more bugs?We could use expected errors, and we would have discovered more bugs in the process. In terms of any static evaluation target, tweaking SQLancer by progressively finding more bugs as found ones are marked as expected, it is always possible to make SQLancer find more bugs. The point, however, is that constant modification is not the expected and supported mode of operation when using SQLancer. Although it is phenomenal for off",
+      "section": "5 Discussion",
+      "page": 6,
+      "char_offset": 28966,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M45",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Given that SQLancer supports expected errors for reducing false positives, could we use expected errors for known bugs and false positives we found to discover more bugs?",
+      "context_before": "SQLancer-SQLite, SQLancer-Turso generators, and oracles.DIRTaims to empower the database developers themselves by giving them a mechanism to test the database, instead of giving them bugs to solve. There are additional practical barriers; Java bindings for Turso are not complete at the moment, so we had to fix bugs in the SQLancer-Turso integration implemented by one of the Turso developers that relied on incomplete features that silently failed, panics in Turso caused SQLancer to terminate, so it was not possible to minimize the counterexamples with SQLancer reducers without further changes.",
+      "context_after": "We could use expected errors, and we would have discovered more bugs in the process. In terms of any static evaluation target, tweaking SQLancer by progressively finding more bugs as found ones are marked as expected, it is always possible to make SQLancer find more bugs. The point, however, is that constant modification is not the expected and supported mode of operation when using SQLancer. Although it is phenomenal for off-the-shelf usage, its capabilities unfortunately act as a disadvantage against its use in actively developed projects with many missing features. We have shown that a proj",
+      "section": "5 Discussion",
+      "page": 6,
+      "char_offset": 29368,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M46",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In terms of any static evaluation target, tweaking SQLancer by progressively finding more bugs as found ones are marked as expected, it is always possible to make SQLancer find more bugs.",
+      "context_before": "or Turso are not complete at the moment, so we had to fix bugs in the SQLancer-Turso integration implemented by one of the Turso developers that relied on incomplete features that silently failed, panics in Turso caused SQLancer to terminate, so it was not possible to minimize the counterexamples with SQLancer reducers without further changes. Given that SQLancer supports expected errors for reducing false positives, could we use expected errors for known bugs and false positives we found to discover more bugs?We could use expected errors, and we would have discovered more bugs in the process.",
+      "context_after": "The point, however, is that constant modification is not the expected and supported mode of operation when using SQLancer. Although it is phenomenal for off-the-shelf usage, its capabilities unfortunately act as a disadvantage against its use in actively developed projects with many missing features. We have shown that a project with a much smaller scope can adopt the ideas of input generation and oracles in SQLancer as well as other related work on database testing such as Apollo [ 13] or Thanos [ 8] and demonstrated that database developers can turn their domain expertise into writing prope",
+      "section": "5 Discussion",
+      "page": 6,
+      "char_offset": 29623,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M47",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The point, however, is that constant modification is not the expected and supported mode of operation when using SQLancer.",
+      "context_before": "failed, panics in Turso caused SQLancer to terminate, so it was not possible to minimize the counterexamples with SQLancer reducers without further changes. Given that SQLancer supports expected errors for reducing false positives, could we use expected errors for known bugs and false positives we found to discover more bugs?We could use expected errors, and we would have discovered more bugs in the process. In terms of any static evaluation target, tweaking SQLancer by progressively finding more bugs as found ones are marked as expected, it is always possible to make SQLancer find more bugs.",
+      "context_after": "Although it is phenomenal for off-the-shelf usage, its capabilities unfortunately act as a disadvantage against its use in actively developed projects with many missing features. We have shown that a project with a much smaller scope can adopt the ideas of input generation and oracles in SQLancer as well as other related work on database testing such as Apollo [ 13] or Thanos [ 8] and demonstrated that database developers can turn their domain expertise into writing properties as presented in the third case study in §4.1. We also observed that many crash failures are the result of inline asse",
+      "section": "5 Discussion",
+      "page": 6,
+      "char_offset": 29811,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M48",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We have shown that a project with a much smaller scope can adopt the ideas of input generation and oracles in SQLancer as well as other related work on database testing such as Apollo [ 13] or Thanos [ 8] and demonstrated that database developers can turn their domain expertise into writing properties as presented in the third case study in §4.",
+      "context_before": "und to discover more bugs?We could use expected errors, and we would have discovered more bugs in the process. In terms of any static evaluation target, tweaking SQLancer by progressively finding more bugs as found ones are marked as expected, it is always possible to make SQLancer find more bugs. The point, however, is that constant modification is not the expected and supported mode of operation when using SQLancer. Although it is phenomenal for off-the-shelf usage, its capabilities unfortunately act as a disadvantage against its use in actively developed projects with many missing features.",
+      "context_after": "1. We also observed that many crash failures are the result of inline assertions in Turso. These crashes imply logic bugs as they contradict invariants specified by the developers, blurring the distinction between crash failures and logic bugs in the literature. Such assertions do not replace SQLancer oracles or Turso properties because they do not have the ability to follow values through execution in a holistic way as properties do, so they can only reason about local invariants. Role in Turso.As a last point of discussion, we would like to clarify our role in the implementation of DIRTin Tur",
+      "section": "5 Discussion",
+      "page": 6,
+      "char_offset": 30113,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M49",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Such assertions do not replace SQLancer oracles or Turso properties because they do not have the ability to follow values through execution in a holistic way as properties do, so they can only reason about local invariants.",
+      "context_before": "shown that a project with a much smaller scope can adopt the ideas of input generation and oracles in SQLancer as well as other related work on database testing such as Apollo [ 13] or Thanos [ 8] and demonstrated that database developers can turn their domain expertise into writing properties as presented in the third case study in §4.1. We also observed that many crash failures are the result of inline assertions in Turso. These crashes imply logic bugs as they contradict invariants specified by the developers, blurring the distinction between crash failures and logic bugs in the literature.",
+      "context_after": "Role in Turso.As a last point of discussion, we would like to clarify our role in the implementation of DIRTin Turso, in order tofully credit the open source contributors for their work. At the time we started working on Turso, it had a small, unstructured random testing infrastructure that overwhelmingly focused on being able to support Deterministic Simulation Testing [ 28]. I/O was implemented in a way that could be easily simulated, which allowed for FAULT s to be integrated in the generated interactions. We have taken a role as an external open source contributor to the project, gradually",
+      "section": "5 Discussion",
+      "page": 6,
+      "char_offset": 30722,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M50",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The SQLancer-Turso integration was almost entirely developed by one contributor, which we have used in our evaluations with small changes to their code.",
+      "context_before": "e as an external open source contributor to the project, gradually proposing improvements to random testing infrastructure such as the Generation Actions DSL, most of the existing properties, stateful random generation, shrinking, additional oracles such as differential testing against SQLite and determinism checking, and have implemented such proposals. The infrastructure has grown outside of our control at times, producing regressions through the development, along with many improvements by the maintainers and contributors to the project that contributed to the list of bugs found in Table 1.",
+      "context_after": "Related work on adaptive DBMS testing.Although we compared DIRTmainly against SQLancer as the basis of our oracles, other systems such as SQLRight [ 17], Griffin [ 7], and SQLancer++ [ 27] also adapt testing to DBMS behavior. However, these systems primarily approach adaptation from the perspective of an external testing framework, with evaluations centered on broad effectiveness across multiple databases and minimal manual intervention. In contrast,DIRTstudies adaptation as a database-integrated process: the testing infrastructure evolves together with a single DBMS under development, and de",
+      "section": "5 Discussion",
+      "page": 6,
+      "char_offset": 32080,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M51",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Although we compared DIRTmainly against SQLancer as the basis of our oracles, other systems such as SQLRight [ 17], Griffin [ 7], and SQLancer++ [ 27] also adapt testing to DBMS behavior.",
+      "context_before": "stateful random generation, shrinking, additional oracles such as differential testing against SQLite and determinism checking, and have implemented such proposals. The infrastructure has grown outside of our control at times, producing regressions through the development, along with many improvements by the maintainers and contributors to the project that contributed to the list of bugs found in Table 1. The SQLancer-Turso integration was almost entirely developed by one contributor, which we have used in our evaluations with small changes to their code. Related work on adaptive DBMS testing.",
+      "context_after": "However, these systems primarily approach adaptation from the perspective of an external testing framework, with evaluations centered on broad effectiveness across multiple databases and minimal manual intervention. In contrast,DIRTstudies adaptation as a database-integrated process: the testing infrastructure evolves together with a single DBMS under development, and developers directly shape generators, properties, and fault models as the implementation changes. 6 Conclusion and Future Work In this paper, we introduced DIRT, a new paradigm and concrete implementation for testing databases du",
+      "section": "5 Discussion",
+      "page": 6,
+      "char_offset": 32272,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M52",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "By tightly integrating the testing infrastructure with the DBMS itself,DIRT avoids many of the limitations that off-the-shelf testing frameworks DIRT: Database-Integrated Random Testing Conference’17, July 2017, Washington, DC, USA like SQLancer face when applied to rapidly evolving systems with incomplete feature sets.",
+      "context_before": "ystems primarily approach adaptation from the perspective of an external testing framework, with evaluations centered on broad effectiveness across multiple databases and minimal manual intervention. In contrast,DIRTstudies adaptation as a database-integrated process: the testing infrastructure evolves together with a single DBMS under development, and developers directly shape generators, properties, and fault models as the implementation changes. 6 Conclusion and Future Work In this paper, we introduced DIRT, a new paradigm and concrete implementation for testing databases during development.",
+      "context_after": "Our framework provides developers with tools to express custom correctness properties via generation actions and ensures state-aware query generation. We implemented DIRTfor Turso and found 23 confirmed bugs with minimal false positives. In the same setting, SQLancer-based baselines produced substantially more false positives and fewer actionable reports. Our experience shows that when databases are still under heavy development, flexible, integrated testing approaches that evolve alongside the system are significantly more productive and developer-friendly than external, comprehensive tools.",
+      "section": "6 Conclusion and Future Work",
+      "page": 6,
+      "char_offset": 33076,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M53",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In the same setting, SQLancer-based baselines produced substantially more false positives and fewer actionable reports.",
+      "context_before": "or testing databases during development. By tightly integrating the testing infrastructure with the DBMS itself,DIRT avoids many of the limitations that off-the-shelf testing frameworks DIRT: Database-Integrated Random Testing Conference’17, July 2017, Washington, DC, USA like SQLancer face when applied to rapidly evolving systems with incomplete feature sets. Our framework provides developers with tools to express custom correctness properties via generation actions and ensures state-aware query generation. We implemented DIRTfor Turso and found 23 confirmed bugs with minimal false positives.",
+      "context_after": "Our experience shows that when databases are still under heavy development, flexible, integrated testing approaches that evolve alongside the system are significantly more productive and developer-friendly than external, comprehensive tools. Moreover, our approach fosters collaboration between testing infrastructure and DBMS development by giving developers intuitive ways to encode domain-specific knowledge as properties. DIRTbridges the gap between random testing and practical debugging by empowering developers to guide, understand, and act on test results. We believe this paradigm has broad",
+      "section": "6 Conclusion and Future Work",
+      "page": 7,
+      "char_offset": 33636,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M54",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "1 Bugs Found by SQLancer •(UPDATE t SET (c0, c0)=(0, 0) ): This expression results in a \"Column specified more than once\" error that has not been fixed at the time of our submission.",
+      "context_before": "lve alongside the system are significantly more productive and developer-friendly than external, comprehensive tools. Moreover, our approach fosters collaboration between testing infrastructure and DBMS development by giving developers intuitive ways to encode domain-specific knowledge as properties. DIRTbridges the gap between random testing and practical debugging by empowering developers to guide, understand, and act on test results. We believe this paradigm has broad applicability beyond Turso and offers a promising path forward for testing other evolving and complex systems. A Appendix A.",
+      "context_after": "•(SELECT (0x0) ): There was a parsing error for hexadecimals that resulted in an \"invalid float literal\" error that has since been fixed before our experiments with SQLancer. •(SELECT * FROM t WHERE c0 GLOB c0 ): There was a logic bug in the GLOB that panicked when the values passed were not TEXT. Executing this statement after inserting a NULL triggered the bug, which was fixed soon after we reported it. •(INSERT INTO t VALUES (\"a\") ): Using double quotes for string literals is discouraged, and SQLite3 even provides a runtime flag for disabling it. We reported this bug as Turso panicked for",
+      "section": "6 Conclusion and Future Work",
+      "page": 7,
+      "char_offset": 34481,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M55",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "•(SELECT (0x0) ): There was a parsing error for hexadecimals that resulted in an \"invalid float literal\" error that has since been fixed before our experiments with SQLancer.",
+      "context_before": "rastructure and DBMS development by giving developers intuitive ways to encode domain-specific knowledge as properties. DIRTbridges the gap between random testing and practical debugging by empowering developers to guide, understand, and act on test results. We believe this paradigm has broad applicability beyond Turso and offers a promising path forward for testing other evolving and complex systems. A Appendix A.1 Bugs Found by SQLancer •(UPDATE t SET (c0, c0)=(0, 0) ): This expression results in a \"Column specified more than once\" error that has not been fixed at the time of our submission.",
+      "context_after": "•(SELECT * FROM t WHERE c0 GLOB c0 ): There was a logic bug in the GLOB that panicked when the values passed were not TEXT. Executing this statement after inserting a NULL triggered the bug, which was fixed soon after we reported it. •(INSERT INTO t VALUES (\"a\") ): Using double quotes for string literals is discouraged, and SQLite3 even provides a runtime flag for disabling it. We reported this bug as Turso panicked for the provided statement. •(INSERT INTO t VALUES ((0 BETWEEN 0 AND 0)), (0) ): Constant BETWEEN expressions were not rewritten when used within INSERT, but the query compiler ex",
+      "section": "6 Conclusion and Future Work",
+      "page": 7,
+      "char_offset": 34663,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M56",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer discovered the bug when the initial table thad a NOT NULL clause for the column c0, which promptly failed after executing the statement.",
+      "context_before": "NTO t VALUES (\"a\") ): Using double quotes for string literals is discouraged, and SQLite3 even provides a runtime flag for disabling it. We reported this bug as Turso panicked for the provided statement. •(INSERT INTO t VALUES ((0 BETWEEN 0 AND 0)), (0) ): Constant BETWEEN expressions were not rewritten when used within INSERT, but the query compiler expected them to be rewritten. We reported this bug as Turso panicked for the provided statement. •(INSERT INTO t(c2, c0) VALUES (0, 0), (0, 0) ): There was a bug in calculating the column indexes when inserting values to a table in reverse order.",
+      "context_after": "We reported this bug after manually inspecting the result of the failure. In all six cases, we see the benefit of generating the entire possible input space for SQL dialect of SQLite, which DIRTdoes not, hence missing such bugs. Our evaluation demonstrates the benefit of such comprehensive generation, but also shows that without tailoring to the database, the produced bug reports will be overwhelmingly dominated by false positives and reproductions of existing bugs yet to be fixed.References [1]Ba, J., and Rigger, M.Testing database engines via query plan guidance. In Proceedings of the 45th I",
+      "section": "6 Conclusion and Future Work",
+      "page": 7,
+      "char_offset": 35683,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M57",
+      "found_by": "technique",
+      "surface": "query plan guidance",
+      "technique": "qpg",
+      "sentence": "Testing database engines via query plan guidance.",
+      "context_before": "clause for the column c0, which promptly failed after executing the statement. We reported this bug after manually inspecting the result of the failure. In all six cases, we see the benefit of generating the entire possible input space for SQL dialect of SQLite, which DIRTdoes not, hence missing such bugs. Our evaluation demonstrates the benefit of such comprehensive generation, but also shows that without tailoring to the database, the produced bug reports will be overwhelmingly dominated by false positives and reproductions of existing bugs yet to be fixed.References [1]Ba, J., and Rigger, M.",
+      "context_after": "In Proceedings of the 45th International Conference on Software Engineering(2023), ICSE ’23, IEEE Press, p. 2060–2071. [2]Ba, J., and Rigger, M.Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering(New York, NY, USA, 2024), ICSE ’24, Association for Computing Machinery. [3]Ba, J., and Rigger, M.Keep it simple: Testing databases via differential query plans. [4]Böhme, M., Pham, V.-T., and Roychoudhury, A.Coverage-based greybox fuzzing as markov chain. InProceedings of",
+      "section": "6 Conclusion and Future Work",
+      "page": 7,
+      "char_offset": 36351,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M58",
+      "found_by": "technique",
+      "surface": "Cert",
+      "technique": "cert",
+      "sentence": "Cert: Finding performance issues in database systems through the lens of cardinality estimation.",
+      "context_before": "enerating the entire possible input space for SQL dialect of SQLite, which DIRTdoes not, hence missing such bugs. Our evaluation demonstrates the benefit of such comprehensive generation, but also shows that without tailoring to the database, the produced bug reports will be overwhelmingly dominated by false positives and reproductions of existing bugs yet to be fixed.References [1]Ba, J., and Rigger, M.Testing database engines via query plan guidance. In Proceedings of the 45th International Conference on Software Engineering(2023), ICSE ’23, IEEE Press, p. 2060–2071. [2]Ba, J., and Rigger, M.",
+      "context_after": "InProceedings of the IEEE/ACM 46th International Conference on Software Engineering(New York, NY, USA, 2024), ICSE ’24, Association for Computing Machinery. [3]Ba, J., and Rigger, M.Keep it simple: Testing databases via differential query plans. [4]Böhme, M., Pham, V.-T., and Roychoudhury, A.Coverage-based greybox fuzzing as markov chain. InProceedings of the 2016 ACMSIGSAC Conference on Computer and Communications Security(New York, NY, USA, 2016), CCS ’16, Association for Computing Machinery, p. 1032–1043. [5]Claessen, K., and Hughes, J.Quickcheck: a lightweight tool for random testing of h",
+      "section": "6 Conclusion and Future Work",
+      "page": 7,
+      "char_offset": 36545,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M59",
+      "found_by": "technique",
+      "surface": "non-optimizing reference engine construction",
+      "technique": "norec",
+      "sentence": "Detecting optimization bugs in database engines via non-optimizing reference engine construction.",
+      "context_before": "f DBMS with Coveragebased Guidance. InProceedings of the 31st USENIX Security Symposium (USENIX 2022)(Boston, MA, aug 2022). [18] Padhye, R., Lemieux, C., Sen, K., Papadakis, M., and Le Traon, Y.Semantic fuzzing with zest. InProceedings of the 28th ACMSIGSOFT International Symposium on Software Testing and Analysis(New York, NY, USA, 2019), ISSTA 2019, Association for Computing Machinery, p. 329–340. [19] Padhye, R., Lemieux, C., Sen, K., Simon, L., and Vijayakumar, H.Fuzzfactory: domain-specific fuzzing with waypoints.Proc. ACM Program. Lang. 3, OOPSLA (Oct. 2019). [20] Rigger, M., and Su, Z.",
+      "context_after": "InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(New York, NY, USA, 2020), ESEC/FSE 2020, Association for Computing Machinery, p. 1140–1152. [21] Rigger, M., and Su, Z.Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA (Nov. 2020). [22] Rigger, M., and Su, Z.Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20)(Nov. 2020), USENIX Association, pp. 667–682. [23] Rigger, M., and S",
+      "section": "6 Conclusion and Future Work",
+      "page": 7,
+      "char_offset": 40184,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M60",
+      "found_by": "technique",
+      "surface": "query partitioning",
+      "technique": "tlp",
+      "sentence": "Finding bugs in database systems via query partitioning.",
+      "context_before": "tion for Computing Machinery, p. 329–340. [19] Padhye, R., Lemieux, C., Sen, K., Simon, L., and Vijayakumar, H.Fuzzfactory: domain-specific fuzzing with waypoints.Proc. ACM Program. Lang. 3, OOPSLA (Oct. 2019). [20] Rigger, M., and Su, Z.Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(New York, NY, USA, 2020), ESEC/FSE 2020, Association for Computing Machinery, p. 1140–1152. [21] Rigger, M., and Su, Z.",
+      "context_after": "Proc. ACM Program. Lang. 4, OOPSLA (Nov. 2020). [22] Rigger, M., and Su, Z.Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20)(Nov. 2020), USENIX Association, pp. 667–682. [23] Rigger, M., and Su, Z.Testing database engines via pivoted query synthesis. InProceedings of the 14th USENIX Conference on Operating Systems Design and Implementation(USA, 2020), OSDI’20, USENIX Association. [24]Seltenreich, A.Sqlsmith. https://github.com/anse1/sqlsmith, 2015. [25] Zeller, A., Gopinath, R., Böhme, M., Fraser, G., and Ho",
+      "section": "6 Conclusion and Future Work",
+      "page": 7,
+      "char_offset": 40546,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M61",
+      "found_by": "technique",
+      "surface": "pivoted query synthesis",
+      "technique": "pqs",
+      "sentence": "Testing database engines via pivoted query synthesis.",
+      "context_before": "pecific fuzzing with waypoints.Proc. ACM Program. Lang. 3, OOPSLA (Oct. 2019). [20] Rigger, M., and Su, Z.Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(New York, NY, USA, 2020), ESEC/FSE 2020, Association for Computing Machinery, p. 1140–1152. [21] Rigger, M., and Su, Z.Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA (Nov. 2020). [22] Rigger, M., and Su, Z.",
+      "context_after": "In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20)(Nov. 2020), USENIX Association, pp. 667–682. [23] Rigger, M., and Su, Z.Testing database engines via pivoted query synthesis. InProceedings of the 14th USENIX Conference on Operating Systems Design and Implementation(USA, 2020), OSDI’20, USENIX Association. [24]Seltenreich, A.Sqlsmith. https://github.com/anse1/sqlsmith, 2015. [25] Zeller, A., Gopinath, R., Böhme, M., Fraser, G., and Holler, C.The Fuzzing Book. CISPA Helmholtz Center for Information Security, 2024. Retrieved 202407-01 16:50:18+02:00. Conference’1",
+      "section": "6 Conclusion and Future Work",
+      "page": 7,
+      "char_offset": 40678,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M62",
+      "found_by": "technique",
+      "surface": "pivoted query synthesis",
+      "technique": "pqs",
+      "sentence": "Testing database engines via pivoted query synthesis.",
+      "context_before": "oceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(New York, NY, USA, 2020), ESEC/FSE 2020, Association for Computing Machinery, p. 1140–1152. [21] Rigger, M., and Su, Z.Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA (Nov. 2020). [22] Rigger, M., and Su, Z.Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20)(Nov. 2020), USENIX Association, pp. 667–682. [23] Rigger, M., and Su, Z.",
+      "context_after": "InProceedings of the 14th USENIX Conference on Operating Systems Design and Implementation(USA, 2020), OSDI’20, USENIX Association. [24]Seltenreich, A.Sqlsmith. https://github.com/anse1/sqlsmith, 2015. [25] Zeller, A., Gopinath, R., Böhme, M., Fraser, G., and Holler, C.The Fuzzing Book. CISPA Helmholtz Center for Information Security, 2024. Retrieved 202407-01 16:50:18+02:00. Conference’17, July 2017, Washington, DC, USA Alperen Keles, Ethan Chou, Harrison Goldstein, and Leonidas Lampropoulos [26] Zhang, C., and Rigger, M.Constant optimization driven database system testing. 2025). [27]Zhong",
+      "section": "6 Conclusion and Future Work",
+      "page": 7,
+      "char_offset": 40886,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M63",
+      "found_by": "technique",
+      "surface": "Constant optimization driven database system testing",
+      "technique": "coddtest",
+      "sentence": "Constant optimization driven database system testing.",
+      "context_before": "er, M., and Su, Z.Testing database engines via pivoted query synthesis. InProceedings of the 14th USENIX Conference on Operating Systems Design and Implementation(USA, 2020), OSDI’20, USENIX Association. [24]Seltenreich, A.Sqlsmith. https://github.com/anse1/sqlsmith, 2015. [25] Zeller, A., Gopinath, R., Böhme, M., Fraser, G., and Holler, C.The Fuzzing Book. CISPA Helmholtz Center for Information Security, 2024. Retrieved 202407-01 16:50:18+02:00. Conference’17, July 2017, Washington, DC, USA Alperen Keles, Ethan Chou, Harrison Goldstein, and Leonidas Lampropoulos [26] Zhang, C., and Rigger, M.",
+      "context_after": "2025). [27]Zhong, S., and Rigger, M.Scaling automated database system testing, 2026. [28] Zhou, J., Xu, M., Shraer, A., Namasivayam, B., Miller, A., Tschannen, E., Atherton, S., Beamon, A. J., Sears, R., Leach, J., Rosenthal, D., Dong, X.,Wilson, W., Collins, B., Scherer, D., Grieser, A., Liu, Y., Moore, A., Muppana, B., Su, X., and Yadav, V.Foundationdb: A distributed unbundled transactional key value store. InProceedings of the 2021 International Conference on Management of Data(New York, NY, USA, 2021), SIGMOD ’21, Association for Computing Machinery, p. 2653–2666.",
+      "section": "6 Conclusion and Future Work",
+      "page": 8,
+      "char_offset": 41468,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "coddtest"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M2",
+        "M39",
+        "M40",
+        "M51"
+      ]
+    },
+    "suppressed": [
+      {
+        "mention_id": "M6",
+        "pattern": "uses_infrastructure",
+        "suppressed_because": "the sentence is framed as related work, so it describes somebody else's approach"
+      },
+      {
+        "mention_id": "M48",
+        "pattern": "uses_infrastructure",
+        "suppressed_because": "the sentence is framed as related work, so it describes somebody else's approach"
+      }
+    ]
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:11:05Z",
+    "is_model_written": true,
+    "summary": "DIRT argues that testing tools built for mature databases fit early-stage systems badly, and integrates the testing framework into the DBMS itself so that random testing evolves with the system and false positives are reduced by construction. It introduces generation actions, an abstraction that lets database developers rather than testing experts state correctness properties, and defines five oracles as sequences of them. Evaluated on Turso, an actively developed SQLite-compatible engine, it found 23 unique confirmed bugs.",
+    "narrative": "DIRT takes SQLancer as both its point of departure and its baseline: three of its five oracles are reimplementations of SQLancer's, expressed as generation actions, and it explicitly declines to modify SQLancer itself, arguing that integrating a new DBMS into it is too laborious for a system under active development. It is careful to say that outperforming SQLancer on Turso does not mean it has better generators or oracles.",
+    "roles": {
+      "M1": "motivation",
+      "M2": "result_comparison",
+      "M3": "background",
+      "M4": "background",
+      "M5": "motivation",
+      "M6": "background",
+      "M7": "background",
+      "M8": "background",
+      "M9": "background",
+      "M12": "background",
+      "M13": "background",
+      "M14": "motivation",
+      "M15": "motivation",
+      "M16": "background",
+      "M17": "motivation",
+      "M19": "extension",
+      "M20": "extension",
+      "M23": "extension",
+      "M25": "extension",
+      "M26": "extension",
+      "M39": "result_comparison",
+      "M40": "baseline",
+      "M51": "baseline"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The opposite of reuse is the paper's argument: M17 says that rather than expecting developers to modify SQLancer, DIRT offers its own framework, and M14 and M15 give integrating a DBMS into SQLancer as the cost being avoided. The oracles are reimplemented, not imported."
+      },
+      "extends_technique": {
+        "value": "yes",
+        "mention_ids": [
+          "M19",
+          "M20",
+          "M25",
+          "M26"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M19",
+            "sentence": "1 Definitions of Oracles in DIRT In this subsection, we go over definitions of five different oracles written as sequences of generation actions, three of which are reimplementations of existing oracles in SQLancer.",
+            "section": "3.1 Definitions of Oracles in DIRT",
+            "page": 3
+          },
+          {
+            "mention_id": "M20",
+            "sentence": "We start by defining the first of the three SQLancer oracles we implemented, Pivoted Query Synthesis (PQS) [ 23], as a universally quantified proposition in Fig.",
+            "section": "3.1 Definitions of Oracles in DIRT",
+            "page": 3
+          },
+          {
+            "mention_id": "M25",
+            "sentence": "2b presents the GA for WHERE Extended case of Ternary Logic Partitioning (TLP) [ 21] oracle from SQLancer.",
+            "section": "3.1 Definitions of Oracles in DIRT",
+            "page": 3
+          },
+          {
+            "mention_id": "M26",
+            "sentence": "We can express other properties that are not present in SQLancer, including those fundamental to key-value stores such asDeleted rows should not be in the tablepresented in Fig.",
+            "section": "3.1 Definitions of Oracles in DIRT",
+            "page": 3
+          }
+        ],
+        "reasoning": "Three SQLancer oracles, PQS and TLP among them, are re-expressed as sequences of generation actions, and the paper then uses that abstraction to state properties SQLancer cannot express. Generalising the oracles into a new form is part of what the paper contributes, not a baseline it runs.",
+        "techniques": [
+          "pqs",
+          "tlp"
+        ]
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M2",
+          "M39",
+          "M40"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M2",
+            "sentence": "We evaluate DIRTon Turso, an actively developed SQLite-compatible OLTP engine, and show that it finds 23 unique, confirmed bugs–significantly outperforming off-the-shelf SQLancer variants in terms of true positive rate and usefulness of bug reports.",
+            "section": null,
+            "page": 1
+          },
+          {
+            "mention_id": "M39",
+            "sentence": "This does not mean that DIRThas better generators or oracles than SQLancer.",
+            "section": "4.2 RQ2: How does DIRTcompare to SQLancer?",
+            "page": 5
+          },
+          {
+            "mention_id": "M40",
+            "sentence": "We compare the performance of DIRT for Turso against SQLancer with minimal modifications, which begets some questions worth discussing.",
+            "section": "5 Discussion",
+            "page": 5
+          }
+        ],
+        "reasoning": "DIRT is evaluated against off-the-shelf SQLancer variants on Turso and reports a better true positive rate and more useful reports, while noting the comparison does not show its generators or oracles are better."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M4"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M4",
+            "sentence": "Within prior work, SQLancer is distinguished by using specialized test oracles that reveal logic bugs in DBMSs, and it has proven extremely successful at finding bugs in mature databases.",
+            "section": "1 Introduction",
+            "page": 1
+          }
+        ],
+        "reasoning": "M4 singles SQLancer out among prior work for its specialised oracles and says it has proven extremely successful at finding bugs."
+      }
+    },
+    "disagreements": [
+      "Two uses_infrastructure patterns fired on M6 and M48 and were suppressed as related work. That suppression was right for a different reason: the paper reimplements SQLancer's oracles rather than reusing its code, and says so."
+    ],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

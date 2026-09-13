@@ -1,0 +1,113 @@
+{%- comment -%}
+Renders one relationship's papers with the evidence behind that relationship.
+
+Parameters: papers (array of paper records), relationship (the key to show, or
+several separated by "|").
+Only the named relationship's evidence is shown, so a paper listed under
+"compares against SQLancer" quotes the passage about the comparison rather than
+whichever excerpt happens to come first on the record.
+
+Several keys may be given when one heading covers more than one relationship.
+The first the paper actually holds is the one quoted, and the rest are named in
+the "Also" line, so a merged heading never hides which of them applies.
+{%- endcomment -%}
+<ul>
+  {%- assign shown_keys = include.relationship | split: "|" -%}
+  {%- for paper in include.papers %}
+  {%- assign relationship = shown_keys | first -%}
+  {%- for candidate in shown_keys -%}
+    {%- if paper.relationships[candidate].value == "yes" -%}
+      {%- assign relationship = candidate -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign entry = paper.relationships[relationship] %}
+  {%- assign record_key = paper.id | replace: ":", "_" | replace: ".", "_" | replace: "/", "_" -%}
+  {%- assign record = site.data.papers[record_key] -%}
+  <li>
+    {%- comment -%}
+      The title leads to this site's page for the paper where there is one,
+      because that page carries the evidence behind the sentence below it. The
+      paper itself is linked from there, and directly here when no record
+      exists to link to.
+    {%- endcomment -%}
+    <strong>
+      {%- if record -%}
+      <a href="{{ '/impact/papers/' | append: record_key | append: '/' | relative_url }}">{{ paper.title }}</a>
+      {%- elsif paper.url -%}
+      <a href="{{ paper.url }}">{{ paper.title }}</a>
+      {%- else -%}
+      {{ paper.title }}
+      {%- endif -%}
+    </strong>
+    {%- if paper.year %} ({{ paper.year }}){% endif %}
+    {%- if paper.venue %} &middot; <span class="impact-meta">{{ paper.venue }}</span>{% endif %}
+    {%- comment -%}
+      Only what the paper did with SQLancer. Everything listed here relates to
+      SQLancer somehow, so "a fuzzer for graph databases" says much less than
+      "its framework is derived from SQLancer" -- and a list of two hundred
+      entries is read by scanning, where a second sentence about the paper
+      itself is what a reader has to skip past. That sentence, and the evidence
+      under it, are on the paper's own page.
+    {%- endcomment -%}
+    {%- assign note = site.data.impact.paper_notes[record_key] -%}
+    {%- if record.analysis %}
+    <div class="impact-summary">
+      {{ record.analysis.narrative }}
+      <span class="impact-meta">Written by {{ record.analysis.model }} from the
+      {{ record.mentions.size }} place{% if record.mentions.size != 1 %}s{% endif %}
+      this paper refers to SQLancer.
+      <a href="{{ '/impact/papers/' | append: record_key | append: '/' | relative_url }}">See the evidence</a>.</span>
+    </div>
+    {%- elsif note.summary %}
+    {%- comment -%}
+      A paper with no record of its own: the older note is all there is, and
+      its relationship line is the same thing the narrative would be.
+    {%- endcomment -%}
+    <div class="impact-summary">
+      {{ note.summary.relationship_to_sqlancer | default: note.summary.text }}
+      <span class="impact-meta">Summary written by {{ note.summary.model }} from
+      {{ note.summary.written_from }}; the quotations below are the paper's own words.</span>
+    </div>
+    {%- endif %}
+    {%- if entry.techniques and entry.techniques.size > 0 %}
+    <br>
+    {%- for technique in entry.techniques -%}
+      {%- assign definition = site.data.impact.techniques.sqlancer_techniques | where: "id", technique | first -%}
+      <span class="impact-tag">{{ definition.display_name | default: technique }}</span>
+    {%- endfor -%}
+    {%- endif %}
+    {%- comment -%}
+      Infrastructure reuse is explained rather than quoted: the underlying
+      evidence is a repository description and a line of Java, and neither says
+      what the connection to SQLancer is.
+    {%- endcomment -%}
+    {%- if relationship == "uses_infrastructure" and paper.artifacts -%}
+      {% include impact/artifact-evidence.html paper=paper %}
+      {%- for item in entry.evidence limit: 1 -%}
+        {%- if item.excerpt and item.source_type == "paper" %}
+    <div class="impact-evidence"><q>{{ item.excerpt | strip_html | truncate: 400 }}</q>
+      &mdash; <a href="{{ item.source_url }}">source</a></div>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- for item in entry.evidence limit: 2 -%}
+        {%- if item.excerpt %}
+    <div class="impact-evidence"><q>{{ item.excerpt | strip_html | truncate: 400 }}</q>
+      &mdash; <a href="{{ item.source_url }}">source</a></div>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif %}
+    {%- assign other = "" | split: "" -%}
+    {%- assign all_keys = "uses_infrastructure|extends_technique|compares_with" | split: "|" -%}
+    {%- for key in all_keys -%}
+      {%- if key != relationship and paper.relationships[key].value == "yes" -%}
+        {%- assign other = other | push: key -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if other.size > 0 %}
+    <div class="impact-meta">Also: {{ other | join: ", " | replace: "_", " " }}.</div>
+    {%- endif %}
+  </li>
+  {%- endfor %}
+</ul>

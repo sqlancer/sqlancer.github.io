@@ -1,0 +1,507 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sqlancer.github.io/schemas/impact/stats.schema.json",
+  "title": "Derived impact statistics",
+  "description": "GENERATED FILE. Produced by tools/impact/stats.py from the authoritative records. Never edit by hand: `python -m tools.impact.run stats` regenerates it and CI fails if it differs from the records.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "generated_from",
+    "headline",
+    "bugs",
+    "papers",
+    "dbms",
+    "resources"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "$ref": "common.schema.json#/definitions/schema_version"
+    },
+    "generated_from": {
+      "type": "object",
+      "description": "Content hashes of the authoritative inputs, so staleness is detectable.",
+      "additionalProperties": {
+        "$ref": "common.schema.json#/definitions/sha256"
+      }
+    },
+    "headline": {
+      "type": "object",
+      "required": [
+        "bugs_total",
+        "bugs_total_rounded",
+        "bugs_found_externally",
+        "dbms_supported",
+        "dbms_with_bugs",
+        "dbms_projects_using_sqlancer",
+        "dbms_projects_planning_adoption",
+        "papers_building_on_sqlancer",
+        "papers_citing_sqlancer",
+        "papers_calling_sqlancer_state_of_the_art",
+        "papers_reusing_or_extending_sqlancer",
+        "papers_comparing_against_sqlancer"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "bugs_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "bugs_found_externally": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Bugs filed by someone outside the SQLancer project."
+        },
+        "bugs_total_rounded": {
+          "type": "string",
+          "maxLength": 20,
+          "description": "Conservative display form, rounded down to a round number (e.g. '1,000+')."
+        },
+        "dbms_supported": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "dbms_with_bugs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "dbms_projects_using_sqlancer": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "dbms_projects_planning_adoption": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Projects that have proposed adopting SQLancer without yet being shown to use it. Never part of dbms_projects_using_sqlancer."
+        },
+        "papers_building_on_sqlancer": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Distinct external papers with at least one of uses_infrastructure / extends_technique / compares_with = yes. Deduplicated: a paper in several categories counts once."
+        },
+        "papers_citing_sqlancer": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "papers_calling_sqlancer_state_of_the_art": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Distinct external papers that describe SQLancer or one of its techniques as state of the art. Recognition rather than reuse, so it is not part of papers_building_on_sqlancer."
+        },
+        "papers_reusing_or_extending_sqlancer": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "External papers whose implementation reuses the SQLancer codebase or whose authors extend one of its techniques. Counted together because a paper can do either without the other and a few do both."
+        },
+        "papers_comparing_against_sqlancer": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "External papers that evaluate their own approach against SQLancer or one of its oracles as a baseline."
+        },
+        "dbms_using_sqlancer_without_counted_bugs": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Database systems with adoption evidence but no bug counted here -- the part of the undercount the dataset can measure about itself."
+        }
+      }
+    },
+    "bugs": {
+      "type": "object",
+      "required": [
+        "by_attribution_rule",
+        "by_dbms",
+        "by_dbms_and_affiliation",
+        "by_finder",
+        "by_reporter_affiliation",
+        "by_status",
+        "by_symptom",
+        "by_technique",
+        "by_year",
+        "total",
+        "total_including_rejected"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "total_including_rejected": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status_known_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "by_dbms": {
+          "$ref": "#/definitions/labelled_counts"
+        },
+        "by_year": {
+          "$ref": "#/definitions/labelled_counts"
+        },
+        "by_status": {
+          "$ref": "#/definitions/labelled_counts"
+        },
+        "by_technique": {
+          "$ref": "#/definitions/labelled_counts"
+        },
+        "by_finder": {
+          "$ref": "#/definitions/labelled_counts"
+        },
+        "by_symptom": {
+          "$ref": "#/definitions/labelled_counts"
+        },
+        "by_reporter_affiliation": {
+          "$ref": "#/definitions/labelled_counts"
+        },
+        "by_dbms_and_affiliation": {
+          "type": "array",
+          "description": "Bugs per database system, split by whether the project or an outside adopter found them.",
+          "items": {
+            "type": "object",
+            "required": [
+              "key",
+              "label",
+              "count",
+              "segments"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "key": {
+                "type": "string",
+                "maxLength": 80
+              },
+              "label": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "segments": {
+                "$ref": "#/definitions/labelled_counts"
+              }
+            }
+          }
+        },
+        "by_attribution_rule": {
+          "$ref": "#/definitions/labelled_counts",
+          "description": "How each bug earned its place, by policy clause. Published because the clauses differ sharply in strength."
+        },
+        "years": {
+          "type": "array",
+          "description": "Per-year breakdowns, for the page each year gets.",
+          "items": {
+            "type": "object",
+            "required": [
+              "year",
+              "bugs"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "year": {
+                "type": "integer"
+              },
+              "bugs": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "bugs_rejected": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "systems": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "by_dbms": {
+                "$ref": "#/definitions/labelled_counts"
+              },
+              "by_status": {
+                "$ref": "#/definitions/labelled_counts"
+              },
+              "by_technique": {
+                "$ref": "#/definitions/labelled_counts"
+              },
+              "by_symptom": {
+                "$ref": "#/definitions/labelled_counts"
+              },
+              "by_attribution_rule": {
+                "$ref": "#/definitions/labelled_counts"
+              },
+              "by_affiliation": {
+                "$ref": "#/definitions/labelled_counts"
+              },
+              "top_reporters": {
+                "$ref": "#/definitions/labelled_counts"
+              },
+              "first_reported": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "last_reported": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "papers": {
+      "type": "object",
+      "required": [
+        "total",
+        "external_total",
+        "by_relationship",
+        "by_year",
+        "by_relationship_year",
+        "by_technique"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "external_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "building_on_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "by_relationship": {
+          "$ref": "#/definitions/labelled_counts"
+        },
+        "by_year": {
+          "$ref": "#/definitions/labelled_counts"
+        },
+        "by_relationship_year": {
+          "type": "object",
+          "description": "Yearly series per relationship category, used directly by the bar plots.",
+          "additionalProperties": {
+            "$ref": "#/definitions/labelled_counts"
+          }
+        },
+        "by_technique": {
+          "$ref": "#/definitions/labelled_counts"
+        },
+        "years": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "dbms": {
+      "type": "object",
+      "required": [
+        "supported",
+        "with_bugs",
+        "with_adoption",
+        "planning_adoption",
+        "adoption_by_relationship"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "supported": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "with_bugs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "with_adoption": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "planning_adoption": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "adoption_by_relationship": {
+          "$ref": "#/definitions/labelled_counts"
+        },
+        "rows": {
+          "type": "array",
+          "description": "Per-DBMS join of support, bug counts and adoption, ready for tabular rendering. Systems with bugs also carry the breakdowns their own detail page renders.",
+          "items": {
+            "type": "object",
+            "required": [
+              "adoption_relationships",
+              "bugs",
+              "id",
+              "name",
+              "planned_adoption",
+              "supported"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "$ref": "common.schema.json#/definitions/slug"
+              },
+              "name": {
+                "type": "string",
+                "maxLength": 80
+              },
+              "url": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "supported": {
+                "type": "boolean"
+              },
+              "bugs": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "adoption_relationships": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "planned_adoption": {
+                "type": "boolean",
+                "description": "The project has proposed adopting SQLancer but has not been shown using it. Never counted as adoption."
+              },
+              "repository": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "bugs_rejected": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Reports the developers rejected as invalid or duplicate. Kept for transparency and counted nowhere."
+              },
+              "bugs_by_year": {
+                "$ref": "#/definitions/labelled_counts",
+                "description": "Accepted bugs by the year they were reported."
+              },
+              "bugs_by_status": {
+                "$ref": "#/definitions/labelled_counts",
+                "description": "Accepted bugs by the state of the report."
+              },
+              "bugs_by_symptom": {
+                "$ref": "#/definitions/labelled_counts",
+                "description": "Accepted bugs by what went wrong."
+              },
+              "bugs_by_technique": {
+                "$ref": "#/definitions/labelled_counts",
+                "description": "Accepted bugs by the test oracle credited."
+              },
+              "bugs_by_attribution_rule": {
+                "$ref": "#/definitions/labelled_counts",
+                "description": "Accepted bugs by the policy clause that earned each its place."
+              },
+              "bugs_by_affiliation": {
+                "$ref": "#/definitions/labelled_counts",
+                "description": "Accepted bugs by whether the project or someone outside it found them."
+              },
+              "top_reporters": {
+                "$ref": "#/definitions/labelled_counts",
+                "description": "The people who filed the most of them."
+              },
+              "first_reported": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date",
+                "description": "Earliest accepted report."
+              },
+              "last_reported": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date",
+                "description": "Most recent accepted report."
+              }
+            }
+          }
+        },
+        "using_without_bugs": {
+          "type": "array",
+          "description": "Database systems with adoption evidence and no bug counted, named so the undercount can be shown rather than asserted.",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "name"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "required": [
+        "total",
+        "by_type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "by_type": {
+          "$ref": "#/definitions/labelled_counts"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "labelled_counts": {
+      "type": "array",
+      "description": "Ordered count series. An array rather than an object so that Liquid can iterate it in a defined order.",
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "label",
+          "count"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "key": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}

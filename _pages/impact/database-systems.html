@@ -1,0 +1,160 @@
+---
+permalink: /impact/database-systems/
+title: "Database systems and SQLancer"
+excerpt: "Which systems SQLancer can test, which it has found bugs in, which projects use it, and which have proposed to."
+author_profile: false
+toc: true
+toc_label: "On this page"
+toc_sticky: true
+---
+
+{%- comment -%}
+The system-by-system detail, kept off the impact page.
+
+The impact page answers "which projects use SQLancer", because that is the
+question a reader comes with. The rest -- what supported means as against bugs
+found, the row for every system, and the projects that have only proposed
+adopting it -- is reference material: worth having, and worth not scrolling
+through first. Every figure comes from _data/impact/stats.json, exactly as on
+the page it came from.
+{%- endcomment -%}
+{%- assign impact = site.data.impact -%}
+{%- assign stats = impact.stats -%}
+
+<div class="impact" markdown="0">
+
+<p class="impact-breadcrumb">
+  <a href="{{ '/impact/#database-systems' | relative_url }}">&larr; Database systems</a>
+</p>
+
+<h2 id="what-is-tracked">What is tracked</h2>
+
+<p>
+  Three different things are tracked separately here, and it is worth being
+  precise about the difference:
+</p>
+
+<ul>
+  <li><strong>Supported</strong> — the main SQLancer repository ships a testing
+      implementation for the system. {{ stats.dbms.supported }} systems.</li>
+  <li><strong>Bugs found</strong> — SQLancer has attributed bugs in the system.
+      {{ stats.dbms.with_bugs }} systems.</li>
+  <li><strong>Uses SQLancer</strong> — the system's <em>own</em> developers use
+      or integrate SQLancer. {{ stats.dbms.with_adoption }} projects.</li>
+  <li><strong>Planned adoption</strong> — a project has proposed adopting
+      SQLancer but has not yet been shown using it. {{ stats.dbms.planning_adoption }}
+      further projects, listed separately below and counted in nothing above.</li>
+</ul>
+
+<p>
+  Supporting a database system says nothing about whether that project uses
+  SQLancer, so adoption is only recorded when the evidence comes from the
+  project or its developers — a CI job, a test script, project documentation, or
+  a developer saying so themselves.
+</p>
+
+{%- assign adoption_rows = stats.dbms.adoption_by_relationship -%}
+{%- if adoption_rows.size > 0 %}
+{% include impact/counts-table.html series=adoption_rows heading="How the project uses SQLancer" label="Projects" %}
+{%- endif %}
+
+<h2 id="every-system">Every system</h2>
+
+<p>
+  One row per system that SQLancer supports, has found a bug in, or that a
+  project has proposed testing with it. Each name links to the system's own
+  page, where the bugs and the adoption evidence are listed in full.
+</p>
+
+<div class="impact-table-wrap">
+  <table class="impact-table">
+    <thead>
+      <tr>
+        <th scope="col">Database system</th>
+        <th scope="col" class="impact-num">Bugs</th>
+        <th scope="col">Supported by SQLancer</th>
+        <th scope="col">Uses SQLancer</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for row in stats.dbms.rows %}
+      {%- if row.bugs > 0 or row.supported or row.adoption_relationships.size > 0 or row.planned_adoption %}
+      <tr>
+        <th scope="row">
+          <a href="{{ '/impact/dbms/' | append: row.id | append: '/' | relative_url }}">{{ row.name }}</a>
+        </th>
+        <td class="impact-num">{% if row.bugs > 0 %}{{ row.bugs }}{% else %}&mdash;{% endif %}</td>
+        <td>{% if row.supported %}Yes{% else %}&mdash;{% endif %}</td>
+        <td>
+          {%- if row.adoption_relationships.size > 0 -%}
+            {%- for relationship in row.adoption_relationships -%}
+              <span class="impact-tag">{{ relationship | replace: "_", " " }}</span>
+            {%- endfor -%}
+          {%- elsif row.planned_adoption -%}
+            <span class="impact-meta">proposed only</span>
+          {%- else -%}&mdash;{%- endif -%}
+        </td>
+      </tr>
+      {%- endif %}
+      {%- endfor %}
+    </tbody>
+  </table>
+</div>
+
+{%- comment -%}
+  Only projects that have proposed adopting SQLancer and nothing more. Seven
+  others have an open proposal alongside evidence that they already run it,
+  and for those the proposal is superseded -- listing them here would say the
+  opposite of what their own page says.
+{%- endcomment -%}
+{%- assign all_adoption = impact.adoption.adoption -%}
+{%- assign using_dbms = all_adoption | where_exp: "r", "r.relationship != 'planned_adoption'" | map: "dbms" | uniq -%}
+{%- assign planned_records = "" | split: "" -%}
+{%- for record in all_adoption -%}
+  {%- if record.relationship == "planned_adoption" -%}
+    {%- unless using_dbms contains record.dbms -%}
+      {%- assign planned_records = planned_records | push: record -%}
+    {%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+<h2 id="planned-adoption">Planned adoption ({{ planned_records.size }})</h2>
+<p>
+  Projects whose developers have <em>proposed</em> adopting SQLancer &mdash; an
+  open issue, a roadmap entry, a testing plan &mdash; without anything yet
+  showing the project running it. An intention is not use, so none of these
+  counts towards the {{ stats.dbms.with_adoption }} projects that do use it, or
+  towards any figure on the front page. They are kept because a proposal from a
+  project's own developers is worth recording, and because it is the thing to
+  re-check later: some of these will become adoption, and others will not.
+</p>
+
+<div class="impact-table-wrap">
+  <table class="impact-table">
+    <thead>
+      <tr>
+        <th scope="col">Project</th>
+        <th scope="col">Proposal</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for record in planned_records %}
+      {%- assign dbms_entry = impact.dbms.dbms | where: "id", record.dbms | first %}
+      <tr>
+        <th scope="row">
+          <a href="{{ '/impact/dbms/' | append: record.dbms | append: '/#proposed' | relative_url }}">{{ dbms_entry.name | default: record.dbms }}</a>
+        </th>
+        <td>{{ record.summary }}</td>
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+</div>
+
+<p class="impact-meta">
+  Every figure on this page is computed from
+  <a href="https://github.com/sqlancer/sqlancer.github.io/tree/main/_data/impact"><code>_data/impact/</code></a>.
+  The <a href="{{ '/impact/#methodology' | relative_url }}">attribution policy</a>
+  explains what has to be true for a system to be counted as using SQLancer.
+</p>
+
+</div>

@@ -1,0 +1,216 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sqlancer.github.io/schemas/impact/paper-note.schema.json",
+  "title": "Note on a citing paper",
+  "description": "One paper's note: a model-written summary, clearly marked as such, and the individual sources its record rests on, quoted verbatim. The two are kept apart on purpose -- the summary is a convenience and may be wrong; the evidence is the record and may not.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "paper",
+    "evidence"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "policy_version": {
+      "type": "string"
+    },
+    "paper": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "year": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "venue": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "doi": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "summary": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "text",
+        "is_model_generated",
+        "model",
+        "written_from"
+      ],
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "relationship_to_sqlancer": {
+          "type": "string"
+        },
+        "is_model_generated": {
+          "const": true,
+          "description": "Always true. A summary is written by a model and is never evidence."
+        },
+        "grounded_in_source": {
+          "type": "boolean",
+          "description": "The model quoted passages that were found verbatim in the source it was given."
+        },
+        "written_from": {
+          "type": "string",
+          "description": "What the model was given: the full text, an abstract, or citation sentences."
+        },
+        "written_from_url": {
+          "type": "string"
+        },
+        "source_sha256": {
+          "type": "string"
+        },
+        "supporting_excerpts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "model": {
+          "type": "string"
+        },
+        "classifier_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "generated_at": {
+          "type": "string"
+        },
+        "generated_by": {
+          "type": "string",
+          "description": "Which route produced the summary: the pipeline's batch classifier, or an interactive session."
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "relationship",
+          "sources"
+        ],
+        "properties": {
+          "relationship": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "method": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "techniques": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "markers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_url",
+                "source_type"
+              ],
+              "properties": {
+                "source_url": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "source_type": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "excerpt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "Copied from the source, never paraphrased."
+                },
+                "excerpt_is_verbatim": {
+                  "type": "boolean"
+                },
+                "note": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "retrieved_at": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,752 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T14:33:00Z",
+  "paper": {
+    "id": "paper:doi:10.1109/icde60146.2024.00011",
+    "title": "TRAP: Tailored Robustness Assessment for Index Advisors via Adversarial Perturbation",
+    "authors": [
+      "Wei Zhou",
+      "Chen Lin",
+      "Xuanhe Zhou",
+      "Guoliang Li",
+      "Tianqing Wang"
+    ],
+    "year": 2024,
+    "venue": "IEEE International Conference on Data Engineering",
+    "doi": "10.1109/icde60146.2024.00011",
+    "arxiv_id": null,
+    "s2_paper_id": "83899adebf94722befbec210a795d4b8d0db5b92",
+    "url": "https://doi.org/10.1109/icde60146.2024.00011",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/icde60146.2024.00011",
+      "retrieved_at": "2026-09-08T14:33:00Z",
+      "chars": 81233,
+      "content_sha256": "sha256:f997ddb9f666612583c019fab527c37f3eea7273b614871e99edeed0f3b47630"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 14,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 2104
+      },
+      {
+        "number": "II",
+        "title": "RELATED WORK",
+        "start": 10062
+      },
+      {
+        "number": "A",
+        "title": "Index Advisor",
+        "start": 10079
+      },
+      {
+        "number": "B",
+        "title": "SQL Generation",
+        "start": 11564
+      },
+      {
+        "number": "C",
+        "title": "Adversarial Attack",
+        "start": 12872
+      },
+      {
+        "number": "III",
+        "title": "PROBLEM DEFINITION",
+        "start": 13983
+      },
+      {
+        "number": "IV",
+        "title": "ADVERSARIAL WORKLOAD GENERATION",
+        "start": 23397
+      },
+      {
+        "number": "A",
+        "title": "Perturbation via Encoder-Decoder Network",
+        "start": 25661
+      },
+      {
+        "number": "B",
+        "title": "Reinforced Perturbation Policy Learning",
+        "start": 28963
+      },
+      {
+        "number": "C",
+        "title": "Index Advisor Independent Pretraining",
+        "start": 34109
+      },
+      {
+        "number": "D",
+        "title": "Constraint-Aware Reference Tree",
+        "start": 35286
+      },
+      {
+        "number": "V",
+        "title": "EXPERIMENTS",
+        "start": 40544
+      },
+      {
+        "number": "A",
+        "title": "Experimental Setup",
+        "start": 41031
+      },
+      {
+        "number": "B",
+        "title": "Robustness Assessment of Index Advisors",
+        "start": 47974
+      },
+      {
+        "number": "C",
+        "title": "Ablation Study and Impacts of Parameters",
+        "start": 52506
+      },
+      {
+        "number": "VI",
+        "title": "ANALYSIS ANDDISCOVERY",
+        "start": 57233
+      },
+      {
+        "number": "A",
+        "title": "Learning-based Index Advisors",
+        "start": 57599
+      },
+      {
+        "number": "B",
+        "title": "Heuristic-based Index Advisors",
+        "start": 59620
+      },
+      {
+        "number": "C",
+        "title": "Impact of Query Change",
+        "start": 61642
+      },
+      {
+        "number": "VII",
+        "title": "CONCLUSION",
+        "start": 64443
+      },
+      {
+        "number": "M",
+        "title": "Radulovic, M. Stikic, G. Xu, and S. Chaudhuri, “Automatically",
+        "start": 67954
+      },
+      {
+        "number": "J",
+        "title": "Camacho-Rodr ´ıguez, B. Chundatt, A. Chung, N. Dutta, A. Fogarty,",
+        "start": 68196
+      },
+      {
+        "number": "K",
+        "title": "Muthyala, H. Nagulapalli, Y. Park, H. Patel, A. Pavlenko, O. Poppe,",
+        "start": 68410
+      },
+      {
+        "number": "S",
+        "title": "Ravindran, K. Saur, R. Sen, S. Suh, A. Tarafdar, K. Waghray,",
+        "start": 68481
+      },
+      {
+        "number": "M",
+        "title": "Alizadeh, “Flow-loss: Learning cardinality estimates that matter,”",
+        "start": 69149
+      },
+      {
+        "number": "J",
+        "title": "Patvarczki, R. Mutreja, M. Duller, F. M. Waas, and M. Winslett,",
+        "start": 69914
+      },
+      {
+        "number": "T",
+        "title": "Neumann, “How good are query optimizers, really?” Proc. VLDB",
+        "start": 70160
+      },
+      {
+        "number": "Y",
+        "title": "Qin, A. Pfadler, Z. Qian, J. Zhou, J. Li, and B. Cui, “Cardinality",
+        "start": 70703
+      },
+      {
+        "number": "G",
+        "title": "Fumera, G. Giacinto, and F. Roli, “Security evaluation of support",
+        "start": 73033
+      },
+      {
+        "number": "T",
+        "title": "G. Price, “Access path selection in a relational database management",
+        "start": 73773
+      },
+      {
+        "number": "O",
+        "title": "Papaemmanouil, and N. Tatbul, “Neo: A learned query optimizer,”",
+        "start": 74169
+      },
+      {
+        "number": "L",
+        "title": "Kaiser, and I. Polosukhin, “Attention is all you need,” in NIPS, 2017,",
+        "start": 74934
+      },
+      {
+        "number": "P",
+        "title": "Maes, “Pretrained encoders are all you need,” arXiv Preprint, vol.",
+        "start": 76009
+      },
+      {
+        "number": "E",
+        "title": "Agirre, I. Heintz, and D. Roth, “Recent advances in natural language",
+        "start": 77094
+      },
+      {
+        "number": "P",
+        "title": "Cistac, T. Rault, R. Louf, M. Funtowicz, J. Davison, S. Shleifer,",
+        "start": 77355
+      },
+      {
+        "number": "M",
+        "title": "Drame, Q. Lhoest, and A. M. Rush, “Transformers: State-of-the-art",
+        "start": 77496
+      },
+      {
+        "number": "B",
+        "title": "Qin, T. Liu, D. Jiang, and M. Zhou, “Codebert: A pre-trained model",
+        "start": 78125
+      },
+      {
+        "number": "M",
+        "title": "Marone, C. Akiki, J. Li, J. Chim, Q. Liu, E. Zheltonozhskii, T. Y.",
+        "start": 78385
+      },
+      {
+        "number": "M",
+        "title": "Kunakov, F. Zhdanov, M. Romero, T. Lee, N. Timor, J. Ding,",
+        "start": 78797
+      },
+      {
+        "number": "C",
+        "title": "Schlesinger, H. Schoelkopf, J. Ebert, T. Dao, M. Mishra, A. Gu,",
+        "start": 78859
+      },
+      {
+        "number": "J",
+        "title": "Robinson, C. J. Anderson, B. Dolan-Gavitt, D. Contractor, S. Reddy,",
+        "start": 78926
+      },
+      {
+        "number": "D",
+        "title": "Fried, D. Bahdanau, Y. Jernite, C. M. Ferrandis, S. Hughes, T. Wolf,",
+        "start": 78997
+      },
+      {
+        "number": "A",
+        "title": "Guha, L. von Werra, and H. de Vries, “Starcoder: may the source be",
+        "start": 79069
+      },
+      {
+        "number": "R",
+        "title": "Marinier, L. Hussenot, M. Geist, O. Pietquin, M. Michalski, S. Gelly,",
+        "start": 79774
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "R. M. Perera, B. Oetomo, B. I. P. Rubinstein, and R. BorovicaGajic, “DBA bandits: Self-driving index tuning under ad-hoc, analytical workloads with safety guarantees,” in ICDE, 2021, pp. 600–611.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "J. Kossmann, S. Halfpap, M. Jankrift, and R. Schlosser, “Magic mirror in my hand, which is the best in the land? an experimental evaluation of index selection algorithms,” Proc. VLDB Endow., vol. 13, no. 11, pp. 2382–2395, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "R. Schlosser, J. Kossmann, and M. Boissier, “Efﬁcient scalable multiattribute index selection using recursive strategies,” in ICDE, 2019, pp. 1238–1249.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "G. Valentin, M. Zuliani, D. C. Zilio, G. M. Lohman, and A. Skelley, “DB2 advisor: An optimizer smart enough to recommend its own indexes,” in ICDE, 2000, pp. 101–110.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "S. Chaudhuri and V. R. Narasayya, “An efﬁcient cost-driven index selection tool for microsoft SQL server,” in VLDB, 1997, pp. 146–155.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "K. Whang, Index Selection in Relational Databases. Springer, 1987.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "J. Kossmann, A. Kastius, and R. Schlosser, “SWIRL: selection of workload-aware indexes using reinforcement learning,” in EDBT, 2022, pp. 2:155–2:168.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "H. Lan, Z. Bao, and Y. Peng, “An index advisor using deep reinforcement learning,” in CIKM, 2020, pp. 2105–2108.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Z. Sadri, L. Gruenwald, and E. Leal, “Drlindex: deep reinforcement learning index advisor for a cluster database,” in IDEAS, 2020, pp. 11:1– 11:8.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "X. Zhou, L. Liu, W. Li, L. Jin, S. Li, T. Wang, and J. Feng, “Autoindex: An incremental index management system for dynamic workloads,” in ICDE, 2022, pp. 2196–2208.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "S. Chaudhuri and V. Narasayya, “Anytime algorithm of database tuning advisor for microsoft sql server.” https://www.microsoft.com/en-us/ research/publication/, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "A. Kane, “Dexterthe automatic indexer for postgres.” https://github. com/ankane/dexter, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Z. Sadri, L. Gruenwald, and E. Leal, “Online index selection using deep reinforcement learning for a cluster database,” in ICDE Workshops, 2020, pp. 158–161.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "R. M. Perera, B. Oetomo, B. I. P. Rubinstein, and R. BorovicaGajic, “HMAB: self-driving hierarchy of bandits for integrated physical database design tuning,” Proc. VLDB Endow., vol. 16, no. 2, pp. 216– 229, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "S. Das, M. Grbic, I. Ilic, I. Jovandic, A. Jovanovic, V. R. Narasayya, M. Radulovic, M. Stikic, G. Xu, and S. Chaudhuri, “Automatically indexing millions of databases in microsoft azure SQL database,” in SIGMOD Conference, 2019, pp. 666–679.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Y. Zhu, Y. Tian, J. Cahoon, S. Krishnan, A. Agarwal, R. Alotaibi, J. Camacho-Rodr ´ıguez, B. Chundatt, A. Chung, N. Dutta, A. Fogarty, A. Gruenheid, B. Haynes, M. Interlandi, M. Iyer, N. Jurgens, S. Khushalani, B. Kroth, M. Kumar, J. Leeka, S. Matusevych, M. Mittal, A. M ¨uller, K. Muthyala, H. Nagulapalli, Y. Park, H. Patel, A. Pavlenko, O. Poppe, S. Ravindran, K. Saur, R. Sen, S. Suh, A. Tarafda",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "P. Negi, Z. Wu, A. Kipf, N. Tatbul, R. Marcus, S. Madden, T. Kraska, and M. Alizadeh, “Robust query driven cardinality estimation under changing workloads,” Proc. VLDB Endow., vol. 16, no. 6, pp. 1520– 1533, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "B. Li, Y. Lu, and S. Kandula, “Warper: Efﬁciently adapting learned cardinality estimators to data and workload drifts,” in SIGMOD Conference, 2022, pp. 1920–1933.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "P. Negi, R. C. Marcus, A. Kipf, H. Mao, N. Tatbul, T. Kraska, and M. Alizadeh, “Flow-loss: Learning cardinality estimates that matter,” Proc. VLDB Endow., vol. 14, no. 11, pp. 2019–2032, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "K. Vaidya, A. Dutt, V. R. Narasayya, and S. Chaudhuri, “Leveraging query logs and machine learning for parametric query optimization,” Proc. VLDB Endow., vol. 15, no. 3, pp. 401–413, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "J. Zhou, N. Bruno, M. Wu, P. Larson, R. Chaiken, and D. Shakib, “SCOPE: parallel databases meet mapreduce,” VLDB J., vol. 21, no. 5, pp. 611–636, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "J. Wang, T. Li, A. Wang, X. Liu, L. Chen, J. Chen, J. Liu, J. Wu, F. Li, and Y. Gao, “Real-time workload pattern analysis for large-scale cloud databases,” arXiv Preprint, vol. https://arxiv.org/abs/2307.02626, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "A. Aleyasen, M. Morcos, L. Antova, M. Sugiyama, D. Korablev, J. Patvarczki, R. Mutreja, M. Duller, F. M. Waas, and M. Winslett, “Intelligent automated workload analysis for database replatforming,” in SIGMOD Conference, 2022, pp. 2273–2285.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "V. Leis, A. Gubichev, A. Mirchev, P. A. Boncz, A. Kemper, and T. Neumann, “How good are query optimizers, really?” Proc. VLDB Endow., vol. 9, no. 3, pp. 204–215, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "A. Kipf, T. Kipf, B. Radke, V. Leis, P. A. Boncz, and A. Kemper, “Learned cardinalities: Estimating correlated joins with deep learning,” in CIDR, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "B. Ding, S. Chaudhuri, J. Gehrke, and V. R. Narasayya, “DSB: A decision support benchmark for workload-driven and traditional database systems,” Proc. VLDB Endow., vol. 14, no. 13, pp. 3376–3388, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Y. Han, Z. Wu, P. Wu, R. Zhu, J. Yang, L. W. Tan, K. Zeng, G. Cong, Y. Qin, A. Pfadler, Z. Qian, J. Zhou, J. Li, and B. Cui, “Cardinality estimation in DBMS: A comprehensive benchmark evaluation,” Proc. VLDB Endow., vol. 15, no. 4, pp. 752–765, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "M. Kurmanji and P. Triantaﬁllou, “Detect, distill and update: Learned DB systems facing out of distribution data,” 1, no. 1, pp. 33:1–33:27, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "N. Bruno and S. Chaudhuri, “Automatic physical database tuning: A relaxation-based approach,” in SIGMOD Conference, 2005, pp. 227– 238.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "R. S. Sutton and A. G. Barto, Reinforcement learningan introduction, ser. Adaptive computation and machine learning. MIT Press, 1998.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Y. LeCun, Y. Bengio, and G. E. Hinton, “Deep learning,” Nat., vol. 521, no. 7553, pp. 436–444, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "A. Sharma, F. M. Schuhknecht, and J. Dittrich, “The case for automatic database administration using deep reinforcement learning,” arXiv Preprint, 2018. [Online]. Available: https://arxiv.org/abs/1801.05643",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "R. Schlosser and S. Halfpap, “A decomposition approach for risk-averse index selection,” in SSDBM, 2020, pp. 16:1–16:4.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "F. Halim, S. Idreos, P. Karras, and R. H. C. Yap, “Stochastic database cracking: Towards robust adaptive indexing in main-memory columnstores,” Proc. VLDB Endow., vol. 5, no. 6, pp. 502–513, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "D. R. Slutz, “Massive stochastic testing of SQL,” in VLDB, 1998, pp. 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proc. ACM Program. Lang., vol. 4, no. OOPSLA, pp. 211:1–211:30, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 37,
+      "text": "X. Liu, X. Kong, L. Liu, and K. Chiang, “Treegan: Syntax-aware sequence generation with generative adversarial networks,” in ICDM, 2018, pp. 1140–1145.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "L. Zhang, C. Chai, X. Zhou, and G. Li, “Learnedsqlgen: Constraintaware SQL generation using reinforcement learning,” in SIGMOD Conference, 2022, pp. 945–958.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Q. Zhou, J. Arulraj, S. B. Navathe, W. Harris, and J. Wu, “SIA: optimizing queries using learned predicates,” in SIGMOD Conference, 2021, pp. 2169–2181.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "X. Zhou, G. Li, C. Chai, and J. Feng, “A learned query rewrite system using monte carlo tree search,” Proc. VLDB Endow., vol. 15, no. 1, pp. 46–58, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "I. J. Goodfellow, J. Shlens, and C. Szegedy, “Explaining and harnessing adversarial examples,” in ICLR (Poster), 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "B. Biggio, I. Corona, B. Nelson, B. I. P. Rubinstein, D. Maiorca, G. Fumera, G. Giacinto, and F. Roli, “Security evaluation of support vector machines in adversarial environments,” arXiv Preprint, 2014. [Online]. Available: https://arxiv.org/pdf/1401.7727.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "E. M. Kornaropoulos, S. Ren, and R. Tamassia, “The price of tailoring the index to your data: Poisoning attacks on learned index structures,” in SIGMOD Conference, 2022, pp. 1331–1344.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "B. Ding, S. Das, R. Marcus, W. Wu, S. Chaudhuri, and V. R. Narasayya, “AI meets AI: leveraging query executions to improve index recommendations,” in SIGMOD Conference, 2019, pp. 1241–1258.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "D. D. Chamberlin, A Complete Guide to DB2 Universal Database. Morgan Kaufmann, 1998.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "P. G. Selinger, M. M. Astrahan, D. D. Chamberlin, R. A. Lorie, and T. G. Price, “Access path selection in a relational database management system,” in SIGMOD Conference, 1979, pp. 23–34.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "P. E. O’Neil, E. J. O’Neil, X. Chen, and S. Revilak, “The star schema benchmark and augmented fact table indexing,” in TPCTC, ser. Lecture Notes in Computer Science, vol. 5895, 2009, pp. 237–252. 54",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "R. C. Marcus, P. Negi, H. Mao, C. Zhang, M. Alizadeh, T. Kraska, O. Papaemmanouil, and N. Tatbul, “Neo: A learned query optimizer,” Proc. VLDB Endow., vol. 12, no. 11, pp. 1705–1718, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "R. Marcus, P. Negi, H. Mao, N. Tatbul, M. Alizadeh, and T. Kraska, “Bao: Making learned query optimization practical,” in SIGMOD Conference, 2021, pp. 1275–1288.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Z. Yang, A. Kamsetty, S. Luan, E. Liang, Y. Duan, X. Chen, and I. Stoica, “Neurocard: One cardinality estimator for all tables,” Proc. VLDB Endow., vol. 14, no. 1, pp. 61–73, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "J. Chung, C ¸. G ¨ulc¸ehre, K. Cho, and Y. Bengio, “Empirical evaluation of gated recurrent neural networks on sequence modeling,” arXiv Preprint, 2014. [Online]. Available: https://arxiv.org/abs/1412.3555",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez, L. Kaiser, and I. Polosukhin, “Attention is all you need,” in NIPS, 2017, pp. 5998–6008.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "I. Sutskever, O. Vinyals, and Q. V. Le, “Sequence to sequence learning with neural networks,” in NIPS, 2014, pp. 3104–3112.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "T. Luong, H. Pham, and C. D. Manning, “Effective approaches to attention-based neural machine translation,” in EMNLP, 2015, pp. 1412– 1421.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "G. Ke, Q. Meng, T. Finley, T. Wang, W. Chen, W. Ma, Q. Ye, and T. Liu, “Lightgbm: A highly efﬁcient gradient boosting decision tree,” in NIPS, 2017, pp. 3146–3154.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "T. Siddiqui, W. Wu, V. R. Narasayya, and S. Chaudhuri, “DISTILL: low-overhead data-driven techniques for ﬁltering and costing indexes for scalable index tuning,” Proc. VLDB Endow., vol. 15, no. 10, pp. 2019–2031, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "S. J. Rennie, E. Marcheret, Y. Mroueh, J. Ross, and V. Goel, “Selfcritical sequence training for image captioning,” in CVPR, 2017, pp. 1179–1195.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Y. Yu, “Towards sample efﬁcient reinforcement learning,” in IJCAI, 2018, pp. 5739–5743.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "M. Khan, P. Srivatsa, A. Rane, S. Chenniappa, R. Anand, S. Ozair, and P. Maes, “Pretrained encoders are all you need,” arXiv Preprint, vol. https://arxiv.org/abs/2106.05139, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "H. Kim, B. So, W. Han, and H. Lee, “Natural language to SQL: where are we today?” Proc. VLDB Endow., vol. 13, no. 10, pp. 1737–1750, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "F. L. Deremer, “Generating parsers for BNF grammars,” in AFIPS Spring Joint Computing Conference, ser. AFIPS Conference Proceedings, vol. 34, 1969, pp. 793–799.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "W. Wu, C. Wang, T. Siddiqui, J. Wang, V. R. Narasayya, S. Chaudhuri, and P. A. Bernstein, “Budget-aware index tuning with reinforcement learning,” in SIGMOD Conference, 2022, pp. 1528–1541.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "A. Dutt, C. Wang, A. Nazi, S. Kandula, V. R. Narasayya, and S. Chaudhuri, “Selectivity estimation for range predicates using lightweight models,” Proc. VLDB Endow., vol. 12, no. 9, pp. 1044–1057, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "K. Schnaitter, N. Polyzotis, and L. Getoor, “Index interactions in physical design tuning: Modeling, analysis, and applications,” Proc. VLDB Endow., vol. 2, no. 1, pp. 1234–1245, 2009.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "B. Min, H. Ross, E. Sulem, A. P. B. Veyseh, T. H. Nguyen, O. Sainz, E. Agirre, I. Heintz, and D. Roth, “Recent advances in natural language processing via large pre-trained language models: A survey,” arXiv Preprint, vol. https://arxiv.org/abs/2111.01243, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "T. Wolf, L. Debut, V. Sanh, J. Chaumond, C. Delangue, A. Moi, P. Cistac, T. Rault, R. Louf, M. Funtowicz, J. Davison, S. Shleifer, P. von Platen, C. Ma, Y. Jernite, J. Plu, C. Xu, T. L. Scao, S. Gugger, M. Drame, Q. Lhoest, and A. M. Rush, “Transformers: State-of-the-art natural language processing,” in EMNLP (Demos), 2020, pp. 38–45.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "J. Devlin, M. Chang, K. Lee, and K. Toutanova, “BERT: pre-training of deep bidirectional transformers for language understanding,” in NAACLHLT, vol. 1, 2019, pp. 4171–4186.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "M. Lewis, Y. Liu, N. Goyal, M. Ghazvininejad, A. Mohamed, O. Levy, V. Stoyanov, and L. Zettlemoyer, “BART: denoising sequence-tosequence pre-training for natural language generation, translation, and comprehension,” in ACL, 2020, pp. 7871–7880.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "Z. Feng, D. Guo, D. Tang, N. Duan, X. Feng, M. Gong, L. Shou, B. Qin, T. Liu, D. Jiang, and M. Zhou, “Codebert: A pre-trained model for programming and natural languages,” in EMNLP (Findings), ser. Findings of ACL, vol. EMNLP 2020, 2020, pp. 1536–1547.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "R. Li, L. B. Allal, Y. Zi, N. Muennighoff, D. Kocetkov, C. Mou, M. Marone, C. Akiki, J. Li, J. Chim, Q. Liu, E. Zheltonozhskii, T. Y. Zhuo, T. Wang, O. Dehaene, M. Davaadorj, J. Lamy-Poirier, J. Monteiro, O. Shliazhko, N. Gontier, N. Meade, A. Zebaze, M. Yee, L. K. Umapathi,J. Zhu, B. Lipkin, M. Oblokulov, Z. Wang, R. M. V, J. Stillerman, S. S. Patel, D. Abulkhanov, M. Zocca, M. Dey, Z. Zhang, N. ",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "E. Parisotto, H. F. Song, J. W. Rae, R. Pascanu, C ¸. G ¨ulc¸ehre, S. M. Jayakumar, M. Jaderberg, R. L. Kaufman, A. Clark, S. Noury, M. M. Botvinick, N. Heess, and R. Hadsell, “Stabilizing transformers for reinforcement learning,” in ICML, ser. Proceedings of Machine Learning Research, vol. 119, 2020, pp. 7487–7498.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "W. Li, H. Luo, Z. Lin, C. Zhang, Z. Lu, and D. Ye, “A survey on transformers in reinforcement learning,” arXiv Preprint, vol. https://arxiv.org/abs/2301.03044, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "M. Andrychowicz, A. Raichuk, P. Stanczyk, M. Orsini, S. Girgin, R. Marinier, L. Hussenot, M. Geist, O. Pietquin, M. Michalski, S. Gelly, and O. Bachem, “What matters for on-policy deep actor-critic methods? A large-scale study,” in ICLR, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "X. Guo and H. Yu, “On the domain adaptation and generalization of pretrained language models: A survey,” arXiv Preprint, vol. https://arxiv.org/abs/2211.03154, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "S. Huang and S. Onta ˜n´on, “A closer look at invalid action masking in policy gradient algorithms,” arXiv Preprint, 2020. [Online]. Available: https://arxiv.org/abs/2006.14171",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "Y. Luo, J. Peng, and J. Ma, “When causal inference meets deep learning,” Nat. Mach. Intell., vol. 2, no. 8, pp. 426–427, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "D. Kalainathan, O. Goudet, and R. Dutta, “Causal discovery toolbox: Uncovering causal relationships in python,” J. Mach. Learn. Res., vol. 21, pp. 37:1–37:5, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "L. Van der Maaten and G. Hinton, “Visualizing data using t-sne.” Journal of machine learning research, vol. 9, no. 11, 2008.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "B. Sch ¨olkopf, J. C. Platt, J. Shawe-Taylor, A. J. Smola, and R. C. Williamson, “Estimating the support of a high-dimensional distribution,” Neural Comput., vol. 13, no. 7, pp. 1443–1471, 2001.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "F. T. Liu, K. M. Ting, and Z. Zhou, “Isolation-based anomaly detection,” ACM Trans. Knowl. Discov. Data, vol. 6, no. 1, pp. 3:1–3:39, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 81,
+      "text": "M. M. Breunig, H. Kriegel, R. T. Ng, and J. Sander, “LOF: identifying density-based local outliers,” in SIGMOD Conference, 2000, pp. 93–104. 55",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 36,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proc. ACM Program. Lang., vol. 4, no. OOPSLA, pp. 211:1–211:30, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP [36] derives multiple queries by partitioning the results from the original query.",
+      "context_before": "ferent strategies to make their methods more robust [33], [34] or considered dynamic workloads [1], [7], the assessments are conducted 43 on the testing workloads split from a predeﬁned set of workloads, which only contain limited query variants and fails to reﬂect typical workload drifts. Therefore, the robustness of both heuristic-based and learning-based index advisors over workload drifts has never been thoroughly assessed. B. SQL Generation Heuristic-based SQL generation methods use various rules. For example, SQLsmith [35] randomly synthesizes queries by walking through the parse tree.",
+      "context_after": "Recently, learning-based SQL generation methods adopt Generative Adversarial Network (GAN) [37] or the reinforcement learning framework [38]. Instead of generating queries from scratch, some studies perform a series of rewrite transformations to optimize the original query. Sia [39] replaces the predicates in a query with valid but weaker ones learned by a classiﬁer over the columns. LearnedRewrite [40] adopts the Monte Carlo Tree Search (MCTS) algorithm to ﬁnd a nearoptimal rewrite order from a set of query rewrite rules. Difference with our work. First, our work aims to generate perturbed q",
+      "section": "B SQL Generation",
+      "page": 3,
+      "char_offset": 11730,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:17:50Z",
+    "is_model_written": true,
+    "summary": "TRAP assesses how robust index advisors are to change, arguing these tools are evaluated mainly on static scenarios while their stability under minor workload shifts is not studied. The authors introduce perturbation-based workloads with three constraints drawn from real scenarios, formulate generating perturbed queries as a sequence-to-sequence problem, and train TRAP in an opaque-box setting. Assessing ten index advisors, they find all vulnerable to TRAP's workloads.",
+    "narrative": "One citation, describing TLP as a way of deriving multiple queries by partitioning the results of an original query, in a discussion of SQL generation.",
+    "roles": {
+      "M1": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

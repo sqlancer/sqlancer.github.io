@@ -1,0 +1,211 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "paper": {
+    "id": "paper:doi:10.14778/3712221.3712247",
+    "title": "Semantic Conformance Testing of Relational DBMS",
+    "authors": [
+      "Shuang Liu",
+      "Chenglin Tian",
+      "Jun Sun",
+      "Ruifeng Wang",
+      "Wei Lu",
+      "Yongxin Zhao",
+      "Yinxing Xue",
+      "Junjie Wang",
+      "Xiaoyong Du"
+    ],
+    "year": 2024,
+    "venue": "Proceedings of the VLDB Endowment",
+    "doi": "10.14778/3712221.3712247",
+    "url": "https://doi.org/10.14778/3712221.3712247"
+  },
+  "summary": {
+    "text": "This paper introduces semantic conformance testing for relational DBMSs — checking a system against the SQL standard rather than against another system. Two obstacles are identified: the standard is written in ambiguous natural language and is not executable, and it is hard to generate queries covering all its keywords and parameters. The authors formally define SQL's denotational semantics and implement them in Prolog as an executable reference system, then add three coverage criteria over those semantics and a coverage-guided generation algorithm. Across six widely used RDBMSs it uncovered 19 bugs and 13 inconsistencies, all confirmed.",
+    "relationship_to_sqlancer": "Builds an executable reference to test what metamorphic oracles cannot, comparing against SQLancer's approach, and its artifact reuses the SQLancer codebase.",
+    "is_model_generated": true,
+    "grounded_in_source": true,
+    "written_from": "abstract",
+    "written_from_url": "https://doi.org/10.14778/3712221.3712247",
+    "source_sha256": "sha256:47f15594c034f920cacd26456264449c565bb595e5d2fd834385435de305c92b",
+    "supporting_excerpts": [
+      "First, the SQL standard specification, documented in natural language, tends to be ambiguous and is not directly executable.",
+      "Firstly, we formally define the denotational semantics of SQL and implement them in Prolog, creating an executable reference RDBMS for differential testing against existing RDBMSs.",
+      "Lastly, we apply our approach to six widely-used and thoroughly tested RDBMSs, e.g., MySQL, PostgreSQL and OceanBase, uncovering 19 bugs and 13 inconsistencies, all of which are confirmed by RDBMS developers."
+    ],
+    "model": "claude-opus-5",
+    "generated_by": "claude_code_session",
+    "classifier_version": null,
+    "generated_at": "2026-09-07T02:34:18Z"
+  },
+  "evidence": [
+    {
+      "relationship": "references",
+      "title": "Cites SQLancer",
+      "value": "yes",
+      "method": "citation_graph",
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://www.semanticscholar.org/paper/bb1da01b4752d31f2f96f3abcc5502b58bedbc4e",
+          "source_type": "paper",
+          "excerpt": null,
+          "excerpt_is_verbatim": false,
+          "note": "Semantic Scholar records this paper as citing the publication that introduced Pivoted Query Synthesis (PQS), Non-optimizing Reference Engine Construction (NoREC), Ternary Logic Partitioning (TLP).",
+          "retrieved_at": "2026-09-06T17:02:28Z"
+        },
+        {
+          "source_url": "https://arxiv.org/abs/2406.09469",
+          "source_type": "paper_citation_context",
+          "excerpt": "We compared S EM C ON T with TLP [41] and NoREC [40], which are state-of-the-art metamorphic testing methods for testing RDBMS. NoREC constructs two semantically equivalent queries, one triggers the optimization and the other does not, executes the queries and compare the results.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Non-optimizing Reference Engine Construction (NoREC), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:33:21Z"
+        },
+        {
+          "source_url": "https://arxiv.org/abs/2406.09469",
+          "source_type": "paper_citation_context",
+          "excerpt": "We compare S EM C ON T with two state-of-the-art approaches TLP [40] and NoREC [41], which are metamorphic testing approaches for relational DBMS.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Non-optimizing Reference Engine Construction (NoREC), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:33:21Z"
+        },
+        {
+          "source_url": "https://arxiv.org/abs/2406.09469",
+          "source_type": "paper_citation_context",
+          "excerpt": "PQS [42] operates by first selecting a row of data, and then synthesizing a query based on this selected data.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:33:21Z"
+        },
+        {
+          "source_url": "https://arxiv.org/abs/2406.09469",
+          "source_type": "paper_citation_context",
+          "excerpt": "It is noteworthy that all four databases have been extensively tested by existing methods [40]–[42], yet S EM C ON T is still able to detect bugs that were not detected by those approaches.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:33:21Z"
+        },
+        {
+          "source_url": "https://arxiv.org/abs/2406.09469",
+          "source_type": "paper_citation_context",
+          "excerpt": "In recent years, SQLancer [14] has emerged as the most effective black-box fuzz testing tool, distinguished by its adoption of three complementary oracles [40]–[42].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:33:21Z"
+        },
+        {
+          "source_url": "https://arxiv.org/abs/2406.09469",
+          "source_type": "paper_citation_context",
+          "excerpt": "TLP [41] divides a SQL query into three separate SQL statements that collectively retain the same semantics as the original query.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Ternary Logic Partitioning (TLP), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:33:21Z"
+        }
+      ]
+    },
+    {
+      "relationship": "uses_infrastructure",
+      "title": "Uses the SQLancer codebase",
+      "value": "yes",
+      "method": "deterministic",
+      "techniques": [
+        "norec",
+        "tlp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://www.vldb.org/pvldb/vol18/p850-liu.pdf",
+          "source_type": "paper",
+          "excerpt": "Both NoREC and TLP are implemented in SQLancer [ 38] and SQLRight [ 22].",
+          "excerpt_is_verbatim": true,
+          "note": "The paper states that its implementation is built on SQLancer.",
+          "retrieved_at": "2026-09-06T17:02:28Z"
+        },
+        {
+          "source_url": "https://arxiv.org/abs/2406.09469",
+          "source_type": "paper",
+          "excerpt": "Both NoREC and TLP are implemented in SQLancer [14] and SQLRight [34].",
+          "excerpt_is_verbatim": true,
+          "note": "The paper states that its implementation is built on SQLancer.",
+          "retrieved_at": "2026-09-06T15:33:21Z"
+        }
+      ]
+    },
+    {
+      "relationship": "compares_with",
+      "title": "Compares against SQLancer",
+      "value": "yes",
+      "method": "deterministic",
+      "techniques": [
+        "norec",
+        "tlp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://www.vldb.org/pvldb/vol18/p850-liu.pdf",
+          "source_type": "paper",
+          "excerpt": "We compared SemConT with TLP [ 32] and NoREC [ 31], which are state-of-the-art metamorphic testing methods for testing RDBMS.",
+          "excerpt_is_verbatim": true,
+          "note": "The paper states that it evaluates against SQLancer or one of its techniques.",
+          "retrieved_at": "2026-09-06T17:02:28Z"
+        },
+        {
+          "source_url": "https://www.vldb.org/pvldb/vol18/p850-liu.pdf",
+          "source_type": "paper",
+          "excerpt": "We compare SemConT with two state-of-the-art approaches TLP [ 31] and NoREC [ 32], which are metamorphic testing approaches for relational DBMS.",
+          "excerpt_is_verbatim": true,
+          "note": "The paper states that it evaluates against SQLancer or one of its techniques.",
+          "retrieved_at": "2026-09-06T17:02:28Z"
+        },
+        {
+          "source_url": "https://www.vldb.org/pvldb/vol18/p850-liu.pdf",
+          "source_type": "paper",
+          "excerpt": "We also compared the memory usage of SemConT and SQLancer during a 6-hour test on six databases.",
+          "excerpt_is_verbatim": true,
+          "note": "The paper states that it evaluates against SQLancer or one of its techniques.",
+          "retrieved_at": "2026-09-06T17:02:28Z"
+        },
+        {
+          "source_url": "https://arxiv.org/abs/2406.09469",
+          "source_type": "paper_citation_context",
+          "excerpt": "We compared S EM C ON T with TLP [41] and NoREC [40], which are state-of-the-art metamorphic testing methods for testing RDBMS.",
+          "excerpt_is_verbatim": true,
+          "note": "Passage in the paper, as indexed by Semantic Scholar, supporting this relationship.",
+          "retrieved_at": "2026-09-06T07:08:48Z"
+        }
+      ]
+    },
+    {
+      "relationship": "describes_as_state_of_the_art",
+      "title": "Calls SQLancer state of the art",
+      "value": "yes",
+      "method": "deterministic",
+      "techniques": [
+        "tlp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://arxiv.org/abs/2406.09469",
+          "source_type": "paper_citation_context",
+          "excerpt": "We compared S EM C ON T with TLP [41] and NoREC [40], which are state-of-the-art metamorphic testing methods for testing RDBMS. NoREC constructs two semantically equivalent queries, one triggers the optimization and the other does not, executes the queries and compare the results.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper describing Ternary Logic Partitioning (TLP) as state of the art.",
+          "retrieved_at": "2026-09-06T15:33:21Z"
+        },
+        {
+          "source_url": "https://arxiv.org/abs/2406.09469",
+          "source_type": "paper_citation_context",
+          "excerpt": "We compare S EM C ON T with two state-of-the-art approaches TLP [40] and NoREC [41], which are metamorphic testing approaches for relational DBMS.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper describing Ternary Logic Partitioning (TLP) as state of the art.",
+          "retrieved_at": "2026-09-06T15:33:21Z"
+        }
+      ]
+    }
+  ]
+}

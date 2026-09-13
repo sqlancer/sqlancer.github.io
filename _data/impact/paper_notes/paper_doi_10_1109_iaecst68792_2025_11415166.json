@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "paper": {
+    "id": "paper:doi:10.1109/iaecst68792.2025.11415166",
+    "title": "Semantic Hint-Based Fuzzing for Time-Series Databases",
+    "authors": [
+      "Panta Kittisatra",
+      "Liang Liu"
+    ],
+    "year": 2025,
+    "venue": "2025 7th International Academic Exchange Conference on Science and Technology Innovation (IAECST)",
+    "doi": "10.1109/iaecst68792.2025.11415166",
+    "url": "https://doi.org/10.1109/iaecst68792.2025.11415166"
+  },
+  "summary": {
+    "text": "This paper adds a semantic hint-based oracle to TSGuard for testing time-series databases, arguing that existing fuzzing frameworks are built for relational DBMSs and ignore the temporal semantics and query processing peculiar to TSDBs. The oracle injects logically neutral predicates such as tautologies and redundant conditions into a baseline query and compares results differentially, so query intent is unchanged but robustness is probed. On Apache IoTDB, InfluxDB and TDengine it surfaced several optimizer-related crashes and robustness issues.",
+    "relationship_to_sqlancer": "Carries the idea of semantics-preserving query perturbation, which SQLancer's oracles rest on, into time-series databases.",
+    "is_model_generated": true,
+    "grounded_in_source": true,
+    "written_from": "abstract",
+    "written_from_url": "https://doi.org/10.1109/iaecst68792.2025.11415166",
+    "source_sha256": "sha256:4ea0967b957743fe11e8605681f15ddfacb1a7272b107cce6d90a69b57157171",
+    "supporting_excerpts": [
+      "However, most existing fuzzing frameworks are designed for relational DBMSs and overlook temporal semantics and query processing behaviors unique to TSDBs.",
+      "To address this gap, we present a Semantic Hint-Based Oracle, a lightweight extension to TSGuard that evaluates TSDB robustness under semantic-preserving transformations.",
+      "The oracle injects logically neutral predicates—such as tautologies and redundant conditions—into baseline queries and performs differential comparison to identify unexpected errors or behavioral divergences without altering query intent."
+    ],
+    "model": "claude-opus-5",
+    "generated_by": "claude_code_session",
+    "classifier_version": null,
+    "generated_at": "2026-09-07T02:31:04Z"
+  },
+  "evidence": [
+    {
+      "relationship": "references",
+      "title": "Cites SQLancer",
+      "value": "yes",
+      "method": "citation_graph",
+      "techniques": [
+        "pqs",
+        "tlp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://doi.org/10.1109/iaecst68792.2025.11415166",
+          "source_type": "paper_citation_context",
+          "excerpt": "However, these frameworks largely assume relational semantics[6], static schemas, and Boolean logic evaluation, making them ineffective for dealing with temporal operators, continuous data ingestion, window functions, and time-aware aggregations that are fundamental in TSDBs.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Ternary Logic Partitioning (TLP), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/iaecst68792.2025.11415166",
+          "source_type": "paper_citation_context",
+          "excerpt": "SQLancer pioneered systematic bug detection using oracles such as Non-Optimizing Reference Engine Construction (NoREC) and Ternary Logic Partitioning (TLP), enabling reliable detection of logic bugs even when databases do not crash [6].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Ternary Logic Partitioning (TLP), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/iaecst68792.2025.11415166",
+          "source_type": "paper_citation_context",
+          "excerpt": "Tools such as SQLancer[6], SQLaser[7], and mutation-based engines like AFL leverage metamorphic testing to uncover logic bugs and optimizer inconsistencies[8], [9].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Ternary Logic Partitioning (TLP), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/iaecst68792.2025.11415166",
+          "source_type": "paper_citation_context",
+          "excerpt": "Research on testing relational DBMS, which supports a standardized query language SQL, has evolved considerably over the past decades[13], [14] .",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    }
+  ]
+}

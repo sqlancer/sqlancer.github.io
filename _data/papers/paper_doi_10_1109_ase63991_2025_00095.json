@@ -1,0 +1,710 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:31:15Z",
+  "paper": {
+    "id": "paper:doi:10.1109/ase63991.2025.00095",
+    "title": "ZendDiff: Differential Testing of PHP Interpreter",
+    "authors": [
+      "Yuancheng Jiang",
+      "Jianing Wang",
+      "Qiange Liu",
+      "Yeqi Fu",
+      "Jian Mao",
+      "Roland H. C. Yap",
+      "Zhenkai Liang"
+    ],
+    "year": 2025,
+    "venue": "International Conference on Automated Software Engineering",
+    "doi": "10.1109/ase63991.2025.00095",
+    "arxiv_id": null,
+    "s2_paper_id": "192e297c91aca3b7a6ab579ef11f38acc09f51a0",
+    "url": "https://doi.org/10.1109/ase63991.2025.00095",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/ase63991.2025.00095",
+      "retrieved_at": "2026-09-09T01:31:15Z",
+      "chars": 71596,
+      "content_sha256": "sha256:1e57fa77708a27e56977cbc75a1593f1fb04ef7092f1fe05c3ebac2d8a2b65e8"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 2060
+      },
+      {
+        "number": "II",
+        "title": "BACKGROUND",
+        "start": 12479
+      },
+      {
+        "number": "III",
+        "title": "APPROACH",
+        "start": 16348
+      },
+      {
+        "number": "A",
+        "title": "Differential Input Preparation",
+        "start": 18848
+      },
+      {
+        "number": "B",
+        "title": "Program State Probing.",
+        "start": 19800
+      },
+      {
+        "number": "C",
+        "title": "JIT-Aware Program Mutation",
+        "start": 21599
+      },
+      {
+        "number": "D",
+        "title": "Differential Testing with Dual Verification",
+        "start": 23687
+      },
+      {
+        "number": "IV",
+        "title": "IMPLEMENTATION",
+        "start": 27014
+      },
+      {
+        "number": "V",
+        "title": "EVALUATION",
+        "start": 28719
+      },
+      {
+        "number": "A",
+        "title": "Discovering Previously Unknown Logic Bugs",
+        "start": 31267
+      },
+      {
+        "number": "B",
+        "title": "Improved Effectiveness of ZendDiff",
+        "start": 41502
+      },
+      {
+        "number": "C",
+        "title": "Ablation Study of ZendDiff",
+        "start": 48538
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "H. Kiran, https://techjury.net/blog/php-usage-statistics/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "w3techs, https://w3techs.com/technologies/details/pl-php.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "C. Holler, K. Herzig, and A. Zeller, “Fuzzing with code fragments,” in21st USENIX Security Symposium (USENIX Security 12), 2012, pp. 445–458.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "C. Aschermann, T. Frassetto, T. Holz, P. Jauernig, A.-R. Sadeghi, and D. Teuchert, “Nautilus: Fishing for deep bugs with grammars.” in NDSS, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "P. Srivastava and M. Payer, “Gramatron: Effective grammar-aware fuzzing,” in Proceedings of the 30th acm sigsoft international symposium on software testing and analysis, 2021, pp. 244–256.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Y. Chen, R. Zhong, H. Hu, H. Zhang, Y. Yang, D. Wu, and W. Lee, “One engine to fuzz’em all: Generic language processor testing with semantic validation,” in (SP). IEEE, 2021, pp. 642–658.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Y. Jiang, C. Zhang, B. Ruan, J. Liu, M. Rigger, R. H. Yap, and Z. Liang, “Fuzzing the PHP interpreter via dataflow fusion,” in 34th USENIX Security Symposium (USENIX Security 25), 2025, pp. 6143–6158.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 8,
+      "text": "C. Zhang, G. Lee, Q. Liu, and M. Payer, “Reflecta: Reflection-based scalable and semantic scripting language fuzzing,” in Proceedings of the20th ACM Asia Conference on Computer and Communications Security, 2025, p. 1772–1787.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "T. Y. Chen, S. C. Cheung, and S. M. Yiu, “Metamorphic testing: a new approach for generating next test cases,” Department of Computer Science, Hong Kong, Tech. Rep. HKUST-CS98-01, 1998.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "T. Y. Chen, F.-C. Kuo, H. Liu, P.-L. Poon, D. Towey, T. H. Tse, and Z. Q. Zhou, “Metamorphic testing: A review of challenges and opportunities,” ACM Comput. Surv., vol. 51, no. 1, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "T. Y. Chen, J. W. Ho, H. Liu, and X. Xie, “An innovative approach for testing bioinformatics programs using metamorphic testing,” BMC bioinformatics, vol. 10, no. 1, pp. 1–12, 2009.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "A. Ramanathan, C. A. Steed, and L. L. Pullum, “Verification of compartmental epidemiological models using metamorphic testing, model checking and visual analytics,” in 2012 ASE/IEEE International Conference on BioMedical Computing (BioMedCom), 2012, pp. 68–73.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "W. K. Chan, S. C. Cheung, and K. R. Leung, “A metamorphic testing approach for online testing of service-oriented software applications,” International Journal of Web Services Research (IJWSR), vol. 4, no. 2, pp. 61–81, 2007.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "F.-C. Kuo, T. Y. Chen, and W. K. Tam, “Testing embedded software by metamorphic testing: A wireless metering system case study,” in. 291– 294.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "W. K. Chan, T. Y. Chen, H. Lu, T. H. Tse, and S. S. Yau, “Integration testing of context-sensitive middleware-based applications: a metamorphic approach,” International Journal of Software Engineering and Knowledge Engineering, vol. 16, no. 05, pp. 677–703, 2006.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "M. N. Mansur, M. Christakis, and V. W ¨ustholz, “Metamorphic testing of datalog engines,” in Proceedings of the 29th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2021, p. 639–650.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "L. Bernhard, T. Scharnowski, M. Schloegel, T. Blazytko, and T. Holz, “JIT-Picking: Differential fuzzing of javascript engines,” in Proceedings of the 2022 ACMSIGSAC Conference on Computer and Communications Security, 2022, pp. 351–364.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "J. Park, S. An, D. Youn, G. Kim, and S. Ryu, “JEST: N+1 -version Differential Testing of Both JavaScript Engines and Specification.” in International Conference on Software Engineering (ICSE), 2021, pp. 13–24.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "X. Yang, Y. Chen, E. Eide, and J. Regehr, “Finding and understanding bugs in C compilers,” in Proceedings of the 32nd ACMSIGPLAN Conference on Programming Language Design and Implementation, 2011, p. 283–294.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "C. Brubaker, S. Jana, B. Ray, S. Khurshid, and V. Shmatikov, “Using Frankencerts for Automated Adversarial Testing of Certificate Validation in SSL/TLS Implementations,” in and Privacy, 2014.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Y. Chen and Z. Su, “Guided differential testing of certificate validation in SSL/TLS implementations,” in Proceedings of the 10th Joint Meeting on Foundations of Software Engineering, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Y. Chen, T. Su, C. Sun, Z. Su, and J. Zhao, “Coverage-directed differential testing of JVM implementations,” in Proceedings of the 37th ACMSIGPLAN Conference on Programming Language Design and Implementation. ACM, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Y. Chen, T. Su, and Z. Su, “Deep differential testing of JVM implementations.” in International Conference on Software Engineering (ICSE), 2019, pp. 1257–1268.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "M. Sharma, P. Yu, and A. F. Donaldson, “RustSmith: Random differential compiler testing for Rust,” in Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis, 2023, pp. 1483–1486.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "S. Song, J. Hur, S. Kim, P. Rogers, and B. Lee, “R2z2 - detecting rendering regressions in web browsers through differential fuzz testing,” inProceedings of the 44th International Conference on Software Engineering. ACM, 2022, pp. 1818–1829.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "S. Nilizadeh, Y. Noller, and C. S. Pasareanu, “Diffuzz: Differential Fuzzing for Side-Channel Analysis.” in Software Engineering (SE), 2020, pp. 125–126.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Facebook, “HHVM: A virtual machine for executing programs written in hack.” https://github.com/facebook/hhvm, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "F. Emmott, “Ending php support, and the future of hack,” https://hhvm. com/blog/2018/09/12/end-of-php-support-future-of-hack.html, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "“PHP 8.0 JIT,” https://php.watch/versions/8.0/JIT, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "“PHPJIT in depth,” https://php.watch/articles/jit-in-depth, 2020. 1105",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "C. Li, Y. Jiang, C. Xu, and Z. Su, “Validating jit compilers via compilation space exploration,” ACM Trans. Comput. Syst., vol. 43, no. 3, Jul. 2025. [Online]. Available: https://doi.org/10.1145/3715102",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "V. Le, M. Afshari, and Z. Su, “Compiler validation via equivalence modulo inputs,” in Proceedings of the 35th ACMSIGPLAN Conference on Programming Language Design and Implementation, ser. PLDI ’14. New York, NY, USA: Association for Computing Machinery, 2014, p. 216–226. [Online]. Available: https://doi.org/10.1145/2594291.2594334",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "S. Zhou, M. Jiang, W. Chen, H. Zhou, H. Wang, and X. Luo, “Wadiff: A differential testing framework for webassembly runtimes,” inProceedings of the 38th IEEE/ACM International Conference on Automated Software Engineering, ser. ASE ’23. IEEE Press, 2024, p. 939–950. [Online]. Available: https://doi.org/10.1109/ASE56229.2023. 00188",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "L. Wachter, J. Gremminger, C. Wressnegger, M. Payer, and F. Toffalini, “Dumpling: Fine-grained differential javascript engine fuzzing,” in NDSS, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "P. Li and M. Zhang, “Fuzzcache: Optimizing web application fuzzing through software-based data cache,” 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "“PHPT structure details,” https://qa.php.net/phpt details.php, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "“PHP opcache runtime configuration,” https://www.php.net/manual/en/ opcache.configuration.php, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "A. Zeller and R. Hildebrandt, “Simplifying and isolating failure-inducing input,” IEEE Transactions on Software Engineering, vol. 28, no. 2, pp. 183–200, 2002.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "J. Regehr, Y. Chen, P. Cuoq, E. Eide, C. Ellison, and X. Yang, “Testcase reduction for C compiler bugs,” in Proceedings of the 33rd ACMSIGPLAN conference on Programming Language Design and Implementation, 2012, pp. 335–346.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proc. ACM Program. Lang., vol. 4, no. OOPSLA, nov 2020. [Online]. Available: https://doi-org.libproxy1.nus.edu.sg/10.1145/ 3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 41,
+      "text": "——, “Testing database engines via pivoted query synthesis,” in Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 42,
+      "text": "gcovr, https://gcovr.com/, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "“The official code repository of the PHP interpreter,” https://github.com/ php/php-src/, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "M. Kamm, M. Rigger, C. Zhang, and Z. Su, “Testing graph database engines via query partitioning,” in Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis, 2023, p. 140–149.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 45,
+      "text": "“Dynasm,” https://luajit.org/dynasm.html, 2025. [Online]. Available: https://luajit.org/dynasm.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "G. Klees, A. Ruef, B. Cooper, S. Wei, and M. Hicks, “Evaluating fuzz testing,” in Proceedings of the 2018 ACMSIGSAC Conference on Computer and Communications Security, 2018, p. 2123–2138.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "J. Wang, Z. Zhang, S. Liu, X. Du, and J. Chen, “FuzzJIT: Oracleenhanced fuzzing for JavaScript engine JIT compiler,” in 32nd USENIX Security Symposium (USENIX Security 23), 2023, pp. 1865–1882.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "K. Even-Mendoza, A. Sharma, A. F. Donaldson, and C. Cadar, “grayc: Greybox fuzzing of compilers and analysers for C,” in Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis, 2023, pp. 1219–1231.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "F. Tuong, M. Omidvar Tehrani, M. Gaboardi, and S. Y. Ko, “Symrustc: A hybrid fuzzer for rust,” in Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis, 2023, pp. 1515–1518.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "S. Groß, S. Koch, L. Bernhard, T. Holz, and M. Johns, “Fuzzilli: Fuzzing for javascript jit compiler vulnerabilities.” in NDSS, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "G. Ye, Z. Tang, S. H. Tan, S. Huang, D. Fang, X. Sun, L. Bian, H. Wang, and Z. Wang, “Automated conformance testing for javascript engines via deep compiler fuzzing,” in Proceedings of the 42nd ACMSIGPLAN international conference on programming language design and implementation, 2021, pp. 435–450. 1106",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 7,
+      "text": "Y. Jiang, C. Zhang, B. Ruan, J. Liu, M. Rigger, R. H. Yap, and Z. Liang, “Fuzzing the PHP interpreter via dataflow fusion,” in 34th USENIX Security Symposium (USENIX Security 25), 2025, pp. 6143–6158.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 40,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proc. ACM Program. Lang., vol. 4, no. OOPSLA, nov 2020. [Online]. Available: https://doi-org.libproxy1.nus.edu.sg/10.1145/ 3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 41,
+      "text": "——, “Testing database engines via pivoted query synthesis,” in Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation, 2020.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 44,
+      "text": "M. Kamm, M. Rigger, C. Zhang, and Z. Su, “Testing graph database engines via query partitioning,” in Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis, 2023, p. 140–149.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 3,4,5,6,7,8]",
+      "technique": null,
+      "sentence": "Research efforts [ 3,4,5,6,7,8] have been devoted to uncovering various bugs in the PHP interpreter.",
+      "context_before": "y used server-side scripting languages for web development, powering over 70% of websites on the internet [ 1,2]. PHP offers a wide range of functionalities for web developers, such as database access, session management, and file system operations. The official PHP interpreter features a substantial codebase with over a million lines of code, mainly implemented in C. It is well known that complex software is prone to bugs and vulnerabilities. Given its critical role in web development, detecting bugs in the PHP interpreter is crucial to ensure the security and reliability of web applications.",
+      "context_after": "In particular, the proposed approaches mainly rely on fuzzing techniques dedicated to optimizing input generation for broad testing §Co-primary authors.†Corresponding author.coverage. Most of the above works leverage grammar-guided or semantic-guided test case generation. For example, FlowFusion [ 7], utilizes dataflow-guided test case fusion techniques to generate semantic test cases. We highlight that existing approaches mainly focus on finding explicit security issues, such as crashes or memory errors. They do so by leveraging crashes or sanitizers as weak test oracles. Despite the effecti",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 2729,
+      "cited_reference": {
+        "number": 7,
+        "text": "Y. Jiang, C. Zhang, B. Ruan, J. Liu, M. Rigger, R. H. Yap, and Z. Liang, “Fuzzing the PHP interpreter via dataflow fusion,” in 34th USENIX Security Symposium (USENIX Security 25), 2025, pp. 6143–6158.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 7]",
+      "technique": null,
+      "sentence": "For example, FlowFusion [ 7], utilizes dataflow-guided test case fusion techniques to generate semantic test cases.",
+      "context_before": "is well known that complex software is prone to bugs and vulnerabilities. Given its critical role in web development, detecting bugs in the PHP interpreter is crucial to ensure the security and reliability of web applications. Research efforts [ 3,4,5,6,7,8] have been devoted to uncovering various bugs in the PHP interpreter. In particular, the proposed approaches mainly rely on fuzzing techniques dedicated to optimizing input generation for broad testing §Co-primary authors.†Corresponding author.coverage. Most of the above works leverage grammar-guided or semantic-guided test case generation.",
+      "context_after": "We highlight that existing approaches mainly focus on finding explicit security issues, such as crashes or memory errors. They do so by leveraging crashes or sanitizers as weak test oracles. Despite the effectiveness of these approaches in identifying security issues, they are not designed for detecting logic bugs. Logic bugs are dangerous as they can silently lead to incorrect results, thereby compromising the reliability of the PHP interpreter. Finding logic bugs in the PHP interpreter is challenging due to the lack of an effective test oracle. As logic bugs manifest as incorrect computatio",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 3103,
+      "cited_reference": {
+        "number": 7,
+        "text": "Y. Jiang, C. Zhang, B. Ruan, J. Liu, M. Rigger, R. H. Yap, and Z. Liang, “Fuzzing the PHP interpreter via dataflow fusion,” in 34th USENIX Security Symposium (USENIX Security 25), 2025, pp. 6143–6158.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 7]",
+      "technique": null,
+      "sentence": "As the PHP program generator, ZendDiff adopts FlowFusion [ 7], the state-of-the-art and only generator built for PHP.",
+      "context_before": "by --SECTION-- markers; more than 30 section types exist [ 36]. Listing 2shows an example that verifies the correctness of DOM-related functions. Key sections include: (i) --TEST-section for a brief description; (ii) --EXTENSIONS-- section lists the required extensions; (iii) the --FILE-- section contains the PHP program; and (iv) the --EXPECT-- section specifies the expected results (a mismatch signals a bug). Existing PHP Program Generator. While test program generation is orthogonal to our approach, it remains a crucial research challenge in the testing programming language implementations.",
+      "context_after": "FlowFusion aims to uncover memory errors within the PHP interpreter through fuzzing. To better explore the PHP execution space, it works by fusing official test-suite cases at the data-flow level: it treats cases from the official suite as seeds, interleaves their data flows, and produces new programs that exercise new execution paths and have not been previously explored. III. APPROACH We aim to detect logic bugs that produce incorrect computation results in the PHP interpreter. Our key insight is to treat PHP’s JIT compilation as a semantics-preserving alternative execution implementation t",
+      "section": "II BACKGROUND",
+      "page": 3,
+      "char_offset": 15853,
+      "cited_reference": {
+        "number": 7,
+        "text": "Y. Jiang, C. Zhang, B. Ruan, J. Liu, M. Rigger, R. H. Yap, and Z. Liang, “Fuzzing the PHP interpreter via dataflow fusion,” in 34th USENIX Security Symposium (USENIX Security 25), 2025, pp. 6143–6158.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 7]",
+      "technique": null,
+      "sentence": "Figure 2 illustrates the overall workflow of ZendDiff :Test Case Generation (1) leverages an off-the-shelf test case generation approach [ 7] to create a large and diverse corpus.",
+      "context_before": ">save XML (),\"\\n\"; echo $doc ->save XML ($comment ),\"\\n\"; var_dump ($comment ->parentNode ); ?> --EXPECT -<?xml version =\"1.0\" ?>..<!-- comment -->NULL 1097 Program State Probing 6Test Case Generation1 … Test Case Test Case Test Case =Dual Verification Non-JIT ResultJIT Result Non-JIT Result’=JIT Result’ ≠ 4 2 Non-JIT Test Case’ Non-JIT Test CasecopyJIT Test Case’ JIT Test Case Bug ReportJIT-Aware Program Mutation 3 Test CasecopyFig. 2: The Overview of ZendDiff ’s Differential Testing Approach We present ZendDiff, a differential testing approach for detecting logic bugs in the PHP interpreter.",
+      "context_after": "Program State Probing (2) injects probes into the generated cases to capture fine-grained program states. These instrumented test cases are then replicated into two groups: one group is processed by JIT-Aware Program Mutation (3) to sufficiently exercise JIT functionality of PHP engine, while the other group acts as non-JIT cases. These two groups form test pairs, which are then passed to the Dual Verification (4), which crosschecks the outputs of the differential executions from both groups to detect potential discrepancies. Finally, ZendDiff generates bug reports upon detecting discrepancie",
+      "section": "III APPROACH",
+      "page": 4,
+      "char_offset": 17894,
+      "cited_reference": {
+        "number": 7,
+        "text": "Y. Jiang, C. Zhang, B. Ruan, J. Liu, M. Rigger, R. H. Yap, and Z. Liang, “Fuzzing the PHP interpreter via dataflow fusion,” in 34th USENIX Security Symposium (USENIX Security 25), 2025, pp. 6143–6158.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 7]",
+      "technique": null,
+      "sentence": "Differential Input Preparation To generate unique and high-quality test cases for differential testing, ZendDiff leverages an existing state-of-the-art PHP test case generation technique, FlowFusion [ 7] (see Section II).",
+      "context_before": "e group is processed by JIT-Aware Program Mutation (3) to sufficiently exercise JIT functionality of PHP engine, while the other group acts as non-JIT cases. These two groups form test pairs, which are then passed to the Dual Verification (4), which crosschecks the outputs of the differential executions from both groups to detect potential discrepancies. Finally, ZendDiff generates bug reports upon detecting discrepancies in differential test results. Each bug report comprises the bug-inducing test case, the observed unexpected result, the expected result, and the reproducing configuration. A.",
+      "context_after": "However, directly applying these cases to differential testing does not work well because they often contain random and unstable behaviors for fuzzing purposes, such as randomized API invocations, variable accesses, and execution configurations. Such random elements can lead to differences in runtime behaviors, causing challenges for reliable differential testing. Hence, ZendDiff performs a processing step to stabilize such generated randomness. Specifically, ZendDiff performs a lightweight code analysis to identify the declared variables and explicitly specifies them in test cases. Similarly",
+      "section": "A Differential Input Preparation",
+      "page": 4,
+      "char_offset": 18850,
+      "cited_reference": {
+        "number": 7,
+        "text": "Y. Jiang, C. Zhang, B. Ruan, J. Liu, M. Rigger, R. H. Yap, and Z. Liang, “Fuzzing the PHP interpreter via dataflow fusion,” in 34th USENIX Security Symposium (USENIX Security 25), 2025, pp. 6143–6158.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 7]",
+      "technique": null,
+      "sentence": "Original test cases generated by FlowFusion [ 7] often invoke dynamic introspection APIs such as get_defined_functions() andget_ defined_vars(), which randomly access internal functions and variables.",
+      "context_before": "sults (line 11-12). Finally, ZendDiff compares the results of the check tests with the original test cases to ensure consistency across different executions. If the results of the check tests do not match those of the original test cases, ZendDiff ignore them as non-deterministic behaviors present (line 14). Otherwise, ZendDiff reports a logic bug, as the discrepancy indicates an inconsistency in the PHP interpreter’s execution behavior (line 15). IV. IMPLEMENTATION We developed our differential testing framework, ZendDiff, with over 2,000 lines of Python code. Processing Generated Test Cases.",
+      "context_after": "While the use of randomness can be useful for a fuzzer, it yields unstable and non-comparable executions that undermine differential testing. ZendDiff refines these cases by eliminating such random and unstable behaviors with fixed targets to ensure reproducible results. State Probes. Our probes internally invokes PHP’s built-in var_dump() to serialize variables into a canonical string that captures both type and value. When dealing with arrays and objects, it recursively traverses nested elements, exposing the full structure of multi-dimensional arrays and complex objects. This detailed outp",
+      "section": "IV IMPLEMENTATION",
+      "page": 5,
+      "char_offset": 27162,
+      "cited_reference": {
+        "number": 7,
+        "text": "Y. Jiang, C. Zhang, B. Ruan, J. Liu, M. Rigger, R. H. Yap, and Z. Liang, “Fuzzing the PHP interpreter via dataflow fusion,” in 34th USENIX Security Symposium (USENIX Security 25), 2025, pp. 6143–6158.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker",
+      "surface": "[ 40,41]",
+      "technique": "tlp",
+      "sentence": "Code coverage is a widely adopted metric in evaluating fuzzing and testing approaches [ 40,41], as it provides a clear and quantifiable way to evaluate which parts of the code have been executed during tests.",
+      "context_before": "(sanitizers disabled). Detailed component options are listed in our artifacts. Evaluation Metrics. We evaluate and compare ZendDiff with prior work using three well-defined metrics: (i) Number of logic bugs. The logic bugs we detected manifest as discrepancies between non-JIT and JIT execution results. To ensure accuracy, we employ a deduplication process, where multiple bugs identified with the same result are treated as duplicates and counted only once. This metric serves as the primary indicator of the detection capability and the practicality of the testing techniques. (ii) Code coverage.",
+      "context_after": "In particular, we report line code coverage using gcovr tool [ 42], following the recommended configuration from the official PHP Makefile. (iii) Zend opcodes diversity. This metric emphasizes the ability to explore a wide range of opcode executions. Similar to query plans in database system testing, a broader exploration of Zend opcodes provides deeper insights into the interpreter’s behavior and increases the likelihood of discovering potential vulnerabilities. Experimental Infrastructure. All experiments were conducted on an AMDEPYC 7763 server (64 physical / 128 logical cores at 2.45 GHz,",
+      "section": "V EVALUATION",
+      "page": 6,
+      "char_offset": 30212,
+      "cited_reference": {
+        "number": 40,
+        "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proc. ACM Program. Lang., vol. 4, no. OOPSLA, nov 2020. [Online]. Available: https://doi-org.libproxy1.nus.edu.sg/10.1145/ 3428279",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "prints the DOI of the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker",
+      "surface": "[ 41,44]",
+      "technique": "pqs",
+      "sentence": "This testing was carried out over a four-month period, following well-established evaluation methodologies for automated bug-detection tools [ 41,44].",
+      "context_before": "of discovering potential vulnerabilities. Experimental Infrastructure. All experiments were conducted on an AMDEPYC 7763 server (64 physical / 128 logical cores at 2.45 GHz, 512 GBRAM) running Ubuntu 22.04. By default, ZendDiff is designed to utilize a moderate amount of computational resources, allocating 32 CPU cores and up to 32 GB of RAM, which enables it to detect various logic bugs within a 24-hour timeframe. A. Discovering Previously Unknown Logic Bugs To uncover previously unknown logic bugs, we intermittently tested the latest PHP interpreter built from the official repository [ 43].",
+      "context_after": "To streamline the analysis of complex test cases and facilitate pinpointing theirroot causes, we employed delta debugging [ 38] to reduce each case to its minimal and bug-inducing form. Furthermore, we cross-checked the reduced test cases with existing issue trackers to prevent the redundant submission of bug reports. Results. Table Isummarizes all confirmed or fixed logic bugs detected by ZendDiff and verified through manual analysis. TheEngine column indicates the affected component: G #marks JIT-only bugs, H #denotes non-JIT bugs, and represents bugs impacting both (as confirmed by the off",
+      "section": "A Discovering Previously Unknown Logic Bugs",
+      "page": 6,
+      "char_offset": 31447,
+      "cited_reference": {
+        "number": 41,
+        "text": "——, “Testing database engines via pivoted query synthesis,” in Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 7]",
+      "technique": null,
+      "sentence": "Improved Effectiveness of ZendDiff We first evaluate ZendDiff ’s improved effectiveness through a comparison with FlowFusion [ 7], the state-of-the-art PHPspecific fuzzer.",
+      "context_before": "diminish the diagnostic value of these warnings. As illustrated in Listing 5, this bug leads to erroneous warning line numbers being produced by both non-JIT and JIT execution modes. The misalignment of line numbers not only introduces inconsistencies but also hampers developers’ ability to effectively trace and rectify source code issues. This bug was identified through our approach and acknowledged by the development team. They traced the root cause to an incorrect usage of the line number from the first instruction in a function, rather than from the actual start of the function itself. B.",
+      "context_after": "Our results show that ZendDiff is capable of uncovering previously undetected logic bugs that FlowFusion fails to detect. Then, to further assess the enhanced capability ofZendDiff ’s test oracle, we compare its results against the official PHP test suite. Comparison with FlowFusion. In principle, ZendDiff provides a complementary oracle for logic bugs compared with the memory/crash oracle typically used in fuzzers. For instance, as the FlowFusion fuzzer relies on memory errors as the bug detection oracle, it does not deal with logic bugs. Evaluations show ZendDiff and FlowFusion achieve comp",
+      "section": "B Improved Effectiveness of ZendDiff",
+      "page": 8,
+      "char_offset": 41504,
+      "cited_reference": {
+        "number": 7,
+        "text": "Y. Jiang, C. Zhang, B. Ruan, J. Liu, M. Rigger, R. H. Yap, and Z. Liang, “Fuzzing the PHP interpreter via dataflow fusion,” in 34th USENIX Security Symposium (USENIX Security 25), 2025, pp. 6143–6158.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 7]",
+      "technique": null,
+      "sentence": "FlowFusion [ 7] merges code semantics from two or more seed programs to generate new fuzzing inputs and effectively finds hundreds of memory errors in the PHP interpreter.",
+      "context_before": "kling new domains with tailored oracles which show practical effectiveness, our work likewise focuses on making differential testing practical for PHP through three key techniques ( i.e.,program state probing, JIT-aware program mutation, and dual verification). Bug Detection in the PHP Engine. Existing approaches mainly leverage fuzzing techniques to detect bugs in the PHP Engine. For instance, LangFuzz [ 3], NAUTILUS [ 4], Gramatron [ 5], and PolyGlot [ 6] focus on memory errors in the PHP interpreter. Reflecta [ 8] gains a diverse set of language features dynamically to reduce manual effort.",
+      "context_after": "However, these approaches primarily rely on crashes or sanitizer alerts to detect bugs, which differs from our focus, logic bugs, that do not cause crashes or sanitizer alerts. To fill this gap, we develop ZendDiff to detect logic bugs in the PHP interpreter through differential testing of JIT and non-JIT execution modes. Bug Discovery in Other Compilers or Interpreters. Existing 1104 solutions for detecting bugs in other compilers and interpreters mainly concentrate on fuzzing techniques, such as C/C++[ 48, 19], Rust[ 24,49], and JavaScript (JS) [ 50,47,17], to mitigate potential cascading",
+      "section": "C Ablation Study of ZendDiff",
+      "page": 10,
+      "char_offset": 59685,
+      "cited_reference": {
+        "number": 7,
+        "text": "Y. Jiang, C. Zhang, B. Ruan, J. Liu, M. Rigger, R. H. Yap, and Z. Liang, “Fuzzing the PHP interpreter via dataflow fusion,” in 34th USENIX Security Symposium (USENIX Security 25), 2025, pp. 6143–6158.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T14:26:20Z",
+    "is_model_written": true,
+    "summary": "ZendDiff finds logic bugs in the PHP interpreter by differential testing. The authors observe that existing PHP bug-finding targets crashes or sanitizer oracles and misses silent wrong results, and that PHP's JIT compilation mode provides a second implementation of the same specification to compare against. ZendDiff compares JIT and non-JIT execution with program state probing, JIT-aware mutation, and dual verification for non-determinism. It has found 51 previously unknown logic bugs, 37 already fixed.",
+    "narrative": "Almost every citation here is to FlowFusion, a PHP fuzzer co-authored by one of SQLancer's authors, which ZendDiff adopts as its program generator and measures against -- not to SQLancer itself. SQLancer's own papers appear only as methodological references for using code coverage and for a four-month evaluation period. This paper is a good illustration of why an author's other work has to be kept apart from SQLancer's.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "background",
+      "M4": "background",
+      "M5": "background",
+      "M6": "background",
+      "M7": "incidental",
+      "M8": "incidental",
+      "M9": "background",
+      "M10": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "ZendDiff adopts FlowFusion as its generator, which is a different tool by an overlapping set of authors. Nothing here says SQLancer is used."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,563 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T17:07:44Z",
+  "paper": {
+    "id": "paper:s2:d88db0b52f31ed5444602a67e9a275faf57e15bf",
+    "title": "TCP-Fuzz: Detecting Memory and Semantic Bugs in TCP Stacks with Fuzzing",
+    "authors": [
+      "Yong-Hao Zou",
+      "Jia-Ju Bai",
+      "Jielong Zhou",
+      "Jianfeng Tan",
+      "Chenggang Qin",
+      "Shih-Min Hu"
+    ],
+    "year": 2021,
+    "venue": "USENIX Annual Technical Conference",
+    "doi": null,
+    "arxiv_id": null,
+    "s2_paper_id": "d88db0b52f31ed5444602a67e9a275faf57e15bf",
+    "url": "https://www.semanticscholar.org/paper/d88db0b52f31ed5444602a67e9a275faf57e15bf",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "usenix",
+      "url": "https://www.usenix.org/system/files/atc21-zou.pdf",
+      "retrieved_at": "2026-09-07T17:07:44Z",
+      "chars": 75885,
+      "content_sha256": "sha256:636b4ac7ee9022a1fefa63c0148dd8f7af1d3eec1e8bd4532d2f97b3b66fc43d"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 16,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2261
+      },
+      {
+        "number": "2",
+        "title": "Background and Motivation",
+        "start": 9796
+      },
+      {
+        "number": "2.1",
+        "title": "TCP Stack",
+        "start": 9996
+      },
+      {
+        "number": "2.2",
+        "title": "Study of TCP Stack Commits",
+        "start": 14908
+      },
+      {
+        "number": "2.3",
+        "title": "Limitations of Existing Protocol Fuzzing",
+        "start": 17767
+      },
+      {
+        "number": "3",
+        "title": "Key Techniques",
+        "start": 20503
+      },
+      {
+        "number": "3.1",
+        "title": "Dependency-Based Strategy",
+        "start": 20922
+      },
+      {
+        "number": "3.2",
+        "title": "Transition-Guided Fuzzing Approach",
+        "start": 25681
+      },
+      {
+        "number": "3.3",
+        "title": "Differential Checker",
+        "start": 30064
+      },
+      {
+        "number": "4",
+        "title": "Framework",
+        "start": 33080
+      },
+      {
+        "number": "5",
+        "title": "Evaluation",
+        "start": 36735
+      },
+      {
+        "number": "5.1",
+        "title": "Experimental Setup",
+        "start": 36748
+      },
+      {
+        "number": "5.2",
+        "title": "Runtime Testing",
+        "start": 38746
+      },
+      {
+        "number": "5.3",
+        "title": "Inﬂuences of the Found Bugs",
+        "start": 45031
+      },
+      {
+        "number": "5.4",
+        "title": "Comparison to Existing Fuzzing Tools",
+        "start": 47831
+      },
+      {
+        "number": "6",
+        "title": "Discussion",
+        "start": 53399
+      },
+      {
+        "number": "7",
+        "title": "Related Work",
+        "start": 55737
+      },
+      {
+        "number": "7.1",
+        "title": "Network Protocol Fuzzing",
+        "start": 55752
+      },
+      {
+        "number": "7.2",
+        "title": "TCP Stack Checking",
+        "start": 57598
+      },
+      {
+        "number": "7.3",
+        "title": "Differential Testing",
+        "start": 60381
+      },
+      {
+        "number": "8",
+        "title": "Conclusion",
+        "start": 61239
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "American Fuzzy Lop. http://lcamtuf.coredump.cx/aﬂ/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "ASan: address sanitizer. https://github.com/google/sanitizers/wiki/AddressSanitizer.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Steve Bishop, Matthew Fairbairn, Hannes Mehnert, Michael Norrish, Tom Ridge, Peter Sewell, Michael Smith, and Keith Wansbrough. Engineering with logic: rigorous test oracle speciﬁcation and validation for TCP/IP and the Sockets API. Journal of the ACM, 66(1):1:1–1:77, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Steve Bishop, Matthew Fairbairn, Michael Norrish, Peter Sewell, Michael Smith, and Keith Wansbrough. Rigorous speciﬁcation and conformance testing techniques for network protocols, as applied to TCP, UDP, and sockets. In Proceedings of the ACMSIGCOMM 2005 Conference, pages 265–276, 2005.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Steve Bishop, Matthew Fairbairn, Michael Norrish, Peter Sewell, Michael Smith, and Keith Wansbrough. Engineering with logic: HOL speciﬁcation and symbolicevaluation testing for TCP implementations. In Proceedings of the 33rd International Symposium on Principles of Programming Languages (POPL), pages 55–66, 2006.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Boofuzz: network protocol fuzzing for humans. https://github.com/jtpereyda/boofuzz.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Yue Cao, Zhiyun Qian, Zhongjie Wang, Tuan Dao, Srikanth V. Krishnamurthy, and Lisa M. Marvel. Offpath TCP exploits: global rate limit considered dangerous. In Proceedings of the 25th USENIX Security Symposium, pages 209–225, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Neal Cardwell, Yuchung Cheng, Lawrence Brakmo, Matt Mathis, Barath Raghavan, Nandita Dukkipati, Hsiao-Keng Jerry Chu, Andreas Terzis, and Tom Herbert. packetdrill: scriptable network stack testing, from sockets to packets. In Proceedings of the 2013 USENIX Annual Technical Conference (ATC), pages 213–218, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Qi Alfred Chen, Zhiyun Qian, Yunhan Jack Jia, Yuru Shao, and Zhuoqing Morley Mao. Static detection of packet injection vulnerabilities: a case for identifying attacker-controlled implicit information leaks. In Proceedings of the 22nd International Conference on Computer and Communications Security (CCS), pages 388– 400, 2015. 172 2021 USENIX Annual Technical Conference USENIX Association",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Weiteng Chen and Zhiyun Qian. Off-path TCP exploit: how wireless routers can jeopardize your secrets. In Proceedings of the 27th USENIX Security Symposium, pages 1581–1598, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Yuting Chen, Ting Su, and Zhendong Su. Deep differential testing of JVM implementations. In Proceedings of the 41st International Conference on Software Engineering (ICSE), pages 1257–1268, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Yuting Chen, Ting Su, Chengnian Sun, Zhendong Su, and Jianjun Zhao. Coverage-directed differential testing of JVM implementations. In Proceedings of the 37th International Conference on Programming Language Design and Implementation (PLDI), pages 85–99, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Clang: a LLVM-based compiler for C/C++ program. https://clang.llvm.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "FreeBSD commit bc35229fad1f: add PAWS check for ACK segments in syncache code. https://gitlab.com/ FreeBSD/freebsd-src/commit/bc35229fad1f.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "CVE-2019-11478. https://nvd.nist.gov/vuln/detail/CVE2019-11478.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Aled Edwards and Steve Muir. Experiences implementing a high performance TCP in user-space. ACMSIGCOMM Computer Communication Review, 25:196–205, 1995.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Paul Fiterau-Brostean, Bengt Jonsson, Robert Merget, Joeri de Ruiter, Konstantinos Sagonas, and Juraj Somorovsky. Analysis of DTLS implementations using protocol state fuzzing. In Proceedings of the 29th USENIX Security Symposium, pages 2523–2540, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Pedro Fonseca, Cheng Li, and Rodrigo Rodrigues. Finding complex concurrency bugs in large multi-threaded applications. In Proceedings of the 6th European Conference on Computer Systems (EuroSys), pages 215–228, 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "F-Stack: high performance network framework based on DPDK. http://www.f-stack.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Fuzzotron: a network fuzzer supporting TCP, UDP an multithreading. https://github.com/denandz/fuzzotron.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Hugo Gascon, Christian Wressnegger, Fabian Yamaguchi, Daniel Arp, and Konrad Rieck. Pulsar: stateful black-box fuzzing of proprietary network protocols. In Proceedings of the 11th International Conference on Security and Privacy in Communication Systems, Security and Privacy in Communication Networks, pages 330–347, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Serge Gorbunov and Arnold Rosenbloom. Autofuzz: automated network protocol fuzzing framework. International Journal of Computer Science and Network Security (IJCSNS), 10(8):239, 2010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Jianmin Guo, Yu Jiang, Yue Zhao, Quan Chen, and Jiaguang Sun. Dlfuzz: differential fuzzing testing of deep learning systems. In Proceedings of the 2018 International Symposium on Foundations of Software Engineering (FSE), pages 739–743, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Endadul Hoque, Omar Chowdhury, Sze Yiu Chau, Cristina Nita-Rotaru, and Ninghui Li. Analyzing operational behavior of stateful protocol implementations for detecting semantic bugs. In Proceedings of the 47th International Conference on Dependable Systems and Networks (DSN), pages 627–638, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Dae R Jeong, Kyungtae Kim, Basavesh Shivakumar, Byoungyoung Lee, and Insik Shin. Razzer: ﬁnding kernel race bugs through fuzzing. In Proceedings of the 40th IEEE Symposium on Security and Privacy, pages 754–768, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "EunYoung Jeong, Shinae Wood, Muhammad Jamshed, Haewon Jeong, Sunghwan Ihm, Dongsu Han, and KyoungSoo Park. mTCP: a highly scalable user-level TCP stack for multicore systems. In Proceedings of the 11th USENIX Symposium on Networked Systems Design and Implementation (NSDI), pages 489–502, 2014.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Samuel Jero, Md. Endadul Hoque, David R. Choffnes, Alan Mislove, and Cristina Nita-Rotaru. Automated attack discovery in TCP congestion control using a modelguided approach. In Proceedings of the 25th Annual Network and Distributed System Security Symposium (NDSS), 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Samuel Jero, Hyojeong Lee, and Cristina Nita-Rotaru. Leveraging state information for automated attack discovery in transport protocol implementations. In Proceedings of the 45th International Conference on Dependable Systems and Networks (DSN), pages 1–12, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Seulbae Kim, Meng Xu, Sanidhya Kashyap, Jungyeon Yoon, Wen Xu, and Taesoo Kim. Finding semantic bugs in ﬁle systems with an extensible fuzzing framework. InProceedings of the 27th International Symposium on Operating Systems Principles (SOSP), pages 147–161, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Nupur Kothari, Ratul Mahajan, Todd Millstein, Ramesh Govindan, and Madanlal Musuvathi. Finding protocol manipulation attacks. In Proceedings of the ACMSIGCOMM 2011 Conference, pages 26–37, 2011. USENIX Association 2021 USENIX Annual Technical Conference 173",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Guangpu Li, Shan Lu, Madanlal Musuvathi, Suman Nath, and Rohan Padhye. Efﬁcient scalable threadsafety-violation detection: ﬁnding thousands of concurrency bugs during testing. In Proceedings of the 27th International Symposium on Operating Systems Principles (SOSP), pages 162–180, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "libFuzzer: a library for coverage-guided fuzz testing. https://llvm.org/docs/LibFuzzer.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "LLVM compiler infrastructure. https://llvm.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Lars Lockefeer, David M. Williams, and Wan J. Fokkink. Formal speciﬁcation and veriﬁcation of TCP extended with the window scale option. Science of Computer Programming (SCP), 118:3–23, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "LTSmin: model checking and minimization of labelled transition systems. https://ltsmin.utwente.nl/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Matthew Luckie, Robert Beverly, Tiange Wu, Mark Allman, and kc claffy. Resilience of deployed TCP to blind attacks. In Proceedings of the 2015 Internet Measurement Conference (IMC), pages 13–26, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Zhengxiong Luo, Feilong Zuo, Yu Jiang, Jian Gao, Xun Jiao, and Jiaguang Sun. Polar: function code aware fuzz testing of ICS protocol. ACM Transactions on Embedded Computing Systems, 18(5s):93:1–93:22, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Zhengxiong Luo, Feilong Zuo, Yuheng Shen, Xun Jiao, Wanli Chang, and Yu Jiang. ICS protocol fuzzing: coverage guided packet crack and generation. In Proceedings of the 57th International Design Automation Conference (DAC), pages 1–6, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "MSan: memory sanitizer. https://github.com/google/sanitizers/wiki/MemorySanitizer.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Sandra L. Murphy and A. Udaya Shankar. Service speciﬁcation and protocol construction for the transport layer. In Proceedings of the ACMSIGCOMM 1988 Conference, pages 88–97, 1988.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Madanlal Musuvathi and Dawson R. Engler. Model checking large network protocol implementations. In Proceedings of 1st USENIX Symposium on Networked Systems Design and Implementation (NSDI), pages 155– 168, 2004.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Yannic Noller, Corina S. P ˘as˘areanu, Marcel Böhme, Youcheng Sun, Hoang Lam Nguyen, and Lars Grunske. HyDiff: hybrid differential software analysis. In Proceedings of the 42nd International Conference on Software Engineering (ICSE), pages 1273–1285, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Van-Thuan Pham, Marcel Böhme, and Abhik Roychoudhury. AFLNet: a greybox fuzzer for network protocols.InProceedings of the 13th International Conference on Software Testing, Validation and Veriﬁcation (ICST), pages 460–465, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Lei Qian and Brian E. Carpenter. A ﬂow-based performance analysis of TCP and TCP applications. In Proceedings of the 18th International Conference on Networks (ICON), pages 41–45, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Zhiyun Qian, Z. Morley Mao, and Yinglian Xie. Collaborative TCP sequence number inference attack: how to crack sequence number under a second. In Proceedings of the 19th International Conference on Computer and Communications Security (CCS), pages 593– 604, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "QUIC: a multiplexed stream transport over UDP. https://www.chromium.org/quic.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Gaganjeet Singh Reen and Christian Rossow. DPIFuzz: a differential fuzzing framework to detect DPI elusion strategies for QUIC. In Proceedings of the 36th Annual Computer Security Applications Conference (ACSAC), pages 332–344, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "RFC 5961: improving TCP’s robustness to blind inwindow attacks. https://tools.ietf.org/html/rfc5961.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "RFC 7323: TCP extensions for high performance. https://tools.ietf.org/html/rfc7323.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "RFC 793: TCP (Transmission Control Protocol). https://tools.ietf.org/html/rfc793.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In Proceedings of the 14th International Symposium on Operating Systems Design and Implementation (OSDI), pages 667–682, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 52,
+      "text": "Joeri de Ruiter and Erik Poll. Protocol state fuzzing of TLS implementations. In Proceedings of the 24th USENIX Security Symposium, pages 193–206, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Mark Anthony Shawn Smith. Formal veriﬁcation of TCP and T/TCP. PhD thesis, Massachusetts Institute of Technology, 1997.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Juraj Somorovsky. Systematic fuzzing and testing of TLS libraries. In Proceedings of the 23rd International Conference on Computer and Communications Security (CCS), pages 1492–1504, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Dokyung Song, Felicitas Hetzelt, Jonghwan Kim, Brent Byunghoon Kang, Jean-Pierre Seifert, and Michael Franz. Agamotto: accelerating kernel driver fuzzing with lightweight virtual machine checkpoints. InProceedings of the 29th USENIX Security Symposium, pages 2541–2557, 2020. 174 2021 USENIX Annual Technical Conference USENIX Association",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Wei Sun, Lisong Xu, and Sebastian Elbaum. Scalably testing congestion control algorithms of real-world TCP implementations. In Proceedings of the 2018 International Conference on Communications (ICC), pages 1–7, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Syzkaller: an unsupervised coverage-guided kernel fuzzer. https://github.com/google/syzkaller.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Possible TCP options. https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "TLDK: Transport Layer Development Kit in network. https://github.com/FDio/tldk/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Andreas Walz and Axel Sikora. Exploiting dissent: towards fuzzing-based differential black-box testing of TLS implementations. IEEE Transactions Dependable Secure Computing (TDSC), 17(2):278–291, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Zhongjie Wang, Shitong Zhu, Yue Cao, Zhiyun Qian, Chengyu Song, Srikanth V. Krishnamurthy, Kevin S. Chan, and Tracy D. Braun. SymTCP: eluding stateful deep packet inspection with automated discrepancy discovery. In Proceedings of the 27th Annual Network and Distributed System Security Symposium (NDSS), 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Paul Watson. Slipping in the window: TCP reset attacks. Technical Whitepaper, 2004.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Shinae Woo, Eunyoung Jeong, Shinjo Park, Jongmin Lee, Sunghwan Ihm, and KyoungSoo Park. Comparison of caching strategies in modern cellular backhaul networks. In Proceeding of the 11th International Conference on Mobile Systems, Applications and Services (MobiSys), pages 319–332, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Wen Xu, Hyungon Moon, Sanidhya Kashyap, Po-Ning Tseng, and Taesoo Kim. Fuzzing ﬁle systems via twodimensional input space exploration. In Proceedings of the 40th IEEE Symposium on Security and Privacy, pages 818–834, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Yibiao Yang, Yuming Zhou, Hao Sun, Zhendong Su, Zhiqiang Zuo, Lei Xu, and Baowen Xu. Hunting for bugs in code coverage tools via randomized differential testing. In Proceedings of the 41st International Conference on Software Engineering (ICSE), pages 488–499, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Yanyan Zhuang, Eleni Gessiou, Steven Portzer, Fraida Fund, Monzur Muhammad, Ivan Beschastnikh, and Justin Cappos. Netcheck: network diagnoses from blackbox traces. In Proceedings of the 11th USENIX Symposium on Networked Systems Design and Implementation (NSDI), pages 115–128, 2014. USENIX Association 2021 USENIX Annual Technical Conference 175",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 51,
+      "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In Proceedings of the 14th International Symposium on Operating Systems Design and Implementation (OSDI), pages 667–682, 2020.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Similar to SQLancer [51] and libFuzzer [32], for inconsistencies that we identify as semantic bugs, we manuallyStackTesting coverage Found bugs Branch Transition Memory / Semantic Conﬁrmed / Fixed TLDK 1.",
+      "context_before": "and 48 semantic bugs. We reported these bugs to related developers, and 40 of them have been conﬁrmed. We are still waiting for responses for the remaining bugs (for example, the mTCP code in github has not been updated for a long time, and thus we have not received any response to our reported bugs in mTCP). Besides, 23 of the conﬁrmed bugs have been ﬁxed. Output inconsistencies. TCP-Fuzz reports 15.1K inconsistencies between the ﬁve tested TCP stacks, and we analyze their root causes to identify semantic bugs, through our manual review of RFC documents and observation of TCP stack execution.",
+      "context_after": "3K 329.4K 2 / 26 28 / 19 F-Stack 7.5K 46.8K 1 / 6 6 / 1 mTCP 1.2K 47.9K 5 / 9 0 / 0 FreeBSD - - 0 / 6 5 / 2 Linux - - 0 / 1 1 / 1 Total 10.0K 424.1K 8 / 48 40 / 23 Table 5: Results of fuzzing TCP stacks. Branch transitions Branches (a) TLDK (b) F-Stack (c)mTCPTime (h) Time (h) Time (h) 0K1K2K3K4K5K 0K100K200K300K400K 0 12 24 36 48 0K5K10K15K20K 0K10K20K30K40K50K 0 12 24 36 48 0K1K2K3K4K 0K10K20K30K40K50K 0 12 24 36 48 Figure 11: Covered branches and branch transitions. ﬁx them using the developers’ patches or by ourselves, to reduce related inconsistencies. We iteratively repeat this process u",
+      "section": "5.2 Runtime Testing",
+      "page": 9,
+      "char_offset": 40210,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:16:45Z",
+    "is_model_written": true,
+    "summary": "TCP-Fuzz detects memory and semantic bugs in TCP stacks. It combines dependency-based fuzzing to generate packet and system-call sequences with a differential checker that compares the behaviour of several stacks on the same input, so semantic bugs surface without a specification.",
+    "narrative": "SQLancer is cited once for its practice rather than its technique: when an inconsistency is identified as a semantic bug, the authors follow SQLancer and libFuzzer in fixing it manually so related inconsistencies stop recurring during the campaign.",
+    "roles": {
+      "M1": "incidental"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

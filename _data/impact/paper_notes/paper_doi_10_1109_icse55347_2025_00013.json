@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "paper": {
+    "id": "paper:doi:10.1109/icse55347.2025.00013",
+    "title": "Janus: Detecting Rendering Bugs in Web Browsers via Visual Delta Consistency",
+    "authors": [
+      "Chijin Zhou",
+      "Quan Zhang",
+      "Bingzhou Qian",
+      "Yu Jiang"
+    ],
+    "year": 2025,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1109/icse55347.2025.00013",
+    "url": "https://doi.org/10.1109/icse55347.2025.00013"
+  },
+  "summary": {
+    "text": "Janus detects rendering bugs in web browsers. Plain differential testing fails here because the same HTML legitimately renders differently in different browsers. The authors' oracle, Visual Delta Consistency, compares reactions rather than outputs: given two HTML files differing only by a small modification, all browsers should either render them identically or all render them differently. Janus builds such pairs and watches the change status across browsers. On Chrome, Safari and Firefox it found 31 non-crash rendering bugs, 24 confirmed.",
+    "relationship_to_sqlancer": "Constructs a metamorphic oracle where direct differential comparison does not work, the same problem SQLancer's oracles address for DBMSs.",
+    "is_model_generated": true,
+    "grounded_in_source": true,
+    "written_from": "abstract",
+    "written_from_url": "https://doi.org/10.1109/icse55347.2025.00013",
+    "source_sha256": "sha256:a80c6307f0da626c756773099c6f8257a20b5ba679db4bd9a821519b1a3ed2c2",
+    "supporting_excerpts": [
+      "Traditional differential testing, while successful in various domains, falls short when applied to rendering bug detection because an HTML file is likely yield different rendered outcomes across different browsers.",
+      "This paper introduces Visual Delta Consistency, a test oracle to detect rendering bugs in web browsers, aiming to make rendered pages across browsers comparable.",
+      "Our key insight is that any modifications made to an HTML file should uniformly influence rendering outcomes across browsers."
+    ],
+    "model": "claude-opus-5",
+    "generated_by": "claude_code_session",
+    "classifier_version": null,
+    "generated_at": "2026-09-07T02:29:23Z"
+  },
+  "evidence": [
+    {
+      "relationship": "references",
+      "title": "Cites SQLancer",
+      "value": "yes",
+      "method": "citation_graph",
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://doi.org/10.1109/icse55347.2025.00013",
+          "source_type": "paper_citation_context",
+          "excerpt": "For example, in web development, efforts [24], [25] have been made to formalize layout guidance of web development into a formal language for correctness verification; and in database management systems, tools like SQLancer [30], [29], [28] validate query results using predefined equivalence rules.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    }
+  ]
+}

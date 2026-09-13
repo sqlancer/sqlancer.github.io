@@ -1,0 +1,493 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T14:54:00Z",
+  "paper": {
+    "id": "paper:doi:10.1109/icse55347.2025.00013",
+    "title": "Janus: Detecting Rendering Bugs in Web Browsers via Visual Delta Consistency",
+    "authors": [
+      "Chijin Zhou",
+      "Quan Zhang",
+      "Bingzhou Qian",
+      "Yu Jiang"
+    ],
+    "year": 2025,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1109/icse55347.2025.00013",
+    "arxiv_id": null,
+    "s2_paper_id": "3d2a62e3ce533a4bd184e9c0cdafea9c3e09e2b1",
+    "url": "https://doi.org/10.1109/icse55347.2025.00013",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/icse55347.2025.00013",
+      "retrieved_at": "2026-09-08T14:54:00Z",
+      "chars": 70053,
+      "content_sha256": "sha256:1f811d78e5800778cbef7efc148739105c72057ceb326969ac3b3013eb1f0642"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 1546
+      },
+      {
+        "number": "II",
+        "title": "BACKGROUND ANDMOTIVATION",
+        "start": 8085
+      },
+      {
+        "number": "III",
+        "title": "VISUAL DELTA CONSISTENCY",
+        "start": 15457
+      },
+      {
+        "number": "A",
+        "title": "Basic Idea",
+        "start": 15487
+      },
+      {
+        "number": "B",
+        "title": "Soundness",
+        "start": 17250
+      },
+      {
+        "number": "IV",
+        "title": "DESIGN OFJANUS",
+        "start": 22592
+      },
+      {
+        "number": "A",
+        "title": "Initial DOM Generation",
+        "start": 24227
+      },
+      {
+        "number": "B",
+        "title": "HTML Transformation",
+        "start": 27871
+      },
+      {
+        "number": "C",
+        "title": "Consistency Checking",
+        "start": 31671
+      },
+      {
+        "number": "V",
+        "title": "EVALUATION",
+        "start": 32757
+      },
+      {
+        "number": "A",
+        "title": "Bug finding",
+        "start": 33995
+      },
+      {
+        "number": "B",
+        "title": "Comparative Study",
+        "start": 41434
+      },
+      {
+        "number": "C",
+        "title": "False Positives",
+        "start": 44212
+      },
+      {
+        "number": "D",
+        "title": "Overhead Breakdown",
+        "start": 47822
+      },
+      {
+        "number": "VI",
+        "title": "DISCUSSION",
+        "start": 49103
+      },
+      {
+        "number": "VII",
+        "title": "RELATED WORK",
+        "start": 52249
+      },
+      {
+        "number": "VIII",
+        "title": "CONCLUSION",
+        "start": 54908
+      },
+      {
+        "number": "IX",
+        "title": "ACKNOWLEDGEMENT",
+        "start": 55503
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Ibrahim Althomali, Gregory M. Kapfhammer, and Phil McMinn. Automatic visual verification of layout failures in responsively designed web pages. In 12th IEEE Conference on Software Testing, Validation and Verification, ICST 2019, Xi’an, China, April 22-27, 2019, pages 183–193. IEEE, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Earl T. Barr, Mark Harman, Phil McMinn, Muzammil Shahbaz, and Shin Yoo. The oracle problem in software testing: A survey. IEEE Trans. Software Eng., 41(5):507–525, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Johannes Buchner. A python perceptual image hashing module. https: //github.com/JohannesBuchner/imagehash, 2023. (visited on September 1, 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Yuting Chen and Zhendong Su. Guided differential testing of certificate validation in SSL/TLS implementations. In Elisabetta Di Nitto, Mark Harman, and Patrick Heymans, editors, Proceedings of the 2015 10th Joint Meeting on Foundations of Software Engineering, ESEC/FSE 2015, Bergamo, Italy, August 30 - September 4, 2015, pages 793–804. ACM, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Shauvik Roy Choudhary, Husayn Versee, and Alessandro Orso. WEBDIFF: automated identification of cross-browser issues in web applications. In Radu Marinescu, Michele Lanza, and Andrian Marcus, editors, 26th IEEE International Conference on Software Maintenance (ICSM 2010), September 12-18, 2010, Timisoara, Romania, pages 1–10. IEEE Computer Society, 2010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Yinlin Deng, Chenyuan Yang, Anjiang Wei, and Lingming Zhang. Fuzzing deep-learning libraries via automated relational API inference. In Abhik Roychoudhury, Cristian Cadar, and Miryung Kim, editors, Proceedings of the 30th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/FSE 2022, Singapore, Singapore, November 14-18, 2022, pages 44–5",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Wensheng Dou, Ziyu Cui, Qianwang Dai, Jiansen Song, Dong Wang, Yu Gao, Wei Wang, Jun Wei, Lei Chen, Hanmo Wang, Hua Zhong, and Tao Huang. Detecting isolation bugs via transaction oracle construction. In45th IEEE/ACM International Conference on Software Engineering, ICSE 2023, Melbourne, Australia, May 14-20, 2023, pages 1123–1135. IEEE, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Google. Ossfuzz. https://github.com/google/oss-fuzz, 2016. (visited on September 1, 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Google. Domato: A dom fuzzer. https://github.com/googleprojectzero /domato, 2017. (visited on September 1, 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Google. Layoutng. https://www.chromium.org/blink/layoutng/, 2023. (visited on September 1, 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Jianmin Guo, Yu Jiang, Yue Zhao, Quan Chen, and Jiaguang Sun. Dlfuzz: differential fuzzing testing of deep learning systems. In Gary T. Leavens, Alessandro Garcia, and Corina S. Pasareanu, editors, Proceedings of the 2018 ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/SIGSOFT FSE 2018, Lake Buena Vista, FL, USA, November",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "HyungSeok Han, DongHyeon Oh, and Sang Kil Cha. Codealchemist: Semantics-aware code generation to find vulnerabilities in javascript engines. In 26th Annual Network and Distributed System Security Symposium, NDSS 2019, San Diego, California, USA, February 24-27, 2019. The Internet Society, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Pinjia He, Clara Meister, and Zhendong Su. Structure-invariant testing for machine translation. In Gregg Rothermel and Doo-Hwan Bae, editors, ICSE ’20: 42nd International Conference on Software Engineering, Seoul, South Korea, 27 June-19 July, 2020, pages 961–973. ACM, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Yu Jiang, Jie Liang, Fuchen Ma, Yuanliang Chen, Chijin Zhou, Yuheng Shen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Shanshan Li, and Quan Zhang. When fuzzing meets llms: Challenges and opportunities. In Marcelo d’Amorim, editor, Companion Proceedings of the 32nd ACM International Conference on the Foundations of Software Engineering, FSE 2024, Porto de Galinhas, Brazil, July 15-19, 2024, pages 492–49",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Shaohua Li and Zhendong Su. Accelerating fuzzing through prefixguided execution. Proc. ACM Program. Lang., 7(OOPSLA1):1–27, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Shaohua Li and Zhendong Su. Finding unstable code via compiler-driven differential testing. In Tor M. Aamodt, Natalie D. Enright Jerger, and Michael M. Swift, editors, Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 3, ASPLOS 2023, Vancouver, BC, Canada, March 25-29, 2023, pages 238–251. ACM, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Shaohua Li and Zhendong Su. Ubfuzz: Finding bugs in sanitizer implementations. In Rajiv Gupta, Nael B. Abu-Ghazaleh, Madan Musuvathi, and Dan Tsafrir, editors, Proceedings of the 29th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 1, ASPLOS 2024, La Jolla, CA, USA, 27 April 2024- 1 May 2024, pages 435–449. ACM, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Tsz On Li, Wenxi Zong, Yibo Wang, Haoye Tian, Ying Wang, Shing-Chi Cheung, and Jeff Kramer. Nuances are the key: Unlocking chatgpt to find failure-inducing tests with differential prompting. In 38th IEEE/ACM International Conference on Automated Software Engineering, ASE 2023, Luxembourg, September 11-15, 2023, pages 14–26. IEEE, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Jiawei Liu, Jinkun Lin, Fabian Ruffy, Cheng Tan, Jinyang Li, Aurojit Panda, and Lingming Zhang. Nnsmith: Generating diverse and valid test cases for deep learning compilers. In Tor M. Aamodt, Natalie D. Enright Jerger, and Michael M. Swift, editors, Proceedings of the 28th ACM International Conference on Architectural Support for Programming 2712 Languages and Operating Systems, Volume 2, ASPLOS 2",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Vsevolod Livinskii, Dmitry Babokin, and John Regehr. Random testing for C and C++ compilers with yarpgen. Proc. ACM Program. Lang., 4(OOPSLA):196:1–196:25, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Mozilla. Mdn web docs. https://developer.mozilla.org/, 2005. (visited on September 1, 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Stefan Nagy and Matthew Hicks. Full-speed fuzzing: Reducing fuzzing overhead through coverage-guided tracing. In on Security and Privacy, SP 2019, San Francisco, CA, USA, May 19-23, 2019, pages 787–802. IEEE, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Pengbo Nie, Chengcheng Wan, Jiayu Zhu, Ziyi Lin, Yuting Chen, and Zhendong Su. Coverage-directed differential testing of X.509 certificate validation in SSL/TLS implementations. ACM Trans. Softw. Eng. Methodol., 32(1):3:1–3:32, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Pavel Panchekha, Michael D. Ernst, Zachary Tatlock, and Shoaib Kamil. Modular verification of web page layout. Proc. ACM Program. Lang., 3(OOPSLA):151:1–151:26, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Pavel Panchekha, Adam T. Geller, Michael D. Ernst, Zachary Tatlock, and Shoaib Kamil. Verifying that web pages have accessible layout. In Jeffrey S. Foster and Dan Grossman, editors, Proceedings of the 39th ACMSIGPLAN Conference on Programming Language Design and Implementation, PLDI 2018, Philadelphia, PA, USA, June 18-22, 2018, pages 1–14. ACM, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Soyeon Park, Wen Xu, Insu Yun, Daehee Jang, and Taesoo Kim. Fuzzing javascript engines with aspect-preserving mutation. In 2020 IEEE Symposium on Security and Privacy, SP 2020, San Francisco, CA, USA, May 18-21, 2020, pages 1629–1642. IEEE, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "phash team. The open source perceptual hash library. https://www.phas h.org/, 2023. (visited on September 1, 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Prem Devanbu, Myra B. Cohen, and Thomas Zimmermann, editors, ESEC/FSE ’20: 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, Virtual Event, USA, November 8-13, 2020, pages 1140–1152. ACM, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 29,
+      "text": "Manuel Rigger and Zhendong Su. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang., 4(OOPSLA):211:1– 211:30, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 30,
+      "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), pages 667–682. USENIX Association, November 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 31,
+      "text": "selenium team. Selenium automates browsers. that’s it! https://www.se lenium.dev/, 2023. (visited on September 1, 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Suhwan Song, Jaewon Hur, Sunwoo Kim, Philip Rogers, and Byoungyoung Lee. R2Z2: detecting rendering regressions in web browsers through differential fuzz testing. In 44th IEEE/ACM 44th International Conference on Software Engineering, ICSE 2022, Pittsburgh, PA, USA, May 25-27, 2022, pages 1818–1829. ACM, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Suhwan Song and Byoungyoung Lee. Metamong: Detecting renderupdate bugs in web browsers through fuzzing. In Satish Chandra, Kelly Blincoe, and Paolo Tonella, editors, Proceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/FSE 2023, San Francisco, CA, USA, December 3-9, 2023, pages 1075–1087. ACM, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "W3C. Webrefmachine-readable references of terms defined in web browser specifications. https://github.com/w3c/webref, 2023. (visited on September 1, 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Thomas A. Walsh, Gregory M. Kapfhammer, and Phil McMinn. Automated layout failure detection for responsive web pages without an explicit oracle. In Tevfik Bultan and Koushik Sen, editors, Proceedings of the 26th ACMSIGSOFT International Symposium on Software Testing and Analysis, Santa Barbara, CA, USA, July 10 - 14, 2017, pages 192– 202. ACM, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Jiannan Wang, Thibaud Lutellier, Shangshu Qian, Hung Viet Pham, and Lin Tan. EAGLE: creating equivalent graphs to test deep learning libraries. In 44th IEEE/ACM 44th International Conference on Software Engineering, ICSE 2022, Pittsburgh, PA, USA, May 25-27, 2022, pages 798–810. ACM, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Junjie Wang, Yuchao Huang, Chunyang Chen, Zhe Liu, Song Wang, and Qing Wang. Software testing with large language models: Survey, landscape, and vision. IEEE Trans. Software Eng., 50(4):911–936, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Mingzhe Wang, Jie Liang, Chijin Zhou, Yu Jiang, Rui Wang, Chengnian Sun, and Jiaguang Sun. RIFF: reduced instruction footprint for coverageguided fuzzing. In Irina Calciu and Geoff Kuenning, editors, Proceedings of the 2021 USENIX Annual Technical Conference, USENIX ATC 2021, July 14-16, 2021, pages 147–159. USENIX Association, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Mingzhe Wang, Jie Liang, Chijin Zhou, Zhiyong Wu, Xinyi Xu, and Yu Jiang. Odin: on-demand instrumentation with on-the-fly recompilation. In Ranjit Jhala and Isil Dillig, editors, PLDI ’22: 43rd ACMSIGPLAN International Conference on Programming Language Design and Implementation, San Diego, CA, USA, June 13 - 17, 2022, pages 1010–1024. ACM, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. Industry practice of coverage-guided enterpriselevel DBMS fuzzing. In 43rd IEEE/ACM International Conference on Software Engineering: Software Engineering in Practice, ICSE (SEIP) 2021, Madrid, Spain, May 25-28, 2021, pages 328–337. IEEE, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Zhiyong Wu, Jie Liang, Mingzhe Wang, Chijin Zhou, and Yu Jiang. Unicorn: detect runtime errors in time-series databases with hybrid input synthesis. In Sukyoung Ryu and Yannis Smaragdakis, editors, ISSTA ’22: 31st ACMSIGSOFT International Symposium on Software Testing and Analysis, Virtual Event, South Korea, July 18 - 22, 2022, pages 251–262. ACM, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Wen Xu, Soyeon Park, and Taesoo Kim. FREEDOM: engineering a state-of-the-art DOM fuzzer. In Jay Ligatti, Xinming Ou, Jonathan Katz, and Giovanni Vigna, editors, CCS ’20: 2020 ACMSIGSAC Conference on Computer and Communications Security, Virtual Event, USA, November 9-13, 2020, pages 971–986. ACM, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. Finding and understanding bugs in C compilers. In Mary W. Hall and David A. Padua, editors, Proceedings of the 32nd ACMSIGPLAN Conference on Programming Language Design and Implementation, PLDI 2011, San Jose, CA, USA, June 4-8, 2011, pages 283–294. ACM, 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Daniel Hao Xian Yuen, Andrew Yong Chen Pang, Zhou Yang, Chun Yong Chong, Mei Kuan Lim, and David Lo. ASDF: A differential testing framework for automatic speech recognition systems. In IEEE Conference on Software Testing, Verification and Validation, ICST 2023, Dublin, Ireland, April 16-20, 2023, pages 461–463. IEEE, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Quan Zhang, Yiwen Xu, Zijing Yin, Chijin Zhou, and Yu Jiang. Automatic policy synthesis and enforcement for protecting untrusted deserialization. In Network and Distributed System Security (NDSS) Symposium (NDSS 2024), 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Quan Zhang, Binqi Zeng, Chijin Zhou, Gwihwan Go, Heyuan Shi, and Yu Jiang. Human-imperceptible retrieval poisoning attacks in llmpowered applications. In Marcelo d’Amorim, editor, Companion Proceedings of the 32nd ACM International Conference on the Foundations of Software Engineering, FSE 2024, Porto de Galinhas, Brazil, July 1519, 2024, pages 502–506. ACM, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Quan Zhang, Chijin Zhou, Yiwen Xu, Zijing Yin, Mingzhe Wang, Zhuo Su, Chengnian Sun, Yu Jiang, and Jia-Guang Sun. Building dynamic system call sandbox with partial order analysis. Proc. ACM Program. Lang., 7(OOPSLA2):1253–1280, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Chijin Zhou, Lihua Guo, Yiwei Hou, Zhenya Ma, Quan Zhang, Mingzhe Wang, Zhe Liu, and Yu Jiang. Limits of I/O based ransomware detection: An imitation based attack. In 44th IEEE Symposium on Security and Privacy, SP 2023, San Francisco, CA, USA, May 21-25, 2023, pages 2584–2601. IEEE, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Chijin Zhou, Mingzhe Wang, Jie Liang, Zhe Liu, and Yu Jiang. Zeror: Speed up fuzzing with coverage-sensitive tracing and scheduling. In35th IEEE/ACM International Conference on Automated Software Engineering, ASE 2020, Melbourne, Australia, September 21-25, 2020, pages 858–870. IEEE, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Chijin Zhou, Quan Zhang, Lihua Guo, Mingzhe Wang, Yu Jiang, Qing Liao, Zhiyong Wu, Shanshan Li, and Bin Gu. Towards better semantics exploration for browser fuzzing. Proc. ACM Program. Lang., 7(OOPSLA2):604–631, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Chijin Zhou, Quan Zhang, Mingzhe Wang, Lihua Guo, Jie Liang, Zhe Liu, Mathias Payer, and Yu Jiang. Minerva: browser API fuzzing with dynamic mod-ref analysis. In Abhik Roychoudhury, Cristian Cadar, and Miryung Kim, editors, Proceedings of the 30th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/FSE 2022, Singapore, Singapore, Novemb",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 28,
+      "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Prem Devanbu, Myra B. Cohen, and Thomas Zimmermann, editors, ESEC/FSE ’20: 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, Virtual Event, USA, November 8-13, 2020, pages 1140–1152. ACM, 2020.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 29,
+      "text": "Manuel Rigger and Zhendong Su. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang., 4(OOPSLA):211:1– 211:30, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 30,
+      "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), pages 667–682. USENIX Association, November 2020.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For example, in web development, efforts [24], [25] have been made to formalize layout guidance of web development into a formal language for correctness verification; and in database management systems, tools like SQLancer [30], [29], [28] validate query results using predefined equivalence rules.",
+      "context_before": "JANUS, in contrast, introduces a novel approach by establishing visual delta consistency as a test oracle. This allows for the detection of rendering inconsistencies across different browsers, thereby filling a significant gap in the field. Logic Bug Detection in Other Fields. The detection of logic bugs necessitates domain-specific test oracles. In various domains, researchers have developed innovative methods to tackle these bugs [36], [7], [16], [17], [13], [6]. Unlike crashes or memory corruptions, logic bugs are more difficult to detect and diagnose, and need domain-specific test oracles.",
+      "context_after": "Different from them, JANUS only focuses on rendering bug detection in web browsers. It uses browser-specific knowledge to construct a test oracle, i.e., visual delta consistency. VIII. CONCLUSION This paper introduces visual delta consistency as a test oracle for detecting rendering bugs in web browsers. This is achieved by constructing two HTML files with a minor modification and observing the visual delta across browsers. We implemented this approach as a fuzzer named JANUS, which ensures the soundness of the proposed test oracle while efficiently exploring all rendering features in browser",
+      "section": "VII RELATED WORK",
+      "page": 11,
+      "char_offset": 54428,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "tlp",
+        "norec"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T17:02:36Z",
+    "is_model_written": true,
+    "summary": "Janus finds rendering bugs in web browsers using visual delta consistency: a page is changed in a way whose visual effect is predictable, and the rendered output before and after is compared against that expectation, giving an oracle for rendering without a reference implementation.",
+    "narrative": "SQLancer is the database analogue Janus cites for its own oracle design: the paper notes that in database management systems, tools like SQLancer validate query results using predefined equivalence rules, placing it beside formalised layout guidance for web development as prior examples of checking correctness against a known relation. The relationship is one of shared oracle strategy across domains, not of use.",
+    "roles": {
+      "M1": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited as related work; no reuse of its code, generator or workload is described."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No SQLancer technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer or one of its oracles is reported."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The text does not describe SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T17:10:52Z",
+  "paper": {
+    "id": "paper:arxiv:2609.00381",
+    "title": "Bounded, Indeterminate, or a Bug: A Condition-Aware Oracle for Differential Testing of SQL Aggregates",
+    "authors": [
+      "Madhulatha Mandarapu",
+      "Sandeep Kunkunuru"
+    ],
+    "year": 2026,
+    "venue": null,
+    "doi": null,
+    "arxiv_id": "2609.00381",
+    "s2_paper_id": "cc8f54203ea326fd6d9d05e6856bf8b297829375",
+    "url": "https://arxiv.org/abs/2609.00381",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2609.00381",
+      "retrieved_at": "2026-09-07T17:10:52Z",
+      "chars": 31465,
+      "content_sha256": "sha256:6a2ac4557da977b132153295ed45177323cb278779f195482b850abd77fd5aa9"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 1701
+      },
+      {
+        "number": "2",
+        "title": "The condition number and the testability boundary",
+        "start": 7585
+      },
+      {
+        "number": "3",
+        "title": "The oracle: verdicts and two boundaries",
+        "start": 9775
+      },
+      {
+        "number": "4",
+        "title": "Experimental setup",
+        "start": 11232
+      },
+      {
+        "number": "5",
+        "title": "Results I: SUM is the linear baseline",
+        "start": 12665
+      },
+      {
+        "number": "6",
+        "title": "Results II: variance recovers the algorithm",
+        "start": 14010
+      },
+      {
+        "number": "7",
+        "title": "Results III: real data versus its representation",
+        "start": 16122
+      }
+    ]
+  },
+  "references": [],
+  "sqlancer_references": [],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "author_year_citation",
+      "surface": "Rigger [2025",
+      "technique": null,
+      "sentence": "Zhang and Rigger [2025] report that constant folding over floating-point values “can result in false alarms, which are avoided in practice by eschewing test cases with small or large floating-point values.",
+      "context_before": "on Differential testing is the workhorse of database correctness research: run the same query on two engines and treat a difference in results as evidence of a bug. It rests on an oracle—a rule that decides whether two answers should have agreed. For integers and strings the oracle is equality. For floating-point aggregates there is no such rule, because floating-point arithmetic is not associative: two engines that combine the same column in different orders return different doubles, and both are correct implementations of the aggregate. The field’s response has been to sidestep the question.",
+      "context_after": "” Zhong and Rigger [2024] document that DuckDB’s own harness treats two floats as matching when they differ by less than1%. The oracles of Rigger and Su [2020b,a,c] either restrict aggregates to a single pivot row, target predicates ∗madhulatha@samyama.ai †sandeep@samyama.ai 1 arXiv:2609.00381v1 [cs.DB] 18 Jul 2026 rather than aggregation, or compare an engine againstitselfby query partitioning, so a consistent rounding error cancels and is never observed. The same research group authors the modern differential-testing line, including Jiang et al. [2025], and it consistently routes around floa",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 2313,
+      "found_by_all": [
+        "author_year_citation"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "author_year_citation",
+      "surface": "Rigger [2024",
+      "technique": null,
+      "sentence": "” Zhong and Rigger [2024] document that DuckDB’s own harness treats two floats as matching when they differ by less than1%.",
+      "context_before": "whether two answers should have agreed. For integers and strings the oracle is equality. For floating-point aggregates there is no such rule, because floating-point arithmetic is not associative: two engines that combine the same column in different orders return different doubles, and both are correct implementations of the aggregate. The field’s response has been to sidestep the question. Zhang and Rigger [2025] report that constant folding over floating-point values “can result in false alarms, which are avoided in practice by eschewing test cases with small or large floating-point values.",
+      "context_after": "The oracles of Rigger and Su [2020b,a,c] either restrict aggregates to a single pivot row, target predicates ∗madhulatha@samyama.ai †sandeep@samyama.ai 1 arXiv:2609.00381v1 [cs.DB] 18 Jul 2026 rather than aggregation, or compare an engine againstitselfby query partitioning, so a consistent rounding error cancels and is never observed. The same research group authors the modern differential-testing line, including Jiang et al. [2025], and it consistently routes around floating point rather than through it. An epsilon is not merely a crude oracle; it is wrong in a direction that depends on the",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 2519,
+      "found_by_all": [
+        "author_year_citation"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "author_year_citation",
+      "surface": "Rigger and Su [2020b",
+      "technique": null,
+      "sentence": "The oracles of Rigger and Su [2020b,a,c] either restrict aggregates to a single pivot row, target predicates ∗madhulatha@samyama.",
+      "context_before": "re is no such rule, because floating-point arithmetic is not associative: two engines that combine the same column in different orders return different doubles, and both are correct implementations of the aggregate. The field’s response has been to sidestep the question. Zhang and Rigger [2025] report that constant folding over floating-point values “can result in false alarms, which are avoided in practice by eschewing test cases with small or large floating-point values.” Zhong and Rigger [2024] document that DuckDB’s own harness treats two floats as matching when they differ by less than1%.",
+      "context_after": "ai †sandeep@samyama.ai 1 arXiv:2609.00381v1 [cs.DB] 18 Jul 2026 rather than aggregation, or compare an engine againstitselfby query partitioning, so a consistent rounding error cancels and is never observed. The same research group authors the modern differential-testing line, including Jiang et al. [2025], and it consistently routes around floating point rather than through it. An epsilon is not merely a crude oracle; it is wrong in a direction that depends on the data. If the computation nearly cancels, the true answer is tiny while the intermediate magnitudes are large, and any implementati",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 2642,
+      "found_by_all": [
+        "author_year_citation"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "technique",
+      "surface": "query partitioning",
+      "technique": "tlp",
+      "sentence": "DB] 18 Jul 2026 rather than aggregation, or compare an engine againstitselfby query partitioning, so a consistent rounding error cancels and is never observed.",
+      "context_before": "ect implementations of the aggregate. The field’s response has been to sidestep the question. Zhang and Rigger [2025] report that constant folding over floating-point values “can result in false alarms, which are avoided in practice by eschewing test cases with small or large floating-point values.” Zhong and Rigger [2024] document that DuckDB’s own harness treats two floats as matching when they differ by less than1%. The oracles of Rigger and Su [2020b,a,c] either restrict aggregates to a single pivot row, target predicates ∗madhulatha@samyama.ai †sandeep@samyama.ai 1 arXiv:2609.00381v1 [cs.",
+      "context_after": "The same research group authors the modern differential-testing line, including Jiang et al. [2025], and it consistently routes around floating point rather than through it. An epsilon is not merely a crude oracle; it is wrong in a direction that depends on the data. If the computation nearly cancels, the true answer is tiny while the intermediate magnitudes are large, and any implementation may lose most of its significant digits legitimately: an epsilon then reports a bug that is not there. If it does not cancel, the computation is very accurate, and an epsilon far larger than the achievabl",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 2820,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The only route tosum’s indeterminate regime is fuzzer data: replicating SQLancer’s generator, exactly cancelling ±MAX drives κ≈10306, and the fraction of undecidable columns is non-monotone in n(peaking near20%at n=1000).",
+      "context_before": "returnbit-identicalplain sums at every κ, so a differential test across those three has no power against a summation bug; this is a property of the configuration, not the engines, and dissolves at their default parallel settings. The testability boundary is κ∗= 1/γn(9.0×1011at n=104), and the epsilons in use are sound at exactly one κ: a10−9rule crosses at κε≈900and DuckDB’s1%at ≈9×109. Real TPC-H sums—including Q9’s signed profit—sit at κ≈1, ten orders of magnitude inside the decidable zone, so the shipped epsilons are15 ×to1.5×108×too permissive and the practicalsumhazard is false negatives.",
+      "context_after": "The fullsummap is in the artifact; the rest of the paper concerns what changes whenp̸= 1. 6 Results II: variance recovers the algorithm The measured exponent identifies each engine’s algorithm (VE1).We sweep κVfrom 1to109atn=104and fit the log–log slope of each engine’s relative error against κV. Figure 2 shows a clean split. ClickHouse’s varPoptracks slope p=2.05and crosses relative error1near 5 κV≈107: it is the textbook one-pass algorithm, as its exponent alone reveals. The other four grow at most linearly (measured slopes0 .90for DuckDB, MySQL and the SQLite Welford reference,1 .05 for Po",
+      "section": "5 Results I: SUM is the linear baseline",
+      "page": 5,
+      "char_offset": 13697,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "author_year_citation",
+      "surface": "Rigger and Su [2020b",
+      "technique": null,
+      "sentence": "Rigger and Su [2020b] verify a single pivot row, which restricts multi-row aggregates; Rigger and Su [2020a] rewrites predicates; Rigger and Su [2020c] partitions a query against the same engine, so a consistent rounding error cancels rather than being detected.",
+      "context_before": "ators violate those assumptions and are excluded. Under gradualunderflow(subnormal inputs) the deviations xi−¯x round to zero and every engine returns variance0: the normalised-float bound does not hold, and every engine agrees, so this is a modelling limit, not a bug. Underoverflow(values near 10300) the exact∑x2 iexceeds the binary64 range and the result is genuinely ±∞, so the bound is undefined. The oracle applies to columns that are normalised and whose exact intermediate sums are finite—which is the entire real-data regime of §7. 10 Related work Differential and metamorphic DBMS testing.",
+      "context_after": "Zhang and Rigger [2025] avoid floating-point test cases explicitly; Zhong and Rigger [2024] record the1%epsilon used in practice; Jiang et al. [2025] test emerging engines against relational references with an exact-result oracle. None classifies a numeric discrepancy against a forward error bound, none uses a condition number, and none observes that the testability boundary depends on the engine’s aggregation algorithm. Numerical analysis and reproducibility.The summation bound and the framing of κare standard [Higham, 2002, Goldberg, 1991]; compensated summation is due to Kahan [1965], Neum",
+      "section": "7 Results III: real data versus its representation",
+      "page": 11,
+      "char_offset": 24162,
+      "found_by_all": [
+        "author_year_citation"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "author_year_citation",
+      "surface": "Rigger [2025",
+      "technique": null,
+      "sentence": "Zhang and Rigger [2025] avoid floating-point test cases explicitly; Zhong and Rigger [2024] record the1%epsilon used in practice; Jiang et al.",
+      "context_before": "a bug. Underoverflow(values near 10300) the exact∑x2 iexceeds the binary64 range and the result is genuinely ±∞, so the bound is undefined. The oracle applies to columns that are normalised and whose exact intermediate sums are finite—which is the entire real-data regime of §7. 10 Related work Differential and metamorphic DBMS testing.Rigger and Su [2020b] verify a single pivot row, which restricts multi-row aggregates; Rigger and Su [2020a] rewrites predicates; Rigger and Su [2020c] partitions a query against the same engine, so a consistent rounding error cancels rather than being detected.",
+      "context_after": "[2025] test emerging engines against relational references with an exact-result oracle. None classifies a numeric discrepancy against a forward error bound, none uses a condition number, and none observes that the testability boundary depends on the engine’s aggregation algorithm. Numerical analysis and reproducibility.The summation bound and the framing of κare standard [Higham, 2002, Goldberg, 1991]; compensated summation is due to Kahan [1965], Neumaier [1974] and reproducible summation to Demmel and Nguyen [2013]. The condition number of the sample variance and the one-pass-versus-two-pas",
+      "section": "7 Results III: real data versus its representation",
+      "page": 11,
+      "char_offset": 24424,
+      "found_by_all": [
+        "author_year_citation"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T14:24:46Z",
+    "is_model_written": true,
+    "summary": "This paper gives an oracle for differential testing of floating-point SQL aggregates. It argues that treating any cross-engine discrepancy as a bug is unsound for floating point, because non-associativity means engines legitimately disagree, and that the deciding factor is the engine's summation algorithm rather than the query. Ground truth is the exact rational value of the stored doubles, each discrepancy is classified exact, bounded or indeterminate, and a testability boundary is derived beyond which rounding cannot be separated from a bug.",
+    "narrative": "SQLancer's oracles are the paper's point of departure: it argues each of the three avoids the case it addresses -- PQS restricting aggregates to a single pivot row, NoREC rewriting predicates, TLP comparing an engine against itself so a consistent rounding error cancels. It also cites two SQLancer papers documenting that floating-point test cases are avoided in practice, and replicates SQLancer's generator to reach the indeterminate regime for SUM.",
+    "roles": {
+      "M1": "motivation",
+      "M2": "motivation",
+      "M3": "motivation",
+      "M4": "motivation",
+      "M5": "reuse_component",
+      "M6": "motivation",
+      "M7": "motivation"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "uncertain",
+        "mention_ids": [
+          "M5"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M5",
+            "sentence": "The only route tosum’s indeterminate regime is fuzzer data: replicating SQLancer’s generator, exactly cancelling ±MAX drives κ≈10306, and the fraction of undecidable columns is non-monotone in n(peaking near20%at n=1000).",
+            "section": "5 Results I: SUM is the linear baseline",
+            "page": 5
+          }
+        ],
+        "reasoning": "M5 says the only route to SUM's indeterminate regime is fuzzer data, replicating SQLancer's generator. Replicating a generator is not necessarily running its code, and no mention settles which.",
+        "reuse_kind": "generator"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

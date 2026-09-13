@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "paper": {
+    "id": "paper:doi:10.1145/3588909",
+    "title": "Detecting Logic Bugs of Join Optimizations in DBMS",
+    "authors": [
+      "Xiu Tang",
+      "Sai Wu",
+      "Dongxiang Zhang",
+      "Fei Li",
+      "Gang Chen"
+    ],
+    "year": 2023,
+    "venue": "Proc. ACM Manag. Data",
+    "doi": "10.1145/3588909",
+    "url": "https://doi.org/10.1145/3588909"
+  },
+  "summary": {
+    "text": "TQS extends generation-based logic bug detection from single-table queries to multi-table joins, which the authors identify as a substantial gap in existing tools. Its Data-guided Schema and Query Generation component solves the ground-truth problem by using database normalization to build a testing schema and a bitmap index to track expected results, and inserts artificial noise into the data to improve debugging efficiency. Knowledge-guided Query Space Exploration treats the search as isomorphic graph set discovery, combining graph embedding with weighted random walks. It found 115 bugs across four DBMSs in 24 hours.",
+    "relationship_to_sqlancer": "Extends the ground-truth-based approach of Pivoted Query Synthesis to multi-table joins and evaluates against that line of work.",
+    "is_model_generated": true,
+    "grounded_in_source": true,
+    "written_from": "abstract",
+    "written_from_url": "https://doi.org/10.1145/3588909",
+    "source_sha256": "sha256:89b9ff1f33a7f1cc44624c7fb0383a42d7b81a43f1ad10ad83fef445e4e4524c",
+    "supporting_excerpts": [
+      "Nonetheless, existing generation-based debug tools are limited to single-table queries and there is a substantial research gap regarding multi-table queries with join operators.",
+      "DSG addresses the key challenge of multi-table query debugging: how to generate ground-truth (query, result) pairs for verification.",
+      "It successfully detected 115 bugs within 24 hours, including 31 bugs in MySQL, 30 in MariaDB, 31 in TiDB, and 23 in PolarDB respectively."
+    ],
+    "model": "claude-opus-5",
+    "generated_by": "claude_code_session",
+    "classifier_version": null,
+    "generated_at": "2026-09-07T02:36:46Z"
+  },
+  "evidence": [
+    {
+      "relationship": "references",
+      "title": "Cites SQLancer",
+      "value": "yes",
+      "method": "citation_graph",
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://doi.org/10.1145/3588909",
+          "source_type": "paper_citation_context",
+          "excerpt": "Based on the randomly generated database, it adopts testing approaches such as Pivoted Query Synthesis (PQS) [50] to detect logic bugs.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:33:21Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1145/3588909",
+          "source_type": "paper_citation_context",
+          "excerpt": "NoRec compares the results of randomly-generated optimized queries and rewritten queries that DBMS cannot optimize [47].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Non-optimizing Reference Engine Construction (NoREC), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:33:21Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1145/3588909",
+          "source_type": "paper_citation_context",
+          "excerpt": "The second one is TLP [50], which decomposes a query into three partitioning queries, each of which computes its result on that tuple.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:33:21Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1145/3588909",
+          "source_type": "paper_citation_context",
+          "excerpt": "TLP decomposes a query into three partitioning queries, each of which computes its result on a selected tuple [48].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Ternary Logic Partitioning (TLP), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:33:21Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1145/3588909",
+          "source_type": "paper_citation_context",
+          "excerpt": "Pivoted Query Synthesis (PQS) has recently emerged as a promising way to detect logic bugs in DBMS [50].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:33:21Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1145/3588909",
+          "source_type": "paper_citation_context",
+          "excerpt": "The third one is NoRec [47], which targets at logic bugs generated by the optimization process in DBMS.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Non-optimizing Reference Engine Construction (NoREC), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:33:21Z"
+        }
+      ]
+    },
+    {
+      "relationship": "compares_with",
+      "title": "Compares against SQLancer",
+      "value": "yes",
+      "method": "deterministic",
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://arxiv.org/abs/2602.21955",
+          "source_type": "paper",
+          "excerpt": "We use three methods in SQLancer as our baselines.",
+          "excerpt_is_verbatim": true,
+          "note": "The paper states that it evaluates against SQLancer or one of its techniques.",
+          "retrieved_at": "2026-09-06T15:33:21Z"
+        }
+      ]
+    }
+  ]
+}

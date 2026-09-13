@@ -1,0 +1,2122 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-10T15:23:45Z",
+  "paper": {
+    "id": "paper:arxiv:2510.06663",
+    "title": "Automated Discovery of Test Oracles for Database Management Systems Using LLMs",
+    "authors": [
+      "Qiuyang Mang",
+      "Runyuan He",
+      "Suyang Zhong",
+      "Xiaoxuan Liu",
+      "Huanchen Zhang",
+      "Alvin Cheung"
+    ],
+    "year": 2025,
+    "venue": "Proceedings of the ACM on Management of Data",
+    "doi": null,
+    "arxiv_id": "2510.06663",
+    "s2_paper_id": "919f0ecf5c6ac7059a9e7d76d9841fca3b3eda74",
+    "url": "https://arxiv.org/abs/2510.06663",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2510.06663",
+      "retrieved_at": "2026-09-10T15:23:45Z",
+      "chars": 118489,
+      "content_sha256": "sha256:08c69171da4dbd6fb1dc5f063c9bc4582834a594c6df005c60941808e66ac370"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 40,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 3667
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 14922
+      },
+      {
+        "number": "3",
+        "title": "Argus Overview",
+        "start": 16854
+      },
+      {
+        "number": "4",
+        "title": "Constrained Abstract Query",
+        "start": 21609
+      },
+      {
+        "number": "5",
+        "title": "Test Oracle Discovery",
+        "start": 26530
+      },
+      {
+        "number": "5.1",
+        "title": "Database Seeding",
+        "start": 26925
+      },
+      {
+        "number": "5.2",
+        "title": "CAQ Pairs Generation",
+        "start": 28823
+      },
+      {
+        "number": "5.3",
+        "title": "Equivalence Checking",
+        "start": 31859
+      },
+      {
+        "number": "6",
+        "title": "Test Cases Instantiation",
+        "start": 33588
+      },
+      {
+        "number": "6.1",
+        "title": "Corpus Synthesis",
+        "start": 34020
+      },
+      {
+        "number": "6.2",
+        "title": "Query Instantiation",
+        "start": 39635
+      },
+      {
+        "number": "6.3",
+        "title": "Database Instantiation and Bug Reporting",
+        "start": 44164
+      },
+      {
+        "number": "7",
+        "title": "Evaluation",
+        "start": 45055
+      },
+      {
+        "number": "7.1",
+        "title": "New Bugs and Oracles",
+        "start": 46887
+      },
+      {
+        "number": "7.2",
+        "title": "Code Coverage",
+        "start": 55037
+      },
+      {
+        "number": "7.3",
+        "title": "Effect of Test Oracles",
+        "start": 61514
+      },
+      {
+        "number": "7.4",
+        "title": "Effect of SQL Equivalence Prover",
+        "start": 63630
+      },
+      {
+        "number": "7.5",
+        "title": "Cost and Efficiency Analysis",
+        "start": 66517
+      },
+      {
+        "number": "7.6",
+        "title": "Component-wise Analysis",
+        "start": 68338
+      },
+      {
+        "number": "8",
+        "title": "Discussion",
+        "start": 70928
+      },
+      {
+        "number": "9",
+        "title": "Related Work",
+        "start": 74924
+      },
+      {
+        "number": "10",
+        "title": "Conclusion",
+        "start": 79519
+      },
+      {
+        "number": "11",
+        "title": "Ackowledgements",
+        "start": 80293
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Arvind Arasu, Raghav Kaushik, and Jian Li. 2011. Data generation using declarative constraints. InProceedings of the 2011 ACMSIGMOD International Conference on Management of data. 685–696.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Jinsheng Ba, Yuancheng Jiang, and Manuel Rigger. 2025. Metamorphic Coverage.arXiv preprint arXiv:2508.16307 (2025).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 3,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 4,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 5,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep it simple: Testing databases via differential query plans.Proceedings of the ACM on Management of Data2, 3 (2024), 1–26.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 6,
+      "text": "Earl T Barr, Mark Harman, Phil McMinn, Muzammil Shahbaz, and Shin Yoo. 2014. The oracle problem in software testing: A survey.IEEE transactions on software engineering41, 5 (2014), 507–525.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Edmon Begoli, Jesús Camacho-Rodríguez, Julian Hyde, Michael J Mior, and Daniel Lemire. 2018. Apache calcite: A foundational framework for optimized query processing over heterogeneous data sources. InProceedings of the 2018 International Conference on Management of Data. 221–230.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Carsten Binnig, Donald Kossmann, Eric Lo, and M Tamer Özsu. 2007. QAGen: generating query-aware test databases. InProceedings of the 2007 ACMSIGMOD international conference on Management of data. 341–352.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Chunyu Chen, Zhengjie Miao, Yong Zhang, and Jiannan Wang. 2025. ParSEval: Plan-aware Test Database Generation for SQL Equivalence Evaluation.Proceedings of the VLDB Endowment18, 11 (2025), 4750–4762.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Shumo Chu, Chenglong Wang, Konstantin Weitz, and Alvin Cheung. 2017. Cosette: An Automated Prover for SQL.. In CIDR. 1–7.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Shumo Chu, Konstantin Weitz, Alvin Cheung, and Dan Suciu. 2017. HoTTSQL: Proving query rewrites with univalent SQL semantics.Acm sigplan notices52, 6 (2017), 510–524.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Wenjing Deng, Qiuyang Mang, Chengyu Zhang, and Manuel Rigger. 2024. Finding logic bugs in spatial database engines via affine equivalent inputs.Proceedings of the ACM on Management of Data2, 6 (2024), 1–26.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 13,
+      "text": "Haoran Ding, Zhaoguo Wang, Yicun Yang, Dexin Zhang, Zhenglin Xu, Haibo Chen, Ruzica Piskac, and Jinyang Li. 2023. Proving query equivalence using linear integer arithmetic.Proceedings of the ACM on Management of Data1, 4 (2023), 1–26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Dolt. 2025. Dolt Homepage. [EB/OL]. https://www.dolthub.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, and Yu Jiang. 2024. Sedar: Obtaining High-Quality Seeds for DBMS Fuzzing via Cross-DBMS SQL Transfer. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering (Lisbon, Portugal)(ICSE ’24). Association for Computing Machinery, New York, NY, USA, Article 146, 12 pages. https://doi.org/10.1145/3597503.3639210",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2023. Griffin: Grammar-Free DBMS Fuzzing. In Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering(Rochester, MI, USA) (ASE ’22). Association for Computing Machinery, New York, NY, USA, Article 49, 12 pages. https://doi.org/10.1145/ 3551349.3560431",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Lele Gaifax and Contributors. 2025. pglast: A PostgreSQL AST and statements prettifier for Python. https://github. com/lelit/pglast. Accessed: 2025-10-15.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Victor Giannakouris and Immanuel Trummer. 2025. 𝜆-tune: Harnessing large language models for automated database system tuning.Proceedings of the ACM on Management of Data3, 1 (2025), 1–26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Yang He, Pinhan Zhao, Xinyu Wang, and Yuepeng Wang. 2024. VeriEQL: Bounded equivalence verification for complex SQL queries with integrity constraints.Proceedings of the ACM on Programming Languages8, OOPSLA1 (2024), 1071–1099.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Charles Hong, Sahil Bhatia, Alvin Cheung, and Yakun Sophia Shao. 2025. Autocomp: LLM-Driven Code Optimization for Tensor Accelerators.arXiv preprint arXiv:2505.18574(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Zijin Hong, Zheng Yuan, Qinggang Zhang, Hao Chen, Junnan Dong, Feiran Huang, and Xiao Huang. 2024. Nextgeneration database interfaces: A survey of llm-based text-to-sql.arXiv preprint arXiv:2406.08426(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Dongxu Huang, Qi Liu, Qiu Cui, Zhuhe Fang, Xiaoyu Ma, Fei Xu, Li Shen, Liu Tang, Yuxing Zhou, Menglong Huang, et al. 2020. TiDB: a Raft-based HTAP database.Proceedings of the VLDB Endowment13, 12 (2020), 3072–3084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland HC Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting logic bugs in graph database management systems via injective and surjective graph query transformation. InProceedings of the 46th IEEE/ACM International Conference on Software Engineering. 1–12.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 24,
+      "text": "Zu-Ming Jiang and Zhendong Su. 2024. Detecting logic bugs in database engines via equivalent expression transformation. In18th USENIX Symposium on Operating Systems Design and Implementation (OSDI 24). 821–835. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:26 Qiuyang Mang et al.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2019. Apollo: Automatic detection and diagnosis of performance regressions in database systems.Proceedings of the VLDB Endowment13, 1 (2019), 57–70.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "George Klees, Andrew Ruef, Benji Cooper, Shiyi Wei, and Michael Hicks. 2018. Evaluating Fuzz Testing. InProceedings of the 2018 ACMSIGSAC Conference on Computer and Communications Security(Toronto, Canada)(CCS ’18). Association for Computing Machinery, New York, NY, USA, 2123–2138. https://doi.org/10.1145/3243734.3243804",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Dacheng Li, Shiyi Cao, Chengkun Cao, Xiuyu Li, Shangyin Tan, Kurt Keutzer, Jiarong Xing, Joseph E Gonzalez, and Ion Stoica. 2025. S*: Test time scaling for code generation.arXiv preprint arXiv:2502.14382(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Haonan Li, Yu Hao, Yizhuo Zhai, and Zhiyun Qian. 2024. Enhancing static analysis for practical bug detection: An llm-integrated approach.Proceedings of the ACM on Programming Languages8, OOPSLA1 (2024), 474–499.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Zhaodonghui Li, Haitao Yuan, Huiming Wang, Gao Cong, and Lidong Bing. 2024. LLM-R2: A large language model enhanced rule-based rewrite system for boosting query efficiency.arXiv preprint arXiv:2404.12872(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. 2023. Sequence-Oriented DBMS Fuzzing. In Engineering (ICDE). 668–681. https://doi.org/10.1109/ICDE55515.2023.00057",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting Logical Bugs of DBMS with Coverage-based Guidance. In31st USENIX Security Symposium (USENIX Security 22). USENIX Association, Boston, MA, 4309–4326. https://www.usenix. org/conference/usenixsecurity22/presentation/liang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Yiming Lin, Madelon Hulsebos, Ruiying Ma, Shreya Shankar, Sepanta Zeigham, Aditya G Parameswaran, and Eugene Wu. 2024. Towards accurate and efficient document analytics with large language models.arXiv preprint arXiv:2405.04674(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Yiming Lin, Madelon Hulsebos, Ruiying Ma, Shreya Shankar, Sepanta Zeighami, Aditya G Parameswaran, and Eugene Wu. 2025. Querying templatized document collections with large language models. In2025 IEEE 41st International Conference on Data Engineering (ICDE). IEEE, 2422–2435.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Shuang Liu, Junhao Lan, Xiaoning Du, Jiyuan Li, Wei Lu, Jiajun Jiang, and Xiaoyong Du. 2024. Testing graph database systems with graph-state persistence oracle. InProceedings of the 33rd ACMSIGSOFT International Symposium on Software Testing and Analysis. 666–677.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Xiaoxuan Liu, Shuxian Wang, Mengzhu Sun, Sicheng Pan, Ge Li, Siddharth Jha, Cong Yan, Junwen Yang, Shan Lu, and Alvin Cheung. 2022. Leveraging application data constraints to optimize database-backed web applications.arXiv preprint arXiv:2205.02954(2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. 2022. Automatic detection of performance bugs in database systems using equivalent queries. InProceedings of the 44th International Conference on Software Engineering. 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Qiuyang Mang, Jinsheng Ba, Pinjia He, and Manuel Rigger. 2025. Finding Logic Bugs in Graph-processing Systems via Graph-cutting.Proceedings of the ACM on Management of Data3, 3 (2025), 1–27.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 38,
+      "text": "Bruce Momjian. 2001.PostgreSQL: introduction and concepts. Vol. 192. Addison-Wesley New York.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Niels Mündler, Jingxuan He, Hao Wang, Koushik Sen, Dawn Song, and Martin Vechev. 2025. Type-Constrained Code Generation with Language Models.Proceedings of the ACM on Programming Languages9, PLDI (2025), 601–626.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "MySQL. 2025. MySQL Homepage. [EB/OL]. https://www.mysql.com",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Alexander Novikov, Ngân V ˜u, Marvin Eisenberger, Emilien Dupont, Po-Sen Huang, Adam Zsolt Wagner, Sergey Shirobokov, Borislav Kozlovskii, Francisco JR Ruiz, Abbas Mehrabian, et al .2025. AlphaEvolve: A coding agent for scientific and algorithmic discovery.arXiv preprint arXiv:2506.13131(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "OpenAI. 2025. Introducing OpenAI o3 and o4-mini. https://openai.com/index/introducing-o3-and-o4-mini/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Liana Patel, Siddharth Jha, Melissa Pan, Harshit Gupta, Parth Asawa, Carlos Guestrin, and Matei Zaharia. 2024. Semantic Operators: A Declarative Model for Rich, AI-based Data Processing.arXiv preprint arXiv:2407.11418(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Shishir G Patil, Huanzhi Mao, Fanjia Yan, Charlie Cheng-Jie Ji, Vishnu Suresh, Ion Stoica, and Joseph E Gonzalez. [n. d.]. The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models. InForty-second International Conference on Machine Learning.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Joanna Purich, Anthony Wise, and Leilani Battle. 2025. An adaptive benchmark for modeling user exploration of large datasets.Proceedings of the ACM on Management of Data3, 1 (2025), 1–24.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Mark Raasveldt and Hannes Mühleisen. 2019. Duckdb: an embeddable analytical database. InProceedings of the 2019 international conference on management of data. 1981–1984.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 48,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proceedings of the ACM on Programming Languages4, OOPSLA (2020), 1–30.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 49,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs 140:27",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 50,
+      "text": "Dmitry Rybin, Yushun Zhang, and Zhi-Quan Luo. 2025. XX𝑇Can Be Faster.arXiv preprint arXiv:2505.09814(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Anupam Sanghi and Jayant R Haritsa. 2023. Synthetic data generation for enterprise dbms. In2023 IEEE 39th International Conference on Data Engineering (ICDE). IEEE, 3585–3588.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Tobias Schmidt, Viktor Leis, Peter Boncz, and Thomas Neumann. 2025. SQLStorm: Taking Database Benchmarking into the LLM Era.Proceedings of the VLDB Endowment18, 11 (2025), 4144–4157.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Andreas Seltenreich. 2022. Sqlsmith. https://github.com/anse1/sqlsmith.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Shreya Shankar, Tristan Chambers, Tarak Shah, Aditya G Parameswaran, and Eugene Wu. 2024. Docetl: Agentic query rewriting and evaluation for complex document processing.arXiv preprint arXiv:2410.12189(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Chaofan Shou, Jing Liu, Doudou Lu, and Koushik Sen. 2024. Llm4fuzz: Guided fuzzing of smart contracts with large language models.arXiv preprint arXiv:2401.11108(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Donald R Slutz. 1998. Massive stochastic testing of SQL. InVLDB, Vol. 98. 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Jiansen Song, Wensheng Dou, Yu Gao, Ziyu Cui, Yingying Zheng, Dong Wang, Wei Wang, Jun Wei, and Tao Huang. 2024. Detecting Metadata-Related Logic Bugs in Database Systems via Raw Database Construction.Proc. VLDB Endow. 17, 8 (April 2024), 1884–1897. https://doi.org/10.14778/3659437.3659445",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Jiansen Song, Wensheng Dou, Yingying Zheng, Yu Gao, Ziyu Cui, Wei Wang, and Jun Wei. 2025. Detecting SchemaRelated Logic Bugs in Relational DBMSs via Equivalent Database Construction.Proceedings of the VLDB Endowment (VLDB)(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Jie Tan, Kangfei Zhao, Rui Li, Jeffrey Xu Yu, Chengzhi Piao, Hong Cheng, Helen Meng, Deli Zhao, and Yu Rong. 2025. Can Large Language Models Be Query Optimizer for Relational Databases?arXiv preprint arXiv:2502.05562(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Xiu Tang, Sai Wu, Dongxiang Zhang, Feifei Li, and Gang Chen. 2023. Detecting logic bugs of join optimizations in dbms.Proceedings of the ACM on Management of Data1, 1 (2023), 1–26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Xiu Tang, Shijie Yang, Sai Wu, Dongxiang Zhang, Wenchao Zhou, Feifei Li, and Gang Chen. 2025. Unveiling Logic Bugs in SPJG Query Optimizations within DBMS.ACM Transactions on Database Systems(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Boris A Trakhtenbrot. 1950. Impossibility of an algorithm for the decision problem for finite classes. InDoklady Akademiia Nauk SSSR, Vol. 70. 569.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Shuxian Wang, Sicheng Pan, and Alvin Cheung. 2024. QED: A powerful query equivalence decider for SQL.Proceedings of the VLDB Endowment17, 11 (2024), 3602–3614.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Zhaoguo Wang, Zhou Zhou, Yicun Yang, Haoran Ding, Gansen Hu, Ding Ding, Chuzhe Tang, Haibo Chen, and Jinyang Li. 2022. Wetune: Automatic discovery and verification of query rewrite rules. InProceedings of the 2022 International Conference on Management of Data. 94–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Chunqiu Steven Xia, Matteo Paltenghi, Jia Le Tian, Michael Pradel, and Lingming Zhang. 2024. Fuzz4all: Universal fuzzing with large language models. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Chunqiu Steven Xia and Lingming Zhang. 2024. Automated program repair via conversation: Fixing 162 out of 337 bugs for $0.42 each using chatgpt. InProceedings of the 33rd ACMSIGSOFT International Symposium on Software Testing and Analysis. 819–831.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Chenyuan Yang, Yinlin Deng, Runyu Lu, Jiayi Yao, Jiawei Liu, Reyhaneh Jabbarvand, and Lingming Zhang. 2024. Whitefox: White-box compiler fuzzing empowered by large language models.Proceedings of the ACM on Programming Languages8, OOPSLA2 (2024), 709–735.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "Chenyuan Yang, Zijie Zhao, and Lingming Zhang. 2025. Kernelgpt: Enhanced kernel fuzzing via large language models. InProceedings of the 30th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2. 560–573.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "Jingyi Yang, Peizhi Wu, Gao Cong, Tieying Zhang, and Xiao He. 2022. SAM: Database generation from query workloads with supervised autoregressive models. InProceedings of the 2022 International Conference on Management of Data. 1542–1555.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Yicun Yang, Zhaoguo Wang, Yu Xia, Zhuoran Wei, Haoran Ding, Ruzica Piskac, Haibo Chen, and Jinyang Li. 2025. Automated Validating and Fixing of Text-to-SQL Translation with Execution Consistency.Proceedings of the ACM on Management of Data3, 3 (2025), 1–28.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Shiyang Ye, Chao Ni, Jue Wang, Qianqian Pang, Xinrui Li, and Xiaodan Xu. 2025. Sembug: Detecting Logic Bugs in Dbms Through Generating Semantic-Aware Non-Optimizing Query. In on Program Comprehension (ICPC). IEEE, 124–135.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Cunxi Yu, Rongjian Liang, Chia-Tung Ho, and Haoxing Ren. 2025. Autonomous Code Evolution Meets NP-Completeness. arXiv preprint arXiv:2509.07367(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Sepanta Zeighami, Shreya Shankar, and Aditya Parameswaran. 2025. Cut Costs, Not Accuracy: LLM-Powered Data Processing with Guarantees.arXiv preprint arXiv:2509.02896(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "Chi Zhang and Manuel Rigger. 2025. Constant Optimization Driven Database System Testing.Proceedings of the ACM on Management of Data3, 1 (2025), 1–24. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:28 Qiuyang Mang et al.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 75,
+      "text": "Kaizhong Zhang and Dennis Shasha. 1989. Simple fast algorithms for the editing distance between trees and related problems.SIAM journal on computing18, 6 (1989), 1245–1262.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "Michael R Zhang, Nishkrit Desai, Juhan Bae, Jonathan Lorraine, and Jimmy Ba. 2023. Using large language models for hyperparameter optimization.arXiv preprint arXiv:2312.04528(2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "Qizheng Zhang, Ali Imran, Enkeleda Bardhi, Tushar Swamy, Nathan Zhang, Muhammad Shahbaz, and Kunle Olukotun. 2024. Caravan: Practical online learning of In-Network ML models with labeling agents. InProceedings of the 3rd Workshop on Practical Adoption Challenges of ML for Systems. 17–20.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "Fuheng Zhao, Lawrence Lim, Ishtiyaque Ahmad, Divyakant Agrawal, and Amr El Abbadi. 2023. Llm-sql-solver: Can llms determine SQL equivalence?arXiv preprint arXiv:2312.10321(2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "Pinhan Zhao, Yuepeng Wang, and Xinyu Wang. 2025. Polygon: Symbolic Reasoning for SQL using Conflict-Driven Under-Approximation Search.Proceedings of the ACM on Programming Languages9, PLDI (2025), 1315–1340.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. InProceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security(Virtual Event, USA)(CCS ’20). Association for Computing Machinery, New York, NY, USA, 955–970. https://doi.org/10.1145/3372297.3417260",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 81,
+      "text": "Suyang Zhong and Manuel Rigger. 2025. Testing Database Systems with Large Language Model Synthesized Fragments. arXiv preprint arXiv:2505.02012(2025).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 82,
+      "text": "Suyang Zhong and Manuel Rigger. 2026. Scaling Automated Database System Testing. InProceedings of the 31st ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2(USA) (ASPLOS ’26). Association for Computing Machinery, New York, NY, USA, 1677–1692. https://doi.org/10.1145/3779212. 3790215",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 83,
+      "text": "Qi Zhou, Joy Arulraj, Shamkant Navathe, William Harris, and Jinpeng Wu. 2020. SPES: A two-stage query equivalence verifier.arXiv preprint arXiv:2004.00481(2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 84,
+      "text": "Wei Zhou, Yuyang Gao, Xuanhe Zhou, and Guoliang Li. 2025. CrackSQL: A Hybrid SQL Dialect Translation System Powered by Large Language Models.arXiv preprint arXiv:2504.00882(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 85,
+      "text": "Xuanhe Zhou, Zhaoyan Sun, and Guoliang Li. 2024. Db-gpt: Large language model meets database.Data Science and Engineering9, 1 (2024), 102–111.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 86,
+      "text": "Zeyang Zhuang, Penghui Li, Pingchuan Ma, Wei Meng, and Shuai Wang. 2023. Testing graph database systems via graph-aware metamorphic relations.Proceedings of the VLDB Endowment17, 4 (2023), 836–848.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 87,
+      "text": "Ándré Albrecht and Contributors. 2025. sqlparse: A non-validating SQL parser module for Python. https://github.com/ andialbrecht/sqlparse. Accessed: 2025-10-15. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs 140:29 A Omitted Algorithm Algorithm 3:GuidedCAQPairsSampling Input:ADBMSD, a set of equivalent CAQ",
+      "is_sqlancer_publication": true
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 2,
+      "text": "Jinsheng Ba, Yuancheng Jiang, and Manuel Rigger. 2025. Metamorphic Coverage.arXiv preprint arXiv:2508.16307 (2025).",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 3,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 4,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13.",
+      "technique": "cert",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing cert"
+      ]
+    },
+    {
+      "number": 5,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep it simple: Testing databases via differential query plans.Proceedings of the ACM on Management of Data2, 3 (2024), 1–26.",
+      "technique": "dqp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing dqp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 12,
+      "text": "Wenjing Deng, Qiuyang Mang, Chengyu Zhang, and Manuel Rigger. 2024. Finding logic bugs in spatial database engines via affine equivalent inputs.Proceedings of the ACM on Management of Data2, 6 (2024), 1–26.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 23,
+      "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland HC Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting logic bugs in graph database management systems via injective and surjective graph query transformation. InProceedings of the 46th IEEE/ACM International Conference on Software Engineering. 1–12.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 37,
+      "text": "Qiuyang Mang, Jinsheng Ba, Pinjia He, and Manuel Rigger. 2025. Finding Logic Bugs in Graph-processing Systems via Graph-cutting.Proceedings of the ACM on Management of Data3, 3 (2025), 1–27.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 47,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 48,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proceedings of the ACM on Programming Languages4, OOPSLA (2020), 1–30.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 49,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs 140:27",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 74,
+      "text": "Chi Zhang and Manuel Rigger. 2025. Constant Optimization Driven Database System Testing.Proceedings of the ACM on Management of Data3, 1 (2025), 1–24. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:28 Qiuyang Mang et al.",
+      "technique": "coddtest",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing coddtest",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 81,
+      "text": "Suyang Zhong and Manuel Rigger. 2025. Testing Database Systems with Large Language Model Synthesized Fragments. arXiv preprint arXiv:2505.02012(2025).",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "prints the arXiv id of the paper introducing shqvel"
+      ]
+    },
+    {
+      "number": 82,
+      "text": "Suyang Zhong and Manuel Rigger. 2026. Scaling Automated Database System Testing. InProceedings of the 31st ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2(USA) (ASPLOS ’26). Association for Computing Machinery, New York, NY, USA, 1677–1692. https://doi.org/10.1145/3779212. 3790215",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing sqlancer_pp",
+        "prints the DOI of the paper introducing sqlancer_pp"
+      ]
+    },
+    {
+      "number": 87,
+      "text": "Ándré Albrecht and Contributors. 2025. sqlparse: A non-validating SQL parser module for Python. https://github.com/ andialbrecht/sqlparse. Accessed: 2025-10-15. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs 140:29 A Omitted Algorithm Algorithm 3:GuidedCAQPairsSampling Input:ADBMSD, a set of equivalent CAQsEqual, a number of maximal number of samples to returnMaxSamples, a number of maximal iterations for clusteringMaxIters. Output:A sampled set of equivalent CAQ pairsSam. 1FunctionDistance(D,caq,cluster): 2MinDistance←+∞; 3foreachq∈clusterdo 4plan1←D.Explain(caq); 5plan2←D.Explain(q); 6dist←TreeEditDistance(plan1,plan2); 7ifdist<MinDistancethen 8MinDistance←dist; 9returnMinDistance; 10if|Equal|≤MaxSamplesthen 11Sam←Equal; 12returnSam; 13Clusters←RandomSample(Equal,MaxSamples); 14foriter←1toMaxItersdo 15NewClusters←{}; 16foreachcaq∈Equaldo 17𝑖∗←arg min 𝑖Distance(D,caq,Clusters[𝑖]); 18NewClusters[𝑖∗]←NewClusters[𝑖∗]∪{caq}; 19ifNewClusters=Clustersthen 20break; 21Clusters←NewClusters; 22Sam←{}; 23foreachcluster∈Clustersdo 24caq←RandomSample(cluster,1); 25Sam←Sam∪{caq}; 26returnSam; B Counter-Examples and Proofs In this section, we provide three counter-examples to demonstrate that the potential false positives if we do not apply the three general constraints of Cmentioned in Sec. 6.2. Specifically, Listing B.1, Listing B.2, and Listing B.3 show three cases that can be formally proven in the scenario of virtual columns, but lead to false positives in the instantiation phase by missing the constraints. We use these constraints to ensure that snippets replacing column expressions are deterministic, preserve null values during outer joins, and refer to a unique row’s column combination in the cases other than outer joins. We then prove the following theorem to show that if we follow these constraints, the equivalence is preserved after instantiating expressions. Theorem B.1 (Expression Instantiation Preserves Eqivalence).Consider two SQL queries, 𝑄1and𝑄2, that aresemantically equivalenton a schema 𝑆containing virtual columns {𝑣𝑖}. Let 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:30 Qiuyang Mang et al. 1CREATE TABLEt1(c0BOOLEAN); 2INSERT INTOt1VALUES(TRUE); 3SELECT*FROMt1 4WHERE□ 1⊲Expr(t:BOOLEAN)↦→RANDOM() < 0.5; 5-- {unstably return 1 row or 0 rows} 6SELECT*FROMt1 7WHERE□ 1⊲Expr(t:BOOLEAN)↦→RANDOM() < 0.5; 8-- {unstably return 1 row or 0 rows} Listing B.1. False positive example when instantiating non-deterministic snippets. 1CREATE TABLEt1(c0INT); 2CREATE TABLEt2(c0INT); 3INSERT INTOt1VALUES(1); 4INSERT INTOt2VALUES(1); 5SELECT□ 1⊲Expr(t:INT)↦→NULLIF(t2.c0, 0)FROMt1LEFT JOINt2WHERE false; -- {0} 6SELECT NULL FROMt1LEFT JOINt2WHERE false; -- {NULL} Listing B.2. False positive example when instantiating snippets without null-preserving property. 1CREATE TABLEt1(c0INT); 2INSERT INTOt1VALUES(1); 3SELECT*FROMt1WHERE false; -- {0 rows} 4SELECT*FROMt1WHERE EXISTS( 5SELECT□ 1⊲Expr(t:INT)↦→SUM(c0)FROMt1WHERE false); -- {1 row} Listing B.3. False positive example when instantiating snippets without empty-preserving property. 𝑄′ 1and𝑄′ 2be the queries created by replacing every occurrence of each virtual column 𝑣𝑖with its corresponding expression 𝑒𝑖. If each expression 𝑒𝑖references aunique row’scolumn combination in all cases other than outer joins, then 𝑄′ 1and𝑄′ 2are alsosemantically equivalenton the schema 𝑆′, which is𝑆without the virtual columns. Proof. We prove this by contradiction. Assume that 𝑄′ 1and𝑄′ 2are not semantically equivalent on schema𝑆′, meaning there exists a database instance 𝐷′on𝑆′where𝑄′ 1(𝐷′)≠𝑄′ 2(𝐷′). We then construct a database 𝐷on schema𝑆by augmenting 𝐷′with the virtual columns {𝑣𝑖}defined by their corresponding expressions {𝑒𝑖}. The core of this proof is establishing that for any query 𝑄𝑘, the results𝑄𝑘(𝐷)and𝑄′ 𝑘(𝐷′)are identical. This equivalence is guaranteed by two properties of the expressions{𝑒𝑖}. First, theunique row referenceproperty ensures that for any standard join or matched row, the value of a virtual column 𝑣𝑖in𝐷is computed from the same single row as its expression 𝑒𝑖in𝐷′, yielding an identical result. Second, and crucially for outer joins, the null-preservingproperty handles unmatched rows. If an outer join produces a row where the columns underlying an expression 𝑒𝑖are padded with NULL, the expression 𝑒𝑖itself evaluates to NULL in query𝑄′ 𝑘. The null-preserving property explicitly forces the corresponding virtual column 𝑣𝑖in query𝑄𝑘to also resolve to NULL in this exact scenario. This perfect mirroring of behavior ensures that 𝑄1(𝐷)=𝑄′ 1(𝐷′)and𝑄2(𝐷)=𝑄′ 2(𝐷′). However, since 𝑄′ 1(𝐷′)≠𝑄′ 2(𝐷′)by our initial assumption, it follows that 𝑄1(𝐷)≠𝑄 2(𝐷), contradicting the premise that 𝑄1and𝑄2are semantically equivalent on schema𝑆.□ 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs 140:31 This theorem shows that, under the scenario of only virtual columns, the equivalence is preserved after instantiating expressions if we follow the constraints mentioned in Sec. 6.2. When there are virtual tables, it is much easier to show the preserved equivalence after instantiating tables, since the tables are simply replaced by other tables with the same schema. If there is no non-deterministic rows in the instantiated tables, the equivalence is also preserved after instantiating tables, because such instantiation is equivalent to using a CREATE VIEW to replace the CREATE TABLE for virtual tables. Note that, while these proofs do not cover all SQL features, especially for those new features in future SQL standards, we have not found any counterexamples in our experiments that violate the equivalence after instantiating expressions following these constraints. In practice, we can maintain the soundness of instantiated queries by disabling any new features that invalidate existing proofs. C Representing Existing Oracles 1(1)SELECT*FROMt1,□ 1⊲Table(...); 2(2)SELECT*FROMt1,□ 1⊲Table(...)WHERE□ 2⊲Expr(t1:BOOLEAN)AND □1⊲Table(...).c0IS TRUEUNION ALL 3SELECT*FROMt1,□ 1⊲Table(...)WHERE□ 2⊲Expr(t1:BOOLEAN)AND □1⊲Table(...).c0IS FALSE UNION ALL 4SELECT*FROMt1,□ 1⊲Table(...)WHERE□ 2⊲Expr(t1:BOOLEAN)AND □1⊲Table(...).c0IS NULL; Listing C.1. TLP [48] in CAQ. 1(1)SELECT COUNT(*)FROMt1,□ 1⊲Table(...)WHERE□ 2⊲Expr(t1:BOOLEAN)AND □1⊲Table(...).c0; 2(2)SELECT SUM(cnt)FROM(SELECT(□ 2⊲Expr(t1:BOOLEAN)AND□ 1⊲Table(...). c0) 3IS TRUE AScntFROMt1,□ 1⊲Table(...)); Listing C.2. NoREC [47] in CAQ. 1(1)SELECT*FROMt1,□ 1⊲Table(...)WHERE□ 2⊲Expr(t1:BOOLEAN); 2(2)SELECT*FROMt1,□ 1⊲Table(...)WHERE((□ 1⊲Table(...).c0AND(NOT □1⊲Table(...).c0) 3AND(□ 1⊲Table(...).c0IS NOT NULL)))OR□ 2⊲Expr(t1:BOOLEAN); 4(3)SELECT*FROMt1,□ 1⊲Table(...)WHERE CASEWHEN 5((□ 1⊲Table(...).c0AND(NOT□ 1⊲Table(...).c0)AND(□ 1⊲Table(...).c0IS NOT NULL))) 6THEN□ 3⊲Expr(t1:BOOLEAN)ELSE□ 2⊲Expr(t1:BOOLEAN)END; 7(4)SELECT*FROMt1,□ 1⊲Table(...)WHERE CASEWHEN 8□ 1⊲Table(...).c0THEN□ 2⊲Expr(t1:BOOLEAN)ELSE □2⊲Expr(t1:BOOLEAN)END; Listing C.3. EET [24] in CAQ. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:32 Qiuyang Mang et al. 1(1)SELECT*FROMt1JOIN□ 1⊲Table(...)ON□ 2⊲Expr(t1:ANY) = □1⊲Table(...).c0; 2(2) /*+ JOIN_ORDER(□ 1⊲Table(...), t1) */ 3SELECT*FROMt1JOIN□ 1⊲Table(...)ON□ 2⊲Expr(t1:ANY) = □1⊲Table(...).c0; 4(3) /*+ LOOKUP_JOIN(□ 1⊲Table(...), t1) */ 5SELECT*FROMt1JOIN□ 1⊲Table(...)ON□ 2⊲Expr(t1:ANY) = □1⊲Table(...).c0; 6(4) /*+ MERGE_JOIN(□ 1⊲Table(...), t1) */ 7SELECT*FROMt1JOIN□ 1⊲Table(...)ON□ 2⊲Expr(t1:ANY) = □1⊲Table(...).c0; 8(5) /*+ HASH_JOIN(□ 1⊲Table(...), t1) */ 9SELECT*FROMt1JOIN□ 1⊲Table(...)ON□ 2⊲Expr(t1:ANY) = □1⊲Table(...).c0; 10(6) /*+ INNER_JOIN(□ 1⊲Table(...), t1) */ 11SELECT*FROMt1JOIN□ 1⊲Table(...)ON□ 2⊲Expr(t1:ANY) = □1⊲Table(...).c0; Listing C.4. DQP [5] in CAQ. D Generated SQL Queries Query 1 of Argus 1SELECTt8.c3, 2t0.c2, 3t1.c3, 4t1.c2, 5t8.c0, 6t0.c3, 7(CASEWHEN( (div(t3.c3 + 10,nullif((EXTRACT(DAY FROM(DATE'2000-01-01'+ t3.c3 *INTERVAL'1 day'))::int), 1)) * mod((EXTRACT(DAY FROM(DATE'2000-01-01' + t3.c3 *INTERVAL'1 day'))::int) + 5, 3))::int) = 0THENt3.c0ELSEt3.c2END), 8t8.c1, 9((~ (~ ((-1518331885)&(( (+ ((t8.c2)/(((2087249086)#(760045829))))) )))))), 10vtable0.c0, 11t3.c3, 12vtable0.c3, 13(CASE WHENt1.c1 ISNULL THEN(char_length(( (REPLACE(UPPER(t1.c1),'A','4') LPAD(t1.c1::TEXT, 3,'0'))::VARCHAR)) * t1.c0 ) > 0ELSElength(t1.c1) > 3END) 14FROMt0 15CROSS JOINt8 16CROSS JOINt1 17CROSS JOINt3 18CROSS JOINvtable0 19WHERE1<>1; 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs 140:33 Query 2 of Argus 1SELECTdt.t0_c2, 2vtable0.c2, 3dt.t0_c1, 4dt.t8_c1 5FROMt1 6LEFT JOINvtable0 7ON NOT(t1.c1BETWEEN(md5(t1.c1 ( regexp_replace(t1.c1,'[aeiou]','*','gi') ))) ANDt1.c1) 8CROSS JOIN( 9SELECTt0.c2ASt0_c2, 10t0.c1ASt0_c1, 11t8.c1ASt8_c1 12FROMt8 13INNER JOINt0 14ONt8.c1 <> (t8.c1 t0.c1) 15)ASdt 16WHERE((COALESCE(length(( to_char(t1.c2 * t1.c3,'FM9999999')::varchar)), 0) - ( EXTRACT(MONTH FROM(date'2000-01-01'+ t1.c3 *interval'1 day'))::int) ) =ANY( ARRAY[t1.c3, t1.c3 * 2, 0])) ISNULL; Query 3 of Argus 1SELECT(bit_count((translate(md5(( (CASE WHENt0.c0THENt0.c1ELSEt0.c0END) )),' abcdef','FEDCBA') )::bytea)::integer), 2(translate(( (t1.c3::text':'( (EXTRACT(EPOCHFROM(TO_TIMESTAMP(' 2000-01-01','YYYY-MM-DD') + (t1.c3'days')::INTERVAL))::INT) + t1.c3 * 3 - (t1. c3 & t1.c3) )::text) ),'aeiou','12345')::varchar), 3t1.c3, 4(t3.c3 % 2 = 0), 5(REPLACE(t0.c1, t0.c0, REVERSE(t0.c0 t0.c1))), 6vtable0.c2, 7vtable0.c1, 8t1.c0, 9vtable0.c3, 10vtable1.c2, 11(bit_length(t0.c1) / 2 +octet_length(( LPAD(t0.c1, 10,SUBSTRING(t0.c0FROM1 FOR 1)) ))), 12t1.c2, 13t3.c0 14FROMt0, t1, vtable0, vtable1, t3 15WHERE FALSE; Query 4 of Argus 1SELECT 2vtable0.c3, 3t3.c3, 4(get_bit(decode(to_hex(t3.c3),'hex'), 7) = 1), 5vtable0.c0, 6(char_length(t8.c1) +char_length(coalesce(t8.c3,''))), 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:34 Qiuyang Mang et al. 7t1.c3, 8vtable0.c2, 9t8.c0, 10(LENGTH(md5(COALESCE((translate(t0.c1 t0.c0,'aeiou AEIOU','1234512345') ), t0.c0 )))), 11(to_char(DATE'2020-01-01'+ (t3.c3'days')::interval,'YYYY-MM-DD')::VARCHAR), 12(regexp_count(( t0.c0'_'( t0.c0'-'t0.c1 ) ),'[0-9]')), 13t8.c1, 14t0.c2, 15vtable1.c1, 16vtable1.c2, 17t8.c2, 18t3.c0, 19vtable0.c1, 20t0.c0, 21t0.c1, 22((( encode(sha256(convert_to((trim(both'#'fromt8.c3)::varchar),'UTF8')),'hex ') )LIKE'%test%'ORt8.c3 ~'^[0-9]+$')ANDt8.c2BETWEEN1AND10), 23((t3.c2AND NOTt3.c1)OR((extract(epochfrommake_interval(days => t3.c3))::int ) % 2 = 0)), 24((CASEWHEN( (SELECTbool_and(x::boolean)FROMjsonb_array_elements_text( jsonb_build_array(t0.c0, t0.c2))ASa(x)) )THENt0.c0ELSE(translate(t0.c0,' aeiou','12345') )END)), 25(regexp_count(( t8.c1'_'( t8.c1'-'t8.c3 ) ),'[0-9]')), 26t1.c2, 27t0.c3, 28(reverse(t1.c1)), 29t8.c3, 30vtable1.c0, 31t1.c1, 32(CASE WHENt1.c3 > t1.c2THEN bit_length(t1.c2)ELSEwidth_bucket(t1.c2, 0, 100, 10)END), 33t3.c2, 34(((((((( regexp_replace(t1.c3 ( to_char(( (+ (+ ((( (t1.c0 << 2) + (t1.c3 >> 1) )) *(302076923)))) ),'FM0000') ),'[aeiou]','*','gi') ))('')))(((t1.c3)('rR'))))) <=((((('')('h')))(((t1.c3)('5M'))))))), 35vtable1.c3, 36t3.c1 37FROM 38vtable0 39LEFT JOINt8ONvtable0.c0 40CROSS JOINt3 41CROSS JOINvtable1 42CROSS JOINt1 43CROSS JOINt0 44WHERE 45((t0.c2ORt0.c3)ANDt0.c3) = (t0.c3 < t0.c2) 46; Query 5 of Argus 1SELECT 2t0.c3, 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs 140:35 3sub_t1.c0_val, 4vtable1.c2, 5t0.c0, 6(CHAR_LENGTH(t0.c0 ( REPEAT(t0.c1, GREATEST(1, LEAST((bit_length(t0.c0) ), 5))) ) )), 7(octet_length(translate(t0.c0,'aeiou','AEIOU'))), 8sub_t1.ph1, 9vtable1.c0 10FROMt0 11CROSS JOINvtable1 12LEFT JOIN( 13SELECT 14t1.c0ASc0_val, 15(make_interval(days => ( width_bucket(t1.c3, 1, 100, 5) )) < make_interval(days => t1.c2))ASph1 16FROMt1 17) sub_t1ONvtable1.c2; Query 6 of Argus 1SELECTt8.c3, 2t0.c2, 3t1.c3, 4t1.c2, 5t8.c0, 6t0.c3, 7((t3.c3 % 2 = 0)ORt3.c1), 8t8.c1, 9(COALESCE(length(t8.c2), 0) - (EXTRACT(MONTH FROM(date'2000-01-01'+ ( GREATEST((EXTRACT(EPOCHFROM(DATE'2020-01-01'+ (t8.c2'days')::interval)):: int), -(EXTRACT(DAY FROM('2000-01-01'::timestamp+ t8.c2 *'1 day'::interval)):: int)) ) *interval'1 day'))::int)), 10vtable0.c0, 11t3.c3, 12vtable0.c3, 13(t1.c0 > ( (t1.c0 +COALESCE(( t1.c0 + (EXTRACT(EPOCHFROM(timestamp' 2000-01-01'+ (t1.c0'days')::interval))::int) * LENGTH(t1.c2) ), 0)) * GREATEST (t1.c0 - t1.c2, 1) )) 14FROMt0 15CROSS JOINt8 16CROSS JOINt1 17CROSS JOINt3 18CROSS JOINvtable0 19LIMIT0; Query 7 of Argus 1SELECTt8.c2, 2t8.c3, 3t8.c0, 4t0.c2, 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:36 Qiuyang Mang et al. 5t0.c1, 6vtable0.c1, 7vtable0.c0, 8((CASEWHEN( t0.c0LIKE'%test%')THENt0.c1ELSEt0.c0END)), 9t0.c3, 10vtable0.c3, 11(ascii(SUBSTRING(( ( (t0.c1'_'( reverse(substring(( regexp_replace(t0.c1, '[0-9]','X','g') )from1 for 3))::varchar))::varchar)'_'t0.c0 )FROM1 FOR 1)) *CASEWHEN( regexp_like(t0.c0,'test$','i') )THEN1ELSE2END), 12(bit_length(( replace(lower(t8.c2),'a','@') to_char(t8.c2,'FM9999') ))), 13(( split_part(t8.c0':'( md5(t8.c0 t8.c3)::varchar),':', 2) ) ~'^[0-9]+ $'ANDlength(( md5(t8.c0 t8.c3)::varchar)) > 0) 14FROMt8 15CROSS JOINt0 16JOINvtable0 17ON((ascii(substring(t0.c0FROM1 FOR 1)) * (length(coalesce((translate(t0.c0 t0. c1,'aeiou','AEIOU') ),'')) + 1)) + vtable0.c1) = ((ascii(substring(t0.c0FROM1 FOR 1)) * (length(coalesce((translate(t0.c0 t0.c1,'aeiou','AEIOU') ),'')) + 1) ) + -492369572) 18WHEREvtable0.c3 ISNULL 19OR(ascii(SUBSTRING(( ( (t0.c1'_'( reverse(substring(( regexp_replace(t0.c1,' [0-9]','X','g') )from1 for 3))::varchar))::varchar)'_'t0.c0 )FROM1 FOR 1)) *CASEWHEN( regexp_like(t0.c0,'test$','i') )THEN1ELSE2END) ISNULL 20UNION ALL 21SELECTt8.c2, 22t8.c3, 23t8.c0, 24t0.c2, 25t0.c1, 26NULL, 27NULL, 28((CASEWHEN( t0.c0LIKE'%test%')THENt0.c1ELSEt0.c0END)), 29t0.c3, 30NULL, 31(ascii(SUBSTRING(( ( (t0.c1'_'( reverse(substring(( regexp_replace(t0.c1, '[0-9]','X','g') )from1 for 3))::varchar))::varchar)'_'t0.c0 )FROM1 FOR 1)) *CASEWHEN( regexp_like(t0.c0,'test$','i') )THEN1ELSE2END), 32(bit_length(( replace(lower(t8.c2),'a','@') to_char(t8.c2,'FM9999') ))), 33(( split_part(t8.c0':'( md5(t8.c0 t8.c3)::varchar),':', 2) ) ~'^[0-9]+ $'ANDlength(( md5(t8.c0 t8.c3)::varchar)) > 0) 34FROMt8 35CROSS JOINt0 36WHERE NOTEXISTS( 37SELECT1 38FROMvtable0 39WHERE((ascii(substring(t0.c0FROM1 FOR 1)) * (length(coalesce((translate(t0.c0 t0.c1,'aeiou','AEIOU') ),'')) + 1)) + vtable0.c1) = ((ascii(substring(t0.c0FROM 1 FOR 1)) * (length(coalesce((translate(t0.c0 t0.c1,'aeiou','AEIOU') ),'')) + 1)) + -492369572) 40); 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs 140:37 Query 8 of Argus 1SELECT(char_length(t0.c1 t0.c0)), 2(substring(t1.c0from'[A-Za-z]+')'-'to_hex(( (t1.c2 / GREATEST(1, t1.c0)) % 7 ))), 3t1.c3, 4(t3.c3 % 2 = 0), 5((t0.c1'-'(translate(t0.c1,'aeiou','12345') ))), 6vtable0.c2, 7vtable0.c1, 8t1.c0, 9vtable0.c3, 10vtable1.c2, 11(char_length(t0.c0 t0.c1)), 12t1.c2, 13t3.c0 14FROMt0, t1, vtable0, vtable1, t3 15WHERE FALSE; Query 9 of Argus 1SELECT 2vtable0.c3, 3t3.c3, 4((t3.c3::text) SIMILAR TO'[0-9]+'), 5vtable0.c0, 6(mod(coalesce(( (bit_length(t8.c1::bytea) + ascii(substring(( REGEXP_REPLACE(t8.c1, 'a','b','g') )from1 for 1))) ),0) *coalesce(( regexp_count(( to_char(DATE' 2021-01-01'+ t8.c1 *INTERVAL'1 day','YYYY-MM-DD') ),'\\\\w+', 1,'g') ),1), 10) + regexp_instr(t8.c1,'[0-9]')), 7t1.c3, 8vtable0.c2, 9t8.c0, 10(CASEWHEN( t0.c1 @@ plainto_tsquery(t0.c0) )THEN( get_byte(t0.c0::bytea, 1) + get_byte(t0.c1::bytea, 0) )ELSE( regexp_count(t0.c1,'\\\\w+', 1,'g') )END), 11(translate(( to_char(t3.c3,'FM0000')::varchar),'abc','ABC')::varchar), 12((CASE((((t0.c1)(t0.c0)))((CASEt0.c0WHENt0.c1THENt0.c1END)))WHEN(((('')(' ')))(((NULL)(''))))THEN((((1574883451)%(NULL)))*((CASE NULL WHEN'+~'THEN 315562183END)))END)), 13t8.c1, 14t0.c2, 15vtable1.c1, 16vtable1.c2, 17t8.c2, 18t3.c0, 19vtable0.c1, 20t0.c0, 21t0.c1, 22(( xml_is_well_formed(t8.c3) )OR NOT( (( floor(((coalesce(substring(t8.c3fromE '(\\\\d+)'),'0')::int+ t8.c2 )::numeric/ greatest(1, t8.c2 + 1)))::int) % 2 = 0) )), 23(t3.c3AND( (t3.c3 % 2 = 0) )OR NOTt3.c3), 24(t0.c0'-'t0.c1), 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:38 Qiuyang Mang et al. 25(family('127.0.0.1'::inet) + masklen('127.0.0.1/24'::inet) - t8.c2), 26t1.c2, 27t0.c3, 28(UPPER(SUBSTRING(t1.c1FROM1 FORGREATEST(3, LENGTH(t1.c1) % 5)))), 29t8.c3, 30vtable1.c0, 31t1.c1, 32(bit_count(((EXTRACT(YEAR FROM DATE'1990-01-01'+ ( length(t1.c3) + t1.c0 * 2 floor(t1.c3::double precision /nullif(t1.c0,1))::int) *INTERVAL'1 day')::INT) + t1.c3)::bit(16))::int), 33t3.c2, 34((t1.c2::text) SIMILAR TO'[0-9]+'), 35vtable1.c3, 36t3.c1 37FROM 38vtable0 39LEFT JOINt8ONvtable0.c0 40CROSS JOINt3 41CROSS JOINvtable1 42CROSS JOINt1 43CROSS JOINt0 44WHERE 45((t0.c2ORt0.c3)ANDt0.c3) = (t0.c3 < t0.c2) 46; Query 10 of Argus 1SELECTv.c0, v.c2 2FROMvtable0 v 3CROSS JOINLATERAL (SELECT1FROMt1) l1 4CROSS JOINLATERAL (SELECT1FROMt8) l2 5CROSS JOINLATERAL (SELECT1FROMt0WHEREc2 ISNULL) l3; Query 1 of SQLancer 1SELECT ALL* 2FROMt1INNER 3JOIN(SELECT- (+ (t0.c0)) 4FROM ONLYt0,ONLYt1 5WHERE TRUE)ASsub0ON TRUE; Query 2 of SQLancer 1SELECTt0.c0, t1.c0 2FROMt0* 3FULL OUTER JOIN ONLYt1ON lower((0.961022777314273)::VARCHAR(181))~*lower(CAST(TRUE AS VARCHAR)); 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs 140:39 Query 3 of SQLancer 1SELECT* 2FROMt1* 3WHERE TRUE 4UNION ALL SELECT ALL* 5FROMt1* 6WHERE NOT(TRUE) 7UNION ALL SELECT ALL* 8FROMt1 9WHERE(TRUE) ISNULL; Query 4 of SQLancer 1SELECTt1.c0 2FROMt1; Query 5 of SQLancer 1SELECTt0.c0, t1.c0 2FROMt1* 3LEFT OUTER JOINt0ONinet_same_family('179.19.19.249','240.210.141.13'); Query 6 of SQLancer 1SELECT ALLt1.c0 2FROMt1* 3CROSS JOIN(SELECT ALL(t1.c0)BETWEEN(t0.c0)AND(num_nonnulls('')), (family(' 118.88.171.159'))IN(t1.c0, t0.c0, t1.c0),CAST(0.07644869ASMONEY) 4FROM ONLYt0, t1)ASsub0; Query 7 of SQLancer 1SELECT ALLt1.c0 2FROM ONLYt1 3WHERE((0.021889338)::MONEY) ISNULL 4UNION ALL SELECTt1.c0 5FROM ONLYt1 6WHERE NOT(((0.021889338)::MONEY) ISNULL) 7UNION ALL SELECTt1.c0 8FROM ONLYt1 9WHERE(((0.021889338)::MONEY) ISNULL) ISNULL; 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:40 Qiuyang Mang et al. Query 8 of SQLancer 1SELECT ALLt0.c0 2FROMt1 3LEFT OUTER JOIN ONLYt0ON NOT((((((t0.c0)%(t1.c0)))::VARCHAR)LIKE(((('{zq.O]w\\n'):: VARCHAR(701))(rtrim('0.7364646181551185')))))); Query 9 of SQLancer 1SELECT ALLt1.c0 2FROMt1INNER 3JOINt0ON(0.506531)IN(t1.c0, 0.46897623, t1.c0); Query 10 of SQLancer 1SELECT ALLt0.c0 2FROM ONLYt0; Received October 2025; revised January 2026; accepted February 2026 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 47]",
+      "technique": "norec",
+      "sentence": "Logic bugs are particularly insidious; they cause a DBMS to return incorrect results without raising errors, therefore silently corrupting downstream applications [ 47].",
+      "context_before": "/3802017 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026.arXiv:2510.06663v2 [cs.DB] 24 Mar 2026 140:2 Qiuyang Mang et al. 1CREATE TABLEt1(cINT); 2INSERT INTOt1VALUES(1); 3SELECTc / 3FROMt1WHERE false; -- {}/ 4SELECTc / 3FROMt1EXCEPT SELECTc / 3FROMt1; 5-- {0.3333}ὁB Listing 1. Motivating bug: incorrect EXCEPT result in TiDB, which can only be detected by a specific test oracle. 1 Introduction Database Management Systems (DBMSs) are a foundational component of modern software, yet their complexity makes them prone to bugs that can compromise application behavior and data integrity.",
+      "context_after": "In response, the research community has developed automated testing techniques [ 24,47–49,74] that have discovered hundreds of bugs in real-world systems. The most critical component of these techniques is thetest oracle[ 6] that can determine the correctness of a query’s output without access to the ground truth. Given a query, oracles for DBMS testing implement a transformation mechanism to generate a semantically equivalent variant. Then, by executing both queries and checking for result consistency, these oracles can detect logic bugs. For example, Ternary Logic Partitioning (TLP) [ 48] i",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 3873,
+      "cited_reference": {
+        "number": 47,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[ 24,47–49,74]",
+      "technique": "norec",
+      "sentence": "In response, the research community has developed automated testing techniques [ 24,47–49,74] that have discovered hundreds of bugs in real-world systems.",
+      "context_before": "t1VALUES(1); 3SELECTc / 3FROMt1WHERE false; -- {}/ 4SELECTc / 3FROMt1EXCEPT SELECTc / 3FROMt1; 5-- {0.3333}ὁB Listing 1. Motivating bug: incorrect EXCEPT result in TiDB, which can only be detected by a specific test oracle. 1 Introduction Database Management Systems (DBMSs) are a foundational component of modern software, yet their complexity makes them prone to bugs that can compromise application behavior and data integrity. Logic bugs are particularly insidious; they cause a DBMS to return incorrect results without raising errors, therefore silently corrupting downstream applications [ 47].",
+      "context_after": "The most critical component of these techniques is thetest oracle[ 6] that can determine the correctness of a query’s output without access to the ground truth. Given a query, oracles for DBMS testing implement a transformation mechanism to generate a semantically equivalent variant. Then, by executing both queries and checking for result consistency, these oracles can detect logic bugs. For example, Ternary Logic Partitioning (TLP) [ 48] is a highly effective oracle that partitions a query𝑄based on a predicate 𝑃and then checks equivalence between 𝑄and the union of its three-way partition 𝑄WH",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 4043,
+      "cited_reference": {
+        "number": 47,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "technique",
+      "surface": "Ternary Logic Partitioning",
+      "technique": "tlp",
+      "sentence": "For example, Ternary Logic Partitioning (TLP) [ 48] is a highly effective oracle that partitions a query𝑄based on a predicate 𝑃and then checks equivalence between 𝑄and the union of its three-way partition 𝑄WHERE𝑃 ,𝑄WHERE NOT𝑃, and𝑄WHERE𝑃IS NULL.",
+      "context_before": "ore silently corrupting downstream applications [ 47]. In response, the research community has developed automated testing techniques [ 24,47–49,74] that have discovered hundreds of bugs in real-world systems. The most critical component of these techniques is thetest oracle[ 6] that can determine the correctness of a query’s output without access to the ground truth. Given a query, oracles for DBMS testing implement a transformation mechanism to generate a semantically equivalent variant. Then, by executing both queries and checking for result consistency, these oracles can detect logic bugs.",
+      "context_after": "If a DBMS returns different results for the original query and its partitioned version, that indicates a bug. While human-designed oracles have found many bugs (reported in over 20 top-conference papers), the manual creation of oracles is a bottleneck, trapping researchers in a cycle of designing increasingly specialized oracles to find bugs missed by previous ones. For example, a TiDB [ 22] bug introduced in 2019 Listing 1 went undetected for years despite extensive testing1, because it required a specific oracle to check that any query 𝑄EXCEPT𝑄 should yield an empty result. This example hig",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 4589,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Compared to traditional SQL generators [ 16,53], this is infeasible for modern DBMS testing, which often requires executing thousands of queries per minute to find bugs efficiently, such as in SQLancer [3].",
+      "context_before": "example highlights a fundamental challenge: manually designed oracles are not only difficult to conceive but also tend to overlook bugs. Automating the discovery of test oracles is therefore essential to enable scalable DBMS testing. Large Language Models (LLMs), with their success in code generation [ 20,41], offer a promising avenue for automating this process. A naive approach would be to prompt an LLM to generate a semantically equivalent variant for a given seed SQL query. However, this strategy suffers from two limitations: (1)Scalability:LLM invocations are costly and have high latency.",
+      "context_after": "(2)Soundness:LLMs are prone to hallucination and may generate query pairs that are not truly equivalent. Such unsound oracles produce false positives, thereby undermining the reliability of the testing process. Note that verifying equivalence empirically by running the query pairs on multiple database instances is unreliable, as this cannot guarantee the complete removal of semantically inequivalent pairs [ 19], and may also filter out true bugs that might exist on all databases under test [56]. 1Commit 7de6200, introduced in 2019. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026.",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 6024,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "An example of representing and instantiating TLP [48] oracle in CAQ.",
+      "context_before": "er test [56]. 1Commit 7de6200, introduced in 2019. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs 140:3 1CREATE TABLEt1(c0VARCHAR, ...); 2CREATE TABLEt2(...); 3SELECT*FROMt1,□ 1⊲Table(...); --𝑄 1 4SELECT*FROMt1,□ 1⊲Table(...) 5WHERE(□ 2⊲Expr(t1:BOOLEAN)IS TRUE)UNION ALL 6SELECT*FROMt1,□ 1⊲Table(...) 7WHERE(□ 2⊲Expr(t1:BOOLEAN)IS FALSE)UNION ALL 8SELECT*FROMt1,□ 1⊲Table(...) 9WHERE(□ 2⊲Expr(t1:BOOLEAN)IS NULL); --𝑄 2 10□ 1⊲Table(...)↦→t1 ASOF JOIN t2 11□ 2⊲Expr(t1:BOOLEAN)↦→json_valid(t1.c0) Listing 2.",
+      "context_after": "Key insights.To address these challenges, we proposeArgus, a novel, fully automated framework for finding logic bugs in DBMSs.Argususes a two-stage process that separates oracle discovery from test case generation. First, it leverages an LLM in an offline phase to discover reusable test oracles. Then, these oracles are formally verified for correctness before being instantiated into thousands of concrete test cases. Since generating abstract test oracles is much cheaper and faster than directly using LLMs to craft concrete test cases, this approach tackles both scalability and soundness head-",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 7319,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For instance, TLP [ 48] can be represented as an equivalent CAQ pair,i.",
+      "context_before": "are also associated with the corresponding constraints, which are essential to implement test oracles. For example, a CAQ with two placeholders might specify that placeholders must be syntactically identical, or that a predicate must be a Boolean expression when instantiated. Anequivalent CAQ pairconsists of two CAQs that are semantically identical for every possible instantiation of placeholders,i.e.,for all possible fillings of the placeholders with concrete SQL snippets that satisfy their constraints. CAQs allowArgusto represent a wide range of test oracles, including several existing ones.",
+      "context_after": "e., 𝑄1and𝑄2, as shown in Listing 2. In this representation, 𝑄1serves as the original query template, while 𝑄2is its three-way partitioned version. Here, to ensure the syntax validity of the instantiated queries from the two CAQs, □1is restricted to represent any table, and □2must be a Boolean expression constructed using the columns of table 𝑡1. These two CAQs are semantically equivalent for all valid instantiations of the placeholders that satisfy their constraints, where□ 1and□ 2should also be instantiated consistently in both queries. Test oracle generation, verification, and instantiation.",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 9062,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "These snippets can be generated offline by a hybrid approach combining an LLM to cover diverse database features and a high-throughput generator, such as SQLancer [ 49], even though the prover currently cannot reason about them.",
+      "context_before": "Fig. 1. Overall pipeline of Argus. To tackle thescalability challenge, each verified oracle is instantiated into thousands of concrete test cases. Specifically, we populate the placeholders in each CAQ pair from a large corpus of pre-generated SQL snippets. This approach allows us to generate test cases for novel and complex features provided by the DBMS under test, even though they are not supported by our prover. For instance, in Listing 2, the placeholders □1and□2can be instantiated with various table joins and Boolean expressions, respectively, such as t1 ASOF JOIN t2 andjson_valid(t1.c0).",
+      "context_after": "Evaluation.We have implementedArgusand evaluated it on five widely used and comprehensively tested DBMSs: Dolt [ 14], DuckDB [ 46], MySQL [ 40], PostgreSQL [ 38], and TiDB [ 22].Argus discovered 41 unique and previously unknown bugs. Of these, 36 have been confirmed and 27 have been fixed by the developers. The bugs discovered include 36 critical logic bugs that lead to incorrect query results, while the remaining 5 cause performance problems or crashes. In our empirical comparisons with state-of-the-art open source testing tools in DuckDB [46],Argusdemonstrated an improvement of up to 1.19 ×",
+      "section": "1 Introduction",
+      "page": 4,
+      "char_offset": 12317,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 2]",
+      "technique": null,
+      "sentence": "43 ×in metamorphic coverage [ 2], a recently developed coverage indicator to assess the ability to find logic bugs.",
+      "context_before": "ementedArgusand evaluated it on five widely used and comprehensively tested DBMSs: Dolt [ 14], DuckDB [ 46], MySQL [ 40], PostgreSQL [ 38], and TiDB [ 22].Argus discovered 41 unique and previously unknown bugs. Of these, 36 have been confirmed and 27 have been fixed by the developers. The bugs discovered include 36 critical logic bugs that lead to incorrect query results, while the remaining 5 cause performance problems or crashes. In our empirical comparisons with state-of-the-art open source testing tools in DuckDB [46],Argusdemonstrated an improvement of up to 1.19 ×in code coverage, and 6.",
+      "context_after": "In addition, we also compared Arguswith a union of existing test oracles, rewriting them into equivalent CAQ pairs equipped with the same query generator. The results show thatArgus’s new oracles can detect 3.33 ×more unique logic bugs than the sum of prior oracles from these works [5, 24, 47, 48] within 6 hours of testing on Dolt [ 14]. Our ablation studies further validate the effectiveness of the SQL equivalence prover in ensuring soundness and the contribution of CAQ to enhancing scalability. This paper makes the following contributions. •We introduce the concept of theequivalent CAQ pair",
+      "section": "1 Introduction",
+      "page": 4,
+      "char_offset": 13170,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba, Yuancheng Jiang, and Manuel Rigger. 2025. Metamorphic Coverage.arXiv preprint arXiv:2508.16307 (2025).",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker",
+      "surface": "[5, 24, 47, 48]",
+      "technique": "dqp",
+      "sentence": "33 ×more unique logic bugs than the sum of prior oracles from these works [5, 24, 47, 48] within 6 hours of testing on Dolt [ 14].",
+      "context_before": "logic bugs that lead to incorrect query results, while the remaining 5 cause performance problems or crashes. In our empirical comparisons with state-of-the-art open source testing tools in DuckDB [46],Argusdemonstrated an improvement of up to 1.19 ×in code coverage, and 6.43 ×in metamorphic coverage [ 2], a recently developed coverage indicator to assess the ability to find logic bugs. In addition, we also compared Arguswith a union of existing test oracles, rewriting them into equivalent CAQ pairs equipped with the same query generator. The results show thatArgus’s new oracles can detect 3.",
+      "context_after": "Our ablation studies further validate the effectiveness of the SQL equivalence prover in ensuring soundness and the contribution of CAQ to enhancing scalability. This paper makes the following contributions. •We introduce the concept of theequivalent CAQ pair— a novel and expressive representation for test oracles in DBMSs — that can also capture features not supported by existing SQL equivalence provers. Based on that, we propose a new methodology that leverages LLMs to automatically discover test oracles for DBMSs by using them to generate CAQs. To our knowledge, we are the first tool that",
+      "section": "1 Introduction",
+      "page": 4,
+      "char_offset": 13495,
+      "cited_reference": {
+        "number": 5,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep it simple: Testing databases via differential query plans.Proceedings of the ACM on Management of Data2, 3 (2024), 1–26.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing dqp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "In the context of DBMS testing, test oracles typically operate by transforming a given SQL query into a semantically equivalent variant, as in TLP [ 48], NoREC [ 47], and EET [ 24].",
+      "context_before": "which can then be used to efficiently instantiate equivalent CAQ pairs into numerous concrete tests. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs 140:5 •We perform anextensive evaluationon five widely tested DBMSs, uncovering 41 previously unknown bugs, which outperforms the state-of-the-art techniques in several coverage metrics and the number of unique logic bugs found. 2 Background Test oracle.A test oracle is a mechanism for verifying whether a system’s output is correct for a given input [ 6].",
+      "context_after": "By doing so, the oracle can compare the execution results of the original and transformed queries to detect potential logic bugs. In this work, CAQ provides a unified framework for LLMs to generate test oracles automatically. We show that most of these prior oracles can be formalized as instances of equivalent CAQ pairs, such as that shown in Listing 2. We include more examples in Appendix C. SQL equivalence verification.The goal of SQL equivalence verification is to determine if two SQL queries are semantically equivalent, meaning they produce the same result when executed on all possible in",
+      "section": "2 Background",
+      "page": 5,
+      "char_offset": 15050,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "SQLancer++",
+      "technique": null,
+      "sentence": "Specifically, we use SQLancer++ [ 82]’s query generator to produce seed queries, but we do not use their predefined test oracles (such as TLP [48] and NoREC [47]) for bug detection.",
+      "context_before": "ck DB [ 46] as a case study to provide an overview of theArgusframework. Fig. 1 presents the overall pipeline ofArgus, which consists of two stages:Test Oracle Discovery (①and②) andTest Cases Instantiation( ③–⑥). The first stage aims to automatically discover a large number of high-quality test oracles in the form of equivalent CAQ pairs, while the second stage focuses on deriving concrete test cases from these CAQ pairs to detect bugs in DBMSs. In①, we generate a set of CAQs with their associated schemas by a grammar-based generator without using LLMs, and this will be detailed in Section 5.1.",
+      "context_after": "For example, we generate the following CAQ: SELECTt2.c0FROMt2, t3LEFT JOINt1 ON□ 1⊲Expr(t1:BOOLEAN); After that, in ②these CAQs will serve as seed queries for the subsequent LLM-based test oracle discovery. First, we employ an iterative prompting strategy to guide LLMs to generate various equivalent CAQs for each seed query, which will be elaborated in Section 5.2. For instance, given the above CAQ as input, the LLM may generate the following CAQs: 𝐶1:WITHcAS(SELECT*FROMt1WHERE□ 1⊲Expr(t1:BOOLEAN)) SELECTt2.c0FROMt2CROSS JOINt3CROSS JOINc 4, No. 3 (SIGMOD), Article 140. Publication date: Jun",
+      "section": "3 Argus Overview",
+      "page": 5,
+      "char_offset": 17535,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "citation_marker",
+      "surface": "[ 3,24,48,74]",
+      "technique": "qpg",
+      "sentence": "Note that these are also widely adopted constraints in prior work on manually designed test oracles [ 3,24,48,74].",
+      "context_before": "⊲𝑐𝑘}, aninstantiationof 𝑞, denoted𝑞∗, is obtained by replacing each placeholder □𝑖in𝑞with a concrete SQL snippet 𝑠𝑖that satisfies the corresponding constraint 𝑐𝑖and a set of general constraintsC. The substitution can be written as: 𝑞∗=𝑞[□ 1↦→𝑠 1,□2↦→𝑠 2,...,□ 𝑘↦→𝑠 𝑘] Specifically, each 𝑐𝑖refers to theConstraints shown in Fig. 2. In addition, to prevent false positive bug reports when using the instantiated query 𝑞∗for testing, we must also satisfy a set of general constraintsC, such as avoiding non-deterministic features,e.g., RANDOM and CURRENT_TIMESTAMP, and ensuring the snippet is valid SQL.",
+      "context_after": "The details ofCwill be discussed in Sec. 6.2. We say that two CAQs are equivalent if all their possible instantiations are semantically equivalent. Definition 4.2(Equivalent CAQ Pair).Given two CAQ s𝑞1and𝑞2defined over the same Schema𝑠 (which specifies the tables referenced in both queries) with the same PlaceholderMap{□ 1⊲𝑐1,□2⊲ 𝑐2,...,□ 𝑘⊲𝑐𝑘}, we say that 𝑞1and𝑞2form anEquivalent CAQ Pair, denoted (𝑠,𝑞 1,𝑞2), if for every possible instantiated concrete queries (Definition 4.1), 𝑞∗ 1and𝑞∗ 2, we have𝑞∗ 1≡𝑞∗ 2,i.e.,they will return the same result set when executed on any database instance con",
+      "section": "4 Constrained Abstract Query",
+      "page": 7,
+      "char_offset": 24560,
+      "cited_reference": {
+        "number": 3,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ",SQLancer [3]).",
+      "context_before": "rs by instantiating the CAQs with various snippets that satisfy the constraints of the placeholders. This allows us to decompose the test oracle discovery problem to CAQ pair generation and equivalence checking problems. 5 Test Oracle Discovery We now present our test oracle discovery algorithm, outlined in Algorithm 1 and consists of three phases: database seeding, CAQ pairs generation, and equivalence checking. It leverages four key components as input: a target DBMS D(e.g.,DuckDB [ 46]), an LLMM(e.g.,GPT o4-mini [ 42]), a SQL proverP(e.g.,SQLSolver [13]), and a grammar-based generatorG(e.g.",
+      "context_after": "5.1 Database Seeding To discover diverse test oracles, we generate CAQ pairs with multiple database schemas. As equivalent CAQ pairs are associated with their database schemas, we first iterate 𝑁times to generate diverse schemas and their corresponding CAQs (line 18). In each iteration, we start by database seeding, which involves generating a random database schema (line 19), and then producing a CAQ that conforms to the generated schema,i.e.,the seed query 𝑞(line 20). Though existing grammar-based generators,e.g.,SQLancer can be directly used for schema and concrete 4, No. 3 (SIGMOD), Arti",
+      "section": "5 Test Oracle Discovery",
+      "page": 8,
+      "char_offset": 26909,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ",SQLancer can be directly used for schema and concrete 4, No.",
+      "context_before": "roverP(e.g.,SQLSolver [13]), and a grammar-based generatorG(e.g.,SQLancer [3]). 5.1 Database Seeding To discover diverse test oracles, we generate CAQ pairs with multiple database schemas. As equivalent CAQ pairs are associated with their database schemas, we first iterate 𝑁times to generate diverse schemas and their corresponding CAQs (line 18). In each iteration, we start by database seeding, which involves generating a random database schema (line 19), and then producing a CAQ that conforms to the generated schema,i.e.,the seed query 𝑞(line 20). Though existing grammar-based generators,e.g.",
+      "context_after": "3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs 140:9 1CREATE TABLEt1(c0INT, placeholder1BOOLEAN); 2CREATE TABLEt2(c0INT); 3CREATE TABLEvtable1(c0INT, c1INT); 4SELECTt1.placeholder1FROMt1, vtable1; Listing 3. An example of using concrete SQL query to represent CAQ when interfacing with grammar-based generators and provers. query generation, they cannot directly produce queries with placeholders. The key challenge lies in producing those entries in the seed CAQ while ensuring the syntactic correctness after in",
+      "section": "5.1 Database Seeding",
+      "page": 8,
+      "char_offset": 27445,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M15",
+      "found_by": "citation_marker",
+      "surface": "[ 3,5,74]",
+      "technique": "qpg",
+      "sentence": "Instead of pursuing syntactic differences, our goal is to produce queries with variedquery plans, as this is a key principle to creating effective test oracles in previous works [ 3,5,74].",
+      "context_before": "ivalent queries. To generate variants efficiently, our key strategy is to leverage in-context learning by providing the LLM with not only the seed query 𝑞, but also carefully selected samples from two dynamically updated sets: Equal ,i.e.,queries previously verified as equivalent to 𝑞, and Fail,i.e.,those that failed verification. The Equal set promotes both correctness and diversity, while theFailset provides examples of failures to avoid. A crucial aspect of our approach is how we guide the LLM towards generating diverse CAQs to trigger different optimization paths and detect potential bugs.",
+      "context_after": "Qualitatively, we prompt the LLM to generate novel queries that are different from the provided examples (line 4). In addition, we also quantitatively measure the similarity between query plans using the tree edit distance [ 75]. This metric is then used to guide the selection of examples for the next iteration’s prompt. Specifically, we use k-means to cluster the CAQs in the Equal set based on the tree edit distance value and then sample queries from each cluster. This strategy ensures the LLM is consistently shown a diverse range of successful query structures, pushing it to explore novel e",
+      "section": "5.2 CAQ Pairs Generation",
+      "page": 9,
+      "char_offset": 29944,
+      "cited_reference": {
+        "number": 3,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "citation_marker",
+      "surface": "[ 47–49]",
+      "technique": "norec",
+      "sentence": "The first constraint is also widely used in previous works [ 47–49] and can be checked by applying a regular expression to identify non-deterministic features.",
+      "context_before": "we enforce the following general constraints C(defined in Definition 4.2) on the sampled query snippets. (1)Determinism( Table andExpression ): The snippet should not contain any non-deterministic functions, such as RANDOM(). (2)Null-preserving( Expression ): The expression should preserve a null return value when evaluated on rows only containing null values. For example, c1 + c2 is null-preserving, while IFNULL(c1, 0)is not. (3)Empty Results-preserving( Expression ): The expression should return an empty result set when evaluated on an empty table. For example,sum(c1)is not empty-preserving.",
+      "context_after": "The second and third constraints resolve the semantic misalignment that arises when virtual columns and tables are instantiated with concrete expressions and tables. These constraints are necessary because, in the presence of outer joins, virtual columns may no longer faithfully capture the semantics of concrete expressions after instantiation.e.g.,outer joins can introduce NULL values into virtual columns, causing instantiated expressions to be evaluated differently from the version fed to the SQL equivalence prover. After satisfying these constraints, we can ensure that the instantiated que",
+      "section": "6.2 Query Instantiation",
+      "page": 13,
+      "char_offset": 42577,
+      "cited_reference": {
+        "number": 47,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "citation_marker",
+      "surface": "[ 47–49]",
+      "technique": "norec",
+      "sentence": "We basically follow the widely-used random data generation method [ 47–49] to populate the tables in the instantiated schema 𝑠with random tuples, and then create random indices on those tables to diversify the execution plans.",
+      "context_before": "ain a database instance under the schema used in the prover where the two queries return different results, which contradicts the original semantic equivalence. A detailed analysis of the counterexamples, together with the full proof for the cases satisfying them, is provided in Appendix B. Furthermore, we validate these constraints at runtime: we execute each snippet on Dand check the returned types or schemas and behavior on NULLor empty inputs. 6.3 Database Instantiation and Bug Reporting After instantiating the test queries, we create the database instances to execute them (line 20 and 21).",
+      "context_after": "Finally, we execute the instantiated queries 𝑞∗and𝑞′∗on the target DBMS Dand compare their results (line 20). If the results differ, we report a logic bug along with the instantiated test case, database schema, and table data. In addition, if a query causes a crash of D, we also report a crash bug. Note that, though our test oracles can also detect performance issues similar to [ 25,36], we do not detect them in a large scale due to those issues are typically regarded as expected behaviors by developers [4]. 7 Evaluation In this section, we evaluateArguson five aspects: (1)How many new bugs c",
+      "section": "6.3 Database Instantiation and Bug Reporting",
+      "page": 13,
+      "char_offset": 44313,
+      "cited_reference": {
+        "number": 47,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "citation_marker",
+      "surface": "[4]",
+      "technique": "cert",
+      "sentence": "Note that, though our test oracles can also detect performance issues similar to [ 25,36], we do not detect them in a large scale due to those issues are typically regarded as expected behaviors by developers [4].",
+      "context_before": "eries, we create the database instances to execute them (line 20 and 21). We basically follow the widely-used random data generation method [ 47–49] to populate the tables in the instantiated schema 𝑠with random tuples, and then create random indices on those tables to diversify the execution plans. Finally, we execute the instantiated queries 𝑞∗and𝑞′∗on the target DBMS Dand compare their results (line 20). If the results differ, we report a logic bug along with the instantiated test case, database schema, and table data. In addition, if a query causes a crash of D, we also report a crash bug.",
+      "context_after": "7 Evaluation In this section, we evaluateArguson five aspects: (1)How many new bugs canArgusfind in real-world DBMSs, and what LLM-generated test oracles discover them? (Sec. 7.1) (2) How doesArguscompare to other baseline tools in terms of code coverage? (Sec. 7.2) (3)How does the number of automatically discovered oracles affect the number of unique bugs found, compared to prior work where oracles are manually designed? (Sec. 7.3) 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:14 Qiuyang Mang et al. DBMS Tested by GitHub stars Released LOC Dolt [82] 19.1k 2018 380k DuckDB",
+      "section": "6.3 Database Instantiation and Bug Reporting",
+      "page": 13,
+      "char_offset": 44840,
+      "cited_reference": {
+        "number": 4,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing cert"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "citation_marker",
+      "surface": "[82]",
+      "technique": null,
+      "sentence": "DBMS Tested by GitHub stars Released LOC Dolt [82] 19.",
+      "context_before": "ose issues are typically regarded as expected behaviors by developers [4]. 7 Evaluation In this section, we evaluateArguson five aspects: (1)How many new bugs canArgusfind in real-world DBMSs, and what LLM-generated test oracles discover them? (Sec. 7.1) (2) How doesArguscompare to other baseline tools in terms of code coverage? (Sec. 7.2) (3)How does the number of automatically discovered oracles affect the number of unique bugs found, compared to prior work where oracles are manually designed? (Sec. 7.3) 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:14 Qiuyang Mang et al.",
+      "context_after": "1k 2018 380k DuckDB [15, 16, 48, 74, 82] 32.7k 2019 1,496k MySQL [24, 31, 49, 57, 58, 60, 61, 74, 80, 82] 11.7k 1995 5,532k PostgreSQL [16, 24, 30, 47, 49, 58, 80, 82] 18.5k 1995 938k TiDB [3, 24, 57, 58, 60, 61, 74, 82] 39.0k 2016 1,398k Table 1. DBMSs under test by Argus. DBMS ReportedBug status Bug type Fixed Conf. Dup. Pend. Logic Other Dolt 19 18 1 0 0 18 1 DuckDB 8 6 0 1 1 4 4 MySQL 8 0 5 1 2 8 0 PostgreSQL 1 1 0 0 0 1 0 TiDB 5 2 3 0 0 5 0 Total41 27 9 2 3 36 5 Table 2. Argus found bugs statistics. (4) How effective isArgus’s SQL equivalence prover in filtering out false positives? (Sec.",
+      "section": "7 Evaluation",
+      "page": 14,
+      "char_offset": 45580,
+      "cited_reference": {
+        "number": 82,
+        "text": "Suyang Zhong and Manuel Rigger. 2026. Scaling Automated Database System Testing. InProceedings of the 31st ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2(USA) (ASPLOS ’26). Association for Computing Machinery, New York, NY, USA, 1677–1",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing sqlancer_pp",
+          "prints the DOI of the paper introducing sqlancer_pp"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M20",
+      "found_by": "citation_marker",
+      "surface": "[15, 16, 48, 74, 82]",
+      "technique": "tlp",
+      "sentence": "1k 2018 380k DuckDB [15, 16, 48, 74, 82] 32.",
+      "context_before": "by developers [4]. 7 Evaluation In this section, we evaluateArguson five aspects: (1)How many new bugs canArgusfind in real-world DBMSs, and what LLM-generated test oracles discover them? (Sec. 7.1) (2) How doesArguscompare to other baseline tools in terms of code coverage? (Sec. 7.2) (3)How does the number of automatically discovered oracles affect the number of unique bugs found, compared to prior work where oracles are manually designed? (Sec. 7.3) 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:14 Qiuyang Mang et al. DBMS Tested by GitHub stars Released LOC Dolt [82] 19.",
+      "context_after": "7k 2019 1,496k MySQL [24, 31, 49, 57, 58, 60, 61, 74, 80, 82] 11.7k 1995 5,532k PostgreSQL [16, 24, 30, 47, 49, 58, 80, 82] 18.5k 1995 938k TiDB [3, 24, 57, 58, 60, 61, 74, 82] 39.0k 2016 1,398k Table 1. DBMSs under test by Argus. DBMS ReportedBug status Bug type Fixed Conf. Dup. Pend. Logic Other Dolt 19 18 1 0 0 18 1 DuckDB 8 6 0 1 1 4 4 MySQL 8 0 5 1 2 8 0 PostgreSQL 1 1 0 0 0 1 0 TiDB 5 2 3 0 0 5 0 Total41 27 9 2 3 36 5 Table 2. Argus found bugs statistics. (4) How effective isArgus’s SQL equivalence prover in filtering out false positives? (Sec. 7.4) (5)What are the time and monetary cost",
+      "section": "7 Evaluation",
+      "page": 14,
+      "char_offset": 45635,
+      "cited_reference": {
+        "number": 48,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proceedings of the ACM on Programming Languages4, OOPSLA (2020), 1–30.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M21",
+      "found_by": "citation_marker",
+      "surface": "[24, 31, 49, 57, 58, 60, 61, 74, 80, 82]",
+      "technique": "pqs",
+      "sentence": "7k 2019 1,496k MySQL [24, 31, 49, 57, 58, 60, 61, 74, 80, 82] 11.",
+      "context_before": "tion, we evaluateArguson five aspects: (1)How many new bugs canArgusfind in real-world DBMSs, and what LLM-generated test oracles discover them? (Sec. 7.1) (2) How doesArguscompare to other baseline tools in terms of code coverage? (Sec. 7.2) (3)How does the number of automatically discovered oracles affect the number of unique bugs found, compared to prior work where oracles are manually designed? (Sec. 7.3) 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:14 Qiuyang Mang et al. DBMS Tested by GitHub stars Released LOC Dolt [82] 19.1k 2018 380k DuckDB [15, 16, 48, 74, 82] 32.",
+      "context_after": "7k 1995 5,532k PostgreSQL [16, 24, 30, 47, 49, 58, 80, 82] 18.5k 1995 938k TiDB [3, 24, 57, 58, 60, 61, 74, 82] 39.0k 2016 1,398k Table 1. DBMSs under test by Argus. DBMS ReportedBug status Bug type Fixed Conf. Dup. Pend. Logic Other Dolt 19 18 1 0 0 18 1 DuckDB 8 6 0 1 1 4 4 MySQL 8 0 5 1 2 8 0 PostgreSQL 1 1 0 0 0 1 0 TiDB 5 2 3 0 0 5 0 Total41 27 9 2 3 36 5 Table 2. Argus found bugs statistics. (4) How effective isArgus’s SQL equivalence prover in filtering out false positives? (Sec. 7.4) (5)What are the time and monetary costs required forArgusto generate a given number of test cases? (Sec",
+      "section": "7 Evaluation",
+      "page": 14,
+      "char_offset": 45679,
+      "cited_reference": {
+        "number": 49,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Manageme",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M22",
+      "found_by": "citation_marker",
+      "surface": "[16, 24, 30, 47, 49, 58, 80, 82]",
+      "technique": "norec",
+      "sentence": "7k 1995 5,532k PostgreSQL [16, 24, 30, 47, 49, 58, 80, 82] 18.",
+      "context_before": "gusfind in real-world DBMSs, and what LLM-generated test oracles discover them? (Sec. 7.1) (2) How doesArguscompare to other baseline tools in terms of code coverage? (Sec. 7.2) (3)How does the number of automatically discovered oracles affect the number of unique bugs found, compared to prior work where oracles are manually designed? (Sec. 7.3) 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:14 Qiuyang Mang et al. DBMS Tested by GitHub stars Released LOC Dolt [82] 19.1k 2018 380k DuckDB [15, 16, 48, 74, 82] 32.7k 2019 1,496k MySQL [24, 31, 49, 57, 58, 60, 61, 74, 80, 82] 11.",
+      "context_after": "5k 1995 938k TiDB [3, 24, 57, 58, 60, 61, 74, 82] 39.0k 2016 1,398k Table 1. DBMSs under test by Argus. DBMS ReportedBug status Bug type Fixed Conf. Dup. Pend. Logic Other Dolt 19 18 1 0 0 18 1 DuckDB 8 6 0 1 1 4 4 MySQL 8 0 5 1 2 8 0 PostgreSQL 1 1 0 0 0 1 0 TiDB 5 2 3 0 0 5 0 Total41 27 9 2 3 36 5 Table 2. Argus found bugs statistics. (4) How effective isArgus’s SQL equivalence prover in filtering out false positives? (Sec. 7.4) (5)What are the time and monetary costs required forArgusto generate a given number of test cases? (Sec. 7.5) Testbed.We conducted all experiments using a machine wi",
+      "section": "7 Evaluation",
+      "page": 14,
+      "char_offset": 45744,
+      "cited_reference": {
+        "number": 47,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M23",
+      "found_by": "citation_marker",
+      "surface": "[3, 24, 57, 58, 60, 61, 74, 82]",
+      "technique": "qpg",
+      "sentence": "5k 1995 938k TiDB [3, 24, 57, 58, 60, 61, 74, 82] 39.",
+      "context_before": "es discover them? (Sec. 7.1) (2) How doesArguscompare to other baseline tools in terms of code coverage? (Sec. 7.2) (3)How does the number of automatically discovered oracles affect the number of unique bugs found, compared to prior work where oracles are manually designed? (Sec. 7.3) 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:14 Qiuyang Mang et al. DBMS Tested by GitHub stars Released LOC Dolt [82] 19.1k 2018 380k DuckDB [15, 16, 48, 74, 82] 32.7k 2019 1,496k MySQL [24, 31, 49, 57, 58, 60, 61, 74, 80, 82] 11.7k 1995 5,532k PostgreSQL [16, 24, 30, 47, 49, 58, 80, 82] 18.",
+      "context_after": "0k 2016 1,398k Table 1. DBMSs under test by Argus. DBMS ReportedBug status Bug type Fixed Conf. Dup. Pend. Logic Other Dolt 19 18 1 0 0 18 1 DuckDB 8 6 0 1 1 4 4 MySQL 8 0 5 1 2 8 0 PostgreSQL 1 1 0 0 0 1 0 TiDB 5 2 3 0 0 5 0 Total41 27 9 2 3 36 5 Table 2. Argus found bugs statistics. (4) How effective isArgus’s SQL equivalence prover in filtering out false positives? (Sec. 7.4) (5)What are the time and monetary costs required forArgusto generate a given number of test cases? (Sec. 7.5) Testbed.We conducted all experiments using a machine with 64 cores and 128 GB memory running on Ubuntu 24.04",
+      "section": "7 Evaluation",
+      "page": 14,
+      "char_offset": 45806,
+      "cited_reference": {
+        "number": 3,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M24",
+      "found_by": "citation_marker",
+      "surface": "[ 5]",
+      "technique": "dqp",
+      "sentence": ",reporting 21 [ 5], 24 [74], and 35 [ 24] logic bugs),Argusfinds more logic bugs in comparison, even though the DBMSs 4, No.",
+      "context_before": "ain focus of this paper, this still highlights the effectiveness ofArgusto generate complex, concrete queries for testing. Among the reports, 36 bugs have been confirmed by the developers; 27 have already been fixed, while 9 are still in progress. The remaining 2 bugs are duplicates: after developers reproduced and analyzed them, they found that these bugs shared the same root cause as some previously unfixed bugs. The 36 logic bugs we found underscore the effectiveness of our LLM-generated test oracles. Compared with recent studies that use manually designed test oracles for bug finding (e.g.",
+      "context_after": "3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs 140:15 1CREATE TABLEt(cINT); 2INSERT INTOtVALUES(1); 3SELECTsub.cFROM( 4SELECT□ 1⊲Expr(t:INT)↦→ 5json_array_length(json_array(3, 2, t.c)) 6AScFROMt 7)ASsub 8RIGHT JOINtON FALSE; -- {2}ὁB 9SELECTsub.cFROM( 10SELECT NULL AScFROMt 11)ASsub 12RIGHT JOINtON FALSE; -- {NULL}/ Listing 6. Incorrectjsonfunctions handling in PostgreSQL when executing RIGHT JOIN. 1CREATE TABLEt(c0INT); 2INSERT INTOtVALUES(1); 3SELECT*FROMtLEFT JOIN( 4SELECT MOD(5, 2)ASc0FROMt 5)ASt2ON FALSE",
+      "section": "7.1 New Bugs and Oracles",
+      "page": 14,
+      "char_offset": 48299,
+      "cited_reference": {
+        "number": 5,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep it simple: Testing databases via differential query plans.Proceedings of the ACM on Management of Data2, 3 (2024), 1–26.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing dqp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp",
+        "coddtest"
+      ]
+    },
+    {
+      "id": "M25",
+      "found_by": "citation_marker",
+      "surface": "[ 58,71,81,82]",
+      "technique": null,
+      "sentence": "While several recent database testing studies have targeted PostgreSQL [ 58,71,81,82], none reported finding new bugs, which attests to the effectiveness of our approach.",
+      "context_before": "olumns from the left table must be NULL. Consequently, the first query should always yield a NULL row, which is identical to the second query’s output, regardless of the value of the placeholder □1. However, due to a bug in its handling of json functions, PostgreSQL erroneously returns 2. This discovery highlights both the effectiveness of our novel, automatically generated test oracles and the LLM’s ability to synthesize complex queries involving advanced SQL features, such as json functions. The finding is particularly noteworthy given that PostgreSQL is one of the world’s most robust DBMSs.",
+      "context_after": "After we reported the issue, developers confirmed and fixed it within 24 hours. We also find that prior test oracles, such as TLP [ 48], struggle to detect this bug. For example, when we append a predicate to the first query, such as 𝑃=sub.c> 2, and then apply the three variants WHERE𝑃 ,WHERE NOT𝑃, and WHERE𝑃IS NOT NULL, the results of the three partitioned queries remain identical. As a result, TLP does not report a bug in this case. Moreover, a similar oracle uncovered a logic bug in MySQL (Listing 7), further demonstrating the versatility of the oracles generated byArgus. Specifically, the",
+      "section": "7.1 New Bugs and Oracles",
+      "page": 15,
+      "char_offset": 50155,
+      "cited_reference": {
+        "number": 81,
+        "text": "Suyang Zhong and Manuel Rigger. 2025. Testing Database Systems with Large Language Model Synthesized Fragments. arXiv preprint arXiv:2505.02012(2025).",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "prints the arXiv id of the paper introducing shqvel"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M26",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "We also find that prior test oracles, such as TLP [ 48], struggle to detect this bug.",
+      "context_before": "ons, PostgreSQL erroneously returns 2. This discovery highlights both the effectiveness of our novel, automatically generated test oracles and the LLM’s ability to synthesize complex queries involving advanced SQL features, such as json functions. The finding is particularly noteworthy given that PostgreSQL is one of the world’s most robust DBMSs. While several recent database testing studies have targeted PostgreSQL [ 58,71,81,82], none reported finding new bugs, which attests to the effectiveness of our approach. After we reported the issue, developers confirmed and fixed it within 24 hours.",
+      "context_after": "For example, when we append a predicate to the first query, such as 𝑃=sub.c> 2, and then apply the three variants WHERE𝑃 ,WHERE NOT𝑃, and WHERE𝑃IS NOT NULL, the results of the three partitioned queries remain identical. As a result, TLP does not report a bug in this case. Moreover, a similar oracle uncovered a logic bug in MySQL (Listing 7), further demonstrating the versatility of the oracles generated byArgus. Specifically, the query in Listing 7 uses a LEFT JOIN combined with a WHERE clause to filter out rows where the right table’s column is NULL, which should always yield an empty result",
+      "section": "7.1 New Bugs and Oracles",
+      "page": 15,
+      "char_offset": 50406,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M27",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "As a result, TLP does not report a bug in this case.",
+      "context_before": "QL is one of the world’s most robust DBMSs. While several recent database testing studies have targeted PostgreSQL [ 58,71,81,82], none reported finding new bugs, which attests to the effectiveness of our approach. After we reported the issue, developers confirmed and fixed it within 24 hours. We also find that prior test oracles, such as TLP [ 48], struggle to detect this bug. For example, when we append a predicate to the first query, such as 𝑃=sub.c> 2, and then apply the three variants WHERE𝑃 ,WHERE NOT𝑃, and WHERE𝑃IS NOT NULL, the results of the three partitioned queries remain identical.",
+      "context_after": "Moreover, a similar oracle uncovered a logic bug in MySQL (Listing 7), further demonstrating the versatility of the oracles generated byArgus. Specifically, the query in Listing 7 uses a LEFT JOIN combined with a WHERE clause to filter out rows where the right table’s column is NULL, which should always yield an empty result set. However, due to a bug in MySQL’s handling of the MOD function in this context, it incorrectly returns a row with value1. Example (2).Listing 8 shows a logic bug in Dolt, which was detected using an oracle generated by Argusthat leverages the semantics of the EXISTS p",
+      "section": "7.1 New Bugs and Oracles",
+      "page": 15,
+      "char_offset": 50712,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M28",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Argus SQLancer SQLancer++ EET 0 4 8 12 16 20 24 Hours3031323334353637Line Coverage (%) (a) DuckDB line 0 4 8 12 16 20 24 Hours18192021Branch Coverage (%) (b) DuckDB branch 0 4 8 12 16 20 24 Hours20222426283032Line Coverage (%) (c) PostgreSQL line 0 4 8 12 16 20 24 Hours141618202224Branch Coverage (%) (d) PostgreSQL branch Fig.",
+      "context_before": "trates that by leveraging the generative capabilities of LLMs for SQL snippets, Arguscan effectively uncover not only logic bugs but also critical crashes. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs 140:17 1CREATE TABLEt0(c0INT); 2CREATE TABLEt1(c0BOOLEAN); 3SELECT*FROMt0 4WHERE EXISTS( 5SELECT1FROMt1 6WHERE□ 1⊲Expr(t0:INT)↦→ 7(WITH seq(i) AS (VALUES (1)) SELECT sum(i) * t0.c0 FROM seq)IS NOT NULL 8); -- (crash)ὁB Listing 10. A crash bug in DuckDB triggered by a LLM-synthesized expression withseq.",
+      "context_after": "3. Code coverage achieved by Argus, SQLancer, and SQLancer++ on DuckDB and PostgreSQL over 24-hour runs. 7.2 Code Coverage We comparedArguswith three DBMS logic bugs finding tools, SQLancer [ 3,47–49,74], SQLancer++ [ 82] and EET [ 24] in multiple coverage metrics. We compared on DuckDB [ 46] and PostgreSQL [ 38]. As a state-of-the-art, open-source DBMS testing framework, SQLancer supports most of the latest test oracles [ 4,57,74]. SQLancer++ is a scalable variant that can be easily extended to multiple DBMSs with only lightweight modifications. EET [ 24] is a recent tool based on SQLsmith [",
+      "section": "7.1 New Bugs and Oracles",
+      "page": 17,
+      "char_offset": 54600,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M29",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Code coverage achieved by Argus, SQLancer, and SQLancer++ on DuckDB and PostgreSQL over 24-hour runs.",
+      "context_before": "E TABLEt1(c0BOOLEAN); 3SELECT*FROMt0 4WHERE EXISTS( 5SELECT1FROMt1 6WHERE□ 1⊲Expr(t0:INT)↦→ 7(WITH seq(i) AS (VALUES (1)) SELECT sum(i) * t0.c0 FROM seq)IS NOT NULL 8); -- (crash)ὁB Listing 10. A crash bug in DuckDB triggered by a LLM-synthesized expression withseq. Argus SQLancer SQLancer++ EET 0 4 8 12 16 20 24 Hours3031323334353637Line Coverage (%) (a) DuckDB line 0 4 8 12 16 20 24 Hours18192021Branch Coverage (%) (b) DuckDB branch 0 4 8 12 16 20 24 Hours20222426283032Line Coverage (%) (c) PostgreSQL line 0 4 8 12 16 20 24 Hours141618202224Branch Coverage (%) (d) PostgreSQL branch Fig. 3.",
+      "context_after": "7.2 Code Coverage We comparedArguswith three DBMS logic bugs finding tools, SQLancer [ 3,47–49,74], SQLancer++ [ 82] and EET [ 24] in multiple coverage metrics. We compared on DuckDB [ 46] and PostgreSQL [ 38]. As a state-of-the-art, open-source DBMS testing framework, SQLancer supports most of the latest test oracles [ 4,57,74]. SQLancer++ is a scalable variant that can be easily extended to multiple DBMSs with only lightweight modifications. EET [ 24] is a recent tool based on SQLsmith [ 53]’s generator and their carefully designed test oracles to produce complex queries. In terms of test o",
+      "section": "7.1 New Bugs and Oracles",
+      "page": 17,
+      "char_offset": 54934,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M30",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "2 Code Coverage We comparedArguswith three DBMS logic bugs finding tools, SQLancer [ 3,47–49,74], SQLancer++ [ 82] and EET [ 24] in multiple coverage metrics.",
+      "context_before": "AS (VALUES (1)) SELECT sum(i) * t0.c0 FROM seq)IS NOT NULL 8); -- (crash)ὁB Listing 10. A crash bug in DuckDB triggered by a LLM-synthesized expression withseq. Argus SQLancer SQLancer++ EET 0 4 8 12 16 20 24 Hours3031323334353637Line Coverage (%) (a) DuckDB line 0 4 8 12 16 20 24 Hours18192021Branch Coverage (%) (b) DuckDB branch 0 4 8 12 16 20 24 Hours20222426283032Line Coverage (%) (c) PostgreSQL line 0 4 8 12 16 20 24 Hours141618202224Branch Coverage (%) (d) PostgreSQL branch Fig. 3. Code coverage achieved by Argus, SQLancer, and SQLancer++ on DuckDB and PostgreSQL over 24-hour runs. 7.",
+      "context_after": "We compared on DuckDB [ 46] and PostgreSQL [ 38]. As a state-of-the-art, open-source DBMS testing framework, SQLancer supports most of the latest test oracles [ 4,57,74]. SQLancer++ is a scalable variant that can be easily extended to multiple DBMSs with only lightweight modifications. EET [ 24] is a recent tool based on SQLsmith [ 53]’s generator and their carefully designed test oracles to produce complex queries. In terms of test oracles,code coverageis an indicator for the number of features and execution plans that are tested by them. Although code coverage does not strongly correlate wi",
+      "section": "7.2 Code Coverage",
+      "page": 17,
+      "char_offset": 55039,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M31",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "As a state-of-the-art, open-source DBMS testing framework, SQLancer supports most of the latest test oracles [ 4,57,74].",
+      "context_before": "4 Hours3031323334353637Line Coverage (%) (a) DuckDB line 0 4 8 12 16 20 24 Hours18192021Branch Coverage (%) (b) DuckDB branch 0 4 8 12 16 20 24 Hours20222426283032Line Coverage (%) (c) PostgreSQL line 0 4 8 12 16 20 24 Hours141618202224Branch Coverage (%) (d) PostgreSQL branch Fig. 3. Code coverage achieved by Argus, SQLancer, and SQLancer++ on DuckDB and PostgreSQL over 24-hour runs. 7.2 Code Coverage We comparedArguswith three DBMS logic bugs finding tools, SQLancer [ 3,47–49,74], SQLancer++ [ 82] and EET [ 24] in multiple coverage metrics. We compared on DuckDB [ 46] and PostgreSQL [ 38].",
+      "context_after": "SQLancer++ is a scalable variant that can be easily extended to multiple DBMSs with only lightweight modifications. EET [ 24] is a recent tool based on SQLsmith [ 53]’s generator and their carefully designed test oracles to produce complex queries. In terms of test oracles,code coverageis an indicator for the number of features and execution plans that are tested by them. Although code coverage does not strongly correlate with the ability 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:18 Qiuyang Mang et al. Approach Lines Functions Branches SQLancer 3.256% 1.230% 1.313% Arg",
+      "section": "7.2 Code Coverage",
+      "page": 17,
+      "char_offset": 55247,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M32",
+      "found_by": "name",
+      "surface": "SQLancer++",
+      "technique": null,
+      "sentence": "SQLancer++ is a scalable variant that can be easily extended to multiple DBMSs with only lightweight modifications.",
+      "context_before": "ranch 0 4 8 12 16 20 24 Hours20222426283032Line Coverage (%) (c) PostgreSQL line 0 4 8 12 16 20 24 Hours141618202224Branch Coverage (%) (d) PostgreSQL branch Fig. 3. Code coverage achieved by Argus, SQLancer, and SQLancer++ on DuckDB and PostgreSQL over 24-hour runs. 7.2 Code Coverage We comparedArguswith three DBMS logic bugs finding tools, SQLancer [ 3,47–49,74], SQLancer++ [ 82] and EET [ 24] in multiple coverage metrics. We compared on DuckDB [ 46] and PostgreSQL [ 38]. As a state-of-the-art, open-source DBMS testing framework, SQLancer supports most of the latest test oracles [ 4,57,74].",
+      "context_after": "EET [ 24] is a recent tool based on SQLsmith [ 53]’s generator and their carefully designed test oracles to produce complex queries. In terms of test oracles,code coverageis an indicator for the number of features and execution plans that are tested by them. Although code coverage does not strongly correlate with the ability 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:18 Qiuyang Mang et al. Approach Lines Functions Branches SQLancer 3.256% 1.230% 1.313% Argus17.820% 7.910% 7.315% 5.473×6.431×5.571× Table 3. Average metamorphic coverage on DuckDB of 10 test suites for Arg",
+      "section": "7.2 Code Coverage",
+      "page": 17,
+      "char_offset": 55368,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M33",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Approach Lines Functions Branches SQLancer 3.",
+      "context_before": "ework, SQLancer supports most of the latest test oracles [ 4,57,74]. SQLancer++ is a scalable variant that can be easily extended to multiple DBMSs with only lightweight modifications. EET [ 24] is a recent tool based on SQLsmith [ 53]’s generator and their carefully designed test oracles to produce complex queries. In terms of test oracles,code coverageis an indicator for the number of features and execution plans that are tested by them. Although code coverage does not strongly correlate with the ability 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:18 Qiuyang Mang et al.",
+      "context_after": "256% 1.230% 1.313% Argus17.820% 7.910% 7.315% 5.473×6.431×5.571× Table 3. Average metamorphic coverage on DuckDB of 10 test suites for Argus and SQLancer. to find logic bugs [ 82], it is still a fair metric to evaluate the diversity of test cases generated by Argusand the effectiveness of its corpus synthesis. Meanwhile,metamorphic coverage[ 2] is a more relevant metric for evaluating the effectiveness of test oracles and is highly related to logic bug finding abilities according to the historical bug study in SQLite and DuckDB [ 2]. Unlike traditional code coverage, which simply counts all ex",
+      "section": "7.2 Code Coverage",
+      "page": 18,
+      "char_offset": 55900,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M34",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Average metamorphic coverage on DuckDB of 10 test suites for Argus and SQLancer.",
+      "context_before": "y extended to multiple DBMSs with only lightweight modifications. EET [ 24] is a recent tool based on SQLsmith [ 53]’s generator and their carefully designed test oracles to produce complex queries. In terms of test oracles,code coverageis an indicator for the number of features and execution plans that are tested by them. Although code coverage does not strongly correlate with the ability 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:18 Qiuyang Mang et al. Approach Lines Functions Branches SQLancer 3.256% 1.230% 1.313% Argus17.820% 7.910% 7.315% 5.473×6.431×5.571× Table 3.",
+      "context_after": "to find logic bugs [ 82], it is still a fair metric to evaluate the diversity of test cases generated by Argusand the effectiveness of its corpus synthesis. Meanwhile,metamorphic coverage[ 2] is a more relevant metric for evaluating the effectiveness of test oracles and is highly related to logic bug finding abilities according to the historical bug study in SQLite and DuckDB [ 2]. Unlike traditional code coverage, which simply counts all executed code, metamorphic coverage measures the portions of the program exercised differently by the two executions in a pair of equivalent queries. Intuit",
+      "section": "7.2 Code Coverage",
+      "page": 18,
+      "char_offset": 56019,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M35",
+      "found_by": "citation_marker",
+      "surface": "[ 82]",
+      "technique": null,
+      "sentence": "to find logic bugs [ 82], it is still a fair metric to evaluate the diversity of test cases generated by Argusand the effectiveness of its corpus synthesis.",
+      "context_before": "recent tool based on SQLsmith [ 53]’s generator and their carefully designed test oracles to produce complex queries. In terms of test oracles,code coverageis an indicator for the number of features and execution plans that are tested by them. Although code coverage does not strongly correlate with the ability 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:18 Qiuyang Mang et al. Approach Lines Functions Branches SQLancer 3.256% 1.230% 1.313% Argus17.820% 7.910% 7.315% 5.473×6.431×5.571× Table 3. Average metamorphic coverage on DuckDB of 10 test suites for Argus and SQLancer.",
+      "context_after": "Meanwhile,metamorphic coverage[ 2] is a more relevant metric for evaluating the effectiveness of test oracles and is highly related to logic bug finding abilities according to the historical bug study in SQLite and DuckDB [ 2]. Unlike traditional code coverage, which simply counts all executed code, metamorphic coverage measures the portions of the program exercised differently by the two executions in a pair of equivalent queries. Intuitively, because only these differential execution paths can lead to inconsistent results between semantically equivalent queries, metamorphic coverage provide",
+      "section": "7.2 Code Coverage",
+      "page": 18,
+      "char_offset": 56100,
+      "cited_reference": {
+        "number": 82,
+        "text": "Suyang Zhong and Manuel Rigger. 2026. Scaling Automated Database System Testing. InProceedings of the 31st ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2(USA) (ASPLOS ’26). Association for Computing Machinery, New York, NY, USA, 1677–1",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing sqlancer_pp",
+          "prints the DOI of the paper introducing sqlancer_pp"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M36",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 2]",
+      "technique": null,
+      "sentence": "Meanwhile,metamorphic coverage[ 2] is a more relevant metric for evaluating the effectiveness of test oracles and is highly related to logic bug finding abilities according to the historical bug study in SQLite and DuckDB [ 2].",
+      "context_before": "s an indicator for the number of features and execution plans that are tested by them. Although code coverage does not strongly correlate with the ability 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:18 Qiuyang Mang et al. Approach Lines Functions Branches SQLancer 3.256% 1.230% 1.313% Argus17.820% 7.910% 7.315% 5.473×6.431×5.571× Table 3. Average metamorphic coverage on DuckDB of 10 test suites for Argus and SQLancer. to find logic bugs [ 82], it is still a fair metric to evaluate the diversity of test cases generated by Argusand the effectiveness of its corpus synthesis.",
+      "context_after": "Unlike traditional code coverage, which simply counts all executed code, metamorphic coverage measures the portions of the program exercised differently by the two executions in a pair of equivalent queries. Intuitively, because only these differential execution paths can lead to inconsistent results between semantically equivalent queries, metamorphic coverage provides a more precise measure of the code actually validated by the test oracle. Empirical studies on DBMSs like SQLite and DuckDB show that metamorphic coverage correlates strongly with real logic bugs and overlaps substantially wit",
+      "section": "7.2 Code Coverage",
+      "page": 18,
+      "char_offset": 56257,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba, Yuancheng Jiang, and Manuel Rigger. 2025. Metamorphic Coverage.arXiv preprint arXiv:2508.16307 (2025).",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M37",
+      "found_by": "name",
+      "surface": "SQLancer++",
+      "technique": null,
+      "sentence": "1% higher line and branch coverage than SQLancer++, respectively, and 11.",
+      "context_before": "these differential execution paths can lead to inconsistent results between semantically equivalent queries, metamorphic coverage provides a more precise measure of the code actually validated by the test oracle. Empirical studies on DBMSs like SQLite and DuckDB show that metamorphic coverage correlates strongly with real logic bugs and overlaps substantially with historical bug-fix locations. Code coverage.Fig. 3 shows the line and branch code coverage for DuckDB and PostgreSQL over a 24-hour testing period starting from a clean build and empty database. In DuckDB,Argus achieves 19.9% and 18.",
+      "context_after": "3% and 3.4% higher than SQLancer. Note that, we did not compare with EET on DuckDB, as it does not support this DBMS. In PostgreSQL,Argusslightly underperforms SQLancer overall but outperforms SQLancer++ (by 19.0% in line coverage and 22.5% in branch coverage) and EET (by 5.2% and 2.6%, respectively). This suboptimal performance is expected, as SQLancer has been extensively optimized specifically for PostgreSQL by the open-source community over many years. Specifically, SQLancer supports 22 types of DDL statements (e.g., CREATE SEQUENCE ) and various DML statements beyond SELECT queries that P",
+      "section": "7.2 Code Coverage",
+      "page": 18,
+      "char_offset": 57320,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M38",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "4% higher than SQLancer.",
+      "context_before": "ically equivalent queries, metamorphic coverage provides a more precise measure of the code actually validated by the test oracle. Empirical studies on DBMSs like SQLite and DuckDB show that metamorphic coverage correlates strongly with real logic bugs and overlaps substantially with historical bug-fix locations. Code coverage.Fig. 3 shows the line and branch code coverage for DuckDB and PostgreSQL over a 24-hour testing period starting from a clean build and empty database. In DuckDB,Argus achieves 19.9% and 18.1% higher line and branch coverage than SQLancer++, respectively, and 11.3% and 3.",
+      "context_after": "Note that, we did not compare with EET on DuckDB, as it does not support this DBMS. In PostgreSQL,Argusslightly underperforms SQLancer overall but outperforms SQLancer++ (by 19.0% in line coverage and 22.5% in branch coverage) and EET (by 5.2% and 2.6%, respectively). This suboptimal performance is expected, as SQLancer has been extensively optimized specifically for PostgreSQL by the open-source community over many years. Specifically, SQLancer supports 22 types of DDL statements (e.g., CREATE SEQUENCE ) and various DML statements beyond SELECT queries that PostgreSQL supports, whereasArgusf",
+      "section": "7.2 Code Coverage",
+      "page": 18,
+      "char_offset": 57402,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M39",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In PostgreSQL,Argusslightly underperforms SQLancer overall but outperforms SQLancer++ (by 19.",
+      "context_before": "ed by the test oracle. Empirical studies on DBMSs like SQLite and DuckDB show that metamorphic coverage correlates strongly with real logic bugs and overlaps substantially with historical bug-fix locations. Code coverage.Fig. 3 shows the line and branch code coverage for DuckDB and PostgreSQL over a 24-hour testing period starting from a clean build and empty database. In DuckDB,Argus achieves 19.9% and 18.1% higher line and branch coverage than SQLancer++, respectively, and 11.3% and 3.4% higher than SQLancer. Note that, we did not compare with EET on DuckDB, as it does not support this DBMS.",
+      "context_after": "0% in line coverage and 22.5% in branch coverage) and EET (by 5.2% and 2.6%, respectively). This suboptimal performance is expected, as SQLancer has been extensively optimized specifically for PostgreSQL by the open-source community over many years. Specifically, SQLancer supports 22 types of DDL statements (e.g., CREATE SEQUENCE ) and various DML statements beyond SELECT queries that PostgreSQL supports, whereasArgusfocuses on detecting logic bugs across different DBMS implementations. For a finer-grained comparison, we additionally evaluatedArgusand SQLancer on PostgreSQL with respect to opt",
+      "section": "7.2 Code Coverage",
+      "page": 18,
+      "char_offset": 57510,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M40",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "This suboptimal performance is expected, as SQLancer has been extensively optimized specifically for PostgreSQL by the open-source community over many years.",
+      "context_before": "al bug-fix locations. Code coverage.Fig. 3 shows the line and branch code coverage for DuckDB and PostgreSQL over a 24-hour testing period starting from a clean build and empty database. In DuckDB,Argus achieves 19.9% and 18.1% higher line and branch coverage than SQLancer++, respectively, and 11.3% and 3.4% higher than SQLancer. Note that, we did not compare with EET on DuckDB, as it does not support this DBMS. In PostgreSQL,Argusslightly underperforms SQLancer overall but outperforms SQLancer++ (by 19.0% in line coverage and 22.5% in branch coverage) and EET (by 5.2% and 2.6%, respectively).",
+      "context_after": "Specifically, SQLancer supports 22 types of DDL statements (e.g., CREATE SEQUENCE ) and various DML statements beyond SELECT queries that PostgreSQL supports, whereasArgusfocuses on detecting logic bugs across different DBMS implementations. For a finer-grained comparison, we additionally evaluatedArgusand SQLancer on PostgreSQL with respect to optimizer code coverage, since the optimizer is a core component that is closely tied to SELECT queries and widely studied in prior work [ 47,60], along with the diversity of features exercised by SELECT queries that are covered by the test queries. The",
+      "section": "7.2 Code Coverage",
+      "page": 18,
+      "char_offset": 57695,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M41",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, SQLancer supports 22 types of DDL statements (e.",
+      "context_before": "an build and empty database. In DuckDB,Argus achieves 19.9% and 18.1% higher line and branch coverage than SQLancer++, respectively, and 11.3% and 3.4% higher than SQLancer. Note that, we did not compare with EET on DuckDB, as it does not support this DBMS. In PostgreSQL,Argusslightly underperforms SQLancer overall but outperforms SQLancer++ (by 19.0% in line coverage and 22.5% in branch coverage) and EET (by 5.2% and 2.6%, respectively). This suboptimal performance is expected, as SQLancer has been extensively optimized specifically for PostgreSQL by the open-source community over many years.",
+      "context_after": "g., CREATE SEQUENCE ) and various DML statements beyond SELECT queries that PostgreSQL supports, whereasArgusfocuses on detecting logic bugs across different DBMS implementations. For a finer-grained comparison, we additionally evaluatedArgusand SQLancer on PostgreSQL with respect to optimizer code coverage, since the optimizer is a core component that is closely tied to SELECT queries and widely studied in prior work [ 47,60], along with the diversity of features exercised by SELECT queries that are covered by the test queries. The results show thatArgus achieved 66.46% line coverage and 55.85",
+      "section": "7.2 Code Coverage",
+      "page": 18,
+      "char_offset": 57853,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M42",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For a finer-grained comparison, we additionally evaluatedArgusand SQLancer on PostgreSQL with respect to optimizer code coverage, since the optimizer is a core component that is closely tied to SELECT queries and widely studied in prior work [ 47,60], along with the diversity of features exercised by SELECT queries that are covered by the test queries.",
+      "context_before": "port this DBMS. In PostgreSQL,Argusslightly underperforms SQLancer overall but outperforms SQLancer++ (by 19.0% in line coverage and 22.5% in branch coverage) and EET (by 5.2% and 2.6%, respectively). This suboptimal performance is expected, as SQLancer has been extensively optimized specifically for PostgreSQL by the open-source community over many years. Specifically, SQLancer supports 22 types of DDL statements (e.g., CREATE SEQUENCE ) and various DML statements beyond SELECT queries that PostgreSQL supports, whereasArgusfocuses on detecting logic bugs across different DBMS implementations.",
+      "context_after": "The results show thatArgus achieved 66.46% line coverage and 55.85% branch coverage of PostgreSQL’s optimizer, compared to 62.33% and 52.17% by SQLancer. To evaluate feature diversity, we randomly sampled ten SELECT queries from each tool and counted their unique features using two third-party parsers:pglast[ 17] (counting number of unique PostgreSQL types) andsqlparse[ 87] (counting number of unique AST nodes). We found thatArguscovered 23 features in pglast and 151 features in sqlparse, while SQLancer only covered 15 and 76, respectively. This demonstratesArgus’s stronger ability to generat",
+      "section": "7.2 Code Coverage",
+      "page": 18,
+      "char_offset": 58095,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M43",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "17% by SQLancer.",
+      "context_before": "that PostgreSQL supports, whereasArgusfocuses on detecting logic bugs across different DBMS implementations. For a finer-grained comparison, we additionally evaluatedArgusand SQLancer on PostgreSQL with respect to optimizer code coverage, since the optimizer is a core component that is closely tied to SELECT queries and widely studied in prior work [ 47,60], along with the diversity of features exercised by SELECT queries that are covered by the test queries. The results show thatArgus achieved 66.46% line coverage and 55.85% branch coverage of PostgreSQL’s optimizer, compared to 62.33% and 52.",
+      "context_after": "To evaluate feature diversity, we randomly sampled ten SELECT queries from each tool and counted their unique features using two third-party parsers:pglast[ 17] (counting number of unique PostgreSQL types) andsqlparse[ 87] (counting number of unique AST nodes). We found thatArguscovered 23 features in pglast and 151 features in sqlparse, while SQLancer only covered 15 and 76, respectively. This demonstratesArgus’s stronger ability to generate feature-rich queries. The sampled queries are provided in Appendix D. Note that we did not compare with mutation-based testing tools, such as SQLRight [",
+      "section": "7.2 Code Coverage",
+      "page": 18,
+      "char_offset": 58587,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M44",
+      "found_by": "citation_marker",
+      "surface": "[ 87]",
+      "technique": null,
+      "sentence": "To evaluate feature diversity, we randomly sampled ten SELECT queries from each tool and counted their unique features using two third-party parsers:pglast[ 17] (counting number of unique PostgreSQL types) andsqlparse[ 87] (counting number of unique AST nodes).",
+      "context_before": "supports, whereasArgusfocuses on detecting logic bugs across different DBMS implementations. For a finer-grained comparison, we additionally evaluatedArgusand SQLancer on PostgreSQL with respect to optimizer code coverage, since the optimizer is a core component that is closely tied to SELECT queries and widely studied in prior work [ 47,60], along with the diversity of features exercised by SELECT queries that are covered by the test queries. The results show thatArgus achieved 66.46% line coverage and 55.85% branch coverage of PostgreSQL’s optimizer, compared to 62.33% and 52.17% by SQLancer.",
+      "context_after": "We found thatArguscovered 23 features in pglast and 151 features in sqlparse, while SQLancer only covered 15 and 76, respectively. This demonstratesArgus’s stronger ability to generate feature-rich queries. The sampled queries are provided in Appendix D. Note that we did not compare with mutation-based testing tools, such as SQLRight [ 31] and SQuirrel [ 80], as they highly rely on the quality of seed queries and use the official unit tests provided by the DBMS as the initial input. This introduces bias in the comparison, as the official unit tests are usually well-designed and purposefully c",
+      "section": "7.2 Code Coverage",
+      "page": 18,
+      "char_offset": 58603,
+      "cited_reference": {
+        "number": 87,
+        "text": "Ándré Albrecht and Contributors. 2025. sqlparse: A non-validating SQL parser module for Python. https://github.com/ andialbrecht/sqlparse. Accessed: 2025-10-15. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M45",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We found thatArguscovered 23 features in pglast and 151 features in sqlparse, while SQLancer only covered 15 and 76, respectively.",
+      "context_before": "that is closely tied to SELECT queries and widely studied in prior work [ 47,60], along with the diversity of features exercised by SELECT queries that are covered by the test queries. The results show thatArgus achieved 66.46% line coverage and 55.85% branch coverage of PostgreSQL’s optimizer, compared to 62.33% and 52.17% by SQLancer. To evaluate feature diversity, we randomly sampled ten SELECT queries from each tool and counted their unique features using two third-party parsers:pglast[ 17] (counting number of unique PostgreSQL types) andsqlparse[ 87] (counting number of unique AST nodes).",
+      "context_after": "This demonstratesArgus’s stronger ability to generate feature-rich queries. The sampled queries are provided in Appendix D. Note that we did not compare with mutation-based testing tools, such as SQLRight [ 31] and SQuirrel [ 80], as they highly rely on the quality of seed queries and use the official unit tests provided by the DBMS as the initial input. This introduces bias in the comparison, as the official unit tests are usually well-designed and purposefully cover many code paths for the DBMSs that they are designed for. In fact, SQLRight achieved51 .3%line coverage on PostgreSQL in the f",
+      "section": "7.2 Code Coverage",
+      "page": 18,
+      "char_offset": 58865,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M46",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For metamorphic coverage, we comparedArguswith SQLancer on DuckDB across a fixed number of test cases, following the same setting in [ 2].",
+      "context_before": "er that without further improvement during the remainder of the testing period. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs 140:19 1 2 3 4 5 6 Hours246810Unique Bug Numbers Argus-5,000 Argus-50 Baseline Fig. 4. Number of unique logic bugs found by different sets of oracles within a 6-hour testing on Dolt. Overall, our results demonstrate thatArguscan generate feature-rich, diverse, and complex test cases at scale, covering more optimizer paths than state-of-the-art techniques. Metamorphic coverage.",
+      "context_after": "We did not evaluate metamorphic coverage on PostgreSQL, which has not been supported by [ 2]’s implementation. Following the experimental setup in [ 2], we generated 10 test suites for SQLancer, each with 100 test cases. Specifically, SQLancer produce 50% of the test cases from TLP [ 48] and 50% from NoREC [ 47]. ForArgus, we generated 10 CAQ pairs as test suites, and instantiated each pair with 100 different snippets, respectively. We reported the average metamorphic coverage of the 10 test suites in Table 3. As shown,Argus achieves 5.473×, 6.431×, and 5.571×more line, function, and branch c",
+      "section": "7.2 Code Coverage",
+      "page": 19,
+      "char_offset": 60307,
+      "found_by_all": [
+        "name",
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M47",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 2]",
+      "technique": null,
+      "sentence": "We did not evaluate metamorphic coverage on PostgreSQL, which has not been supported by [ 2]’s implementation.",
+      "context_before": "26. Automated Discovery of Test Oracles for Database Management Systems Using LLMs 140:19 1 2 3 4 5 6 Hours246810Unique Bug Numbers Argus-5,000 Argus-50 Baseline Fig. 4. Number of unique logic bugs found by different sets of oracles within a 6-hour testing on Dolt. Overall, our results demonstrate thatArguscan generate feature-rich, diverse, and complex test cases at scale, covering more optimizer paths than state-of-the-art techniques. Metamorphic coverage.For metamorphic coverage, we comparedArguswith SQLancer on DuckDB across a fixed number of test cases, following the same setting in [ 2].",
+      "context_after": "Following the experimental setup in [ 2], we generated 10 test suites for SQLancer, each with 100 test cases. Specifically, SQLancer produce 50% of the test cases from TLP [ 48] and 50% from NoREC [ 47]. ForArgus, we generated 10 CAQ pairs as test suites, and instantiated each pair with 100 different snippets, respectively. We reported the average metamorphic coverage of the 10 test suites in Table 3. As shown,Argus achieves 5.473×, 6.431×, and 5.571×more line, function, and branch coverage than SQLancer, respectively. We believe this is becauseArgus’s new test oracles can significantly alter",
+      "section": "7.2 Code Coverage",
+      "page": 19,
+      "char_offset": 60445,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba, Yuancheng Jiang, and Manuel Rigger. 2025. Metamorphic Coverage.arXiv preprint arXiv:2508.16307 (2025).",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M48",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Following the experimental setup in [ 2], we generated 10 test suites for SQLancer, each with 100 test cases.",
+      "context_before": "10Unique Bug Numbers Argus-5,000 Argus-50 Baseline Fig. 4. Number of unique logic bugs found by different sets of oracles within a 6-hour testing on Dolt. Overall, our results demonstrate thatArguscan generate feature-rich, diverse, and complex test cases at scale, covering more optimizer paths than state-of-the-art techniques. Metamorphic coverage.For metamorphic coverage, we comparedArguswith SQLancer on DuckDB across a fixed number of test cases, following the same setting in [ 2]. We did not evaluate metamorphic coverage on PostgreSQL, which has not been supported by [ 2]’s implementation.",
+      "context_after": "Specifically, SQLancer produce 50% of the test cases from TLP [ 48] and 50% from NoREC [ 47]. ForArgus, we generated 10 CAQ pairs as test suites, and instantiated each pair with 100 different snippets, respectively. We reported the average metamorphic coverage of the 10 test suites in Table 3. As shown,Argus achieves 5.473×, 6.431×, and 5.571×more line, function, and branch coverage than SQLancer, respectively. We believe this is becauseArgus’s new test oracles can significantly alter the query structures between equivalent queries, thanks to LLM’s creativity, which covers a broader range of",
+      "section": "7.2 Code Coverage",
+      "page": 19,
+      "char_offset": 60556,
+      "found_by_all": [
+        "name",
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M49",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, SQLancer produce 50% of the test cases from TLP [ 48] and 50% from NoREC [ 47].",
+      "context_before": "of oracles within a 6-hour testing on Dolt. Overall, our results demonstrate thatArguscan generate feature-rich, diverse, and complex test cases at scale, covering more optimizer paths than state-of-the-art techniques. Metamorphic coverage.For metamorphic coverage, we comparedArguswith SQLancer on DuckDB across a fixed number of test cases, following the same setting in [ 2]. We did not evaluate metamorphic coverage on PostgreSQL, which has not been supported by [ 2]’s implementation. Following the experimental setup in [ 2], we generated 10 test suites for SQLancer, each with 100 test cases.",
+      "context_after": "ForArgus, we generated 10 CAQ pairs as test suites, and instantiated each pair with 100 different snippets, respectively. We reported the average metamorphic coverage of the 10 test suites in Table 3. As shown,Argus achieves 5.473×, 6.431×, and 5.571×more line, function, and branch coverage than SQLancer, respectively. We believe this is becauseArgus’s new test oracles can significantly alter the query structures between equivalent queries, thanks to LLM’s creativity, which covers a broader range of different code paths than prior works. This significant improvement demonstrates the effective",
+      "section": "7.2 Code Coverage",
+      "page": 19,
+      "char_offset": 60666,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M50",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "571×more line, function, and branch coverage than SQLancer, respectively.",
+      "context_before": ", following the same setting in [ 2]. We did not evaluate metamorphic coverage on PostgreSQL, which has not been supported by [ 2]’s implementation. Following the experimental setup in [ 2], we generated 10 test suites for SQLancer, each with 100 test cases. Specifically, SQLancer produce 50% of the test cases from TLP [ 48] and 50% from NoREC [ 47]. ForArgus, we generated 10 CAQ pairs as test suites, and instantiated each pair with 100 different snippets, respectively. We reported the average metamorphic coverage of the 10 test suites in Table 3. As shown,Argus achieves 5.473×, 6.431×, and 5.",
+      "context_after": "We believe this is becauseArgus’s new test oracles can significantly alter the query structures between equivalent queries, thanks to LLM’s creativity, which covers a broader range of different code paths than prior works. This significant improvement demonstrates the effectiveness ofArgus’s new test oracles in comparing different execution paths, and the potential to detect more logic bugs that state-of-the-art testers missed. 7.3 Effect of Test Oracles We now evaluateArgus’s new oracles by comparing the number of unique logic bugs they detected in Dolt v1.0.0. We selected this historical ve",
+      "section": "7.2 Code Coverage",
+      "page": 19,
+      "char_offset": 61008,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M51",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "The baseline combines 11 test oracles from four previous works: TLP [ 48], NoREC [ 47], EET [ 24], and DQP [ 5].",
+      "context_before": ", and the potential to detect more logic bugs that state-of-the-art testers missed. 7.3 Effect of Test Oracles We now evaluateArgus’s new oracles by comparing the number of unique logic bugs they detected in Dolt v1.0.0. We selected this historical version to ensure a fair comparison, as git-bisect allows us to precisely link each bug to its corresponding fix commit, providing an accurate count of unique bugs per method. We compared a composite baseline of test oracles against two sets of LLM-generated test oracles byArgus, with sizes of 50 and 5,000,i.e.,Argus-50 andArgus-5,000, respectively.",
+      "context_after": "To minimize confounding factors, we standardized the experimental conditions. Specifically, the baseline oracles were represented in the same CAQ pair format and instantiated using the same snippet corpus asArgus. Furthermore, since the CAQ format requires an associated schema, we also randomly generated a new schema for the baseline oracles before each instantiation. The details about how to convert the baseline oracles to CAQ pairs are provided in Appendix C. Fig. 4 shows the number of unique logic bugs found by different sets of oracles within a 6-hour testing. We select a 6-hour time wind",
+      "section": "7.3 Effect of Test Oracles",
+      "page": 19,
+      "char_offset": 62030,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "norec",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M52",
+      "found_by": "citation_marker",
+      "surface": "[ 81]",
+      "technique": null,
+      "sentence": "We select a 6-hour time window for a fair comparison, following common practice in fuzz testing [ 26] and prior studies on DBMS logic bug detection [ 81], which typically fix the testing duration within a range of 1 – 24 hours.",
+      "context_before": "47], EET [ 24], and DQP [ 5]. To minimize confounding factors, we standardized the experimental conditions. Specifically, the baseline oracles were represented in the same CAQ pair format and instantiated using the same snippet corpus asArgus. Furthermore, since the CAQ format requires an associated schema, we also randomly generated a new schema for the baseline oracles before each instantiation. The details about how to convert the baseline oracles to CAQ pairs are provided in Appendix C. Fig. 4 shows the number of unique logic bugs found by different sets of oracles within a 6-hour testing.",
+      "context_after": "As shown,Argus-5,000 found 10 unique bugs, significantly outperforming the baseline, which found only 3. In contrast,Argus-50 found just 2 bugs. This 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:20 Qiuyang Mang et al. 1SELECT*FROMvWHERE TRUE; 2SELECT*FROMvWHEREv.c >= v.cORv.c < v.c Listing 11. A false positive example from LLM-as-a-judge. underperformance was expected, as the baseline oracles were carefully designed by human experts. These results demonstrate the importance of the number of oracles in detecting unique logic bugs and underscore the limitations of manual or",
+      "section": "7.3 Effect of Test Oracles",
+      "page": 19,
+      "char_offset": 62714,
+      "cited_reference": {
+        "number": 81,
+        "text": "Suyang Zhong and Manuel Rigger. 2025. Testing Database Systems with Large Language Model Synthesized Fragments. arXiv preprint arXiv:2505.02012(2025).",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "prints the arXiv id of the paper introducing shqvel"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M53",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Argus SQLancer SQLancer++ Argus-grammar-based 0 4 8 12 16 20 24 Hours283032343638Line Coverage (%) (a) DuckDB line 0 4 8 12 16 20 24 Hours18192021Branch Coverage (%) (b) DuckDB branch Fig.",
+      "context_before": "arity of the generated queries, measured by the average tree-edit distance between DuckDB query plans across all pairs of equivalent queries. Specifically, given two query plan tree 𝑇1and𝑇2, letdist(𝑇 1,𝑇2)be the tree-edit distance between them. The similarity score is computed as:2 𝑁(𝑁−1)Í 𝑖≠𝑗 1−dist(𝑇 𝑖,𝑇𝑗) |𝑇𝑖|+|𝑇 𝑗|, where𝑁is the number of valid query pairs. As shown in Table 4,Argus’s CAQ generation method outperforms both baselines by producing more valid CAQs while maintaining the lowest similarity. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:22 Qiuyang Mang et al.",
+      "context_after": "6. Ablation study of code coverage achieved by Argus and a variant using only SQLancer’s grammarbased generator on DuckDB over 24-hour runs. 1CREATE TABLEt1(c0BOOLEAN, c1BOOLEAN); 2SELECT false FROMt1; 3SELECT(t1.c1 < t1.c0) < (t1.c1 = t1.c1)FROMt1; Listing 12. Incorrect equivalence proof in SQLSolver [13]. LLM-powered SQL snippet generation.We evaluate the effectiveness of LLM-powered SQL snippet generation by comparingArgus’s method against a variant that only uses SQLancer’s grammarbased generator to build the snippet corpus during the CAQ instantiation phase. We use the code coverage metr",
+      "section": "7.6 Component-wise Analysis",
+      "page": 22,
+      "char_offset": 69803,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M54",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Ablation study of code coverage achieved by Argus and a variant using only SQLancer’s grammarbased generator on DuckDB over 24-hour runs.",
+      "context_before": "tdist(𝑇 1,𝑇2)be the tree-edit distance between them. The similarity score is computed as:2 𝑁(𝑁−1)Í 𝑖≠𝑗 1−dist(𝑇 𝑖,𝑇𝑗) |𝑇𝑖|+|𝑇 𝑗|, where𝑁is the number of valid query pairs. As shown in Table 4,Argus’s CAQ generation method outperforms both baselines by producing more valid CAQs while maintaining the lowest similarity. 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:22 Qiuyang Mang et al. Argus SQLancer SQLancer++ Argus-grammar-based 0 4 8 12 16 20 24 Hours283032343638Line Coverage (%) (a) DuckDB line 0 4 8 12 16 20 24 Hours18192021Branch Coverage (%) (b) DuckDB branch Fig. 6.",
+      "context_after": "1CREATE TABLEt1(c0BOOLEAN, c1BOOLEAN); 2SELECT false FROMt1; 3SELECT(t1.c1 < t1.c0) < (t1.c1 = t1.c1)FROMt1; Listing 12. Incorrect equivalence proof in SQLSolver [13]. LLM-powered SQL snippet generation.We evaluate the effectiveness of LLM-powered SQL snippet generation by comparingArgus’s method against a variant that only uses SQLancer’s grammarbased generator to build the snippet corpus during the CAQ instantiation phase. We use the code coverage metric in Sec. 7.2 to evaluate both methods after a 24-hour testing on DuckDB. As shown in Fig. 6,Argusconsistently outperforms the grammar-based",
+      "section": "7.6 Component-wise Analysis",
+      "page": 22,
+      "char_offset": 69996,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M55",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We evaluate the effectiveness of LLM-powered SQL snippet generation by comparingArgus’s method against a variant that only uses SQLancer’s grammarbased generator to build the snippet corpus during the CAQ instantiation phase.",
+      "context_before": "icle 140. Publication date: June 2026. 140:22 Qiuyang Mang et al. Argus SQLancer SQLancer++ Argus-grammar-based 0 4 8 12 16 20 24 Hours283032343638Line Coverage (%) (a) DuckDB line 0 4 8 12 16 20 24 Hours18192021Branch Coverage (%) (b) DuckDB branch Fig. 6. Ablation study of code coverage achieved by Argus and a variant using only SQLancer’s grammarbased generator on DuckDB over 24-hour runs. 1CREATE TABLEt1(c0BOOLEAN, c1BOOLEAN); 2SELECT false FROMt1; 3SELECT(t1.c1 < t1.c0) < (t1.c1 = t1.c1)FROMt1; Listing 12. Incorrect equivalence proof in SQLSolver [13]. LLM-powered SQL snippet generation.",
+      "context_after": "We use the code coverage metric in Sec. 7.2 to evaluate both methods after a 24-hour testing on DuckDB. As shown in Fig. 6,Argusconsistently outperforms the grammar-based variant in both line and branch coverage. Without LLM-generated snippets, the grammar-based variant can still outperform baselines in terms of line coverage but struggles with branch coverage. 8 Discussion Additional finding.In addition to improving DBMS robustness, our testing also revealed several bugs in existing SQL equivalence provers. These bugs could lead to inherent false positives that, if unaddressed, would hinder",
+      "section": "7.6 Component-wise Analysis",
+      "page": 22,
+      "char_offset": 70338,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M56",
+      "found_by": "citation_marker",
+      "surface": "[ 3,5,24,47–\n49,74]",
+      "technique": "qpg",
+      "sentence": "(1)Arguscurrently focuses on relational DBMS and SELECT queries like prior works [ 3,5,24,47– 49,74], but the underlying principles can be extended to other types of databases and query languages, such as graph DBMS [23, 34, 37, 86] and spatial DBMS testing [12].",
+      "context_before": "can grow rapidly with the size of the CAQ pairs analyzed. This may limit the query sizes of the test oracles thatArguscan generate. Nevertheless, these restrictions from SQL equivalence provers can be mitigated inArgus’s test cases instantiation phase, which can generate complex SQL queries by filling in CAQ placeholders with diverse SQL snippets. Those snippets can include SQL features that currently lack support in existing provers, as well as increase the overall complexity of the generated test cases. Limitations.Our approach has two limitations that present opportunities for future work.",
+      "context_after": "(2)Argusfocuses on automatically discovering test oracles, but does not provide a mechanism to prioritize or rank the generated oracles. We believe that, afterArgus, DBMS testing research can shift from manually crafting test oracles to developing techniques for prioritizing and selecting the most effective oracles from a large pool of LLM-generated candidates. 9 Related Work LLM in systems research.LLMs have been applied to various system research tasks, including code generation [ 20,27,39,44,66], automated tuning [ 18,76], data processing [ 32,33,43,54,73], program analysis [28], networkin",
+      "section": "8 Discussion",
+      "page": 23,
+      "char_offset": 74295,
+      "cited_reference": {
+        "number": 3,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker",
+        "citation_marker_project_authored"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M57",
+      "found_by": "name",
+      "surface": "ShQvel",
+      "technique": null,
+      "sentence": "Similarly, ShQvel [ 81] uses LLMs to generate feature-rich SQL queries for testing DBMS with manually crafted test oracles, while SQLStorm [ 52] employs LLMs to synthesize a large-scale benchmark for evaluating performance of DBMSs.",
+      "context_before": "earch.LLMs have been applied to various system research tasks, including code generation [ 20,27,39,44,66], automated tuning [ 18,76], data processing [ 32,33,43,54,73], program analysis [28], networking [77], and algorithm discovery [41, 50, 72]. (1)In LLM-aided testing, prior work has primarily focused on generating effective inputs. For example, Fuzz4all [ 65] is a universal fuzzing framework that leverages LLMs to generate test inputs for various applications, while other research applies LLMs to fuzzing in specific domains such as compilers [ 67], kernels [ 68], and smart contracts [ 55].",
+      "context_after": "While prior approaches generate complex test inputs to find crash bugs, our work focuses on generating test oracles to detect logic bugs, along with effective methods for test oracle initializations, which are orthogonal and complementary to existing efforts. (2)In LLM-for-DBMS, prior work mainly focus on text-to-SQL [ 21], query optimization [ 29,59], dialect translation [ 84], and hyperparameter tuning [ 18,85]. Among these works, LLM-R2 [ 29] provides a framework to guide LLMs’ use of existing rules,e.g.,Calcite, to optimize SQL queries. Though this method can also be applied to our task,",
+      "section": "9 Related Work",
+      "page": 23,
+      "char_offset": 75557,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M58",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Test query generation focuses on automatically generating complex SQL queries to find crashes, with techniques being either grammar-based, exemplified by tools like SQLsmith [ 53] and SQLancer [ 49], or mutationbased, as seen in Griffin [ 16].",
+      "context_before": "dge, our 4, No. 3 (SIGMOD), Article 140. Publication date: June 2026. 140:24 Qiuyang Mang et al. work is the first to leverage LLMs to generate test oracles for DBMSs, and we believe that our rule generation framework can also be applied to other DBMS tasks in the future, such as query optimization with performance improvement. DBMS testing and verification.There is a rich body of work on DBMS testing, verification, and their applications. Prior work in DBMS testing has largely followed two distinct research paths:test query generationfor fuzzing andtest oracle designfor detecting logic bugs.",
+      "context_after": "Grammar-based techniques typically use predefined grammars to construct valid SQL queries, while mutation-based approaches modify existing queries to create new test cases. Beyond the generation of test queries, recent research has also explored constructing meaningful database states [ 1,8,9,51,69]. In parallel, the second path concentrates on test oracles for detecting “silent” bugs such as logic and performance issues, an area that has traditionally relied on significant manual effort. For instance, oracles like TLP [ 48], NoREC [ 47], and EET [ 24] were designed for logic bugs, while othe",
+      "section": "9 Related Work",
+      "page": 24,
+      "char_offset": 77212,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M59",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For instance, oracles like TLP [ 48], NoREC [ 47], and EET [ 24] were designed for logic bugs, while others such as CERT [ 4] and Apollo [ 25] target performance issues.",
+      "context_before": ", exemplified by tools like SQLsmith [ 53] and SQLancer [ 49], or mutationbased, as seen in Griffin [ 16]. Grammar-based techniques typically use predefined grammars to construct valid SQL queries, while mutation-based approaches modify existing queries to create new test cases. Beyond the generation of test queries, recent research has also explored constructing meaningful database states [ 1,8,9,51,69]. In parallel, the second path concentrates on test oracles for detecting “silent” bugs such as logic and performance issues, an area that has traditionally relied on significant manual effort.",
+      "context_after": "This manual crafting of oracles remains a primary bottleneck in fully automated DBMS testing. Argusis the first work that tackles this critical challenge by automatically discovering test oracles. Recent work has focused on improving the effectiveness of SQL equivalence provers [ 10,11,13, 63,83] and disprovers [ 19,79]. These tools have been widely applied in various DBMS scenarios, including query rewriting [ 64], text-to-SQL [ 70], and user-database interaction [ 45]. Among these, Wetune [ 64] is the most relevant to our work, as it employs an SQL equivalence prover to verify query rewriti",
+      "section": "9 Related Work",
+      "page": 24,
+      "char_offset": 77950,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "norec",
+        "cert"
+      ]
+    }
+  ],
+  "artifact": {
+    "url": "https://github.com/joyemang33/Argus",
+    "markers": [
+      "sqlancer_source_in_nested_artifact"
+    ],
+    "evidence": [
+      {
+        "source_url": "https://github.com/joyemang33/Argus",
+        "source_type": "github_repository",
+        "excerpt": "# Argus: Automated Discovery of Test Oracles for Database Management Systems Using LLMs\n\nArgus is a novel framework for automatically discovering and instantiating test oracles to find logic bugs in Database Management Systems (DBMSs) using Large Language Models (LLMs).",
+        "note": "Repository names this paper.",
+        "retrieved_at": "2026-09-10T15:15:32Z",
+        "first_seen": "2026-09-10T15:15:32Z",
+        "last_verified": "2026-09-10T15:15:32Z",
+        "excerpt_is_verbatim": true
+      },
+      {
+        "source_url": "https://github.com/joyemang33/Argus/blob/main/MetamorphicCoverageArtifact/Code/mc-guided_fuzzing/src/sqlancer/Randomly.java",
+        "source_type": "github_code",
+        "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.SOPHISTICATED;",
+        "excerpt_is_verbatim": true,
+        "note": "MetamorphicCoverageArtifact/Code/mc-guided_fuzzing/src/sqlancer/Randomly.java is SQLancer's Randomly.java, but it sits under MetamorphicCoverageArtifact, which looks like a bundled copy of another project",
+        "content_sha256": "sha256:7f3c136a45805e0fd7b278f3c6f2693b5721e9f54426d26c66823ea7d4a8b83b",
+        "retrieved_at": "2026-09-10T15:15:32Z",
+        "first_seen": "2026-09-10T15:15:32Z",
+        "last_verified": "2026-09-10T15:15:32Z"
+      }
+    ]
+  },
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M37",
+        "M38",
+        "M50",
+        "M55"
+      ],
+      "describes_as_state_of_the_art": [
+        "M31"
+      ]
+    },
+    "suppressed": [
+      {
+        "mention_id": "M42",
+        "pattern": "compares_with",
+        "suppressed_because": "the sentence is framed as related work, so it describes somebody else's approach"
+      }
+    ]
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:11:05Z",
+    "is_model_written": true,
+    "summary": "Argus automates what has been the manual part of DBMS test oracle design: inventing mechanisms that generate equivalent query pairs. It builds on the Constrained Abstract Query, a SQL skeleton with placeholders and conditions on how they may be filled; a language model proposes pairs of skeletons, their equivalence is formally proven with a SQL equivalence solver, and only then are the placeholders instantiated with synthesised snippets. On five extensively tested DBMSs it found 41 previously unknown bugs, 36 of them logic bugs.",
+    "narrative": "Argus uses SQLancer++'s query generator to produce seed queries while deliberately not using its predefined oracles, since discovering oracles is the paper's own subject. It measures itself against SQLancer, SQLancer++ and EET on coverage, and calls SQLancer a state-of-the-art open-source DBMS testing framework. Its artifact carries SQLancer's own source files.",
+    "roles": {
+      "M3": "definition",
+      "M4": "background",
+      "M5": "definition",
+      "M6": "definition",
+      "M7": "reuse_component",
+      "M11": "reuse_component",
+      "M13": "background",
+      "M14": "reuse_component",
+      "M28": "result_comparison",
+      "M29": "result_comparison",
+      "M30": "baseline",
+      "M31": "state_of_the_art",
+      "M37": "result_comparison",
+      "M50": "result_comparison"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M7",
+          "M11",
+          "M14"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M7",
+            "sentence": "These snippets can be generated offline by a hybrid approach combining an LLM to cover diverse database features and a high-throughput generator, such as SQLancer [ 49], even though the prover currently cannot reason about them.",
+            "section": "1 Introduction",
+            "page": 4
+          },
+          {
+            "mention_id": "M11",
+            "sentence": "Specifically, we use SQLancer++ [ 82]’s query generator to produce seed queries, but we do not use their predefined test oracles (such as TLP [48] and NoREC [47]) for bug detection.",
+            "section": "3 Argus Overview",
+            "page": 5
+          },
+          {
+            "mention_id": "M14",
+            "sentence": ",SQLancer can be directly used for schema and concrete 4, No.",
+            "section": "5.1 Database Seeding",
+            "page": 8
+          }
+        ],
+        "reasoning": "M11 states that SQLancer++'s query generator produces the seed queries while its predefined oracles are deliberately not used, and M14 that SQLancer can be used directly for schema and data generation. So a component is reused rather than the framework being built on. The artifact carrying SQLancer source files agrees.",
+        "reuse_kind": "generator"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Argus discovers new oracles rather than extending an existing one; TLP appears as the worked example of what a Constrained Abstract Query can represent, not as something being generalised."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M30",
+          "M37",
+          "M50"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M30",
+            "sentence": "2 Code Coverage We comparedArguswith three DBMS logic bugs finding tools, SQLancer [ 3,47–49,74], SQLancer++ [ 82] and EET [ 24] in multiple coverage metrics.",
+            "section": "7.2 Code Coverage",
+            "page": 17
+          },
+          {
+            "mention_id": "M37",
+            "sentence": "1% higher line and branch coverage than SQLancer++, respectively, and 11.",
+            "section": "7.2 Code Coverage",
+            "page": 18
+          },
+          {
+            "mention_id": "M50",
+            "sentence": "571×more line, function, and branch coverage than SQLancer, respectively.",
+            "section": "7.2 Code Coverage",
+            "page": 19
+          }
+        ],
+        "reasoning": "Coverage is compared against SQLancer and SQLancer++ over 24-hour runs, with line, function and branch figures reported for each."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M31"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M31",
+            "sentence": "As a state-of-the-art, open-source DBMS testing framework, SQLancer supports most of the latest test oracles [ 4,57,74].",
+            "section": "7.2 Code Coverage",
+            "page": 17
+          }
+        ],
+        "reasoning": "M31 calls SQLancer a state-of-the-art, open-source DBMS testing framework supporting most of the latest test oracles."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

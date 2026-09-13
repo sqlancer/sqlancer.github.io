@@ -1,0 +1,437 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:30:10Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3582016.3582053",
+    "title": "Finding Unstable Code via Compiler-Driven Differential Testing",
+    "authors": [
+      "Shaohua Li",
+      "Zhendong Su"
+    ],
+    "year": 2023,
+    "venue": "International Conference on Architectural Support for Programming Languages and Operating Systems",
+    "doi": "10.1145/3582016.3582053",
+    "arxiv_id": null,
+    "s2_paper_id": "03e0d8d1839045a6fd25080bbfa945b2801a2f3f",
+    "url": "https://doi.org/10.1145/3582016.3582053",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3582016.3582053",
+      "retrieved_at": "2026-09-09T01:30:10Z",
+      "chars": 78329,
+      "content_sha256": "sha256:e503be6e6e73184469a3b17b03067aeff970d50ed7a747ce276fbf87120f57ed"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 14,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 3086
+      },
+      {
+        "number": "2",
+        "title": "ILLUSTRATIVE EXAMPLES",
+        "start": 10491
+      },
+      {
+        "number": "3",
+        "title": "FINDING UNSTABLE CODE",
+        "start": 17031
+      },
+      {
+        "number": "3.1",
+        "title": "Compiler-Driven Differential Testing",
+        "start": 17338
+      },
+      {
+        "number": "3.2",
+        "title": "CompDiff-AFL++",
+        "start": 23596
+      },
+      {
+        "number": "4",
+        "title": "EVALUATION",
+        "start": 27537
+      },
+      {
+        "number": "20.04.3",
+        "title": "LTS.",
+        "start": 28327
+      },
+      {
+        "number": "4.1",
+        "title": "Effectiveness of CompDiff in Benchmark",
+        "start": 29691
+      },
+      {
+        "number": "4.2",
+        "title": "Impact of Reducing #Compiler",
+        "start": 38498
+      },
+      {
+        "number": "4.3",
+        "title": "CompDiff-AFL++",
+        "start": 41841
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Austin Appleby. 2016. MurmurHash3. https://github.com/aappleby/smhasher/ wiki/MurmurHash3. Accessed: March 7, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Cornelius Aschermann, Sergej Schumilo, Tim Blazytko, Robert Gawlik, and Thorsten Holz. 2019. REDQUEEN: Fuzzing with Input-to-State Correspondence.. InNDSS, Vol. 19. 1–15.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Marcel Böhme, Valentin JM Manès, and Sang Kil Cha. 2020. Boosting fuzzer efficiency: An information theoretic perspective. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 678–689.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Marcel Böhme, Van-Thuan Pham, and Abhik Roychoudhury. 2017. Coveragebased greybox fuzzing as markov chain. IEEE Transactions on Software Engineering 45, 5 (2017), 489–506.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Marcel Böhme, Ezekiel O Soremekun, Sudipta Chattopadhyay, Emamurho Ugherughe, and Andreas Zeller. 2017. Where is the bug and how is it fixed? an experiment with practitioners. In Proceedings of the 2017 11th joint meeting on foundations of software engineering. 117–128.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Derek Bruening and Qin Zhao. 2011. Practical memory checking with Dr. Memory. In International Symposium on Code Generation and Optimization (CGO 2011). IEEE, 213–223.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Liming Chen and Algirdas Avizienis. 1978. N-version Programming: A Faulttolerance Approach to Reliability of Software Operation. In Proceedings of the 8th IEEE International Symposium on Fault-Tolerant Computing (FTCS-8), Vol. 1. 3–9.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Yuting Chen, Ting Su, Chengnian Sun, Zhendong Su, and Jianjun Zhao. 2016. Coverage-directed differential testing of JVM implementations. In proceedings of the 37th ACMSIGPLAN Conference on Programming Language Design and Implementation. 85–99.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "JTC1/SC22/WG14 The C Standards Committee. 2018. ISO/IEC 9899:2018, Programming languages — C. https://www.open-std.org/jtc1/sc22/wg14/www/docs/ n2310.pdf.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "JTC1/SC22/WG21 The C++ Standards Committee. 2020. Standard for Programming Language C++. https://www.open-std.org/jtc1/sc22/wg21/docs/papers/ 2020/n4849.pdf.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Mila Dalla Preda, Roberto Giacobazzi, Arun Lakhotia, and Isabella Mastroeni. 2015. Abstract symbolic automata: Mixed syntactic/semantic similarity analysis of executables. In Proceedings of the 42nd Annual ACMSIGPLAN-SIGACT Symposium on Principles of Programming Languages. 329–341.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "CppCheck developers. 2022. A Tool for Static C/C++ Code Analysis. Retrieved October 15, 2022 from http://cppcheck.sourceforge.net/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "GCC developers. 2022. Options That Control Optimization. https://gcc.gnu.org/ onlinedocs/gcc/Optimize-Options.html. Accessed: March 7, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "LLVM developers. 2022. Clangthe Clang C, C++, and Objective-C compiler. https://clang.llvm.org/docs/CommandGuide/clang.html. Accessed: March 7, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "LLVM developers. 2022. UndefinedBehaviorSanitizer. https://clang.llvm.org/ docs/UndefinedBehaviorSanitizer.html. Accessed: March 7, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Sushant Dinesh, Nathan Burow, Dongyan Xu, and Mathias Payer. 2020. Retrowrite: Statically instrumenting cots binaries for fuzzing and sanitization. In. IEEE, 1497–1511.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Andrea Fioraldi, Dominik Maier, Heiko Eißfeldt, and Marc Heuse. 2020. {AFL++}: Combining Incremental Steps of Fuzzing Research. In 14th USENIX Workshop on Offensive Technologies (WOOT 20).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Patrice Godefroid, Daniel Lehmann, and Marina Polishchuk. 2020. Differential regression testing for REST APIs. In Proceedings of the 29th ACMSIGSOFT International Symposium on Software Testing and Analysis. 312–323.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Google. 2022. Honggfuzz. https://honggfuzz.dev/. Accessed: March 7, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Google. 2022. OSS-Fuzz: Continuous Fuzzing for Open Source Software. https: //github.com/google/oss-fuzz. Accessed: March 7, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "The Tcpdump Group. 2022. TCPDUMP. https://github.com/the-tcpdumpgroup/tcpdump. Accessed: March 7, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Petr Hosek and Cristian Cadar. 2015. VARAN the Unbelievable: An Efficient N-version Execution Framework. In Proceedings of the Twentieth International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS’15). 339–353.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Heqing Huang, Peisen Yao, Rongxin Wu, Qingkai Shi, and Charles Zhang. 2020. Pangolin: Incremental hybrid fuzzing with polyhedral path abstraction. In. IEEE, 1613–1627.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Jaewon Hur, Suhwan Song, Dongup Kwon, Eunjin Baek, Jangwoo Kim, and Byoungyoung Lee. 2021. DIFUZZRTL: Differential Fuzz Testing to Find CPU Bugs. In. IEEE, 1286–1303.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Nasif Imtiaz, Brendan Murphy, and Laurie Williams. 2019. How do developers act on static analysis alerts? an empirical study of coverity usage. In 2019 IEEE 30th International Symposium on Software Reliability Engineering (ISSRE). IEEE, 323–333.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "lcamtuf. 2014. Fuzzing random programs without execve(). https://lcamtuf. blogspot.com/2014/10/fuzzing-binaries-without-execve.html. Accessed: March 7, 2022. 250 ASPLOS ’23, March 25–29, 2023, Vancouver, BC, Canada Shaohua Li and Zhendong Su",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. 2014. Compiler Validation via Equivalence modulo Inputs. In Proceedings of the 35th ACMSIGPLAN Conference on Programming Language Design and Implementation (Edinburgh, United Kingdom) (PLDI ’14). 216–226.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Stephan Lipp, Sebastian Banescu, and Alexander Pretschner. 2022. An Empirical Study on the Effectiveness of Static C Code Analyzers for Vulnerability Detection. InProceedings of the 31st ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA’22), July 18–22, 2022, Virtual, South Korea.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Chenyang Lyu, Shouling Ji, Chao Zhang, Yuwei Li, Wei-Han Lee, Yu Song, and Raheem Beyah. 2019. {MOPT}: Optimized mutation scheduling for fuzzers. In 28th USENIX Security Symposium (USENIX Security 19). 1949–1966.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Michaël Marcozzi, Qiyi Tang, Alastair F Donaldson, and Cristian Cadar. 2019. Compiler fuzzing: How much does it matter? Proceedings of the ACM on Programming Languages 3, OOPSLA (2019), 1–29.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Meta. 2022. A Tool to Detect Bugs in Java and C/C++/Objective-c Code. Retrieved October 15, 2022 from https://fbinfer.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Microsoft. 2022. One Fuzz: A self-hosted Fuzzing-As-A-Service platform. https: //github.com/microsoft/onefuzz. Accessed: March 7, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Nicholas Nethercote and Julian Seward. 2007. Valgrind: A Framework for Heavyweight Dynamic Binary Instrumentation (PLDI ’07). 89–100.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Shirin Nilizadeh, Yannic Noller, and Corina S Pasareanu. 2019. DifFuzz: differential fuzzing for side-channel analysis. In 2019 IEEE/ACM 41st International Conference on Software Engineering (ICSE). IEEE, 176–187.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "NIST. 2017. Juliet Test Suite for C/C++ 1.3. https://samate.nist.gov/SARD/testsuites/112.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Spencer Pearson, José Campos, René Just, Gordon Fraser, Rui Abreu, Michael D Ernst, Deric Pang, and Benjamin Keller. 2017. Evaluating and improving fault localization. In neering (ICSE). IEEE, 609–620.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Theofilos Petsios, Adrian Tang, Salvatore Stolfo, Angelos D Keromytis, and Suman Jana. 2017. Nezha: Efficient domain-independent differential testing. In. IEEE, 615–632.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Xiaolei Ren, Michael Ho, Jiang Ming, Yu Lei, and Li Li. 2021. Unleashing the hidden power of compiler optimization on binary code difference: An empirical study. In Proceedings of the 42nd ACMSIGPLAN International Conference on Programming Language Design and Implementation. 142–157.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference andSymposium on the Foundations of Software Engineering. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 40,
+      "text": "Coverity Scan. 2022. Coverity Scan: Find and Fix Defects in Your Java, C/C++, C#, JavaScript, Ruby, or Python Open Source Project for Free. Retrieved October 15, 2022 from https://scan.coverity.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Mozilla Security. 2021. Fuzzdata. https://github.com/MozillaSecurity/fuzzdata. Accessed: March 7, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Konstantin Serebryany, Derek Bruening, Alexander Potapenko, and Dmitriy Vyukov. 2012. AddressSanitizer: A Fast Address Sanity Checker. In 2012 USENIX Annual Technical Conference (USENIX ATC 12). 309–318.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Evgeniy Stepanov and Konstantin Serebryany. 2015. MemorySanitizer: fast detector of uninitialized memory use in C++. In 2015 IEEE/ACM International Symposium on Code Generation and Optimization (CGO). IEEE, 46–55.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Nick Stephens, John Grosen, Christopher Salls, Andrew Dutcher, Ruoyu Wang, Jacopo Corbetta, Yan Shoshitaishvili, Christopher Kruegel, and Giovanni Vigna. 2016. Driller: Augmenting fuzzing through selective symbolic execution.. In NDSS, Vol. 16. 1–16.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "The LLVM team. 2022. Honggfuzz. https://llvm.org/docs/LibFuzzer.html. Accessed: March 7, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Kaushik Veeraraghavan, Peter M Chen, Jason Flinn, and Satish Narayanasamy. 2011. Detecting and surviving data races using complementary schedules. In Proceedings of the twenty-third ACM symposium on operating systems principles. 369–384.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Xi Wang, Haogang Chen, Alvin Cheung, Zhihao Jia, Nickolai Zeldovich, and M Frans Kaashoek. 2012. Undefined behavior: what happened to my code?. In Proceedings of the Asia-Pacific Workshop on Systems. 1–7.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Xi Wang, Nickolai Zeldovich, M Frans Kaashoek, and Armando Solar-Lezama. 2013. Towards optimization-safe systems: Analyzing the impact of undefined behavior. In Proceedings of the Twenty-Fourth ACM Symposium on Operating Systems Principles. 260–275.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "W Eric Wong, Ruizhi Gao, Yihao Li, Rui Abreu, and Franz Wotawa. 2016. A survey on software fault localization. IEEE Transactions on Software Engineering 42, 8 (2016), 707–740.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Michal Zalewski. 2014. American fuzzy lop. https://lcamtuf.coredump.cx/afl/. Accessed: March 7, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Qian Zhang, Jiyuan Wang, and Miryung Kim. 2021. Heterofuzz: Fuzz testing to detect platform dependent divergence for heterogeneous applications. In Proceedings of the 29th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 242–254. Received 2022-10-20; accepted 2023-01-19 251",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 39,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference andSymposium on the Foundations of Software Engineering. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 39]",
+      "technique": "norec",
+      "sentence": "Researchers have leveraged differential testing to find semantic bugs across many types of programs, such as database management systems [ 39], Java Virtual Machine (JVM) implementations [ 8], REST APIs [ 18], and compilers [ 27].",
+      "context_before": "mplicity and effectiveness, coverage-guided greybox fuzzers such as AFL [ 50], LibFuzzer [ 45], and honggfuzz [ 19] are widely deployed and have been the fundamental tools for many other advanced fuzzers. To boost fuzzing performance, a lot of research efforts have been put into improving various aspects of fuzzing, such as seed scheduling [ 3,4], mutation strategies [ 2,29], and path explorations [ 23,44]. Our proposed CompDiff could serve as a plugand-play oracle for all these fuzzers to extend their capability from discovering security defects to finding semantic bugs. Differential testing.",
+      "context_after": "Incorporating different testing into fuzzing engines is also gaining more and more interest for discovering functional bugs. For example, HeteroFuzz [ 51] detects platform-dependent divergence for heterogeneous applications running on both CPU and FPGA. DifFuzz [34] discovers side-channel leakages by analyzing two executions on the same binary. DIFUZZRTL [ 24] finds CPU bugs by differentially comparing multiple CPU RTLs. It develops a novel register coverage for higher fuzzing efficiency and efficacy.Each of these differential fuzzing efforts focuses on one specific domain. In contrast, CompD",
+      "section": "4.3 CompDiff-AFL++",
+      "page": 12,
+      "char_offset": 62034,
+      "cited_reference": {
+        "number": 39,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference andSymposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:16:45Z",
+    "is_model_written": true,
+    "summary": "CompDiff finds unstable code -- code whose run-time semantics vary because of undefined behaviour, which compilers exploit by assuming it never happens. Sanitizers cover frequently occurring undefined behaviours, but detecting the rest remains hard. CompDiff rests on the observation that different compilers may produce semantically inconsistent binaries from unstable code, so it compares the outputs of differently compiled binaries on the same input. Integrated into AFL++ it found 78 new bugs across 23 open-source projects.",
+    "narrative": "SQLancer appears once, as a bibliography entry for non-optimizing reference engine construction in a discussion of differential approaches.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

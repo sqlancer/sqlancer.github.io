@@ -1,0 +1,467 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:25:08Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3786699",
+    "title": "SQLBarber: A System Leveraging Large Language Models to Generate Customized and Realistic SQL Workloads",
+    "authors": [
+      "Jiale Lao",
+      "Immanuel Trummer"
+    ],
+    "year": 2025,
+    "venue": "Proceedings of the ACM on Management of Data",
+    "doi": "10.1145/3786699",
+    "arxiv_id": "2507.06192",
+    "s2_paper_id": "995979576a9a43c33d87711cc7ec1757a5f1a280",
+    "url": "https://doi.org/10.1145/3786699",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2507.06192",
+      "retrieved_at": "2026-09-08T15:25:08Z",
+      "chars": 95814,
+      "content_sha256": "sha256:e8d0348c099aa8883158cf07572099c55e54ec9fa8b4a484fcb7127af915158c"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 29,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2199
+      },
+      {
+        "number": "2",
+        "title": "Related Work",
+        "start": 12065
+      },
+      {
+        "number": "3",
+        "title": "Problem Formulation",
+        "start": 16132
+      },
+      {
+        "number": "4",
+        "title": "System Overview",
+        "start": 24792
+      },
+      {
+        "number": "5",
+        "title": "Customized SQL Template Generator",
+        "start": 27681
+      },
+      {
+        "number": "6",
+        "title": "Cost-Aware Query Generator",
+        "start": 34263
+      },
+      {
+        "number": "6.1",
+        "title": "Template Profiling via Strategic Sampling",
+        "start": 34970
+      },
+      {
+        "number": "6.2",
+        "title": "Adaptive Template Refinement and Pruning",
+        "start": 37593
+      },
+      {
+        "number": "6.3",
+        "title": "Predicate Search via Bayesian Optimization",
+        "start": 46371
+      },
+      {
+        "number": "7",
+        "title": "Experimental Evaluation",
+        "start": 52817
+      },
+      {
+        "number": "7.1",
+        "title": "Experimental Setup",
+        "start": 52843
+      },
+      {
+        "number": "7.2",
+        "title": "Performance Study",
+        "start": 59340
+      },
+      {
+        "number": "7.3",
+        "title": "Scalability Study",
+        "start": 64956
+      },
+      {
+        "number": "7.4",
+        "title": "Ablation Study",
+        "start": 67483
+      },
+      {
+        "number": "7.5",
+        "title": "Further Analysis",
+        "start": 69652
+      },
+      {
+        "number": "8",
+        "title": "Conclusions and Outlook",
+        "start": 78110
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2020. A. Seltenreich. Sqlsmith. https://github.com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 3,
+      "text": "Yushi Bai, Xin Lv, Jiajie Zhang, Hongchang Lyu, Jiankai Tang, Zhidian Huang, Zhengxiao Du, Xiao Liu, Aohan Zeng, Lei Hou, Yuxiao Dong, Jie Tang, and Juanzi Li. 2024. LongBench: A Bilingual, Multitask Benchmark for Long Context Understanding. InProceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), Lun-Wei Ku, Andre Martins, and Vivek Srikum",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Nicolas Bruno, Surajit Chaudhuri, and Dilys Thomas. 2006. Generating queries with cardinality constraints for dbms testing.IEEE Transactions on Knowledge and Data Engineering18, 12 (2006), 1721–1725.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Victor Giannakouris and Immanuel Trummer. 2024. Demonstrating lambda-Tune: Exploiting Large Language Models for Workload-Adaptive Database System Tuning. InCompanion of the 2024 International Conference on Management of Data(Santiago AA, Chile)(SIGMOD/PODS ’24). Association for Computing Machinery, New York, NY, USA, 508–511. doi:10.1145/3626246.3654751",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Lei Huang, Weijiang Yu, Weitao Ma, Weihong Zhong, Zhangyin Feng, Haotian Wang, Qianglong Chen, Weihua Peng, Xiaocheng Feng, Bing Qin, and Ting Liu. 2025. A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions.ACM Trans. Inf. Syst.43, 2, Article 42 (Jan. 2025), 55 pages. doi:10.1145/ 3703155",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Xinmei Huang, Haoyang Li, Jing Zhang, Xinxin Zhao, Zhiming Yao, Yiyan Li, Tieying Zhang, Jianjun Chen, Hong Chen, and Cuiping Li. 2025. E2ETune: End-to-End Knob Tuning via Fine-tuned Generative Language Model. arXiv:2404.11581 [cs.AI] https://arxiv.org/abs/2404.11581",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Saehan Jo and Immanuel Trummer. 2024. ThalamusDB: Approximate Query Processing on Multi-Modal Data. doi:10.1145/3654989",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Skander Krid, Mihail Stoian, and Andreas Kipf. 2025. Redbench: A Benchmark Reflecting Real Workloads.arXiv preprint arXiv:2506.12488(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Jiale Lao and Immanuel Trummer. 2025. Demonstrating SQLBarber: Leveraging Large Language Models to Generate Customized and Realistic SQL Workloads. InCompanion of the 2025 International Conference on Management of Data(Berlin, Germany)(SIGMOD/PODS ’25). Association for Computing Machinery, New York, NY, USA, 151–154. doi:10.1145/3722212.3725101",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Jiale Lao, Yibo Wang, Yufei Li, Jianping Wang, Yunjia Zhang, Zhiyuan Cheng, Wanghu Chen, Mingjie Tang, and Jianguo Wang. 2024. GPTuner: A Manual-Reading Database Tuning System via GPT-Guided Bayesian Optimization. Proc. VLDB Endow.17, 8 (may 2024), 1939–1952. doi:10.14778/3659437.3659449",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Jiale Lao, Yibo Wang, Yufei Li, Jianping Wang, Yunjia Zhang, Zhiyuan Cheng, Wanghu Chen, Mingjie Tang, and Jianguo Wang. 2025. GPTuner: An LLM-Based Database Tuning System.SIGMOD Rec.54, 1 (April 2025), 101–110. doi:10.1145/3733620.3733641",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Jiale Lao, Yibo Wang, Yufei Li, Jianping Wang, Yunjia Zhang, Zhiyuan Cheng, Wanghu Chen, Yuanchun Zhou, Mingjie Tang, and Jianguo Wang. 2024. A Demonstration of GPTuner: AGPT-Based Manual-Reading Database Tuning System. InCompanion of the 2024 International Conference on Management of Data(Santiago, Chile)(SIGMOD ’24). Association for Computing Machinery, New York, NY, USA, 4 pages. doi:10.1145/36",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Jiale Lao, Andreas Zimmerer, Olga Ovcharenko, Tianji Cong, Matthew Russo, Gerardo Vitagliano, Michael Cochez, Fatma Özcan, Gautam Gupta, Thibaud Hottelier, H. V. Jagadish, Kris Kissel, Sebastian Schelter, Andreas Kipf, and Immanuel Trummer. 2025. SemBench: A Benchmark for Semantic Query Processing Engines. arXiv:2511.01716 [cs.DB] https://arxiv.org/abs/2511.01716",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Viktor Leis, Andrey Gubichev, Atanas Mirchev, Peter Boncz, Alfons Kemper, and Thomas Neumann. 2015. How good are query optimizers, really?Proc. VLDB Endow.9, 3 (Nov. 2015), 204–215. doi:10.14778/2850583.2850594",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Haoyang Li, Jing Zhang, Hanbing Liu, Ju Fan, Xiaokang Zhang, Jun Zhu, Renjie Wei, Hongyan Pan, Cuiping Li, and Hong Chen. 2024. CodeS: Towards Building Open-source Language Models for Text-to-SQL. doi:10.1145/3654930",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Yiyan Li, Haoyang Li, Zhao Pu, Jing Zhang, Xinyi Zhang, Tao Ji, Luming Sun, Cuiping Li, and Hong Chen. 2024. Is Large Language Model Good at Database Knob Tuning? A Comprehensive Experimental Evaluation. arXiv:2408.02213 [cs.DB] https://arxiv.org/abs/2408.02213",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Zhaodonghui Li, Haitao Yuan, Huiming Wang, Gao Cong, and Lidong Bing. 2024. LLM-R2: A Large Language Model Enhanced Rule-Based Rewrite System for Boosting Query Efficiency.Proc. VLDB Endow.18, 1 (Sept. 2024), 53–65. doi:10.14778/3696435.3696440",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Meiyu Lin, Haichuan Zhang, Jiale Lao, Renyuan Li, Yuanchun Zhou, Carl Yang, Yang Cao, and Mingjie Tang. 2025. ToxicSQL: Migrating SQL Injection Threats into Text-to-SQL Models via Backdoor Attack. arXiv:2503.05445 [cs.CR] 3, No. 6 (SIGMOD), Article XXX. Publication date: December 2025. XXX:26 Jiale Lao and Immanuel Trummer https://arxiv.org/abs/2503.05445",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Marius Lindauer, Katharina Eggensperger, Matthias Feurer, André Biedenkapp, Difan Deng, Carolin Benjamins, Tim Ruhkopf, René Sass, and Frank Hutter. 2022. SMAC3: A Versatile Bayesian Optimization Package for Hyperparameter Optimization.Journal of Machine Learning Research23, 54 (2022), 1–9. http://jmlr.org/papers/v23/21-0888.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Marius Lindauer, Katharina Eggensperger, Matthias Feurer, André Biedenkapp, Difan Deng, Carolin Benjamins, Tim Ruhkopf, René Sass, and Frank Hutter. 2022. SMAC3: A Versatile Bayesian Optimization Package for Hyperparameter Optimization.Journal of Machine Learning Research23, 54 (2022), 1–9. http://jmlr.org/papers/v23/21-0888.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Chunwei Liu, Matthew Russo, Michael Cafarella, Lei Cao, Peter Baile Chen, Zui Chen, Michael Franklin, Tim Kraska, Samuel Madden, Rana Shahout, et al .2025. Palimpzest: Optimizing ai-powered analytics with declarative query processing. InProceedings of the Conference on Innovative Database Research (CIDR). 2.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Wei-Liem Loh. 1996. On Latin hypercube sampling.The annals of statistics24, 5 (1996), 2058–2080.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Chaitanya Mishra, Nick Koudas, and Calisto Zuzarte. 2008. Generating targeted queries for database testing. In Proceedings of the 2008 ACMSIGMOD International Conference on Management of Data(Vancouver, Canada)(SIGMOD ’08). Association for Computing Machinery, New York, NY, USA, 499–510. doi:10.1145/1376616.1376668",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Parimarjan Negi, Laurent Bindschaedler, Mohammad Alizadeh, Tim Kraska, Jyoti Leeka, Anja Gruenheid, and Matteo Interlandi. 2023. Unshackling Database Benchmarking from Synthetic Workloads. In2023 IEEE 39th International Conference on Data Engineering (ICDE). 3659–3662. doi:10.1109/ICDE55515.2023.00292",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Victor M Panaretos and Yoav Zemel. 2019. Statistical aspects of Wasserstein distances.Annual review of statistics and its application6, 1 (2019), 405–431.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Victor M Panaretos and Yoav Zemel. 2019. Statistical aspects of Wasserstein distances.Annual review of statistics and its application6, 1 (2019), 405–431.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Tobias Schmidt, Viktor Leis, Peter Boncz, and Thomas Neumann. 2025. SQLStorm: Taking Database Benchmarking into the LLM Era.Proc. VLDB Endow.18, 11 (Sept. 2025), 4144–4157. doi:10.14778/3749646.3749683",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Yuyang Song, Hanxu Yan, Jiale Lao, Yibo Wang, Yufei Li, Yuanchun Zhou, Jianguo Wang, and Mingjie Tang. 2025. QUITE: A Query Rewrite System Beyond Rules with LLM Agents. arXiv:2506.07675 [cs.DB] https://arxiv.org/abs/2506.07675",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Transaction Processing Performance Council (TPC). 2014.TPC BenchmarkTMH (Decision Support) Standard Specification, Revision 2.17.1. Technical Report. Transaction Processing Performance Council, San Francisco, CA, USA. https: //www.tpc.org/tpch/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Immanuel Trummer. 2022. CodexDB: synthesizing code for query processing from natural language instructions using GPT-3 codex.Proc. VLDB Endow.15, 11 (July 2022), 2921–2928. doi:10.14778/3551793.3551841",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Immanuel Trummer. 2022. DB-BERT: A Database Tuning Tool That \"Reads the Manual\". InProceedings of the 2022 International Conference on Management of Data(Philadelphia, PA, USA)(SIGMOD ’22). Association for Computing Machinery, New York, NY, USA, 190–203. doi:10.1145/3514221.3517843",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Matthias Urban and Carsten Binnig. 2024. Demonstrating CAESURA: Language Models as Multi-Modal Query Planners. InCompanion of the 2024 International Conference on Management of Data(Santiago AA, Chile)(SIGMOD ’24). Association for Computing Machinery, New York, NY, USA, 472–475. doi:10.1145/3626246.3654732",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Alexander van Renen, Dominik Horn, Pascal Pfeil, Kapil Vaidya, Wenjian Dong, Murali Narayanaswamy, Zhengchun Liu, Gaurav Saxena, Andreas Kipf, and Tim Kraska. 2024. Why TPC is Not Enough: An Analysis of the Amazon Redshift Fleet.Proc. VLDB Endow.17, 11 (aug 2024), 3694–3706. doi:10.14778/3681954.3682031",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Alexander van Renen and Viktor Leis. 2023. Cloud Analytics Benchmark.Proc. VLDB Endow.16, 6 (Feb. 2023), 1413–1425. doi:10.14778/3583140.3583156",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Adrian Vogelsgesang, Michael Haubenschild, Jan Finis, Alfons Kemper, Viktor Leis, Tobias Muehlbauer, Thomas Neumann, and Manuel Then. 2018. Get Real: How Benchmarks Fail to Represent the Real World. InProceedings of the Workshop on Testing Database Systems(Houston, TX, USA)(DBTest ’18). Association for Computing Machinery, New York, NY, USA, Article 1, 6 pages. doi:10.1145/3209950.3209952",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Midhul Vuppalapati, Justin Miron, Rachit Agarwal, Dan Truong, Ashish Motivala, and Thierry Cruanes. 2020. Building An Elastic Query Engine on Disaggregated Storage. In17th USENIX Symposium on Networked Systems Design and Implementation (NSDI 20). USENIX Association, Santa Clara, CA, 449–462. https://www.usenix.org/conference/nsdi20/ presentation/vuppalapati",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Jiaqi Wang, Tianyi Li, Anni Wang, Xiaoze Liu, Lu Chen, Jie Chen, Jianye Liu, Junyang Wu, Feifei Li, and Yunjun Gao. 2023. Real-Time Workload Pattern Analysis for Large-Scale Cloud Databases.Proc. VLDB Endow.16, 12 (Aug. 2023), 3689–3701. doi:10.14778/3611540.3611557",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Qingshuai Wang, Yuming Li, Rong Zhang, Ke Shu, Zhenjie Zhang, and Aoying Zhou. 2023. A Scalable Query-Aware Enormous Database Generator for Database Evaluation.IEEE Trans. on Knowl. and Data Eng.35, 5 (May 2023), 4395–4410. doi:10.1109/TKDE.2022.3153651",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Ziwei Xu, Sanjay Jain, and Mohan Kankanhalli. 2025. Hallucination is Inevitable: An Innate Limitation of Large Language Models. arXiv:2401.11817 [cs.CL] https://arxiv.org/abs/2401.11817 3, No. 6 (SIGMOD), Article XXX. Publication date: December 2025. SQLBarber: A System Leveraging Large Language Models to Generate Customized and Realistic SQL Workloads XXX:27",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Jingyi Yang, Peizhi Wu, Gao Cong, Tieying Zhang, and Xiao He. 2022. SAM: Database Generation from Query Workloads with Supervised Autoregressive Models. InProceedings of the 2022 International Conference on Management of Data(Philadelphia, PA, USA)(SIGMOD ’22). Association for Computing Machinery, New York, NY, USA, 1542–1555. doi:10.1145/3514221.3526168",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Geoffrey X. Yu, Ziniu Wu, Ferdi Kossmann, Tianyu Li, Markos Markakis, Amadou Ngom, Samuel Madden, and Tim Kraska. 2024. Blueprinting the Cloud: Unifying and Automatically Optimizing Cloud Data Infrastructures with BRAD. Proc. VLDB Endow.17, 11 (July 2024), 3629–3643. doi:10.14778/3681954.3682026",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Lixi Zhang, Chengliang Chai, Xuanhe Zhou, and Guoliang Li. 2022. LearnedSQLGen: Constraint-aware SQL Generation using Reinforcement Learning. InProceedings of the 2022 International Conference on Management of Data(Philadelphia, PA, USA)(SIGMOD ’22). Association for Computing Machinery, New York, NY, USA, 945–958. doi:10.1145/3514221. 3526155 3, No. 6 (SIGMOD), Article XXX. Publication date: Decem",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLSmith [ 1], SQLancer [ 2], and SQLStorm [ 28] focus on generating diverse queries for testing and debugging.",
+      "context_before": "haracteristics are shared. These typically include: (1) properties of SQL templates (e.g., the number of accessed tables and the distributions of query operators such as joins and aggregations), and (2) cost distributions of instantiated queries (e.g., the distributions of cardinalities, execution times, and CPU usages). This raises an important research direction: transforming high-level workload information into realistic and executable benchmarks. Recent methods have been proposed for generating SQL queries, but they struggle to produce customized queries that satisfy realistic constraints.",
+      "context_after": "However, these methods do not allow Authors’ Contact Information: Jiale Lao, Cornell University, Ithaca, New York, USA, jiale@cs.cornell.edu; Immanuel Trummer, Cornell University, Ithaca, New York, USA, itrummer@cornell.edu. Request permissions from permissions@acm.org. ©2025 Copyright held by the owner/author(s). Publication rights licensed to ACM. ACM 2836-6573/2025/12-ARTXXX https://doi.org/10.1145/XXXXXXX 3, No. 6 (SIGMOD), Article XXX. Publication date: December 2025.arXiv:2507.06192v2 [cs.DB] 2 Dec 2025 XXX:2 Jiale Lao and Immanuel Trummer users to control SQL templates or query costs",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 3093,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[ 1,2,28]",
+      "technique": "qpg",
+      "sentence": "SQLBarber relates to prior work on generating diverse SQL queries for testing and debugging [ 1,2,28].",
+      "context_before": "baselines. The remainder of this paper is organized as follows. We discuss related work in Section 2. We formally define the SQL workload generation problem in Section 3 and give an overview of SQLBarber in Section 4. Section 5 describes the customized SQL template generator, and Section 6 discusses the cost-aware query generator. We conduct extensive experiments to evaluate the performance, scalability, and robustness of SQLBarber with an ablation study, a cost analysis, and extensive further analysis in Section 7. We conclude in Section 8. 2 Related Work Diversity-Oriented Query Generation.",
+      "context_after": "SQLSmith [ 1] recursively and randomly expands 3, No. 6 (SIGMOD), Article XXX. Publication date: December 2025. XXX:4 Jiale Lao and Immanuel Trummer grammar rules while ensuring schema and type consistency. SQLancer [ 2] employs a feedbackguided test generation approach that aims to produce diverse query execution plans, based on the idea that exploring a wide range of plans helps reveal bugs. SQLStorm [ 28] directly prompts LLMs to generate SQL queries with a high temperature to increase diversity. While the aforementioned methods emphasize query diversity for testing without constraints on",
+      "section": "2 Related Work",
+      "page": 3,
+      "char_offset": 12116,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [ 2] employs a feedbackguided test generation approach that aims to produce diverse query execution plans, based on the idea that exploring a wide range of plans helps reveal bugs.",
+      "context_before": "-aware query generator. We conduct extensive experiments to evaluate the performance, scalability, and robustness of SQLBarber with an ablation study, a cost analysis, and extensive further analysis in Section 7. We conclude in Section 8. 2 Related Work Diversity-Oriented Query Generation.SQLBarber relates to prior work on generating diverse SQL queries for testing and debugging [ 1,2,28]. SQLSmith [ 1] recursively and randomly expands 3, No. 6 (SIGMOD), Article XXX. Publication date: December 2025. XXX:4 Jiale Lao and Immanuel Trummer grammar rules while ensuring schema and type consistency.",
+      "context_after": "SQLStorm [ 28] directly prompts LLMs to generate SQL queries with a high temperature to increase diversity. While the aforementioned methods emphasize query diversity for testing without constraints on SQL templates or query costs, SQLBarber integrates constraints on both templates and costs to turn high-level workload information into realistic, executable benchmarks. Constraint-Aware Query Generation.SQLBarber is also related to prior work on cost-constrained SQL query generation [ 4,24,43]. Prior work [ 4,24] uses the hill climbing algorithm to instantiate given SQL templates by adjusting",
+      "section": "2 Related Work",
+      "page": 4,
+      "char_offset": 12426,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:19:46Z",
+    "is_model_written": true,
+    "summary": "SQLBarber generates customised, realistic SQL workloads with large language models. Real queries are hard to obtain for privacy reasons and existing generators offer little customisation or ability to meet realistic constraints. SQLBarber provides a declarative interface, removes the need to write SQL templates by hand while accepting natural-language constraints, and adds a self-correction pipeline that profiles, refines and prunes templates by query cost. The authors open-source ten benchmarks built from Snowflake and Amazon Redshift statistics.",
+    "narrative": "SQLancer is cited as prior work on generating diverse queries for testing and debugging, with its query plan guidance described as feedback-guided generation aiming at diverse execution plans. SQLBarber's goal is realistic workloads rather than bug finding, so the two are related but not compared.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

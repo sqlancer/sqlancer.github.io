@@ -1,0 +1,654 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T17:23:59Z",
+  "paper": {
+    "id": "paper:doi:10.1109/icse43902.2021.00137",
+    "title": "Data-Oriented Differential Testing of Object-Relational Mapping Systems",
+    "authors": [
+      "T. Sotiropoulos",
+      "Stefanos Chaliasos",
+      "Vaggelis Atlidakis",
+      "Dimitris Mitropoulos",
+      "D. Spinellis"
+    ],
+    "year": 2021,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1109/icse43902.2021.00137",
+    "arxiv_id": null,
+    "s2_paper_id": "4bc8bd72ffa9bda2e3a7aef483008935a7a97656",
+    "url": "https://doi.org/10.1109/icse43902.2021.00137",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/icse43902.2021.00137",
+      "retrieved_at": "2026-09-08T17:23:59Z",
+      "chars": 74754,
+      "content_sha256": "sha256:e8d83720a8e72e972b1e09cf9a271ce27927c40e0d29f413244fb90a4a192847"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Random generation",
+        "start": 16913
+      },
+      {
+        "number": "A",
+        "title": "Schema Generation & Setup",
+        "start": 18726
+      },
+      {
+        "number": "B",
+        "title": "Abstract Query Generation",
+        "start": 21052
+      },
+      {
+        "number": "C",
+        "title": "Concretization of Abstract Queries",
+        "start": 29079
+      },
+      {
+        "number": "D",
+        "title": "Bug Detection",
+        "start": 36904
+      },
+      {
+        "number": "E",
+        "title": "Implementation Details",
+        "start": 38141
+      },
+      {
+        "number": "A",
+        "title": "Experimental Setup",
+        "start": 40076
+      },
+      {
+        "number": "B",
+        "title": "RQ1: New Bugs Found",
+        "start": 42005
+      },
+      {
+        "number": "C",
+        "title": "RQ2: Characteristics of Discovered Bugs",
+        "start": 43244
+      },
+      {
+        "number": "D",
+        "title": "RQ3: Effectiveness of Solver-Based Data Generation",
+        "start": 50073
+      },
+      {
+        "number": "E",
+        "title": "Discussion & Threats to Validity",
+        "start": 53130
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "A. Torres, R. Galante, M. S. Pimenta, and A. J. B. Martins, “Twenty years of object-relational mapping: A survey on patterns, solutions, and their implications on application design,” Information and Software Technology, vol. 82, pp. 1 - 18, 2017. [Online]. Available: http://www.sciencedirect.com/science/article/pii/S0950584916301859",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "T.-H. Chen, W. Shang, Z. M. Jiang, A. E. Hassan, M. Nasser, and P. Flora, “Detecting performance anti-patterns for applications developed using object-relational mapping,” in Proceedings of the 36th International Conference on Software Engineering, ser. ICSE 2014. New York, NY, USA: Association for Computing Machinery, 2014, p. 1001-1012. [Online]. Available: https ://doi.org/10.1145/2568225. 2568",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "K. Roebuck, Object-Relational M apping (ORM): High-Impact Strategies-What You Need to Know: Definitions, Adoptions, Impact, Benefits, Maturity, Vendors. Emereo Publishing, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "C. Bauer, G. King, and G. Gregory, Java Persistence with Hibernate, 2nd ed. USA: Manning Publications Co., 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "D. Maier, Representing Database Programs as Objects. New York, NY, USA: Association for Computing Machinery, 1990, p. 377-386. [Online]. Available: https://doi.org/10.1145/101620.101642",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "M. Eltsufin, “Bringing Hibernate ORM to cloud Spanner for database adoption,” https://cl oud.google.com/blog/products/databases/ bringing-hibernate-ormcloudspanner-databaseadoption, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "T. Chen, W. Shang, J. Yang, A. E. Hassan, M. W. Godfrey, M. Nasser, and P. Flora, “An empirical study on the practice of maintaining ObjectRelational Mapping code in Java systems,” in 2016 IEEE/ACM 13th Working Conference on Mining Software Repositories (MSR), 2016, pp. 165-176.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "M. Bayer, “SQLAlchemythe database toolkit for Python,” https://www. sqlalchemy.org/, 2020, [Online; accessed 29-July-2020].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "D. S. Foundation, “The web framework for perfectionists with deadlines,” https://www.dja ngoproject.com/, 2 020, [Online; accessed 29-July2020].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "J. Yang, P. Subramaniam, S. Lu, C. Yan, and A. Che ung, “How ^¿n o tj^ to structure your database-backed web applications: A study of performance bugs in the wild,” in Proceedings of the 40th International Conference on Software Engineering, ser. ICSE ’18. New York, NY, USA: Association for Computing Machinery, 2018, p. 800-810. [Online]. Available: https ://doi.org/10.1145/3180155.3180194",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "D. S. F oundation, “Django issues,” https ://code.dja ngoproject.com/ query, 2020, [Online; accessed 29-July-2020].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "A. Viswa, “select_for _update() with ”of” uses wrong tables from (multilevel) model inheritance,” https://code.dja ngoproject.com /ticket/ 31246, 2020, [Online; accessed 29-July-2020].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "S. Bank, “negated EXISTS result type not bool with SQLite dialect,” https://git hub.com/sqlalchemy/sqlalchemy/issues/3682, 2016, [Online; accessed 29-July-2020].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "“CVE- 2019-7164,” https:// nvd.nist.gov/vuln/deta il/CVE- 2019-7164, 2019, [Online; accessed 29-July-2020].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "“CVE- 2020-9402,” https:// nvd.nist.gov/vuln/deta il/CVE- 2020-9402, 2020, [Online; accessed 29-July-2020].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "X. Yang, Y. Chen, E. Eide, and J. Regehr, “Finding and understanding bugs in C compilers,” in Proceedings of the 32nd ACMSIGPLAN Conference on Programming Language Design and Implementation, ser. PLDI ’11. New York, NY, USA: Association for Computing Machinery, 2011, p. 283-294. [Online]. Available: https ://doi.org/10. 1145/199 3498.1993532",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Y. Chen, T. Su, C. Sun, Z. Su, and J. Zhao, “Coveragedirected differential testing of JVM implementations,” SIGPLAN Not., vol. 51, no. 6, p. 85-99, Jun. 2016. [Online]. Available: https://doi.org/10.1145/2980983.2908095",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Y. Chen, T. Su, and Z. Su, “Deep differential testing of JVM implementations,” in Proceedings of the 41st International Conference on Software Engineering, ser. ICSE ’19. IEEE Press, 2019, p. 1257-1268. [Online]. Available: https ://doi.org/10.1109/ICSE.2019. 00127",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "C. Lidbury, A. Lascu, N. C hong, and A. F. Donaldson, “Many-core compiler fuzzing,” SIGPLAN Not., vol. 50, no. 6, p. 65-76, Jun. 2015. [Online]. Available: https://doi.org/10. 1145/2813885.2737986",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "C. Sun, V. Le, and Z. Su, “Finding and analyzing compiler warning defects,” in Proceedings of the 38th Internati onal Conference on Software Engineering, ser. ICSE ’16. New York, NY, USA:Association for Computing Machinery, 2016, p. 203-213. [Online]. Available: https://doi.org/10.1145/2884781.2884879",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). USENIX Association, Nov. 2020, pp. 667-682. [Online]. Available: https ://www.usenix.org/conference/ osdi20/presentation/rigger",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 22,
+      "text": "W. M. McKeeman, “Differential testing for software,” Digital Technical Journal, vol. 10, no. 1, pp. 100-107, 1998.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "D. S. Foundation, “Integrating Dj ango with a legacy database,” https :// docs.djangoproject.com/en/3.0/howto/legacy-databases/, 2020, [Online; accessed 29- July-2020].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "P. Haller, A. Prokopec, H. M iller, V. Klang, R. K uhn, and V. Jovanovic, “Futures and promises,” https://docs.scala-lang.org/overviews/ core/futures.html, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "L. de Moura and N. Bjprner, “Z3: An efficient SMT solver,” in Tools and Algorithms for the Construction and Analysis of Systems, C. R. Ramakrishnan and J. Rehof, Eds. Berlin, Heidelberg: Springer Berlin Heidelberg, 2008, pp. 337-340.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "V. Atlidakis, J. Andrus, R. Geambasu, D. Mitr opoulos, and J. Nieh, “POSIX abstractions in modern operating systems: The old, the new, and the missing,” in Proceedings of the Eleventh European Conference on Computer Systems, ser. EuroSys ’16. New York, NY, USA: Association for Computing Machinery, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. New York, NY, USA: Association for Computing Machinery, 2020, p. 1140-1152. [Online]. Available: https ://doi.org/10.1145/3368089. 3",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 28,
+      "text": "Z. Davar and Handoko, “Refactoring object-relational database applications by applying transformation rules to develop better performance,” in Proceedings of the 16th International Conference on Information Integration and Web-Based Applications & Services, ser. ii WAS ’14. New York, NY, USA: Association for Computing Machinery, 2014, p. 283-288. [Online]. Available: https ://doi.org/10. 1145/268 4",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "R. Singh, C.-P. Bezemer, W. Shang, and A. E. Hassan, “Optimizing the performance-related configurations of object-relational mapping frameworks using a multi-objective genetic algorithm,” in Proceedings of the 7th ACM/SPEC on International Conference on Performance Engineering, ser. ICPE ’16. New York, NY, USA: Association for Computing Machinery, 2016, p. 309-320. [Online]. Available: https://doi",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "D. R. Slutz, “Massive stochastic testing of SQL,” in Proceedings of the 24rd International Conference on Very Large Data Bases, ser. VLDB ’98. San Francisco, CA, USA: Morgan Kaufmann Publishers Inc., 1998, p. 618- 622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "N. Bruno, S. Chaudhuri, and D. Thomas, “Generating queries with cardinality constraints for DBMS testing,” IEEE Transactions on Knowledge and Data Engineering, vol. 18, no. 12, pp. 1721-1725, 2006.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "H. Bati, L. Giakoumakis, S. Herbert, and A. Surna, “A genetic approach for random testing of database systems,” in Proceedings of the 33rd International Conference on Very Large Data Bases, ser. VLDB ’07. VLDB Endowment, 2007, p. 1243-1251.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "C. Mishra, N. Koudas, and C. Zuzarte, “Generating targeted queries for database testing,” in Proceedings of the 2008 ACMSIGMOD International Conference on Management of Data, ser. SIGMOD ’08. New York, NY, USA: Association for Computing Machinery, 2008, p. 499-510. [Online]. Available: https ://doi.org/10.1145/1376616.1376668",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "S. Abdul Khalek and S. Khurshid, “Automated SQL query generation for systematic testing of database engines,” in Proceedings of the IEEE/ACM International Conference on Automated Software Engineering, ser. ASE ’10. New York, NY, USA: Association for Computing Machinery, 2010, p. 329-332. [Online]. Available: https://doi.org/10.1145/1858996.1859063",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "A. Seltenreich, “SQLsmith: A random SQL query generator,” https :// github.com/anse1/sqlsmith, 2020, [Online; accessed 29-July-2020].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "J. Jung, H. Hu, J. Arulraj, T. Kim, and W. Kang, “APOLLO: Automatic detection and diagnosis of performance regressions in database systems,” Proc. VLDB E ndow., vol. 13, no. 1, p. 57-70, Sep. 2019. [Online]. Available: https ://doi.org/10.14778/3357377.3357382 1546",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "S. A bdul Khalek, B. Elkarablieh, Y. O. Laleye, and S. Khurshid, “Query-aware test generation using a relational constraint solver,” in 2008 23rd IEEE/ACM Internati onal Conference on Automated Software Engineering, 2008, pp. 238-247.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proc. ACM Program. Lang., vol. 4, no. OOPSLA, Nov. 2020. [Online]. Available: https://doi.org/10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 39,
+      "text": "T. Petsios, A. Tang, S. Stolfo, A. D. Keromytis, and S. Jana, “NEZHA: Efficient domain-independent differential testing,” in 2017 IEEE Symposium on Security and Privacy (SP), 2017, pp. 615-632.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "E. J. Weyuker, “On testing non-testable programs,” The Computer Journal, vol. 25, no. 4, pp. 465- 470, 1982.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "C. Klinger, M. Christakis, and V. Wüstholz, “Differentially testing soundness and precision of program analyzers,” in Proceedings of the 28th ACMSIGSOFT International Symposium on Software Testing and Analysis, ser. ISSTA 2019. New York, NY, USA: Association for Computing Machinery, 2019, p. 239-250. [Online]. Available: https://doi.org/10.1145/3293882.3330553",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "D. Lehmann and M. Pradel, “Feedback-directed differential testing of interactive debuggers,” in Proceedings of the 2018 26th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ser. ESEC/FSE 2018. New York, NY, USA: Association for Computing Machinery, 2018, p. 610-620. [Online]. Available: https ://doi.org/10.1145/3236024.3236037",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "T. Kapus and C. Cadar, “Automatic testing of symbolic execution engines via program generation and differential testing,” in Proceedings of the 32nd IEEE/ACM International Conference on Automated Software Engineering, ser. ASE 2017. IEEE Press, 2017, p. 590-600.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "S. Dutta, O. Le gunsen, Z. Huang, and S. Misailovic, “Testing probabilistic programming systems,” in Proceedings of the 2018 26th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ser. ESEC/FSE 2018. New York, NY, USA: Association for Computing Machinery, 2018, p. 574- 586. [Online]. Available: https: //doi.org/10.1145/3236024.3",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "S. Srisaka okul, Z. Wu, A. Astorga, O. Alebiosu, and T. Xie, “Mu ltipleimplementation testing of supervised learning software,” in Workshops at the Thirty-Second AAAI Conference on Ar tificial Intelligence, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "M. Sela kovic, M. Pradel, R. Karim, and F. Tip, “Test generation for higher-order functions in dynamic languages,” Proc. ACM Program. Lang., vol. 2, no. OOPSLA, Oct. 2018. [Online]. Available: https://doi.org/10.1145/3276531",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Y. Chen and Z. Su, “Guided differential testing of certificate validation in SSL/TLS implementations,” ser. ESEC/FSE 2015. New York, NY, USA: Association for Computing Machinery, 2015, p. 793-804. [Online]. Available: https://doi.org/10.1145/2786805.2786835",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "P. Godefroid, D. Lehmann, and M. Polishc huk, “Differential regression testing for REST APIs,” in Proceedings of the 29th ACMSIGSOFT International Symposium on Software Testing and Analysis, ser. ISSTA 2020. New York, NY, USA: Association for Computing Machinery, 2020, p. 312-323. [Online]. Available: https ://doi.org/10.1145/3395363. 3397374 1547",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 21,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). USENIX Association, Nov. 2020, pp. 667-682. [Online]. Available: https ://www.usenix.org/conference/ osdi20/presentation/rigger",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 27,
+      "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. New York, NY, USA: Association for Computing Machinery, 2020, p. 1140-1152. [Online]. Available: https ://doi.org/10.1145/3368089. 3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 38,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proc. ACM Program. Lang., vol. 4, no. OOPSLA, Nov. 2020. [Online]. Available: https://doi.org/10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[21]",
+      "technique": "pqs",
+      "sentence": "Although DBMSs share common functionality, they differ significantly from each other [21].",
+      "context_before": "s and runs the SQL query shown on lines 7-11. This SQL query is invalid on MySQL and the Django program crashes with a django.db.utils.ProgrammingError: (1064, “ Error in SQL syntax; check the manual that corresponds to y our MySQL server version for the right syntax to use near ’UNION’” ). This bug was detected by our approach, and was confirmed by the Django developers. When the Django code shown in Figure 2 is run on another DBMS, such as SQLite or PostgreSQL, Django produces a valid SQL query. Such inconsistencies indicate that ORM bugs may appear (or not) depending on the underlying DBMS.",
+      "context_after": "Therefore, an ORM needs to abstract away such differences and take care of running the same ORM code on different DBMSs reliably. Unfortunately, this complicates the design of ORMs: bugs may occur when an ORM fails to produce a valid SQL query with respect to a certain DBMS. Bug in peewee. Figure 3 shows another ORM bug detected by our approach. On lines 1-3, the code creates a simple query using the peewee ORM. The query defines a simple 1536 1 expr = (1 + T.col) 2 squared = (expr * expr) 3 T.select(fn.sum(expr), fn.avg(squared)).all() 4 // Generated SQL 5 SELECT SUM(1 + \"t\".\"col\"), 6 AVG(",
+      "section": null,
+      "page": 2,
+      "char_offset": 10107,
+      "cited_reference": {
+        "number": 21,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). USENIX Association, Nov. 2020, pp. 667-682. [Online]. Available: https ://www.usenix.org/conference/ osdi20/presentation/rigger",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[21]",
+      "technique": "pqs",
+      "sentence": "To demonstrate the effectiveness of our solver-based data generation approach and its suitability for differential testing, we compare it against a simplistic approach that populates the database with random records a-priori [21], [27], i.",
+      "context_before": "he outputs of ORMs, it is important that ORMs return non-empty results for the given queries. Empty results indicate that the corresponding query was unsatisfied with respect to the data inserted to the database. Empty results can potentially hide logic errors that otherwise would be uncovered if the corresponding ORMs could get some data from the database and we were able to notice differences in their results. 1543 50 40 SO Z0 10 0 pcJ^ -tè i0' &ST *sr Data Generation Strategy Fig. 10: Percentage of the unsatisfied queries per data generation strategy using a sample of 20 testing sessions.",
+      "context_after": "e., it inserts data while setting up the tables, without considering the constraints of the generated queries. We used CYNTHIA to spawn 20 testing sessions. For each testing session, we generated 100 queries and compared the results of ORMs as usual. At the end of each testing session, we measured in how many queries the ORMs returned empty results. We then replayed each testing session, using a naive data generation strategy, and tried out different settings: generating 50 random records, 100, 300, 500 and finally 1000. Figure 10 illustrates the comparison results. The y-axis shows the percen",
+      "section": "D RQ3: Effectiveness of Solver-Based Data Generation",
+      "page": 10,
+      "char_offset": 50775,
+      "cited_reference": {
+        "number": 21,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). USENIX Association, Nov. 2020, pp. 667-682. [Online]. Available: https ://www.usenix.org/conference/ osdi20/presentation/rigger",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "[21] proposed the Pivoted Query Synthesis (PQS) technique for testing database engines.",
+      "context_before": "differential testing to detect logic errors beyond crashes or regression bugs. Kh alek et al. [37], [34] followed a solver-based approach for testing DBMSs. Their work employs a relational constraint solver to generate valid database records with respect to a given SQL query and database schema. Besides populating the database, their method also determines the expected results of an SQL query and the authors use this oracle to find bugs. We also use an SMT-solver to populate the database, but we specify the test oracle by adopting a differential testing approach. More r ecently, Rigger et al.",
+      "context_after": "PQS generates SQL queries so that they fetch a specific record from the database. In this way, PQS forms the test oracle: failing to fetch the expected record reveals a potential bug in DBMS. Unlike this work, our approach adopts differential testing for determining the oracle. Also, beyond reasoning about a single record, our approach is able to detect bugs involving operations on result sets (e.g., aggregate functions, sorting, distinct). In an attempt to find optimization bugs in database systems, their subsequent work introduced a metamorphic testing technique called Non-Optimizing Refere",
+      "section": "E Discussion & Threats to Validity",
+      "page": 11,
+      "char_offset": 58777,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS generates SQL queries so that they fetch a specific record from the database.",
+      "context_before": "et al. [37], [34] followed a solver-based approach for testing DBMSs. Their work employs a relational constraint solver to generate valid database records with respect to a given SQL query and database schema. Besides populating the database, their method also determines the expected results of an SQL query and the authors use this oracle to find bugs. We also use an SMT-solver to populate the database, but we specify the test oracle by adopting a differential testing approach. More r ecently, Rigger et al. [21] proposed the Pivoted Query Synthesis (PQS) technique for testing database engines.",
+      "context_after": "In this way, PQS forms the test oracle: failing to fetch the expected record reveals a potential bug in DBMS. Unlike this work, our approach adopts differential testing for determining the oracle. Also, beyond reasoning about a single record, our approach is able to detect bugs involving operations on result sets (e.g., aggregate functions, sorting, distinct). In an attempt to find optimization bugs in database systems, their subsequent work introduced a metamorphic testing technique called Non-Optimizing Reference Engine Construction (NoREC) [27]. At a high-level, NoREC applies a semanticspr",
+      "section": "E Discussion & Threats to Validity",
+      "page": 11,
+      "char_offset": 58865,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "In this way, PQS forms the test oracle: failing to fetch the expected record reveals a potential bug in DBMS.",
+      "context_before": "mploys a relational constraint solver to generate valid database records with respect to a given SQL query and database schema. Besides populating the database, their method also determines the expected results of an SQL query and the authors use this oracle to find bugs. We also use an SMT-solver to populate the database, but we specify the test oracle by adopting a differential testing approach. More r ecently, Rigger et al. [21] proposed the Pivoted Query Synthesis (PQS) technique for testing database engines. PQS generates SQL queries so that they fetch a specific record from the database.",
+      "context_after": "Unlike this work, our approach adopts differential testing for determining the oracle. Also, beyond reasoning about a single record, our approach is able to detect bugs involving operations on result sets (e.g., aggregate functions, sorting, distinct). In an attempt to find optimization bugs in database systems, their subsequent work introduced a metamorphic testing technique called Non-Optimizing Reference Engine Construction (NoREC) [27]. At a high-level, NoREC applies a semanticspreserving transformation to a given SQL query in way that the various optimizations performed by the DBMS are d",
+      "section": "E Discussion & Threats to Validity",
+      "page": 11,
+      "char_offset": 58947,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "technique",
+      "surface": "Non-Optimizing Reference Engine Construction",
+      "technique": "norec",
+      "sentence": "In an attempt to find optimization bugs in database systems, their subsequent work introduced a metamorphic testing technique called Non-Optimizing Reference Engine Construction (NoREC) [27].",
+      "context_before": "ting a differential testing approach. More r ecently, Rigger et al. [21] proposed the Pivoted Query Synthesis (PQS) technique for testing database engines. PQS generates SQL queries so that they fetch a specific record from the database. In this way, PQS forms the test oracle: failing to fetch the expected record reveals a potential bug in DBMS. Unlike this work, our approach adopts differential testing for determining the oracle. Also, beyond reasoning about a single record, our approach is able to detect bugs involving operations on result sets (e.g., aggregate functions, sorting, distinct).",
+      "context_after": "At a high-level, NoREC applies a semanticspreserving transformation to a given SQL query in way that the various optimizations performed by the DBMS are disabled.Finally, NoREC compares the results of the original and the resulting queries for mismatches. In their most recent work, they propose Ternary Logic Partitioning (TLP) [38]. Given an SQL query, TLP derives multiple queries that compute a partial result of the initial query, and then combines the results of each individual query using a UNION operation. If the result of the combined query does not match that of the initial one, then a",
+      "section": "E Discussion & Threats to Validity",
+      "page": 11,
+      "char_offset": 59310,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "At a high-level, NoREC applies a semanticspreserving transformation to a given SQL query in way that the various optimizations performed by the DBMS are disabled.",
+      "context_before": "ey fetch a specific record from the database. In this way, PQS forms the test oracle: failing to fetch the expected record reveals a potential bug in DBMS. Unlike this work, our approach adopts differential testing for determining the oracle. Also, beyond reasoning about a single record, our approach is able to detect bugs involving operations on result sets (e.g., aggregate functions, sorting, distinct). In an attempt to find optimization bugs in database systems, their subsequent work introduced a metamorphic testing technique called Non-Optimizing Reference Engine Construction (NoREC) [27].",
+      "context_after": "Finally, NoREC compares the results of the original and the resulting queries for mismatches. In their most recent work, they propose Ternary Logic Partitioning (TLP) [38]. Given an SQL query, TLP derives multiple queries that compute a partial result of the initial query, and then combines the results of each individual query using a UNION operation. If the result of the combined query does not match that of the initial one, then a bug is found. TLP is suitable for testing the implementation of the WHERE, HAVING, DISTI NCT clauses, or aggregate functions. All these previous approaches are tai",
+      "section": "E Discussion & Threats to Validity",
+      "page": 11,
+      "char_offset": 59502,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Finally, NoREC compares the results of the original and the resulting queries for mismatches.",
+      "context_before": "this work, our approach adopts differential testing for determining the oracle. Also, beyond reasoning about a single record, our approach is able to detect bugs involving operations on result sets (e.g., aggregate functions, sorting, distinct). In an attempt to find optimization bugs in database systems, their subsequent work introduced a metamorphic testing technique called Non-Optimizing Reference Engine Construction (NoREC) [27]. At a high-level, NoREC applies a semanticspreserving transformation to a given SQL query in way that the various optimizations performed by the DBMS are disabled.",
+      "context_after": "In their most recent work, they propose Ternary Logic Partitioning (TLP) [38]. Given an SQL query, TLP derives multiple queries that compute a partial result of the initial query, and then combines the results of each individual query using a UNION operation. If the result of the combined query does not match that of the initial one, then a bug is found. TLP is suitable for testing the implementation of the WHERE, HAVING, DISTI NCT clauses, or aggregate functions. All these previous approaches are tailored to testing DBMSs, i.e., they aim to find DBMS-specific bugs (e.g., opti-mization bugs,",
+      "section": "E Discussion & Threats to Validity",
+      "page": 11,
+      "char_offset": 59665,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "Ternary Logic Partitioning",
+      "technique": "tlp",
+      "sentence": "In their most recent work, they propose Ternary Logic Partitioning (TLP) [38].",
+      "context_before": "reasoning about a single record, our approach is able to detect bugs involving operations on result sets (e.g., aggregate functions, sorting, distinct). In an attempt to find optimization bugs in database systems, their subsequent work introduced a metamorphic testing technique called Non-Optimizing Reference Engine Construction (NoREC) [27]. At a high-level, NoREC applies a semanticspreserving transformation to a given SQL query in way that the various optimizations performed by the DBMS are disabled.Finally, NoREC compares the results of the original and the resulting queries for mismatches.",
+      "context_after": "Given an SQL query, TLP derives multiple queries that compute a partial result of the initial query, and then combines the results of each individual query using a UNION operation. If the result of the combined query does not match that of the initial one, then a bug is found. TLP is suitable for testing the implementation of the WHERE, HAVING, DISTI NCT clauses, or aggregate functions. All these previous approaches are tailored to testing DBMSs, i.e., they aim to find DBMS-specific bugs (e.g., opti-mization bugs, bugs associated with the evaluation of WHERE clauses). ORM systems differ from",
+      "section": "E Discussion & Threats to Validity",
+      "page": 11,
+      "char_offset": 59758,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Given an SQL query, TLP derives multiple queries that compute a partial result of the initial query, and then combines the results of each individual query using a UNION operation.",
+      "context_before": "operations on result sets (e.g., aggregate functions, sorting, distinct). In an attempt to find optimization bugs in database systems, their subsequent work introduced a metamorphic testing technique called Non-Optimizing Reference Engine Construction (NoREC) [27]. At a high-level, NoREC applies a semanticspreserving transformation to a given SQL query in way that the various optimizations performed by the DBMS are disabled.Finally, NoREC compares the results of the original and the resulting queries for mismatches. In their most recent work, they propose Ternary Logic Partitioning (TLP) [38].",
+      "context_after": "If the result of the combined query does not match that of the initial one, then a bug is found. TLP is suitable for testing the implementation of the WHERE, HAVING, DISTI NCT clauses, or aggregate functions. All these previous approaches are tailored to testing DBMSs, i.e., they aim to find DBMS-specific bugs (e.g., opti-mization bugs, bugs associated with the evaluation of WHERE clauses). ORM systems differ from database engines, and suffer from other types of bugs. Differential Testing. Differential testing [22], [39] is a generally-applicable testing technique that aims to find bugs in so",
+      "section": "E Discussion & Threats to Validity",
+      "page": 11,
+      "char_offset": 59837,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP is suitable for testing the implementation of the WHERE, HAVING, DISTI NCT clauses, or aggregate functions.",
+      "context_before": "vel, NoREC applies a semanticspreserving transformation to a given SQL query in way that the various optimizations performed by the DBMS are disabled.Finally, NoREC compares the results of the original and the resulting queries for mismatches. In their most recent work, they propose Ternary Logic Partitioning (TLP) [38]. Given an SQL query, TLP derives multiple queries that compute a partial result of the initial query, and then combines the results of each individual query using a UNION operation. If the result of the combined query does not match that of the initial one, then a bug is found.",
+      "context_after": "All these previous approaches are tailored to testing DBMSs, i.e., they aim to find DBMS-specific bugs (e.g., opti-mization bugs, bugs associated with the evaluation of WHERE clauses). ORM systems differ from database engines, and suffer from other types of bugs. Differential Testing. Differential testing [22], [39] is a generally-applicable testing technique that aims to find bugs in software implementations by addressing the oracle problem [40]. Differential testing has been successfully applied to various domains, most notably compilers and runtime systems [16], [19], [17], [18], [20]. Fol",
+      "section": "E Discussion & Threats to Validity",
+      "page": 11,
+      "char_offset": 60115,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T14:25:35Z",
+    "is_model_written": true,
+    "summary": "Cynthia is, as far as the authors know, the first systematic approach to testing Object-Relational Mapping systems. It generates random relational schemas, sets up the corresponding databases, and queries them through the APIs of the ORMs under test. Because ORMs share no common input language, queries are written in an abstract query language and translated into concrete executable ORM queries for differential comparison. A solver-based approach produces records targeted at each query's constraints. Cynthia found 28 bugs in five popular ORMs.",
+    "narrative": "All three SQLancer oracles are described in detail in the discussion -- PQS forming its oracle by fetching a specific record, NoREC's semantics-preserving transformation, TLP deriving partial-result queries -- as the DBMS-level precedent for Cynthia's own differential testing one layer above.",
+    "roles": {
+      "M1": "definition",
+      "M2": "definition",
+      "M3": "definition",
+      "M4": "definition",
+      "M5": "definition",
+      "M6": "definition",
+      "M7": "definition",
+      "M8": "definition",
+      "M9": "definition",
+      "M10": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

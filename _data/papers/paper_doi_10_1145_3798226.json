@@ -1,0 +1,589 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:29:26Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3798226",
+    "title": "Metamorphic Testing for Infrastructure-as-Code Engines",
+    "authors": [
+      "David Spielmann",
+      "George Zakhour",
+      "Dominik Arnold",
+      "Matteo Biagiola",
+      "Roland Meier",
+      "Guido Salvaneschi"
+    ],
+    "year": 2026,
+    "venue": "Proceedings of the ACM on Programming Languages",
+    "doi": "10.1145/3798226",
+    "arxiv_id": null,
+    "s2_paper_id": "3a205ccef9fb1acd547d866fa36a98c549d88344",
+    "url": "https://doi.org/10.1145/3798226",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3798226",
+      "retrieved_at": "2026-09-09T01:29:26Z",
+      "chars": 113311,
+      "content_sha256": "sha256:02c06451199c9725a74d59421c3f0bc52d61d49aacd32d397bd105f08e2250b5"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 29,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2653
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 14076
+      },
+      {
+        "number": "2.1",
+        "title": "Metamorphic Testing",
+        "start": 14244
+      },
+      {
+        "number": "2.2",
+        "title": "Infrastructure as Code",
+        "start": 16829
+      },
+      {
+        "number": "2.3",
+        "title": "E-Graphs",
+        "start": 21134
+      },
+      {
+        "number": "4.1",
+        "title": "Design Goals and Key Insights",
+        "start": 29442
+      },
+      {
+        "number": "4.2",
+        "title": "Overview of EMIaC",
+        "start": 33710
+      },
+      {
+        "number": "4.3",
+        "title": "Test Input Generation",
+        "start": 34409
+      },
+      {
+        "number": "4.4",
+        "title": "Metamorphic Transformation via E-Graphs",
+        "start": 37991
+      },
+      {
+        "number": "4.5",
+        "title": "Test Execution and Oracles",
+        "start": 49330
+      },
+      {
+        "number": "4.6",
+        "title": "Formalism",
+        "start": 51004
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Jon Ayerdi, Valerio Terragni, Gunel Jahangirova, Aitor Arrieta, and Paolo Tonella. 2024. GenMorph: Automatically Generating Metamorphic Relations via Genetic Programming. IEEE Trans. Software Eng. 50, 7 (2024), 1888–1900. doi:10.1109/TSE.2024.3407840",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Haniel Barbosa, Clark Barrett, Martin Brain, Gereon Kremer, Hanna Lachnitt, Makai Mann, Abdalrhman Mohamed, Mudathir Mohamed, Aina Niemetz, Andres Nötzli, et al .2022. cvc5: A versatile and industrial-strength SMT solver. In International Conference on Tools and Algorithms for the Construction and Analysis of Systems. Springer, 415–442.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Earl T. Barr, Mark Harman, Phil McMinn, Muzammil Shahbaz, and Shin Yoo. 2015. The Oracle Problem in Software Testing: A Survey. IEEE Trans. Software Eng. 41, 5 (2015), 507–525. doi:10.1109/TSE.2014.2372785",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Roberto Bruttomesso, Edgar Pek, Natasha Sharygina, and Aliaksei Tsitovich. 2010. The opensmt solver. In International Conference on TOOLS and Algorithms for the Construction and Analysis of Systems. Springer, 150–153.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Christoph Bühler, David Spielmann, Roland Meier, and Guido Salvaneschi. 2025. TerraDS: A Dataset for Terraform HCL Programs. In Proceedings of the IEEE/ACM 22nd International Conference on Mining Software Repositories (MSR) (Ottawa, Canada) (MSR ’25). IEEE, 5 pages.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Cristian Cadar, Daniel Dunbar, and Dawson Engler. 2008. KLEE: unassisted and automatic generation of high-coverage tests for complex systems programs. In Proceedings of the 8th USENIX Conference on Operating Systems Design and Implementation (San Diego, California) (OSDI’08). USENIX Association, USA, 209–224.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "David Cao, Rose Kunkel, Chandrakana Nandi, Max Willsey, Zachary Tatlock, and Nadia Polikarpova. 2023. babble: Learning Better Abstractions with E-Graphs and Anti-unification. Proc. ACM Program. Lang. 7, POPL, Article 14 (Jan. 2023), 29 pages. doi:10.1145/3571207",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Nazanin Bayati Chaleshtari, Fabrizio Pastore, Arda Goknil, and Lionel C. Briand. 2023. Metamorphic Testing for Web System Security. IEEE Trans. Software Eng. 49, 6 (2023), 3430–3471. doi:10.1109/TSE.2023.3256322",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Checkov by Prisma Cloud. 2025. Checkov. https://www.checkov.io/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "T.Y. Chen, S.C. Cheung, and S.M. Yiu. 1998. Metamorphic testing: A new approach for generating next test cases. Technical Report HKUST-CS98-01. Department of Computer Science, The Hong Kong University of Science and Technology, Hong Kong. https://arxiv.org/abs/2002.12543 Technical Report, arXiv:2002.12543.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Henry Coles, Thomas Laurent, Christopher Henard, Mike Papadakis, and Anthony Ventresque. 2016. PIT: a practical mutation testing tool for Java (demo). In Proceedings of the 25th International Symposium on Software Testing and Analysis (Saarbrücken, Germany) (ISSTA 2016). Association for Computing Machinery, New York, NY, USA, 449–452. doi:10.1145/2931037.2948707",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Pulumi Corporation. 2023. Resources deleted for no apparent reason. GitHub issue #2593, pulumi/pulumi-aws. https://github.com/pulumi/pulumi-aws/issues/2593",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Progress Software Corporation. 2025. Chef Documentation. https://docs.chef.io Accessed: 2025-02-25.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Samuel Coward, Theo Drane, and George A Constantinides. 2024. Constraint-Aware E-Graph Rewriting for Hardware Performance Optimization. IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Leonardo De Moura and Nikolaj Bjørner. 2007. Efficient E-matching for SMT solvers. In Automated Deduction–CADE-21: 21st International Conference on Automated Deduction Bremen, Germany, July 17-20, 2007 Proceedings 21. Springer, 183–198.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Leonardo De Moura and Nikolaj Bjørner. 2008. Z3: an efficient SMT solver. In Proceedings of the Theory and Practice of Software, 14th International Conference on Tools and Algorithms for the Construction and Analysis of Systems (Budapest, Hungary) (TACAS’08/ETAPS’08). Springer-Verlag, Berlin, Heidelberg, 337–340.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "R.A. DeMillo, R.J. Lipton, and F.G. Sayward. 1978. Hints on Test Data Selection: Help for the Practicing Programmer. Computer 11, 4 (1978), 34–41. doi:10.1109/C-M.1978.218136",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "David Detlefs, Greg Nelson, and James B. Saxe. 2005. Simplify: a theorem prover for program checking. J. ACM 52, 3 (May 2005), 365–473. doi:10.1145/1066100.1066102 Proc. ACM Program. Lang., Vol. 10, No. OOPSLA1, Article 118. Publication date: April 2026. Metamorphic Testing for Infrastructure-as-Code Engines 118:27",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Georgios-Petros Drosos, Thodoris Sotiropoulos, Georgios Alexopoulos, Dimitris Mitropoulos, and Zhendong Su. 2024. When Your Infrastructure Is a Buggy Program: Understanding Faults in Infrastructure as Code Ecosystems. Proc. ACM Program. Lang. 8, OOPSLA2, Article 359 (Oct. 2024), 31 pages. doi:10.1145/3689799",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Chris Fallin. 2023. ægraphs: Acyclic E-graphs for Efficient Optimization in a Production Compiler. In EGRAPHS Workshop. https://pldi23.sigplan.org/details/egraphs-2023-papers/2/-graphs-Acyclic-E-graphs-for-Efficient-Optimizationin-a-Production-Compiler Invited Talk.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Kate Fazzini. [n. d.]. A Technical Slip-up Exposes Cloud Collaboration Risks. https://www.wsj.com/articles/a-technicalslip-up-exposes-cloud-collaboration-risks-1497353313. Accessed: 2025-05-20.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Firefly. 2025. The State of IaC 2025. https://www.firefly.ai/state-of-iac-2025 Accessed: 2025-10-07.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Gordon Fraser and Andrea Arcuri. 2014. A Large-Scale Evaluation of Automated Unit Test Generation Using EvoSuite. ACM Trans. Softw. Eng. Methodol. 24, 2, Article 8 (Dec. 2014), 42 pages. doi:10.1145/2685612",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Bernard A. Galler and Michael J. Fisher. 1964. An improved equivalence algorithm. Commun. ACM 7, 5 (May 1964), 301–303. doi:10.1145/364099.364331",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Google. 2025. Go Coverage Profiling. https://go.dev/doc/build-cover. Accessed 2025-09-15.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Google. 2025. The Go Programming Language. https://go.dev/. Accessed 2025-09-15.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Mark Harman and Phil McMinn. 2009. A theoretical and empirical study of search-based testing: Local, global, and hybrid search. IEEE Transactions on Software Engineering 36, 2 (2009), 226–247.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Mark Harman, Jillian Ritchey, Inna Harper, Shubho Sengupta, Ke Mao, Abhishek Gulati, Christopher Foster, and Hervé Robert. 2025. Mutation-Guided LLM-based Test Generation at Meta. Association for Computing Machinery, New York, NY, USA, 180–191. https://doi.org/10.1145/3696630.3728544",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "HashiCorp. 2020. Cycle error when removing a resource along with create_before_destroy. https://github.com/ hashicorp/terraform/issues/26226. Accessed: 2025-09-26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "HashiCorp. 2021. Graph missing dependency from resource update to resource destroy. https://github.com/hashicorp/ terraform/issues/28150. Accessed: 2025-09-26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "HashiCorp. 2022. Resources disappearing from state after successful apply. GitHub issue #27671, hashicorp/terraformprovider-aws. https://github.com/hashicorp/terraform-provider-aws/issues/27671",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "HashiCorp. 2025. CDK for Terraform. https://developer.hashicorp.com/terraform/cdktf Accessed: 2025-02-25.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "HashiCorp. 2025. Terraform Docs Overview. https://developer.hashicorp.com/terraform/docs Accessed: 2025-02-25.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Mohammad Mehedi Hassan and Akond Rahman. 2022. As Code Testing: Characterizing Test Quality in Open Source Ansible Development. In. IEEE, 208–219. doi:10.1109/ICST53961.2022.00031",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Waldemar Hummer, Florian Rosenberg, Fábio Oliveira, and Tamar Eilam. 2013. Testing Idempotence for Infrastructure as Code. In Middleware 2013, David Eyers and Karsten Schwan (Eds.). Springer Berlin Heidelberg, Berlin, Heidelberg, 368–388.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Puppet Inc. 2025. Puppet Documentation. https://www.puppet.com/docs/index.html Accessed: 2025-02-25.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "RedHat Inc. 2025. Ansible Community Documentation. https://docs.ansible.com Accessed: 2025-02-25.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Laura Inozemtseva and Reid Holmes. 2014. Coverage is not strongly correlated with test suite effectiveness. In Proceedings of the 36th international conference on software engineering. 435–445.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Rajeev Joshi, Greg Nelson, and Keith Randall. 2002. Denali: a goal-directed superoptimizer. In Proceedings of the ACMSIGPLAN 2002 Conference on Programming Language Design and Implementation (Berlin, Germany) (PLDI ’02). Association for Computing Machinery, New York, NY, USA, 304–314. doi:10.1145/512529.512566",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Cole Kurashige, Ruyi Ji, Aditya Giridharan, Mark Barbone, Daniel Noor, Shachar Itzhaky, Ranjit Jhala, and Nadia Polikarpova. 2024. CCLemma: E-Graph Guided Lemma Discovery for Inductive Equational Proofs. Proc. ACM Program. Lang. 8, ICFP, Article 264 (Aug. 2024), 27 pages. doi:10.1145/3674653",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Leonidas Lampropoulos, Michael Hicks, and Benjamin C Pierce. 2019. Coverage guided, property based testing. Proceedings of the ACM on Programming Languages 3, OOPSLA (2019), 1–29.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. 2014. Compiler validation via equivalence modulo inputs. In Proceedings of the 35th ACMSIGPLAN Conference on Programming Language Design and Implementation (Edinburgh, United Kingdom) (PLDI ’14). Association for Computing Machinery, New York, NY, USA, 216–226. doi:10.1145/2594291.2594334",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Vsevolod Livinskii, Dmitry Babokin, and John Regehr. 2020. Random testing for C and C++ compilers with YARPGen. Proc. ACM Program. Lang. 4, OOPSLA, Article 196 (Nov. 2020), 25 pages. doi:10.1145/3428264",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Stephan Lukasczyk and Gordon Fraser. 2022. Pynguin: automated unit test generation for Python. In Proceedings of the ACM/IEEE 44th International Conference on Software Engineering: Companion Proceedings (Pittsburgh, Pennsylvania) (ICSE ’22). Association for Computing Machinery, New York, NY, USA, 168–172. doi:10.1145/3510454.3516829",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Kurt Mackie. [n. d.]. Configuration Glitch Caused Microsoft’s Jan. 25 Exchange Online Disruption. https://redmondmag. com/articles/2023/01/26/configuration-glitch-caused-microsoft-jan-25-exchange-online-disruption.aspx. Accessed: 2025-05-20. Proc. ACM Program. Lang., Vol. 10, No. OOPSLA1, Article 118. Publication date: April 2026. 118:28 David Spielmann, George Zakhour, Dominik Arnold, Matteo Biag",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Muhammad Numair Mansur, Maria Christakis, and Valentin Wüstholz. 2021. Metamorphic testing of Datalog engines. InProceedings of the 29th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 639–650.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Muhammad Numair Mansur, Valentin Wüstholz, and Maria Christakis. 2023. Dependency-Aware Metamorphic Testing of Datalog Engines. In Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis, ISSTA 2023, Seattle, WA, USA, July 17-21, 2023, René Just and Gordon Fraser (Eds.). ACM, 236–247. doi:10.1145/3597926.3598052",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Barton P. Miller, Lars Fredriksen, and Bryan So. 1990. An empirical study of the reliability of UNIX utilities. Commun. ACM 33, 12 (Dec. 1990), 32–44. doi:10.1145/96267.96279",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Chandrakana Nandi, Max Willsey, Adam Anderson, James R. Wilcox, Eva Darulova, Dan Grossman, and Zachary Tatlock. 2020. Synthesizing structured CAD models with equality saturation and inverse transformations. In Proceedings of the 41st ACMSIGPLAN Conference on Programming Language Design and Implementation (London, UK) (PLDI 2020). Association for Computing Machinery, New York, NY, USA, 31–44. doi:",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Charles Gregory Nelson. 1980. Techniques for program verification. Stanford University.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Ruben Opdebeeck, Ahmed Zerouali, and Coen De Roover. 2022. Smelly Variables in Ansible Infrastructure Code: Detection, Prevalence, and Lifetime. In Proceedings of the 19th International Conference on Mining Software Repositories (Pittsburgh, Pennsylvania) (MSR ’22). Association for Computing Machinery, New York, NY, USA, 61–72. doi:10.1145/ 3524842.3527964",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Ruben Opdebeeck, Ahmed Zerouali, and Coen De Roover. 2023. Control and Data Flow in Security Smell Detection for Infrastructure as Code: Is It Worth the Effort?. In Repositories (MSR). IEEE, Melbourne, Australia, 534–545. doi:10.1109/MSR59073.2023.00079",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "OpenTofu. 2025. OpenTofu Documentation. https://opentofu.org/docs/ Accessed: 2025-03-03.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Owain Parry, Gregory M. Kapfhammer, Michael Hilton, and Phil McMinn. 2022. A Survey of Flaky Tests. ACM Trans. Softw. Eng. Methodol. 31, 1 (2022), 17:1–17:74. doi:10.1145/3476105",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Goran Petrović, Marko Ivanković, Gordon Fraser, and René Just. 2022. Practical Mutation Testing at Scale: A view from Google. IEEE Transactions on Software Engineering 48, 10 (2022), 3900–3912. doi:10.1109/TSE.2021.3107634",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Kun Qiu, Zheng Zheng, Tsong Yueh Chen, and Pak-Lok Poon. 2022. Theoretical and Empirical Analyses of the Effectiveness of Metamorphic Relation Composition. IEEE Trans. Software Eng. 48, 3 (2022), 1001–1017. doi:10.1109/ TSE.2020.3009698",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Akond Rahman, Md Rayhanur Rahman, Chris Parnin, and Laurie Williams. 2021. Security Smells in Ansible and Chef Scripts: A Replication Study. ACM Trans. Softw. Eng. Methodol. 30, 1, Article 3 (jan 2021), 31 pages. doi:10.1145/3408897",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (Virtual Event, USA) (ESEC/FSE 2020). Association for Computing Machinery, New York, NY, USA, 1140–1152. doi:10.1145/33",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 59,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (Nov. 2020), 30 pages. doi:10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 60,
+      "text": "Rudi Schneider, Marcus Rossel, Amir Shaikhha, Andrés Goens, Thomas Kœhler, and Michel Steuwer. 2025. Slotted E-Graphs: First-Class Support for (Bound) Variables in E-Graphs. Proceedings of the ACM on Programming Languages 9, PLDI (2025), 1888–1910.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Sergio Segura, Gordon Fraser, Ana Belén Sánchez, and Antonio Ruiz Cortés. 2016. A Survey on Metamorphic Testing. IEEE Trans. Software Eng. 42, 9 (2016), 805–824. doi:10.1109/TSE.2016.2532875",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Amazon Web Services. 2025. AWSCDK. https://docs.aws.amazon.com/cdk/v2/guide/home.html Accessed: 2025-02-25.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Amazon Web Services. 2025. AWS CloudFormation. https://aws.amazon.com/cloudformation/ Accessed: 2025-10-08.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Eytan Singher and Shachar Itzhaky. 2024. Easter egg: Equality reasoning based on E-graphs with multiple assumptions. In2024 Formal Methods in Computer-Aided Design (FMCAD). IEEE, 70–83.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Daniel Sokolowski, David Spielmann, and Guido Salvaneschi. 2024. Automated Infrastructure as Code Program Testing. IEEE Trans. Software Eng. 50, 6 (2024), 1585–1599. doi:10.1109/TSE.2024.3393070",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Daniel Sokolowski, David Spielmann, and Guido Salvaneschi. 2024. The PIPr Dataset of Public Infrastructure as Code Programs. In Proceedings of the 21st International Conference on Mining Software Repositories (Lisbon, Portugal) (MSR ’24). Association for Computing Machinery, New York, NY, USA, 498–503. doi:10.1145/3643991.3644888",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Thodoris Sotiropoulos, Dimitris Mitropoulos, and Diomidis Spinellis. 2020. Practical fault detection in puppet programs. InProceedings of the ACM/IEEE 42nd International Conference on Software Engineering (Seoul, South Korea) (ICSE ’20). Association for Computing Machinery, New York, NY, USA, 26–37. doi:10.1145/3377811.3380384",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "David Spielmann, George Zakhour, Dominik Arnold, Matteo Biagiola, Roland Meier, and Guido Salvaneschi. 2026. Artifact for Metamorphic Testing for Infrastructure-as-Code Engines. doi:10.5281/zenodo.18755966 Software artifact; latest version. Proc. ACM Program. Lang., Vol. 10, No. OOPSLA1, Article 118. Publication date: April 2026. Metamorphic Testing for Infrastructure-as-Code Engines 118:29",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "David Spielmann, George Zakhour, Dominik Arnold, Matteo Biagiola, Roland Meier, and Guido Salvaneschi. 2026. Artifact for Metamorphic Testing for Infrastructure-as-Code Engines. doi:10.5281/zenodo.18755967 Software artifact; version 1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Maolin Sun, Yibiao Yang, Jiangchang Wu, and Yuming Zhou. 2025. Validating SMT Rewriters via Rewrite Space Exploration Supported by Generative Equality Saturation. Proceedings of the ACM on Programming Languages 9, OOPSLA2 (2025), 1205–1231.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Ross Tate, Michael Stepp, Zachary Tatlock, and Sorin Lerner. 2009. Equality saturation: a new approach to optimization. SIGPLAN Not. 44, 1 (Jan. 2009), 264–276. doi:10.1145/1594834.1480915",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Pulumi Team. 2025. Pulumi Docs. https://www.pulumi.com/docs/ Accessed: 2025-02-24.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Avito Tech. 2024. go-mutesting: Mutation testing for Go source code. https://github.com/avito-tech/go-mutesting. Accessed: 2025-08-05.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "Vpn Monitor Research Team. 2019. Report: Travel Reservations Platform Leaks US Government Personnel Data. https://www.vpnmentor.com/blog/us-travel-military-leak/. Accessed: 2025-05-20.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "Max Willsey, Chandrakana Nandi, Yisu Remy Wang, Oliver Flatt, Zachary Tatlock, and Pavel Panchekha. 2021. egg: Fast and extensible equality saturation. Proc. ACM Program. Lang. 5, POPL, Article 23 (Jan. 2021), 29 pages. doi:10.1145/3434304",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "Xiaoyuan Xie, Joshua Ho, Christian Murphy, Gail Kaiser, Baowen Xu, and Tsong Yueh Chen. 2009. Application of Metamorphic Testing to Supervised Classifiers. In Proceedings of the 2009 Ninth International Conference on Quality Software (QSIC ’09). IEEE Computer Society, USA, 135–144. doi:10.1109/QSIC.2009.26",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "George Zakhour, Pascal Weisenburger, Jahrim Gabriele Cesario, and Guido Salvaneschi. 2025. Dis/Equality Graphs. Proc. ACM Program. Lang. 9, POPL, Article 77 (Jan. 2025), 24 pages. doi:10.1145/3704913 Received 2025-10-10; accepted 2026-02-17 Proc. ACM Program. Lang., Vol. 10, No. OOPSLA1, Article 118. Publication date: April 2026.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 58,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (Virtual Event, USA) (ESEC/FSE 2020). Association for Computing Machinery, New York, NY, USA, 1140–1152. doi:10.1145/3368089.3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 59,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (Nov. 2020), 30 pages. doi:10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[58,59]",
+      "technique": "norec",
+      "sentence": "Notably, Rigger and Su [58,59]applied MT to database management systems and uncovered numerous bugs in popular systems.",
+      "context_before": "and graphs derived from real-world programs. Finally, because test generation and e-graph exploration are randomized, individual runs may differ. To mitigate this, we repeat each experiment multiple times and report averages. The evaluation shows that the differences between runs are small. 8 Related Work Metamorphic Testing. MT has been successfully applied to many domains. Mansur et al. [46,47] applied MT to test Datalog engines, revealing several bugs in state-of-the-art engines. Moreover, MT has been applied to test compilers [ 42], machine learning applications [ 76], or web systems [ 8].",
+      "context_after": "Segura et al. [61] provide a comprehensive survey of MT techniques and applications. Sun et al. [70] validate SMT solver rewrite systems by exploring the rewrite space via e-graphs and equality saturation. Compared to prior work that tests programs or domain-specific systems, we define MRs directly over resource graphs expressed in an IR, which makes the approach general and engine-agnostic. Infrastructure as Code. IaCengines are commonly classified as either configuration-based or provision-based [19]. The former, such as Ansible [ 37], Puppet [ 36], and Chef [ 13], manage the configuration",
+      "section": "4.6 Formalism",
+      "page": 24,
+      "char_offset": 88018,
+      "cited_reference": {
+        "number": 58,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (Virtual Event, USA",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:18:50Z",
+    "is_model_written": true,
+    "summary": "EMIaC applies metamorphic testing to Infrastructure-as-Code engines such as Terraform, OpenTofu and Pulumi, which the authors note have received little attention compared with the correctness of IaC programs themselves. It defines metamorphic relations as graph-based transformations of IaC programs and checks invariants across executions, using e-graphs both as an input generator and as an equivalence oracle. Three of its test cases were merged into Terraform.",
+    "narrative": "One citation in the formalism section, noting that Rigger and Su applied metamorphic testing to database management systems and uncovered numerous bugs in popular systems -- the precedent EMIaC carries into a different class of engine.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

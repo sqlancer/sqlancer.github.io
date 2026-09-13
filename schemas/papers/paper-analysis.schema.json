@@ -1,0 +1,485 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sqlancer.github.io/schemas/papers/paper-analysis.schema.json",
+  "title": "One paper, read once and recorded in full",
+  "description": "Everything the pipeline learned about a paper's relationship to SQLancer: what was read, every place the paper mentions it, and the classification that follows, with the sentences each claim rests on. The model cites mention ids and never supplies a quotation -- the sentences stored here are copied from the paper, which is what makes a claim checkable rather than asserted.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "generated_at",
+    "paper",
+    "sources",
+    "document",
+    "references",
+    "sqlancer_references",
+    "mentions",
+    "artifact",
+    "checks",
+    "analysis",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "paper": {
+      "type": "object",
+      "required": [
+        "id",
+        "title"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "year": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "venue": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "doi": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "arxiv_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "s2_paper_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "also_indexed_as": {
+          "type": "array"
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "description": "What was read to build this record, and where it came from.",
+      "items": {
+        "type": "object",
+        "required": [
+          "kind",
+          "url"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string"
+          },
+          "route": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "retrieved_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "chars": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "content_sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "document": {
+      "type": "object",
+      "properties": {
+        "has_fulltext": {
+          "type": "boolean"
+        },
+        "has_outline": {
+          "type": "boolean"
+        },
+        "page_count": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "sections": {
+          "type": "array"
+        }
+      }
+    },
+    "references": {
+      "type": "array"
+    },
+    "sqlancer_references": {
+      "type": "array"
+    },
+    "mentions": {
+      "type": "array",
+      "description": "Every place the paper reaches SQLancer -- by name, by technique, or through a citation marker that resolves to one of its publications, which is the only way to find the sentences that name nothing at all.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "found_by",
+          "sentence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^M[0-9]+$"
+          },
+          "found_by": {
+            "type": "string",
+            "enum": [
+              "name",
+              "technique",
+              "citation_marker",
+              "citation_marker_project_authored",
+              "author_year_citation"
+            ]
+          },
+          "found_by_all": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "surface": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "technique": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "techniques": {
+            "type": "array"
+          },
+          "sentence": {
+            "type": "string",
+            "minLength": 1
+          },
+          "context_before": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "context_after": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "section": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "page": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "char_offset": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "cited_reference": {
+            "type": [
+              "object",
+              "integer",
+              "string",
+              "null"
+            ]
+          },
+          "text_is_letter_spaced": {
+            "type": "boolean",
+            "description": "The PDF set this passage with letter-spacing, so extraction returns it one character at a time. The mention is real; the text is not quotable, and pages say so instead of printing it."
+          }
+        }
+      }
+    },
+    "artifact": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "checks": {
+      "type": "object",
+      "description": "What the regexes suggested, kept as advice the classification may disagree with.",
+      "properties": {
+        "checks_version": {
+          "type": "string"
+        },
+        "suggests": {
+          "type": [
+            "object",
+            "array",
+            "null"
+          ]
+        },
+        "suppressed": {
+          "type": [
+            "object",
+            "array",
+            "null"
+          ]
+        }
+      }
+    },
+    "analysis": {
+      "type": "object",
+      "required": [
+        "relationships"
+      ],
+      "properties": {
+        "produced_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "analysis_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "prompt_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "generated_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "is_model_written": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "summary": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "narrative": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "roles": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "disagreements": {
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "unresolved": {
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "relationships": {
+          "type": "object",
+          "required": [
+            "uses_infrastructure",
+            "extends_technique",
+            "compares_with",
+            "describes_as_state_of_the_art"
+          ],
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "value",
+              "mention_ids",
+              "quotes"
+            ],
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "yes",
+                  "no",
+                  "uncertain",
+                  "insufficient_evidence"
+                ]
+              },
+              "mention_ids": {
+                "type": "array",
+                "description": "Mentions the claim rests on. The sentinel ARTIFACT stands where no sentence carries it and the repository does -- a paper whose text never claims reuse while its artifact is SQLancer's source under a renamed package.",
+                "items": {
+                  "type": "string",
+                  "pattern": "^(M[0-9]+|ARTIFACT)$"
+                }
+              },
+              "quotes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "mention_id",
+                    "sentence"
+                  ],
+                  "properties": {
+                    "mention_id": {
+                      "type": "string",
+                      "pattern": "^(M[0-9]+|ARTIFACT)$"
+                    },
+                    "sentence": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "section": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "page": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "text_is_letter_spaced": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              },
+              "reasoning": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "techniques": {
+                "type": "array"
+              },
+              "reuse_kind": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "implementation",
+                  "generator",
+                  "workload",
+                  "unclear",
+                  null
+                ],
+                "description": "How the paper reuses SQLancer. Workload use is reuse, but the paper is not built on it, and the narrative has to say which."
+              }
+            }
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "extractor_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "inventory_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "checks_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "policy_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

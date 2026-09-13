@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "paper": {
+    "id": "paper:doi:10.1145/3372297.3417260",
+    "title": "SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback",
+    "authors": [
+      "Rui Zhong",
+      "Yongheng Chen",
+      "Hong Hu",
+      "Hangfan Zhang",
+      "Wenke Lee",
+      "Dinghao Wu"
+    ],
+    "year": 2020,
+    "venue": "Conference on Computer and Communications Security",
+    "doi": "10.1145/3372297.3417260",
+    "url": "https://doi.org/10.1145/3372297.3417260"
+  },
+  "summary": {
+    "text": "Squirrel combines language validity with coverage feedback for DBMS fuzzing. Mutation-based fuzzers fail against DBMSs because inputs are checked strictly for syntax and semantics, while generation-based testing guarantees syntax but ignores feedback such as code coverage. Squirrel keeps SQL in a structural intermediate representation, performs type-based mutations — statement insertion, deletion and replacement — on it, and analyses logical dependencies between arguments to avoid semantic errors. It found 63 bugs across SQLite, MySQL and MariaDB, 52 fixed with 12 CVEs.",
+    "relationship_to_sqlancer": "A coverage-guided DBMS fuzzer frequently used as a baseline alongside SQLancer, which it cites.",
+    "is_model_generated": true,
+    "grounded_in_source": true,
+    "written_from": "abstract",
+    "written_from_url": "https://doi.org/10.1145/3372297.3417260",
+    "source_sha256": "sha256:64c1eeb231ae521a1f0630853e465cf52b4659bc7d8e692b7d67ebbe867fff0a",
+    "supporting_excerpts": [
+      "However, current mutation-based fuzzers cannot effectively test database management systems (DBMSs), which strictly check inputs for valid syntax and semantics.",
+      "Generation-based testing can guarantee the syntax correctness of the inputs, but it does not utilize any feedback, like code coverage, to guide the path exploration.",
+      "In our experiment, Squirrel achieves 2.4×-243.9× higher semantic correctness than state-of-the-art fuzzers, and explores 2.0×-10.9× more new edges than mutation-based tools."
+    ],
+    "model": "claude-opus-5",
+    "generated_by": "claude_code_session",
+    "classifier_version": null,
+    "generated_at": "2026-09-07T02:39:53Z"
+  },
+  "evidence": [
+    {
+      "relationship": "references",
+      "title": "Cites SQLancer",
+      "value": "yes",
+      "method": "citation_graph",
+      "techniques": [
+        "pqs"
+      ],
+      "sources": [
+        {
+          "source_url": "https://doi.org/10.1145/3372297.3417260",
+          "source_type": "paper_citation_context",
+          "excerpt": "DBMSs have been heavily tested for logic and performance defects [53, 56, 61, 64].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1145/3372297.3417260",
+          "source_type": "paper_citation_context",
+          "excerpt": "SQLancer constructs queries to fetch a randomly selected row from a table [53].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    }
+  ]
+}

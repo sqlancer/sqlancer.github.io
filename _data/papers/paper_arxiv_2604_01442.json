@@ -1,0 +1,579 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:23:52Z",
+  "paper": {
+    "id": "paper:arxiv:2604.01442",
+    "title": "Fuzzing with Agents? Generators Are All You Need",
+    "authors": [
+      "Vasudev Vikram",
+      "Rohan Padhye"
+    ],
+    "year": 2026,
+    "venue": "arXiv.org",
+    "doi": null,
+    "arxiv_id": "2604.01442",
+    "s2_paper_id": "cbba1fcd8795f5727dbe286aeb9af1f5e5d4ba09",
+    "url": "https://arxiv.org/abs/2604.01442",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2604.01442",
+      "retrieved_at": "2026-09-08T15:23:52Z",
+      "chars": 70975,
+      "content_sha256": "sha256:aa694a666241552c3c6b7648eccf5474410b8939ffad14a999a875b34e4d768d"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 2027
+      },
+      {
+        "number": "1.1",
+        "title": "Motivating Example",
+        "start": 6181
+      },
+      {
+        "number": "1.2",
+        "title": "Contributions",
+        "start": 8734
+      },
+      {
+        "number": "2",
+        "title": "BACKGROUND",
+        "start": 11688
+      },
+      {
+        "number": "2.1",
+        "title": "Coverage-Guided Fuzzing",
+        "start": 11701
+      },
+      {
+        "number": "2.2",
+        "title": "Parametric Generator-Based Fuzzing",
+        "start": 13223
+      },
+      {
+        "number": "2.3",
+        "title": "Control-Flow Analysis and Dominators",
+        "start": 15802
+      },
+      {
+        "number": "3",
+        "title": "APPROACH",
+        "start": 17747
+      },
+      {
+        "number": "3.1",
+        "title": "Dominator Predicate Analysis",
+        "start": 19091
+      },
+      {
+        "number": "3.1.1",
+        "title": "LLM Predicate Identification. As an alternative used by",
+        "start": 20495
+      },
+      {
+        "number": "3.2",
+        "title": "Dynamic Predicate Feedback",
+        "start": 21956
+      },
+      {
+        "number": "3.3",
+        "title": "Agent-based Generator Synthesis",
+        "start": 24335
+      },
+      {
+        "number": "4",
+        "title": "EVALUATION",
+        "start": 26234
+      },
+      {
+        "number": "4.1",
+        "title": "Experimental Setup",
+        "start": 26870
+      },
+      {
+        "number": "4.1.2",
+        "title": "Benchmarks. We evaluate on six real-world Java library",
+        "start": 27481
+      },
+      {
+        "number": "4.1.4",
+        "title": "Repetitions. All experiments are repeated five times with",
+        "start": 28315
+      },
+      {
+        "number": "4.1.5",
+        "title": "Metrics. We evaluate generators along two dimensions:",
+        "start": 29814
+      },
+      {
+        "number": "4.1.6",
+        "title": "Scale. In total, our evaluation comprises 3×7×5=105",
+        "start": 30268
+      },
+      {
+        "number": "4.2",
+        "title": "RQ1: Coverage of synthesized generators",
+        "start": 30778
+      },
+      {
+        "number": "4.3",
+        "title": "RQ2: Impact of Coverage Guidance",
+        "start": 35788
+      },
+      {
+        "number": "4.4",
+        "title": "RQ3: Impact of Predicate Feedback",
+        "start": 40386
+      },
+      {
+        "number": "4.5",
+        "title": "RQ4: LLM vs. Static Predicate Analysis",
+        "start": 43302
+      },
+      {
+        "number": "5",
+        "title": "RELATED WORK",
+        "start": 45080
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "[n. d.]. WALA: T.J. Watson Libraries for Analysis. https://github.com/wala/wala. Accessed 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "[n. d.]. junit-quickcheck-generator. https://pholser.github.io/junit-quickcheck/ site/1.0/usage/other-types.html. Accessed: 2024-10-31.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "[n. d.]. libFuzzer – a library for coverage-guided fuzz testing. https://llvm.org/ docs/LibFuzzer.html. Accessed: 2021-08-31.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Joshua Ackerman and George Cybenko. 2023. Large language models for fuzzing parsers (registered report). In Proceedings of the 2nd International Fuzzing Workshop. 31–38.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Nadia Alshahwan, Jubin Chheda, Anastasia Finegenova, Beliz Gokkaya, Mark Harman, Inna Harper, Alexandru Marginean, Shubho Sengupta, and Eddy Wang. 2024. Automated unit test improvement using large language models at meta. arXiv preprint arXiv:2402.09171 (2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Anthropic. [n. d.]. Claude Agent SDK. https://platform.claude.com/docs/en/agentsdk/overview. Accessed 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Cornelius Aschermann, Sergej Schumilo, Tim Blazytko, Robert Gawlik, and Thorsten Holz. 2019. REDQUEEN: Fuzzing with Input-to-State Correspondence.. InNDSS, Vol. 19. 1–15. https://doi.org/10.14722/ndss.2019.23371",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In (ICSE). IEEE, 2060–2071.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 9,
+      "text": "Domagoj Babić, Stefan Bucur, Yaohui Chen, Franjo Ivančić, Tim King, Markus Kusano, Caroline Lemieux, László Szekeres, and Wei Wang. 2019. Fudge: fuzz driver generation at scale. In Proceedings of the 2019 27th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 975–985.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Patrick Bareiß, Beatriz Souza, Marcelo d’Amorim, and Michael Pradel. 2022. Code generation tools (almost) for free? a study of few-shot, pre-trained language models on code. arXiv preprint arXiv:2206.01335 (2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Marcel Böhme, Van-Thuan Pham, and Abhik Roychoudhury. 2016. Coveragebased Greybox Fuzzing as Markov Chain. In Proceedings of the 2016 ACMSIGSAC Conference on Computer and Communications Security (CCS). 1032–1043. https: //doi.org/10.1145/2976749.2978428",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Marcel Böhme, Van-Thuan Pham, and Abhik Roychoudhury. 2017. Coveragebased greybox fuzzing as markov chain. IEEE Transactions on Software Engineering 45, 5 (2017), 489–506.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Marcel Böhme, László Szekeres, and Jonathan Metzman. 2022. On the Reliability of Coverage-Based Fuzzer Benchmarking. In 44th IEEE/ACM International Conference on Software Engineering (ICSE’22). https://doi.org/10.1145/3510003.3510230 to appear.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Sang Kil Cha, Maverick Woo, and David Brumley. 2015. Program-adaptive mutational fuzzing. In. IEEE, 725– 741. https://doi.org/10.1109/SP.2015.50",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Chuyang Chen and Brendan Dolan-Gavitt. 2025. ELFuzz: Efficient Input Generation via LLM-driven Synthesis Over Fuzzer Space. In 34th USENIX Security Symposium (USENIX Security 25). 6279–6298.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Peng Chen and Hao Chen. 2018. Angora: Efficient fuzzing by principled search. In. IEEE, 711–725. https: //doi.org/10.1109/SP.2018.00046",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Koen Claessen and John Hughes. 2000. QuickCheck: a lightweight tool for random testing of Haskell programs. In Proceedings of the fifth ACMSIGPLAN international conference on Functional programming. 268–279.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Yinlin Deng, Chunqiu Steven Xia, Chenyuan Yang, Shizhuo Dylan Zhang, Shujing Yang, and Lingming Zhang. 2023. Large language models are edge-case fuzzers: Testing deep learning libraries via fuzzgpt. arXiv preprint arXiv:2304.02014 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Zhen Yu Ding and Claire Le Goues. 2021. An Empirical Study of OSS-Fuzz Bugs. In (MSR). IEEE, IEEE Computer Society, Los Alamitos, CA, USA, 131–142. https: //doi.org/10.1109/MSR52588.2021.00026",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Shuitao Gan, Chao Zhang, Peng Chen, Bodong Zhao, Xiaojun Qin, Dong Wu, and Zuoning Chen. 2020. GREYONE: Data flow sensitive fuzzing. In 29th USENIX Security Symposium (USENIX Security 20). 2577–2594. https://doi.org/10.5555/ 3489212.3489357",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Harrison Green, Fraser Brown, and Claire Le Goues. 2026. Automatic, Expressive, and Scalable Fuzzing with Stitching. arXiv preprint arXiv:2602.18689 (2026).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Jiale Guo, Suizhi Huang, Mei Li, Dong Huang, Xingsheng Chen, Regina Zhang, Zhijiang Guo, Han Yu, Siu-Ming Yiu, Pietro Lio, and Kwok-Yan Lam. 2025. A Comprehensive Survey on Benchmarks and Solutions in Software Engineering of LLM-Empowered Agentic System. arXiv:2510.09721 [cs.SE] https://arxiv.org/ abs/2510.09721",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Paul Holser. [n. d.]. junit-quickcheck: Property-based testing, JUnit-style. https: //github.com/pholser/junit-quickcheck. Accessed: 2021-08-31.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Xinyi Hou, Yanjie Zhao, Yue Liu, Zhou Yang, Kailong Wang, Li Li, Xiapu Luo, David Lo, John Grundy, and Haoyu Wang. 2023. Large language models for software engineering: A systematic literature review. ACM Transactions on Software Engineering and Methodology (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Katherine Hough and Jonathan Bell. 2024. Crossover in Parametric Fuzzing. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Kyriakos K Ispoglou, Daniel Austin, Vishwath Mohan, and Mathias Payer. 2020. Fuzzgen: Automatic fuzzer generation. In Proceedings of the 29th USENIX Conference on Security Symposium. 2271–2287.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "B. Jeong, J. Jang, H. Yi, J. Moon, J. Kim, I. Jeon, T. Kim, W. Shim, and Y. Hwang. 2023. UTOPIA: Automatic Generation of Fuzz Driver using Unit Tests. In 2023. IEEE Computer Society, Los Alamitos, CA, USA, 746–762. https://doi.org/10.1109/SP46215.2023.00043",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Yu Jiang, Jie Liang, Fuchen Ma, Yuanliang Chen, Chijin Zhou, Yuheng Shen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Shanshan Li, and Quan Zhang. 2024. When Fuzzing Meets LLMs: Challenges and Opportunities. In Companion Proceedings of the 32nd ACM International Conference on the Foundations of Software Engineering (Porto de Galinhas, Brazil) (FSE 2024). Association for Computing Machinery, New York, N",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Carlos E Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, and Karthik Narasimhan. 2023. Swe-bench: Can language models resolve real-world github issues? arXiv preprint arXiv:2310.06770 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "George Klees, Andrew Ruef, Benji Cooper, Shiyi Wei, and Michael Hicks. 2018. Evaluating fuzz testing. In Proceedings of the 2018 ACMSIGSAC Conference on Computer and Communications Security. 2123–2138. https://doi.org/10.1145/ 3243734.3243804",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Shuvendu Lahiri, Aaditya Naik, Georgios Sakkas, Piali Choudhury, Curtis von Veh, Madan Musuvathi, Jeevana Priya Inala, Chenglong Wang, and Jianfeng Gao. 2022. Interactive Code Generation via Test-Driven User-Intent Formalization. arXiv. https://www.microsoft.com/en-us/research/publication/interactive-codegeneration-via-test-driven-user-intent-formalization/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Leonidas Lampropoulos, Michael Hicks, and Benjamin C Pierce. 2019. Coverage guided, property based testing. Proceedings of the ACM on Programming Languages 3, OOPSLA, Article 181 (Oct. 2019), 29 pages. https://doi.org/10.1145/ 3360607",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Caroline Lemieux, Jeevana Priya Inala, Shuvendu K Lahiri, and Siddhartha Sen. 2023. CODAMOSA: Escaping Coverage Plateaus in Test Generation with Pretrained Large Language Models. In 45th International Conference on Software Engineering, ser. ICSE.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Caroline Lemieux and Koushik Sen. 2018. Fairfuzz: A targeted mutation strategy for increasing greybox fuzz testing coverage. In Proceedings of the 33rd ACM/IEEE International Conference on Automated Software Engineering. 475–485. https: //doi.org/10.1145/3238147.3238176",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Dongge Liu, Jonathan Metzman, and Oliver Chang. 2023. Open Source Insights. https://security.googleblog.com/2023/08/ai-powered-fuzzing-breakingbug-hunting.html. Retrieved February 27, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Junwei Liu, Kaixin Wang, Yixuan Chen, Xin Peng, Zhenpeng Chen, Lingming Zhang, and Yiling Lou. 2025. Large Language Model-Based Agents for Software Engineering: A Survey. arXiv:2409.02977 [cs.SE] https://arxiv.org/abs/2409.02977",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Jiawei Liu, Chunqiu Steven Xia, Yuyao Wang, and Lingming Zhang. 2024. Is your code generated by chatgpt really correct? rigorous evaluation of large language models for code generation. Advances in Neural Information Processing Systems 36 (2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Yuwei Liu, Junquan Deng, Xiangkun Jia, Yanhao Wang, Minghua Wang, Lin Huang, Tao Wei, and Purui Su. 2025. PromeFuzz: A Knowledge-Driven Approach to Fuzzing Harness Generation with Large Language Models. In Proceedings of the 2025 ACMSIGSAC Conference on Computer and Communications Security. 1559–1573.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Chenyang Lyu, Shouling Ji, Chao Zhang, Yuwei Li, Wei-Han Lee, Yu Song, and Raheem Beyah. 2019. MOPT: Optimized mutation scheduling for fuzzers. In 28th Conference’17, July 2017, Washington, DC, USA Vasudev Vikram and Rohan Padhye USENIX Security Symposium (USENIX Security 19). 1949–1966. https://doi.org/10. 5555/3361338.3361473",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Yunlong Lyu, Yuxuan Xie, Peng Chen, and Hao Chen. 2023. Prompt Fuzzing for Fuzz Driver Generation. arXiv preprint arXiv:2312.17677 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Muhammad Maaz, Liam DeVoe, Zac Hatfield-Dodds, and Nicholas Carlini. 2025. Agentic Property-Based Testing: Finding Bugs Across the Python Ecosystem. arXiv preprint arXiv:2510.09907 (2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Valentin Jean Marie Manès, HyungSeok Han, Choongwoo Han, Sang Kil Cha, Manuel Egele, Edward J Schwartz, and Maverick Woo. 2019. The art, science, and engineering of fuzzing: A survey. IEEE Transactions on Software Engineering (2019). https://doi.org/10.1109/TSE.2019.2946563",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Ruijie Meng, Martin Mirchev, Marcel Böhme, and Abhik Roychoudhury. 2024. Large language model guided protocol fuzzing. In Proceedings of the 31st Annual Network and Distributed System Security Symposium (NDSS).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Barton P. Miller, Louis Fredriksen, and Bryan So. 1990. An Empirical Study of the Reliability of UNIX Utilities. Commun. ACM 33, 12 (dec 1990), 32–44. https://doi.org/10.1145/96267.96279",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Hoang Lam Nguyen and Lars Grunske. 2022. Bedivfuzz: Integrating behavioral diversity into generator-based fuzzing. In Proceedings of the 44th International Conference on Software Engineering. 249–261.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Rohan Padhye, Caroline Lemieux, and Koushik Sen. 2019. JQF: Coverage-guided Property-based Testing in Java. In Proceedings of the 28th ACMSIGSOFT International Symposium on Software Testing and Analysis (Beijing, China) (ISSTA’19). Association for Computing Machinery, New York, NY, USA, 398–401. https://doi.org/10.1145/3293882.3339002",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Rohan Padhye, Caroline Lemieux, Koushik Sen, Mike Papadakis, and Yves Le Traon. 2019. Semantic Fuzzing with Zest. In Proceedings of the 28th ACMSIGSOFT International Symposium on Software Testing and Analysis (Beijing, China) (ISSTA 2019). ACM, 329–340. https://doi.org/10.1145/3293882.3330576",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Rohan Padhye, Koushik Sen, and Paul N. Hilfinger. 2019. ChocoPy: A Programming Language for Compilers Courses. In Proceedings of the 2019 ACMSIGPLAN Symposium on SPLASH-E (Athens, Greece) (SPLASH-E 2019). Association for Computing Machinery, 41–45. https://doi.org/10.1145/3358711.3361627",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Nikitha Rao, Elizabeth Gilbert, Tahina Ramananandro, Nikhil Swamy, Claire Le Goues, and Sarah Fakhoury. 2024. DiffSpec: Differential Testing with LLMs using Natural Language Specifications and Code Artifacts. arXiv preprint arXiv:2410.04249 (2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Nikitha Rao, Kush Jain, Uri Alon, Claire Le Goues, and Vincent J Hellendoorn. 2023. CAT-LM training language models on aligned code and tests. In 2023 38th IEEE/ACM International Conference on Automated Software Engineering (ASE). IEEE, 409–420.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Alexandre Rebert, Sang Kil Cha, Thanassis Avgerinos, Jonathan Foote, David Warren, Gustavo Grieco, and David Brumley. 2014. Optimizing seed selection for fuzzing. In 23rd USENIX Security Symposium (USENIX Security 14). 861–875. https://doi.org/10.5555/2671225.2671280",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "John Regehr, Yang Chen, Pascal Cuoq, Eric Eide, Chucky Ellison, and Xuejun Yang. 2012. Test-Case Reduction for C Compiler Bugs. In Proceedings of the 33rd ACMSIGPLAN Conference on Programming Language Design and Implementation (Beijing, China) (PLDI ’12). Association for Computing Machinery, New York, NY, USA, 335–346. https://doi.org/10.1145/2254064.2254104",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Max Schäfer, Sarah Nadi, Aryaz Eghbali, and Frank Tip. 2023. An empirical evaluation of using large language models for automated unit test generation. IEEE Transactions on Software Engineering (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Max Schäfer, Sarah Nadi, Aryaz Eghbali, and Frank Tip. 2023. Adaptive Test Generation Using a Large Language Model. arXiv:2302.06527 [cs.SE]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Vasudev Vikram, Isabella Laybourn, Ao Li, Nicole Nair, Kelton OBrien, Rafaello Sanna, and Rohan Padhye. 2023. Guiding Greybox Fuzzing with Mutation Testing. InProceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis (, Seattle, WA, USA,) (ISSTA 2023). Association for Computing Machinery, New York, NY, USA, 929–941. https://doi.org/10.1145/3597926.3598107",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Vasudev Vikram, Caroline Lemieux, Joshua Sunshine, and Rohan Padhye. 2023. Can large language models write good property-based tests? arXiv preprint arXiv:2307.04346 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Vasudev Vikram, Rohan Padhye, and Koushik Sen. 2021. Growing A Test Corpus with Bonsai Fuzzing. In 43rd IEEE/ACM International Conference on Software Engineering, ICSE 2021, Madrid, Spain, 22-30 May 2021. IEEE, 723–735. https: //doi.org/10.1109/ICSE43902.2021.00072",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Xingyao Wang, Boxuan Li, Yufan Song, Frank F Xu, Xiangru Tang, Mingchen Zhuge, Jiayi Pan, Yueqi Song, Bowen Li, Jaskirat Singh, et al .2024. OpenHands: An Open Platform for AI Software Developers as Generalist Agents. arXiv preprint arXiv:2407.16741 (2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Mingyuan Wu, Ling Jiang, Jiahong Xiang, Yanwei Huang, Heming Cui, Lingming Zhang, and Yuqun Zhang. 2022. One Fuzzing Strategy to Rule Them All. In Proceedings of the 44th International Conference on Software Engineering (Pittsburgh, Pennsylvania) (ICSE ’22). Association for Computing Machinery, New York, NY, USA, 1634–1645. https://doi.org/10.1145/3510003.3510174",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Chunqiu Steven Xia, Matteo Paltenghi, Jia Le Tian, Michael Pradel, and Lingming Zhang. 2024. Fuzz4all: Universal fuzzing with large language models. Proc.IEEE/ACMICSE (2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Chunqiu Steven Xia, Zhe Wang, Yan Yang, Yuxiang Wei, and Lingming Zhang. 2025. Live-SWE-agent: Can Software Engineering Agents Self-Evolve on the Fly? arXiv:2511.13646 [cs.SE] https://arxiv.org/abs/2511.13646",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Hanxiang Xu, Wei Ma, Ting Zhou, Yanjie Zhao, Kai Chen, Qiang Hu, Yang Liu, and Haoyu Wang. 2024. CKGFuzzer: LLM-Based Fuzz Driver Generation Enhanced By Code Knowledge Graph. arXiv preprint arXiv:2411.11532 (2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Chenyuan Yang, Yinlin Deng, Runyu Lu, Jiayi Yao, Jiawei Liu, Reyhaneh Jabbarvand, and Lingming Zhang. 2023. WhiteFox: White-Box Compiler Fuzzing Empowered by Large Language Models. arXiv preprint arXiv:2310.15991 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "John Yang, Carlos E Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, and Ofir Press. 2024. Swe-agent: Agent-computer interfaces enable automated software engineering. arXiv preprint arXiv:2405.15793 (2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. 2011. Finding and Understanding Bugs in C Compilers. In Proceedings of the 32nd ACMSIGPLAN Conference on Programming Language Design and Implementation (PLDI ’11).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Michal Zalewski. 2014. American Fuzzy Lop. https://lcamtuf.coredump.cx/afl/. Accessed February 11, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Cen Zhang, Mingqiang Bai, Yaowen Zheng, Yeting Li, Xiaofei Xie, Yuekang Li, Wei Ma, Limin Sun, and Yang Liu. 2023. Understanding large language model based fuzz driver generation. arXiv preprint arXiv:2307.12469 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "Kunpeng Zhang, Zongjie Li, Daoyuan Wu, Shuai Wang, and Xin Xia. 2025. LowCost and Comprehensive Non-textual Input Fuzzing with LLM-Synthesized Input Generators. In 34th USENIX Security Symposium (USENIX Security 25). 6999–7018.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 8,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In (ICSE). IEEE, 2060–2071.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Tools such as CSmith [ 52,65] for C compilers and SQLancer [ 8] for database engines generate inputs that are not merely syntactically valid but semantically rich by construction: CSmith emits C programs free of undefined behavior, while SQLancer produces queries that satisfy the relational schemas and type rules of the target database.",
+      "context_before": "is possible by treating generators as parametric decoders: functions that consume an arbitrary byte sequence to produce a structured input, so that byte-level mutations from a coverage-guided fuzzer translate directly into structured mutations on the generated input without requiring specialized mutators.arXiv:2604.01442v1 [cs.SE] 1 Apr 2026 Conference’17, July 2017, Washington, DC, USA Vasudev Vikram and Rohan Padhye A complementary line of work focuses on building heavyweight, highly customized, domain-specific generators that encode hard input constraints directly into the generation logic.",
+      "context_after": "By encoding deep input and domain logic into the generators, these tools routinely expose bugs that generic mutation-based fuzzers miss entirely, because the bugs only manifest on inputs that satisfy constraints random mutations are less likely to produce. Notably, such heavyweight generators do notemploy coverage guidance nor mutation strategies, since the generation logic itself is strong enough that neither is necessary. The limitation, however, is that such generators require substantial manual effort to write and are tightly coupled to a single target. With the rise of large language mod",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 4275,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:18:50Z",
+    "is_model_written": true,
+    "summary": "This paper asks whether an AI coding agent can synthesise the domain-specific input generators that generator-based fuzzing relies on, and whether such generators make coverage guidance and mutation unnecessary. Gentoo gives an LLM agent terminal access and the source of the fuzz target, and has it iteratively synthesise and refine a generator. Across seven Java libraries, agent-synthesised generators beat human-written ones on branch coverage in four.",
+    "narrative": "One citation, naming SQLancer as the database-engine counterpart to CSmith for C compilers: a generator producing inputs that are more than syntactically valid.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

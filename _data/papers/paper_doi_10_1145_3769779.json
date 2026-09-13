@@ -1,0 +1,943 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:30:16Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3769779",
+    "title": "Detecting Logic Bugs in DBMSs via Equivalent Data Construction",
+    "authors": [
+      "Wenqian Deng",
+      "Jie Liang",
+      "Zhiyong Wu",
+      "Jingzhou Fu",
+      "Yu Jiang"
+    ],
+    "year": 2025,
+    "venue": "Proc. ACM Manag. Data",
+    "doi": "10.1145/3769779",
+    "arxiv_id": null,
+    "s2_paper_id": "7762da5097d2f7d3482670909ad1d61c216119d6",
+    "url": "https://doi.org/10.1145/3769779",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3769779",
+      "retrieved_at": "2026-09-09T01:30:16Z",
+      "chars": 90335,
+      "content_sha256": "sha256:ad87be389a15239be541592a4e9e39c136902887e195ea97e6cb594ccd6bcf1d"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 25,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2352
+      },
+      {
+        "number": "2",
+        "title": "Background and Motivation",
+        "start": 11858
+      },
+      {
+        "number": "2.1",
+        "title": "Data Types and Operations",
+        "start": 11886
+      },
+      {
+        "number": "2.2",
+        "title": "Limitations of Existing Approaches",
+        "start": 14290
+      },
+      {
+        "number": "2.3",
+        "title": "Definitions of Data Equivalence",
+        "start": 16463
+      },
+      {
+        "number": "3.1",
+        "title": "Overview of EDC",
+        "start": 20811
+      },
+      {
+        "number": "3.2",
+        "title": "Equivalent Data Construction",
+        "start": 22627
+      },
+      {
+        "number": "3.3",
+        "title": "Operation-Oriented Query Generation",
+        "start": 29746
+      },
+      {
+        "number": "5.1",
+        "title": "Evaluation Setup",
+        "start": 41048
+      },
+      {
+        "number": "5.2",
+        "title": "Detected Logic Bugs",
+        "start": 42687
+      },
+      {
+        "number": "5.3",
+        "title": "Comprehensive Bug Analysis",
+        "start": 45393
+      },
+      {
+        "number": "5.4",
+        "title": "Selected Bugs Found by EDC",
+        "start": 50956
+      },
+      {
+        "number": "5.5",
+        "title": "Comparison with Existing Techniques",
+        "start": 64231
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2024. ClickHouse Operators. https://clickhouse .com/docs/en/sql-reference/operators. Accessed: November 11, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2024. MDEV-34123. https://jira.mariadb.org/browse/MDEV-34123. Accessed: November 11, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "2024. MySQL Functions and Operators. https://dev .mysql.com/doc/refman/8 .0/en/built-in-function-reference .html. Accessed: November 11, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "2024. Percona. https://github.com/percona/percona-server. Accessed: November 11, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "2025. ClickHouse. https://clickhouse.com/. Accessed: November 11, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "2025. EDC. https://github.com/THU-WingTecher/EDC. Accessed: November 11, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "2025. Integer Types (Exact Value). https://dev .mysql.com/doc/refman/8 .0/en/integer-types .html. Accessed: November 11, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "2025. MariaDB. https://mariadb.org/. Accessed: November 11, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "2025. MariaDB Data Types. https://mariadb.com/kb/en/data-types/. Accessed: November 11, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "2025. MySQL. https://www.mysql.com/. Accessed: November 11, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "2025. MySQL Data Types. https://dev .mysql.com/doc/refman/8 .4/en/data-types .html. Accessed: November 11, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "2025. OceanBase. https://github.com/oceanbase/oceanbase. Accessed: November 11, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "2025. PostgreSQL. https://www.postgresql.org/. Accessed: November 11, 2025. 3, No. 6 (SIGMOD), Article 314. Publication date: December 2025. 314:24 Wenqian Deng, Jie Liang, Zhiyong Wu, Jingzhou Fu, and Yu Jiang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "2025. SQL Data Types. https://www.databasestar.com/sql-data-types/. Accessed: November 11, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "2025. TiDB. https://github.com/pingcap/tidb. Accessed: November 11, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Abdullah Alsharif, Gregory M Kapfhammer, and Phil McMinn. 2018. DOMINO: Fast and Effective Test Data Generation for Relational Database Schemas. In Validation (ICST). IEEE, 12–22.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Daniel Bartholomew. 2014.MariaDB cookbook. Packt Publishing Ltd.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Jeroen Castelein, Maurício Aniche, Mozhan Soltani, Annibale Panichella, and Arie Van Deursen. 2018. Search-Based Test Data Generation for SQL Queries. InProceedings of the 40th International Conference on Software Engineering. ACM, 1220–1230.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Bikash Chandra, Bhupesh Chawda, Biplab Kar, K. V. Maheshwara Reddy, Shetal Shah, and S. Sudarshan. 2015. Data Generation for Testing and Grading SQL Queries. 24, 6 (2015).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Wenqian Deng, Jie Liang, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, and Yu Jiang. 2024. CONI: Detecting Database Connector Bugs via State-Aware Test Case Generation. In Engineering (ICSE). IEEE Computer Society, 26–37.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, and Yu Jiang. 2024. Sedar: Obtaining High-Quality Seeds for DBMS Fuzzing via Cross-DBMS SQL Transfer. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-Free DBMS Fuzzing. In 37th IEEE/ACM International Conference on Automated Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Zongyin Hao, Quanfeng Huang, Chengpeng Wang, Jianfeng Wang, Yushan Zhang, Rongxin Wu, and Charles Zhang. 2023. Pinolo: Detecting Logical Bugs in Database Management Systems with Approximate Query Synthesis. In2023 USENIX Annual Technical Conference (USENIX ATC 23). 345–358.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Dongxu Huang, Qi Liu, Qiu Cui, Zhuhe Fang, Xiaoyu Ma, Fei Xu, Li Shen, Liu Tang, Yuxing Zhou, Menglong Huang, et al. 2020. TiDB: a Raft-based HTAP database.Proceedings of the VLDB Endowment13, 12 (2020), 3072–3084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Solid IT. 2022. DB-Engines Ranking of Relational DBMS. https://db-engines .com/en/ranking/relational +dbms. Accessed: November 11, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. 2023. DynSQL: Stateful Fuzzing for Database Management Systems with Complex and Valid SQL Query Generation. In32nd USENIX Security Symposium. 4949–4965.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Zu-Ming Jiang and Zhendong Su. 2024. Detecting Logic Bugs in Database Engines via Equivalent Expression Transformation. InProceedings of the 18th USENIX Symposium on Operating Systems Design and Implementation (OSDI).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Shadi Abdul Khalek, Bassem Elkarablieh, Yai O Laleye, and Sarfraz Khurshid. 2008. Query-aware test generation using a relational constraint solver. In2008 23rd IEEE/ACM International Conference on Automated Software Engineering. IEEE, 238–247.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. 2023. Sequence-oriented DBMS Fuzzing. InProceedings of IEEE International Conference on Data Engineering (ICDE).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Jie Liang, Zhiyong Wu, Jingzhou Fu, Yiyuan Bai, Qiang Zhang, and Yu Jiang. 2024. WingFuzz: Implementing Continuous Fuzzing for DBMSs. In2024 USENIX Annual Technical Conference. 479–492.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting logical bugs of DBMS with coverage-based guidance. In31st USENIX Security Symposium (USENIX Security 22). 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Eric Lo, Carsten Binnig, Donald Kossmann, M Tamer Özsu, and Wing-Kai Hon. 2010. A framework for testing DBMS features.The VLDB Journal19 (2010), 203–230.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Roger C Lyndon. 1950. The representation of relational algebras.Annals of mathematics51, 3 (1950), 707–729.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "PingCAP. [n. d.]. TiDB. https://github.com/pingcap/tidb. Accessed: November 11, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Raghu Ramakrishnan and Johannes Gehrke. 2002.Database management systems. McGraw-Hill, Inc.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 37,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning.Proceedings of the ACM on Programming Languages4, OOPSLA (2020), 1–30.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 38,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 39,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 40,
+      "text": "Anupam Sanghi, Raghav Sood, Dharmendra Singh, Jayant R Haritsa, and Srikanta Tirthapura. 2018. HYDRA: a dynamic big data regenerator.Proceedings of the VLDB Endowment11, 12 (2018), 1974–1977. 3, No. 6 (SIGMOD), Article 314. Publication date: December 2025. Detecting Logic Bugs in DBMSs via Equivalent Data Construction 314:25",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Andreas Seltenreich, Bo Tang, and Sjoerd Mullender. 2018. SQLsmith: A Random SQL Query Generator. https: //github.com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Shetal Shah, S. Sudarshan, Suhas Kajbaje, Sandeep Patidar, Bhanu Pratap Gupta, and Devang Vira. 2011. Generating Test Data for Killing SQL Mutants: A Constraint-Based Approach. In Engineering. IEEE, 1175–1186.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Donald R Slutz. 1998. Massive Stochastic Testing of SQL. 98 (1998), 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Jiansen Song, Wensheng Dou, Ziyu Cui, Qianwang Dai, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2023. Testing database systems via differential query execution. In Engineering (ICSE). IEEE, 2072–2084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Jiansen Song, Wensheng Dou, Yu Gao, Ziyu Cui, Yingying Zheng, Dong Wang, Wei Wang, Jun Wei, and Tao Huang. 2024. Detecting Metadata-Related Logic Bugs in Database Systems via Raw Database Construction.Proceedings of the VLDB Endowment17, 8 (2024), 1884–1897.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Xiu Tang, Sai Wu, Dongxiang Zhang, Feifei Li, and Gang Chen. 2023. Detecting logic bugs of join optimizations in dbms.Proceedings of the ACM on Management of Data1, 1 (2023), 1–26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Qingshuai Wang, Hao Li, Zirui Hu, Rong Zhang, Chengcheng Yang, Peng Cai, Xuan Zhou, and Aoying Zhou. 2024. Mirage: Generating Enormous Databases for Complex Workloads. In Engineering (ICDE). IEEE, 3989–4001.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Qingshuai Wang, Yuming Li, Rong Zhang, Ke Shu, Zhenjie Zhang, and Aoying Zhou. 2022. A scalable query-aware enormous database generator for database evaluation.IEEE Transactions on Knowledge and Data Engineering35, 5 (2022), 4395–4410.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Michael Widenius, David Axmark, and Kaj Arno. 2002.MySQL reference manual: documentation from the source. \" O’Reilly Media, Inc.\".",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Zhiyong Wu, Jie Liang, Jingzhou Fu, Mingzhe Wang, and Yu Jiang. 2024. PUPPY: Finding Performance Degradation Bugs in DBMSs via Limited-Optimization Plan Construction. In Software Engineering (ICSE). IEEE Computer Society, 560–571.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Zhiyong Wu, Jie Liang, Mingzhe Wang, Chijin Zhou, and Yu Jiang. 2022. Unicorn: Detect Runtime Errors in Time-series Databases with Hybrid Input Synthesis. InISSTA ’22: 31st ACMSIGSOFT International Symposium on Software Testing and Analysis, Virtual Event, South Korea, July 18 - 22, 2022. ACM, 251–262.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Jingyi Yang, Peizhi Wu, Gao Cong, Tieying Zhang, and Xiao He. 2022. SAM: Database generation from query workloads with supervised autoregressive models. InProceedings of the 2022 International Conference on Management of Data. 1542–1555.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. Squirrel: Testing Database Management Systems with Language Validity and Coverage Feedback. InThe ACM Conference on Computer and Communications Security (CCS), 2020. Received April 2025; revised July 2025; accepted August 2025 3, No. 6 (SIGMOD), Article 314. Publication date: December 2025.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 36,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 37,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning.Proceedings of the ACM on Programming Languages4, OOPSLA (2020), 1–30.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 38,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 39,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For instance, EET [ 27] targets expression-level transformations, TLP [ 37] partitions queries based on predicate logic, and NoREC [36] rewrites queries to disable DBMS optimizations.",
+      "context_before": "n, and optimization rules. For instance, data operations may involve implicit type conversions and varying treatments of different data types, as well as handling implicit coercions, type overflows, or precision loss. Thus, logic bugs related to data operations in DBMSs are more likely to arise not from individual operations in isolation, but from subtle inconsistencies that emerge when multiple operations and data types interact in complex ways. This complexity makes the implementation of data operations inherently error-prone. There have been several studies on detecting logic bugs in DBMSs.",
+      "context_after": "Radar [45] introduces metadata constraints to find potential bugs. While effective for exposing query planner and optimizer issues, such as incorrect rewrites, joins, or predicate logic, previous tools mainly focus on the structural aspects of query logic. They are not primarily designed to detect issues that stem from how data operations behave over different data types, such as errors caused by implicit type coercions, overflows, or precision loss. In this paper, we focus on a different class of correctness issues: logic bugs arising from data types and operations. These issues often occur",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 4361,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": ", TLP [ 37], Radar [ 45], and EET [ 27].",
+      "context_before": "15], OceanBase [ 12] and ClickHouse [ 5]. Although these databases had undergone thorough testing,EDCstill reported a total of 54 bugs. Among these, 39 bugs have been confirmed by the developers of the corresponding DBMSs. The reported issues received active attention from the developer communities. For example, TiDB developers actively inquired about our approach and acknowledged its effectiveness, while MariaDB developers described our findings as counterintuitive, helping them uncover more issues related to data operations. We also evaluate EDCagainst 3 state-of-art testing techniques, i.e.",
+      "context_after": "In 24-hour experiments,EDCdetected 38 bugs across seven DBMSs, including 35 that were not reported by existing tools. This result underscores the distinct bug-detection scope of EDCand its potential to complement prior approaches. We make the following contributions: •We demonstrate that logic bugs arising from data operations, such as type conversions and precision errors, can be significant. However, these issues are often underrepresented in the findings of existing tools, which tend to focus primarily on query-level transformations. •We propose a novel approach EDCthat is designed to detect",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 10670,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[ 27,36–38,44,45]",
+      "technique": "norec",
+      "sentence": "2 Limitations of Existing Approaches Several approaches have been proposed to detect logic bugs in DBMSs [ 27,36–38,44,45], many of which operate at the query level and rely on various strategies to identify inconsistencies in query results.",
+      "context_before": "returning boolean results, such as comparisons ( >,<,=), null checks ( IS NULL ), and set-based operations ( IN,BETWEEN ), are critical for filtering; and (4) Aggregate operations, which summarize data across multiple rows, producing grouped or single-value results through functions like SUM,AVG, and MAX. The diversity of data types and operations serves as the cornerstone of a DBMS’s ability to support a broad spectrum of functionalities. By leveraging this combination, DBMSs effectively address diverse application requirements while ensuring performance, reliability, and user-friendliness. 2.",
+      "context_after": "Specifically, some approaches split or transform queries to expose discrepancies in the results (e.g., TLP [ 37], NoREC [ 36]), while others construct logically crafted SQL queries designed to return specific results in a controlled manner (e.g., PQS [ 38], DQE [ 44]). While query-level strategies have proven effective in many cases, their focus on high-level semantics or syntactic transformations means they may not specifically target the types of subtle bugs that can emerge from complex data operations or type interactions. Additionally, some techniques (e.g., EET [ 27]) apply rule-based ex",
+      "section": "2.2 Limitations of Existing Approaches",
+      "page": 4,
+      "char_offset": 14292,
+      "cited_reference": {
+        "number": 36,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": ", TLP [ 37], NoREC [ 36]), while others construct logically crafted SQL queries designed to return specific results in a controlled manner (e.",
+      "context_before": "tions serves as the cornerstone of a DBMS’s ability to support a broad spectrum of functionalities. By leveraging this combination, DBMSs effectively address diverse application requirements while ensuring performance, reliability, and user-friendliness. 2.2 Limitations of Existing Approaches Several approaches have been proposed to detect logic bugs in DBMSs [ 27,36–38,44,45], many of which operate at the query level and rely on various strategies to identify inconsistencies in query results. Specifically, some approaches split or transform queries to expose discrepancies in the results (e.g.",
+      "context_after": "g., PQS [ 38], DQE [ 44]). While query-level strategies have proven effective in many cases, their focus on high-level semantics or syntactic transformations means they may not specifically target the types of subtle bugs that can emerge from complex data operations or type interactions. Additionally, some techniques (e.g., EET [ 27]) apply rule-based expression rewriting, while others, such as Radar [ 45] focus on detecting metadatarelated logic bugs by comparing results between a database with metadata constraints and a raw database. While these methods do not rely directly on data semantics",
+      "section": "2.2 Limitations of Existing Approaches",
+      "page": 4,
+      "char_offset": 14635,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": ", PQS [ 38], DQE [ 44]).",
+      "context_before": "ively address diverse application requirements while ensuring performance, reliability, and user-friendliness. 2.2 Limitations of Existing Approaches Several approaches have been proposed to detect logic bugs in DBMSs [ 27,36–38,44,45], many of which operate at the query level and rely on various strategies to identify inconsistencies in query results. Specifically, some approaches split or transform queries to expose discrepancies in the results (e.g., TLP [ 37], NoREC [ 36]), while others construct logically crafted SQL queries designed to return specific results in a controlled manner (e.g.",
+      "context_after": "While query-level strategies have proven effective in many cases, their focus on high-level semantics or syntactic transformations means they may not specifically target the types of subtle bugs that can emerge from complex data operations or type interactions. Additionally, some techniques (e.g., EET [ 27]) apply rule-based expression rewriting, while others, such as Radar [ 45] focus on detecting metadatarelated logic bugs by comparing results between a database with metadata constraints and a raw database. While these methods do not rely directly on data semantics, they operate at a differ",
+      "section": "2.2 Limitations of Existing Approaches",
+      "page": 4,
+      "char_offset": 14779,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC aims to reveal bugs by transforming query semantics, but its approach is primarily focused on a specific pattern of predicate rewriting, which may limit its coverage.",
+      "context_before": "45] focus on detecting metadatarelated logic bugs by comparing results between a database with metadata constraints and a raw database. While these methods do not rely directly on data semantics, they operate at a different level of abstraction and are not primarily intended to capture data relationships. Notably, the bug illustrated in Figure 1 triggered by a query containing WHERE CONCAT(𝑎 1,𝑎2)is uniquely detected by our approach. EET operates at the syntactic level, and while its rule-based expression rewrites provide valuable insights, they may not fully capture deeper data relationships.",
+      "context_after": "Radar, which emphasizes metadata constraints, offers useful perspectives but does not manipulate data expressions directly, 3, No. 6 (SIGMOD), Article 314. Publication date: December 2025. Detecting Logic Bugs in DBMSs via Equivalent Data Construction 314:5 potentially missing deeper inconsistencies in data computation. Taken together, these approaches do not explicitly model equivalence across data types and operations, which may make it challenging to detect certain types of data-level logic bugs. 2.3 Definitions of Data Equivalence To illustrate our idea, we first present formal definitio",
+      "section": "2.2 Limitations of Existing Approaches",
+      "page": 4,
+      "char_offset": 15783,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker",
+      "surface": "[ 21,27,29,30,38,50]",
+      "technique": "pqs",
+      "sentence": "These DBMSs have been extensively tested by many existing approaches [ 21,27,29,30,38,50].",
+      "context_before": "approaches. 5.1 Evaluation Setup Tested DBMSs.To evaluate the generality and efficiency of EDC, we select seven popular opensource DBMSs, namely MySQL [ 10,49], MariaDB [ 8,17], Percona [ 4], PostgreSQL [ 13], TiDB [ 24,34], OceanBase [ 12], and ClickHouse [ 5], which are widely used in industry. Table 3 shows the specific versions of the tested DBMSs for the experiments. The type in Table 3 follows the prior work [ 45] and established classifications [ 25]. Specifically, we applied EDCto MySQL 9.0.1, MariaDB 11.4.3, Percona 8.4.2, PostgreSQL 16.1, TiDB 8.2, OceanBase 4.2.1, and ClickHouse 24.9.",
+      "context_after": "However, existing tools have recently identified significantly fewer bugs in these DBMSs. Consequently, discovering new bugs in these DBMSs has become highly challenging. Table 3. Target DBMSs: version, complexity, popularity, and diversity overview. DBMS Version LOC GitHub Stars Type MySQL 9.0.1 6.2M 10.8k Relational MariaDB 11.4.3 2.3M 5.6k Relational Percona 8.4.2 5.0M 1.2k Relational PostgreSQL 16.1 1.9M 18k Relational TiDB 8.2 1.5M 36k NewSQL OceanBase 4.2.1 7.5M 8.5k Distributed ClickHouse 24.9.1 2.2M 36k Analytical Experimental Setup.We perform the experiments on a machine running 64-b",
+      "section": "5.1 Evaluation Setup",
+      "page": 12,
+      "char_offset": 41636,
+      "cited_reference": {
+        "number": 38,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "We compare EDCagainst 3 state-of-the-art open-source tools for finding logic bugs in DBMSs: TLP [ 37], EET [ 27], and Radar [ 45].",
+      "context_before": "e range of operation invocations and type conversions, enabling it to uncover edge cases that previous approaches fail to consider. Third, its use of equivalence-based transformations can influence query optimization paths, thereby exposing execution-level bugs that are otherwise hidden from conventional testing strategies. Through its data equivalence strategy,EDCis able to generate rich and diverse test cases that penetrate deep into the internal logic of DBMSs, ultimately enabling the discovery of subtle and previously unreported bugs. 5.5 Comparison with Existing Techniques Compared Tools.",
+      "context_after": "TLP [ 37] generates randomized databases and SQL queries to uncover incorrect query results, flagging logic bugs when expected rows are not retrieved. EET [ 27] detects logic bugs by performing semantics-preserving transformations on complex SQL queries to ensure the transformed queries yield the same results as the originals. Additionally, Radar [ 45] identifies logic bugs by comparing query results on databases with identical data but differing metadata constraints, such as NOT NULL. We ran the testing tools on each target DBMS for 24 hours and recorded the number of detected logic bugs as",
+      "section": "5.5 Comparison with Existing Techniques",
+      "page": 19,
+      "char_offset": 64286,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP [ 37] generates randomized databases and SQL queries to uncover incorrect query results, flagging logic bugs when expected rows are not retrieved.",
+      "context_before": "r. Third, its use of equivalence-based transformations can influence query optimization paths, thereby exposing execution-level bugs that are otherwise hidden from conventional testing strategies. Through its data equivalence strategy,EDCis able to generate rich and diverse test cases that penetrate deep into the internal logic of DBMSs, ultimately enabling the discovery of subtle and previously unreported bugs. 5.5 Comparison with Existing Techniques Compared Tools.We compare EDCagainst 3 state-of-the-art open-source tools for finding logic bugs in DBMSs: TLP [ 37], EET [ 27], and Radar [ 45].",
+      "context_after": "EET [ 27] detects logic bugs by performing semantics-preserving transformations on complex SQL queries to ensure the transformed queries yield the same results as the originals. Additionally, Radar [ 45] identifies logic bugs by comparing query results on databases with identical data but differing metadata constraints, such as NOT NULL. We ran the testing tools on each target DBMS for 24 hours and recorded the number of detected logic bugs as the metric. For TLP and Radar, we conducted experiments using the default configurations for each DBMS. For EET, we used the–ignore-crash option to byp",
+      "section": "5.5 Comparison with Existing Techniques",
+      "page": 19,
+      "char_offset": 64415,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For TLP and Radar, we conducted experiments using the default configurations for each DBMS.",
+      "context_before": "generates randomized databases and SQL queries to uncover incorrect query results, flagging logic bugs when expected rows are not retrieved. EET [ 27] detects logic bugs by performing semantics-preserving transformations on complex SQL queries to ensure the transformed queries yield the same results as the originals. Additionally, Radar [ 45] identifies logic bugs by comparing query results on databases with identical data but differing metadata constraints, such as NOT NULL. We ran the testing tools on each target DBMS for 24 hours and recorded the number of detected logic bugs as the metric.",
+      "context_after": "For EET, we used the–ignore-crash option to bypass crash bugs, allowing EET to focus solely on detecting logic bugs. This setting ensures a fair comparison, as EDCis also designed specifically to target logic bugs rather than crashes. Results.Table 8 displays the number of logic bugs detected by each tool in 24 hours. During the evaluation,EDCfound 8, 6, 6, 2, 5, 6, and 7 bugs in MySQL, MariaDB, Percona, PostgreSQL, TiDB, OceanBase, and ClickHouse, respectively, while TLP detected 3 bugs in MySQL, 2 in Percona, 4 in TiDB, and none in others. Radar identified 1 bug in MySQL and Percona, 5 in Ti",
+      "section": "5.5 Comparison with Existing Techniques",
+      "page": 19,
+      "char_offset": 65026,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "During the evaluation,EDCfound 8, 6, 6, 2, 5, 6, and 7 bugs in MySQL, MariaDB, Percona, PostgreSQL, TiDB, OceanBase, and ClickHouse, respectively, while TLP detected 3 bugs in MySQL, 2 in Percona, 4 in TiDB, and none in others.",
+      "context_before": "identical data but differing metadata constraints, such as NOT NULL. We ran the testing tools on each target DBMS for 24 hours and recorded the number of detected logic bugs as the metric. For TLP and Radar, we conducted experiments using the default configurations for each DBMS. For EET, we used the–ignore-crash option to bypass crash bugs, allowing EET to focus solely on detecting logic bugs. This setting ensures a fair comparison, as EDCis also designed specifically to target logic bugs rather than crashes. Results.Table 8 displays the number of logic bugs detected by each tool in 24 hours.",
+      "context_after": "Radar identified 1 bug in MySQL and Percona, 5 in TiDB, with no support for ClickHouse, OceanBase, and PostgreSQL, and no bugs detected in MariaDB. EET found 3 bugs in MySQL, 1 in PostgreSQL, no bugs in TiDB, and 2 in ClickHouse, but it does not support MariaDB, Percona, and OceanBase. Across the seven DBMSs,EDCdetected 38 unique bugs, while TLP, Radar, and EET identified 9, 7, and 5 bugs respectively, highlighting the complementary nature of their testing strategies. Furthermore, to better understand the relationship between the bugs, we investigated the bug reports generated by these 4 tool",
+      "section": "5.5 Comparison with Existing Techniques",
+      "page": 19,
+      "char_offset": 65437,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Across the seven DBMSs,EDCdetected 38 unique bugs, while TLP, Radar, and EET identified 9, 7, and 5 bugs respectively, highlighting the complementary nature of their testing strategies.",
+      "context_before": "Results.Table 8 displays the number of logic bugs detected by each tool in 24 hours. During the evaluation,EDCfound 8, 6, 6, 2, 5, 6, and 7 bugs in MySQL, MariaDB, Percona, PostgreSQL, TiDB, OceanBase, and ClickHouse, respectively, while TLP detected 3 bugs in MySQL, 2 in Percona, 4 in TiDB, and none in others. Radar identified 1 bug in MySQL and Percona, 5 in TiDB, with no support for ClickHouse, OceanBase, and PostgreSQL, and no bugs detected in MariaDB. EET found 3 bugs in MySQL, 1 in PostgreSQL, no bugs in TiDB, and 2 in ClickHouse, but it does not support MariaDB, Percona, and OceanBase.",
+      "context_after": "Furthermore, to better understand the relationship between the bugs, we investigated the bug reports generated by these 4 tools. Figure 10 provides insight into the relationships between the bugs detected by EDCand the other tools. In our evaluation,EDCuniquely identified 40 bugs, demonstrating its capability to uncover a broad range of issues. Among these, 3 bugs overlap with TLP, while no overlap exists with Radar or EET. Analysis.EDCand TLP share 3 overlapping bugs, all related to SQL functions. This is because both tools utilize SQL functions in their testing methodologies. However,EDCdete",
+      "section": "5.5 Comparison with Existing Techniques",
+      "page": 19,
+      "char_offset": 65952,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Among these, 3 bugs overlap with TLP, while no overlap exists with Radar or EET.",
+      "context_before": "ClickHouse, but it does not support MariaDB, Percona, and OceanBase. Across the seven DBMSs,EDCdetected 38 unique bugs, while TLP, Radar, and EET identified 9, 7, and 5 bugs respectively, highlighting the complementary nature of their testing strategies. Furthermore, to better understand the relationship between the bugs, we investigated the bug reports generated by these 4 tools. Figure 10 provides insight into the relationships between the bugs detected by EDCand the other tools. In our evaluation,EDCuniquely identified 40 bugs, demonstrating its capability to uncover a broad range of issues.",
+      "context_after": "Analysis.EDCand TLP share 3 overlapping bugs, all related to SQL functions. This is because both tools utilize SQL functions in their testing methodologies. However,EDCdetects significantly more bugs related to SQL functions and extends its coverage to other data operations, such as predicate operations, which TLP might miss. The 6 unique bugs detected by TLP involve JOIN operations, which are outside the scope of EDC, as it focuses on single-table queries. The bugs detected 3, No. 6 (SIGMOD), Article 314. Publication date: December 2025. 314:20 Wenqian Deng, Jie Liang, Zhiyong Wu, Jingzhou F",
+      "section": "5.5 Comparison with Existing Techniques",
+      "page": 19,
+      "char_offset": 66484,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "EDCand TLP share 3 overlapping bugs, all related to SQL functions.",
+      "context_before": ",EDCdetected 38 unique bugs, while TLP, Radar, and EET identified 9, 7, and 5 bugs respectively, highlighting the complementary nature of their testing strategies. Furthermore, to better understand the relationship between the bugs, we investigated the bug reports generated by these 4 tools. Figure 10 provides insight into the relationships between the bugs detected by EDCand the other tools. In our evaluation,EDCuniquely identified 40 bugs, demonstrating its capability to uncover a broad range of issues. Among these, 3 bugs overlap with TLP, while no overlap exists with Radar or EET. Analysis.",
+      "context_after": "This is because both tools utilize SQL functions in their testing methodologies. However,EDCdetects significantly more bugs related to SQL functions and extends its coverage to other data operations, such as predicate operations, which TLP might miss. The 6 unique bugs detected by TLP involve JOIN operations, which are outside the scope of EDC, as it focuses on single-table queries. The bugs detected 3, No. 6 (SIGMOD), Article 314. Publication date: December 2025. 314:20 Wenqian Deng, Jie Liang, Zhiyong Wu, Jingzhou Fu, and Yu Jiang Table 8. Number of detected logic bugs in 24 hours. “-” indi",
+      "section": "5.5 Comparison with Existing Techniques",
+      "page": 19,
+      "char_offset": 66575,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "However,EDCdetects significantly more bugs related to SQL functions and extends its coverage to other data operations, such as predicate operations, which TLP might miss.",
+      "context_before": "ting strategies. Furthermore, to better understand the relationship between the bugs, we investigated the bug reports generated by these 4 tools. Figure 10 provides insight into the relationships between the bugs detected by EDCand the other tools. In our evaluation,EDCuniquely identified 40 bugs, demonstrating its capability to uncover a broad range of issues. Among these, 3 bugs overlap with TLP, while no overlap exists with Radar or EET. Analysis.EDCand TLP share 3 overlapping bugs, all related to SQL functions. This is because both tools utilize SQL functions in their testing methodologies.",
+      "context_after": "The 6 unique bugs detected by TLP involve JOIN operations, which are outside the scope of EDC, as it focuses on single-table queries. The bugs detected 3, No. 6 (SIGMOD), Article 314. Publication date: December 2025. 314:20 Wenqian Deng, Jie Liang, Zhiyong Wu, Jingzhou Fu, and Yu Jiang Table 8. Number of detected logic bugs in 24 hours. “-” indicates that the tool does not support the DBMS. DBMSEDCTLP Radar EET MySQL 8 3 1 3 MariaDB 6 - 0 Percona 6 2 1 PostgreSQL 2 0 - 1 TiDB 5 4 5 0 OceanBase 6 0 - ClickHouse 7 0 - 2 Total 40 9 7 6 by EDCand EET are entirely orthogonal. EET specializes in fin",
+      "section": "5.5 Comparison with Existing Techniques",
+      "page": 19,
+      "char_offset": 66722,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "The 6 unique bugs detected by TLP involve JOIN operations, which are outside the scope of EDC, as it focuses on single-table queries.",
+      "context_before": "t into the relationships between the bugs detected by EDCand the other tools. In our evaluation,EDCuniquely identified 40 bugs, demonstrating its capability to uncover a broad range of issues. Among these, 3 bugs overlap with TLP, while no overlap exists with Radar or EET. Analysis.EDCand TLP share 3 overlapping bugs, all related to SQL functions. This is because both tools utilize SQL functions in their testing methodologies. However,EDCdetects significantly more bugs related to SQL functions and extends its coverage to other data operations, such as predicate operations, which TLP might miss.",
+      "context_after": "The bugs detected 3, No. 6 (SIGMOD), Article 314. Publication date: December 2025. 314:20 Wenqian Deng, Jie Liang, Zhiyong Wu, Jingzhou Fu, and Yu Jiang Table 8. Number of detected logic bugs in 24 hours. “-” indicates that the tool does not support the DBMS. DBMSEDCTLP Radar EET MySQL 8 3 1 3 MariaDB 6 - 0 Percona 6 2 1 PostgreSQL 2 0 - 1 TiDB 5 4 5 0 OceanBase 6 0 - ClickHouse 7 0 - 2 Total 40 9 7 6 by EDCand EET are entirely orthogonal. EET specializes in finding bugs associated with advanced SQL constructs like WITH clauses and window functions. In contrast,EDCfocuses on exploring the div",
+      "section": "5.5 Comparison with Existing Techniques",
+      "page": 19,
+      "char_offset": 66893,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "citation_marker",
+      "surface": "[ 21,23,27,36,37,39,43–46]",
+      "technique": "norec",
+      "sentence": "Many works have proposed various methods for detecting logic bugs in DBMSs [ 21,23,27,36,37,39,43–46].",
+      "context_before": "ased techniques,EDCdoes not aim for complete bug coverage. Its detection capabilities are scoped to inconsistencies that arise from violations of data equivalence. To mitigate the risk of false negatives within its target domain,EDCgenerates a wide range of operation-type combinations and expression structures to increase coverage.EDCcan serve as a complementary component within a broader DBMS testing framework. By combining EDCwith approaches that emphasize query semantics or constraint-based inference, users can achieve more comprehensive DBMS testing. 7 Related Work DBMS Logic Bug Detection.",
+      "context_after": "NoREC [ 36] works by generating a query with a predicate and then transforming the query to one that DBMSs cannot optimize. A logic bug is detected if the output changes after this transformation. TLP [ 37] breaks down the original query 3, No. 6 (SIGMOD), Article 314. Publication date: December 2025. 314:22 Wenqian Deng, Jie Liang, Zhiyong Wu, Jingzhou Fu, and Yu Jiang into three separate subqueries by splitting the predicate. The combined results of these subqueries should align with the original query’s result; if not, a logic bug is reported. PQS [ 39] generates queries that are designed",
+      "section": "5.5 Comparison with Existing Techniques",
+      "page": 21,
+      "char_offset": 73442,
+      "cited_reference": {
+        "number": 36,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC [ 36] works by generating a query with a predicate and then transforming the query to one that DBMSs cannot optimize.",
+      "context_before": "consistencies that arise from violations of data equivalence. To mitigate the risk of false negatives within its target domain,EDCgenerates a wide range of operation-type combinations and expression structures to increase coverage.EDCcan serve as a complementary component within a broader DBMS testing framework. By combining EDCwith approaches that emphasize query semantics or constraint-based inference, users can achieve more comprehensive DBMS testing. 7 Related Work DBMS Logic Bug Detection.Many works have proposed various methods for detecting logic bugs in DBMSs [ 21,23,27,36,37,39,43–46].",
+      "context_after": "A logic bug is detected if the output changes after this transformation. TLP [ 37] breaks down the original query 3, No. 6 (SIGMOD), Article 314. Publication date: December 2025. 314:22 Wenqian Deng, Jie Liang, Zhiyong Wu, Jingzhou Fu, and Yu Jiang into three separate subqueries by splitting the predicate. The combined results of these subqueries should align with the original query’s result; if not, a logic bug is reported. PQS [ 39] generates queries that are designed to always return a specific row by utilizing a custom interpreter. If the DBMS under test fails to retrieve this row, PQS i",
+      "section": "5.5 Comparison with Existing Techniques",
+      "page": 21,
+      "char_offset": 73544,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP [ 37] breaks down the original query 3, No.",
+      "context_before": "n structures to increase coverage.EDCcan serve as a complementary component within a broader DBMS testing framework. By combining EDCwith approaches that emphasize query semantics or constraint-based inference, users can achieve more comprehensive DBMS testing. 7 Related Work DBMS Logic Bug Detection.Many works have proposed various methods for detecting logic bugs in DBMSs [ 21,23,27,36,37,39,43–46]. NoREC [ 36] works by generating a query with a predicate and then transforming the query to one that DBMSs cannot optimize. A logic bug is detected if the output changes after this transformation.",
+      "context_after": "6 (SIGMOD), Article 314. Publication date: December 2025. 314:22 Wenqian Deng, Jie Liang, Zhiyong Wu, Jingzhou Fu, and Yu Jiang into three separate subqueries by splitting the predicate. The combined results of these subqueries should align with the original query’s result; if not, a logic bug is reported. PQS [ 39] generates queries that are designed to always return a specific row by utilizing a custom interpreter. If the DBMS under test fails to retrieve this row, PQS identifies it as a logic bug. Sedar [ 21] summarizes a series of SQL function patterns and generates test cases based on th",
+      "section": "5.5 Comparison with Existing Techniques",
+      "page": 21,
+      "char_offset": 73741,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M20",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS [ 39] generates queries that are designed to always return a specific row by utilizing a custom interpreter.",
+      "context_before": "ogic bugs in DBMSs [ 21,23,27,36,37,39,43–46]. NoREC [ 36] works by generating a query with a predicate and then transforming the query to one that DBMSs cannot optimize. A logic bug is detected if the output changes after this transformation. TLP [ 37] breaks down the original query 3, No. 6 (SIGMOD), Article 314. Publication date: December 2025. 314:22 Wenqian Deng, Jie Liang, Zhiyong Wu, Jingzhou Fu, and Yu Jiang into three separate subqueries by splitting the predicate. The combined results of these subqueries should align with the original query’s result; if not, a logic bug is reported.",
+      "context_after": "If the DBMS under test fails to retrieve this row, PQS identifies it as a logic bug. Sedar [ 21] summarizes a series of SQL function patterns and generates test cases based on that. The core idea of DQE [ 44] is to detect logic bugs of DBMSs by comparing whether different SQL queries with the same predicate access the same rows in the database. TQS [ 46] decomposes wide tables into smaller ones and generates custom queries with join operations, using the base table to derive ground truth results. PINOLO [ 23] synthesizes queries that produce supersets or subsets of the result set of a seed qu",
+      "section": "5.5 Comparison with Existing Techniques",
+      "page": 22,
+      "char_offset": 74098,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M21",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "If the DBMS under test fails to retrieve this row, PQS identifies it as a logic bug.",
+      "context_before": "transforming the query to one that DBMSs cannot optimize. A logic bug is detected if the output changes after this transformation. TLP [ 37] breaks down the original query 3, No. 6 (SIGMOD), Article 314. Publication date: December 2025. 314:22 Wenqian Deng, Jie Liang, Zhiyong Wu, Jingzhou Fu, and Yu Jiang into three separate subqueries by splitting the predicate. The combined results of these subqueries should align with the original query’s result; if not, a logic bug is reported. PQS [ 39] generates queries that are designed to always return a specific row by utilizing a custom interpreter.",
+      "context_after": "Sedar [ 21] summarizes a series of SQL function patterns and generates test cases based on that. The core idea of DQE [ 44] is to detect logic bugs of DBMSs by comparing whether different SQL queries with the same predicate access the same rows in the database. TQS [ 46] decomposes wide tables into smaller ones and generates custom queries with join operations, using the base table to derive ground truth results. PINOLO [ 23] synthesizes queries that produce supersets or subsets of the result set of a seed query and identifies bugs when the DBMS’s output violates the expected approximation re",
+      "section": "5.5 Comparison with Existing Techniques",
+      "page": 22,
+      "char_offset": 74211,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "describes_as_state_of_the_art": [
+        "M8"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:36:46Z",
+    "is_model_written": true,
+    "summary": "EDC detects logic bugs by constructing a second database whose data is equivalent to the first under the query being tested, so that the two must return the same result. Where earlier oracles transform the query and hold the data fixed, EDC transforms the data and holds the query fixed, which reaches bugs in how values are stored, converted and compared. Across MySQL, MariaDB, Percona, PostgreSQL, TiDB, OceanBase and ClickHouse it found 38 unique bugs.",
+    "narrative": "TLP is one of EDC's three baselines, named as a state-of-the-art open-source tool for finding logic bugs alongside EET and Radar. The comparison is reported in detail and is unusually candid about where each wins: EDC found 38 bugs to TLP's 9, they overlap on 3 -- all SQL-function bugs -- and the 6 bugs only TLP found involve JOINs, which are outside EDC's scope because it tests single-table queries. NoREC, TLP and PQS are each also described in the related-work section as the query-level approaches EDC is positioned against.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "background",
+      "M4": "definition",
+      "M5": "definition",
+      "M6": "motivation",
+      "M7": "background",
+      "M8": "state_of_the_art",
+      "M9": "definition",
+      "M10": "baseline",
+      "M11": "result_comparison",
+      "M12": "result_comparison",
+      "M13": "result_comparison",
+      "M14": "result_comparison",
+      "M15": "result_comparison",
+      "M16": "result_comparison",
+      "M17": "background",
+      "M18": "definition",
+      "M19": "definition",
+      "M20": "definition",
+      "M21": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "TLP is run as a baseline; nothing states that EDC's own implementation reuses the SQLancer codebase."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "EDC transforms the data rather than the query, which the paper presents as a different oracle from TLP and NoREC rather than a generalisation of either."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M8",
+          "M11",
+          "M12"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M8",
+            "sentence": "We compare EDCagainst 3 state-of-the-art open-source tools for finding logic bugs in DBMSs: TLP [ 37], EET [ 27], and Radar [ 45].",
+            "section": "5.5 Comparison with Existing Techniques",
+            "page": 19
+          },
+          {
+            "mention_id": "M11",
+            "sentence": "During the evaluation,EDCfound 8, 6, 6, 2, 5, 6, and 7 bugs in MySQL, MariaDB, Percona, PostgreSQL, TiDB, OceanBase, and ClickHouse, respectively, while TLP detected 3 bugs in MySQL, 2 in Percona, 4 in TiDB, and none in others.",
+            "section": "5.5 Comparison with Existing Techniques",
+            "page": 19
+          },
+          {
+            "mention_id": "M12",
+            "sentence": "Across the seven DBMSs,EDCdetected 38 unique bugs, while TLP, Radar, and EET identified 9, 7, and 5 bugs respectively, highlighting the complementary nature of their testing strategies.",
+            "section": "5.5 Comparison with Existing Techniques",
+            "page": 19
+          }
+        ],
+        "reasoning": "M8 names TLP as one of the three tools EDC is compared against, and M11 and M12 report per-DBMS and total bug counts for both.",
+        "techniques": [
+          "tlp"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M8"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M8",
+            "sentence": "We compare EDCagainst 3 state-of-the-art open-source tools for finding logic bugs in DBMSs: TLP [ 37], EET [ 27], and Radar [ 45].",
+            "section": "5.5 Comparison with Existing Techniques",
+            "page": 19
+          }
+        ],
+        "reasoning": "M8 calls TLP one of three state-of-the-art open-source tools for finding logic bugs in DBMSs."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,494 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T17:05:11Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3808109",
+    "title": "Eidolon: Perform Noise-Aware Fuzzing on FHE Libraries via Equivalence Expression Transformation",
+    "authors": [
+      "Zhensheng Xian",
+      "Zhen Yan",
+      "Yuanliang Chen",
+      "Xuelian Cao",
+      "Fuchen Ma",
+      "Dalong Shi",
+      "Yu Jiang"
+    ],
+    "year": 2026,
+    "venue": "Proceedings of the ACM on Software Engineering",
+    "doi": "10.1145/3808109",
+    "arxiv_id": null,
+    "s2_paper_id": "2dd21a6a9998e76f0247f28e7d30938c66112b8a",
+    "url": "https://doi.org/10.1145/3808109",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3808109",
+      "retrieved_at": "2026-09-07T17:05:11Z",
+      "chars": 80638,
+      "content_sha256": "sha256:03b4dab181827a6305851d98eb60684aab0f9b6ff29e9cb7b6d4ab5f15e382cf"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 22,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2349
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 9815
+      },
+      {
+        "number": "2.1",
+        "title": "Fully Homomorphic Encryption Concept",
+        "start": 9828
+      },
+      {
+        "number": "2.2",
+        "title": "Noise Mechanism in FHE",
+        "start": 12969
+      },
+      {
+        "number": "3",
+        "title": "Motivation",
+        "start": 15177
+      },
+      {
+        "number": "4",
+        "title": "Design",
+        "start": 21412
+      },
+      {
+        "number": "4.1",
+        "title": "Eidolon Workflow",
+        "start": 22544
+      },
+      {
+        "number": "4.2",
+        "title": "Test Case Construction",
+        "start": 26180
+      },
+      {
+        "number": "4.3",
+        "title": "Noise-Aware Fuzzing",
+        "start": 33925
+      },
+      {
+        "number": "4.4",
+        "title": "Bug Detection and Analysis",
+        "start": 39131
+      },
+      {
+        "number": "5",
+        "title": "Implementation",
+        "start": 40871
+      },
+      {
+        "number": "6",
+        "title": "Evaluation",
+        "start": 46107
+      },
+      {
+        "number": "6.1",
+        "title": "Bugs in FHE Libraries",
+        "start": 47402
+      },
+      {
+        "number": "6.2",
+        "title": "Effectiveness of Noise-Aware Exploration",
+        "start": 54361
+      },
+      {
+        "number": "6.3",
+        "title": "Comparison with Other Fuzzers",
+        "start": 57959
+      },
+      {
+        "number": "7",
+        "title": "Discussion",
+        "start": 62522
+      },
+      {
+        "number": "8",
+        "title": "Related Work",
+        "start": 66871
+      },
+      {
+        "number": "8.2",
+        "title": "Metamorphic Testing",
+        "start": 67860
+      },
+      {
+        "number": "8.3",
+        "title": "Fuzzing",
+        "start": 68587
+      },
+      {
+        "number": "9",
+        "title": "Conclusion",
+        "start": 69458
+      },
+      {
+        "number": "10",
+        "title": "Data Availability",
+        "start": 70692
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Jonathan Anastasia and Derek Ho. 2024.Stepping through the looking glass of privacy-enhancing technologies. Mastercard. https://www.mastercard.com/news/perspectives/2024/stepping-through-the-looking-glass-of-privacyenhancing-technologies/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Apple. 2024. Combining Machine Learning and Homomorphic Encryption in the Apple Ecosystem. https: //machinelearning.apple.com/research/homomorphic-encryption",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Andrea Arcuri and Lionel Briand. 2011. A practical guide for using statistical tests to assess randomized algorithms in software engineering. InProceedings of the 33rd international conference on software engineering. 1–10.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Jean-Philippe Aumasson and Yolan Romailler. 2017. Automated testing of crypto software using differential fuzzing. Black Hat USA7 (2017), 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Ahmad Al Badawi, Andreea Alexandru, Jack Bates, Flavio Bergamaschi, David Bruce Cousins, Saroja Erabelli, Nicholas Genise, Shai Halevi, Hamish Hunt, Andrey Kim, Yongwoo Lee, Zeyu Liu, Daniele Micciancio, Carlo Pascoe, Yuriy Polyakov, Ian Quah, Saraswathy R.V., Kurt Rohloff, Jonathan Saylor, Dmitriy Suponitsky, Matthew Triplett, Vinod Vaikuntanathan, and Vincent Zucca. 2022. OpenFHE: Open-Source Fu",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Marcelo Blatt, Alexander Gusev, Yuriy Polyakov, Kurt Rohloff, and Vinod Vaikuntanathan. 2020. Optimized homomorphic encryption solution for secure genome-wide association studies.BMC Medical Genomics13, Suppl 7 (2020), 83.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Zvika Brakerski. 2012. Fully homomorphic encryption without modulus switching from classical GapSVP. InAnnual cryptology conference. Springer, 868–886.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Zvika Brakerski, Craig Gentry, and Vinod Vaikuntanathan. 2014. (Leveled) fully homomorphic encryption without bootstrapping.ACM Transactions on Computation Theory (TOCT)6, 3 (2014), 1–36.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Tsong Yueh Chen, Fei-Ching Kuo, Huai Liu, Pak-Lok Poon, Dave Towey, T. H. Tse, and Zhi Quan Zhou. 2018. Metamorphic Testing: A Review of Challenges and Opportunities.ACM Comput. Surv.51, 1, Article 4 (Jan. 2018), 27 pages. doi:10.1145/3143561",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Tsong Yueh Chen, Fei-Ching Kuo, Wenjuan Ma, Willy Susilo, Dave Towey, Jeffrey Voas, and Zhi Quan Zhou. 2016. Metamorphic Testing for Cybersecurity.Computer49, 6 (June 2016), 48–55. doi:10.1109/MC.2016.176",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Jung Hee Cheon, Kyoohyung Han, Andrey Kim, Miran Kim, and Yongsoo Song. 2018. Bootstrapping for approximate homomorphic encryption. InAnnual International Conference on the Theory and Applications of Cryptographic Techniques. Springer, 360–384.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Jung Hee Cheon, Kyoohyung Han, Andrey Kim, Miran Kim, and Yongsoo Song. 2018. A full RNS variant of approximate homomorphic encryption. InInternational Conference on Selected Areas in Cryptography. Springer, 347–368.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Jung Hee Cheon, Andrey Kim, Miran Kim, and Yongsoo Song. 2017. Homomorphic encryption for arithmetic of approximate numbers. InInternational conference on the theory and application of cryptology and information security. Springer, 409–437.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Ilaria Chillotti, Nicolas Gama, Mariya Georgieva, and Malika Izabachène. 2020. TFHE: fast fully homomorphic encryption over the torus.Journal of Cryptology33, 1 (2020), 34–91.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Wikipedia contributors. 2025. Horner’s method. https://en.wikipedia.org/wiki/Horner%27s_method Accessed: 2025-09-12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Ana Costache and Nigel P Smart. 2016. Which ring based somewhat homomorphic encryption scheme is best?. In Cryptographers’ Track at the RSA Conference. Springer, 325–340.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Junfeng Fan and Frederik Vercauteren. 2012. Somewhat practical fully homomorphic encryption.Cryptology ePrint Archive(2012).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Andrea Fioraldi, Dominik Maier, Heiko Eißfeldt, and Marc Heuse. 2020. AFL++: Combining Incremental Steps of Fuzzing Research. In14th USENIX Workshop on Offensive Technologies (WOOT 20). USENIX Association.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Craig Gentry. 2009.A fully homomorphic encryption scheme. Stanford university. Proc. ACM Softw. Eng., Vol. 3, No. FSE, Article FSE102. Publication date: July 2026. FSE102:22 Zhensheng Xian, Zhen Yan, Yuanliang Chen, Xuelian Cao, Fuchen Ma, Dalong Shi, and Yu Jiang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Craig Gentry. 2010. Computing arbitrary functions of encrypted data.Commun. ACM53, 3 (2010), 97–105.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Craig Gentry, Shai Halevi, and Nigel P Smart. 2012. Homomorphic evaluation of the AES circuit. InAnnual Cryptology Conference. Springer, 850–867.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Craig Gentry, Amit Sahai, and Brent Waters. 2013. Homomorphic encryption from learning with errors: Conceptuallysimpler, asymptotically-faster, attribute-based. InAnnual cryptology conference. Springer, 75–92.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Google. 2015. American Fuzzy Lop. https://github.com/google/AFL",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Google. 2019. Project Wycheproof. https://github.com/google/wycheproof.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Google. 2021. AddressSanitizer. https://clang.llvm.org/docs/AddressSanitizer.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Google. 2021. UndefinedBehaviorSanitizer. https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Shai Halevi and Victor Shoup. 2021. Bootstrapping for helib.Journal of Cryptology34, 1 (2021), 7.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Jia Cheng Han and Zhi Quan Zhou. 2020. Metamorphic Fuzz Testing of Autonomous Vehicles. InProceedings of the IEEE/ACM 42nd International Conference on Software Engineering Workshops(Seoul, Republic of Korea)(ICSEW’20). Association for Computing Machinery, New York, NY, USA, 380–385. doi:10.1145/3387940.3392252",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "HElib. 2023. HElib release v2.3.0. https://github.com/homenc/HElib/releases/tag/v2.3.0",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "homenc. 2025. HElib. https://github.com/homenc/HElib. Accessed: 2025-08-19.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. 2014. Compiler validation via equivalence modulo inputs. InProceedings of the 35th ACMSIGPLAN Conference on Programming Language Design and Implementation(Edinburgh, United Kingdom) (PLDI ’14). Association for Computing Machinery, New York, NY, USA, 216–226. doi:10.1145/2594291.2594334",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "LLVM. 2025. LibFuzzer. https://llvm.org/docs/LibFuzzer.html Accessed: 2025-09-09.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Microsoft. 2025. SymCrypt. https://github.com/microsoft/SymCrypt Accessed: 2025-09-11.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Charlie Miller, Zachary NJ Peterson, et al .2007. Analysis of mutation and generation-based fuzzing.Independent Security Evaluators, Tech. Rep4 (2007).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Mozilla Security Team. 2025. Peach Fuzzer. https://github.com/MozillaSecurity/peach Accessed: 2025-09-09.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Yannic Noller and Saeid Tizpaz-Niari. 2021. QFuzz: quantitative fuzzing for side channels. InProceedings of the 30th ACMSIGSOFT International Symposium on Software Testing and Analysis(Virtual, Denmark)(ISSTA 2021). Association for Computing Machinery, New York, NY, USA, 257–269. doi:10.1145/3460319.3464817",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "OpenFHE. 2024. OpenFHE release v1.2.1. https://github.com/openfheorg/openfhe-development/releases/tag/v1.2.1",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "OpenSSL. 2025. OpenSSL. https://github.com/openssl/openssl Accessed: 2025-09-11.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Yiteng Peng, Daoyuan Wu, Zhibo Liu, Dongwei Xiao, Zhenlan Ji, Juergen Rahmel, and Shuai Wang. 2025. Testing and understanding deviation behaviors in fhe-hardened machine learning models. InIEEE Computer Society. 644–644.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Perforce. 2025. Klocwork. https://www.perforce.com/products/klocwork",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. InProceedings of the 14th USENIX Conference on Operating Systems Design and Implementation (OSDI’20). USENIX Association, USA, Article 38, 16 pages.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 42,
+      "text": "SEAL 2023. Microsoft SEAL (release 4.1). https://github.com/Microsoft/SEAL. Microsoft Research, Redmond, WA..",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "SEAL. 2024. SEAL release v4.1.2. https://github.com/microsoft/SEAL/releases/tag/v4.1.2",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Ross Tate, Michael Stepp, Zachary Tatlock, and Sorin Lerner. 2009. Equality saturation: a new approach to optimization. InProceedings of the 36th annual ACMSIGPLAN-SIGACT symposium on Principles of programming languages. 264–276.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "OpenFHE Development Team. 2025. Addition for CKKSFLEXIBLE* modes at multiplicative depth = 0 returns incorrect results for batch size = 1 or 2. https://github.com/openfheorg/openfhe-development/issues/728 Accessed: 2025-08-19.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "TFHE. 2017. TFHE release v1.0.1. https://github.com/tfhe/tfhe/releases/tag/v1.0.1, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "András Vargha and Harold D Delaney. 2000. A critique and improvement of the CL common language effect size statistics of McGraw and Wong.Journal of Educational and Behavioral Statistics25, 2 (2000), 101–132.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Mayank Varia, Sophia Yakoubov, and Yang Yang. 2015. HEtest: A homomorphic encryption testing framework. In International Conference on Financial Cryptography and Data Security. Springer, 213–230.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Guido Vranken. 2025. Cryptofuzz. https://github.com/guidovranken/cryptofuzz Accessed: 2025-08-19.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Wikipedia contributors. 2025. Homomorphic encryption. https://en.wikipedia.org/wiki/Homomorphic_encryption Accessed: 2025-08-19.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Chijin Zhou, Bingzhou Qian, Gwihwan Go, Quan Zhang, Shanshan Li, and Yu Jiang. 2024. Polyjuice: Detecting miscompilation bugs in tensor compilers with equality saturation based rewriting.Proceedings of the ACM on Programming Languages8, OOPSLA2 (2024), 1309–1335.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Yuanhang Zhou, Fuchen Ma, Yuanliang Chen, Meng Ren, and Yu Jiang. 2023. CLFuzz: Vulnerability Detection of Cryptographic Algorithm&nbsp;Implementation via Semantic-aware Fuzzing.ACM Trans. Softw. Eng. Methodol.33, 2, Article 45 (Dec. 2023), 28 pages. doi:10.1145/3628160 Received 2026-02-24; accepted 2026-03-24 Proc. ACM Softw. Eng., Vol. 3, No. FSE, Article FSE102. Publication date: July 2026.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 41,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. InProceedings of the 14th USENIX Conference on Operating Systems Design and Implementation (OSDI’20). USENIX Association, USA, Article 38, 16 pages.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For instance, metamorphic fuzz testing [ 28] combines MT with fuzzing to detect faults in autonomous driving systems, QFuzz [ 36] uses execution costs for side-channel leakage quantification, and SQLancer [ 41] employs a containment oracle for DBMS logic bugs.",
+      "context_before": "mations are generally unconstrained, Eidolon must incorporate noise-awareness to ensure that equivalent transformations remain computationally valid within the strict noise of FHE. 8.3 Fuzzing Fuzzing is an effective technique for uncovering implementation bugs [ 34]. Generation-based tools such as Peach [ 35] construct inputs from grammars to ensure syntactic validity, while mutationbased tools such as AFL [ 23], AFL++[ 18], and LibFuzzer[ 32] use coverage-guided feedback to discover boundary conditions. Recent techniques combine specialized feedback signals or oracles in the fuzzing process.",
+      "context_after": "Eidolon distinguishes itself by utilizing residual noise as feedback and Equivalence Expression Transformation as its oracle to detect bugs in the noise-constrained FHE computational space. 9 Conclusion In this paper, we propose Eidolon, a noise-aware fuzzer for the vulnerability detection of FHE libraries. Eidolon first leverages noise as a feedback signal to guide the mutation of arithmetic expressions, enabling systematic exploration of deeper computational paths within the available noise. It then introduces an Equivalence Expression Transformation technique that generates mathematically",
+      "section": "8.3 Fuzzing",
+      "page": 20,
+      "char_offset": 69006,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:18:50Z",
+    "is_model_written": true,
+    "summary": "Eidolon is a fuzzer for fully homomorphic encryption libraries. Existing cryptographic testing tools generate structured inputs suited to cryptographic algorithms and are unaware of FHE noise management, so they fail to exercise computation on encrypted data. Eidolon directs mutations at arithmetic expressions within the noise budget and uses Equivalence Expression Transformation as its oracle, rewriting an expression into mathematically identical but structurally different forms. It found 20 previously unknown bugs, 12 assigned CVEs.",
+    "narrative": "One citation, in a survey of where metamorphic testing has been combined with fuzzing.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

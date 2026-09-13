@@ -1,0 +1,754 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:24:18Z",
+  "paper": {
+    "id": "paper:arxiv:2511.17377",
+    "title": "Anomaly Pattern-guided Transaction Bug Testing in Relational Databases",
+    "authors": [
+      "Hui-Rong Xu",
+      "Shuang Liu",
+      "Xianyu Zhu",
+      "Qiyu Zhuang",
+      "Wei Lu",
+      "Xiaoyong Du"
+    ],
+    "year": 2025,
+    "venue": "arXiv.org",
+    "doi": null,
+    "arxiv_id": "2511.17377",
+    "s2_paper_id": "3987779a8bc9037eedb2b036f804413c2f1b1da9",
+    "url": "https://arxiv.org/abs/2511.17377",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2511.17377",
+      "retrieved_at": "2026-09-08T15:24:18Z",
+      "chars": 79349,
+      "content_sha256": "sha256:31aafacb864c6b7e63f59310417d5f509c67223062b6cdec008af9dfd125c036"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 2818
+      },
+      {
+        "number": "2",
+        "title": "PRELIMINARY",
+        "start": 12550
+      },
+      {
+        "number": "2.1",
+        "title": "Database Transactions and Isolation level",
+        "start": 12564
+      },
+      {
+        "number": "2.2",
+        "title": "Anomaly patterns",
+        "start": 15160
+      },
+      {
+        "number": "3",
+        "title": "METHODOLOGY",
+        "start": 17122
+      },
+      {
+        "number": "3.1",
+        "title": "Overview",
+        "start": 17902
+      },
+      {
+        "number": "3.2",
+        "title": "Database and SQL statement Generation",
+        "start": 18766
+      },
+      {
+        "number": "3.2.1",
+        "title": "Database Generation. In database transaction testing, the",
+        "start": 19202
+      },
+      {
+        "number": "3.3",
+        "title": "Pattern-guided Transaction Generation",
+        "start": 24099
+      },
+      {
+        "number": "3.3.1",
+        "title": "Constraint Extraction. To implement anomaly pattern-guided",
+        "start": 25154
+      },
+      {
+        "number": "3.4",
+        "title": "Execution",
+        "start": 34196
+      },
+      {
+        "number": "3.4.1",
+        "title": "Transaction Schedule. During execution, we must ensure that",
+        "start": 35589
+      },
+      {
+        "number": "3.5",
+        "title": "Detection",
+        "start": 40437
+      },
+      {
+        "number": "3.5.1",
+        "title": "Explicit Error Detection. Explicit error detection refers to the",
+        "start": 41191
+      },
+      {
+        "number": "3.5.2",
+        "title": "Implicit Error Detection. Implicit error detection is a dynamic",
+        "start": 41949
+      },
+      {
+        "number": "4",
+        "title": "EXPERIMENT",
+        "start": 44446
+      },
+      {
+        "number": "4.1",
+        "title": "Experimental Setup",
+        "start": 44459
+      },
+      {
+        "number": "4.2",
+        "title": "Bug Detection Capability",
+        "start": 47625
+      },
+      {
+        "number": "4.3",
+        "title": "Comparison with Existing Approaches",
+        "start": 50831
+      },
+      {
+        "number": "4.4",
+        "title": "Ablation Study",
+        "start": 55435
+      },
+      {
+        "number": "4.5",
+        "title": "Case Study",
+        "start": 58463
+      },
+      {
+        "number": "5",
+        "title": "RELATED WORK",
+        "start": 65314
+      },
+      {
+        "number": "6",
+        "title": "CONCLUSION",
+        "start": 71851
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2025. MariaDB. https://mariadb.com/. (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2025. MySQL. https://www.mysql.com/. (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "2025. OceanBase. https://www.oceanbase.com/. (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "2025. SQLancer. https://github.com/sqlancer/sqlancer. (visited in April 2025).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 5,
+      "text": "2025. SQLsmith. https://github.com/anse1/sqlsmith. (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Atul Adya, Barbara Liskov, and Patrick O’Neil. 2000. Generalized isolation level definitions. In Proceedings of 16th International Conference on Data Engineering (Cat. No. 00CB37073). IEEE, 67–78.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In ing (ICSE). IEEE, 2060–2071.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 8,
+      "text": "Philip A Bernstein and Nathan Goodman. 1983. Multiversion concurrency control—theory and algorithms. ACM Transactions on Database Systems (TODS) 8, 4 (1983), 465–483.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Ziyu Cui, Wensheng Dou, Qianwang Dai, Jiansen Song, Wei Wang, Jun Wei, and Dan Ye. 2022. Differentially testing database transactions for fun and profit. In Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Wensheng Dou, Ziyu Cui, Qianwang Dai, Jiansen Song, Dong Wang, Yu Gao, Wei Wang, Jun Wei, Lei Chen, Hanmo Wang, et al. 2023. Detecting isolation bugs via transaction oracle construction. In Proceedings of International Conference on Software Engineering (ICSE).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-free DBMS fuzzing. In Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Ying Fu, Zhiyong Wu, Yuanliang Zhang, Jie Liang, Jingzhou Fu, Yu Jiang, Shanshan Li, and Xiangke Liao. 2024. THANOS: DBMS Bug Detection via Storage Engine Rotation Based Differential Testing. In 2025 IEEE/ACM 47th International Conference on Software Engineering (ICSE). IEEE Computer Society, 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Kaile Huang, Si Liu, Zhenge Chen, Hengfeng Wei, David Basin, Haixiang Li, and Anqun Pan. 2023. Efficient black-box checking of snapshot isolation in databases. arXiv preprint arXiv:2301.07313 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via {Graph-Based}Oracle Construction. In 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 15,
+      "text": "Zu-Ming Jiang and Zhendong Su. 2024. Detecting logic bugs in database engines via equivalent expression transformation. In 18th USENIX Symposium on Operating Systems Design and Implementation (OSDI 24). 821–835.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2019. Apollo: Automatic detection and diagnosis of performance regressions in database systems. Proceedings of the VLDB Endowment 13, 1 (2019), 57–70.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Kyle Kingsbury and Peter Alvaro. 2020. Elle: Inferring isolation anomalies from experimental observations. arXiv preprint arXiv:2003.10554 (2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Hsiang-Tsung Kung and John T Robinson. 1981. On optimistic methods for concurrency control. ACM Transactions on Database Systems (TODS) 6, 2 (1981), 213–226.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Haixiang Li, Xiao-Yan Li, Chang Liu, Xiaoyong Du, Wei Lu, and Anqun Pan. 2021. Systematic definition and classification of data anomalies in DBMS (English Version). CoRR abs/2110.14230 (2021). arXiv:2110.14230 https://arxiv.org/ abs/2110.14230",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Keqiang Li, Siyang Weng, Lyu Ni, Chengcheng Yang, Rong Zhang, Xuan Zhou, and Aoying Zhou. 2024. DBStorm: Generating Various Effective Workloads for Testing Isolation Levels. In Proceedings of the 33rd ACMSIGSOFT International Symposium on Software Testing and Analysis. 755–767.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting Logical Bugs of {DBMS}with Coverage-based Guidance. In 31st USENIX Security Symposium (USENIX Security 22). 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Si Liu, Long Gu, Hengfeng Wei, and David Basin. 2024. Plume: Efficient and complete black-box checking of weak isolation levels. Proceedings of the ACM on Programming Languages 8, OOPSLA2 (2024), 876–904.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. 2022. Automatic detection of performance bugs in database systems using equivalent queries. In Proceedings of the 44th International Conference on Software Engineering. 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Jim Melton. 2016. Iso/iec 9075-2 information technology-database languages SQL—Part 2: foundation (SQL/foundation). ISO/IEC 2016, E (2016), 9075–2.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 26,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 1–30.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 27,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 28,
+      "text": "Jiansen Song, Wensheng Dou, Ziyu Cui, Qianwang Dai, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2023. Testing database systems via differential query execution. In Engineering (ICSE). IEEE, 2072–2084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Cheng Tan, Changgeng Zhao, Shuai Mu, and Michael Walfish. 2020. Cobra: Making transactional {key-value}stores verifiably serializable. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 63–80.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Xiu Tang, Sai Wu, Dongxiang Zhang, Feifei Li, and Gang Chen. 2023. Detecting logic bugs of join optimizations in dbms. Proceedings of the ACM on Management of Data 1, 1 (2023), 1–26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Alexander Thomasian. 1993. Two-phase locking performance and its thrashing behavior. ACM Transactions on Database Systems (TODS) 18, 4 (1993), 579–625.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Jian Zhang, Ye Ji, Shuai Mu, and Cheng Tan. 2023. Viper: A fast snapshot isolation checker. In Proceedings of the Eighteenth European Conference on Computer Systems. 654–671.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. Squirrel: Testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security. 955–970.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 4,
+      "text": "2025. SQLancer. https://github.com/sqlancer/sqlancer. (visited in April 2025).",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 7,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In ing (ICSE). IEEE, 2060–2071.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 14,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via {Graph-Based}Oracle Construction. In 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23).",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 25,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 26,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 1–30.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 27,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 14]",
+      "technique": null,
+      "sentence": "Existing approaches for testing transaction anomalies, such as Troc [ 10] and TxCheck [ 14], typically generate test transactions by randomly selecting SQL statements from a predefined set.",
+      "context_before": "; 12. / ∗txn1 ∗ /COMMIT; 13. / ∗F i n a l l y database s t a t e ∗ / 14. SELECT ∗FROM t1; − [ ( 10, 10, 3 ) ] Figure 1: Motivation example: a logic bug detected by APTrans in Mariadb (Bug#36330) into the shared table and commits, 𝑡𝑥𝑛1inserts into the same table, updates according to the insert and commit). Second, the bug does not trigger any explicit error message, and we need to uncover it by checking the database status after each statement. It is difficult to build an oracle to detect incorrect database status, as it is hard to determine the correct result from a single random transaction.",
+      "context_after": "This makes it challenging to synthesize transactions like the one shown in Example 1, which involve a pattern with multiple constraints and complex dependencies. Specifically, in this example, not only must the SQL statements and schedule be deterministic, but it is also essential that different SQL statements access the same data items—an aspect that is difficult to achieve with randomly generated methods. Troc [ 10] adopts a differential testing strategy by constructing a view for each SQL statement and comparing the results of concurrent transaction executions against these viewbased outpu",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 6901,
+      "cited_reference": {
+        "number": 14,
+        "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via {Graph-Based}Oracle Construction. In 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23).",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 14]",
+      "technique": null,
+      "sentence": "TxCheck [ 14], on the other hand, attempts to decouple a transaction into independent and dependent SQL statements.",
+      "context_before": "he same data items—an aspect that is difficult to achieve with randomly generated methods. Troc [ 10] adopts a differential testing strategy by constructing a view for each SQL statement and comparing the results of concurrent transaction executions against these viewbased outputs. However, the process of constructing these views introduces considerable overhead, requiring the implementation of a parallel transaction execution engine. Furthermore, due to differences in implementation semantics, the differential approach often yields a high rate of false positives (as discussed in Section 4.1).",
+      "context_after": "It then generates semantically equivalent variants by reordering the independent statements while preserving the order of the dependent ones. The results of the two transaction executions are compared to identify inconsistencies. TxCheck cannot solve cases where transactions exhibit cyclic dependencies, such as the ( 𝑊1[𝑥1]𝑊2[𝑦1]𝐶2𝑅1[𝑦1]𝐶1) cycle in Example 1, which significantly limits its applicability to more complex transactional workloads. ELLE [ 17], a transaction anomaly checker, detects anomalies by identifying cycles in the transaction execution history. It is unable to detect bugs t",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 8012,
+      "cited_reference": {
+        "number": 14,
+        "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via {Graph-Based}Oracle Construction. In 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23).",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We develop our database and SQL statement generation method based on SQLancer [ 4] and extend it to support table join operations for both database generation and SQL statement generation.",
+      "context_before": "and a two-phase bug detection mechanism designed to identify and validate transactionrelated bugs with high accuracy. Figure 2illustrates the overall architecture of APTrans, which consists of four modules: database and SQL statement generation, transaction generation guided by the anomaly pattern, transaction execution, and transaction bug detection. 3.2 Database and SQL statement Generation As the initial step of automated transaction generation, we first create the underlying databases on which the transactions will operate, along with the basic SQL statements that compose each transaction.",
+      "context_after": "3.2.1 Database Generation. In database transaction testing, the quality of the database structure and data initialization is critical to the validity of test cases. To simulate real-world scenarios, which usually involve multiple tables connected with join keys, we extend SQLancer to support table join operations for both database generation and SQL statement generation. Moreover, to support the transaction bug detection, which requires checking on the recorded data and the corresponding version, we introduced a unique row ID and a version column in the generated table. Table Generation. The",
+      "section": "3.2 Database and SQL statement Generation",
+      "page": 4,
+      "char_offset": 19012,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "To simulate real-world scenarios, which usually involve multiple tables connected with join keys, we extend SQLancer to support table join operations for both database generation and SQL statement generation.",
+      "context_before": "3.2 Database and SQL statement Generation As the initial step of automated transaction generation, we first create the underlying databases on which the transactions will operate, along with the basic SQL statements that compose each transaction. We develop our database and SQL statement generation method based on SQLancer [ 4] and extend it to support table join operations for both database generation and SQL statement generation. 3.2.1 Database Generation. In database transaction testing, the quality of the database structure and data initialization is critical to the validity of test cases.",
+      "context_after": "Moreover, to support the transaction bug detection, which requires checking on the recorded data and the corresponding version, we introduced a unique row ID and a version column in the generated table. Table Generation. The base version of SQLancer supports the generation of isolated tables and the basic CREATE TABLE statements. It randomly selects column types such as INT ,TEXT, and BOOLEAN, and applies common constraints such as PRIMAR YKEY ,NOT NULL, and UNIQUE, in the generated table creation statement. We extend the table generation functionality to support multi-table generation by add",
+      "section": "3.2.1 Database Generation. In database transaction testing, the",
+      "page": 4,
+      "char_offset": 19366,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The base version of SQLancer supports the generation of isolated tables and the basic CREATE TABLE statements.",
+      "context_before": "tion. 3.2.1 Database Generation. In database transaction testing, the quality of the database structure and data initialization is critical to the validity of test cases. To simulate real-world scenarios, which usually involve multiple tables connected with join keys, we extend SQLancer to support table join operations for both database generation and SQL statement generation. Moreover, to support the transaction bug detection, which requires checking on the recorded data and the corresponding version, we introduced a unique row ID and a version column in the generated table. Table Generation.",
+      "context_after": "It randomly selects column types such as INT ,TEXT, and BOOLEAN, and applies common constraints such as PRIMAR YKEY ,NOT NULL, and UNIQUE, in the generated table creation statement. We extend the table generation functionality to support multi-table generation by adding foreign key constraints based on candidate key matching. When generating a foreign key constraint for a column in a table, we scan all existing PRIMAR YKEY or UNIQUE columns in other tables and select candidatecolumns with matching data types to establish reference relationships. Data Generation. SQLancer generates random data",
+      "section": "3.2.1 Database Generation. In database transaction testing, the",
+      "page": 4,
+      "char_offset": 19796,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer generates random data by creating INSER T statements for tables.",
+      "context_before": "basic CREATE TABLE statements. It randomly selects column types such as INT ,TEXT, and BOOLEAN, and applies common constraints such as PRIMAR YKEY ,NOT NULL, and UNIQUE, in the generated table creation statement. We extend the table generation functionality to support multi-table generation by adding foreign key constraints based on candidate key matching. When generating a foreign key constraint for a column in a table, we scan all existing PRIMAR YKEY or UNIQUE columns in other tables and select candidatecolumns with matching data types to establish reference relationships. Data Generation.",
+      "context_after": "However, the random generation approach cannot guarantee the generated data satisfying the foreign key constraints we have implemented, as foreign keys require references to already existing values, and randomly generated values may not be present in the referenced columns. To address this issue, we introduced a data logging feature that records the primary key values of all inserted data. When generating data with foreign key constraints, we select existing values from the recorded data to ensure both data consistency and referential integrity. Unique Row ID and Version Column. To enable tra",
+      "section": "3.2.1 Database Generation. In database transaction testing, the",
+      "page": 4,
+      "char_offset": 20476,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Building upon the SQLancer framework, we have extended the SQL statement generation to include JOIN operations and type constraints, thereby producing a more diverse set of SQL statements while ensuring the semantic correctness of the SQL statements.",
+      "context_before": "the record is modified. This column allows us to identify whether a transaction has read an old version of a data item, assisting in detecting read/write version conflicts. Note that these two columns do not affect the actual execution semantics of the transaction; they are solely used for dependency reconstruction and anomaly detection within the testing framework. 3.2.2 Statement Generation. SQL statement generation is fundamental for testing transaction behavior, as its quality directly impacts the establishment of transaction dependencies and the effectiveness of subsequent bug detection.",
+      "context_after": "SQL Statement Generation. We use SQLancer to generate a large number of random SQL statements for transaction generation. However, SQLancer suffers from numerous semantic errors, most of which are caused by type mismatches in expressions. To address this issue, we introduced type constraint checking during expression generation to ensure that the generated expressions conform to the required expression type. Anomaly Pattern-guided Transaction Bug Testing in Relational Databases SIGMOD, May 31–June 05, 2026, Bengaluru, India JOIN Statement Generation. To support join statement on multiple tabl",
+      "section": "3.2.1 Database Generation. In database transaction testing, the",
+      "page": 4,
+      "char_offset": 22311,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We use SQLancer to generate a large number of random SQL statements for transaction generation.",
+      "context_before": "olely used for dependency reconstruction and anomaly detection within the testing framework. 3.2.2 Statement Generation. SQL statement generation is fundamental for testing transaction behavior, as its quality directly impacts the establishment of transaction dependencies and the effectiveness of subsequent bug detection. Building upon the SQLancer framework, we have extended the SQL statement generation to include JOIN operations and type constraints, thereby producing a more diverse set of SQL statements while ensuring the semantic correctness of the SQL statements. SQL Statement Generation.",
+      "context_after": "However, SQLancer suffers from numerous semantic errors, most of which are caused by type mismatches in expressions. To address this issue, we introduced type constraint checking during expression generation to ensure that the generated expressions conform to the required expression type. Anomaly Pattern-guided Transaction Bug Testing in Relational Databases SIGMOD, May 31–June 05, 2026, Bengaluru, India JOIN Statement Generation. To support join statement on multiple tables in the database, we have extended the generation of SQL statements to include JOIN operations. Specifically, we generat",
+      "section": "3.2.1 Database Generation. In database transaction testing, the",
+      "page": 4,
+      "char_offset": 22588,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "However, SQLancer suffers from numerous semantic errors, most of which are caused by type mismatches in expressions.",
+      "context_before": ".2 Statement Generation. SQL statement generation is fundamental for testing transaction behavior, as its quality directly impacts the establishment of transaction dependencies and the effectiveness of subsequent bug detection. Building upon the SQLancer framework, we have extended the SQL statement generation to include JOIN operations and type constraints, thereby producing a more diverse set of SQL statements while ensuring the semantic correctness of the SQL statements. SQL Statement Generation. We use SQLancer to generate a large number of random SQL statements for transaction generation.",
+      "context_after": "To address this issue, we introduced type constraint checking during expression generation to ensure that the generated expressions conform to the required expression type. Anomaly Pattern-guided Transaction Bug Testing in Relational Databases SIGMOD, May 31–June 05, 2026, Bengaluru, India JOIN Statement Generation. To support join statement on multiple tables in the database, we have extended the generation of SQL statements to include JOIN operations. Specifically, we generate four types of JOIN operations: INNER JOIN ,LEFT JOIN, RIGHT JOIN, and CROSS JOIN. The core of generating the JOIN S",
+      "section": "3.2.1 Database Generation. In database transaction testing, the",
+      "page": 4,
+      "char_offset": 22684,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "It takes the three types of constraints extracted from an anomaly pattern, the set of SQL statements and database generated by SQLancer as inputs and progressively construct transactions satisfying the constraints.",
+      "context_before": "te anomaly pattern as an example, the schedule order constraint extracted from this pattern is [1,2,2,1,1]. These three types of constraints—statement type, data access, and schedule order—together form a semantically equipollent constraint set with the given anomaly pattern. In this way, we decompose the complex anomaly patterns into a set of simple constraints, which simplify our algorithm for anomaly pattern-guided transaction generation, which will be introduced in section 3.3.2. 3.3.2 Transaction Generation. The anomaly pattern-guided transaction generation method is shown in Algorithm 1.",
+      "context_after": "Guided by the constraints, there are three main steps in the algorithm: statement selection, condition alignment, and transaction composition. Statement Selection. In this step, we select the appropriate SQL statement for each operation extracted from the pattern (lines 2-4). Based on the operation type (e.g., read, write, commit, rollback), the corresponding SQL statement is chosen from the set of SQL statements we randomly generated. As shown in Figure 3, we select SQL statements from lines 3 to 7 in the example. However, at this step, there is no guarantee on the exact WHERE conditions in",
+      "section": "3.3.1 Constraint Extraction. To implement anomaly pattern-guided",
+      "page": 6,
+      "char_offset": 30628,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 14]",
+      "technique": null,
+      "sentence": "We compare APTrans with two stateof-the-art testing methods: TxCheck [ 14] and Troc [ 10].",
+      "context_before": "provides very weak guarantees and is rarely used in practice. Moreover, several databases, including OceanBase, do not support this isolation level. As a result, we excluded read uncommitted from our evaluation. Notably, while OceanBase claims that it offers the Serializable isolation level, its actual implementation is based on snapshot isolation, which allows write skew. For each isolation level of each database, we ran APTrans continuously. We manually analyzed the bugs reported by APTrans and submitted the identified issues to the corresponding development communities. Compared Approaches.",
+      "context_after": "TxCheck is a metamorphic testing approach, which first randomly generates test transactions and executes them. It then decouples the transaction into semantically equivalent SQL statements based on their dependency topology. After that, it compares the results of executing the decoupled statements with the results of the original Anomaly Pattern-guided Transaction Bug Testing in Relational Databases SIGMOD, May 31–June 05, 2026, Bengaluru, India Table 5: Bugs detected by APTrans DBMSBug IDStatus SeverityIsolation LevelOracle MySQL115978 Duplicate Moderate SER Implicit 117218 Confirm Moderate",
+      "section": "4.1 Experimental Setup",
+      "page": 8,
+      "char_offset": 45988,
+      "cited_reference": {
+        "number": 14,
+        "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via {Graph-Based}Oracle Construction. In 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23).",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 14]",
+      "technique": null,
+      "sentence": "Troc [ 10] and TxCheck [ 14] are recent methods for detecting database transaction bugs.",
+      "context_before": "query results were used in subsequent write operations, this bug could lead to even more severe data inconsistencies. This example can be generated and detected by our pattern 36 𝑊1[𝑥1]𝑊2[𝑦1]𝐶2𝑅1[𝑦1]𝐶1in Table 3, which represents a cyclical anomaly arising from the combination of write-write and writeread dependencies. 5 RELATED WORK In this section, we discuss works that are closely related with our approach. In particular, we discuss existing research on RDBMS transaction bug testing, RDBMS transaction history validation and general RDBMS bug testing. RDBMS Transactional Bug Testing Methods.",
+      "context_after": "Both generate transactions by randomly composing SQL statements, making it challenging to trigger transaction bugs, which usually occur under specific patterns. Troc is a differential testing approach, it compares concurrent transaction execution results against its constructed views to identify differences in query outcomes. However, the view-construction resembles re-implementation of the transaction execution logic, which incurs overhead. Moreover, due to different design and implementation choices of its view with the databases under test, this method often leads to high false positives,",
+      "section": "5 RELATED WORK",
+      "page": 12,
+      "char_offset": 65593,
+      "cited_reference": {
+        "number": 14,
+        "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via {Graph-Based}Oracle Construction. In 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23).",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Its successor, SQLancer [ 25–27], introduces three metamorphic testing oracles: PQS [ 27], NoREC [ 25], and TLP [ 26], significantly improving its ability to detect logical bugs.",
+      "context_before": "mprehensive support for SQL transaction semantics, such as multi-row operations in single statements, constraint validations, and complex data structures. These approaches focus on analyzing bugs from existing execution histories, rather than generating test cases to proactively test the database as our method does. General RDBMS Testing Methods. There are several general relational DBMS testing methods focusing on the execution behavior of SQL statements. SQLSmith [ 5], a pioneering generation-based approach, detects crashes by generating random SQL queries and monitoring for explicit errors.",
+      "context_after": "Recent innovations have introduced paradigm shifts in testing strategies: QPG [ 7] uses query plan-guided database state mutation, while DQE [ 28] applies differential execution analysis across SELECT, UPDATE, and DELETE statements. TQS [ 30] specifically targets join optimization errors with an oracle based on table partitioning. ETT [ 15] detects bugs through equivalent expression transformation, and THANOS [ 12] identifies RDBMS bugs via differential testing, involving storage engine rotation. There are also fuzzing approaches on RDBMSs. SQUIRREL [ 33] integrates language validity constrai",
+      "section": "5 RELATED WORK",
+      "page": 12,
+      "char_offset": 70170,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "Recent innovations have introduced paradigm shifts in testing strategies: QPG [ 7] uses query plan-guided database state mutation, while DQE [ 28] applies differential execution analysis across SELECT, UPDATE, and DELETE statements.",
+      "context_before": "n analyzing bugs from existing execution histories, rather than generating test cases to proactively test the database as our method does. General RDBMS Testing Methods. There are several general relational DBMS testing methods focusing on the execution behavior of SQL statements. SQLSmith [ 5], a pioneering generation-based approach, detects crashes by generating random SQL queries and monitoring for explicit errors. Its successor, SQLancer [ 25–27], introduces three metamorphic testing oracles: PQS [ 27], NoREC [ 25], and TLP [ 26], significantly improving its ability to detect logical bugs.",
+      "context_after": "TQS [ 30] specifically targets join optimization errors with an oracle based on table partitioning. ETT [ 15] detects bugs through equivalent expression transformation, and THANOS [ 12] identifies RDBMS bugs via differential testing, involving storage engine rotation. There are also fuzzing approaches on RDBMSs. SQUIRREL [ 33] integrates language validity constraints with coverage feedback mechanisms, enhancing the generation of test cases. SQLRight [ 21] implements semantic-aware, coverage-guided mutation to improve the effectiveness of testing. GRIFFIN [ 11] advances metadata dependency ana",
+      "section": "5 RELATED WORK",
+      "page": 12,
+      "char_offset": 70349,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "uses_infrastructure": [
+        "M3"
+      ],
+      "extends_technique": [
+        "M4"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:57:35Z",
+    "is_model_written": true,
+    "summary": "APTrans tests transaction handling in relational DBMSs under different isolation levels. It identifies two obstacles: generating transactions that actually expose bugs, since those need specific transactional constraints, and deciding whether an outcome is wrong, since the correct result of randomly generated transactions is usually unknown. It addresses the first with generation guided by predefined anomaly patterns and the second with a two-phase explicit and implicit error detection process. On MySQL, MariaDB and OceanBase it found 13 previously unknown transaction bugs, 11 confirmed.",
+    "narrative": "APTrans's database and SQL generation is SQLancer's, extended. The paper states it develops its generation method based on SQLancer and builds on the SQLancer framework, extending it to support table joins in both database and statement generation, because the base version generates isolated tables and real workloads involve tables connected by join keys. Type constraints were added for the same reason, since SQLancer's expressions produce many semantic errors from type mismatches. Those generated statements and databases are then the input to the anomaly-pattern constraint solver, which is APTrans's own. Its baselines are TxCheck and Troc rather than any SQLancer oracle.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "reuse_component",
+      "M4": "reuse_component",
+      "M5": "definition",
+      "M6": "definition",
+      "M7": "reuse_component",
+      "M8": "reuse_component",
+      "M9": "motivation",
+      "M10": "reuse_component",
+      "M11": "background",
+      "M12": "background",
+      "M13": "definition",
+      "M14": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M3",
+          "M4",
+          "M7",
+          "M8"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M3",
+            "sentence": "We develop our database and SQL statement generation method based on SQLancer [ 4] and extend it to support table join operations for both database generation and SQL statement generation.",
+            "section": "3.2 Database and SQL statement Generation",
+            "page": 4
+          },
+          {
+            "mention_id": "M4",
+            "sentence": "To simulate real-world scenarios, which usually involve multiple tables connected with join keys, we extend SQLancer to support table join operations for both database generation and SQL statement generation.",
+            "section": "3.2.1 Database Generation. In database transaction testing, the",
+            "page": 4
+          },
+          {
+            "mention_id": "M7",
+            "sentence": "Building upon the SQLancer framework, we have extended the SQL statement generation to include JOIN operations and type constraints, thereby producing a more diverse set of SQL statements while ensuring the semantic correctness of the SQL statements.",
+            "section": "3.2.1 Database Generation. In database transaction testing, the",
+            "page": 4
+          },
+          {
+            "mention_id": "M8",
+            "sentence": "We use SQLancer to generate a large number of random SQL statements for transaction generation.",
+            "section": "3.2.1 Database Generation. In database transaction testing, the",
+            "page": 4
+          }
+        ],
+        "reasoning": "M3 states the database and SQL statement generation is developed based on SQLancer, M4 and M7 that they extended it to support joins and type constraints, and M8 that SQLancer generates the statements transaction construction consumes. The reuse is of the generator; the anomaly-pattern machinery on top is the paper's own.",
+        "reuse_kind": "generator"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "What is extended is SQLancer's generation -- joins and type constraints -- not any of its test oracles. APTrans's oracle is anomaly-pattern-based error detection."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "M11 names the two comparison methods as TxCheck and Troc. No SQLancer oracle is run against APTrans."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "TxCheck and Troc are the methods called state-of-the-art here; SQLancer is described by what it generates."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

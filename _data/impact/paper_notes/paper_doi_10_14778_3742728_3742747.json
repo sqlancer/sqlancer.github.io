@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "paper": {
+    "id": "paper:doi:10.14778/3742728.3742747",
+    "title": "Simple Testing Can Expose Most Critical Transaction Bugs: Understanding and Detecting Write-Specific Serializability Violations in Database Systems",
+    "authors": [
+      "Ziyu Cui",
+      "Wensheng Dou",
+      "Yu Gao",
+      "Rui Yang",
+      "Yingying Zheng",
+      "Jiansen Song",
+      "Yuan Feng",
+      "Jun Wei"
+    ],
+    "year": 2025,
+    "venue": "Proceedings of the VLDB Endowment",
+    "doi": "10.14778/3742728.3742747",
+    "url": "https://doi.org/10.14778/3742728.3742747"
+  },
+  "summary": {
+    "text": "This paper proposes write-specific serializability as a test oracle for concurrent transactions: a schedule should leave the database in the same state as a corresponding serial schedule of the same writes. An empirical study of 35 critical transaction bugs from six widely used DBMSs shows the property is effective at exposing them. WriteCheck implements it by comparing the final database states produced by the original and serial schedules, and found 22 violations across six production-grade DBMSs, 11 confirmed as new critical transaction bugs.",
+    "relationship_to_sqlancer": "Extends the idea of a general correctness property checkable without a reference implementation from queries to transactions, and its artifact reuses the SQLancer codebase.",
+    "is_model_generated": true,
+    "grounded_in_source": true,
+    "written_from": "abstract",
+    "written_from_url": "https://doi.org/10.14778/3742728.3742747",
+    "source_sha256": "sha256:c3fb05a763684f6fa31aec6c494d113ebcaa2d2bd121157f4675a21ef2db3a5b",
+    "supporting_excerpts": [
+      "However, we lack an effective test oracle to determine whether a DBMS produces a correct database state for a given concurrent transaction schedule.",
+      "In this paper, we propose a general property for concurrent transaction schedules,\n write-specific serializability\n , in which a schedule of concurrent transactions should produce the same database state as a corresponding serial schedule of the same transactions.",
+      "We evaluate WriteCheck on the latest versions of six production-grade DBMSs, and have found 22 write-specific serializability violations, 11 of which have been confirmed as new critical transaction bugs."
+    ],
+    "model": "claude-opus-5",
+    "generated_by": "claude_code_session",
+    "classifier_version": null,
+    "generated_at": "2026-09-07T02:31:04Z"
+  },
+  "evidence": [
+    {
+      "relationship": "references",
+      "title": "Cites SQLancer",
+      "value": "yes",
+      "method": "citation_graph",
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp",
+        "qpg",
+        "dqp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://www.semanticscholar.org/paper/3f929c9c702538e09f4f88cf69415ceb25d3ba77",
+          "source_type": "paper",
+          "excerpt": null,
+          "excerpt_is_verbatim": false,
+          "note": "Semantic Scholar records this paper as citing the publication that introduced Pivoted Query Synthesis (PQS), Non-optimizing Reference Engine Construction (NoREC), Ternary Logic Partitioning (TLP), Query Plan Guidance (QPG), Differential Query Plans (DQP).",
+          "retrieved_at": "2026-09-06T17:02:28Z"
+        }
+      ]
+    },
+    {
+      "relationship": "uses_infrastructure",
+      "title": "Uses the SQLancer codebase",
+      "value": "yes",
+      "method": "deterministic",
+      "techniques": [],
+      "sources": [
+        {
+          "source_url": "https://www.vldb.org/pvldb/vol18/p2547-cui.pdf",
+          "source_type": "paper",
+          "excerpt": "We implement WriteCheck based on SQLancer [ 14], and extend SQLancer to detect WSSviolations.",
+          "excerpt_is_verbatim": true,
+          "note": "The paper states that its implementation is built on SQLancer.",
+          "retrieved_at": "2026-09-06T17:02:28Z"
+        }
+      ]
+    },
+    {
+      "relationship": "extends_technique",
+      "title": "Extends a SQLancer technique",
+      "value": "yes",
+      "method": "deterministic",
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp",
+        "qpg",
+        "dqp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://www.vldb.org/pvldb/vol18/p2547-cui.pdf",
+          "source_type": "paper",
+          "excerpt": "We implement WriteCheck based on SQLancer [ 14], and extend SQLancer to detect WSSviolations.",
+          "excerpt_is_verbatim": true,
+          "note": "The paper states that it extends or adapts a SQLancer technique.",
+          "retrieved_at": "2026-09-06T17:02:28Z"
+        },
+        {
+          "source_url": "https://www.vldb.org/pvldb/vol18/p2547-cui.pdf",
+          "source_type": "paper",
+          "excerpt": "We utilize SQLancer [ 58–60] to generate initial databases and individual SQL statements, and extend SQLancer to generate transactions and transaction test cases.",
+          "excerpt_is_verbatim": true,
+          "note": "The paper states that it extends or adapts a SQLancer technique.",
+          "retrieved_at": "2026-09-06T17:02:28Z"
+        }
+      ]
+    }
+  ]
+}

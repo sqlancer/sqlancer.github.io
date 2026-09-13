@@ -1,0 +1,34 @@
+{%- comment -%}
+Table view of a labelled count series -- the accessible counterpart to a chart,
+and the relief the palette requires for its lower-contrast light-mode slots.
+
+Parameters: series (labelled_counts array), heading (column title),
+            label (optional caption for the value column),
+            link_base (optional; when given each row links to
+                       link_base<key>/, so the table is a way in to the
+                       detail pages and not only a way to read the chart).
+{%- endcomment -%}
+<div class="impact-table-wrap">
+  <table class="impact-table">
+    <thead>
+      <tr>
+        <th scope="col">{{ include.heading }}</th>
+        <th scope="col" class="impact-num">{{ include.label | default: "Count" }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for row in include.series %}
+      <tr>
+        <th scope="row">
+          {%- if include.link_base and row.key -%}
+          <a href="{{ include.link_base }}{{ row.key }}/">{{ row.label }}</a>
+          {%- else -%}
+          {{ row.label }}
+          {%- endif -%}
+        </th>
+        <td class="impact-num">{{ row.count }}</td>
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+</div>

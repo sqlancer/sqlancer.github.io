@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "paper": {
+    "id": "paper:doi:10.1109/ase63991.2025.00095",
+    "title": "ZendDiff: Differential Testing of PHP Interpreter",
+    "authors": [
+      "Yuancheng Jiang",
+      "Jianing Wang",
+      "Qiange Liu",
+      "Yeqi Fu",
+      "Jian Mao",
+      "Roland H. C. Yap",
+      "Zhenkai Liang"
+    ],
+    "year": 2025,
+    "venue": "International Conference on Automated Software Engineering",
+    "doi": "10.1109/ase63991.2025.00095",
+    "url": "https://doi.org/10.1109/ase63991.2025.00095"
+  },
+  "summary": {
+    "text": "ZendDiff finds logic bugs in the PHP interpreter by differential testing. The authors observe that existing PHP bug-finding targets crashes or sanitizer-based oracles and misses silent wrong results, and that PHP's JIT compilation mode provides a second implementation of the same specification to compare against. ZendDiff compares JIT and non-JIT execution with program state probing for fine-grained comparison, JIT-aware mutation, and dual verification for non-determinism. It has found 51 previously unknown logic bugs, 37 already fixed.",
+    "relationship_to_sqlancer": "Applies differential testing for silent wrong results to a language interpreter; SQLancer is cited as prior work on logic-bug oracles.",
+    "is_model_generated": true,
+    "grounded_in_source": true,
+    "written_from": "abstract",
+    "written_from_url": "https://doi.org/10.1109/ase63991.2025.00095",
+    "source_sha256": "sha256:934670f385c169127e3fa2501886d05d34435f7869d342efa4408d6d0b2d4fbc",
+    "supporting_excerpts": [
+      "Existing approaches to finding bugs in PHP primarily focus on detecting explicit security issues through crashes or sanitizer-based oracles, but fail to identify logic bugs that can silently lead to incorrect results.",
+      "We observe that the introduction of Just-In-Time (JIT) compilation mode in PHP presents an opportunity for differential testing, as it provides an alternative implementation of the same language specification.",
+      "To date, ZendDiffhas identified 51 previously unknown logic bugs in the PHP interpreter, with 37 already fixed and 3 confirmed by the PHP maintainers."
+    ],
+    "model": "claude-opus-5",
+    "generated_by": "claude_code_session",
+    "classifier_version": null,
+    "generated_at": "2026-09-07T02:33:22Z"
+  },
+  "evidence": [
+    {
+      "relationship": "references",
+      "title": "Cites SQLancer",
+      "value": "yes",
+      "method": "citation_graph",
+      "techniques": [
+        "pqs",
+        "tlp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://doi.org/10.1109/ase63991.2025.00095",
+          "source_type": "paper_citation_context",
+          "excerpt": "Code coverage is a widely adopted metric in evaluating fuzzing and testing approaches [40, 41], as it provides a clear and quantifiable way to evaluate which parts of the code have been executed during tests.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Ternary Logic Partitioning (TLP), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1015 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:29:44Z",
+  "paper": {
+    "id": "paper:doi:10.1109/icde65706.2026.00180",
+    "title": "VIREO: Human-in-the-Loop DBMS Fuzzing with Visualization and LLM Support",
+    "authors": [
+      "Jie Liang",
+      "Zhiyong Wu",
+      "Jingzhou Fu",
+      "Chi Zhang",
+      "Runpei Miao",
+      "Zhuo Su",
+      "Yu Jiang",
+      "Shuai Ma"
+    ],
+    "year": 2026,
+    "venue": "IEEE International Conference on Data Engineering",
+    "doi": "10.1109/icde65706.2026.00180",
+    "arxiv_id": null,
+    "s2_paper_id": "c487d2eac342b4a4a4991d00b5bc5f3aabf3c36e",
+    "url": "https://doi.org/10.1109/icde65706.2026.00180",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/icde65706.2026.00180",
+      "retrieved_at": "2026-09-09T01:29:44Z",
+      "chars": 80952,
+      "content_sha256": "sha256:fb6174b0026ba46dc8868a9b8ebb60141bfbaafd19c1f62315f5887b355d1025"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 15,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 2123
+      },
+      {
+        "number": "II",
+        "title": "RELATED WORK",
+        "start": 9589
+      },
+      {
+        "number": "A",
+        "title": "Fuzzing",
+        "start": 9606
+      },
+      {
+        "number": "B",
+        "title": "DBMS Fuzzing",
+        "start": 11336
+      },
+      {
+        "number": "III",
+        "title": "MOTIVATION",
+        "start": 12691
+      },
+      {
+        "number": "IV",
+        "title": "DESIGN OFVIREO",
+        "start": 17959
+      },
+      {
+        "number": "A",
+        "title": "Module to Feature Analysis",
+        "start": 18680
+      },
+      {
+        "number": "B",
+        "title": "Human-in-the-Loop DBMS Fuzzing",
+        "start": 29105
+      },
+      {
+        "number": "V",
+        "title": "IMPLEMENTATION",
+        "start": 37926
+      },
+      {
+        "number": "VI",
+        "title": "EVALUATION",
+        "start": 40413
+      },
+      {
+        "number": "A",
+        "title": "Evaluation Setup",
+        "start": 40873
+      },
+      {
+        "number": "B",
+        "title": "Evaluation Procedure",
+        "start": 42694
+      },
+      {
+        "number": "C",
+        "title": "DBMS Vulnerability Detection Results",
+        "start": 44184
+      },
+      {
+        "number": "D",
+        "title": "Compared to Existing DBMS Testing Techniques",
+        "start": 50508
+      },
+      {
+        "number": "E",
+        "title": "Necessity of Human Assistance",
+        "start": 55559
+      },
+      {
+        "number": "F",
+        "title": "Necessity of LLM Support",
+        "start": 58114
+      },
+      {
+        "number": "G",
+        "title": "Overhead Analysis",
+        "start": 60510
+      },
+      {
+        "number": "VII",
+        "title": "DISCUSSION",
+        "start": 62397
+      },
+      {
+        "number": "VIII",
+        "title": "CONCLUSION",
+        "start": 66374
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "[n. d.]. Google Chrome impacted by new Magellan 2.0 vulnerabilities. https://www.zdnet.com/article/googlechrome-impacted-by-new-magellan-2-0-vulnerabilities/. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "[n. d.]. MariaDB GitHub. https://github.com/MariaDB/ server. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "[n. d.]. SQLite patches use-after-free bug that left apps open to code execution, denial-of-service exploits. https://portswigger.net/daily-swig/sqlite-patches-useafter-free-bug-that-left-apps-open-to-code-executiondenial-of-service-exploits. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "[n. d.]. zzuf. https://github.com/samhocevar/zzuf. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Cornelius Aschermann, Sergej Schumilo, Ali Abbasi, and Thorsten Holz. 2020. Ijon: Exploring Deep State Spaces via Fuzzing. In curity and Privacy (SP). 1597–1612. doi:10.1109/ SP40000.2020.00117",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Cornelius Aschermann, Sergej Schumilo, Tim Blazytko, Robert Gawlik, and Thorsten Holz. 2019. REDQUEEN: Fuzzing with Input-to-State Correspondence. In Symposium on Network and Distributed System Security (NDSS).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. Proceedings of the ACM on Management of Data 2, 3 (2024), 1–26.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 8,
+      "text": "Avatar Magnus Bl ˚audd. [n. d.]. Percona Website. https: //www.percona.com/. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Bootstrap. 2026. Build fast, responsive sites with Bootstrap. https://getbootstrap.com/. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Theodore Chambers, Michael Vierhauser, Ankit Agrawal, Michael Murphy, Jason Matthew Brauer, Salil Purandare, Myra B Cohen, and Jane Cleland-Huang. 2024. HIFuzz: Human Interaction Fuzzing for Small Unmanned Aerial Vehicles. In Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems (Honolulu, HI, USA) (CHI ’24). Association for Computing Machinery, New York, NY, USA, Article 26",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Chango chen. [n. d.]. Squirrel Website. https:// github.com/s3team/Squirrel. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Peng Chen and Hao Chen. 2018. Angora: Efficient fuzzing by principled search. In IEEE Symposium on Security and Privacy (S&P).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Yuanliang Chen, Yu Jiang, Fuchen Ma, Jie Liang, Mingzhe Wang, Chijin Zhou, Xun Jiao, and Zhuo Su. 2019. EnFuzz: Ensemble Fuzzing with Seed Synchronization among Diverse Fuzzers. In USENIX Security Symposium.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Carlos Coronel and Steven Morris. 2019. Database systems: design, implementation and management. Cengage learning.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "DynamoRIO. 2026. DynamoRIO: Dynamic Instrumentation Tool Platform. https://dynamorio.org/. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "echarts. 2026. Apache ECharts. https://github.com/ apache/echarts. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Cundi Fang, Jie Liang, Zhiyong Wu, Jingzhou Fu, Zhouyang Jia, Chun Huang, Yu Jiang, and Shanshan Li. 2025. DepState: Detecting Synchronization Failure Bugs in Distributed Database Management Systems. Proceedings of the ACM on Software Engineering 2, ISSTA (2025), 2001–2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-Free DBMS Fuzzing. In Conference on Automated Software Engineering (ASE’22).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Yanyang Zhao, Shanshan Li, and Yu Jiang. 2025. Understanding and detecting sql function bugs: using simple boundary arguments to trigger hundreds of dbms bugs. In Proceedings of the Twentieth European Conference on Computer Systems. 1061–1076.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 20,
+      "text": "Ying Fu, Zhiyong Wu, Yuanliang Zhang, Jie Liang, Jingzhou Fu, Yu Jiang, Shanshan Li, and Xiangke Liao. 2025. Thanos: Dbms bug detection via storage engine rotation based differential testing. In 2025 IEEE/ACM 47th International Conference on Software Engineering (ICSE). IEEE Computer Society, 655–666.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Wentao Gao, Van-Thuan Pham, Dongge Liu, Oliver Chang, Toby Murray, and Benjamin IP Rubinstein. 2023. Beyond the coverage plateau: A comprehensive study of fuzz blockers (registered report). In Proceedings of the 2nd International Fuzzing Workshop. 47–55.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "gcovr. 2026. gcovr: generate GCC code coverage reports. https://github.com/gcovr/gcovr. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "GreatDB. [n. d.]. GreatSQL Github. https://github.com/ GreatSQL/GreatSQL. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "The PostgreSQL Global Development Group. 2023. PostgreSQL 15 Documentation, Query Planning. https://www.postgresql.org/docs/current/runtime-configquery.html. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "The PostgreSQL Global Development Group. 2025. pgsql-bugs. https://www.postgresql.org/list/pgsql-bugs/. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Tao Guo, Puhan Zhang, Xin Wang, and Qiang Wei. 2417 2013. Gramfuzz: Fuzzing testing of web browsers based on grammar analysis and structural mutation. In 2013 Second International Conference on Informatics & Applications (ICIA). IEEE, 212–215.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "IBM. 2024. Modules-IBM Documentation. https://www.ibm.com/docs/en/db2-warehouse?topic= reference-modules. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "jacoco. 2026. JaCoCo Java Code Coverage Library. https: //github.com/jacoco/jacoco. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. 2023. {DynSQL}: Stateful Fuzzing for Database Management Systems with Complex and Valid {SQL} Query Generation. In 32nd USENIX Security Symposium (USENIX Security 23). 4949–4965.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "jquery. 2026. jQuery. https://jquery.com/. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Vijay Kumar and Sang Hyuk Son. 2012. Database recovery. V ol. 12. Springer Science & Business Media.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Chris Lattner and Vikram Adve. 2004. LLVM: A compilation framework for lifelong program analysis & transformation. In Iinternational Symposium on Code generation and optimization.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Caroline Lemieux and Koushik Sen. 2018. Fairfuzz: Targeting rare branches to rapidly increase greybox fuzz testing coverage. In ACM International Conference on Automated Software Engineering (ASE).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. 2023. Sequence-Oriented DBMS Fuzzing. In on Data Engineering (ICDE). IEEE.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Jie Liang, Yu Jiang, Mingzhe Wang, Xun Jiao, Yuanliang Chen, Houbing Song, and Kim-Kwang Raymond Choo. 2019. Deepfuzzer: Accelerated deep greybox fuzzing. IEEE Transactions on Dependable and Secure Computing(2019).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Jie Liang, Mingzhe Wang, Chijin Zhou, Zhiyong Wu, Yu Jiang, Jianzhong Liu, Zhe Liu, and Jiaguang Sun. 2022. PATA: Fuzzing with Path Aware Taint Analysis. In 2022. IEEE Computer Society, Los Alamitos, CA, USA. 154– 170.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Jie Liang, Mingzhe Wang, Chijin Zhou, Zhiyong Wu, Jianzhong Liu, and Yu Jiang. 2024. Dodrio: Parallelizing taint analysis based fuzzing via redundancy-free scheduling. In Companion Proceedings of the 32nd ACM International Conference on the Foundations of Software Engineering. 244–254.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Jie Liang, Zhiyong Wu, Jingzhou Fu, Yiyuan Bai, Qiang Zhang, and Yu Jiang. 2024. {WingFuzz}: Implementing continuous fuzzing for {DBMSs}. In 2024 USENIX Annual Technical Conference (USENIX ATC 24). 479– 492.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Jie Liang, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Chengnian Sun, and Yu Jiang. 2024. Mozi: Discovering DBMS Bugs via Configuration-Based EquivalentTransformation. In Proceedings of the 46th IEEE/ACM International Conference on Software Engineering, ICSE 2024, Lisbon, Portugal, April 14-20, 2024. ACM, 135:1– 135:12. doi:10.1145/3597503.3639112",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting Logical Bugs of DBMS with Coverage-based Guidance. InProceedings of the 31st USENIX Security Symposium (USENIX 2022). Boston, MA.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "LibFuzzer [n. d.]. LibFuzzer. https://www.llvm. org/docs/ LibFuzzer.html. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Chi-Keung Luk, Robert Cohn, Robert Muth, Harish Patil, Artur Klauser, Geoff Lowney, Steven Wallace, Vijay Janapa Reddi, and Kim Hazelwood. 2005. Pin: building customized program analysis tools with dynamic instrumentation. In Proceedings of the 2005 ACMSIGPLAN Conference on Programming Language Design and Implementation (Chicago, IL, USA) (PLDI ’05). Association for Computing Machinery, New York, ",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Valentin JM Man `es, HyungSeok Han, Choongwoo Han, Sang Kil Cha, Manuel Egele, Edward J Schwartz, and Maverick Woo. 2019. The art, science, and engineering of fuzzing: A survey. IEEE Transactions on Software Engineering 47, 11 (2019), 2312–2331.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "MariaDB 2024. MariaDB. https://mariadb.org/. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "MySQL 2014. MySQL 8.0 Reference Manual, Switchable Optimizations. https://dev.mysql.com/doc/refman/ 8.0/en/switchable-optimizations.html. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "MySQL 2024. MySQL. https://www.mysql.com/. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "MySQL. 2025. MySQL Bug Home. https:// bugs.mysql.com/. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "MySQL. 2025. Server Option, System Variable, and Status Variable Reference. https://dev.mysql.com/doc/ refman/8.4/en/server-option-variable-reference.html. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Oracle. 2026. Alternative Storage Engines. https:// dev.mysql.com/doc/refman/8.4/en/storage-engines.html. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Oracle. 2026. Server SQL Modes. https:// dev.mysql.com/doc/refman/9.1/en/sql-mode.html. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Oracle. 2026. SHOWGRANTS Statement. https: //dev.mysql.com/doc/refman/8.4/en/show-grants.html. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Rohan Padhye, Caroline Lemieux, Koushik Sen, Laurent Simon, and Hayawardh Vijayakumar. 2019. FuzzFactory: domain-specific fuzzing with waypoints. Proc. ACM Program. Lang. 3, OOPSLA, Article 174 (Oct. 2019), 29 pages. doi:10.1145/3360600",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "PeachTech [n. d.]. What is Peach. https: //peachtech.gitlab.io/peach-fuzzer-community/ WhatIsPeach.html. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "OpenAI Platform. 2026. GPT-4o. https: 2418 //platform.openai.com/docs/models/gpt-4o. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Sebastian Poeplau and Aur ´elien Francillon. 2020. Symbolic execution with SymCC: Don’t interpret, compile!. InUSENIX Security Symposium.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "PostgreSQL 2024. PostgreSQL. https: //www.postgresql.org/. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Manuel Rigger. [n. d.]. SQLancer Website. https: //github.com/sqlancer/sqlancer. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 58,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 59,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 1–30.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 60,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 61,
+      "text": "Andreas Seltenreich, Bo Tang, and Sjoerd Mullender. 2018. SQLsmith: a random SQL query generator. https: //github.com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Rupal Sharma. 2024. DBMS Architecture: Its 5 Key Components and Types of Database Models. https://www.sprinkledata.com/blogs/dbms-architectureits-5-key-components-and-types-of-database-models. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Nick Stephens, John Grosen, Christopher Salls, Andrew Dutcher, Ruoyu Wang, Jacopo Corbetta, Yan Shoshitaishvili, Christopher Kruegel, and Giovanni Vigna. 2016. Driller: Augmenting Fuzzing Through Selective Symbolic Execution.. In Symposium on Network and Distributed System Security (NDSS).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "wikipedia [n. d.]. databases. https://en.wikipedia.org/ wiki/Database. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Zhiyong Wu, Jie Liang, Jingzhou Fu, Wenqian Deng, and Yu Jiang. 2025. {DDLumos}: Understanding and Detecting Atomic {DDL} Bugs in {DBMSs}. In 2025 USENIX Annual Technical Conference (USENIX ATC 25). 1327–1341.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Zhiyong Wu, Jie Liang, Jingzhou Fu, Wenqian Deng, and Yu Jiang. 2025. Fawkes: Finding Data Durability Bugs in DBMSs via Recovered Data State Verification. InProceedings of the ACMSIGOPS 31st Symposium on Operating Systems Principles. 670–684.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Zhiyong Wu, Jie Liang, Jingzhou Fu, Mingzhe Wang, and Yu Jiang. 2025. Hulk: Exploring data-sensitive performance anomalies in dbmss via data-driven analysis. Proceedings of the ACM on Software Engineering 2, ISSTA (2025), 2181–2202.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "Insu Yun, Sangho Lee, Meng Xu, Yeongjin Jang, andTaesoo Kim. 2018. QSYM: A Practical Concolic Execution Engine Tailored for Hybrid Fuzzing. In USENIX Security Symposium.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "Michał Zalewski. [n. d.]. american fuzzy lop. http: //lcamtuf.coredump.cx/afl/. Accessed: March 14, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. Squirrel: Testing Database Management Systems with Language Validity and Coverage Feedback. In The ACM Conference on Computer and Communications Security (CCS), 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Xiaogang Zhu, Sheng Wen, Seyit Camtepe, and Yang Xiang. 2022. Fuzzing: a survey for roadmap. ACM Computing Surveys (CSUR) 54, 11s (2022), 1–36. 2419",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 7,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. Proceedings of the ACM on Management of Data 2, 3 (2024), 1–26.",
+      "technique": "dqp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing dqp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 19,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Yanyang Zhao, Shanshan Li, and Yu Jiang. 2025. Understanding and detecting sql function bugs: using simple boundary arguments to trigger hundreds of dbms bugs. In Proceedings of the Twentieth European Conference on Computer Systems. 1061–1076.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 57,
+      "text": "Manuel Rigger. [n. d.]. SQLancer Website. https: //github.com/sqlancer/sqlancer. Accessed: March 14, 2026.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 58,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 59,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 1–30.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 60,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Early DBMS fuzzers like SQLsmith [61] and SQLancer [57] primarily relied on randomly generated SQL test cases.",
+      "context_before": "ON Database Management Systems (DBMSs) are critical infrastructure supporting applications from finance to cloud services [14, 31, 64], but their growing complexity inevitably introduces bugs in the implementations. These bugs can have severe consequences, including data leaks, service disruptions, or even full system compromise by attackers [1, 3]. Recently, fuzzing [43, 71] has emerged as a state-of-the-art technique for identifying DBMS bugs. It automatically generates lots of test cases for a system to trigger potential crashes and other unexpected behaviors, thereby revealing hidden bugs.",
+      "context_after": "Later fuzzers like SQUIRREL [70], use coverage information from ∗Shuai Ma and Yu Jiang are the corresponding authors. Fig. 1. Under conventional DBMS fuzzing, after approximately four hours of testing, the coverage achieved by SQLsmith, SQLancer, SQUIRREL, and LEGO on MariaDB exhibits minimal growth. tested DBMSs to guide mutation-based test case generation. To ensure syntactic and semantic correctness, they incorporate semantics-aware mechanisms into mutation [18, 29, 40]. Building on this, LEGO [34] further learns the relationships between different SQL statements, enabling the generation o",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 2736,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Under conventional DBMS fuzzing, after approximately four hours of testing, the coverage achieved by SQLsmith, SQLancer, SQUIRREL, and LEGO on MariaDB exhibits minimal growth.",
+      "context_before": "evere consequences, including data leaks, service disruptions, or even full system compromise by attackers [1, 3]. Recently, fuzzing [43, 71] has emerged as a state-of-the-art technique for identifying DBMS bugs. It automatically generates lots of test cases for a system to trigger potential crashes and other unexpected behaviors, thereby revealing hidden bugs. Early DBMS fuzzers like SQLsmith [61] and SQLancer [57] primarily relied on randomly generated SQL test cases. Later fuzzers like SQUIRREL [70], use coverage information from ∗Shuai Ma and Yu Jiang are the corresponding authors. Fig. 1.",
+      "context_after": "tested DBMSs to guide mutation-based test case generation. To ensure syntactic and semantic correctness, they incorporate semantics-aware mechanisms into mutation [18, 29, 40]. Building on this, LEGO [34] further learns the relationships between different SQL statements, enabling the generation of richer and more complex SQL sequences. However, in real-world industrial practice, existing DBMS fuzzers explore only a limited state space of the target DBMSs, significantly limiting their ability to uncover additional bugs. As shown in Figure 1, four popular fuzzers exhibit little coverage improve",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 2973,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In 3 hours, VIREO found 98%, 59%, 38%, and 15% more branches and identified 9, 9, 8, and 7 more unique crash bugs than SQLsmith, SQLancer, SQUIRREL, and LEGO did in 24 hours, respectively.",
+      "context_before": "rom feature maps and target modules. We have implemented VIREO and used it on 5 well-tested DBMSs, namely PostgreSQL, MySQL, MariaDB, Percona,and GreatSQL. VIREO discovered a total of 25 previously unknown bugs, all of which were confirmed, and 10 have been fixed by vendors. Developer responses to our bug reports highlight the practical value of human-in-the-loop fuzzing. For example, PostgreSQL developers acknowledged that the identified bug exposed a planner assumption “previously believed unreachable by crafted input.” We also compare VIREO against other existing popular DBMS testing tools.",
+      "context_after": "Additionally, we demonstrate the necessity of human assistance and LLM support. In summary, we make the following contributions: 1) We identify that many existing DBMS fuzzers explore only a limited state space of DBMSs caused by DBMSspecific constraints, often leading to stagnation and leaving critical bugs undetected. 2) We propose VIREO, a human-in-the-loop DBMS fuzzing framework that combines module to feature analysis to systematically explore critical areas, overcome testing boundaries, and uncover latent crash bugs in DBMSs. 3) We use VIREO to find 25 bugs in popular DBMSs, all of them",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 8759,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker",
+      "surface": "[19, 57, 61, 65, 66, 67]",
+      "technique": null,
+      "sentence": "Generation-based DBMS fuzzing [19, 57, 61, 65, 66, 67] constructs SQL queries using predefined grammars, templates, or probabilistic models.",
+      "context_before": "s are still insufficient for DBMSs, which have rich syntax and complex dependencies among configurations, queries, and execution contexts. Random mutations often fail to satisfy these requirements, making it difficult to satisfy DBMS-specific constraints. While interactive fuzzing allows human guidance, humans alone cannot easily identify unexplored regions. Some DBMS bugs appear only under specific configurations or SQL sequences, making them difficult to trigger with annotations alone. 2406 B. DBMS Fuzzing DBMS fuzzing can also be classified into generationbased and mutation-based methods.",
+      "context_after": "For example, SQLsmith [61] generates SQL queries by randomly combining syntax elements to ASTs with metadata. SQLancer [57] utilizes multiple test oracles [7, 58, 59, 60] to detect logic bugs, generating queries based on these oracles. Mutation-based fuzzers [18, 29, 34, 38, 40, 70] generate new test cases by modifying existing queries. For example, SQUIRREL [70] designs an IR for structure-aware mutations. LEGO [34] learns and mutates sequences of SQL statements rather than individual statements, enabling it to more effectively exercise stateful behaviors such as schema evolution and cross-s",
+      "section": "B DBMS Fuzzing",
+      "page": 3,
+      "char_offset": 11436,
+      "cited_reference": {
+        "number": 57,
+        "text": "Manuel Rigger. [n. d.]. SQLancer Website. https: //github.com/sqlancer/sqlancer. Accessed: March 14, 2026.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [57] utilizes multiple test oracles [7, 58, 59, 60] to detect logic bugs, generating queries based on these oracles.",
+      "context_before": "nts. While interactive fuzzing allows human guidance, humans alone cannot easily identify unexplored regions. Some DBMS bugs appear only under specific configurations or SQL sequences, making them difficult to trigger with annotations alone. 2406 B. DBMS Fuzzing DBMS fuzzing can also be classified into generationbased and mutation-based methods. Generation-based DBMS fuzzing [19, 57, 61, 65, 66, 67] constructs SQL queries using predefined grammars, templates, or probabilistic models. For example, SQLsmith [61] generates SQL queries by randomly combining syntax elements to ASTs with metadata.",
+      "context_after": "Mutation-based fuzzers [18, 29, 34, 38, 40, 70] generate new test cases by modifying existing queries. For example, SQUIRREL [70] designs an IR for structure-aware mutations. LEGO [34] learns and mutates sequences of SQL statements rather than individual statements, enabling it to more effectively exercise stateful behaviors such as schema evolution and cross-statement dependencies. GRIFFIN [18] introduces a grammar-free mutation method by shuffling existing queries. Despite these advances, both categories of DBMS fuzzers struggle to cover complex state spaces. Many states require specific SQ",
+      "section": "B DBMS Fuzzing",
+      "page": 3,
+      "char_offset": 11687,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ", SQLsmith, SQUIRREL, SQLancer, and LEGO) covers only a limited portion of PostgreSQL after 72 hours, leaving much functionality untested and potential bugs hidden.",
+      "context_before": "45, 48] like optimization methods and indexing strategies, which significantly affect execution behavior. SQL statements interact in complex ways with these modules and settings, producing subtle, hard-topredict behaviors. Consequently, DBMS fuzzing faces significant obstacles due to the complex nature of database systems, where functional modules are tightly interwoven with configurations and input SQL dependencies. As Figure 1 shows, fuzzers exhibit little coverage improvement after the initial testing rounds. Figure 2 shows that even the combined coverage of popular DBMS testing tools (i.e.",
+      "context_after": "Causes of Limited State Space Exploration. Limited DBMS state space exploration arises from the complex constraints and sequence-dependent behaviors inherent in DBMS: (1) First, many DBMS functionalities can only be exercised through specific sequences of SQL statements and configurations. Existing fuzzers often struggle to generate such combinations because the required statements and configurations are highly constrained. (2) Second, existing fuzzers generally operate under preset configurations and fixed fuzzing strategies, without awareness of the current testing state. The static approac",
+      "section": "III MOTIVATION",
+      "page": 3,
+      "char_offset": 13569,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ", SQLsmith, SQUIRREL, SQLancer, and LEGO) on PostgreSQL still leaves a large portion of the code uncovered.",
+      "context_before": "ithout awareness of the current testing state. The static approach prevents dynamic exploration of complex or rarely used paths, leaving many DBMS state spaces untested. access bootstrapcatalog commandsexecutorlibpqnodes optimizerparser partitioning postmasterregex replicationrewrite statisticsstoragetcop tsearchutils020000400006000080000100000120000 Lines of Code 12.3% 4.2%61.3%52.8% 56.9% 29.1%44.8%82.7%72.9% 47.9%52.7%39.2%6.4% 62.6% 1.5%51.3% 51.3% 34.2%47.8% T otal Covered Codes by Existed Fuzzers Uncovered Codes in each ComponentFig. 2. The combined coverage of four popular fuzzers (i.e.",
+      "context_after": "Motivating Example. To illustrate the obstacle of traditional fuzzing, consider the example of a SEGV in MySQL shown in Figure 3. The bug requires a specific combination of privilege-related configuration and SQLs to be triggered. First, the global configuration --skip-grant-tables=1 is enabled to bypass privilege checks. Then, a prepared SHOWGRANTS statement is executed, combining preparation and privilege-checking operations in a way that triggers the SEGV. Despite running popular fuzzers like SQLsmith and SQLancer on MySQL, these tools failed to trigger the bug, as they neither explore con",
+      "section": "III MOTIVATION",
+      "page": 3,
+      "char_offset": 14868,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Despite running popular fuzzers like SQLsmith and SQLancer on MySQL, these tools failed to trigger the bug, as they neither explore configuration options like --skip-grant-tables nor generate SQL statements combining preparation and privilege-checking operations.",
+      "context_before": "of four popular fuzzers (i.e., SQLsmith, SQUIRREL, SQLancer, and LEGO) on PostgreSQL still leaves a large portion of the code uncovered. Motivating Example. To illustrate the obstacle of traditional fuzzing, consider the example of a SEGV in MySQL shown in Figure 3. The bug requires a specific combination of privilege-related configuration and SQLs to be triggered. First, the global configuration --skip-grant-tables=1 is enabled to bypass privilege checks. Then, a prepared SHOWGRANTS statement is executed, combining preparation and privilege-checking operations in a way that triggers the SEGV.",
+      "context_after": "Moreover, these tools are hard to adapt their strategies based on uncovered functionalities, making it difficult to adjust configurations or generate the specific SQL grammars needed. To address the obstacle, VIREO leverages human-in-theloop guidance.1 In the preparation stage, VIREO maps DBMS modules to relevant grammar rules and configurations. 2 –4 Through visualization-based interactions, the test engineer selects the auth module as a promising target due to its low prior coverage and history of security issues. 5 –6 Using the derived mappings, VIREO suggests adjustments to the fuzzing en",
+      "section": "III MOTIVATION",
+      "page": 3,
+      "char_offset": 15439,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We tried our best to compare VIREO against state-of-the-art DBMS fuzzers, including SQLsmith [61], SQLancer [57], SQUIRREL [70], and LEGO [34].",
+      "context_before": "quired to interact effectively with VIREO. Their backgrounds covered areas such as database management, systems programming, and software testing. Participants were recruited from the same institution and voluntarily agreed to take part in the study, with no prior exposure to VIREO to avoid bias. Tested DBMS. We targeted five DBMSs, including PostgreSQL [56], MySQL [46], MariaDB [44], Percona [8], and GreatSQL [23]. They are widely used and have been extensively tested with existing DBMS fuzzers. For each DBMS, we used the latest available version at the time of evaluation. Compare Techniques.",
+      "context_after": "They are widely used and have uncovered hundreds of DBMS bugs. Among them, SQLsmith, SQUIRREL, and LEGO target crash bugs, which align with Vireo’s focus. Although SQLancer was designed for logic bugs, it can also expose crashes and is evaluated using its default PQS oracle [60]. For mutation-based fuzzers, initial test cases were derived from the official unit test suites of each DBMS.Environment Setup. The experiments were conducted on a machine running 64-bit Ubuntu 20.04, equipped with an AMDEPYC 7742 processor @ 2.25 GHz, 128 cores, and 504 GiB of RAM. All DBMSs were tested within Docker",
+      "section": "A Evaluation Setup",
+      "page": 8,
+      "char_offset": 41720,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Although SQLancer was designed for logic bugs, it can also expose crashes and is evaluated using its default PQS oracle [60].",
+      "context_before": "ested DBMS. We targeted five DBMSs, including PostgreSQL [56], MySQL [46], MariaDB [44], Percona [8], and GreatSQL [23]. They are widely used and have been extensively tested with existing DBMS fuzzers. For each DBMS, we used the latest available version at the time of evaluation. Compare Techniques. We tried our best to compare VIREO against state-of-the-art DBMS fuzzers, including SQLsmith [61], SQLancer [57], SQUIRREL [70], and LEGO [34]. They are widely used and have uncovered hundreds of DBMS bugs. Among them, SQLsmith, SQUIRREL, and LEGO target crash bugs, which align with Vireo’s focus.",
+      "context_after": "For mutation-based fuzzers, initial test cases were derived from the official unit test suites of each DBMS.Environment Setup. The experiments were conducted on a machine running 64-bit Ubuntu 20.04, equipped with an AMDEPYC 7742 processor @ 2.25 GHz, 128 cores, and 504 GiB of RAM. All DBMSs were tested within Docker containers. Each container was allocated 5 CPU cores and 40 GiB of RAM. All LLM-based analysis was performed using OpenAI’s GPT-4o via its online API. No local deployment or additional training was performed for the experiments. B. Evaluation Procedure Each participant first rece",
+      "section": "A Evaluation Setup",
+      "page": 8,
+      "char_offset": 42019,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ", SQUIRREL, SQLancer, SQLsmith, and LEGO) under the same testing environment for 24 hours.",
+      "context_before": "ughout the testing process, we recorded all triggered crashes and deduplicated them to count unique bugs. To detect real-world bugs, each DBMS was independently tested by three participants for three hours each per day (i.e., nine hours of testing per day for one DBMS in total) over a period of five days. For quantitative comparisons, each DBMS was tested for three hours by three randomly assigned participants, and the results were averaged to enhance the reliability of the measurements. To evaluate the effectiveness of VIREO comparatively, we also tested four existing DBMS fuzzing tools (i.e.",
+      "context_after": "Crashes triggered by each tool were recorded, deduplicated to obtain unique bug counts, and code coverage was analyzed, enabling a direct comparison with VIREO ’s testing results. C. DBMS Vulnerability Detection Results 1) Bug Statistics: Despite the extensive testing and maturity of these DBMSs, and even though the participants had no prior experience with VIREO, it successfully uncovered 25 previously unknown vulnerabilities. Table I summarizes these findings, with VIREO identifying 1, 4, 4, 7, and 9 in PostgreSQL, MySQL, MariaDB, Percona, and GreatSQL, respectively. All identified bugs wer",
+      "section": "B Evaluation Procedure",
+      "page": 8,
+      "char_offset": 43913,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Compared to Existing DBMS Testing Techniques We compared VIREO against SQLsmith, SQLancer, SQUIR REL, and LEGO.",
+      "context_before": "tified the testing boundary and recognized the privilege management subsystem as a promising target due to its low coverage and historical bug density. VIREO then generated a refinement strategy involving adjustments to the configurations key_buffer_size andkey_cache_segments as well as the use of grammar structures such as SET, INDEX, and DELETE HISTORY. The participants confirmed this strategy without modification. Guided by it, VIREO adjusted the configurations and fuzzing engine, conducted focused testing on the subsystem, and ultimately triggered the previously unknown bug in GreatSQL. D.",
+      "context_after": "Following prior work, we evaluated them using two metrics, namely branch coverage and the number of unique bugs triggered. For VIREO, the number of bugs discovered for one DBMS by each student may vary. Consequently, we report the average results obtained from three participants after 3 hours of testing for each DBMS. For the baseline fuzzers, we report their results after 24 hours of automated testing. To enable a standardized comparison, we collected the test cases generated by each fuzzer and reran them to uniform branch coverage and covered functions. Unique bugs were identified through c",
+      "section": "D Compared to Existing DBMS Testing Techniques",
+      "page": 9,
+      "char_offset": 50510,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Table II presents the branch coverage results, showing that VIREO achieved in 3 hours results that surpassed the 24-hour runs of SQLsmith, SQLancer, SQUIRREL, and LEGO by 98%, 59%, 38%, and 15%, respectively.",
+      "context_before": ", namely branch coverage and the number of unique bugs triggered. For VIREO, the number of bugs discovered for one DBMS by each student may vary. Consequently, we report the average results obtained from three participants after 3 hours of testing for each DBMS. For the baseline fuzzers, we report their results after 24 hours of automated testing. To enable a standardized comparison, we collected the test cases generated by each fuzzer and reran them to uniform branch coverage and covered functions. Unique bugs were identified through call stack comparison and manual analysis. 2413 Coverage.",
+      "context_after": "Similarly, Table III presents the functions covered, showing that VIREO achieved in 3 hours results that surpassed the 24-hour runs of SQLsmith, SQLancer, SQUIRREL, and LEGO by 95%, 66%, 32%, and 14%, respectively. TABLE IINUMBER OFBRANCHES COVERED BYDIFFERENT FUZZERS (SQLSMITH, SQLANCER, SQUIRREL ,ANDLEGO IN 24HOURS; VIREO IN 3HOURS ) DBMS SQLsmith SQLancer SQUIRREL LEGOVIREO PostgreSQL 54,745 36,844 39,483 52,193 73,041 MySQL 39,445 41,783 43,944 74,136 81,034 MariaDB 40,394 74,364 84,945 91,083 108,238 Percona 47,293 53,784 59,384 69,411 77,032 GreatSQL 38,475 67,659 88,629 92,081 97,359 T",
+      "section": "D Compared to Existing DBMS Testing Techniques",
+      "page": 10,
+      "char_offset": 51280,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Similarly, Table III presents the functions covered, showing that VIREO achieved in 3 hours results that surpassed the 24-hour runs of SQLsmith, SQLancer, SQUIRREL, and LEGO by 95%, 66%, 32%, and 14%, respectively.",
+      "context_before": "participants after 3 hours of testing for each DBMS. For the baseline fuzzers, we report their results after 24 hours of automated testing. To enable a standardized comparison, we collected the test cases generated by each fuzzer and reran them to uniform branch coverage and covered functions. Unique bugs were identified through call stack comparison and manual analysis. 2413 Coverage. Table II presents the branch coverage results, showing that VIREO achieved in 3 hours results that surpassed the 24-hour runs of SQLsmith, SQLancer, SQUIRREL, and LEGO by 98%, 59%, 38%, and 15%, respectively.",
+      "context_after": "TABLE IINUMBER OFBRANCHES COVERED BYDIFFERENT FUZZERS (SQLSMITH, SQLANCER, SQUIRREL ,ANDLEGO IN 24HOURS; VIREO IN 3HOURS ) DBMS SQLsmith SQLancer SQUIRREL LEGOVIREO PostgreSQL 54,745 36,844 39,483 52,193 73,041 MySQL 39,445 41,783 43,944 74,136 81,034 MariaDB 40,394 74,364 84,945 91,083 108,238 Percona 47,293 53,784 59,384 69,411 77,032 GreatSQL 38,475 67,659 88,629 92,081 97,359 Total 220,352 274,434 316,385 378,904 436,704 Improvement 98%↑ 59%↑ 38%↑ 15%↑ – TABLE IIINUMBER OFFUNCTIONS COVERED BYDIFFERENT FUZZERS (SQLSMITH, SQLANCER, SQUIRREL ,ANDLEGO IN 24HOURS; VIREO IN 3HOURS ) DBMS SQLsmi",
+      "section": "D Compared to Existing DBMS Testing Techniques",
+      "page": 10,
+      "char_offset": 51489,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M15",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "TABLE IINUMBER OFBRANCHES COVERED BYDIFFERENT FUZZERS (SQLSMITH, SQLANCER, SQUIRREL ,ANDLEGO IN 24HOURS; VIREO IN 3HOURS ) DBMS SQLsmith SQLancer SQUIRREL LEGOVIREO PostgreSQL 54,745 36,844 39,483 52,193 73,041 MySQL 39,445 41,783 43,944 74,136 81,034 MariaDB 40,394 74,364 84,945 91,083 108,238 Percona 47,293 53,784 59,384 69,411 77,032 GreatSQL 38,475 67,659 88,629 92,081 97,359 Total 220,352 274,434 316,385 378,904 436,704 Improvement 98%↑ 59%↑ 38%↑ 15%↑ – TABLE IIINUMBER OFFUNCTIONS COVERED BYDIFFERENT FUZZERS (SQLSMITH, SQLANCER, SQUIRREL ,ANDLEGO IN 24HOURS; VIREO IN 3HOURS ) DBMS SQLsmith SQLancer SQUIRREL LEGOVIREO PostgreSQL 1014 874 953 1103 1203 MySQL 938 1311 1495 1549 1953 MariaDB 674 948 1349 1620 1812 Percona 984 1023 1422 1739 1849 GreatSQL 871 1102 1394 1643 1920 Total 4481 5258 6613 7654 8737 Improvement 95%↑ 66%↑ 32%↑ 14%↑ – The primary reason for the improved coverage achieved by VIREO is its human-in-the-loop fuzzing guided by visualization.",
+      "context_before": "by each fuzzer and reran them to uniform branch coverage and covered functions. Unique bugs were identified through call stack comparison and manual analysis. 2413 Coverage. Table II presents the branch coverage results, showing that VIREO achieved in 3 hours results that surpassed the 24-hour runs of SQLsmith, SQLancer, SQUIRREL, and LEGO by 98%, 59%, 38%, and 15%, respectively. Similarly, Table III presents the functions covered, showing that VIREO achieved in 3 hours results that surpassed the 24-hour runs of SQLsmith, SQLancer, SQUIRREL, and LEGO by 95%, 66%, 32%, and 14%, respectively.",
+      "context_after": "SQLancer and SQLsmith rely primarily on predefined patterns to generate queries. SQLancer consistently produces queries based on fixed grammar rules, restricting its exploration depth, while SQLsmith predominantly generates only SELECT statements to maintain semantic correctness, severely constraining its exploration breadth. SQUIRREL and LEGO, on the other hand, use mutation-based approaches guided by generic coverage feedback. LEGO learns and mutates SQL statement sequences rather than individual statements, enabling it to perform better. Although they improve semantic and syntactic correct",
+      "section": "D Compared to Existing DBMS Testing Techniques",
+      "page": 10,
+      "char_offset": 51704,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M16",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer and SQLsmith rely primarily on predefined patterns to generate queries.",
+      "context_before": "97,359 Total 220,352 274,434 316,385 378,904 436,704 Improvement 98%↑ 59%↑ 38%↑ 15%↑ – TABLE IIINUMBER OFFUNCTIONS COVERED BYDIFFERENT FUZZERS (SQLSMITH, SQLANCER, SQUIRREL ,ANDLEGO IN 24HOURS; VIREO IN 3HOURS ) DBMS SQLsmith SQLancer SQUIRREL LEGOVIREO PostgreSQL 1014 874 953 1103 1203 MySQL 938 1311 1495 1549 1953 MariaDB 674 948 1349 1620 1812 Percona 984 1023 1422 1739 1849 GreatSQL 871 1102 1394 1643 1920 Total 4481 5258 6613 7654 8737 Improvement 95%↑ 66%↑ 32%↑ 14%↑ – The primary reason for the improved coverage achieved by VIREO is its human-in-the-loop fuzzing guided by visualization.",
+      "context_after": "SQLancer consistently produces queries based on fixed grammar rules, restricting its exploration depth, while SQLsmith predominantly generates only SELECT statements to maintain semantic correctness, severely constraining its exploration breadth. SQUIRREL and LEGO, on the other hand, use mutation-based approaches guided by generic coverage feedback. LEGO learns and mutates SQL statement sequences rather than individual statements, enabling it to perform better. Although they improve semantic and syntactic correctness relative to purely random fuzzers, their guidance is inherently coarse-grain",
+      "section": "D Compared to Existing DBMS Testing Techniques",
+      "page": 10,
+      "char_offset": 52680,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M17",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer consistently produces queries based on fixed grammar rules, restricting its exploration depth, while SQLsmith predominantly generates only SELECT statements to maintain semantic correctness, severely constraining its exploration breadth.",
+      "context_before": "15%↑ – TABLE IIINUMBER OFFUNCTIONS COVERED BYDIFFERENT FUZZERS (SQLSMITH, SQLANCER, SQUIRREL ,ANDLEGO IN 24HOURS; VIREO IN 3HOURS ) DBMS SQLsmith SQLancer SQUIRREL LEGOVIREO PostgreSQL 1014 874 953 1103 1203 MySQL 938 1311 1495 1549 1953 MariaDB 674 948 1349 1620 1812 Percona 984 1023 1422 1739 1849 GreatSQL 871 1102 1394 1643 1920 Total 4481 5258 6613 7654 8737 Improvement 95%↑ 66%↑ 32%↑ 14%↑ – The primary reason for the improved coverage achieved by VIREO is its human-in-the-loop fuzzing guided by visualization. SQLancer and SQLsmith rely primarily on predefined patterns to generate queries.",
+      "context_after": "SQUIRREL and LEGO, on the other hand, use mutation-based approaches guided by generic coverage feedback. LEGO learns and mutates SQL statement sequences rather than individual statements, enabling it to perform better. Although they improve semantic and syntactic correctness relative to purely random fuzzers, their guidance is inherently coarse-grained, which tends to repeatedly focus on readily accessible code regions. This results in limited exploration of deeper or less obvious functional paths within the DBMS. In contrast, VIREO combines human expertise with visualization to identify test",
+      "section": "D Compared to Existing DBMS Testing Techniques",
+      "page": 10,
+      "char_offset": 52761,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M18",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The results indicate that VIREO detected 9, 9, 8, and 7 more unique bugs than SQLsmith, SQLancer, SQUIRREL, and LEGO, respectively.",
+      "context_before": "ration of deeper or less obvious functional paths within the DBMS. In contrast, VIREO combines human expertise with visualization to identify testing boundaries and prioritize target modules. Based on this guidance, test engineers adjust the fuzzing engine and configurations, enabling VIREO to generate and explore SQL constructs tailored to the selected modules. This process expands the explored execution paths and allows VIREO to exercise code regions that other fuzzers often overlook, resulting in higher coverage. Unique Bugs. Table IV shows the number of unique bugs triggered by each fuzzer.",
+      "context_after": "TABLE IVNUMBER OFBUGS COVERED BYDIFFERENT FUZZERS (SQLSMITH, SQLANCER, SQUIRREL ,ANDLEGO IN 24HOURS; VIREO IN 3HOURS ) DBMS SQLsmith SQLancer SQUIRREL LEGOVIREO PostgreSQL 0 0 1 0 1 MySQL 1 0 0 1 1 MariaDB 0 1 1 2 3 Percona 1 1 0 1 3 GreatSQL 0 0 1 0 3 Total 2 2 3 4 11 Increment 9↑ 9↑ 8↑ 7↑ – Similarly, SQLsmith restricted itself predominantly to generating SELECT statements, thus achieving semantic correctness at the expense of exploration breadth, resulting in limited bug detection. SQLancer is primarily designed to detect logic bugs through predefined rule-based queries. It has limited eff",
+      "section": "D Compared to Existing DBMS Testing Techniques",
+      "page": 10,
+      "char_offset": 54062,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M19",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "TABLE IVNUMBER OFBUGS COVERED BYDIFFERENT FUZZERS (SQLSMITH, SQLANCER, SQUIRREL ,ANDLEGO IN 24HOURS; VIREO IN 3HOURS ) DBMS SQLsmith SQLancer SQUIRREL LEGOVIREO PostgreSQL 0 0 1 0 1 MySQL 1 0 0 1 1 MariaDB 0 1 1 2 3 Percona 1 1 0 1 3 GreatSQL 0 0 1 0 3 Total 2 2 3 4 11 Increment 9↑ 9↑ 8↑ 7↑ – Similarly, SQLsmith restricted itself predominantly to generating SELECT statements, thus achieving semantic correctness at the expense of exploration breadth, resulting in limited bug detection.",
+      "context_before": "identify testing boundaries and prioritize target modules. Based on this guidance, test engineers adjust the fuzzing engine and configurations, enabling VIREO to generate and explore SQL constructs tailored to the selected modules. This process expands the explored execution paths and allows VIREO to exercise code regions that other fuzzers often overlook, resulting in higher coverage. Unique Bugs. Table IV shows the number of unique bugs triggered by each fuzzer. The results indicate that VIREO detected 9, 9, 8, and 7 more unique bugs than SQLsmith, SQLancer, SQUIRREL, and LEGO, respectively.",
+      "context_after": "SQLancer is primarily designed to detect logic bugs through predefined rule-based queries. It has limited effectiveness in triggering unique crashes or serious vulnerabilities in current DBMS versions. Similarly, SQLsmith focuses mainly on generating SELECT statements, prioritizing semantic correctness over exploration breadth, which limits its bug detection capabilities. SQUIRREL and LEGO rely heavily on general coverage feedback, which leads to missing complex module-specific bugs due to insufficient guidance toward deeper code regions. By leveraging visualization guidance, VIREO was able t",
+      "section": "D Compared to Existing DBMS Testing Techniques",
+      "page": 10,
+      "char_offset": 54194,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M20",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer is primarily designed to detect logic bugs through predefined rule-based queries.",
+      "context_before": "that VIREO detected 9, 9, 8, and 7 more unique bugs than SQLsmith, SQLancer, SQUIRREL, and LEGO, respectively. TABLE IVNUMBER OFBUGS COVERED BYDIFFERENT FUZZERS (SQLSMITH, SQLANCER, SQUIRREL ,ANDLEGO IN 24HOURS; VIREO IN 3HOURS ) DBMS SQLsmith SQLancer SQUIRREL LEGOVIREO PostgreSQL 0 0 1 0 1 MySQL 1 0 0 1 1 MariaDB 0 1 1 2 3 Percona 1 1 0 1 3 GreatSQL 0 0 1 0 3 Total 2 2 3 4 11 Increment 9↑ 9↑ 8↑ 7↑ – Similarly, SQLsmith restricted itself predominantly to generating SELECT statements, thus achieving semantic correctness at the expense of exploration breadth, resulting in limited bug detection.",
+      "context_after": "It has limited effectiveness in triggering unique crashes or serious vulnerabilities in current DBMS versions. Similarly, SQLsmith focuses mainly on generating SELECT statements, prioritizing semantic correctness over exploration breadth, which limits its bug detection capabilities. SQUIRREL and LEGO rely heavily on general coverage feedback, which leads to missing complex module-specific bugs due to insufficient guidance toward deeper code regions. By leveraging visualization guidance, VIREO was able to systematically identify and target historically buggy and under-tested modules, thus unco",
+      "section": "D Compared to Existing DBMS Testing Techniques",
+      "page": 10,
+      "char_offset": 54684,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M9",
+        "M12"
+      ],
+      "describes_as_state_of_the_art": [
+        "M9"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:37:26Z",
+    "is_model_written": true,
+    "summary": "VIREO puts a person in the DBMS fuzzing loop. Its premise is that automated fuzzers plateau: after a few hours the coverage curves of SQLsmith, SQLancer, SQUIRREL and LEGO on MariaDB flatten, leaving much of the system untested. VIREO visualises where coverage has stalled and uses an LLM to turn a tester's guidance into new test cases. In three hours it exceeded the 24-hour branch coverage of all four baselines and found 11 unique bugs to their 2-4.",
+    "narrative": "SQLancer is one of four baselines, named among the state-of-the-art DBMS fuzzers VIREO measures against, and run with its default PQS oracle since the comparison is about crashes rather than logic bugs. Results are reported across five systems in both branch coverage and unique bugs. The paper's diagnosis is specific: SQLancer generates queries from fixed grammar rules tied to its oracles, which bounds how deep its exploration goes, and it does not vary configuration options such as --skip-grant-tables, so a class of bugs stays out of reach. SQLancer's oracles are also cited as the generation-based line of work VIREO departs from.",
+    "roles": {
+      "M1": "background",
+      "M2": "motivation",
+      "M3": "result_comparison",
+      "M4": "background",
+      "M5": "definition",
+      "M6": "motivation",
+      "M7": "motivation",
+      "M8": "motivation",
+      "M9": "state_of_the_art",
+      "M10": "baseline",
+      "M11": "baseline",
+      "M12": "baseline",
+      "M13": "result_comparison",
+      "M14": "result_comparison",
+      "M15": "result_comparison",
+      "M16": "result_comparison",
+      "M17": "result_comparison",
+      "M18": "result_comparison",
+      "M19": "result_comparison",
+      "M20": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is run as a baseline. VIREO's own contribution is a visualisation and LLM-guided loop, not anything built on the SQLancer codebase."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No SQLancer oracle is extended; VIREO changes how test cases are chosen, not what makes an outcome wrong."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M9",
+          "M10",
+          "M13",
+          "M18"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M9",
+            "sentence": "We tried our best to compare VIREO against state-of-the-art DBMS fuzzers, including SQLsmith [61], SQLancer [57], SQUIRREL [70], and LEGO [34].",
+            "section": "A Evaluation Setup",
+            "page": 8
+          },
+          {
+            "mention_id": "M10",
+            "sentence": "Although SQLancer was designed for logic bugs, it can also expose crashes and is evaluated using its default PQS oracle [60].",
+            "section": "A Evaluation Setup",
+            "page": 8
+          },
+          {
+            "mention_id": "M13",
+            "sentence": "Table II presents the branch coverage results, showing that VIREO achieved in 3 hours results that surpassed the 24-hour runs of SQLsmith, SQLancer, SQUIRREL, and LEGO by 98%, 59%, 38%, and 15%, respectively.",
+            "section": "D Compared to Existing DBMS Testing Techniques",
+            "page": 10
+          },
+          {
+            "mention_id": "M18",
+            "sentence": "The results indicate that VIREO detected 9, 9, 8, and 7 more unique bugs than SQLsmith, SQLancer, SQUIRREL, and LEGO, respectively.",
+            "section": "D Compared to Existing DBMS Testing Techniques",
+            "page": 10
+          }
+        ],
+        "reasoning": "M9 names SQLancer among the fuzzers VIREO is compared against, M10 records that it was run with its default PQS oracle, and M13 and M18 report the branch-coverage and unique-bug outcomes.",
+        "techniques": [
+          "pqs"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M9"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M9",
+            "sentence": "We tried our best to compare VIREO against state-of-the-art DBMS fuzzers, including SQLsmith [61], SQLancer [57], SQUIRREL [70], and LEGO [34].",
+            "section": "A Evaluation Setup",
+            "page": 8
+          }
+        ],
+        "reasoning": "M9 introduces SQLancer as one of the state-of-the-art DBMS fuzzers the evaluation compares against."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

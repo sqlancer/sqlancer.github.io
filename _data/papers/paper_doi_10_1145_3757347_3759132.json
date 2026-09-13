@@ -1,0 +1,414 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T14:31:55Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3757347.3759132",
+    "title": "PANGOLIN: a Comprehensive Testing Framework for Configuration-Rich Key-Value Stores",
+    "authors": [
+      "Shaohua Duan",
+      "Sudarsun Kannan",
+      "Andrea C. Arpaci-Dusseau",
+      "Remzi H. Arpaci-Dusseau"
+    ],
+    "year": 2025,
+    "venue": "Annual Haifa Experimental Systems Conference",
+    "doi": "10.1145/3757347.3759132",
+    "arxiv_id": null,
+    "s2_paper_id": "34675858280c9b98a3df15fab99c590458e35afd",
+    "url": "https://doi.org/10.1145/3757347.3759132",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3757347.3759132",
+      "retrieved_at": "2026-09-08T14:31:55Z",
+      "chars": 70145,
+      "content_sha256": "sha256:c74bc00b82318aa369c57637716a2b40dbd26c2115ea6f2470f68477314b98ab"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 14,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 2121
+      },
+      {
+        "number": "2.1",
+        "title": "Large and Complex Configurations",
+        "start": 10351
+      },
+      {
+        "number": "3.1",
+        "title": "Bug Reproduction",
+        "start": 14111
+      },
+      {
+        "number": "3.2",
+        "title": "Bug Pattern",
+        "start": 15683
+      },
+      {
+        "number": "4.1",
+        "title": "Fine-Grained Boundary",
+        "start": 19898
+      },
+      {
+        "number": "5.1",
+        "title": "Overview",
+        "start": 23966
+      },
+      {
+        "number": "5.2",
+        "title": "KVDB Command and Interpreter",
+        "start": 25365
+      },
+      {
+        "number": "5.3",
+        "title": "KVDB Grammar",
+        "start": 27480
+      },
+      {
+        "number": "5.4",
+        "title": "KVDB Executor and Checker",
+        "start": 29987
+      },
+      {
+        "number": "5.6",
+        "title": "Bounded Fuzzer",
+        "start": 33853
+      },
+      {
+        "number": "7.2",
+        "title": "Bug Finding",
+        "start": 43889
+      },
+      {
+        "number": "7.2.1",
+        "title": "Bug Case Studies. We specifically explore two typical",
+        "start": 46331
+      },
+      {
+        "number": "7.3",
+        "title": "Compute and Storage Overhead",
+        "start": 47971
+      },
+      {
+        "number": "7.4",
+        "title": "Code Coverage",
+        "start": 49054
+      },
+      {
+        "number": "7.4.2",
+        "title": "Improvement under different boundaries. The size and",
+        "start": 51389
+      },
+      {
+        "number": "7.4.3",
+        "title": "Improvement on other key-value stores. To verify the",
+        "start": 52202
+      },
+      {
+        "number": "7.5",
+        "title": "Bug Coverage",
+        "start": 53349
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Cornelius Aschermann, Tommaso Frassetto, Thorsten Holz, Patrick Jauernig, Ahmad-Reza Sadeghi,, and Daniel Teuchert. 2019. NAUTILUS: Fishing for Deep Bugs with Grammars. In Symposium on Network and Distributed System Security (NDSS).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Marcel Böhme, Van-Thuan Pham, Manh-Dung Nguyen, and Abhik Roychoudhury. 2017. Directed Greybox Fuzzing. In Proceedings ofthe 24th ACMSIGSAC Conference on Computer and Communications Security (CCS’17). Dallas, TX, 2329–2344.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Mariano Ceccato, Cu D. Nguyen, Dennis Appelt, and Lionel C. Briand. 2016. SOFIA: An automated security oracle for black-box testing of SQL-injection vulnerabilities. In 2016 31st IEEE/ACM International Conference on Automated Software Engineering (ASE). 167–177.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Matteo Collina. [n.d.]. Graph database JS style for Node.js and the Browser. Built upon LevelUp and LevelDB. https://github.com/ levelgraph/levelgraph.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Dmitry Duplyakin, Robert Ricci, Aleksander Maricq, Gary Wong, Jonathon Duerig, Eric Eide, Leigh Stoller, Mike Hibler, David Johnson, Kirk Webb, Aditya Akella, Kuangching Wang, Glenn Ricart, Larry Landweber, Chip Elliott, Michael Zink, Emmanuel Cecchet, Snigdhaswin Kar, and Prabodh Mishra. 2019. The Design and Operation of CloudLab. In Proceedings of the USENIX Annual Technical Conference (ATC). 1–",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Facebook. [n.d.]. False detection of corruption after system crash due to race condition with WAL_sync and track_and_verify_wals_in_manifest. https://github.com/facebook/ rocksdb/pull/10185/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Facebook. [n.d.]. RocksDB. http://rocksdb.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Andrea Fioraldi, Dominik Maier, Heiko Eißfeldt, and Marc Heuse. 2020. AFL++: Combining Incremental Steps of Fuzzing Research. In 14th USENIX Workshop on Offensive Technologies (WOOT 20).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Xinwei Fu, Wook-Hee Kim, Ajay Paddayuru Shreepathi, Mohannad Ismail, Sunny Wadkar, Dongyoon Lee, and Changwoo Min. 2021. Witcher: Systematic Crash Consistency Testing for Non-Volatile Memory Key-Value Stores. In Proceedings of the 28th Symposium on Operating Systems Principles (SOSP’21). 111–115.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Peter M. Goldstein and Mike Perham. [n.d.]. Dalli. https://github. com/petergoldstein/dalli.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Google. [n.d.]. LevelDB. https://github.com/google/leveldb.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Ethan Hamilton. [n.d.]. Rocksdb is eating the database world. https: //rockset.com/blog/rocksdb-is-eating-the-database-world/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Jun He, Kan Wu, Sudarsun Kannan, Andrea Arpaci-Dusseau, and Remzi Arpaci-Dusseau. 2020. Read as Needed: Building WiSER, a Flash-Optimized Search Engine. In 18th USENIX Conference on File and Storage Technologies (FAST 20). 59–73.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Christian Holler, Kim Herzig, and Andreas Zeller. 2012. Fuzzing with code fragments. In Proceedings of USENIX Security Symposium. 445–458.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "John E. Hopcroft, Rajeev Motwani, and Jeffrey D. Ullman. 2006. Introduction to Automata Theory, Languages, and Computation (3.00 ed.). Pearson.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Shengtuo Hu. [n.d.]. A grammar-based custom mutator for AFL++. https://github.com/AFLplusplus/Grammar-Mutator.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Dae R. Jeong, Kyungtae Kim, Basavesh Shivakumar, Byoungyoung Lee, and Insik Shin. 2019. Razzer: Finding Kernel Race Bugs through Fuzzing. In Proceedings of the 40th IEEE Symposium on Security and Privacy (SP’19). San Francisco, CA, 754–768.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Matt Jibson. [n.d.]. SQLsmith: Randomized SQL Testing in CockroachDB. https://www.cockroachlabs.com/blog/sqlsmith-randomizedsql-testing/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "James Johnson. [n.d.]. gramfuzz is a grammar-based fuzzer that lets one define complex grammars to generate text and binary data formats. https://github.com/d0c-s4vage/gramfuzz.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Mohd. Ehmer Khan. 2011. Different Approaches To Black box Testing Technique For Finding Errors. International Journal of Software Engineering & Applications 2 (10 2011), 31–40.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Seulbae Kim, Meng Xu, Sanidhya Kashyap, Jungyeon Yoon, Wen Xu, and Taesoo Kim. 2019. Finding Semantic Bugs in File Systems with an Extensible Fuzzing Framework. In Proceedings of the 27th Symposium 214 SYSTOR ’25, September 8–9, 2025, Virtual, Israel S. Duan et al. on Operating Systems Principles (SOSP’19). 147–161.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Emre Kycyman and Yi-Min Wang. 2004. Discovering correctness constraints for self-management of system configuration. Proceedings of the 1st International Conference on Autonomic Computing (ICAC’04). (2004), 28–35.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "LLVM. [n.d.]. libFuzzer. https://github.com/facebook/rocksdb/tree/ master/fuzz.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Memcached.org. [n.d.]. Memcached. https://github.com/memcached/ memcached.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Jayashree Mohan, Ashlie Martinez, Soujanya Ponnapalli, Pandian Raju, and Vijay Chidambaram. 2018. Finding Crash-Consistency Bugs with Bounded Black-Box Crash Testing. In Proceedings of the 13th USENIX Conference on Operating Systems Design and Implementation (OSDI’18). 33–50.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Sarah Nadi, Thorsten Berger, Christian Kästner, and Krzysztof Czarnecki. 2014. Mining Configuration Constraints: Static Analyses and Empirical Results. In Proceedings of the 36th International Conference on Software Engineering (ICSE’14). 140–151.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Arjun Narayan and Peter Mattis. [n.d.]. Why we built cockroachdb on top of rocksdb. https://www.cockroachlabs.com/blog/cockroachdbon-rocksd/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Srinivas Nidhra1 and Jagruthi Dondeti. 2012. Black Box and White Box Testing Techniques-A Literature Review. International Journal of Embedded Systems and Applications 2 (06 2012), 29–50.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Joshua Pereyda. [n.d.]. Sulley: A pure-python fully automated and unattended fuzzing framework. https://github.com/OpenRCE/sulley.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Sanjay Rawat, Vivek Jain, Ashish Kumar, Lucian Cojocar, Cristiano Giuffrida, and Herbert Bos. 2017. VUzzer: Application-aware Evolutionary Fuzzing. In Proceedings of the 24th ACMSIGSAC Conference on Computer and Communications Security (CCS’17). Dallas, TX,2329–2344.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation (OSDI’20). 33–50.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 32,
+      "text": "Salvatore Sanfilippo. [n.d.]. Redis. https://redis.io/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Andreas Seltenreich. 2020. SQLSmith. https://github.com/anse1/ sqlsmith.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Shan. [n.d.]. Ceph using Monitor key/value store. https://ceph.io/en/ news/blog/2015/ceph-using-monitor-keyvalue-store/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Spandan Veggalam, Sanjay Rawat, Istvan Haller, and Herbert Bos. 2016. Ifuzzer: An evolutionary interpreter fuzzer using genetic programming.. In Proceedings of European Symposium on Research in Computer Security. Springer, 581–601.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "VMware. [n.d.]. Concord Byzantine fault tolerant state machine replication library. https://github.com/vmware/concord-bft.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Tianyin Xu, Long Jin, Xuepeng Fan, Yuanyuan Zhou, Shankar Pasupathy, and Rukma Talwadker. 2015. Hey, you have given me too many knobs!: Understanding and dealing with over-designed configuration in system software.. In Proceedings of the Joint Meeting of the European Software Engineering Conference and the ACMSIGSOFT Symposium on the Foundations of Software Engineering (ESEC/FSE’15). 307–319.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Tianyin Xu, Jiaqi Zhang, Peng Huang, Jing Zheng, Tianwei Sheng, Ding Yuan, Yuanyuan Zhou, and Shankar Pasupathy. 2013. Do Not Blame Users for Misconfigurations. In Proceedings of the 24th Symposium on Operating Systems Principles (SOSP’13). 244–259.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Michał Zalewski. 2017. American Fuzzy Lop. https://github.com/ google/AFL. 215",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 31,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation (OSDI’20). 33–50.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 31]",
+      "technique": "pqs",
+      "sentence": "Black-box testing and fuzzing have been used to identify various types of bugs in File systems and DBMSs, including crash inconsistency bugs [ 21,25], logic 203 PANGOLIN: a Comprehensive Testing Framework for Configuration-Rich Key-Value Stores SYSTOR ’25, September 8–9, 2025, Virtual, Israel bugs [ 31], and correctness bugs [ 3].",
+      "context_before": "ack-box testing is a software testing method in which the functionalities of software applications are tested without having knowledge of internal code structure, implementation details, and internal code paths. Differed from black-box testing, modern fuzzing tools, such as AFL [ 8,39] and Nautilus [ 1], also employ light-weight instrumentation of the target program to collect some feedback about the generated inputs, which is used to guide the test case mutation process. More recently, leveraging grammar-based input generation greatly improved the performance of feedbackoriented fuzzers [ 1].",
+      "context_after": "Compared with handwritten tests, these bug-finding tools have the capability to generate interesting test cases, including corner cases that are difficult for humans to contemplate, under acceptable overhead and little human effort involved. In principle, black-box testing and fuzzing can be routinely applied for systematically testing configuration-rich key-value stores. Unfortunately, our study of historical bugs in five widely used key-value stores reveals that generalpurpose testing tools can only identify a few bugs. One main challenge is the large number of operations and configuration",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 9241,
+      "cited_reference": {
+        "number": 31,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation (OSDI’20). 33–50.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:17:50Z",
+    "is_model_written": true,
+    "summary": "Pangolin tests configuration-rich key-value stores. The authors first study historical bugs in five mature stores over eight years and find that most could be caught by systematically testing a small sequence of operations and configurations. Pangolin turns that into a bounded testing strategy across black-box and fuzzing procedures, finding 20 bugs and reproducing 443 historical ones in RocksDB, LevelDB, HyperlevelDB, BadgerDB and Redis.",
+    "narrative": "One citation, noting that black-box testing and fuzzing have been used to find bugs in file systems and DBMSs, SQLancer's work among the references.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,778 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:30:28Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3728973",
+    "title": "Hulk: Exploring Data-Sensitive Performance Anomalies in DBMSs via Data-Driven Analysis",
+    "authors": [
+      "Zhiyong Wu",
+      "Jie Liang",
+      "Jingzhou Fu",
+      "Mingzhe Wang",
+      "Yu Jiang"
+    ],
+    "year": 2025,
+    "venue": "Proc. ACM Softw. Eng.",
+    "doi": "10.1145/3728973",
+    "arxiv_id": null,
+    "s2_paper_id": "9941e9dde900bcf3bbd359d4166157028ac29f38",
+    "url": "https://doi.org/10.1145/3728973",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3728973",
+      "retrieved_at": "2026-09-09T01:30:28Z",
+      "chars": 88416,
+      "content_sha256": "sha256:bac7266ad906da00dcf86bb7eb6e30d6642d3c31f5f6d2762859382719d730b4"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 22,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2206
+      },
+      {
+        "number": "2",
+        "title": "Data-Sensitive Performance Anomaly",
+        "start": 13030
+      },
+      {
+        "number": "3",
+        "title": "Design of Hulk",
+        "start": 25083
+      },
+      {
+        "number": "3.1",
+        "title": "Data-Sensitive Query Synthesis",
+        "start": 28044
+      },
+      {
+        "number": "3.2",
+        "title": "Performance Anomaly Analysis",
+        "start": 35115
+      },
+      {
+        "number": "4",
+        "title": "Implementation",
+        "start": 46504
+      },
+      {
+        "number": "5",
+        "title": "Evaluation",
+        "start": 49719
+      },
+      {
+        "number": "5.1",
+        "title": "Evaluation Setup",
+        "start": 50280
+      },
+      {
+        "number": "5.2",
+        "title": "Performance Anomaly Detection",
+        "start": 51586
+      },
+      {
+        "number": "5.3",
+        "title": "Comparison With Other Techniques",
+        "start": 61537
+      },
+      {
+        "number": "5.4",
+        "title": "Analysis of Hulk ’s Workloads",
+        "start": 64093
+      },
+      {
+        "number": "5.5",
+        "title": "Importance of Data-Sensitivity",
+        "start": 66516
+      },
+      {
+        "number": "6",
+        "title": "Discussion",
+        "start": 69685
+      },
+      {
+        "number": "7",
+        "title": "Related Work",
+        "start": 72761
+      },
+      {
+        "number": "8",
+        "title": "Conclusion",
+        "start": 77267
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "[n. d.]. databases. https://en.wikipedia.org/wiki/Database. Accessed: April 24, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "[n. d.]. MariaDB. https://mariadb.org/. Accessed: April 24, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "[n. d.]. MariaDB GitHub. https://github.com/MariaDB/server. Accessed: 2023-10-05.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "[n. d.]. MySQL. https://www.mysql.com/. Accessed: April 24, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "[n. d.]. PostgreSQL. https://www.postgresql.org/. Accessed: April 24, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "[n. d.]. PostgreSQL derived databases. https://wiki.postgresql.org/wiki/PostgreSQL_derived_databases. Accessed: April 24, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "[n. d.]. SQLite and SQLite alternativesdatabases for the Mobile and IoT edge. https://objectbox.io/sqlite-alternatives/. Accessed: April 24, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "AISWare. [n. d.]. AntDB Github. https://github.com/ADBSQL. Accessed: April 24, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "AISWare. [n. d.]. AntDB Website. http://www.antdb.co//. Accessed: April 24, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Abdullah Alsharif, Gregory M Kapfhammer, and Phil McMinn. 2018. DOMINO: Fast and effective test data generation for relational database schemas. In (ICST). IEEE, 12–22.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 12,
+      "text": "Daniel Bartholomew. 2014. MariaDB cookbook. Packt Publishing Ltd.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Youssef Bassil. 2012. A comparative study on the performance of the Top DBMS systems. arXiv preprint arXiv:1205.2889 (2012).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Carsten Binnig, Donald Kossmann, Eric Lo, and M Tamer Özsu. 2007. QAGen: generating query-aware test databases. InProceedings of the 2007 ACMSIGMOD international conference on Management of data. 341–352.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "BlackFriday. [n. d.]. Get Access to Black Friday Prices All Year. https://blackfriday.com/. Accessed: April 24, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Avatar Magnus Blåudd. [n. d.]. Percona Website. https://www.percona.com/. Accessed: April 24, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Nicolas Bruno and Surajit Chaudhuri. 2005. Flexible database generators. In Proceedings of the 31st international conference on Very large data bases. 1097–1107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Ol,egs Čapligins and Andrejs Ermuiža. [n. d.]. MySQL Database Management System Forks Comparison and Usage. ([n. d.]).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "CL Philip Chen and Chun-Yang Zhang. 2014. Data-intensive applications, challenges, techniques and technologies: A survey on Big Data. Information sciences 275 (2014), 314–347.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Raj Chhikara. 1988. The inverse Gaussian distribution: theory: methodology, and applications. Vol. 95. CRC Press.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-Free DBMS Fuzzing. In Conference on Automated Software Engineering (ASE’22).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Jim Gray, Prakash Sundaresan, Susanne Englert, Ken Baclawski, and Peter J Weinberger. 1994. Quickly generating billion-record synthetic databases. In Proceedings of the 1994 ACMSIGMOD international conference on Management of data. 243–252.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Kenneth Houkjær, Kristian Torp, and Rico Wind. 2006. Simple and realistic data generation. In Proceedings of the 32nd international conference on Very large data bases. 1243–1246.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Dongxu Huang, Qi Liu, Qiu Cui, Zhuhe Fang, Xiaoyu Ma, Fei Xu, Li Shen, Liu Tang, Yuxing Zhou, Menglong Huang, et al. 2020. TiDB: a Raft-based HTAP database. Proceedings of the VLDB Endowment 13, 12 (2020), 3072–3084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Toshihide Ibaraki and Tiko Kameda. 1984. On the optimal nesting order for computing n-relational joins. ACM Transactions on Database Systems (TODS) 9, 3 (1984), 482–502.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Yannis E Ioannidis. 1996. Query optimization. ACM Computing Surveys (CSUR) 28, 1 (1996), 121–123.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "ISO/IEC. [n. d.]. ISO/IEC 9075-1:2003. https://www.iso.org/standard/34132.html. Accessed: April 24, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Solid IT. [n. d.]. DB-Engines Ranking. https://db-engines.com/en/ranking. Accessed: April 24, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Matthias Jarke and Jurgen Koch. 1984. Query optimization in database systems. ACM Computing surveys (CsUR) 16, 2 (1984), 111–152.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2020. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems (to appear). In Proceedings of the 46th International Conference on Very Large Data Bases (VLDB). Tokyo, Japan.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Shadi Abdul Khalek, Bassem Elkarablieh, Yai O Laleye, and Sarfraz Khurshid. 2008. Query-aware test generation using a relational constraint solver. In 2008 23rd IEEE/ACM International Conference on Automated Software Engineering. IEEE, 238–247.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Sang Gyu Kwak and Jong Hae Kim. 2017. Central limit theorem: the cornerstone of modern statistics. Korean journal of anesthesiology 70, 2 (2017), 144–156.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Hai Lan, Zhifeng Bao, and Yuwei Peng. 2021. A survey on advancing the dbms query optimizer: Cardinality estimation, cost model, and plan enumeration. Data Science and Engineering 6 (2021), 86–101.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Jonathan Lewis and Thomas Kyte. 2006. Cost-based Oracle fundamentals. Springer. Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA096. Publication date: July 2025. ISSTA096:22 Zhiyong Wu, Jie Liang, Jingzhou Fu, Mingzhe Wang, and Yu Jiang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. [n. d.]. Sequence-Oriented DBMS Fuzzing. In (ICDE). IEEE.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Jie Liang, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Chengnian Sun, and Yu Jiang. 2024. Mozi: Discovering DBMS bugs via configuration-based equivalent transformation. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. 2022. Automatic Detection of Performance Bugs in Database Systems using Equivalent Queries. (2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Bruce Momjian. 2001. PostgreSQL: introduction and concepts. Vol. 192. Addison-Wesley New York.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Douglas C Montgomery and George C Runger. 2010. Applied statistics and probability for engineers. John wiley & sons.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Oracle. [n. d.]. MySQL Bug List. https://bugs.mysql.com/. Accessed:April 24, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Oracle. [n. d.]. MySQL Explain Manual. https://dev.mysql.com/doc/refman/8.0/en/using-explain.html. Accessed: April 24, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "PingCAP. [n. d.]. TiDB. https://github.com/pingcap/tidb. Accessed: April 24, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Raghu Ramakrishnan, Johannes Gehrke, and Johannes Gehrke. 2003. Database management systems. Vol. 3. McGrawHill New York.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Kim-Thomas Rehmann, Changyun Seo, Dongwon Hwang, Binh Than Truong, Alexander Boehm, and Dong Hun Lee. 2016. Performance monitoring in sap hana’s continuous integration process. ACMSIGMETRICS Performance Evaluation Review 43, 4 (2016), 43–52.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "M Rigger and Z Su. [n. d.]. Finding Bugs in Database Systems via Query Partitioning. PACMPL 4 (OOPSLA)(Nov 2020).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 46,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 47,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 48,
+      "text": "Murray Rosenblatt. 1956. A central limit theorem and a strong mixing condition. Proceedings of the national Academy of Sciences 42, 1 (1956), 43–47.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Andreas Seltenreich, Bo Tang, and Sjoerd Mullender. 2018. SQLsmith: a random SQL query generator. https: //github.com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Konstantin Serebryany, Derek Bruening, Alexander Potapenko, and Dmitriy Vyukov. 2012. AddressSanitizer: A Fast Address Sanity Checker. In 2012 USENIX Annual Technical Conference, Boston, MA, USA, June 13-15, 2012, Gernot Heiser and Wilson C. Hsieh (Eds.). USENIX Association, 309–318. https://www.usenix.org/conference/atc12/technicalsessions/presentation/serebryany",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Rick F Van Der Lans. 1989. The SQL standard: a complete guide reference. Prentice Hall International (UK) Ltd.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. 2021. Industry Practice of Coverage-Guided Enterprise-Level DBMS Fuzzing. In Engineering: Software Engineering in Practice (ICSE-SEIP). IEEE, 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Qingshuai Wang, Yuming Li, Rong Zhang, Ke Shu, Zhenjie Zhang, and Aoying Zhou. 2022. A Scalable Query-Aware Enormous Database Generator for Database Evaluation. IEEE Transactions on Knowledge and Data Engineering (2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Zuozhi Wang, Kai Zeng, Botong Huang, Wei Chen, Xiaozong Cui, Bo Wang, Ji Liu, Liya Fan, Dachuan Qu, Zhenyu Hou, et al .2020. Tempura: A general cost based optimizer framework for incremental data processing (extended version). arXiv preprint arXiv:2009.13631 (2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Michael Widenius, David Axmark, and Kaj Arno. 2002. MySQL reference manual: documentation from the source. \" O’Reilly Media, Inc.\".",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Zhiyong Wu, Jie Liang, Jingzhou Fu, Mingzhe Wang, and Yu Jiang. 2024. PUPPY: Finding Performance Degradation Bugs in DBMSs via Limited-Optimization Plan Construction. In Software Engineering (ICSE). IEEE Computer Society, 560–571.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Zhiyong Wu, Jie Liang, Mingzhe Wang, Chijin Zhou, and Yu Jiang. 2022. Unicorn: Detect Runtime Errors in Time-Series Databases With Hybrid Input Synthesis. In Symposium on Software Testing and Analysis (ISSTA’22).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Khaled Yagoub, Peter Belknap, Benoit Dageville, Karl Dias, Shantanu Joshi, and Hailing Yu. 2008. Oracle’s SQL Performance Analyzer. IEEE Data Eng. Bull. 31, 1 (2008), 51–58.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Jiaqi Yan, Qiuye Jin, Shrainik Jain, Stratis D Viglas, and Allison Lee. 2018. Snowtrail: Testing with production queries on a cloud database. In Proceedings of the Workshop on Testing Database Systems. 1–6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. Squirrel: Testing Database Management Systems with Language Validity and Coverage Feedback. In The ACM Conference on Computer and Communications Security (CCS), 2020. Received 2024-10-31; accepted 2025-03-31 Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA096. Publication date: July 2025.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 11,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13.",
+      "technique": "cert",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing cert"
+      ]
+    },
+    {
+      "number": 45,
+      "text": "M Rigger and Z Su. [n. d.]. Finding Bugs in Database Systems via Query Partitioning. PACMPL 4 (OOPSLA)(Nov 2020).",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 46,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 47,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[11]",
+      "technique": "cert",
+      "sentence": "Additionally, CERT1[11] tests cardinality estimation to find performance anomalies.",
+      "context_before": "s ISSTA096:3 However, conventional techniques test DBMS performance with fixed datasets, potentially ignoring data-sensitive performance anomalies. Specifically, conventional methods (e.g., system validation tests) compare the response time for predefined queries and data with empirical values as the baseline. Latest fuzzers like Amoeba [37] and APOLLO [ 30], also compare the response time of a query either with the time for a semantically equivalent query or in a previous version of the target DBMS with the fixed data. Consequently, they can hardly detect data-sensitive performance anomalies.",
+      "context_after": "However, it still cannot detect data-sensitive performance anomalies due to the fixed dataset. To efficiently detect data-sensitive performance anomalies caused by optimizers, the intuition is to execute queries with a changed dataset and check whether the DBMS generates a significantly costly plan. However, it is challenging to determine whether the generated plan has low performance for each combination of data and query because it requires accurately estimating cardinality and building the cost model for different datasets. It can be a costly and complex process, which is almost equivalent",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 9249,
+      "cited_reference": {
+        "number": 11,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing cert"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[11]",
+      "technique": "cert",
+      "sentence": "In addition, we compare Hulk with the state-of-the-art DBMS validation tools in industry, including both DBMS performance testing tool APOLLO [ 30] and SQLancer𝐶𝐸𝑅𝑇[11], as well as DBMS fuzzing tools Sqirrel [60].",
+      "context_before": "omaly by checking if there is a significant difference in the uniform cost of plans and if the comparable DBMS can supply a better plan. The availability of a better plan confirms the performance cliff as a data-sensitive performance anomaly. We implemented the approach in Hulk and evaluated it on six widely-used DBMSs: MySQL, MariaDB, Percona, TiDB, AntDB, and PostgreSQL. Hulk reports a total of 135 anomalies, with 129 anomalies have been confirmed as new bugs, including 14 CVEs assigned. Among them, 94 are confirmed as data-sensitive performance anomalies, and 35 are confirmed as crash bugs.",
+      "context_after": "The 24-hour result shows that Hulk covered 17%, 21%, and 6% more branches, and found 50, 52, and 58 more bugs than APOLLO, SQLancer𝐶𝐸𝑅𝑇, and Sqirrel, respectively. Particularly, Hulk found 37 and 35 more performance anomalies than APOLLO and SQLancer𝐶𝐸𝑅𝑇 in 24 hours. In summary, our paper makes the following contributions: •We find the data sensitive performance anomalies of DBMSs are common and can do great damage to modern data-intensive applications, but the state-of-the-art testing techniques pay little attention to the problem. •We propose data-driven analysis to detect data sensitive pe",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 11449,
+      "cited_reference": {
+        "number": 11,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing cert"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "1It is implemented in SQLancer and will be referred to as SQLancer𝐶𝐸𝑅𝑇hereafter.",
+      "context_before": "on to the problem. •We propose data-driven analysis to detect data sensitive performance anomalies, consisting of data-sensitive query synthesis and sampling-based performance estimation. It first estimates a range of reasonable response times for growth data volume to capture the performance cliff, and then validates the performance anomaly by plan cost comparison. •We implement our approach in Hulk and detect 135 anomalies in six widely-used DBMSs. Among them, 129 are confirmed as new bugs, including 14 CVEs assigned. Among them, 94 data-sensitive performance anomalies and 35 are crash bugs.",
+      "context_after": "Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA096. Publication date: July 2025. ISSTA096:4 Zhiyong Wu, Jie Liang, Jingzhou Fu, Mingzhe Wang, and Yu Jiang 2 Data-Sensitive Performance Anomaly Basic Concepts. Database Management Systems (DBMS) are software systems designed to store, retrieve, query, and manage data. Structured Query Language (SQL) is a declarative query language that mediates information exchange between users and the DBMS. Specifically, users describe their demands with it in a query. A clause is a built-in function that processes the database table and gives interme",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 12784,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker",
+      "surface": "[11]",
+      "technique": "cert",
+      "sentence": "Since only APOLLO [30] and SQLancer𝐶𝐸𝑅𝑇[11] are open-source tools, as a remedy, we still compared Hulk with other state-of-the-art SQL fuzzer ( Sqirrel [60]) to evaluate the capability to explore the state space on DBMSs.",
+      "context_before": "ies? •RQ2: How does Hulk perform compared to other related DBMS testing techniques? •RQ3: How effective of the workloads generated by Hulk? •RQ4: How important is the data-sensitivity of queries in finding performance anomalies? 5.1 Evaluation Setup Tested DBMSs. To evaluate the generality and efficiency of Hulk, we select six popular opensource DBMSs, namely MySQL [ 4,55], MariaDB [ 2,12], Percona [ 16], TiDB [ 24,42], AntDB [ 8,9], and PostgreSQL [5, 38], which are widely used in industry. Compared Techniques. We tried our best to compare Hulk with open-source DBMS performance testing tools.",
+      "context_after": "Basic Setup. We perform the experiments on a machine running 64-bit Ubuntu 20.04 with 128 cores (AMDEPYC 7742 Processor @ 2.25 GHz) and 488 GiB of main memory. All DBMS tested are run in docker containers and can be downloaded directly from their website. For quantitative comparisons, we run the docker containers for each DBMS experiment(including DBMS server Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA096. Publication date: July 2025. ISSTA096:14 Zhiyong Wu, Jie Liang, Jingzhou Fu, Mingzhe Wang, and Yu Jiang andHulk ) with 5 CPU cores and 32 GiB of main memory. To detect real-wor",
+      "section": "5.1 Evaluation Setup",
+      "page": 13,
+      "char_offset": 50651,
+      "cited_reference": {
+        "number": 11,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing cert"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Number of confirmed performance anomalies and crashes, and covered branches on six DBMSs Performance Bugs Crashes Branches APOLLO 5 6 281,056 SQLancer 7 3 273,467 Sqirrel 0 9 312,713 Hulk 42 19 331,909 data-sensitive clauses on average (which will be discussed in Section 5.",
+      "context_before": "from the sampled historical data to identify anomalies. Consequently, Hulk detects more performance anomalies compared to APOLLO. Moreover, we also find that Hulk performs well in detecting crash bugs. Specifically, Hulk detects 10 more crash bugs when compared to Sqirrel. This can be explained by the design of data-sensitive query synthesis. Hulk generates amounts of complex queries that contain 40 Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA096. Publication date: July 2025. Hulk: Exploring Data-Sensitive Performance Anomalies in DBMSs via Data-Driven Analysis ISSTA096:17 Table 5.",
+      "context_after": "5). These data-sensitive queries trigger more complex behaviors of CBO in DBMSs with the growing data volume. It could be seen from the branches covered by each tool in 24 hours. The third column in Table 5 shows the number of branches covered for APOLLO, SQLancer𝐶𝐸𝑅𝑇,Sqirrel, and Hulk. We can see that Hulk covers 17%, 21%, and 6% more branches than APOLLO, SQLancer𝐶𝐸𝑅𝑇, and Sqirrel, respectively. The improvement of branches proves that the data-sensitive query generated by Hulk can trigger more behaviors of DBMSs compared to other tools. Therefore, Hulk detects more crash bugs compared to oth",
+      "section": "5.3 Comparison With Other Techniques",
+      "page": 17,
+      "char_offset": 63208,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "To accommodate the majority of queries generated by popular DBMS fuzzers like Sqirrel and SQLancer, we set the minimum average clause number for evaluation to 5.",
+      "context_before": "so not always conducive to detecting performance anomalies. Specifically, only 5% of performance anomalies are triggered when the data volume is over 100,000 records. 5.5 Importance of Data-Sensitivity Section 3.1 highlights that a SQL query’s data sensitivity increases as the number of data-sensitive clauses it contains increases. To investigate the impact of data sensitivity for detecting performance anomalies, we conducted an experiment that involved running Hulk on 5 different DBMSs with data-sensitive query synthesis settings that varied average clause number (5, 10, 20, 30, 40, 50, 100).",
+      "context_after": "We then analyzed the number of performance bugs, crashes, and branches found by Hulk across different settings. Table 7 presents the number of bugs detected by Hulk when using data-sensitive query synthesis settings with varying clause numbers. The results demonstrate that the data-sensitivity of a query has a significant impact on Hulk ’s ability to detect anomalies. As the number of clauses in a query increases up to a certain point (i.e., when the clause number is less than 50), we observe an increase in the number of performance bugs and crash bugs detected by Hulk. This is because a quer",
+      "section": "5.5 Importance of Data-Sensitivity",
+      "page": 18,
+      "char_offset": 66949,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker",
+      "surface": "[ 36,47]",
+      "technique": "pqs",
+      "sentence": "Generally, current DBMS fuzzers are used to detect crash bugs, memory safety bugs with AddressSanitizer [ 50], or logic bugs with the test oracle [ 36,47].",
+      "context_before": "-sensitive performance anomalies and provides an oracle to find them by analyzing query plans to data variations. No matter whether it is a change in data volume or a change in optimizer parameters that causes performance anomalies, the plan-guided oracle could be used to determine both of them. Moreover, since the two types of anomalies are orthogonal, we can even change both the data and parameters to find more bugs for a given workload in the future. 7 Related Work DBMS Fuzzing. Fuzzing is one of the most popular testing techniques and it is natural to adapt fuzzing to the testing of DBMSs.",
+      "context_after": "SQLsmith [ 49] generates queries based on predefined rules in target DBMSs to detect crash bugs. It adapts very well to PostgreSQL and finds many bugs in it. However, it will require additional human efforts when testing other DBMSs. SQLancer [ 47] detects logic bugs of DBMSs by generating queries to fetch an existing row from databases. If the DBMS fails to fetch that, the likely cause is a logic bug. Its following works [ 45,46] also utilize the similar idea by generating semantically equivalent queries and comparing the results. Sqirrel [60],Ratel [52], Unicorn [ 57], and Griffin [ 21] int",
+      "section": "7 Related Work",
+      "page": 19,
+      "char_offset": 72903,
+      "cited_reference": {
+        "number": 47,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [ 47] detects logic bugs of DBMSs by generating queries to fetch an existing row from databases.",
+      "context_before": "nd parameters to find more bugs for a given workload in the future. 7 Related Work DBMS Fuzzing. Fuzzing is one of the most popular testing techniques and it is natural to adapt fuzzing to the testing of DBMSs. Generally, current DBMS fuzzers are used to detect crash bugs, memory safety bugs with AddressSanitizer [ 50], or logic bugs with the test oracle [ 36,47]. SQLsmith [ 49] generates queries based on predefined rules in target DBMSs to detect crash bugs. It adapts very well to PostgreSQL and finds many bugs in it. However, it will require additional human efforts when testing other DBMSs.",
+      "context_after": "If the DBMS fails to fetch that, the likely cause is a logic bug. Its following works [ 45,46] also utilize the similar idea by generating semantically equivalent queries and comparing the results. Sqirrel [60],Ratel [52], Unicorn [ 57], and Griffin [ 21] introduce coverage-feedback into the query mutation to cover more branches, and they use the AddressSanitizer [ 50] to detect the memory safety bugs. Lego [35] proposes sequence-oriented fuzzing to improve the code coverage by combining different SQL Type Sequences of the statements. Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA096",
+      "section": "7 Related Work",
+      "page": 19,
+      "char_offset": 73293,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker",
+      "surface": "[ 45,46]",
+      "technique": "tlp",
+      "sentence": "Its following works [ 45,46] also utilize the similar idea by generating semantically equivalent queries and comparing the results.",
+      "context_before": "adapt fuzzing to the testing of DBMSs. Generally, current DBMS fuzzers are used to detect crash bugs, memory safety bugs with AddressSanitizer [ 50], or logic bugs with the test oracle [ 36,47]. SQLsmith [ 49] generates queries based on predefined rules in target DBMSs to detect crash bugs. It adapts very well to PostgreSQL and finds many bugs in it. However, it will require additional human efforts when testing other DBMSs. SQLancer [ 47] detects logic bugs of DBMSs by generating queries to fetch an existing row from databases. If the DBMS fails to fetch that, the likely cause is a logic bug.",
+      "context_after": "Sqirrel [60],Ratel [52], Unicorn [ 57], and Griffin [ 21] introduce coverage-feedback into the query mutation to cover more branches, and they use the AddressSanitizer [ 50] to detect the memory safety bugs. Lego [35] proposes sequence-oriented fuzzing to improve the code coverage by combining different SQL Type Sequences of the statements. Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA096. Publication date: July 2025. ISSTA096:20 Zhiyong Wu, Jie Liang, Jingzhou Fu, Mingzhe Wang, and Yu Jiang Different from them, Hulk aims at data-sensitive performance anomalies. First, Hulk continu",
+      "section": "7 Related Work",
+      "page": 19,
+      "char_offset": 73465,
+      "cited_reference": {
+        "number": 45,
+        "text": "M Rigger and Z Su. [n. d.]. Finding Bugs in Database Systems via Query Partitioning. PACMPL 4 (OOPSLA)(Nov 2020).",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "CERT [11] identifies performance issues stemming from unexpectedly estimated cardinalities, which indicate the projected number of rows returned by a query.",
+      "context_before": "izes sampling-based performance estimation to identify data-sensitive performance anomalies. Performance Testing. The traditional approach to detecting performance anomalies is using predefined test suites (i.e. workloads) and checking whether the result exceeds the baseline obtained from experience or empirical experiments [ 44,56,58,59]. Specifically, APOLLO [ 30] detects performance regression bugs by differential testing. It uses the response time in the older version of the target DBMS as a baseline. Amoeba [37] sets the baseline as the execution of equivalent queries on the target DBMSs.",
+      "context_after": "It transforms a query into a more constrained form, where the estimated cardinality should ideally be no greater than that of the original query. Any violation suggests a potential performance concern. Differently, Hulk focuses on performance anomalies related to the optimizer and variation of data volume. It changes the data volume on each query and checks whether the growth in data causes abnormal behaviors in the target comparable DBMSs. After identifying the performance cliffs, it validates the performance anomaly with the plan cost comparison. Data Generation in DBMS. Generating a suffic",
+      "section": "7 Related Work",
+      "page": 20,
+      "char_offset": 75055,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "uses_infrastructure": [
+        "M3"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T14:25:35Z",
+    "is_model_written": true,
+    "summary": "Hulk looks for performance anomalies that depend on the data rather than the query. The authors argue developers diagnose performance issues by intuition or by comparing execution time against a baseline DBMS, and both overlook how the dataset affects performance. Hulk instead watches performance as the dataset grows, estimating a reasonable response-time range for each data volume to locate performance cliffs, then checks whether a cliff deviates from expectation. Across six DBMSs it reported 135 anomalies, 129 confirmed as new bugs including 14 CVEs.",
+    "narrative": "CERT is the closest prior work and the baseline, and the paper notes it is implemented in SQLancer, referring to it throughout as SQLancer-CERT -- one of only two open-source tools available for the comparison. SQLancer's own oracles are described in related work as the logic-bug counterpart to Hulk's performance focus.",
+    "roles": {
+      "M1": "background",
+      "M2": "baseline",
+      "M3": "definition",
+      "M4": "baseline",
+      "M5": "result_comparison",
+      "M6": "background",
+      "M7": "background",
+      "M8": "definition",
+      "M9": "definition",
+      "M10": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "M3, which a pattern fired on, says CERT is implemented in SQLancer -- a fact about the baseline, not about Hulk. Hulk itself is not built on SQLancer."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M2",
+          "M4",
+          "M5"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M2",
+            "sentence": "In addition, we compare Hulk with the state-of-the-art DBMS validation tools in industry, including both DBMS performance testing tool APOLLO [ 30] and SQLancer𝐶𝐸𝑅𝑇[11], as well as DBMS fuzzing tools Sqirrel [60].",
+            "section": "1 Introduction",
+            "page": 3
+          },
+          {
+            "mention_id": "M4",
+            "sentence": "Since only APOLLO [30] and SQLancer𝐶𝐸𝑅𝑇[11] are open-source tools, as a remedy, we still compared Hulk with other state-of-the-art SQL fuzzer ( Sqirrel [60]) to evaluate the capability to explore the state space on DBMSs.",
+            "section": "5.1 Evaluation Setup",
+            "page": 13
+          },
+          {
+            "mention_id": "M5",
+            "sentence": "Number of confirmed performance anomalies and crashes, and covered branches on six DBMSs Performance Bugs Crashes Branches APOLLO 5 6 281,056 SQLancer 7 3 273,467 Sqirrel 0 9 312,713 Hulk 42 19 331,909 data-sensitive clauses on average (which will be discussed in Section 5.",
+            "section": "5.3 Comparison With Other Techniques",
+            "page": 17
+          }
+        ],
+        "reasoning": "M4 states SQLancer-CERT is one of two open-source tools Hulk was compared against, and M5 reports the anomaly, crash and branch figures for each.",
+        "techniques": [
+          "cert"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M2"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M2",
+            "sentence": "In addition, we compare Hulk with the state-of-the-art DBMS validation tools in industry, including both DBMS performance testing tool APOLLO [ 30] and SQLancer𝐶𝐸𝑅𝑇[11], as well as DBMS fuzzing tools Sqirrel [60].",
+            "section": "1 Introduction",
+            "page": 3
+          }
+        ],
+        "reasoning": "M2 calls the tools Hulk is compared with, CERT among them, the state-of-the-art DBMS validation tools in industry."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

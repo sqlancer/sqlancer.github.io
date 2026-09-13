@@ -1,0 +1,705 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:24:08Z",
+  "paper": {
+    "id": "paper:doi:10.14778/3828612.3828639",
+    "title": "ReSequel: Robust LLM-assisted Query Rewriting and Optimization using Templatization and Sampling",
+    "authors": [
+      "Saeed Fathollahzadeh",
+      "Essam Mansour",
+      "Matthias Boehm"
+    ],
+    "year": 2026,
+    "venue": "arXiv.org",
+    "doi": "10.14778/3828612.3828639",
+    "arxiv_id": "2606.20853",
+    "s2_paper_id": "b368cff4b76de570c592a1d84bf021214e3b3831",
+    "url": "https://doi.org/10.14778/3828612.3828639",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2606.20853",
+      "retrieved_at": "2026-09-08T15:24:08Z",
+      "chars": 103202,
+      "content_sha256": "sha256:eee25747223c510428f570e5b866d50d578721c0ec72936f2dd721155b468d75"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 14,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 2255
+      },
+      {
+        "number": "2.1",
+        "title": "Rule-based Query Rewriting",
+        "start": 14106
+      },
+      {
+        "number": "2.2",
+        "title": "Messy Query Characteristics",
+        "start": 15609
+      },
+      {
+        "number": "2.3",
+        "title": "Problem Formulation",
+        "start": 21132
+      },
+      {
+        "number": "3.1",
+        "title": "Query, Metadata, and Rewrite Hints",
+        "start": 23474
+      },
+      {
+        "number": "3.2",
+        "title": "Online Query Processing",
+        "start": 26318
+      },
+      {
+        "number": "3.3",
+        "title": "Offline Query Rewriting",
+        "start": 28560
+      },
+      {
+        "number": "6.1",
+        "title": "Overall Template Rewriting",
+        "start": 46645
+      },
+      {
+        "number": "6.2",
+        "title": "Prompt Construction",
+        "start": 49197
+      },
+      {
+        "number": "6.3",
+        "title": "Query Reconstruction and Caching",
+        "start": 52524
+      },
+      {
+        "number": "6.4",
+        "title": "System Limitations",
+        "start": 53945
+      },
+      {
+        "number": "7.1",
+        "title": "Experimental Setup",
+        "start": 54542
+      },
+      {
+        "number": "7.2",
+        "title": "End-to-End Experiments",
+        "start": 60987
+      },
+      {
+        "number": "7.3",
+        "title": "Micro Benchmarks",
+        "start": 68656
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2025. Apache Calcite is a dynamic data management framework. https: //calcite.apache.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2025. Groq Cloud. https://console.groq.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Peter Akioyamen, Zixuan Yi, and Ryan Marcus. 2024. The Unreasonable Effectiveness of LLMs for Query Optimization.NeurIPS(2024). https: //doi.org/10.48550/ARXIV.2411.02862",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Morton M. Astrahan et al .1976. System R: Relational Approach to Database Management.ACM Trans. Database Syst.1, 2 (1976), 97–137. https://doi.org/10. 1145/320455.320457",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Qiushi Bai, Sadeem Alsudais, and Chen Li. 2023. QueryBooster: Improving SQL Performance Using Middleware Services for Human-Centered Query Rewriting. PVLDB16, 11 (2023), 2911–2924. https://doi.org/10.14778/3611479.3611497",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Eirik Bakke and David R. Karger. 2016. Expressive Query Construction through Direct Manipulation of Nested Relational Results. InSIGMOD. 1377–1392. https: //doi.org/10.1145/2882903.2915210",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Zhuowei Bao, Benny Kimelfeld, and Yunyao Li. 2012. Automatic suggestion of query-rewrite rules for enterprise search. InSIGIR. 591–600. https://doi.org/10. 1145/2348283.2348363",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Alexander Baumstark, Muhammad Attahir Jibril, and Kai-Uwe Sattler. 2023. Adaptive query compilation in graph databases.Distributed Parallel Databases 41, 3 (2023), 359–386. https://doi.org/10.1007/S10619-023-07430-4",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Edmon Begoli, Jesús Camacho-Rodríguez, Julian Hyde, Michael J. Mior, and Daniel Lemire. 2018. Apache Calcite: A Foundational Framework for Optimized Query Processing Over Heterogeneous Data Sources. InSIGMOD. 221–230. https://doi.org/10.1145/3183713.3190662",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Hal Berenson, Philip A. Bernstein, Jim Gray, Jim Melton, Elizabeth J. O’Neil, and Patrick E. O’Neil. 1995. A Critique of ANSI SQL Isolation Levels. InSIGMOD. 1–10. https://doi.org/10.1145/223784.223785",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Altan Birler, Alfons Kemper, and Thomas Neumann. 2024. Robust Join Processing with Diamond Hardened Joins.PVLDB17, 11 (2024), 3215–3228. https://doi.org/10.14778/3681954.3681995",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Matthias Böhm, Douglas R. Burdick, Alexandre V. Evfimievski, Berthold Reinwald, Frederick R. Reiss, Prithviraj Sen, Shirish Tatikonda, and Yuanyuan Tian. 2014. SystemML’s Optimizer: Plan Generation for Large-Scale Machine Learning Programs.Data Eng. Bull.37, 3 (2014), 52–62. http://sites.computer.org/ debull/A14sept/p52.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Nicolas Bruno and Surajit Chaudhuri. 2006. To Tune or not to Tune? A Lightweight Physical Design Alerter. InVLDB. 499–510. http://dl.acm.org/citation. cfm?id=1164171",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Sunil Chakkappen, Shreya Kunjibettu, Daniel Mcgreer, Masoomeh Kishi, Hong Su, Mohamed Ziauddin, Mohamed Zaït, Zhan Li, and Yuying Zhang. 2025. Automatic Indexing in Oracle.PVLDB18, 12 (2025), 4924–4937. https://doi.org/ 10.14778/3750601.3750616",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Donald D. Chamberlin, Morton M. Astrahan, Kapali P. Eswaran, Patricia P. Griffiths, Raymond A. Lorie, James W. Mehl, Phyllis Reisner, and Bradford W. Wade. 1976. SEQUEL 2: A Unified Approach to Data Definition, Manipulation, and Control.IBM J. Res. Dev.20, 6 (1976), 560–575. https://doi.org/10.1147/RD. 206.0560",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Donald D. Chamberlin and Raymond F. Boyce. 1974. SEQUEL: A Structured English Query Language. InSIGMOD. 249–264. https://doi.org/10.1145/800296. 811515",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Konstantinos Chasialis, Yannis Foufoulas, Alkis Simitsis, and Yannis E. Ioannidis. 2026. Optimizing UDF Queries in SQL Data Engines. InEDBT. https://doi.org/ 10.48786/EDBT.2026.21",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Surajit Chaudhuri and Kyuseok Shim. 1994. Including Group-By in Query Optimization. InVLDB. 354–366. http://www.vldb.org/conf/1994/P354.PDF",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Transaction Processing Council. 2025. https://www.tpc.org/tpch.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Bailu Ding, Surajit Chaudhuri, Johannes Gehrke, and Vivek Narasayya. 2021. DSB: A decision support benchmark for workload-driven and traditional database systems.PVLDB14, 13 (2021), 3376–3388. https://doi.org/10.14778/3484224. 3484234",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Haoran Ding, Zhaoguo Wang, Yicun Yang, Dexin Zhang, Zhenglin Xu, Haibo Chen, Ruzica Piskac, and Jinyang Li. 2023. Proving Query Equivalence Using Linear Integer Arithmetic. https://doi.org/10.1145/3626768",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Jens Dittrich and Joris Nix. 2020. The Case for Deep Query Optimisation. In CIDR. http://cidrdb.org/cidr2020/papers/p3-dittrich-cidr20.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Jens Dittrich, Joris Nix, and Christian Schön. 2021. The next 50 Years in Database Indexing or: The Case for Automatically Generated Index Structures.PVLDB 15, 3 (2021), 527–540. https://doi.org/10.14778/3494124.3494136",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Rui Dong, Jie Liu, Yuxuan Zhu, Cong Yan, Barzan Mozafari, and Xinyu Wang. 2023. SlabCity: Whole-Query Optimization Using Program Synthesis.PVLDB 16, 11 (2023), 3151–3164. https://doi.org/10.14778/3611479.3611515",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Markus Dreseler, Martin Boissier, Tilmann Rabl, and Matthias Uflacker. 2020. Quantifying TPC-H Choke Points and Their Optimizations.VLDB13, 8 (2020), 1206–1220. https://doi.org/10.14778/3389133.3389138",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Tarek Elgamal, Shangyu Luo, Matthias Boehm, Alexandre V. Evfimievski, Shirish Tatikonda, Berthold Reinwald, and Prithviraj Sen. 2017. SPOOF: Sum-Product Optimization and Operator Fusion for Large-Scale Machine Learning. InCIDR. http://cidrdb.org/cidr2017/papers/p3-elgamal-cidr17.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Jingzhi Fang, Yanyan Shen, Yue Wang, and Lei Chen. 2020. Optimizing DNN Computation Graph using Graph Substitutions.PVLDB13, 11 (2020), 2734–2746. http://www.vldb.org/pvldb/vol13/p2734-fang.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Amela Fejza, Pierre Genevès, and Nabil Layaïda. 2024. Efficient Enumeration of Recursive Plans in Transformation-based Query Optimizers.PVLDB17, 11 (2024), 3095–3108. https://doi.org/10.14778/3681954.3681986",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Philipp Fent, Altan Birler, and Thomas Neumann. 2023. Practical planning and execution of groupjoin and nested aggregates.VLDB J.32, 6 (2023), 1165–1190. https://doi.org/10.1007/S00778-022-00765-X",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Sofoklis Floratos, Ahmad Ghazal, Jason Sun, Jianjun Chen, and Xiaodong Zhang. 2021. DBSpinner: Making a Case for Iterative Processing in Databases. InICDE. 2399–2410. https://doi.org/10.1109/ICDE51399.2021.00273",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Yannis Foufoulas and Alkis Simitsis. 2023. Efficient Execution of User-Defined Functions in SQL Queries.VLDB16, 12 (2023), 3874–3877. https://doi.org/10. 14778/3611540.3611574",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Michael J. Freitag, Maximilian Bandle, Tobias Schmidt, Alfons Kemper, and Thomas Neumann. 2020. Adopting Worst-Case Optimal Joins in Relational Database Systems.VLDB13, 11 (2020), 1891–1904. http://www.vldb.org/pvldb/ vol13/p1891-freitag.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Jonathan Fürst, Catherine Kosten, Farhad Nooralahzadeh, Yi Zhang, and Kurt Stockinger. 2025. Evaluating the Data Model Robustness of Text-to-SQL Systems Based on Real User Queries. InEDBT. https://doi.org/10.48786/EDBT.2025.13",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Rainer Gemulla, Philipp Rösch, and Wolfgang Lehner. 2008. Linked Bernoulli Synopses: Sampling along Foreign Keys. InSSDBM, Vol. 5069. 6–23. https: //doi.org/10.1007/978-3-540-69497-7_4",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Parke Godfrey, Jarek Gryz, Andrzej Hoppe, Wenbin Ma, and Calisto Zuzarte. 2009. Query Rewrites with Views for XML in DB2. InICDE. 1339–1350. https: //doi.org/10.1109/ICDE.2009.131",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Google. 2025. https://gemini.google.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Goetz Graefe. 1995. The Cascades Framework for Query Optimization.Data Eng. Bull.18, 3 (1995), 19–29. http://sites.computer.org/debull/95SEP-CD.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Luca Gretscher and Jens Dittrich. 2025. How to Optimize SQL Queries? A Comparison Between Split, Holistic, and Hybrid Approaches.PVLDB18, 11 (2025), 3910–3922. https://doi.org/10.14778/3749646.3749663",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "CWI Database Architectures Group. 2025. https://github.com/cwida/public_bi_ benchmark.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Immanuel Haffner and Jens Dittrich. 2023. A simplified Architecture for Fast, Adaptive Compilation and Execution of SQL Queries. InEDBT. https://doi.org/ 10.48786/EDBT.2023.01",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Yuxing Han et al .2021. Cardinality Estimation in DBMS: A Comprehensive Benchmark Evaluation.PVLDB15, 4 (2021), 752–765. https://doi.org/10.14778/ 3503585.3503586",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Cinda Heeren, H. V. Jagadish, and Leonard Pitt. 2003. Optimal indexing using near-minimal space. InPODS. 244–251. https://doi.org/10.1145/773153.773177",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Gerald Held, Michael Stonebraker, and Eugene Wong. 1975. INGRES: A Relational Data Base System. InAFIPS, Vol. 44. 409–416. https://doi.org/10.1145/ 1499949.1500029",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Moshik Hershcovitch, Artem Khyzha, Daniel G. Waddington, and Adam Morrison. 2022. Elastic Indexes: Dynamic Space vs. Query Efficiency Tuning for In-Memory Database Indexing. InEDBT. https://doi.org/10.48786/EDBT.2022.18",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Zezhou Huang, Rathijit Sen, Jiaxiang Liu, and Eugene Wu. 2023. JoinBoost: Grow Trees Over Normalized Data Using Only SQL.PVLDB16, 11 (2023), 3071–3084. https://doi.org/10.14778/3611479.3611509",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Zhihao Jia, Oded Padon, James Thomas, Todd Warszawski, Matei Zaharia, and Alex Aiken. 2019. TASO: optimizing deep learning computation with automatic generation of graph substitutions. InSOSP. 47–62. https://doi.org/10.1145/ 3341301.3359630",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Zhihao Jia, James Thomas, Todd Warszawski, Mingyu Gao, Matei Zaharia, and Alex Aiken. 2019. Optimizing DNN Computation with Relaxed Graph Substitutions. InMLSys. https://proceedings.mlsys.org/paper_files/paper/2019/ hash/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "David Justen, Daniel Ritter, Campbell Fraser, Andrew Lamb, Nga Tran, Allison Lee, Thomas Bodner, Mhd Yamen Haddad, Steffen Zeuch, Volker Markl, and Matthias Boehm. 2024. POLAR: Adaptive and Non-invasive Join Order Selection via Plans of Least Resistance.PVLDB17, 6 (2024), 1350–1363. https://doi.org/ 10.14778/3648160.3648175",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "George Katsogiannis-Meimarakis and Georgia Koutrika. 2021. A Deep Dive into Deep Learning Approaches for Text-to-SQL Systems. InSIGMOD. 2846–2851. https://doi.org/10.1145/3448016.3457543",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Michael S. Kester, Manos Athanassoulis, and Stratos Idreos. 2017. Access Path Selection in Main-Memory Optimized Data Systems: Should I Scan or Should I Probe?. InSIGMOD. 715–730. https://doi.org/10.1145/3035918.3064049",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Steffen Kläbe and Kai-Uwe Sattler. 2023. Patched Multi-Key Partitioning for Robust Query Performance. InEDBT. https://doi.org/10.48786/EDBT.2023.26",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Jan Kossmann, Thorsten Papenbrock, and Felix Naumann. 2023. Correction to: Data dependencies for query optimization: a survey.VLDB J.32, 2 (2023), 471. https://doi.org/10.1007/S00778-021-00710-4",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Muralidhar Krishnaprasad, Zhen Hua Liu, Anand Manikutty, James W. Warner, Vikas Arora, and Susan Kotsovolos. 2004. Query Rewrite for XML in Oracle XMLDB. InVLDB. 1122–1133. https://doi.org/10.1016/B978-012088469-8.50098-X",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Viktor Leis, Andrey Gubichev, Atanas Mirchev, Peter A. Boncz, Alfons Kemper, and Thomas Neumann. 2015. How Good Are Query Optimizers, Really?PVLDB 9, 3 (2015), 204–215. https://doi.org/10.14778/2850583.2850594",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Viktor Leis, Kan Kundhikanjana, Alfons Kemper, and Thomas Neumann. 2015. Efficient Processing of Window Functions in Analytical SQL Queries.PVLDB8, 10 (2015), 1058–1069. https://doi.org/10.14778/2794367.2794375",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Viktor Leis, Bernhard Radke, Andrey Gubichev, Alfons Kemper, and Thomas Neumann. 2017. Cardinality Estimation Done Right: Index-Based Join Sampling. InCIDR. http://cidrdb.org/cidr2017/papers/p9-leis-cidr17.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Viktor Leis, Bernhard Radke, Andrey Gubichev, Atanas Mirchev, Peter Boncz, Alfons Kemper, and Thomas Neumann. 2018. Query optimization through the looking glass, and what we found running the Join Order Benchmark.VLDB J. 27, 5 (2018), 643–668. https://doi.org/10.1007/S00778-017-0480-7",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Zhaodonghui Li, Haitao Yuan, Huiming Wang, Gao Cong, and Lidong Bing. 2024. LLM-R2: A Large Language Model Enhanced Rule-Based Rewrite System for Boosting Query Efficiency.PVLDB18, 1 (2024), 53–65. https://doi.org/10. 14778/3696435.3696440",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Daniel Lindner, Daniel Ritter, and Felix Naumann. 2024. Enabling Data Dependency-based Query Optimization.CoRRabs/2406.06886 (2024). https: //doi.org/10.48550/ARXIV.2406.06886",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Jie Liu and Barzan Mozafari. 2026. GenRewrite: Query Rewriting via Large Language Models.SIGMOD4, 1 (2026), 1–26. https://dl.acm.org/doi/pdf/10. 1145/3786684",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Ester Livshits, Rina Kochirgan, Segev Tsur, Ihab F. Ilyas, Benny Kimelfeld, and Sudeepa Roy. 2021. Properties of Inconsistency Measures for Databases. In SIGMOD. 1182–1194. https://doi.org/10.1145/3448016.3457310",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Guy Lohman. 2002. The DB2 Universal Database Optimizer. Guest Lecture. https://cs.uwaterloo.ca/~ilyas/CS448W14/ibm.pdf.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Guy Lohman. 2014. Is Query Optimization a “Solved” Problem? ACMSIGMOD Blog. https://wp.sigmod.org/?p=1075.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Toby Mao. 2024. SQLGlot. GitHub repository. Retrieved April 29, 2026 from https://github.com/tobymao/sqlglot.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Volker Markl, Vijayshankar Raman, David E. Simmen, Guy M. Lohman, and Hamid Pirahesh. 2004. Robust Query Processing through Progressive Optimization. InSIGMOD. 659–670. https://doi.org/10.1145/1007568.1007642",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Guido Moerkotte. 2025. Building Query Compilers. https://pi3.informatik.unimannheim.de/~moer/querycompiler.pdf Last Accessed: October 03, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Guido Moerkotte and Thomas Neumann. 2011. Accelerating Queries with Group-By and Join by Groupjoin.PVLDB4, 11 (2011), 843–851. http://www. vldb.org/pvldb/vol4/p843-moerkotte.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "Magnus Müller, Lucas Woltmann, and Wolfgang Lehner. 2023. Enhanced Featurization of Queries with Mixed Combinations of Predicates for ML-based Cardinality Estimation. InEDBT. https://doi.org/10.48786/EDBT.2023.22",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "Parimarjan Negi, Ryan Marcus, Andreas Kipf, Hongzi Mao, Nesime Tatbul, Tim Kraska, and Mohammad Alizadeh. 2021. Flow-Loss: Learning Cardinality Estimates That Matter.PVLDB14, 11 (jul 2021), 2019–2032. https://doi.org/10. 14778/3476249.3476259",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Thomas Neumann and Alfons Kemper. 2015. Unnesting Arbitrary Queries. In BTW, Vol. P-241. 383–402. https://dl.gi.de/handle/20.500.12116/2418",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Thomas Neumann and Viktor Leis. 2024. A Critique of Modern SQL and a Proposal Towards a Simple and Expressive Query Language. InCIDR. https: //www.cidrdb.org/cidr2024/papers/p48-neumann.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Oleksii Vasyliev. 2025. https://pgtune.leopard.in.ua.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Amy Ousterhout, Steven McCanne, Henri Dubois-Ferrière, Silvery Fu, Sylvia Ratnasamy, and Noah Treuhaft. 2023. Zed: Leveraging Data Types to Process Eclectic Data. InCIDR. https://www.cidrdb.org/cidr2023/papers/p52ousterhout.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "Simone Papicchio, Paolo Papotti, and Luca Cagliero. 2023. QATCH: Benchmarking SQL-centric tasks with Table Representation Learning Models on Your Data. InNeurIPS. http://papers.nips.cc/paper_ files/paper/2023/hash/62a24b69b820d30e9e5ad4f15ff7bf72-AbstractDatasets_and_Benchmarks.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "Hamid Pirahesh, Joseph M. Hellerstein, and Waqar Hasan. 1992. Extensible/Rule Based Query Rewrite Optimization in Starburst. InSIGMOD. 39–48. https: //doi.org/10.1145/130283.130294",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "Hamid Pirahesh, T. Y. Cliff Leung, and Waqar Hasan. 1997. A Rule Engine for Query Transformation in Starburst and IBM DB2 C/SDBMS. InICDE. 391–400. https://doi.org/10.1109/ICDE.1997.581945",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "PostgreSQL. 2026. CREATE CAST. https://www.postgresql.org/docs/current/ sql-createcast.html Last Accessed: January 01, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InESEC/FSE. 1140– 1152. https://doi.org/10.1145/3368089.3409710",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 79,
+      "text": "Dario Satriani, Enzo Veltri, Donatello Santoro, Sara Rosato, Simone Varriale, and Paolo Papotti. 2025. Logical and Physical Optimizations for SQL Query Execution over Large Language Models. https://doi.org/10.1145/3725411",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "Tobias Schmidt, Philipp Fent, and Thomas Neumann. 2022. Efficiently Compiling Dynamic Code for Adaptive Query Processing. 11–22. http://www.admsconf.org/2022-camera-ready/ADMS22_schmidt.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 81,
+      "text": "Tobias Schmidt, Viktor Leis, Peter A. Boncz, and Thomas Neumann. 2025. SQLStorm: Taking Database Benchmarking into the LLM Era.PVLDB18, 11 (2025), 4144–4157. https://www.vldb.org/pvldb/vol18/p4144-schmidt.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 82,
+      "text": "Pranjal Shankhdhar, Feilong Liu, Jay Narale, James Sun, Rebecca Schlussel, and Lyublena Antova. 2024. Presto’s History-based Query Optimizer.PVLDB17, 12 (2024), 4077–4089. https://doi.org/10.14778/3685800.3685828",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 83,
+      "text": "Moritz Sichert and Thomas Neumann. 2022. User-Defined Operators: Efficiently Integrating Custom Algorithms into Modern Databases.PVLDB15, 5 (2022), 1119–1131. https://doi.org/10.14778/3510397.3510408",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 84,
+      "text": "Tarique Siddiqui and Wentao Wu. 2023. ML-Powered Index Tuning: An Overview of Recent Progress and Open Challenges.SIGMOD Rec.52, 4 (2023), 19–30. https://doi.org/10.1145/3641832.3641836",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 85,
+      "text": "Jiansen Song, Wensheng Dou, Yu Gao, Ziyu Cui, Yingying Zheng, Dong Wang, Wei Wang, Jun Wei, and Tao Huang. 2024. Detecting Metadata-Related Logic Bugs in Database Systems via Raw Database Construction.PVLDB17, 8 (2024), 1884–1897. https://doi.org/10.14778/3659437.3659445",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 86,
+      "text": "Zhaoyan Sun, Xuanhe Zhou, Guoliang Li, Xiang Yu, Jianhua Feng, and Yong Zhang. 2025. R-Bot: An LLM-based Query Rewrite System.PVLDB18, 12 (2025), 5031–5044. https://www.vldb.org/pvldb/vol18/p5031-li.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 87,
+      "text": "Jie Tan, Kangfei Zhao, Rui Li, Jeffrey Xu Yu, Chengzhi Piao, Hong Cheng, Helen Meng, Deli Zhao, and Yu Rong. 2025. Can Large Language Models Be Query Optimizer for Relational Databases?arXiv preprint arXiv:2502.05562(2025). https://arxiv.org/pdf/2502.05562",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 88,
+      "text": "Nikolaos Tziavelis, Wolfgang Gatterbauer, and Mirek Riedewald. 2020. Optimal Join Algorithms Meet Top-k. InSIGMOD. 2659–2665. https://doi.org/10.1145/ 3318464.3383132",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 89,
+      "text": "Adrian Vogelsgesang, Tobias Mühlbauer, Viktor Leis, Thomas Neumann, and Alfons Kemper. 2019. Domain Query Optimization: Adapting the GeneralPurpose Database System Hyper for Tableau Workloads. InBTW (LNI), Vol. P289. 313–333. https://doi.org/10.18420/BTW2019-19",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 90,
+      "text": "Yisu Remy Wang, Shana Hutchison, Dan Suciu, Bill Howe, and Jonathan Leang. 2020. SPORES: Sum-Product Optimization via Relational Equality Saturation for Large Scale Linear Algebra.PVLDB13, 11 (2020), 1919–1932. http://www. vldb.org/pvldb/vol13/p1919-wang.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 91,
+      "text": "Zijia Wang, Haoran Liu, Chen Lin, Zhifeng Bao, Guoliang Li, and Tianqing Wang. 2024. Leveraging Dynamic and Heterogeneous Workload Knowledge to Boost the Performance of Index Advisors.PVLDB17, 7 (2024), 1642–1654. https://doi.org/10.14778/3654621.3654631",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 92,
+      "text": "Zhaoguo Wang, Zhou Zhou, Yicun Yang, Haoran Ding, Gansen Hu, Ding Ding, Chuzhe Tang, Haibo Chen, and Jinyang Li. 2022. WeTune: Automatic Discovery and Verification of Query Rewrite Rules. InSIGMOD. 94–107. https://doi.org/ 10.1145/3514221.3526125",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 93,
+      "text": "Marianne Winslett. 2003. Interview with Pat Selinger.SIGMOD Rec.32, 4 (2003), 93–103. http://www.acm.org/sigmod/record/issues/0312/17.selingerinterview.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 94,
+      "text": "Weipeng P. Yan and Per-Åke Larson. 1995. Eager Aggregation and Lazy Aggregation. InVLDB. 345–357. http://www.vldb.org/conf/1995/P345.PDF",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 95,
+      "text": "Zhengtong Yan, Valter Uotila, and Jiaheng Lu. 2023. Join Order Selection with Deep Reinforcement Learning: Fundamentals, Techniques, and Challenges. PVLDB16, 12 (2023), 3882–3885. https://doi.org/10.14778/3611540.3611576",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 96,
+      "text": "Weijie Zhao, Florin Rusu, Bin Dong, and Kesheng Wu. 2016. Similarity Join over Array Data. 2007–2022. https://doi.org/10.1145/2882903.2915247",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 97,
+      "text": "Wenchao Zhou, Yifan Cai, Yanqing Peng, Sheng Wang, Ke Ma, and Feifei Li. 2021. VeriDB: An SGX-based Verifiable Database. InSIGMOD. 2182–2194. https://doi.org/10.1145/3448016.3457308",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 98,
+      "text": "Wei Zhou, Chen Lin, Xuanhe Zhou, Guoliang Li, and Tianqing Wang. 2024. TRAP: Tailored Robustness Assessment for Index Advisors via Adversarial Perturbation. InICDE. 42–55. https://doi.org/10.1109/ICDE60146.2024.00011",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 99,
+      "text": "Xuanhe Zhou, Guoliang Li, Chengliang Chai, and Jianhua Feng. 2021. A learned query rewrite system using Monte Carlo tree search.PVLDB15, 1 (2021), 46–58. https://doi.org/10.14778/3485450.3485456",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 100,
+      "text": "Xuanhe Zhou, Zhaoyan Sun, and Guoliang Li. 2024. Db-gpt: Large language model meets database.Data Science and Engineering9, 1 (2024), 102–111. https://doi.org/10.1007/s41019-023-00235-6",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 78,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InESEC/FSE. 1140– 1152. https://doi.org/10.1145/3368089.3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 78]",
+      "technique": "norec",
+      "sentence": "Beyond these methods, prior work on SQL testing [ 78] and text-to-SQL generation [ 74] compare query results directly.",
+      "context_before": "including group-join [ 67], which captures common rewrite patterns combining joins and group-by aggregation on the same key. In contrast, we perform holistic rewrites over join orders and related transformations on individual query instances. Automatic Query Verification:Verifying rewritten queries is essential for correctness. Traditional systems define equivalence using source-target patterns [ 66] and apply them iteratively. Automatic rewrite discovery systems also rely on verification [ 92]. SQLSolver [ 21] determines query equivalence using linear integer arithmetic and existing solvers.",
+      "context_after": "ReSequel follows this result-oriented approach, comparing outputs across rewritten templates on samples. 9 CONCLUSIONS We introduced ReSequel, an end-to-end query rewriting system that operates on top of existing DBMSs and uses LLMs to optimize groups of related queries. ReSequel combines template-level rewriting with verification and Top-1 query selection. We draw three conclusions. First, despite decades of work on query rewriting, large rule sets and their interactions remain brittle. Phase ordering, limited rewrite budgets, and strict pattern matching prevent DBMSs from fully optimizing m",
+      "section": "7.3 Micro Benchmarks",
+      "page": 12,
+      "char_offset": 82172,
+      "cited_reference": {
+        "number": 78,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InESEC/FSE. 1140– 1152. https://doi.org/10.1145/3368089.3409710",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:17:50Z",
+    "is_model_written": true,
+    "summary": "ReSequel is an outer optimisation layer that rewrites SQL with a large language model on top of an existing DBMS. It uses catalog and statistical metadata to infer template-specific rules that steer the model, then generates, verifies and ranks candidate rewrites on sampled data to keep results correct while improving runtime. Across eight benchmarks and three DBMSs it reports workload-level speedups of up to 16x over the native systems.",
+    "narrative": "One citation, noting that prior work on SQL testing compares query results directly, in a discussion of how rewrites are verified.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

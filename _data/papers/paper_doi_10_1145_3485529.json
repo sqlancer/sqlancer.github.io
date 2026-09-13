@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T14:33:46Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3485529",
+    "title": "Generative type-aware mutation for testing SMT solvers",
+    "authors": [
+      "Jiwon Park",
+      "Dominik Winterer",
+      "Chengyu Zhang",
+      "Zhendong Su"
+    ],
+    "year": 2021,
+    "venue": "Proc. ACM Program. Lang.",
+    "doi": "10.1145/3485529",
+    "arxiv_id": null,
+    "s2_paper_id": "3f650c0d0a046c1fb6c068d636b138e14ded77b9",
+    "url": "https://doi.org/10.1145/3485529",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3485529",
+      "retrieved_at": "2026-09-08T14:33:46Z",
+      "chars": 63565,
+      "content_sha256": "sha256:bacae8c101a10c61a084259c13ee06f86b0a05f6552b9767a51f4c03568138b4"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 19,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 1486
+      },
+      {
+        "number": "3.1",
+        "title": "GenerativeType-AwareMutation",
+        "start": 14347
+      },
+      {
+        "number": "3.2",
+        "title": "Relationshipsto FuzzChick and Type-AwareOperator Mutation",
+        "start": 17218
+      },
+      {
+        "number": "3.3",
+        "title": "TypeFuzz",
+        "start": 21078
+      },
+      {
+        "number": "4.1",
+        "title": "EvaluationSetup",
+        "start": 28140
+      }
+    ]
+  },
+  "references": [],
+  "sqlancer_references": [],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Anotherrecentgenerativefuzzingapproachispivotquerysynthesis(PQS)[ Riggerand Su2020].",
+      "context_before": "gines. They use code coverageto guidethegrammar-basedmutations. GenerativeFuzzing .Generativefuzzers[ Hanford1970 ]synthesizetestinputsfromscratchusing a language grammar or a (language) model. Csmith [ Yang et al .2011] generates random C programsthroughrepeatedapplicationofrulesfromtheCgrammar.Similartogenerativetypeawaremutation,Csmithreliesondifferentialtestingtocross-checkthegeneratedseeds.Csmith has found 300+ bugs in the compilers GCC and LLVM. A recent follow-up work to Csmith is YarpGen [ Livinskii et al .2020] which additionally prevents generating C programs with undefined behavior.",
+      "context_after": "ItsynthesizesspecificSQLqueriesonrandomdatabases.UnlikeCsmithandYarpGen, PQS’s is a metamorphic testing approach. Moreover, researchers have adapted generative language models[Godefroidetal .2017]togenerateandguideinputgeneration.Asakeydifferencetoall the above approaches, generative type-aware mutation does not generate inputs from scratch but insteadsupports generation throughthesubstitutionof expressions. 7 CONCLUSION Weintroducedgenerativetype-awaremutation,anovelandeffectiveapproachfortesting SMT solvers. Generative type-aware mutation is a powerful generalization of type-aware operator mu",
+      "section": "4.1 EvaluationSetup",
+      "page": 17,
+      "char_offset": 55626,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "UnlikeCsmithandYarpGen, PQS’s is a metamorphic testing approach.",
+      "context_before": "tsfromscratchusing a language grammar or a (language) model. Csmith [ Yang et al .2011] generates random C programsthroughrepeatedapplicationofrulesfromtheCgrammar.Similartogenerativetypeawaremutation,Csmithreliesondifferentialtestingtocross-checkthegeneratedseeds.Csmith has found 300+ bugs in the compilers GCC and LLVM. A recent follow-up work to Csmith is YarpGen [ Livinskii et al .2020] which additionally prevents generating C programs with undefined behavior.Anotherrecentgenerativefuzzingapproachispivotquerysynthesis(PQS)[ Riggerand Su2020].ItsynthesizesspecificSQLqueriesonrandomdatabases.",
+      "context_after": "Moreover, researchers have adapted generative language models[Godefroidetal .2017]togenerateandguideinputgeneration.Asakeydifferencetoall the above approaches, generative type-aware mutation does not generate inputs from scratch but insteadsupports generation throughthesubstitutionof expressions. 7 CONCLUSION Weintroducedgenerativetype-awaremutation,anovelandeffectiveapproachfortesting SMT solvers. Generative type-aware mutation is a powerful generalization of type-aware operator mutation and FuzzChick whose limitations it overcomes. Furthermore, generative type-aware mutationsupports generati",
+      "section": "4.1 EvaluationSetup",
+      "page": 17,
+      "char_offset": 55759,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T17:01:52Z",
+    "is_model_written": true,
+    "summary": "TypeFuzz tests SMT solvers with generative type-aware mutation, splicing well-typed expressions from one formula into another so the result stays well-typed and reaches deeper into the solver. The technique is for constraint solvers rather than databases, and the paper surveys generative fuzzing across domains.",
+    "narrative": "PQS appears in the evaluation setup's survey of generative fuzzing approaches, cited in the ACM author-year style so SQLancer is not named directly. The paper places it alongside Csmith and YarpGen as recent generative fuzzers, and distinguishes it as the metamorphic one of the group -- checking a relation between two runs rather than comparing against an independent reference.",
+    "roles": {
+      "M1": "definition",
+      "M2": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited as related work; no reuse of its code, generator or workload is described."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No SQLancer technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer or one of its oracles is reported."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The text does not describe SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

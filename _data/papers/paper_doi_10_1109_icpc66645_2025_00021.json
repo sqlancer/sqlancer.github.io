@@ -1,0 +1,2345 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-10T15:24:29Z",
+  "paper": {
+    "id": "paper:doi:10.1109/icpc66645.2025.00021",
+    "title": "Sembug: Detecting Logic Bugs in Dbms Through Generating Semantic-Aware Non-Optimizing Query",
+    "authors": [
+      "Shiyang Ye",
+      "Chao Ni",
+      "Jue Wang",
+      "Qianqian Pang",
+      "Xinrui Li",
+      "Xiaodan Xu"
+    ],
+    "year": 2025,
+    "venue": "IEEE International Conference on Program Comprehension",
+    "doi": "10.1109/icpc66645.2025.00021",
+    "arxiv_id": null,
+    "s2_paper_id": "aeea391e73991ef6f033917dba0f577c948eedb4",
+    "url": "https://doi.org/10.1109/icpc66645.2025.00021",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/icpc66645.2025.00021",
+      "retrieved_at": "2026-09-10T15:24:29Z",
+      "chars": 65474,
+      "content_sha256": "sha256:fc6870b1b90de4301c9730653b28e70d49bde698beef616571b25f1a7f7352d3"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "Introduction",
+        "start": 2551
+      },
+      {
+        "number": "II",
+        "title": "Background and Motivation",
+        "start": 9960
+      },
+      {
+        "number": "A",
+        "title": "Logic Bugs in DBMS",
+        "start": 9990
+      },
+      {
+        "number": "B",
+        "title": "Optimization Bugs Detection in DBMS",
+        "start": 10903
+      },
+      {
+        "number": "C",
+        "title": "Motivating Example",
+        "start": 14334
+      },
+      {
+        "number": "III",
+        "title": "Approach",
+        "start": 16202
+      },
+      {
+        "number": "A",
+        "title": "Approach Overview",
+        "start": 16911
+      },
+      {
+        "number": "B",
+        "title": "Database and Query Generation",
+        "start": 19070
+      },
+      {
+        "number": "C",
+        "title": "Transform the Query and Retrieve Semantic Information",
+        "start": 20613
+      },
+      {
+        "number": "D",
+        "title": "Compare Cardinality and Content",
+        "start": 23223
+      },
+      {
+        "number": "E",
+        "title": "Supporting Features",
+        "start": 24647
+      },
+      {
+        "number": "IV",
+        "title": "Evaluation",
+        "start": 27197
+      },
+      {
+        "number": "A",
+        "title": "Experimental Setup",
+        "start": 27734
+      },
+      {
+        "number": "B",
+        "title": "RQ1: Effectiveness of SemBug",
+        "start": 29940
+      },
+      {
+        "number": "C",
+        "title": "RQ2: Comparison on Other Techniques",
+        "start": 34596
+      },
+      {
+        "number": "D",
+        "title": "RQ3: The Advantages of Expanded Feature Support",
+        "start": 37453
+      },
+      {
+        "number": "E",
+        "title": "RQ4: Discrepancies in Logic Bug Detection Across Methods",
+        "start": 39914
+      },
+      {
+        "number": "V",
+        "title": "Discussion",
+        "start": 47384
+      },
+      {
+        "number": "A",
+        "title": "Generality",
+        "start": 47398
+      },
+      {
+        "number": "B",
+        "title": "Limitations",
+        "start": 47981
+      },
+      {
+        "number": "C",
+        "title": "Threats to Validity",
+        "start": 48360
+      },
+      {
+        "number": "VI",
+        "title": "Related Work",
+        "start": 49116
+      },
+      {
+        "number": "A",
+        "title": "Metamorphic Testing of DBMS",
+        "start": 49133
+      },
+      {
+        "number": "B",
+        "title": "Differential Testing of DBMS",
+        "start": 51129
+      },
+      {
+        "number": "C",
+        "title": "DBMS Fuzzing",
+        "start": 52347
+      },
+      {
+        "number": "D",
+        "title": "Query Generation of DBMS",
+        "start": 53189
+      },
+      {
+        "number": "VII",
+        "title": "Conclusion",
+        "start": 53980
+      },
+      {
+        "number": "J",
+        "title": "Wang, and J. Li, “Sequence-oriented dbms fuzzing,” in 2023 IEEE 39th",
+        "start": 57146
+      },
+      {
+        "number": "J",
+        "title": "Widom, Eds. Morgan Kaufmann, 1998, pp. 618–622.",
+        "start": 58007
+      },
+      {
+        "number": "O",
+        "title": "Papaemmanouil, and N. Tatbul, “Neo: A learned query optimizer,”",
+        "start": 59064
+      },
+      {
+        "number": "T",
+        "title": "Huang, “Testing database systems via differential query execution,” in",
+        "start": 60394
+      },
+      {
+        "number": "L",
+        "title": "Chen, H. Wang, H. Zhong, and T. Huang, “Detecting isolation bugs via",
+        "start": 60771
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "“Mysql customers,” https://www.mysql.com/customers/, 2024, accessed: 2024-03-30.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "“Postgresql clients,” https://wiki.postgresql.org/wiki/PostgreSQLClients, 2024, accessed: 2024-03-30.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "“Tidb partners,” https://www.pingcap.com/partners/, 2024, accessed: 2024-03-30.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Website.2013, “American fuzzy lop (afl) fuzzer,” https://lcamtuf. coredump.cx/afl/, 2024, accessed: 2024-03-30.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 6,
+      "text": "Y. Liang, S. Liu, and H. Hu, “Detecting logical bugs of {DBMS} with coverage-based guidance,” in 31st USENIX Security Symposium (USENIX Security 22), 2022, pp. 4309–4326. 133",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "X. Tang, S. Wu, D. Zhang, F. Li, and G. Chen, “Detecting logic bugs of join optimizations in dbms,” 1, no. 1, may 2023. [Online]. Available: https://doi.org/10.1145/3588909",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "J. Fu, J. Liang, Z. Wu, M. Wang, and Y. Jiang, “Griffin: Grammar-free dbms fuzzing,” in Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering, ser. ASE ’22. New York, NY, USA: Association for Computing Machinery, 2023. [Online]. Available: https://doi.org/10.1145/3551349.3560431",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "R. Zhong, Y. Chen, H. Hu, H. Zhang, W. Lee, and D. Wu, “Squirrel: Testing database management systems with language validity and coverage feedback,” in Proceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security, 2020, pp. 955–970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 1–30, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 11,
+      "text": "A. Seltenreich, “Sqlsmith,” https://github.com/anse1/sqlsmith, 2024, accessed: 2024-03-30.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "M. Wang, Z. Wu, X. Xu, J. Liang, C. Zhou, H. Zhang, and Y. Jiang, “Industry practice of coverage-guided enterprise-level dbms fuzzing,” in ing: Software Engineering in Practice (ICSE-SEIP). IEEE, 2021, pp. 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "J. Liang, Y. Chen, Z. Wu, J. Fu, M. Wang, Y. Jiang, X. Huang, T. Chen, J. Wang, and J. Li, “Sequence-oriented dbms fuzzing,” in 2023 IEEE 39th International Conference on Data Engineering (ICDE). IEEE, 2023, pp. 668–681.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Z.-M. Jiang, J.-J. Bai, and Z. Su, “ {DynSQL}: Stateful fuzzing for database management systems with complex and valid {SQL}query generation,” in 32nd USENIX Security Symposium (USENIX Security 23), 2023, pp. 4949–4965.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "J. Ba and M. Rigger, “Keep it simple: Testing databases via differential query plans,” 2, no. 3, may 2024. [Online]. Available: https://doi.org/10.1145/3654991",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 16,
+      "text": "W. E. Howden, “Theoretical and empirical studies of program testing,” ser. ICSE ’78, 1978, p. 305–311.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "D. R. Slutz, “Massive stochastic testing of sql,” in VLDB’98, Proceedings of 24rd International Conference on Very Large Data Bases, August 2427, 1998, New York City, New York, USA, A. Gupta, O. Shmueli, and J. Widom, Eds. Morgan Kaufmann, 1998, pp. 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 19,
+      "text": "Z. Hao, Q. Huang, C. Wang, J. Wang, Y. Zhang, R. Wu, and C. Zhang, “Pinolo: Detecting logical bugs in database management systems with approximate query synthesis,” in 2023 USENIX Annual Technical Conference (USENIX ATC 23), 2023, pp. 345–358.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "T. Y. Chen, S. C. Cheung, and S. Yiu, “Metamorphic testing: A new approach for generating next test cases,” CoRR, vol. abs/2002.12543, 2020. [Online]. Available: https://arxiv.org/abs/2002.12543",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "“Replication,” https://github.com/Syang111/SemBug, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "M. Jarke and J. Koch, “Query optimization in database systems,” ACM Computing surveys (CsUR), vol. 16, no. 2, pp. 111–152, 1984.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "R. Marcus, P. Negi, H. Mao, C. Zhang, M. Alizadeh, T. Kraska, O. Papaemmanouil, and N. Tatbul, “Neo: A learned query optimizer,” arXiv preprint arXiv:1904.03711, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "R. Marcus, P. Negi, H. Mao, N. Tatbul, M. Alizadeh, and T. Kraska, “Bao: Making learned query optimization practical,” in Proceedings of the 2021 International Conference on Management of Data, 2021, pp. 1275–1288.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Y. E. Ioannidis, “Query optimization,” ACM Computing Surveys (CSUR), vol. 28, no. 1, pp. 121–123, 1996.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "T. K. Sellis, “Multiple-query optimization,” ACM Transactions on Database Systems (TODS), vol. 13, no. 1, pp. 23–52, 1988.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "S. Chu, K. Weitz, A. Cheung, and D. Suciu, “Hottsql: proving query rewrites with univalent sql semantics,” in Proceedings of the 38th ACMSIGPLAN Conference on Programming Language Design and Implementation, ser. PLDI 2017. New York, NY, USA: Association for Computing Machinery, 2017, p. 510–524. [Online]. Available: https://doi.org/10.1145/3062341.3062348",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "J. Liang, Z. Wu, J. Fu, M. Wang, C. Sun, and Y. Jiang, “Mozi: Discovering dbms bugs via configuration-based equivalent transformation,” 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "M. Rigger, “Sqlancer,” https://github.com/sqlancer/sqlancer, 2024, accessed: 2024-03-30.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 30,
+      "text": "PingCap, “go randgen,” https://github.com/pingcap/go-randgen, 2024, accessed: 2024-03-30.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "J. Song, W. Dou, Z. Cui, Q. Dai, W. Wang, J. Wei, H. Zhong, and T. Huang, “Testing database systems via differential query execution,” in (ICSE). IEEE, 2023, pp. 2072–2084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "A. Zeller, Why programs fail: a guide to systematic debugging. Elsevier, 2009.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "J. Ba and M. Rigger, “Testing database engines via query plan guidance,” in (ICSE), 2023, pp. 2060–2071.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 34,
+      "text": "W. Dou, Z. Cui, Q. Dai, J. Song, D. Wang, Y. Gao, W. Wang, J. Wei, L. Chen, H. Wang, H. Zhong, and T. Huang, “Detecting isolation bugs via transaction oracle construction,” in 2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE), 2023, pp. 1123–1135.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Z.-M. Jiang, S. Liu, M. Rigger, and Z. Su, “Detecting transactional bugs in database engines via Graph-Based oracle construction,” in 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23). Boston, MA: USENIX Association, Jul. 2023, pp. 397–417. [Online]. Available: https://www.usenix.org/conference/osdi23/presentation/jiang",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 36,
+      "text": "D. Xiao, Z. Liu, Y. Yuan, Q. Pang, and S. Wang, “Metamorphic testing of deep learning compilers,” in Abstract Proceedings of the 2022 ACMSIGMETRICS/IFIPPERFORMANCE Joint International Conference on Measurement and Modeling of Computer Systems, ser. SIGMETRICS/PERFORMANCE ’22. New York, NY, USA: Association for Computing Machinery, 2022, p. 65–66. [Online]. Available: https://doi.org/10.1145/348904",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "T. Y. Chen, F.-C. Kuo, H. Liu, P.-L. Poon, D. Towey, T. H. Tse, and Z. Q. Zhou, “Metamorphic testing: A review of challenges and opportunities,” ACM Comput. Surv., vol. 51, no. 1, jan 2018. [Online]. Available: https://doi.org/10.1145/3143561",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "D. Winterer, C. Zhang, and Z. Su, “Validating smt solvers via semantic fusion,” in Proceedings of the 41st ACMSIGPLAN Conference on Programming Language Design and Implementation, ser. PLDI 2020. New York, NY, USA: Association for Computing Machinery, 2020, p. 718–730. [Online]. Available: https://doi.org/10.1145/3385412.3385985",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "X. Liu, Q. Zhou, J. Arulraj, and A. Orso, “Automatic detection of performance bugs in database systems using equivalent queries,” in Proceedings of the 44th International Conference on Software Engineering, 2022, pp. 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "J. Ba and M. Rigger, “Cert: Finding performance issues in database systems through the lens of cardinality estimation,” 2024.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 41,
+      "text": "W. M. McKeeman, “Differential testing for software,” Digit. Tech. J., vol. 10, no. 1, pp. 100–107, 1998. [Online]. Available: https://www.hpl.hp.com/hpjournal/dtj/vol10num1/vol10num1art9.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Y. Chen, T. Su, and Z. Su, “Deep differential testing of JVM implementations,” in Proceedings of the 41st International Conference on Software Engineering, ICSE 2019, Montreal, QC, Canada, May 25-31, 2019, J. M. Atlee, T. Bultan, and J. Whittle, Eds. IEEE / ACM, 2019, pp. 1257–1268. [Online]. Available: https://doi.org/10.1109/ICSE.2019.00127",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Y. Yang, Y. Zhou, H. Sun, Z. Su, Z. Zuo, L. Xu, and B. Xu, “Hunting for bugs in code coverage tools via randomized differential testing,” in Proceedings of the 41st International Conference on Software Engineering, ICSE 2019, Montreal, QC, Canada, May 25-31, 2019, J. M. Atlee, T. Bultan, and J. Whittle, Eds. IEEE / ACM, 2019, pp. 488–498. [Online]. Available: https://doi.org/10.1109/ICSE.2019.0006",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "P. Nie, C. Wan, J. Zhu, Z. Lin, Y. Chen, and Z. Su, “Coveragedirected differential testing of X.509 certificate validation in SSL/TLS implementations,” ACM Trans. Softw. Eng. Methodol., vol. 32, no. 1, pp. 3:1–3:32, 2023. [Online]. Available: https://doi.org/10.1145/3510416",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "P. Godefroid, D. Lehmann, and M. Polishchuk, “Differential regression testing for REST apis,” in ISSTA ’20: 29th ACMSIGSOFT International Symposium on Software Testing and Analysis, Virtual Event, USA, July 18-22, 2020, S. Khurshid and C. S. Pasareanu, Eds. ACM, 2020, pp. 312–323. [Online]. Available: https://doi.org/10.1145/3395363.3397374",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "J. Jung, H. Hu, J. Arulraj, T. Kim, and W. Kang, “Apollo: Automatic detection and diagnosis of performance regressions in database systems,” Proceedings of the VLDB Endowment, vol. 13, no. 1, pp. 57–70, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Z. Cui, W. Dou, Q. Dai, J. Song, W. Wang, J. Wei, and D. Ye, “Differentially testing database transactions for fun and profit,” in 37th IEEE/ACM International Conference on Automated Software Engineering, ASE 2022, Rochester, MI, USA, October 134 10-14, 2022. ACM, 2022, pp. 35:1–35:12. [Online]. Available: https://doi.org/10.1145/3551349.3556924",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Z. Hua, W. Lin, L. Ren, Z. Li, L. Zhang, W. Jiao, and T. Xie, “Gdsmith: Detecting bugs in cypher graph database engines,” ser. ISSTA 2023. New York, NY, USA: Association for Computing Machinery, 2023, p. 163–174. [Online]. Available: https://doi.org/10.1145/3597926.3598046",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "X. Yang, Y. Chen, E. Eide, and J. Regehr, “Finding and understanding bugs in c compilers,” in Proceedings of the 32nd ACMSIGPLAN Conference on Programming Language Design and Implementation, ser. PLDI ’11. New York, NY, USA: Association for Computing Machinery, 2011, p. 283–294. [Online]. Available: https://doi.org/10.1145/1993498.1993532 135",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 5,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 10,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 1–30, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 15,
+      "text": "J. Ba and M. Rigger, “Keep it simple: Testing databases via differential query plans,” 2, no. 3, may 2024. [Online]. Available: https://doi.org/10.1145/3654991",
+      "technique": "dqp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing dqp",
+        "prints the DOI of the paper introducing dqp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 18,
+      "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 29,
+      "text": "M. Rigger, “Sqlancer,” https://github.com/sqlancer/sqlancer, 2024, accessed: 2024-03-30.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 33,
+      "text": "J. Ba and M. Rigger, “Testing database engines via query plan guidance,” in (ICSE), 2023, pp. 2060–2071.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 35,
+      "text": "Z.-M. Jiang, S. Liu, M. Rigger, and Z. Su, “Detecting transactional bugs in database engines via Graph-Based oracle construction,” in 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23). Boston, MA: USENIX Association, Jul. 2023, pp. 397–417. [Online]. Available: https://www.usenix.org/conference/osdi23/presentation/jiang",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 40,
+      "text": "J. Ba and M. Rigger, “Cert: Finding performance issues in database systems through the lens of cardinality estimation,” 2024.",
+      "technique": "cert",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing cert"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": ", Pinolo, TLP, and NoREC).",
+      "context_before": "gs by transforming the queries that can be highly optimized by DBMS into equivalent but less optimized ones. Additionally, SemBug integrates semantic analysis technology, enabling it to identify semantic logic bugs and support testing advanced DBMS features. Any discrepancy in cardinality or content between the original and transformed queries indicates a logic bug. To investigate the effectiveness of SemBug, we conduct a large-scale experiment on five widelyused DBMS systems (i.e., MySQL, TiDB, MariaDB, SQLite, and PostgreSQL) and compare it with three state-of-the-art (SOTA) approaches (i.e.",
+      "context_after": "The experimental results indicate that SemBug outperforms three SOTAs. Over 24 hours, SemBug found 34 unique logic bugs, which are 19, 14, and 13 more bugs than each of the three SOTAs, marking an improvement of 126%, 70%, and 61% respectively. As of the time of paper submission, SemBug has uncovered 37 unique logic bugs, of which 29 have been verified by developers, and 11 have been fixed. SemBug helps developers identify these bugs, providing insights into such inconsistencies and assisting in resolving them. I. Introduction Database Management Systems (DBMSs) are essential components of th",
+      "section": null,
+      "page": 1,
+      "char_offset": 2007,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[4]–[10]",
+      "technique": "pqs",
+      "sentence": "Consequently, DBMS testing has become an area of considerable interest for researchers [4]–[10].",
+      "context_before": "s, marking an improvement of 126%, 70%, and 61% respectively. As of the time of paper submission, SemBug has uncovered 37 unique logic bugs, of which 29 have been verified by developers, and 11 have been fixed. SemBug helps developers identify these bugs, providing insights into such inconsistencies and assisting in resolving them. I. Introduction Database Management Systems (DBMSs) are essential components of the modern information technology infrastructure, handling vast quantities of data for a multitude of applications [1]–[3]. Bugs within a DBMS can significantly impact a broad user base.",
+      "context_after": "Recently, fuzzing technology has been extensively employed to detect crash bugs in DBMSs [9], [11]–[14], which are relatively straightforward to identify due to their explicit system crash characteristics. In contrast, logic bugs are a more elusive category of errors, often overlooked by developers since theycan return incorrect query results without the overt signs of system crashes or other noticeable symptoms. The majority of logic bugs originate from issues within the query optimizer [15], which is acknowledged as one of the most complex components of a DBMS. The optimizer’s role is to cr",
+      "section": "I Introduction",
+      "page": 1,
+      "char_offset": 2817,
+      "cited_reference": {
+        "number": 5,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[15]",
+      "technique": "dqp",
+      "sentence": "The majority of logic bugs originate from issues within the query optimizer [15], which is acknowledged as one of the most complex components of a DBMS.",
+      "context_before": "f applications [1]–[3]. Bugs within a DBMS can significantly impact a broad user base. Consequently, DBMS testing has become an area of considerable interest for researchers [4]–[10]. Recently, fuzzing technology has been extensively employed to detect crash bugs in DBMSs [9], [11]–[14], which are relatively straightforward to identify due to their explicit system crash characteristics. In contrast, logic bugs are a more elusive category of errors, often overlooked by developers since theycan return incorrect query results without the overt signs of system crashes or other noticeable symptoms.",
+      "context_after": "The optimizer’s role is to create efficient execution plans for database queries, and any defects in this process can result in logic bugs. We specifically refer to logic bugs arising from the query optimizer as optimization bugs. Designing an automated method to detect logic bugs is no easy task, as it requires knowledge of the correct output for each input—a classic problem in testing known as the test oracle problem [16]. To tackle this challenge, researchers have proposed several DBMS oracles [5], [10], [17]–[19] for the automatic detection of logic bugs, including differential testing-ba",
+      "section": "I Introduction",
+      "page": 1,
+      "char_offset": 3331,
+      "cited_reference": {
+        "number": 15,
+        "text": "J. Ba and M. Rigger, “Keep it simple: Testing databases via differential query plans,” 2, no. 3, may 2024. [Online]. Available: https://doi.org/10.1145/3654991",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing dqp",
+          "prints the DOI of the paper introducing dqp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker",
+      "surface": "[17]–[19]",
+      "technique": "norec",
+      "sentence": "To tackle this challenge, researchers have proposed several DBMS oracles [5], [10], [17]–[19] for the automatic detection of logic bugs, including differential testing-based methods, oracle-guided methods, and metamorphic testing-based methods.",
+      "context_before": "ticeable symptoms. The majority of logic bugs originate from issues within the query optimizer [15], which is acknowledged as one of the most complex components of a DBMS. The optimizer’s role is to create efficient execution plans for database queries, and any defects in this process can result in logic bugs. We specifically refer to logic bugs arising from the query optimizer as optimization bugs. Designing an automated method to detect logic bugs is no easy task, as it requires knowledge of the correct output for each input—a classic problem in testing known as the test oracle problem [16].",
+      "context_after": "The first category consists of differential testing-based methods. The core idea of differential testing is different implementations of the same algorithms should yield the same results. Slutz proposed RAGS [17], a technique that first executes the same SQL query across different DBMSs and then compares their results. If the DBMSs return different results, it suggests that one of the DBMSs contains a logic bug. Differential testing requires the DBMSs being tested to have identical syntax and semantics. However, in practice, different DBMSs often have unique extensions to the SQL standard, wh",
+      "section": "I Introduction",
+      "page": 1,
+      "char_offset": 3913,
+      "cited_reference": {
+        "number": 18,
+        "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "pqs",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "introduced PQS [5], a technique that begins by randomly selecting a specific row from a table.",
+      "context_before": "the DBMSs return different results, it suggests that one of the DBMSs contains a logic bug. Differential testing requires the DBMSs being tested to have identical syntax and semantics. However, in practice, different DBMSs often have unique extensions to the SQL standard, which limits differential testing methods to the core parts of the DBMSs, thereby restricting their general applicability. The second category is oracle-guided methods, which guide the testing process by proposing specific oracles, thereby avoiding the issue of DBMS dialects encountered in differential testing. Rigger et al.",
+      "context_after": "Subsequent queries are crafted to retrieve the selected row, with the WHERE clause always evaluating to TRUE. If the final result omits the selected row, it indicates the presence of a logic bug. Although PQS has been successful in detecting logic bugs in widely-used DBMSs, its most significant drawback is the considerable implementation effort required, involving the re-implementation of each function and operator for each tested DBMS. The labor-intensive nature of this process greatly restricts its generalizability. The third category of methods, based on metamorphic124 2643-7171/25/$31.00",
+      "section": "I Introduction",
+      "page": 1,
+      "char_offset": 5082,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Although PQS has been successful in detecting logic bugs in widely-used DBMSs, its most significant drawback is the considerable implementation effort required, involving the re-implementation of each function and operator for each tested DBMS.",
+      "context_before": "erential testing methods to the core parts of the DBMSs, thereby restricting their general applicability. The second category is oracle-guided methods, which guide the testing process by proposing specific oracles, thereby avoiding the issue of DBMS dialects encountered in differential testing. Rigger et al. introduced PQS [5], a technique that begins by randomly selecting a specific row from a table. Subsequent queries are crafted to retrieve the selected row, with the WHERE clause always evaluating to TRUE. If the final result omits the selected row, it indicates the presence of a logic bug.",
+      "context_after": "The labor-intensive nature of this process greatly restricts its generalizability. The third category of methods, based on metamorphic124 2643-7171/25/$31.00 ©2025 IEEEDOI 10.1109/ICPC66645.2025.00021 .00 ©2025 IEEE | DOI: 10.1109/ICPC66645.2025.00021 testing [20], aims to overcome the extensive implementation efforts required by oracle-guided methods, positioning it as one of the most advanced approaches currently available. The core idea of these methods is to transform a given query based on a certain relationship called a metamorphic relationship. If the results from the original query",
+      "section": "I Introduction",
+      "page": 1,
+      "char_offset": 5373,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": ", such as NoREC [18]), while the second one addresses both cardinality-incorrect logic bugs and semantic logic bugs, where the cardinality remains consistent, but the content of the results is not as expected.",
+      "context_before": "ome the extensive implementation efforts required by oracle-guided methods, positioning it as one of the most advanced approaches currently available. The core idea of these methods is to transform a given query based on a certain relationship called a metamorphic relationship. If the results from the original query and the transformed query do not align with this relationship, it implies the presence of a logic bug. Existing metamorphic testing-based methods can be categorized into two groups. The first one focuses solely on logic bugs where the cardinality of query results is incorrect (e.g.",
+      "context_after": "(e.g., Pinolo [19] and TLP [10]). Though metamorphic testing-based methods have made great progress in detecting logic bugs in DBMS and have become state-of-the-art, they still have some limitations. More precisely, we find that over 70% of the logic bugs found by those approaches (i.e., TLP and Pinolo) in the second group are optimization-related bugs, which indicates that we should pay more attention to these types of logic bugs. However, the second group approaches are not specifically optimized to handle these issues. Meanwhile, as for the first group method(i.e., NoREC), though it is des",
+      "section": "I Introduction",
+      "page": 2,
+      "char_offset": 6500,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": ", Pinolo [19] and TLP [10]).",
+      "context_before": "ed on a certain relationship called a metamorphic relationship. If the results from the original query and the transformed query do not align with this relationship, it implies the presence of a logic bug. Existing metamorphic testing-based methods can be categorized into two groups. The first one focuses solely on logic bugs where the cardinality of query results is incorrect (e.g., such as NoREC [18]), while the second one addresses both cardinality-incorrect logic bugs and semantic logic bugs, where the cardinality remains consistent, but the content of the results is not as expected. (e.g.",
+      "context_after": "Though metamorphic testing-based methods have made great progress in detecting logic bugs in DBMS and have become state-of-the-art, they still have some limitations. More precisely, we find that over 70% of the logic bugs found by those approaches (i.e., TLP and Pinolo) in the second group are optimization-related bugs, which indicates that we should pay more attention to these types of logic bugs. However, the second group approaches are not specifically optimized to handle these issues. Meanwhile, as for the first group method(i.e., NoREC), though it is designed to specifically address the",
+      "section": "I Introduction",
+      "page": 2,
+      "char_offset": 6715,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": ", TLP and Pinolo) in the second group are optimization-related bugs, which indicates that we should pay more attention to these types of logic bugs.",
+      "context_before": "s. The first one focuses solely on logic bugs where the cardinality of query results is incorrect (e.g., such as NoREC [18]), while the second one addresses both cardinality-incorrect logic bugs and semantic logic bugs, where the cardinality remains consistent, but the content of the results is not as expected. (e.g., Pinolo [19] and TLP [10]). Though metamorphic testing-based methods have made great progress in detecting logic bugs in DBMS and have become state-of-the-art, they still have some limitations. More precisely, we find that over 70% of the logic bugs found by those approaches (i.e.",
+      "context_after": "However, the second group approaches are not specifically optimized to handle these issues. Meanwhile, as for the first group method(i.e., NoREC), though it is designed to specifically address the logic bugs within optimization scenarios, it takes no consideration of semantical logic bugs and has no support for testing advanced DBMS features (e.g., aggregate function, window function, and ORDER BYclause). In this paper, we introduce Semantic-aware Non-Optimizing Query (SemBug), a novel approach based on metamorphic testing for logic bug detection in DBMSs. SemBug distinguishes itself by its a",
+      "section": "I Introduction",
+      "page": 2,
+      "char_offset": 6997,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": ", NoREC), though it is designed to specifically address the logic bugs within optimization scenarios, it takes no consideration of semantical logic bugs and has no support for testing advanced DBMS features (e.",
+      "context_before": "esults is not as expected. (e.g., Pinolo [19] and TLP [10]). Though metamorphic testing-based methods have made great progress in detecting logic bugs in DBMS and have become state-of-the-art, they still have some limitations. More precisely, we find that over 70% of the logic bugs found by those approaches (i.e., TLP and Pinolo) in the second group are optimization-related bugs, which indicates that we should pay more attention to these types of logic bugs. However, the second group approaches are not specifically optimized to handle these issues. Meanwhile, as for the first group method(i.e.",
+      "context_after": "g., aggregate function, window function, and ORDER BYclause). In this paper, we introduce Semantic-aware Non-Optimizing Query (SemBug), a novel approach based on metamorphic testing for logic bug detection in DBMSs. SemBug distinguishes itself by its ability to detect optimization bugs through the transformation of highly optimized queries into equivalent but less optimized forms. Furthermore, SemBug integrates semantic analysis technology, enabling it to identify semantic logic bugs and support testing advanced features. Specifically, SemBug consists of three phases. In the first phase, we ge",
+      "section": "I Introduction",
+      "page": 2,
+      "char_offset": 7283,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "citation_marker",
+      "surface": "[5]",
+      "technique": "pqs",
+      "sentence": "Among these issues, logic bugs, which cause a query to return unexpected outcomes [5], stand out as particularly elusive, often hidden deep within the core functionalities of a DBMS [19].",
+      "context_before": "logic bugs in DBMS. SemBug utilizes semantic analysis to find semantic logic bugs and support testing advanced database features. •We developed SemBug as a DBMS testing system. The replication package is publicly available at [21]. •We found 37 unique logic bugs on five widely-use DBMSs in the real world. Of these, 29 have been verified by developers, 11 have been fixed, and the remaining bugs are currently under investigation. II. Background and Motivation A. Logic Bugs in DBMS As sophisticated software systems, DBMSs are prone to bugs that can lead to system crashes and unexpected outcomes.",
+      "context_after": "A developer may craft a SQL query with the conviction that it is error-free, only to find that the results are incorrect upon execution. As shown in Figure 1, the first query returns an unexpected outcome. However, this type of logic bug often escapes the notice of developers because it lacks the overt symptoms like system crashes. Additionally, identifying such bugs requires knowledge of the ground truth for the test cases. Therefore, detecting logic bugs is not only crucial for ensuring the reliability of information systems but also represents significant technical challenges. B. Optimizat",
+      "section": "A Logic Bugs in DBMS",
+      "page": 2,
+      "char_offset": 10127,
+      "cited_reference": {
+        "number": 5,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "citation_marker",
+      "surface": "[18]",
+      "technique": "norec",
+      "sentence": "Logic bugs that originate from the query optimizer are commonly referred to as optimization bugs [18].",
+      "context_before": "DBMS optimization techniques [22]. Many investigations have explored methods for enhancing query optimization performance [23]– [26]. Typically, DBMSs employ a query optimizer to optimize query execution. This component analyzes the given SQL queries and leverages the database’s metadata and statistical information to craft an efficient execution plan that minimizes both disk accesses and computational overhead. As one of the most complex components within a DBMS, the implementation of the query optimizer is highly challenging [27], with the potential for errors that could lead to logic bugs.",
+      "context_after": "Optimization bugs in DBMS can be identified by altering the system’s optimization settings, including the selection of the query optimizer, indexing strategies, and parallelism settings, to facilitate differential testing [28]. However, for DBMS, most optimizations cannot be disabled, making it challenging to comprehensively test for optimization bugs through configuration adjustments. Consequently, several approaches have been proposed to tackle these challenges. For example, Rigger et al. [18] proposed NoREC, which restructures SQL statements to inhibit query 125 SELECT t0.c0 ASc0 FROM v0",
+      "section": "B Optimization Bugs Detection in DBMS",
+      "page": 2,
+      "char_offset": 11585,
+      "cited_reference": {
+        "number": 18,
+        "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "[18] proposed NoREC, which restructures SQL statements to inhibit query 125 SELECT t0.",
+      "context_before": ". Logic bugs that originate from the query optimizer are commonly referred to as optimization bugs [18]. Optimization bugs in DBMS can be identified by altering the system’s optimization settings, including the selection of the query optimizer, indexing strategies, and parallelism settings, to facilitate differential testing [28]. However, for DBMS, most optimizations cannot be disabled, making it challenging to comprehensively test for optimization bugs through configuration adjustments. Consequently, several approaches have been proposed to tackle these challenges. For example, Rigger et al.",
+      "context_after": "c0 ASc0 FROM v0, t0 WHERE (SUBTIME ('2001 -11-28 06', '252 10') OR('' IS NOT NULL )) AND v0.c0; SELECT c0 FROM (SELECT t0.c0 ASc0 ,((SUBTIME ('2001−11−28 06','252 10’) OR('' IS NOT NULL )) AND v0.c0) IS TRUE ASflag FROM v0,t0) ASt WHERE flag=1; CREATE TABLE t0(c0 BOOL ); INSERT INTO t0 VALUES (1, NULL ); --t0.c0: 1, NULLCREATE VIEW v0(c0) AS SELECT (REGEXP_LIKE (t0.c0, t0.c0)) FROM t0 WHERE t0.c0 GROUP BYt0.c0 HAVING 1; --v0.c0: 1Initial Database Schema SQL Query 1 21 1 1 NULLFig. 1: A semantic logic bug in TiDB only found by SemBug. SemBug generates the first query that can be optimized and t",
+      "section": "B Optimization Bugs Detection in DBMS",
+      "page": 2,
+      "char_offset": 12184,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "This particular bug cannot be detected by NoREC, as it only identifies bugs resulting from inconsistent cardinality.",
+      "context_before": "10’) OR('' IS NOT NULL )) AND v0.c0) IS TRUE ASflag FROM v0,t0) ASt WHERE flag=1; CREATE TABLE t0(c0 BOOL ); INSERT INTO t0 VALUES (1, NULL ); --t0.c0: 1, NULLCREATE VIEW v0(c0) AS SELECT (REGEXP_LIKE (t0.c0, t0.c0)) FROM t0 WHERE t0.c0 GROUP BYt0.c0 HAVING 1; --v0.c0: 1Initial Database Schema SQL Query 1 21 1 1 NULLFig. 1: A semantic logic bug in TiDB only found by SemBug. SemBug generates the first query that can be optimized and then transforms it into the second query that is less optimized while maintaining the semantic information. The discrepancy in both results values indicates a bug.",
+      "context_after": "TLP and Pinolo cannot detect this optimization bug either. optimization for optimizer testing. Specifically, it relocates the predicate from the WHERE clause to the SELECT clause to induce full table scans, thus exposing logic bugs by detecting discrepancies in result cardinality. Though NoREC performs effectively in detecting bugs, it ignores checking the results content, leading to missing semantic unmatched logic bugs and consequently limiting supporting advanced DBMS features (e.g., aggregate function). Additionally, some approaches (i.e., TLP [10] and Pinolo [19]) can detect optimization",
+      "section": "B Optimization Bugs Detection in DBMS",
+      "page": 3,
+      "char_offset": 13035,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP and Pinolo cannot detect this optimization bug either.",
+      "context_before": "INTO t0 VALUES (1, NULL ); --t0.c0: 1, NULLCREATE VIEW v0(c0) AS SELECT (REGEXP_LIKE (t0.c0, t0.c0)) FROM t0 WHERE t0.c0 GROUP BYt0.c0 HAVING 1; --v0.c0: 1Initial Database Schema SQL Query 1 21 1 1 NULLFig. 1: A semantic logic bug in TiDB only found by SemBug. SemBug generates the first query that can be optimized and then transforms it into the second query that is less optimized while maintaining the semantic information. The discrepancy in both results values indicates a bug. This particular bug cannot be detected by NoREC, as it only identifies bugs resulting from inconsistent cardinality.",
+      "context_after": "optimization for optimizer testing. Specifically, it relocates the predicate from the WHERE clause to the SELECT clause to induce full table scans, thus exposing logic bugs by detecting discrepancies in result cardinality. Though NoREC performs effectively in detecting bugs, it ignores checking the results content, leading to missing semantic unmatched logic bugs and consequently limiting supporting advanced DBMS features (e.g., aggregate function). Additionally, some approaches (i.e., TLP [10] and Pinolo [19]) can detect optimization logic bugs even though they are not specifically designed",
+      "section": "B Optimization Bugs Detection in DBMS",
+      "page": 3,
+      "char_offset": 13152,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Though NoREC performs effectively in detecting bugs, it ignores checking the results content, leading to missing semantic unmatched logic bugs and consequently limiting supporting advanced DBMS features (e.",
+      "context_before": "first query that can be optimized and then transforms it into the second query that is less optimized while maintaining the semantic information. The discrepancy in both results values indicates a bug. This particular bug cannot be detected by NoREC, as it only identifies bugs resulting from inconsistent cardinality. TLP and Pinolo cannot detect this optimization bug either. optimization for optimizer testing. Specifically, it relocates the predicate from the WHERE clause to the SELECT clause to induce full table scans, thus exposing logic bugs by detecting discrepancies in result cardinality.",
+      "context_after": "g., aggregate function). Additionally, some approaches (i.e., TLP [10] and Pinolo [19]) can detect optimization logic bugs even though they are not specifically designed for them. In particular, TLP [10] decomposes a query into three sub-queries, and each sub-query has a predicate evaluated as TRUE, FALSE, or NULL. Then, the union of the sub-query results should equal the results of the original query. Pinolo [19], based on approximate relationships, mutates the original query, with the mutated query’s results expected to be a superset or subset of the original query’s results. Nevertheless, th",
+      "section": "B Optimization Bugs Detection in DBMS",
+      "page": 3,
+      "char_offset": 13434,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": ", TLP [10] and Pinolo [19]) can detect optimization logic bugs even though they are not specifically designed for them.",
+      "context_before": "ifies bugs resulting from inconsistent cardinality. TLP and Pinolo cannot detect this optimization bug either. optimization for optimizer testing. Specifically, it relocates the predicate from the WHERE clause to the SELECT clause to induce full table scans, thus exposing logic bugs by detecting discrepancies in result cardinality. Though NoREC performs effectively in detecting bugs, it ignores checking the results content, leading to missing semantic unmatched logic bugs and consequently limiting supporting advanced DBMS features (e.g., aggregate function). Additionally, some approaches (i.e.",
+      "context_after": "In particular, TLP [10] decomposes a query into three sub-queries, and each sub-query has a predicate evaluated as TRUE, FALSE, or NULL. Then, the union of the sub-query results should equal the results of the original query. Pinolo [19], based on approximate relationships, mutates the original query, with the mutated query’s results expected to be a superset or subset of the original query’s results. Nevertheless, the practical utility of both TLP and Pinolo in identifying optimization bugs remains limited. C. Motivating Example The core innovation of SemBug is to transform highly optimized q",
+      "section": "B Optimization Bugs Detection in DBMS",
+      "page": 3,
+      "char_offset": 13701,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "In particular, TLP [10] decomposes a query into three sub-queries, and each sub-query has a predicate evaluated as TRUE, FALSE, or NULL.",
+      "context_before": "tion for optimizer testing. Specifically, it relocates the predicate from the WHERE clause to the SELECT clause to induce full table scans, thus exposing logic bugs by detecting discrepancies in result cardinality. Though NoREC performs effectively in detecting bugs, it ignores checking the results content, leading to missing semantic unmatched logic bugs and consequently limiting supporting advanced DBMS features (e.g., aggregate function). Additionally, some approaches (i.e., TLP [10] and Pinolo [19]) can detect optimization logic bugs even though they are not specifically designed for them.",
+      "context_after": "Then, the union of the sub-query results should equal the results of the original query. Pinolo [19], based on approximate relationships, mutates the original query, with the mutated query’s results expected to be a superset or subset of the original query’s results. Nevertheless, the practical utility of both TLP and Pinolo in identifying optimization bugs remains limited. C. Motivating Example The core innovation of SemBug is to transform highly optimized queries into less optimized ones while preserving and analyzing their semantic information. Figure 1 demonstrates a semantic logic bug in",
+      "section": "B Optimization Bugs Detection in DBMS",
+      "page": 3,
+      "char_offset": 13820,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Nevertheless, the practical utility of both TLP and Pinolo in identifying optimization bugs remains limited.",
+      "context_before": "DBMS features (e.g., aggregate function). Additionally, some approaches (i.e., TLP [10] and Pinolo [19]) can detect optimization logic bugs even though they are not specifically designed for them. In particular, TLP [10] decomposes a query into three sub-queries, and each sub-query has a predicate evaluated as TRUE, FALSE, or NULL. Then, the union of the sub-query results should equal the results of the original query. Pinolo [19], based on approximate relationships, mutates the original query, with the mutated query’s results expected to be a superset or subset of the original query’s results.",
+      "context_after": "C. Motivating Example The core innovation of SemBug is to transform highly optimized queries into less optimized ones while preserving and analyzing their semantic information. Figure 1 demonstrates a semantic logic bug in TiDB v7.6.0 that goes undetected by other methods but is successfully uncovered by SemBug. In the Initial Database Schema phase, table t0and view v0 are created, where t0.c0 contains the values 1 and NULL, and v0.c0 holds the value 1. Then, the first query is randomly generated with a WHERE clause that can be optimized, andit is subsequently transformed into the second quer",
+      "section": "B Optimization Bugs Detection in DBMS",
+      "page": 3,
+      "char_offset": 14224,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M20",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "This issue shows a significant limitation of NoREC, which concentrates only on the cardinality of results, thereby missing such semantic discrepancies.",
+      "context_before": "ERE clause that can be optimized, andit is subsequently transformed into the second query, which is less optimized according to our method. Meanwhile, we preserve the semantic information (i.e., column c0) during the transformation process. The inconsistency between the results’ content of the two queries indicates a semantic logic bug. Since the WHERE clause in the first query is evaluated as TRUE, it should return 1, NULL. Developers from TiDB informed us that the first query returns the wrong result due to the projection elimination, resulting in the planner outputting v0.c0 instead oft0.c0.",
+      "context_after": "Similarly, TLP and Pinolo do not thoroughly investigate optimization bugs, which can lead to overlooked logic bugs. SemBug stands out by addressing this gap, offering a novel approach that not only identifies optimization bugs but also ensures the semantic accuracy of query results. Listing 1: Transformation and retrieve semantic information step can be combinedQuery1: SELECT c1FROM t1WHERE t1.c1 >0; Query2: SELECT c1, (t1.c1 >0) is true AS flag FROM t1;−− rs0 Query3: SELECT c1FROM rs0WHERE flag is true; Query4: SELECT cFROM (SELECT c1ASc, (t1.c1 >0) is true AS flag FROM t1)AStWHERE flag is t",
+      "section": "C Motivating Example",
+      "page": 3,
+      "char_offset": 15445,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M21",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Similarly, TLP and Pinolo do not thoroughly investigate optimization bugs, which can lead to overlooked logic bugs.",
+      "context_before": "e preserve the semantic information (i.e., column c0) during the transformation process. The inconsistency between the results’ content of the two queries indicates a semantic logic bug. Since the WHERE clause in the first query is evaluated as TRUE, it should return 1, NULL. Developers from TiDB informed us that the first query returns the wrong result due to the projection elimination, resulting in the planner outputting v0.c0 instead oft0.c0. This issue shows a significant limitation of NoREC, which concentrates only on the cardinality of results, thereby missing such semantic discrepancies.",
+      "context_after": "SemBug stands out by addressing this gap, offering a novel approach that not only identifies optimization bugs but also ensures the semantic accuracy of query results. Listing 1: Transformation and retrieve semantic information step can be combinedQuery1: SELECT c1FROM t1WHERE t1.c1 >0; Query2: SELECT c1, (t1.c1 >0) is true AS flag FROM t1;−− rs0 Query3: SELECT c1FROM rs0WHERE flag is true; Query4: SELECT cFROM (SELECT c1ASc, (t1.c1 >0) is true AS flag FROM t1)AStWHERE flag is true; III. Approach To effectively detect logic bugs in DBMS, we propose SemBug. Given a seed query that can be optim",
+      "section": "C Motivating Example",
+      "page": 3,
+      "char_offset": 15597,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M22",
+      "found_by": "citation_marker",
+      "surface": "[29]",
+      "technique": null,
+      "sentence": "Common methods for generating databases and queries include mutation-based [6], [9] and rule-based approaches [11], [29], [30].",
+      "context_before": ".c1); AStWHERE flag is true; logic bugs in the DBMS, as reflected in the fifth step of the diagram. For more technical details, we describe the methods for randomly generating database schema and queries (§ III-B). We then detail the process of transforming optimized queries and extracting semantic information (§ III-C). Subsequently, we explain the methods used for a more efficient comparison of their results (§ III-D). We also discuss the testing features supported by SemBug (§ III-E). B. Database and Query Generation We first need to generate databases and several tables to conduct testing.",
+      "context_after": "Queries generated through rule-based techniques can often pass syntax and semantic checks from DBMS, improving testing efficiency compared to mutationbased methods. We use SQLancer [29], a rule-based method for query generation. This tool initializes the database schema by first executing DDL and DML statements, followed by the continuous generation of SELECT statements to test DBMS. As illustrated in Figure 2 (Step ②), we only generate queries in the form of SELECT 𝛼FROM t WHERE Pthat can be optimized by DBMS. This is because most optimization techniques are applied to data filtering, typica",
+      "section": "B Database and Query Generation",
+      "page": 4,
+      "char_offset": 19177,
+      "cited_reference": {
+        "number": 29,
+        "text": "M. Rigger, “Sqlancer,” https://github.com/sqlancer/sqlancer, 2024, accessed: 2024-03-30.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M23",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We use SQLancer [29], a rule-based method for query generation.",
+      "context_before": "mantic information (§ III-C). Subsequently, we explain the methods used for a more efficient comparison of their results (§ III-D). We also discuss the testing features supported by SemBug (§ III-E). B. Database and Query Generation We first need to generate databases and several tables to conduct testing. Common methods for generating databases and queries include mutation-based [6], [9] and rule-based approaches [11], [29], [30]. Queries generated through rule-based techniques can often pass syntax and semantic checks from DBMS, improving testing efficiency compared to mutationbased methods.",
+      "context_after": "This tool initializes the database schema by first executing DDL and DML statements, followed by the continuous generation of SELECT statements to test DBMS. As illustrated in Figure 2 (Step ②), we only generate queries in the form of SELECT 𝛼FROM t WHERE Pthat can be optimized by DBMS. This is because most optimization techniques are applied to data filtering, typically expressed in the query’s WHERE clause [18]. For instance, the WHERE clause leverages indexes to speed up searches, thereby avoiding scanning the full table. In the figure, we retrieve records from the column c1that meets the",
+      "section": "B Database and Query Generation",
+      "page": 4,
+      "char_offset": 19470,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M24",
+      "found_by": "citation_marker",
+      "surface": "[18]",
+      "technique": "norec",
+      "sentence": "This is because most optimization techniques are applied to data filtering, typically expressed in the query’s WHERE clause [18].",
+      "context_before": "queries include mutation-based [6], [9] and rule-based approaches [11], [29], [30]. Queries generated through rule-based techniques can often pass syntax and semantic checks from DBMS, improving testing efficiency compared to mutationbased methods. We use SQLancer [29], a rule-based method for query generation. This tool initializes the database schema by first executing DDL and DML statements, followed by the continuous generation of SELECT statements to test DBMS. As illustrated in Figure 2 (Step ②), we only generate queries in the form of SELECT 𝛼FROM t WHERE Pthat can be optimized by DBMS.",
+      "context_after": "For instance, the WHERE clause leverages indexes to speed up searches, thereby avoiding scanning the full table. In the figure, we retrieve records from the column c1that meets the condition. Since only record v1satisfies the predicate P, the correctly optimized result should be a single record with value v1. However, if the optimizer does not function correctly, it may produce more or fewer records or the same number of records with different content. The focus of this paper is not on the method of database and query generation. It is noted that although we only use SQLancer to generate quer",
+      "section": "B Database and Query Generation",
+      "page": 4,
+      "char_offset": 19822,
+      "cited_reference": {
+        "number": 18,
+        "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M25",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "It is noted that although we only use SQLancer to generate queries, SemBug can be integrated with any generation technique.",
+      "context_before": "filtering, typically expressed in the query’s WHERE clause [18]. For instance, the WHERE clause leverages indexes to speed up searches, thereby avoiding scanning the full table. In the figure, we retrieve records from the column c1that meets the condition. Since only record v1satisfies the predicate P, the correctly optimized result should be a single record with value v1. However, if the optimizer does not function correctly, it may produce more or fewer records or the same number of records with different content. The focus of this paper is not on the method of database and query generation.",
+      "context_after": "C. Transform the Query and Retrieve Semantic Information Transforming the optimized query into a poorly optimized one is a simple and automatic process. Inspired by NoREC, we transform the optimized query to the less optimized one of the form SELECT 𝛼, P is true AS flag FROM t through moving WHERE clause after the SELECT clause. Due to the absence of WHERE clause, this query forces the DBMS to retrieve all table records, which disables most potential optimizations. The transformed query evaluates whether each record in the table satisfies predicate P(i.e., the WHERE condition from the optimiz",
+      "section": "B Database and Query Generation",
+      "page": 4,
+      "char_offset": 20488,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M26",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Inspired by NoREC, we transform the optimized query to the less optimized one of the form SELECT 𝛼, P is true AS flag FROM t through moving WHERE clause after the SELECT clause.",
+      "context_before": "satisfies the predicate P, the correctly optimized result should be a single record with value v1. However, if the optimizer does not function correctly, it may produce more or fewer records or the same number of records with different content. The focus of this paper is not on the method of database and query generation. It is noted that although we only use SQLancer to generate queries, SemBug can be integrated with any generation technique. C. Transform the Query and Retrieve Semantic Information Transforming the optimized query into a poorly optimized one is a simple and automatic process.",
+      "context_after": "Due to the absence of WHERE clause, this query forces the DBMS to retrieve all table records, which disables most potential optimizations. The transformed query evaluates whether each record in the table satisfies predicate P(i.e., the WHERE condition from the optimized query). If a specific record satisfies predicate P, then the corresponding flag field will be evaluated as TRUE. After transformation, we pass two queries to the DBMS. As depicted in Figure 2 (Step ③), we first transform the optimized query into a less optimized one, and then we pass the transformed query to the DBMS. Since on",
+      "section": "C Transform the Query and Retrieve Semantic Information",
+      "page": 4,
+      "char_offset": 20765,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M27",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC cannot directly test the aggregate function because it relies on the principle that the number of records returned by two queries should match the number of records satisfying the WHERE condition.",
+      "context_before": "s for tables joining are specified in the WHERE clause. Join Clause. Beyond adding tables after the FROM clause, we can also implement more sophisticated queries by incorporatingListing 3: SemBug could test aggregate function since both queries preserve aggregate functionQuery 1: SELECT AVG (t1.c1) FROM t1WHERE t1.c1 >0 GROUP BY t1.c2; Query 2: SELECT cFROM (SELECT AVG (t1.c1) ASc, (t1.c1 >0) is true AS flag FROM t1GROUP BY t1.c2) ASt WHERE flag is true; aJOIN clause. As demonstrated in Listing 2, the inclusion of a JOIN statement does not change our transformation approach. Aggregate function.",
+      "context_after": "Aggregate function disrupts this principle by computing over multiple records to return a single value, which changes the cardinality of the original query’s result. In contrast, SemBug is not constrained by this limitation. As demonstrated in Listing 3, we maintain the aggregate function in both the original query and the semantically unoptimized query, thereby preserving the consistency of the results. Similar to aggregate function, window function is also supported by SemBug. Having clause. Having clause are typically used with GROUP BY to filter aggregated results. Since Having clause is",
+      "section": "E Supporting Features",
+      "page": 5,
+      "char_offset": 25804,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M28",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC does not support the verification of semantic information, it is incapable of testing the sorting order specified by ORDER BY.",
+      "context_before": "e function in both the original query and the semantically unoptimized query, thereby preserving the consistency of the results. Similar to aggregate function, window function is also supported by SemBug. Having clause. Having clause are typically used with GROUP BY to filter aggregated results. Since Having clause is similar to WHERE clause, the high-level idea of SemBug can be directly applied to Having clause. To do this, simply move the conditions that follow the Having clause to the end of the SELECT statement. ORDER BY. ORDER BY clause is utilized to sort the results returned by a query.",
+      "context_after": "In contrast, SemBug can perform a line-by-line examination of the returned results to ensure consistent order, thereby identifying any logic bugs related to incorrect sorting. IV. Evaluation To evaluate the effectiveness and efficiency of detecting bugs with SemBug, our evaluation aims to answer the following questions. •RQ1: Can SemBug find semantic logic bugs in the real world? •RQ2: How does SemBug perform compared to other techniques in logic bug detection? •RQ3: Compared to other techniques, does the support for advanced features in SemBug enable it to find these featuresrelated bugs? •R",
+      "section": "E Supporting Features",
+      "page": 5,
+      "char_offset": 26887,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M29",
+      "found_by": "citation_marker",
+      "surface": "[10]",
+      "technique": "tlp",
+      "sentence": "They have also been thoroughly tested in previous work [10], [18], [19], [31].",
+      "context_before": "5.3k 0.4M 2000 PostgreSQL 16.1 14.3k 1.4M 1996 2)Tested DBMSs: We focus on testing five widely-used and large-scale DBMSs: SQLite, PostgreSQL, MySQL, MariaDB, and TiDB (see Table I). SQLite is extensively utilized in mobile and desktop applications, making it one of the most widely adopted databases; PostgreSQL is known for its strict adherence to SQL standards and seems more robust compared to other databases; MySQL is the most well-known database; MariaDB is a fork of MySQL which benefits from an active community backing; TiDB is an open-source distributed database developed by PingCap Inc.",
+      "context_after": "3)Baselines: We compare SemBug against the state-ofthe-art logic bug detection techniques, namely NoREC [18], TLP [10], and Pinolo [19], respectively. Similar to SemBug, all these methods utilize rule-based random query generation. Specifically, NoREC, TLP, and SemBug employ SQLancer [29] as the query generator, while Pinolo uses Go-Randgen [30]. Although we aim to compare these methods across all tested DBMSs, not every technique supports the full range of DBMSs being evaluated. Consequently, we exclude baseline assessments for unsupported DBMSs. TABLE II: The number of bugs found by SemBug.",
+      "section": "A Experimental Setup",
+      "page": 6,
+      "char_offset": 28926,
+      "cited_reference": {
+        "number": 10,
+        "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 1–30, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M30",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "3)Baselines: We compare SemBug against the state-ofthe-art logic bug detection techniques, namely NoREC [18], TLP [10], and Pinolo [19], respectively.",
+      "context_before": "ting five widely-used and large-scale DBMSs: SQLite, PostgreSQL, MySQL, MariaDB, and TiDB (see Table I). SQLite is extensively utilized in mobile and desktop applications, making it one of the most widely adopted databases; PostgreSQL is known for its strict adherence to SQL standards and seems more robust compared to other databases; MySQL is the most well-known database; MariaDB is a fork of MySQL which benefits from an active community backing; TiDB is an open-source distributed database developed by PingCap Inc. They have also been thoroughly tested in previous work [10], [18], [19], [31].",
+      "context_after": "Similar to SemBug, all these methods utilize rule-based random query generation. Specifically, NoREC, TLP, and SemBug employ SQLancer [29] as the query generator, while Pinolo uses Go-Randgen [30]. Although we aim to compare these methods across all tested DBMSs, not every technique supports the full range of DBMSs being evaluated. Consequently, we exclude baseline assessments for unsupported DBMSs. TABLE II: The number of bugs found by SemBug. The * on the MariaDB Row in the Verified column indicates that MariaDB developers have currently verified a bug and the remaining bugs are still under",
+      "section": "A Experimental Setup",
+      "page": 6,
+      "char_offset": 29005,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M31",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, NoREC, TLP, and SemBug employ SQLancer [29] as the query generator, while Pinolo uses Go-Randgen [30].",
+      "context_before": "QL is known for its strict adherence to SQL standards and seems more robust compared to other databases; MySQL is the most well-known database; MariaDB is a fork of MySQL which benefits from an active community backing; TiDB is an open-source distributed database developed by PingCap Inc. They have also been thoroughly tested in previous work [10], [18], [19], [31]. 3)Baselines: We compare SemBug against the state-ofthe-art logic bug detection techniques, namely NoREC [18], TLP [10], and Pinolo [19], respectively. Similar to SemBug, all these methods utilize rule-based random query generation.",
+      "context_after": "Although we aim to compare these methods across all tested DBMSs, not every technique supports the full range of DBMSs being evaluated. Consequently, we exclude baseline assessments for unsupported DBMSs. TABLE II: The number of bugs found by SemBug. The * on the MariaDB Row in the Verified column indicates that MariaDB developers have currently verified a bug and the remaining bugs are still under investigation.DBMS # Unique # Verified # Fixed # Cardinality # Semantic MySQL 13 13 1 9 4 TiDB 9 9 4 3 6 MariaDB 9 1* 0 5 4 SQLite 6 6 6 6 0 PostgreSQL 0 0 0 0 0 Total 37 29 11 23 14 B. RQ1: Effect",
+      "section": "A Experimental Setup",
+      "page": 6,
+      "char_offset": 29237,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M32",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": ", NoREC, TLP, and Pinolo.",
+      "context_before": "f does not introduce a direct security vulnerability, data inconsistency could lead to incorrect data being exposed or manipulated, indirectly affecting security if sensitive data is involved. Fortunately, this bug has now been fixed. Answer to RQ1: SemBug can find semantic logic bugs in the real world. SemBug have found 37 unique bugs on MySQL, TiDB, MariaDB, and SQLite for one week, 14 of which were found due to discrepancies in content. C. RQ2: Comparison on Other Techniques Method. To evaluate the performance of our method, we compare SemBug with the three state-of-the-art techniques, i.e.",
+      "context_after": "For each method, we conduct a 24hour runtime. Since not every method supports all the tested DBMSs, we have to disregard comparisons of some methods on specific DBMSs. It is noted that we implement NoREC on TiDB and MySQL to enhance the generalizability of the results. Results. The number of unique bugs found by different methods is shown in Table III. SemBug outperforms existing methods in detecting logic bugs on each tested DBMS. Compared to Pinolo, NoREC, and TLP, the number of detected bugs by SemBug increased by 13, 15, and 19, respectively. TABLE III: The number of unique bugs found by",
+      "section": "C RQ2: Comparison on Other Techniques",
+      "page": 7,
+      "char_offset": 34752,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M33",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "It is noted that we implement NoREC on TiDB and MySQL to enhance the generalizability of the results.",
+      "context_before": "Fortunately, this bug has now been fixed. Answer to RQ1: SemBug can find semantic logic bugs in the real world. SemBug have found 37 unique bugs on MySQL, TiDB, MariaDB, and SQLite for one week, 14 of which were found due to discrepancies in content. C. RQ2: Comparison on Other Techniques Method. To evaluate the performance of our method, we compare SemBug with the three state-of-the-art techniques, i.e., NoREC, TLP, and Pinolo. For each method, we conduct a 24hour runtime. Since not every method supports all the tested DBMSs, we have to disregard comparisons of some methods on specific DBMSs.",
+      "context_after": "Results. The number of unique bugs found by different methods is shown in Table III. SemBug outperforms existing methods in detecting logic bugs on each tested DBMS. Compared to Pinolo, NoREC, and TLP, the number of detected bugs by SemBug increased by 13, 15, and 19, respectively. TABLE III: The number of unique bugs found by SemBug and other techniques for 24 hours. The missing data indicates that the method does not support the specific DBMS. DBMS # SemBug # Pinolo # NoREC # TLP MySQL 13 8 8 7 TiDB 9 6 4 6 MariaDB 9 7 6 SQLite 3 - 2 2 PostgreSQL 0 - 0 0 Total 34 21 20 15 Improvement-13 ↑ 1",
+      "section": "C RQ2: Comparison on Other Techniques",
+      "page": 7,
+      "char_offset": 34945,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M34",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Compared to Pinolo, NoREC, and TLP, the number of detected bugs by SemBug increased by 13, 15, and 19, respectively.",
+      "context_before": "n on Other Techniques Method. To evaluate the performance of our method, we compare SemBug with the three state-of-the-art techniques, i.e., NoREC, TLP, and Pinolo. For each method, we conduct a 24hour runtime. Since not every method supports all the tested DBMSs, we have to disregard comparisons of some methods on specific DBMSs. It is noted that we implement NoREC on TiDB and MySQL to enhance the generalizability of the results. Results. The number of unique bugs found by different methods is shown in Table III. SemBug outperforms existing methods in detecting logic bugs on each tested DBMS.",
+      "context_after": "TABLE III: The number of unique bugs found by SemBug and other techniques for 24 hours. The missing data indicates that the method does not support the specific DBMS. DBMS # SemBug # Pinolo # NoREC # TLP MySQL 13 8 8 7 TiDB 9 6 4 6 MariaDB 9 7 6 SQLite 3 - 2 2 PostgreSQL 0 - 0 0 Total 34 21 20 15 Improvement-13 ↑ 14↑ 19↑ Overlap of bugs. Figure 4 illustrates overlap of bugs detected by SemBug and other techniques. We observe that, except NoREC, SemBug shares partial overlap with other methods in bug detection, indicating that SemBug has its unique strengths. Regarding NoREC, SemBug is capable",
+      "section": "C RQ2: Comparison on Other Techniques",
+      "page": 7,
+      "char_offset": 35213,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M35",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "DBMS # SemBug # Pinolo # NoREC # TLP MySQL 13 8 8 7 TiDB 9 6 4 6 MariaDB 9 7 6 SQLite 3 - 2 2 PostgreSQL 0 - 0 0 Total 34 21 20 15 Improvement-13 ↑ 14↑ 19↑ Overlap of bugs.",
+      "context_before": "d comparisons of some methods on specific DBMSs. It is noted that we implement NoREC on TiDB and MySQL to enhance the generalizability of the results. Results. The number of unique bugs found by different methods is shown in Table III. SemBug outperforms existing methods in detecting logic bugs on each tested DBMS. Compared to Pinolo, NoREC, and TLP, the number of detected bugs by SemBug increased by 13, 15, and 19, respectively. TABLE III: The number of unique bugs found by SemBug and other techniques for 24 hours. The missing data indicates that the method does not support the specific DBMS.",
+      "context_after": "Figure 4 illustrates overlap of bugs detected by SemBug and other techniques. We observe that, except NoREC, SemBug shares partial overlap with other methods in bug detection, indicating that SemBug has its unique strengths. Regarding NoREC, SemBug is capable of detecting all the bugs that NoREC finds. For Pinolo, SemBug detects 7 out of 21 logic bugs, and for TLP, SemBug finds 13 out of 15 logic bugs. Since SemBug encompasses the functionalities of NoREC, it can detect all the bugs that NoREC discovers. SemBug and TLP both heavily rely on the WHERE clause for logic bug detection, SemBugTLP M",
+      "section": "C RQ2: Comparison on Other Techniques",
+      "page": 7,
+      "char_offset": 35497,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M36",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "We observe that, except NoREC, SemBug shares partial overlap with other methods in bug detection, indicating that SemBug has its unique strengths.",
+      "context_before": "rms existing methods in detecting logic bugs on each tested DBMS. Compared to Pinolo, NoREC, and TLP, the number of detected bugs by SemBug increased by 13, 15, and 19, respectively. TABLE III: The number of unique bugs found by SemBug and other techniques for 24 hours. The missing data indicates that the method does not support the specific DBMS. DBMS # SemBug # Pinolo # NoREC # TLP MySQL 13 8 8 7 TiDB 9 6 4 6 MariaDB 9 7 6 SQLite 3 - 2 2 PostgreSQL 0 - 0 0 Total 34 21 20 15 Improvement-13 ↑ 14↑ 19↑ Overlap of bugs. Figure 4 illustrates overlap of bugs detected by SemBug and other techniques.",
+      "context_after": "Regarding NoREC, SemBug is capable of detecting all the bugs that NoREC finds. For Pinolo, SemBug detects 7 out of 21 logic bugs, and for TLP, SemBug finds 13 out of 15 logic bugs. Since SemBug encompasses the functionalities of NoREC, it can detect all the bugs that NoREC discovers. SemBug and TLP both heavily rely on the WHERE clause for logic bug detection, SemBugTLP MySQL:13 TiDB:9 MariaDB:9 SQLite:3MySQL:7 TiDB:3 SQLite:1MySQL:7 TiDB:6 SQLite:2Pinolo MySQL:8 TiDB:6 MariaDB :7SemBug MySQL:13 TiDB:9 MariaDB:9 SQLite:3MySQL:4 TiDB:1 MariaDB :2SemBug MySQL:5 TiDB:5 MariaDB:3 SQLite:2NoREC My",
+      "section": "C RQ2: Comparison on Other Techniques",
+      "page": 7,
+      "char_offset": 35748,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M37",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Regarding NoREC, SemBug is capable of detecting all the bugs that NoREC finds.",
+      "context_before": "ed by 13, 15, and 19, respectively. TABLE III: The number of unique bugs found by SemBug and other techniques for 24 hours. The missing data indicates that the method does not support the specific DBMS. DBMS # SemBug # Pinolo # NoREC # TLP MySQL 13 8 8 7 TiDB 9 6 4 6 MariaDB 9 7 6 SQLite 3 - 2 2 PostgreSQL 0 - 0 0 Total 34 21 20 15 Improvement-13 ↑ 14↑ 19↑ Overlap of bugs. Figure 4 illustrates overlap of bugs detected by SemBug and other techniques. We observe that, except NoREC, SemBug shares partial overlap with other methods in bug detection, indicating that SemBug has its unique strengths.",
+      "context_after": "For Pinolo, SemBug detects 7 out of 21 logic bugs, and for TLP, SemBug finds 13 out of 15 logic bugs. Since SemBug encompasses the functionalities of NoREC, it can detect all the bugs that NoREC discovers. SemBug and TLP both heavily rely on the WHERE clause for logic bug detection, SemBugTLP MySQL:13 TiDB:9 MariaDB:9 SQLite:3MySQL:7 TiDB:3 SQLite:1MySQL:7 TiDB:6 SQLite:2Pinolo MySQL:8 TiDB:6 MariaDB :7SemBug MySQL:13 TiDB:9 MariaDB:9 SQLite:3MySQL:4 TiDB:1 MariaDB :2SemBug MySQL:5 TiDB:5 MariaDB:3 SQLite:2NoREC MySQL:8 TiDB:4 MariaDB:6 SQLite:1 (a) (b) (c)Fig. 4: The overlap of bugs detected",
+      "section": "C RQ2: Comparison on Other Techniques",
+      "page": 7,
+      "char_offset": 35895,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M38",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For Pinolo, SemBug detects 7 out of 21 logic bugs, and for TLP, SemBug finds 13 out of 15 logic bugs.",
+      "context_before": "by SemBug and other techniques for 24 hours. The missing data indicates that the method does not support the specific DBMS. DBMS # SemBug # Pinolo # NoREC # TLP MySQL 13 8 8 7 TiDB 9 6 4 6 MariaDB 9 7 6 SQLite 3 - 2 2 PostgreSQL 0 - 0 0 Total 34 21 20 15 Improvement-13 ↑ 14↑ 19↑ Overlap of bugs. Figure 4 illustrates overlap of bugs detected by SemBug and other techniques. We observe that, except NoREC, SemBug shares partial overlap with other methods in bug detection, indicating that SemBug has its unique strengths. Regarding NoREC, SemBug is capable of detecting all the bugs that NoREC finds.",
+      "context_after": "Since SemBug encompasses the functionalities of NoREC, it can detect all the bugs that NoREC discovers. SemBug and TLP both heavily rely on the WHERE clause for logic bug detection, SemBugTLP MySQL:13 TiDB:9 MariaDB:9 SQLite:3MySQL:7 TiDB:3 SQLite:1MySQL:7 TiDB:6 SQLite:2Pinolo MySQL:8 TiDB:6 MariaDB :7SemBug MySQL:13 TiDB:9 MariaDB:9 SQLite:3MySQL:4 TiDB:1 MariaDB :2SemBug MySQL:5 TiDB:5 MariaDB:3 SQLite:2NoREC MySQL:8 TiDB:4 MariaDB:6 SQLite:1 (a) (b) (c)Fig. 4: The overlap of bugs detected by SemBug and other techniques. For each diagram, the left half represents the total number of bugs d",
+      "section": "C RQ2: Comparison on Other Techniques",
+      "page": 7,
+      "char_offset": 35974,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M39",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Since SemBug encompasses the functionalities of NoREC, it can detect all the bugs that NoREC discovers.",
+      "context_before": "rt the specific DBMS. DBMS # SemBug # Pinolo # NoREC # TLP MySQL 13 8 8 7 TiDB 9 6 4 6 MariaDB 9 7 6 SQLite 3 - 2 2 PostgreSQL 0 - 0 0 Total 34 21 20 15 Improvement-13 ↑ 14↑ 19↑ Overlap of bugs. Figure 4 illustrates overlap of bugs detected by SemBug and other techniques. We observe that, except NoREC, SemBug shares partial overlap with other methods in bug detection, indicating that SemBug has its unique strengths. Regarding NoREC, SemBug is capable of detecting all the bugs that NoREC finds. For Pinolo, SemBug detects 7 out of 21 logic bugs, and for TLP, SemBug finds 13 out of 15 logic bugs.",
+      "context_after": "SemBug and TLP both heavily rely on the WHERE clause for logic bug detection, SemBugTLP MySQL:13 TiDB:9 MariaDB:9 SQLite:3MySQL:7 TiDB:3 SQLite:1MySQL:7 TiDB:6 SQLite:2Pinolo MySQL:8 TiDB:6 MariaDB :7SemBug MySQL:13 TiDB:9 MariaDB:9 SQLite:3MySQL:4 TiDB:1 MariaDB :2SemBug MySQL:5 TiDB:5 MariaDB:3 SQLite:2NoREC MySQL:8 TiDB:4 MariaDB:6 SQLite:1 (a) (b) (c)Fig. 4: The overlap of bugs detected by SemBug and other techniques. For each diagram, the left half represents the total number of bugs detected by SemBug, while the right half corresponds to the total number of bugs detected by the other te",
+      "section": "C RQ2: Comparison on Other Techniques",
+      "page": 7,
+      "char_offset": 36076,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M40",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "SemBug and TLP both heavily rely on the WHERE clause for logic bug detection, SemBugTLP MySQL:13 TiDB:9 MariaDB:9 SQLite:3MySQL:7 TiDB:3 SQLite:1MySQL:7 TiDB:6 SQLite:2Pinolo MySQL:8 TiDB:6 MariaDB :7SemBug MySQL:13 TiDB:9 MariaDB:9 SQLite:3MySQL:4 TiDB:1 MariaDB :2SemBug MySQL:5 TiDB:5 MariaDB:3 SQLite:2NoREC MySQL:8 TiDB:4 MariaDB:6 SQLite:1 (a) (b) (c)Fig.",
+      "context_before": "ite 3 - 2 2 PostgreSQL 0 - 0 0 Total 34 21 20 15 Improvement-13 ↑ 14↑ 19↑ Overlap of bugs. Figure 4 illustrates overlap of bugs detected by SemBug and other techniques. We observe that, except NoREC, SemBug shares partial overlap with other methods in bug detection, indicating that SemBug has its unique strengths. Regarding NoREC, SemBug is capable of detecting all the bugs that NoREC finds. For Pinolo, SemBug detects 7 out of 21 logic bugs, and for TLP, SemBug finds 13 out of 15 logic bugs. Since SemBug encompasses the functionalities of NoREC, it can detect all the bugs that NoREC discovers.",
+      "context_after": "4: The overlap of bugs detected by SemBug and other techniques. For each diagram, the left half represents the total number of bugs detected by SemBug, while the right half corresponds to the total number of bugs detected by the other techniques. The intersection of the two halves indicates the number of bugs that were commonly detected by both SemBug and the other methods. which is why SemBug can detect the majority of bugs found by TLP. SemBug focuses on optimizing bug detection through the metamorphic relationship of equivalence, while Pinolo utilizes a metamorphic relationship based on ap",
+      "section": "C RQ2: Comparison on Other Techniques",
+      "page": 7,
+      "char_offset": 36180,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M41",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "which is why SemBug can detect the majority of bugs found by TLP.",
+      "context_before": "QLite:1MySQL:7 TiDB:6 SQLite:2Pinolo MySQL:8 TiDB:6 MariaDB :7SemBug MySQL:13 TiDB:9 MariaDB:9 SQLite:3MySQL:4 TiDB:1 MariaDB :2SemBug MySQL:5 TiDB:5 MariaDB:3 SQLite:2NoREC MySQL:8 TiDB:4 MariaDB:6 SQLite:1 (a) (b) (c)Fig. 4: The overlap of bugs detected by SemBug and other techniques. For each diagram, the left half represents the total number of bugs detected by SemBug, while the right half corresponds to the total number of bugs detected by the other techniques. The intersection of the two halves indicates the number of bugs that were commonly detected by both SemBug and the other methods.",
+      "context_after": "SemBug focuses on optimizing bug detection through the metamorphic relationship of equivalence, while Pinolo utilizes a metamorphic relationship based on approximation, hence the two methods have the least number of common bugs detected among all the approaches. Answer to RQ2: SemBug outperforms the state-of-theart methods in detecting logic bugs. Compared to Pinolo, NoREC, and TLP, the number of detected bugs by SemBug increased by 13, 14, and 19, respectively. D. RQ3: The Advantages of Expanded Feature Support Method. As shown in Table IV, most existing state-ofthe-art methods for logic bug",
+      "section": "C RQ2: Comparison on Other Techniques",
+      "page": 7,
+      "char_offset": 36919,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M42",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Compared to Pinolo, NoREC, and TLP, the number of detected bugs by SemBug increased by 13, 14, and 19, respectively.",
+      "context_before": "total number of bugs detected by the other techniques. The intersection of the two halves indicates the number of bugs that were commonly detected by both SemBug and the other methods. which is why SemBug can detect the majority of bugs found by TLP. SemBug focuses on optimizing bug detection through the metamorphic relationship of equivalence, while Pinolo utilizes a metamorphic relationship based on approximation, hence the two methods have the least number of common bugs detected among all the approaches. Answer to RQ2: SemBug outperforms the state-of-theart methods in detecting logic bugs.",
+      "context_after": "D. RQ3: The Advantages of Expanded Feature Support Method. As shown in Table IV, most existing state-ofthe-art methods for logic bug detection do not fully support the advanced features of DBMS (e.g., aggregate function, window function, and ORDER BY clause). In contrast, enhanced with semantic analysis technology, our approach is capable of supporting the most features, achieving a comparable level of support as the TLP. In this section, we investigate whether supporting these additional features can help us find more bugs. We select a bug example related to these features from unique bugs.",
+      "section": "C RQ2: Comparison on Other Techniques",
+      "page": 7,
+      "char_offset": 37335,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M43",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "In contrast, enhanced with semantic analysis technology, our approach is capable of supporting the most features, achieving a comparable level of support as the TLP.",
+      "context_before": "rphic relationship based on approximation, hence the two methods have the least number of common bugs detected among all the approaches. Answer to RQ2: SemBug outperforms the state-of-theart methods in detecting logic bugs. Compared to Pinolo, NoREC, and TLP, the number of detected bugs by SemBug increased by 13, 14, and 19, respectively. D. RQ3: The Advantages of Expanded Feature Support Method. As shown in Table IV, most existing state-ofthe-art methods for logic bug detection do not fully support the advanced features of DBMS (e.g., aggregate function, window function, and ORDER BY clause).",
+      "context_after": "In this section, we investigate whether supporting these additional features can help us find more bugs. We select a bug example related to these features from unique bugs. For simplicity, we omit the transformed query in examples because they can be directly derived from the original query. 1)Selected SQLite Bug: Incorrect SUM Function. Figure 5 shows the bug which introduced in SQLite 3.43. Two records in the table meet the where condition of the query, so the final result of the addition is 1.7E308*2. Since this result exceeds the maximum value representable in SQLite, the expected result",
+      "section": "D RQ3: The Advantages of Expanded Feature Support",
+      "page": 7,
+      "char_offset": 37712,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M44",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "SemBug and TLP support the most features.",
+      "context_before": "e transformed query in examples because they can be directly derived from the original query. 1)Selected SQLite Bug: Incorrect SUM Function. Figure 5 shows the bug which introduced in SQLite 3.43. Two records in the table meet the where condition of the query, so the final result of the addition is 1.7E308*2. Since this result exceeds the maximum value representable in SQLite, the expected result is inf, but NULL is returned, thus revealing a bug. The developers of SQLite informed us that the root cause is their implementation 130 TABLE IV: DBMS features supported by various testing methods.",
+      "context_after": "Advanced Features NoREC Pinolo TLP SemBug Join clause ✓ ✓ ✓ ✓ Having clause ✓ ✓ ✓ ✓ Group by clause ✓ ✓ ✓ ✓ Order by clause ✗ ✗ ✓ ✓ Distinct ✗ ✓ ✓ ✓ NULL value ✓ ✗ ✓ ✓ Aggregate function ✗ ✗ ✓ ✓ Window function ✗ ✗ ✓ ✓ Nondeterministic function ✗ ✗ ✗ ✗ of the Kahan-Babushka-Neumaier (KBN) algorithm to improve the precision of floating-point summation. This issue has been fixed after we reported it to the developers. CREATE TABLE t0 (c0 DOUBLE ); INSERT INTO t0(c0) VALUES (1), (2), (3); SELECT SUM (1.7E308 ) AS aggr FROM t0 WHERE c0 > 1; −− returned {null} expected {inf } Fig. 5: Incorrect qu",
+      "section": "D RQ3: The Advantages of Expanded Feature Support",
+      "page": 8,
+      "char_offset": 38678,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M45",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Advanced Features NoREC Pinolo TLP SemBug Join clause ✓ ✓ ✓ ✓ Having clause ✓ ✓ ✓ ✓ Group by clause ✓ ✓ ✓ ✓ Order by clause ✗ ✗ ✓ ✓ Distinct ✗ ✓ ✓ ✓ NULL value ✓ ✗ ✓ ✓ Aggregate function ✗ ✗ ✓ ✓ Window function ✗ ✗ ✓ ✓ Nondeterministic function ✗ ✗ ✗ ✗ of the Kahan-Babushka-Neumaier (KBN) algorithm to improve the precision of floating-point summation.",
+      "context_before": "ey can be directly derived from the original query. 1)Selected SQLite Bug: Incorrect SUM Function. Figure 5 shows the bug which introduced in SQLite 3.43. Two records in the table meet the where condition of the query, so the final result of the addition is 1.7E308*2. Since this result exceeds the maximum value representable in SQLite, the expected result is inf, but NULL is returned, thus revealing a bug. The developers of SQLite informed us that the root cause is their implementation 130 TABLE IV: DBMS features supported by various testing methods. SemBug and TLP support the most features.",
+      "context_after": "This issue has been fixed after we reported it to the developers. CREATE TABLE t0 (c0 DOUBLE ); INSERT INTO t0(c0) VALUES (1), (2), (3); SELECT SUM (1.7E308 ) AS aggr FROM t0 WHERE c0 > 1; −− returned {null} expected {inf } Fig. 5: Incorrect query result caused by number overflow in the SUM function in SQLite. Answer to RQ3: SemBug supports testing the most features compared to existing methods. The experimental results indicate that these additional features can aid in discovering more logic bugs. CREATE TABLE t0(c0 INT); INSERT INTO t0(c0) VALUES (−1); SELECT f1 FROM (SELECT (MAX (DATE('20",
+      "section": "D RQ3: The Advantages of Expanded Feature Support",
+      "page": 8,
+      "char_offset": 38720,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M46",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "6: The incorrect query result is caused by the window function, and the bug can be detected by SemBug but not by TLP.",
+      "context_before": "S (1), (2), (3); SELECT SUM (1.7E308 ) AS aggr FROM t0 WHERE c0 > 1; −− returned {null} expected {inf } Fig. 5: Incorrect query result caused by number overflow in the SUM function in SQLite. Answer to RQ3: SemBug supports testing the most features compared to existing methods. The experimental results indicate that these additional features can aid in discovering more logic bugs. CREATE TABLE t0(c0 INT); INSERT INTO t0(c0) VALUES (−1); SELECT f1 FROM (SELECT (MAX (DATE('2024−01−01')) OVER ( PARTITION BY t0.c0)) AS f1 FROM t0) AS t WHERE f1 > 1.11 E9; −− returned {2024−01−01} expected {} Fig.",
+      "context_after": "E. RQ4: Discrepancies in Logic Bug Detection Across Methods Objective. This section delves into the strengths and limitations of various methods for identifying logic bugs. As illustrated in Figure 4, SemBug is capable of detecting all bugs present in NoREC, an expected outcome given SemBug’s integration of semantic analysis techniques and support for a broader range of features. However, the figure also indicates that SemBug does not catch all logic bugs found by TLP and Pinolo. Understanding the advantages and limitations of SemBug, Pinolo, and TLP is crucial for detecting logic bugs in DBM",
+      "section": "D RQ3: The Advantages of Expanded Feature Support",
+      "page": 8,
+      "char_offset": 39795,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M47",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "As illustrated in Figure 4, SemBug is capable of detecting all bugs present in NoREC, an expected outcome given SemBug’s integration of semantic analysis techniques and support for a broader range of features.",
+      "context_before": "ental results indicate that these additional features can aid in discovering more logic bugs. CREATE TABLE t0(c0 INT); INSERT INTO t0(c0) VALUES (−1); SELECT f1 FROM (SELECT (MAX (DATE('2024−01−01')) OVER ( PARTITION BY t0.c0)) AS f1 FROM t0) AS t WHERE f1 > 1.11 E9; −− returned {2024−01−01} expected {} Fig. 6: The incorrect query result is caused by the window function, and the bug can be detected by SemBug but not by TLP. E. RQ4: Discrepancies in Logic Bug Detection Across Methods Objective. This section delves into the strengths and limitations of various methods for identifying logic bugs.",
+      "context_after": "However, the figure also indicates that SemBug does not catch all logic bugs found by TLP and Pinolo. Understanding the advantages and limitations of SemBug, Pinolo, and TLP is crucial for detecting logic bugs in DBMS. To this end, we must address two questions: (1) what are the advantages of SemBug that allow it to find bugs that TLP and Pinolo cannot? (2) what are the strengths of the other methods that enable them to detect bugs that SemBug misses? Method. The quality of seed queries significantly impacts bug detection [6], [33]. However, the core contribution of these methods lies in their",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 40086,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M48",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "However, the figure also indicates that SemBug does not catch all logic bugs found by TLP and Pinolo.",
+      "context_before": "TITION BY t0.c0)) AS f1 FROM t0) AS t WHERE f1 > 1.11 E9; −− returned {2024−01−01} expected {} Fig. 6: The incorrect query result is caused by the window function, and the bug can be detected by SemBug but not by TLP. E. RQ4: Discrepancies in Logic Bug Detection Across Methods Objective. This section delves into the strengths and limitations of various methods for identifying logic bugs. As illustrated in Figure 4, SemBug is capable of detecting all bugs present in NoREC, an expected outcome given SemBug’s integration of semantic analysis techniques and support for a broader range of features.",
+      "context_after": "Understanding the advantages and limitations of SemBug, Pinolo, and TLP is crucial for detecting logic bugs in DBMS. To this end, we must address two questions: (1) what are the advantages of SemBug that allow it to find bugs that TLP and Pinolo cannot? (2) what are the strengths of the other methods that enable them to detect bugs that SemBug misses? Method. The quality of seed queries significantly impacts bug detection [6], [33]. However, the core contribution of these methods lies in their oracle mechanisms, not in the generation of seed queries. To ensure fairness, we disregard the impact",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 40296,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M49",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Understanding the advantages and limitations of SemBug, Pinolo, and TLP is crucial for detecting logic bugs in DBMS.",
+      "context_before": "The incorrect query result is caused by the window function, and the bug can be detected by SemBug but not by TLP. E. RQ4: Discrepancies in Logic Bug Detection Across Methods Objective. This section delves into the strengths and limitations of various methods for identifying logic bugs. As illustrated in Figure 4, SemBug is capable of detecting all bugs present in NoREC, an expected outcome given SemBug’s integration of semantic analysis techniques and support for a broader range of features. However, the figure also indicates that SemBug does not catch all logic bugs found by TLP and Pinolo.",
+      "context_after": "To this end, we must address two questions: (1) what are the advantages of SemBug that allow it to find bugs that TLP and Pinolo cannot? (2) what are the strengths of the other methods that enable them to detect bugs that SemBug misses? Method. The quality of seed queries significantly impacts bug detection [6], [33]. However, the core contribution of these methods lies in their oracle mechanisms, not in the generation of seed queries. To ensure fairness, we disregard the impact of seed queries and theoretically explore whether logic bugs found by one method can be detected by others. Specific",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 40398,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M50",
+      "found_by": "citation_marker",
+      "surface": "[33]",
+      "technique": "qpg",
+      "sentence": "The quality of seed queries significantly impacts bug detection [6], [33].",
+      "context_before": "ent in NoREC, an expected outcome given SemBug’s integration of semantic analysis techniques and support for a broader range of features. However, the figure also indicates that SemBug does not catch all logic bugs found by TLP and Pinolo. Understanding the advantages and limitations of SemBug, Pinolo, and TLP is crucial for detecting logic bugs in DBMS. To this end, we must address two questions: (1) what are the advantages of SemBug that allow it to find bugs that TLP and Pinolo cannot? (2) what are the strengths of the other methods that enable them to detect bugs that SemBug misses? Method.",
+      "context_after": "However, the core contribution of these methods lies in their oracle mechanisms, not in the generation of seed queries. To ensure fairness, we disregard the impact of seed queries and theoretically explore whether logic bugs found by one method can be detected by others. Specifically, we consider the scenario where SemBug, TLP, and Pinolo generate mutated queries based on their respective mutation principles. If the outcomes of these mutated queries do not match the expected mutation relationships, this discrepancy signals the existence of a logic bug. Employing this principle, if SemBug iden",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 40759,
+      "cited_reference": {
+        "number": 33,
+        "text": "J. Ba and M. Rigger, “Testing database engines via query plan guidance,” in (ICSE), 2023, pp. 2060–2071.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M51",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Specifically, we consider the scenario where SemBug, TLP, and Pinolo generate mutated queries based on their respective mutation principles.",
+      "context_before": "in DBMS. To this end, we must address two questions: (1) what are the advantages of SemBug that allow it to find bugs that TLP and Pinolo cannot? (2) what are the strengths of the other methods that enable them to detect bugs that SemBug misses? Method. The quality of seed queries significantly impacts bug detection [6], [33]. However, the core contribution of these methods lies in their oracle mechanisms, not in the generation of seed queries. To ensure fairness, we disregard the impact of seed queries and theoretically explore whether logic bugs found by one method can be detected by others.",
+      "context_after": "If the outcomes of these mutated queries do not match the expected mutation relationships, this discrepancy signals the existence of a logic bug. Employing this principle, if SemBug identifies a logic bug, we can manually construct a mutated version of the original query from the case, using the principles of TLP and Pinolo as our guide. If the results of the mutated and original queries violate the mutation relationship, it suggests that TLP or Pinolo can detect logic bugs that SemBug uncovers. Conversely, SemBug can also use this method to evaluate whether it can detect bugs identified by o",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 41106,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M52",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Employing this principle, if SemBug identifies a logic bug, we can manually construct a mutated version of the original query from the case, using the principles of TLP and Pinolo as our guide.",
+      "context_before": "ficantly impacts bug detection [6], [33]. However, the core contribution of these methods lies in their oracle mechanisms, not in the generation of seed queries. To ensure fairness, we disregard the impact of seed queries and theoretically explore whether logic bugs found by one method can be detected by others. Specifically, we consider the scenario where SemBug, TLP, and Pinolo generate mutated queries based on their respective mutation principles. If the outcomes of these mutated queries do not match the expected mutation relationships, this discrepancy signals the existence of a logic bug.",
+      "context_after": "If the results of the mutated and original queries violate the mutation relationship, it suggests that TLP or Pinolo can detect logic bugs that SemBug uncovers. Conversely, SemBug can also use this method to evaluate whether it can detect bugs identified by other methods. Comparison of SemBug and TLP.SemBug identifies optimization bugs by suppressing optimizations in the WHERE clause. The TLP method, on the other hand, decomposes a query without WHERE clause into three sub-queries, each with a predicate after WHERE clause that evaluates to TRUE, FALSE, or NULL, ensuring the union of the sub-q",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 41393,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M53",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "If the results of the mutated and original queries violate the mutation relationship, it suggests that TLP or Pinolo can detect logic bugs that SemBug uncovers.",
+      "context_before": "the impact of seed queries and theoretically explore whether logic bugs found by one method can be detected by others. Specifically, we consider the scenario where SemBug, TLP, and Pinolo generate mutated queries based on their respective mutation principles. If the outcomes of these mutated queries do not match the expected mutation relationships, this discrepancy signals the existence of a logic bug. Employing this principle, if SemBug identifies a logic bug, we can manually construct a mutated version of the original query from the case, using the principles of TLP and Pinolo as our guide.",
+      "context_after": "Conversely, SemBug can also use this method to evaluate whether it can detect bugs identified by other methods. Comparison of SemBug and TLP.SemBug identifies optimization bugs by suppressing optimizations in the WHERE clause. The TLP method, on the other hand, decomposes a query without WHERE clause into three sub-queries, each with a predicate after WHERE clause that evaluates to TRUE, FALSE, or NULL, ensuring the union of the sub-query results aligns with the original query’s outcome. Both SemBug and TLP excel at detecting WHERE clause-related optimization bugs, as they heavily rely on the",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 41587,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M54",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Comparison of SemBug and TLP.",
+      "context_before": "mes of these mutated queries do not match the expected mutation relationships, this discrepancy signals the existence of a logic bug. Employing this principle, if SemBug identifies a logic bug, we can manually construct a mutated version of the original query from the case, using the principles of TLP and Pinolo as our guide. If the results of the mutated and original queries violate the mutation relationship, it suggests that TLP or Pinolo can detect logic bugs that SemBug uncovers. Conversely, SemBug can also use this method to evaluate whether it can detect bugs identified by other methods.",
+      "context_after": "SemBug identifies optimization bugs by suppressing optimizations in the WHERE clause. The TLP method, on the other hand, decomposes a query without WHERE clause into three sub-queries, each with a predicate after WHERE clause that evaluates to TRUE, FALSE, or NULL, ensuring the union of the sub-query results aligns with the original query’s outcome. Both SemBug and TLP excel at detecting WHERE clause-related optimization bugs, as they heavily rely on the WHERE clause for logic bug detection. SemBug’s primary advantage over TLP lies in its superior detection of optimization logic bugs, an area",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 41860,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M55",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "The TLP method, on the other hand, decomposes a query without WHERE clause into three sub-queries, each with a predicate after WHERE clause that evaluates to TRUE, FALSE, or NULL, ensuring the union of the sub-query results aligns with the original query’s outcome.",
+      "context_before": "ce of a logic bug. Employing this principle, if SemBug identifies a logic bug, we can manually construct a mutated version of the original query from the case, using the principles of TLP and Pinolo as our guide. If the results of the mutated and original queries violate the mutation relationship, it suggests that TLP or Pinolo can detect logic bugs that SemBug uncovers. Conversely, SemBug can also use this method to evaluate whether it can detect bugs identified by other methods. Comparison of SemBug and TLP.SemBug identifies optimization bugs by suppressing optimizations in the WHERE clause.",
+      "context_after": "Both SemBug and TLP excel at detecting WHERE clause-related optimization bugs, as they heavily rely on the WHERE clause for logic bug detection. SemBug’s primary advantage over TLP lies in its superior detection of optimization logic bugs, an area where TLP often falls short. For instance, TLP may incorrectly assess records that should be TRUE as FALSE or NULL, missing the bug because the union of sub-query results inadvertently matches the original query’s outcome. As depicted in Figure 6, SemBug discovers a bug in the optimization of the predicate f1 > 1.11E9, which should be evaluated as FAL",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 41975,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M56",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Both SemBug and TLP excel at detecting WHERE clause-related optimization bugs, as they heavily rely on the WHERE clause for logic bug detection.",
+      "context_before": "olate the mutation relationship, it suggests that TLP or Pinolo can detect logic bugs that SemBug uncovers. Conversely, SemBug can also use this method to evaluate whether it can detect bugs identified by other methods. Comparison of SemBug and TLP.SemBug identifies optimization bugs by suppressing optimizations in the WHERE clause. The TLP method, on the other hand, decomposes a query without WHERE clause into three sub-queries, each with a predicate after WHERE clause that evaluates to TRUE, FALSE, or NULL, ensuring the union of the sub-query results aligns with the original query’s outcome.",
+      "context_after": "SemBug’s primary advantage over TLP lies in its superior detection of optimization logic bugs, an area where TLP often falls short. For instance, TLP may incorrectly assess records that should be TRUE as FALSE or NULL, missing the bug because the union of sub-query results inadvertently matches the original query’s outcome. As depicted in Figure 6, SemBug discovers a bug in the optimization of the predicate f1 > 1.11E9, which should be evaluated as FALSE, not TRUE. However, TLP fails to identify the logic bug because the union of the sub-query results aligns coincidentally with the ’2024-01-01’",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 42241,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M57",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "SemBug’s primary advantage over TLP lies in its superior detection of optimization logic bugs, an area where TLP often falls short.",
+      "context_before": "method to evaluate whether it can detect bugs identified by other methods. Comparison of SemBug and TLP.SemBug identifies optimization bugs by suppressing optimizations in the WHERE clause. The TLP method, on the other hand, decomposes a query without WHERE clause into three sub-queries, each with a predicate after WHERE clause that evaluates to TRUE, FALSE, or NULL, ensuring the union of the sub-query results aligns with the original query’s outcome. Both SemBug and TLP excel at detecting WHERE clause-related optimization bugs, as they heavily rely on the WHERE clause for logic bug detection.",
+      "context_after": "For instance, TLP may incorrectly assess records that should be TRUE as FALSE or NULL, missing the bug because the union of sub-query results inadvertently matches the original query’s outcome. As depicted in Figure 6, SemBug discovers a bug in the optimization of the predicate f1 > 1.11E9, which should be evaluated as FALSE, not TRUE. However, TLP fails to identify the logic bug because the union of the sub-query results aligns coincidentally with the ’2024-01-01’ result from the original query, which does not include a WHERE clause. This reason accounts for the majority of logic bugs that TLP",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 42386,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M58",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For instance, TLP may incorrectly assess records that should be TRUE as FALSE or NULL, missing the bug because the union of sub-query results inadvertently matches the original query’s outcome.",
+      "context_before": "on bugs by suppressing optimizations in the WHERE clause. The TLP method, on the other hand, decomposes a query without WHERE clause into three sub-queries, each with a predicate after WHERE clause that evaluates to TRUE, FALSE, or NULL, ensuring the union of the sub-query results aligns with the original query’s outcome. Both SemBug and TLP excel at detecting WHERE clause-related optimization bugs, as they heavily rely on the WHERE clause for logic bug detection. SemBug’s primary advantage over TLP lies in its superior detection of optimization logic bugs, an area where TLP often falls short.",
+      "context_after": "As depicted in Figure 6, SemBug discovers a bug in the optimization of the predicate f1 > 1.11E9, which should be evaluated as FALSE, not TRUE. However, TLP fails to identify the logic bug because the union of the sub-query results aligns coincidentally with the ’2024-01-01’ result from the original query, which does not include a WHERE clause. This reason accounts for the majority of logic bugs that TLP overlooks but SemBug catches, making it the leading cause of TLP’s deficiency in optimization logic bug detection. Furthermore, SemBug’s utilization of nested queries during constructing muta",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 42518,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M59",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "However, TLP fails to identify the logic bug because the union of the sub-query results aligns coincidentally with the ’2024-01-01’ result from the original query, which does not include a WHERE clause.",
+      "context_before": "and TLP excel at detecting WHERE clause-related optimization bugs, as they heavily rely on the WHERE clause for logic bug detection. SemBug’s primary advantage over TLP lies in its superior detection of optimization logic bugs, an area where TLP often falls short. For instance, TLP may incorrectly assess records that should be TRUE as FALSE or NULL, missing the bug because the union of sub-query results inadvertently matches the original query’s outcome. As depicted in Figure 6, SemBug discovers a bug in the optimization of the predicate f1 > 1.11E9, which should be evaluated as FALSE, not TRUE.",
+      "context_after": "This reason accounts for the majority of logic bugs that TLP overlooks but SemBug catches, making it the leading cause of TLP’s deficiency in optimization logic bug detection. Furthermore, SemBug’s utilization of nested queries during constructing mutated queries is another advantage. This approach increases pressure on the query optimizer to uncover more bugs. We find that SemBug uniquely discovers two logic bugs in TiDB attributed to this mechanism. Besides, some test cases show that TLP’s oversight of certain logic bugs also stems from the UNION operator’s potential to alter the erroneous",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 42854,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M60",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "This reason accounts for the majority of logic bugs that TLP overlooks but SemBug catches, making it the leading cause of TLP’s deficiency in optimization logic bug detection.",
+      "context_before": "optimization logic bugs, an area where TLP often falls short. For instance, TLP may incorrectly assess records that should be TRUE as FALSE or NULL, missing the bug because the union of sub-query results inadvertently matches the original query’s outcome. As depicted in Figure 6, SemBug discovers a bug in the optimization of the predicate f1 > 1.11E9, which should be evaluated as FALSE, not TRUE. However, TLP fails to identify the logic bug because the union of the sub-query results aligns coincidentally with the ’2024-01-01’ result from the original query, which does not include a WHERE clause.",
+      "context_after": "Furthermore, SemBug’s utilization of nested queries during constructing mutated queries is another advantage. This approach increases pressure on the query optimizer to uncover more bugs. We find that SemBug uniquely discovers two logic bugs in TiDB attributed to this mechanism. Besides, some test cases show that TLP’s oversight of certain logic bugs also stems from the UNION operator’s potential to alter the erroneous query plan, thereby omitting some bugs. TLP identifies two logic bugs in MySQL that SemBug overlooks, specifically in cases where the negation operator! is utilized to form the",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 43057,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M61",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Besides, some test cases show that TLP’s oversight of certain logic bugs also stems from the UNION operator’s potential to alter the erroneous query plan, thereby omitting some bugs.",
+      "context_before": "nion of the sub-query results aligns coincidentally with the ’2024-01-01’ result from the original query, which does not include a WHERE clause. This reason accounts for the majority of logic bugs that TLP overlooks but SemBug catches, making it the leading cause of TLP’s deficiency in optimization logic bug detection. Furthermore, SemBug’s utilization of nested queries during constructing mutated queries is another advantage. This approach increases pressure on the query optimizer to uncover more bugs. We find that SemBug uniquely discovers two logic bugs in TiDB attributed to this mechanism.",
+      "context_after": "TLP identifies two logic bugs in MySQL that SemBug overlooks, specifically in cases where the negation operator! is utilized to form the predicate PIS FALSE. This discovery is unexpected as TLP is not initially designed to handle such scenarios. However, the example demonstrates that TLP has the 131 CREATE VIRTUAL TABLE rt1USING rtree_i32(c0, c1, c2, +c3 INT ); INSERT INTO rt1(c0, c2, c3) VALUES ('9223372036854775807’, 1, 1); CREATE VIEW v0(c4) AS SELECT CAST (COALESCE (c0, c0) ASBLOB ) FROM rt1; SELECT (c0== CAST (c4 ASREAL ))AS f1FROM rt1, v0; --{0} SELECT (c0== CAST (c4AS REAL ))AS f1FRO",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 43513,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M62",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP identifies two logic bugs in MySQL that SemBug overlooks, specifically in cases where the negation operator!",
+      "context_before": "of logic bugs that TLP overlooks but SemBug catches, making it the leading cause of TLP’s deficiency in optimization logic bug detection. Furthermore, SemBug’s utilization of nested queries during constructing mutated queries is another advantage. This approach increases pressure on the query optimizer to uncover more bugs. We find that SemBug uniquely discovers two logic bugs in TiDB attributed to this mechanism. Besides, some test cases show that TLP’s oversight of certain logic bugs also stems from the UNION operator’s potential to alter the erroneous query plan, thereby omitting some bugs.",
+      "context_after": "is utilized to form the predicate PIS FALSE. This discovery is unexpected as TLP is not initially designed to handle such scenarios. However, the example demonstrates that TLP has the 131 CREATE VIRTUAL TABLE rt1USING rtree_i32(c0, c1, c2, +c3 INT ); INSERT INTO rt1(c0, c2, c3) VALUES ('9223372036854775807’, 1, 1); CREATE VIEW v0(c4) AS SELECT CAST (COALESCE (c0, c0) ASBLOB ) FROM rt1; SELECT (c0== CAST (c4 ASREAL ))AS f1FROM rt1, v0; --{0} SELECT (c0== CAST (c4AS REAL ))AS f1FROM rt1, v0 WHERE f1; −− returned { 0} expected { }Fig. 7: Pinolo misses the logic bug that SemBug catches, as the",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 43696,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M63",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "This discovery is unexpected as TLP is not initially designed to handle such scenarios.",
+      "context_before": "s utilization of nested queries during constructing mutated queries is another advantage. This approach increases pressure on the query optimizer to uncover more bugs. We find that SemBug uniquely discovers two logic bugs in TiDB attributed to this mechanism. Besides, some test cases show that TLP’s oversight of certain logic bugs also stems from the UNION operator’s potential to alter the erroneous query plan, thereby omitting some bugs. TLP identifies two logic bugs in MySQL that SemBug overlooks, specifically in cases where the negation operator! is utilized to form the predicate PIS FALSE.",
+      "context_after": "However, the example demonstrates that TLP has the 131 CREATE VIRTUAL TABLE rt1USING rtree_i32(c0, c1, c2, +c3 INT ); INSERT INTO rt1(c0, c2, c3) VALUES ('9223372036854775807’, 1, 1); CREATE VIEW v0(c4) AS SELECT CAST (COALESCE (c0, c0) ASBLOB ) FROM rt1; SELECT (c0== CAST (c4 ASREAL ))AS f1FROM rt1, v0; --{0} SELECT (c0== CAST (c4AS REAL ))AS f1FROM rt1, v0 WHERE f1; −− returned { 0} expected { }Fig. 7: Pinolo misses the logic bug that SemBug catches, as the erroneous second query’s output matches the expected subset of the first. potential to uncover operator-specific bugs within the orac",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 43854,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M64",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "However, the example demonstrates that TLP has the 131 CREATE VIRTUAL TABLE rt1USING rtree_i32(c0, c1, c2, +c3 INT ); INSERT INTO rt1(c0, c2, c3) VALUES ('9223372036854775807’, 1, 1); CREATE VIEW v0(c4) AS SELECT CAST (COALESCE (c0, c0) ASBLOB ) FROM rt1; SELECT (c0== CAST (c4 ASREAL ))AS f1FROM rt1, v0; --{0} SELECT (c0== CAST (c4AS REAL ))AS f1FROM rt1, v0 WHERE f1; −− returned { 0} expected { }Fig.",
+      "context_before": ". This approach increases pressure on the query optimizer to uncover more bugs. We find that SemBug uniquely discovers two logic bugs in TiDB attributed to this mechanism. Besides, some test cases show that TLP’s oversight of certain logic bugs also stems from the UNION operator’s potential to alter the erroneous query plan, thereby omitting some bugs. TLP identifies two logic bugs in MySQL that SemBug overlooks, specifically in cases where the negation operator! is utilized to form the predicate PIS FALSE. This discovery is unexpected as TLP is not initially designed to handle such scenarios.",
+      "context_after": "7: Pinolo misses the logic bug that SemBug catches, as the erroneous second query’s output matches the expected subset of the first. potential to uncover operator-specific bugs within the oracle. Similarly, TLP might also detect operator UNION related bugs, but our experiments do not yield such cases. Overall, SemBug exhibits enhanced capabilities in identifying optimization logic bugs, a domain where TLP might be theoretically inadequate. Its nested query design enables SemBug to uncover bugs that TLP usually cannot. Nevertheless, in some specific situations, TLP might identify logic bugs th",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 8,
+      "char_offset": 43942,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M65",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Similarly, TLP might also detect operator UNION related bugs, but our experiments do not yield such cases.",
+      "context_before": "wever, the example demonstrates that TLP has the 131 CREATE VIRTUAL TABLE rt1USING rtree_i32(c0, c1, c2, +c3 INT ); INSERT INTO rt1(c0, c2, c3) VALUES ('9223372036854775807’, 1, 1); CREATE VIEW v0(c4) AS SELECT CAST (COALESCE (c0, c0) ASBLOB ) FROM rt1; SELECT (c0== CAST (c4 ASREAL ))AS f1FROM rt1, v0; --{0} SELECT (c0== CAST (c4AS REAL ))AS f1FROM rt1, v0 WHERE f1; −− returned { 0} expected { }Fig. 7: Pinolo misses the logic bug that SemBug catches, as the erroneous second query’s output matches the expected subset of the first. potential to uncover operator-specific bugs within the oracle.",
+      "context_after": "Overall, SemBug exhibits enhanced capabilities in identifying optimization logic bugs, a domain where TLP might be theoretically inadequate. Its nested query design enables SemBug to uncover bugs that TLP usually cannot. Nevertheless, in some specific situations, TLP might identify logic bugs that SemBug fails to detect. Comparison of SemBug and Pinolo .We previously mentioned that Pinolo supports testing fewer DBMS features, which gives SemBug an advantage over Pinolo. We now proceed to a detailed comparison between SemBug and Pinolo from other perspectives. Unlike SemBug and TLP, Pinolo req",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 9,
+      "char_offset": 44545,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M66",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Overall, SemBug exhibits enhanced capabilities in identifying optimization logic bugs, a domain where TLP might be theoretically inadequate.",
+      "context_before": "+c3 INT ); INSERT INTO rt1(c0, c2, c3) VALUES ('9223372036854775807’, 1, 1); CREATE VIEW v0(c4) AS SELECT CAST (COALESCE (c0, c0) ASBLOB ) FROM rt1; SELECT (c0== CAST (c4 ASREAL ))AS f1FROM rt1, v0; --{0} SELECT (c0== CAST (c4AS REAL ))AS f1FROM rt1, v0 WHERE f1; −− returned { 0} expected { }Fig. 7: Pinolo misses the logic bug that SemBug catches, as the erroneous second query’s output matches the expected subset of the first. potential to uncover operator-specific bugs within the oracle. Similarly, TLP might also detect operator UNION related bugs, but our experiments do not yield such cases.",
+      "context_after": "Its nested query design enables SemBug to uncover bugs that TLP usually cannot. Nevertheless, in some specific situations, TLP might identify logic bugs that SemBug fails to detect. Comparison of SemBug and Pinolo .We previously mentioned that Pinolo supports testing fewer DBMS features, which gives SemBug an advantage over Pinolo. We now proceed to a detailed comparison between SemBug and Pinolo from other perspectives. Unlike SemBug and TLP, Pinolo requires an approximate relationship between the original query and the mutated query. For instance, the result set of a query without a WHERE c",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 9,
+      "char_offset": 44652,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M67",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Its nested query design enables SemBug to uncover bugs that TLP usually cannot.",
+      "context_before": "OM rt1; SELECT (c0== CAST (c4 ASREAL ))AS f1FROM rt1, v0; --{0} SELECT (c0== CAST (c4AS REAL ))AS f1FROM rt1, v0 WHERE f1; −− returned { 0} expected { }Fig. 7: Pinolo misses the logic bug that SemBug catches, as the erroneous second query’s output matches the expected subset of the first. potential to uncover operator-specific bugs within the oracle. Similarly, TLP might also detect operator UNION related bugs, but our experiments do not yield such cases. Overall, SemBug exhibits enhanced capabilities in identifying optimization logic bugs, a domain where TLP might be theoretically inadequate.",
+      "context_after": "Nevertheless, in some specific situations, TLP might identify logic bugs that SemBug fails to detect. Comparison of SemBug and Pinolo .We previously mentioned that Pinolo supports testing fewer DBMS features, which gives SemBug an advantage over Pinolo. We now proceed to a detailed comparison between SemBug and Pinolo from other perspectives. Unlike SemBug and TLP, Pinolo requires an approximate relationship between the original query and the mutated query. For instance, the result set of a query without a WHERE clause should ideally be a superset of the result set when the WHERE clause is pre",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 9,
+      "char_offset": 44793,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M68",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Nevertheless, in some specific situations, TLP might identify logic bugs that SemBug fails to detect.",
+      "context_before": "T (c4AS REAL ))AS f1FROM rt1, v0 WHERE f1; −− returned { 0} expected { }Fig. 7: Pinolo misses the logic bug that SemBug catches, as the erroneous second query’s output matches the expected subset of the first. potential to uncover operator-specific bugs within the oracle. Similarly, TLP might also detect operator UNION related bugs, but our experiments do not yield such cases. Overall, SemBug exhibits enhanced capabilities in identifying optimization logic bugs, a domain where TLP might be theoretically inadequate. Its nested query design enables SemBug to uncover bugs that TLP usually cannot.",
+      "context_after": "Comparison of SemBug and Pinolo .We previously mentioned that Pinolo supports testing fewer DBMS features, which gives SemBug an advantage over Pinolo. We now proceed to a detailed comparison between SemBug and Pinolo from other perspectives. Unlike SemBug and TLP, Pinolo requires an approximate relationship between the original query and the mutated query. For instance, the result set of a query without a WHERE clause should ideally be a superset of the result set when the WHERE clause is present. However, Pinolo has limitations in identifying logic bugs that meet this approximate relationshi",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 9,
+      "char_offset": 44873,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M69",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Unlike SemBug and TLP, Pinolo requires an approximate relationship between the original query and the mutated query.",
+      "context_before": "periments do not yield such cases. Overall, SemBug exhibits enhanced capabilities in identifying optimization logic bugs, a domain where TLP might be theoretically inadequate. Its nested query design enables SemBug to uncover bugs that TLP usually cannot. Nevertheless, in some specific situations, TLP might identify logic bugs that SemBug fails to detect. Comparison of SemBug and Pinolo .We previously mentioned that Pinolo supports testing fewer DBMS features, which gives SemBug an advantage over Pinolo. We now proceed to a detailed comparison between SemBug and Pinolo from other perspectives.",
+      "context_after": "For instance, the result set of a query without a WHERE clause should ideally be a superset of the result set when the WHERE clause is present. However, Pinolo has limitations in identifying logic bugs that meet this approximate relationship, which is the main reason it fails to detect some logic bugs that SemBug can catch. We have observed instances where queries with a WHERE clause incorrectly return more records, even when the results conform to the approximate relationship. As shown in Figure 7, the anticipated outcome of the second query is null, not0. However, because the erroneous outpu",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 9,
+      "char_offset": 45218,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M70",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "In summary, SemBug outperforms Pinolo in detecting logic bugs in query optimizations, similar to its advantage over TLP.",
+      "context_before": "uery is null, not0. However, because the erroneous output of 0falls within the subset of the first query’s result set, which is also 0, Pinolo fails to identify the bug. As shown in Figure 4, Pinolo detects certain logic bugs that SemBug overlooks. This is because Pinolo seeks to satisfy the approximate relationship not only through the WHERE clause but also by modifying other operators. For instance, a mutated query that adds the keyword DISTINCT should yield a result set that is a subset of the original one. We have observed that all logic bugs only found by Pinolo are due to this mechanism.",
+      "context_after": "Beyond the strengths already discussed in comparison with TLP, SemBug is also capable of detecting a wider range of features within DBMS than Pinolo. Pinolo’s advantage lies in its nature as an approximate relationship-based mutation testing method, which does not overly rely on the WHERE clause. Consequently,it identifies a minimal intersection of bugs with those found by SemBug, serving as a valuable complement to SemBug’s capabilities. Answer to RQ4: SemBug is superior at finding optimization bugs, theoretically catching all that NoREC and TLP can. While TLP occasionally spots bugs SemBug",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 9,
+      "char_offset": 46479,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M71",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Beyond the strengths already discussed in comparison with TLP, SemBug is also capable of detecting a wider range of features within DBMS than Pinolo.",
+      "context_before": "ich is also 0, Pinolo fails to identify the bug. As shown in Figure 4, Pinolo detects certain logic bugs that SemBug overlooks. This is because Pinolo seeks to satisfy the approximate relationship not only through the WHERE clause but also by modifying other operators. For instance, a mutated query that adds the keyword DISTINCT should yield a result set that is a subset of the original one. We have observed that all logic bugs only found by Pinolo are due to this mechanism. In summary, SemBug outperforms Pinolo in detecting logic bugs in query optimizations, similar to its advantage over TLP.",
+      "context_after": "Pinolo’s advantage lies in its nature as an approximate relationship-based mutation testing method, which does not overly rely on the WHERE clause. Consequently,it identifies a minimal intersection of bugs with those found by SemBug, serving as a valuable complement to SemBug’s capabilities. Answer to RQ4: SemBug is superior at finding optimization bugs, theoretically catching all that NoREC and TLP can. While TLP occasionally spots bugs SemBug doesn’t, such cases are rare. Meanwhile, Pinolo can uncover logic bugs unrelated to WHERE clause optimizations, thus providing a beneficial complement",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 9,
+      "char_offset": 46600,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M72",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Answer to RQ4: SemBug is superior at finding optimization bugs, theoretically catching all that NoREC and TLP can.",
+      "context_before": "by Pinolo are due to this mechanism. In summary, SemBug outperforms Pinolo in detecting logic bugs in query optimizations, similar to its advantage over TLP. Beyond the strengths already discussed in comparison with TLP, SemBug is also capable of detecting a wider range of features within DBMS than Pinolo. Pinolo’s advantage lies in its nature as an approximate relationship-based mutation testing method, which does not overly rely on the WHERE clause. Consequently,it identifies a minimal intersection of bugs with those found by SemBug, serving as a valuable complement to SemBug’s capabilities.",
+      "context_after": "While TLP occasionally spots bugs SemBug doesn’t, such cases are rare. Meanwhile, Pinolo can uncover logic bugs unrelated to WHERE clause optimizations, thus providing a beneficial complement to SemBug’s detection abilities. V. Discussion A. Generality The core idea of SemBug is simple but can apply to other DBMSs because most DBMSs rely on WHERE condition to filter data. However, the number of bugs found in each database is not guaranteed by our method, as it depends on the developers’ implementation approaches. Generally speaking, DBMSs that strictly adhere to the SQL standard have fewer re",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 9,
+      "char_offset": 47043,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M73",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "While TLP occasionally spots bugs SemBug doesn’t, such cases are rare.",
+      "context_before": "ations, similar to its advantage over TLP. Beyond the strengths already discussed in comparison with TLP, SemBug is also capable of detecting a wider range of features within DBMS than Pinolo. Pinolo’s advantage lies in its nature as an approximate relationship-based mutation testing method, which does not overly rely on the WHERE clause. Consequently,it identifies a minimal intersection of bugs with those found by SemBug, serving as a valuable complement to SemBug’s capabilities. Answer to RQ4: SemBug is superior at finding optimization bugs, theoretically catching all that NoREC and TLP can.",
+      "context_after": "Meanwhile, Pinolo can uncover logic bugs unrelated to WHERE clause optimizations, thus providing a beneficial complement to SemBug’s detection abilities. V. Discussion A. Generality The core idea of SemBug is simple but can apply to other DBMSs because most DBMSs rely on WHERE condition to filter data. However, the number of bugs found in each database is not guaranteed by our method, as it depends on the developers’ implementation approaches. Generally speaking, DBMSs that strictly adhere to the SQL standard have fewer related bugs. Among the bugs we have discovered, a significant portion ar",
+      "section": "E RQ4: Discrepancies in Logic Bug Detection Across Methods",
+      "page": 9,
+      "char_offset": 47158,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M74",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[35]",
+      "technique": null,
+      "sentence": "The bugs in transactions are even more complex, but there are some dedicated works [34], [35] specifically addressing transaction issues.",
+      "context_before": "it depends on the developers’ implementation approaches. Generally speaking, DBMSs that strictly adhere to the SQL standard have fewer related bugs. Among the bugs we have discovered, a significant portion are due to issues arising from different types of comparisons. Databases with strict type conversion, such as PostgreSQL, are less prone to similar bugs. B. Limitations Our current work does not support all DBMS features, such as non-deterministic functions and transactions. Regarding nondeterministic functions, this is because our approach assumes that a query always yields the same result.",
+      "context_after": "C. Threats to Validity Our experimental results face potential threats to validity. Regarding internal validity, one concern is the systematic error of the experiment. Although we repeat each experiment ten times to mitigate such errors, SQL query statements are generated randomly, so the results may vary each time, which limits reproducibility. On the other hand, not all methods employ the same query generator; differences in generated queries by various generators prevent a fairer comparison. For external validity, our method is evaluated on a limited number of DBMSs, so the conclusions dra",
+      "section": "B Limitations",
+      "page": 9,
+      "char_offset": 48221,
+      "cited_reference": {
+        "number": 35,
+        "text": "Z.-M. Jiang, S. Liu, M. Rigger, and Z. Su, “Detecting transactional bugs in database engines via Graph-Based oracle construction,” in 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23). Boston, MA: USENIX Association, Jul. 2023, pp. 397–417. [Online]. Available: https://w",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M75",
+      "found_by": "citation_marker",
+      "surface": "[10]",
+      "technique": "tlp",
+      "sentence": "In recent years, metamorphic testing has been widely applied to various software systems [36]–[38], 132 and has become popular to detect logic [6], [10], [18], [19], [31] and performance bugs [39], [40] in DBMSs.",
+      "context_before": "his paper may have limitations. In the future, we plan to extend the implementation of SemBug to support more DBMSs to better assess its performance. VI. Related Work A. Metamorphic Testing of DBMS Our approach is based on metamorphic testing [20], which is designed to address the test oracle problem. The core idea of metamorphic testing is to leverage the transformation of input data to stimulate different code paths and reveal potential defects. This technique is particularly effective in identifying logic bugs by comparing the behavior of a system under varying inputs and expected outcomes.",
+      "context_after": "AMOEBA [31] constructs a pair of equivalent queries. A significant difference in execution time would indicate a performance issue. Given the seed query, CERT [40] derives a more restrictive query. The cardinality estimated by the derived query should not exceed that of the original query. For detecting logic bugs, DQE [31] focuses on detecting logic bugs in SELECT, UPDATE, and DELETE queries by ensuring that queries with the same predicate access the same rows in the table. NoREC [18] detects optimization bugs in DBMSs by converting optimized queries to unoptimized ones. TLP [10] decomposes",
+      "section": "A Metamorphic Testing of DBMS",
+      "page": 9,
+      "char_offset": 49566,
+      "cited_reference": {
+        "number": 10,
+        "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 1–30, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "norec",
+        "cert"
+      ]
+    },
+    {
+      "id": "M76",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "Given the seed query, CERT [40] derives a more restrictive query.",
+      "context_before": "everage the transformation of input data to stimulate different code paths and reveal potential defects. This technique is particularly effective in identifying logic bugs by comparing the behavior of a system under varying inputs and expected outcomes. In recent years, metamorphic testing has been widely applied to various software systems [36]–[38], 132 and has become popular to detect logic [6], [10], [18], [19], [31] and performance bugs [39], [40] in DBMSs. AMOEBA [31] constructs a pair of equivalent queries. A significant difference in execution time would indicate a performance issue.",
+      "context_after": "The cardinality estimated by the derived query should not exceed that of the original query. For detecting logic bugs, DQE [31] focuses on detecting logic bugs in SELECT, UPDATE, and DELETE queries by ensuring that queries with the same predicate access the same rows in the table. NoREC [18] detects optimization bugs in DBMSs by converting optimized queries to unoptimized ones. TLP [10] decomposes the original query into three partition sub-queries and then constructs an equivalent query by applying the union operator on these three sub-queries. Any discrepancies between the result of the ori",
+      "section": "A Metamorphic Testing of DBMS",
+      "page": 10,
+      "char_offset": 49913,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M77",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC [18] detects optimization bugs in DBMSs by converting optimized queries to unoptimized ones.",
+      "context_before": "[38], 132 and has become popular to detect logic [6], [10], [18], [19], [31] and performance bugs [39], [40] in DBMSs. AMOEBA [31] constructs a pair of equivalent queries. A significant difference in execution time would indicate a performance issue. Given the seed query, CERT [40] derives a more restrictive query. The cardinality estimated by the derived query should not exceed that of the original query. For detecting logic bugs, DQE [31] focuses on detecting logic bugs in SELECT, UPDATE, and DELETE queries by ensuring that queries with the same predicate access the same rows in the table.",
+      "context_after": "TLP [10] decomposes the original query into three partition sub-queries and then constructs an equivalent query by applying the union operator on these three sub-queries. Any discrepancies between the result of the original query and the equivalent query indicate a bug. Distinct from NoREC and TLP, Pinolo [19] employs metamorphic testing based on approximate relationships to mutate the seed query. The mutated query results need to match the expected approximate relationships. Although these methods have their strengths, NoREC excels in detecting optimization bugs and identifying issues that o",
+      "section": "A Metamorphic Testing of DBMS",
+      "page": 10,
+      "char_offset": 50261,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M78",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP [10] decomposes the original query into three partition sub-queries and then constructs an equivalent query by applying the union operator on these three sub-queries.",
+      "context_before": "[39], [40] in DBMSs. AMOEBA [31] constructs a pair of equivalent queries. A significant difference in execution time would indicate a performance issue. Given the seed query, CERT [40] derives a more restrictive query. The cardinality estimated by the derived query should not exceed that of the original query. For detecting logic bugs, DQE [31] focuses on detecting logic bugs in SELECT, UPDATE, and DELETE queries by ensuring that queries with the same predicate access the same rows in the table. NoREC [18] detects optimization bugs in DBMSs by converting optimized queries to unoptimized ones.",
+      "context_after": "Any discrepancies between the result of the original query and the equivalent query indicate a bug. Distinct from NoREC and TLP, Pinolo [19] employs metamorphic testing based on approximate relationships to mutate the seed query. The mutated query results need to match the expected approximate relationships. Although these methods have their strengths, NoREC excels in detecting optimization bugs and identifying issues that other methods may miss. Inspired by NoREC, SemBug retains semantic information to support a broader range of features and detect deeper semantic optimization logic bugs. B.",
+      "section": "A Metamorphic Testing of DBMS",
+      "page": 10,
+      "char_offset": 50360,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M79",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Distinct from NoREC and TLP, Pinolo [19] employs metamorphic testing based on approximate relationships to mutate the seed query.",
+      "context_before": "ld not exceed that of the original query. For detecting logic bugs, DQE [31] focuses on detecting logic bugs in SELECT, UPDATE, and DELETE queries by ensuring that queries with the same predicate access the same rows in the table. NoREC [18] detects optimization bugs in DBMSs by converting optimized queries to unoptimized ones. TLP [10] decomposes the original query into three partition sub-queries and then constructs an equivalent query by applying the union operator on these three sub-queries. Any discrepancies between the result of the original query and the equivalent query indicate a bug.",
+      "context_after": "The mutated query results need to match the expected approximate relationships. Although these methods have their strengths, NoREC excels in detecting optimization bugs and identifying issues that other methods may miss. Inspired by NoREC, SemBug retains semantic information to support a broader range of features and detect deeper semantic optimization logic bugs. B. Differential Testing of DBMS Differential testing [41] discovers bugs by giving the same input to a group of similar systems, and then checking for differences in their execution to find a bug in one of these systems. Similar to",
+      "section": "A Metamorphic Testing of DBMS",
+      "page": 10,
+      "char_offset": 50631,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M80",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Although these methods have their strengths, NoREC excels in detecting optimization bugs and identifying issues that other methods may miss.",
+      "context_before": "e rows in the table. NoREC [18] detects optimization bugs in DBMSs by converting optimized queries to unoptimized ones. TLP [10] decomposes the original query into three partition sub-queries and then constructs an equivalent query by applying the union operator on these three sub-queries. Any discrepancies between the result of the original query and the equivalent query indicate a bug. Distinct from NoREC and TLP, Pinolo [19] employs metamorphic testing based on approximate relationships to mutate the seed query. The mutated query results need to match the expected approximate relationships.",
+      "context_after": "Inspired by NoREC, SemBug retains semantic information to support a broader range of features and detect deeper semantic optimization logic bugs. B. Differential Testing of DBMS Differential testing [41] discovers bugs by giving the same input to a group of similar systems, and then checking for differences in their execution to find a bug in one of these systems. Similar to metamorphic testing, differential testing is another method to tackle test oracle problems in software testing [42]–[45]. For DBMS, it was first applied by RAGS [17], which discovers bugs by executing queries on multiple",
+      "section": "A Metamorphic Testing of DBMS",
+      "page": 10,
+      "char_offset": 50841,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M81",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Inspired by NoREC, SemBug retains semantic information to support a broader range of features and detect deeper semantic optimization logic bugs.",
+      "context_before": "he original query into three partition sub-queries and then constructs an equivalent query by applying the union operator on these three sub-queries. Any discrepancies between the result of the original query and the equivalent query indicate a bug. Distinct from NoREC and TLP, Pinolo [19] employs metamorphic testing based on approximate relationships to mutate the seed query. The mutated query results need to match the expected approximate relationships. Although these methods have their strengths, NoREC excels in detecting optimization bugs and identifying issues that other methods may miss.",
+      "context_after": "B. Differential Testing of DBMS Differential testing [41] discovers bugs by giving the same input to a group of similar systems, and then checking for differences in their execution to find a bug in one of these systems. Similar to metamorphic testing, differential testing is another method to tackle test oracle problems in software testing [42]–[45]. For DBMS, it was first applied by RAGS [17], which discovers bugs by executing queries on multiple different DBMS and comparing their results. While RAGS proves effective, its ability to test SQL queries is limited to a small subset of common SQ",
+      "section": "A Metamorphic Testing of DBMS",
+      "page": 10,
+      "char_offset": 50982,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M82",
+      "found_by": "citation_marker",
+      "surface": "[29]",
+      "technique": null,
+      "sentence": "Many approaches [6], [11], [29], [30], [33], [48] have been proposed for database and query generation.",
+      "context_before": "QL sequences, leveraging the concept of type-affinity to identify meaningful SQL statement pairings. DynSQL [14] generates more complex and valid SQL queriesby utilizing state information after the DBMS process of SQL statements. These fuzzers enhance the validity and diversity of statements to explore a broader space within DBMSs, thereby increasing the likelihood of security bug detection. We believe that the idea of increasing statement diversity can also be helpful in the detection of logic bugs. D. Query Generation of DBMS Query generator plays an important role in DBMS automatic testing.",
+      "context_after": "SQLsmith, inspired by Csmith [49], is a widely used rule-based query generator that has found over 100 bugs in popular DBMS [11]. SQLancer [29] can generate random queries for more than 10 DBMSs. Squirrel [9] employs intermediate representation (IR) and type-based mutation to generate syntactically correct queries, coupled with logic dependencies analysis to mitigate semantic errors. QPG [33] utilizes query plan as guidance to produce statements that have diverse query plans. We believe that an effective query generator can enhance the efficiency of our method for logic bug detection. VII. Co",
+      "section": "D Query Generation of DBMS",
+      "page": 10,
+      "char_offset": 53283,
+      "cited_reference": {
+        "number": 29,
+        "text": "M. Rigger, “Sqlancer,” https://github.com/sqlancer/sqlancer, 2024, accessed: 2024-03-30.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M83",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [29] can generate random queries for more than 10 DBMSs.",
+      "context_before": "e fuzzers enhance the validity and diversity of statements to explore a broader space within DBMSs, thereby increasing the likelihood of security bug detection. We believe that the idea of increasing statement diversity can also be helpful in the detection of logic bugs. D. Query Generation of DBMS Query generator plays an important role in DBMS automatic testing. Many approaches [6], [11], [29], [30], [33], [48] have been proposed for database and query generation. SQLsmith, inspired by Csmith [49], is a widely used rule-based query generator that has found over 100 bugs in popular DBMS [11].",
+      "context_after": "Squirrel [9] employs intermediate representation (IR) and type-based mutation to generate syntactically correct queries, coupled with logic dependencies analysis to mitigate semantic errors. QPG [33] utilizes query plan as guidance to produce statements that have diverse query plans. We believe that an effective query generator can enhance the efficiency of our method for logic bug detection. VII. Conclusion In this paper, we propose SemBug, a novel approach for detecting logic bugs in DBMS. SemBug focuses on detecting optimization bugs. It integrates semantic analysis technology to detect se",
+      "section": "D Query Generation of DBMS",
+      "page": 10,
+      "char_offset": 53517,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M84",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "QPG [33] utilizes query plan as guidance to produce statements that have diverse query plans.",
+      "context_before": "of logic bugs. D. Query Generation of DBMS Query generator plays an important role in DBMS automatic testing. Many approaches [6], [11], [29], [30], [33], [48] have been proposed for database and query generation. SQLsmith, inspired by Csmith [49], is a widely used rule-based query generator that has found over 100 bugs in popular DBMS [11]. SQLancer [29] can generate random queries for more than 10 DBMSs. Squirrel [9] employs intermediate representation (IR) and type-based mutation to generate syntactically correct queries, coupled with logic dependencies analysis to mitigate semantic errors.",
+      "context_after": "We believe that an effective query generator can enhance the efficiency of our method for logic bug detection. VII. Conclusion In this paper, we propose SemBug, a novel approach for detecting logic bugs in DBMS. SemBug focuses on detecting optimization bugs. It integrates semantic analysis technology to detect semantic logic bugs and support advanced DBMS features. Given a query that can be highly optimized, SemBug transforms it into a less optimized one while maintaining the semantic information. Inconsistencies in the cardinality or content of both queries’ results signify the discovery of",
+      "section": "D Query Generation of DBMS",
+      "page": 10,
+      "char_offset": 53774,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    }
+  ],
+  "artifact": {
+    "url": "https://github.com/Syang111/SemBug",
+    "markers": [
+      "renamed_sqlancer_package",
+      "sqlancer_source_content_match"
+    ],
+    "evidence": [
+      {
+        "source_url": "https://github.com/Syang111/SemBug",
+        "source_type": "github_repository",
+        "excerpt": "# SemBug",
+        "note": "Repository is named after Sembug, the tool this paper says it built, and is about database testing.",
+        "retrieved_at": "2026-09-10T15:15:32Z",
+        "first_seen": "2026-09-10T15:15:32Z",
+        "last_verified": "2026-09-10T15:15:32Z",
+        "excerpt_is_verbatim": true
+      },
+      {
+        "source_url": "https://github.com/Syang111/SemBug/blob/master/src/Sonar/Randomly.java",
+        "source_type": "github_code",
+        "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.SOPHISTICATED;",
+        "excerpt_is_verbatim": true,
+        "note": "src/Sonar/Randomly.java is SQLancer's Randomly.java, with the package renamed to Sonar (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+        "content_sha256": "sha256:f9a076f1565f5cd0d81e2adbe85664ce724fb607f37eba6ecc56e1740ca173bc",
+        "retrieved_at": "2026-09-10T15:15:32Z",
+        "first_seen": "2026-09-10T15:15:32Z",
+        "last_verified": "2026-09-10T15:15:32Z"
+      }
+    ]
+  },
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M30"
+      ],
+      "describes_as_state_of_the_art": [
+        "M16",
+        "M60"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T01:51:46Z",
+    "is_model_written": true,
+    "summary": "SemBug detects logic bugs in DBMSs by transforming a query the optimizer can work on heavily into an equivalent but less optimized form and comparing the results. The authors divide prior work in two: approaches that target optimization bugs but check only the cardinality of the result, and approaches that check content as well but handle optimization bugs poorly. SemBug aims to cover both by adding semantic analysis to non-optimizing query construction, which also lets it test features such as aggregates and ORDER BY. It was evaluated on five widely used DBMSs against three baselines.",
+    "narrative": "SemBug is a direct descendant of NoREC: it says it transforms the optimized query into a less optimized one 'inspired by NoREC', and its evaluation treats NoREC, TLP and Pinolo as the state-of-the-art techniques to beat. It also runs on SQLancer's own machinery, using it as the query generator, and its artifact carries SQLancer's source under a renamed package.",
+    "roles": {
+      "M5": "definition",
+      "M6": "motivation",
+      "M7": "background",
+      "M8": "background",
+      "M9": "motivation",
+      "M10": "motivation",
+      "M13": "definition",
+      "M14": "motivation",
+      "M15": "motivation",
+      "M16": "motivation",
+      "M17": "background",
+      "M18": "definition",
+      "M19": "motivation",
+      "M20": "motivation",
+      "M21": "motivation",
+      "M23": "reuse_component",
+      "M25": "reuse_component",
+      "M26": "extension",
+      "M27": "motivation",
+      "M28": "motivation",
+      "M30": "baseline",
+      "M31": "reuse_component"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M23",
+          "M25",
+          "M31"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M23",
+            "sentence": "We use SQLancer [29], a rule-based method for query generation.",
+            "section": "B Database and Query Generation",
+            "page": 4
+          },
+          {
+            "mention_id": "M25",
+            "sentence": "It is noted that although we only use SQLancer to generate queries, SemBug can be integrated with any generation technique.",
+            "section": "B Database and Query Generation",
+            "page": 4
+          },
+          {
+            "mention_id": "M31",
+            "sentence": "Specifically, NoREC, TLP, and SemBug employ SQLancer [29] as the query generator, while Pinolo uses Go-Randgen [30].",
+            "section": "A Experimental Setup",
+            "page": 6
+          }
+        ],
+        "reasoning": "The paper states it uses SQLancer as its query generator, and notes that SemBug could be integrated with any generation technique -- so SQLancer supplies a component rather than the whole framework. The artifact carries SQLancer's source under a renamed package, which agrees.",
+        "reuse_kind": "generator"
+      },
+      "extends_technique": {
+        "value": "yes",
+        "mention_ids": [
+          "M26"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M26",
+            "sentence": "Inspired by NoREC, we transform the optimized query to the less optimized one of the form SELECT 𝛼, P is true AS flag FROM t through moving WHERE clause after the SELECT clause.",
+            "section": "C Transform the Query and Retrieve Semantic Information",
+            "page": 4
+          }
+        ],
+        "reasoning": "M26 states the transformation is inspired by NoREC and describes the same WHERE-to-SELECT rewrite, extended to preserve semantic information rather than only cardinality. That extension is the paper's contribution, not a baseline.",
+        "techniques": [
+          "norec"
+        ]
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M30",
+          "M31"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M30",
+            "sentence": "3)Baselines: We compare SemBug against the state-ofthe-art logic bug detection techniques, namely NoREC [18], TLP [10], and Pinolo [19], respectively.",
+            "section": "A Experimental Setup",
+            "page": 6
+          },
+          {
+            "mention_id": "M31",
+            "sentence": "Specifically, NoREC, TLP, and SemBug employ SQLancer [29] as the query generator, while Pinolo uses Go-Randgen [30].",
+            "section": "A Experimental Setup",
+            "page": 6
+          }
+        ],
+        "reasoning": "NoREC and TLP are two of the three baselines SemBug is measured against, run on the same query generator.",
+        "techniques": [
+          "norec",
+          "tlp"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M30"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M30",
+            "sentence": "3)Baselines: We compare SemBug against the state-ofthe-art logic bug detection techniques, namely NoREC [18], TLP [10], and Pinolo [19], respectively.",
+            "section": "A Experimental Setup",
+            "page": 6
+          }
+        ],
+        "reasoning": "M30 calls NoREC, TLP and Pinolo 'the state-of-the-art logic bug detection techniques'."
+      }
+    },
+    "disagreements": [
+      "The checks did not flag M26, the sentence that establishes the extension, because 'inspired by NoREC' does not match a pattern built around 'we extend'."
+    ],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,27 +1,50 @@
-# Minimal Mistakes remote theme starter
+# sqlancer.github.io
 
-Click [**Use this template**](https://github.com/mmistakes/mm-github-pages-starter/generate) button above for the quickest method of getting started with the [Minimal Mistakes Jekyll theme](https://github.com/mmistakes/minimal-mistakes).
+The website for [SQLancer](https://github.com/sqlancer/sqlancer), built with
+Jekyll and the [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes)
+remote theme, and published through GitHub Pages.
 
-Contains basic configuration to get you a site with:
+## Running it locally
 
-- Sample posts.
-- Sample top navigation.
-- Sample author sidebar with social links.
-- Sample footer links.
-- Paginated home page.
-- Archive pages for posts grouped by year, category, and tag.
-- Sample about page.
-- Sample 404 page.
-- Site wide search.
+```sh
+bundle install
+bundle exec jekyll serve
+```
 
-Replace sample content with your own and [configure as necessary](https://mmistakes.github.io/minimal-mistakes/docs/configuration/).
+## The impact section
 
----
+[`/impact/`](_pages/impact.html) presents what SQLancer has found and what has
+been built on it: bugs by database system and over time, which database system
+projects use SQLancer, and the research that reuses, extends or compares against
+it. Every figure on that page -- and the statistics on the homepage -- is
+computed from structured, evidence-backed records rather than written by hand.
 
-## Troubleshooting
+- **The records** live in [`_data/impact/`](_data/impact/), one JSON file per
+  kind of claim, each validated against a schema in
+  [`schemas/impact/`](schemas/impact/). Every record carries the primary source
+  that justifies it.
+- **The policy** that governs what is admitted is in
+  [`_data/impact/policy.json`](_data/impact/policy.json) and is rendered on the
+  impact page, so the rules the collectors enforce and the rules the page
+  describes cannot drift apart.
+- **The pipeline** that proposes changes to the records is in
+  [`tools/impact/`](tools/impact/) -- see
+  [its README](tools/impact/README.md) for how it works, how to run it, and what
+  it enforces. It runs weekly through
+  [`.github/workflows/impact.yml`](.github/workflows/impact.yml) and opens a pull
+  request; it never writes to `main`.
 
-If you have a question about using Jekyll, start a discussion on the [Jekyll Forum](https://talk.jekyllrb.com/) or [StackOverflow](https://stackoverflow.com/questions/tagged/jekyll). Other resources:
+```sh
+make validate   # schemas and cross-file integrity
+make build      # regenerate derived statistics and charts, then validate
+make test       # the impact test suite
+```
 
-- [Ruby 101](https://jekyllrb.com/docs/ruby-101/)
-- [Setting up a Jekyll site with GitHub Pages](https://jekyllrb.com/docs/github-pages/)
-- [Configuring GitHub Metadata](https://github.com/jekyll/github-metadata/blob/master/docs/configuration.md#configuration) to work properly when developing locally and avoid `No GitHub API authentication could be found. Some fields may be missing or have incorrect data.` warnings.
+`stats.json` and the charts are generated: CI fails if they do not match the
+records they are derived from.
+
+## Corrections
+
+If a bug, paper, integration or resource is missing or wrongly attributed,
+please [open an issue](https://github.com/sqlancer/sqlancer.github.io/issues/new).
+The dataset is meant to be corrected in public.

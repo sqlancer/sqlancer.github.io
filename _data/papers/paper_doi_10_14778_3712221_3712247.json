@@ -1,0 +1,1410 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-10T15:10:02Z",
+  "paper": {
+    "id": "paper:doi:10.14778/3712221.3712247",
+    "title": "Semantic Conformance Testing of Relational DBMS",
+    "authors": [
+      "Shuang Liu",
+      "Chenglin Tian",
+      "Jun Sun",
+      "Ruifeng Wang",
+      "Wei Lu",
+      "Yongxin Zhao",
+      "Yinxing Xue",
+      "Junjie Wang",
+      "Xiaoyong Du"
+    ],
+    "year": 2024,
+    "venue": "Proceedings of the VLDB Endowment",
+    "doi": "10.14778/3712221.3712247",
+    "arxiv_id": "2406.09469",
+    "s2_paper_id": "bb1da01b4752d31f2f96f3abcc5502b58bedbc4e",
+    "url": "https://doi.org/10.14778/3712221.3712247",
+    "also_indexed_as": [
+      "paper:arxiv:2406.09469"
+    ]
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2406.09469",
+      "retrieved_at": "2026-09-10T15:10:02Z",
+      "chars": 97306,
+      "content_sha256": "sha256:27ebd6cab84ea1e46f5013d5a504231dc3986cfdf151d8e4edec4b96c231824d"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 21,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 2287
+      },
+      {
+        "number": "II",
+        "title": "PRELIMINARY",
+        "start": 9638
+      },
+      {
+        "number": "A",
+        "title": "Prolog",
+        "start": 9654
+      },
+      {
+        "number": "III",
+        "title": "FORMAL SEMANTICS OF SQL",
+        "start": 18899
+      },
+      {
+        "number": "A",
+        "title": "Basic symbol definition",
+        "start": 27291
+      },
+      {
+        "number": "B",
+        "title": "Semantics of Expressions",
+        "start": 28352
+      },
+      {
+        "number": "C",
+        "title": "Semantics of SQL keywords",
+        "start": 30947
+      },
+      {
+        "number": "IV",
+        "title": "CONFORMANCE TESTING",
+        "start": 32971
+      },
+      {
+        "number": "A",
+        "title": "Overview of our approach",
+        "start": 32995
+      },
+      {
+        "number": "B",
+        "title": "Coverage guided test case generation",
+        "start": 34590
+      },
+      {
+        "number": "C",
+        "title": "Prolog implementation of SQL formal semantics",
+        "start": 44139
+      },
+      {
+        "number": "D",
+        "title": "Result comparison",
+        "start": 50393
+      },
+      {
+        "number": "E",
+        "title": "Discussion on Extensibility",
+        "start": 51954
+      },
+      {
+        "number": "V",
+        "title": "EVALUATION",
+        "start": 54045
+      },
+      {
+        "number": "A",
+        "title": "Experiment setup",
+        "start": 54602
+      },
+      {
+        "number": "B",
+        "title": "Experiment results",
+        "start": 58389
+      },
+      {
+        "number": "C",
+        "title": "Threats to Validity",
+        "start": 79583
+      },
+      {
+        "number": "VI",
+        "title": "RELATED WORK",
+        "start": 82290
+      },
+      {
+        "number": "VII",
+        "title": "CONCLUSION",
+        "start": 87912
+      },
+      {
+        "number": "J",
+        "title": "Wang, and X. Du, “Conformance testing of relational dbms against",
+        "start": 93944
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "“Amazon,” https://www.amazon.com/, 1995, accessed on November 10, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "“ebay,” https://www.ebay.com/, 1995, accessed on November 10, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "“Mysql,” https://www.mysql.com, 1995, accessed on November 10, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "“Booking,” https://www.booking.com/, 1996, accessed on November 10, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "“Postgresql,” https://www.postgresql.org, 1996, accessed on November 10, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "“Sqlite,” https://www.sqlite.org/index.html, 2000, accessed on November 10, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "“Facebook,” https://www.facebook.com/, 2004, accessed on November 10, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "“Jsqlparser,” https://github.com/JSQLParser/JSqlParser, 2011, accessed on November 10, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "“International organization for standardization. (2016). iso/iec 90752:2016: Information technology – database languages – sql/foundation,” 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "“Iso/iec 9075-2:2016,” https://www.iso.org/standard/63555.html, 2016, accessed on November 10, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "“Oceanbase,” https://en.oceanbase.com/, 2016, accessed on November 10, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "“Tidb,” https://www.pingcap.com/tidb/, 2016, accessed on November 10, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "“Duckdb,” https://duckdb.org, 2019, accessed on November 10, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "“Sqlancer,” https://github.com/sqlancer/sqlancer, 2019, accessed on November 10, 2023.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 15,
+      "text": "“An error occurred when the cast function converted the numerical value in the form of scientific notation,” https://sqlite.org/forum/forumpost/ 3f085531bf, 2022, accessed on November 11, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "V. Benzaken and E. Contejean, “A coq mechanised formal semantics for realistic sql queries: formally reconciling sql and bag relational algebra,” inProceedings of the 8th ACMSIGPLAN International Conference on Certified Programs and Proofs, 2019, pp. 249–261.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "J. Castelein, M. Aniche, M. Soltani, A. Panichella, and A. van Deursen, “Search-based test data generation for sql queries,” in Proceedings of the 40th international conference on software engineering, 2018, pp. 1220–1230.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "S. Ceri and G. Gottlob, “Translating sql into relational algebra: Optimization, semantics, and equivalence of sql queries,” IEEE Transactions on software engineering, no. 4, pp. 324–345, 1985.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "T. Y. Chen, S. C. Cheung, and S. Yiu, “Metamorphic testing: A new approach for generating next test cases,” CoRR, vol. abs/2002.12543, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "T. Y. Chen, F. Kuo, H. Liu, P. Poon, D. Towey, T. H. Tse, and Z. Q. Zhou, “Metamorphic testing: A review of challenges and opportunities,” ACM Comput. Surv., vol. 51, no. 1, pp. 4:1–4:27, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "X. Chen, C. Wang, and A. Cheung, “Testing query execution engines with mutations,” in Proceedings of the workshop on Testing Database Systems, 2020, pp. 1–5.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "J. Cheney and W. Ricciotti, “Comprehending nulls,” in The 18th International Symposium on Database Programming Languages, 2021, pp. 3–6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "H. R. Chinaei, “An ordered bag semantics for sql,” Master’s thesis, University of Waterloo, 2007.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "S. Chu, C. Wang, K. Weitz, and A. Cheung, “Cosette: An automated prover for sql.” in CIDR, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "S. Chu, K. Weitz, A. Cheung, and D. Suciu, “Hottsql: Proving query rewrites with univalent sql semantics,” ACMSIGPLAN Notices, vol. 52, no. 6, pp. 510–524, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "W. F. Clocksin and C. S. Mellish, Programming in PROLOG. Springer Science & Business Media, 2003.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "J. Fu, J. Liang, Z. Wu, M. Wang, and Y. Jiang, “Griffin: Grammarfree dbms fuzzing,” in Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering, 2022, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "B. Ghit, N. Poggi, J. Rosen, R. Xin, and P. Boncz, “Sparkfuzz: Searching correctness regressions in modern query engines,” in Proceedings of the workshop on Testing Database Systems, 2020, pp. 1–6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "P. Guagliardo and L. Libkin, “A formal semantics of sql queries, its validation, and applications,” Proceedings of the VLDB Endowment, vol. 11, no. 1, pp. 27–39, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "International Organization for Standardization, Information technology – Database languages – SQL – Part 2: Foundation (SQL/Foundation), 2016, no. 9075-2:2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "——, Information technology – Database languages – SQL – Part 2: Foundation (SQL/Foundation), 2016, no. 9075-2:2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "J. Jiao, S. Kan, S.-W. Lin, D. Sanan, Y. Liu, and J. Sun, “Semantic understanding of smart contracts: Executable operational semantics of solidity,” in. IEEE, 2020, pp. 1695–1712.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "J. Jung, H. Hu, J. Arulraj, T. Kim, and W. Kang, “Apollo: Automatic detection and diagnosis of performance regressions in database systems,” Proceedings of the VLDB Endowment, vol. 13, no. 1, pp. 57–70, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Y. Liang, S. Liu, and H. Hu, “Detecting logical bugs of {DBMS } with coverage-based guidance,” in 31st USENIX Security Symposium (USENIX Security 22), 2022, pp. 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "S. Liu, C. Tian, J. Sun, R. Wang, W. Lu, Y. Zhao, Y. Xue, J. Wang, and X. Du, “Conformance testing of relational dbms against sql specifications (technical report),” https://github.com/DBMSTesting/ Technical-report, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "G. Malecha, G. Morrisett, A. Shinnar, and R. Wisnesky, “Toward a verified relational database management system,” in Proceedings of the 37th annual ACMSIGPLAN-SIGACT symposium on Principles of programming languages, 2010, pp. 237–248.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "M. Mitzenmacher and E. Upfal, Probability and Computing: Randomization and Probabilistic Techniques in Algorithms and Data Analysis, 2nd ed. USA: Cambridge University Press, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "M. Negri, G. Pelagatti, and L. Sbattella, “Formal semantics of sql queries,” ACM Transactions on Database Systems (TODS), vol. 16, no. 3, pp. 513–534, 1991.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "W. Ricciotti and J. Cheney, “A formalization of sql with nulls,” Journal of Automated Reasoning, vol. 66, no. 4, pp. 989–1030, 2022. 21",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 41,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 1–30, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 42,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 43,
+      "text": "G. Ros ,u and T. F. S ,erb˘anut˘a, “An overview of the k semantic framework,” The Journal of Logic and Algebraic Programming, vol. 79, no. 6, pp. 397–434, 2010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "R. Schumi and J. Sun, “Exais: executable ai semantics,” in Proceedings of the 44th International Conference on Software Engineering, 2022, pp. 859–870.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "S. Segura, G. Fraser, A. B. S ´anchez, and A. R. Cort ´es, “A survey on metamorphic testing,” IEEE Trans. Software Eng., vol. 42, no. 9, pp. 805–824, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "A. Seltenreich, B. Tang, and S. Mullender, “Sqlsmith,” 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "D. R. Slutz, “Massive stochastic testing of sql,” in VLDB, vol. 98. Citeseer, 1998, pp. 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "J. Van den Bussche and S. Vansummeren, “Translating sql into the relational algebra,” Course notes, Hasselt University and Universit ´e Libre de Bruxelles, 2009.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "M. Veanes, N. Tillmann, and J. De Halleux, “Qex: Symbolic sql query explorer,” in Logic for Programming, Artificial Intelligence, and Reasoning: 16th International Conference, LPAR-16, Dakar, Senegal, April 25–May 1, 2010, Revised Selected Papers 16. Springer, 2010, pp. 425–446.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "M. Wang, Z. Wu, X. Xu, J. Liang, C. Zhou, H. Zhang, and Y. Jiang, “Industry practice of coverage-guided enterprise-level dbms fuzzing,” in ing: Software Engineering in Practice (ICSE-SEIP). IEEE, 2021, pp. 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Q. Zhou, J. Arulraj, S. Navathe, W. Harris, and J. Wu, “A symbolic approach to proving query equivalence under bag semantics,” arXiv preprint arXiv:2004.00481, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Z. Zhou, S. Xiang, and T. Y. Chen, “Metamorphic testing for software quality assessment: A study of search engines,” IEEE Trans. Software Eng., vol. 42, no. 3, pp. 264–284, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "X. Zhu, S. Wen, S. Camtepe, and Y. Xiang, “Fuzzing: a survey for roadmap,” ACM Computing Surveys (CSUR), vol. 54, no. 11s, pp. 1–36, 2022.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 14,
+      "text": "“Sqlancer,” https://github.com/sqlancer/sqlancer, 2019, accessed on November 10, 2023.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 40,
+      "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 41,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 1–30, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 42,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[14]",
+      "technique": null,
+      "sentence": "The serious impacts of bugs in RDBMS have been discussed by various existing studies [14], [34], [40], [41], and thus it is critical to detect those bugs.",
+      "context_before": "uage for relational databases, and its specification is formally documented in ISO/IEC 9075:2016 [10]. As the parser and executor of SQL queries, an RDBMS should conform to the SQL specification to ensure the correct implementation of the semantics. As of 2023, there are more than 416 different implementations of relational databases, yet many of these implementations deviate from the specification [18], [47], [53]. Bugs have also been reported due to violations of the SQL specifications [15], which may potentially lead to data integrity issues or even security vulnerabilities in the database.",
+      "context_after": "As the golden standard for correct SQL behavior, the specification of SQL should be clearly described, and an RDBMS should conform to the SQL specification. Inconsistencies between RDBMS implementations and the specification can lead to unexpected results. Figure 1 presents two motivating examples, one bug and one inconsistency that our approach detected. Figure 1a is a SQL query that triggers a bug in TiDB version 6.6.01, which occurs when performing a bitwise operation on negative numbers, which are by default signed numbers. The root cause is that TiDB incorrectly represents the result of",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 3156,
+      "cited_reference": {
+        "number": 14,
+        "text": "“Sqlancer,” https://github.com/sqlancer/sqlancer, 2019, accessed on November 10, 2023.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[40]–[42]",
+      "technique": "norec",
+      "sentence": "However, existing approaches on testing RDBMSs either use different RDBMSs as the test oracle [47] or propose metamorphic relations [34], [40]–[42].",
+      "context_before": "ific data type in SQL representing unknown data. This inconsistency poses substantial challenges for users of database systems. When transitioning between databases and leveraging features with inconsistent implementations, users may encounter unexpected outcomes. From the motivational examples, we observe that failing to respect the SQL specification or unclearly documented specifications can result in bugs or inconsistent implementations across different RDBMSs, potentially confusing users. Therefore, it is critical to test the conformance of RDBMS implementations with the SQL specification.",
+      "context_after": "None of those approaches consider testing the conformance of RDBMS implementations with SQL specifications. Consequently, they are only scratching the surface in evaluating the correctness of RDBMS. To address the issue of automatic conformance testing between SQL specifications and RDBMS implementations, two main challenges arise. Firstly, the SQL specification is written in natural language, which is not directly executable. Secondly, it is challenging to generate test queries that comprehensively 3 cover all aspects defined in the SQL specification, including descriptions of keywords and p",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 6680,
+      "cited_reference": {
+        "number": 40,
+        "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Here, we 10 enhance the syntax-guided generation method, SQLancer [14], with coverage-guided test case generation.",
+      "context_before": "g 7, we first introduced the combination rules of different types of keyword semantics (semantic rule 102), and then we introduce the composite semantics based on those rules (semantic rules 103-104). IV. CONFORMANCE TESTING A. Overview of our approach Figure 8 illustrates the overview of our conformance testing approach, which consists of four components. Initially, we define the formal semantics of SQL, as detailed in Section III. Next, we implement the SQL formal semantics in Prolog, which serves as an oracle for conformance testing. The third component is dedicated to test case generation.",
+      "context_after": "This enhancement is based on three coverage criteria, i.e., keyword coverage, rule coverage, and composite rule coverage, which we proposed based on the formal semantics we defined. The final component is dedicated to query results comparison, wherein the query results of the tested RDBMS and our Prolog implementation are compared to identify conformance issues. Conformance issues in our work refer to two types of issues, i.e., bugs or inconsistencies. Both issues are due to violating the SQL semantics defined in the SQL specification, or unclear or missing descriptions in the SQL specificati",
+      "section": "A Overview of our approach",
+      "page": 9,
+      "char_offset": 33370,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Coverage guided test case generation The state-of-the-art practice in test case generation involves randomly generating SQL queries guided by the syntax of SQL, among which SQLancer [14] stands out as one of the most effective tools of this kind.",
+      "context_before": "s defined in the SQL specification, or unclear or missing descriptions in the SQL specification. Bugs are defects that are confirmed by developers. Inconsistencies refer to inconsistent result produced by the tested RDBMS and SEMCONT. Inconsistencies are also confirmed by developers, yet they perceive them as deliberate design choices rather than bugs. We report these inconsistencies because various RDBMSs make differing design decisions, leading to varied query results that may potentially perplex users. This also underscore the importance of a comprehensively documented SQL specification. B.",
+      "context_after": "It is tailored to the syntactical structures of various RDBMSs. SQLancer considers database objects, such as tables, views, and indexes, as well as keywords and functionalities within query statements. Throughout the generation process, SQLancer maintains a set of keywords and functionalities, from which it randomly selects keywords to incorporate into the test cases, subject to syntactic rules of SQL (so that they remain syntactically valid). However, this generation process is entirely random and does not consider coverage of the SQL semantics. As a result, certain aspects of the semantics",
+      "section": "B Coverage guided test case generation",
+      "page": 10,
+      "char_offset": 34592,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer considers database objects, such as tables, views, and indexes, as well as keywords and functionalities within query statements.",
+      "context_before": "deliberate design choices rather than bugs. We report these inconsistencies because various RDBMSs make differing design decisions, leading to varied query results that may potentially perplex users. This also underscore the importance of a comprehensively documented SQL specification. B. Coverage guided test case generation The state-of-the-art practice in test case generation involves randomly generating SQL queries guided by the syntax of SQL, among which SQLancer [14] stands out as one of the most effective tools of this kind. It is tailored to the syntactical structures of various RDBMSs.",
+      "context_after": "Throughout the generation process, SQLancer maintains a set of keywords and functionalities, from which it randomly selects keywords to incorporate into the test cases, subject to syntactic rules of SQL (so that they remain syntactically valid). However, this generation process is entirely random and does not consider coverage of the SQL semantics. As a result, certain aspects of the semantics may never be tested. To address this problem, we propose three coverage criteria, i.e., keyword coverage, rule coverage, and composite rule coverage, based on the formal semantics we defined. Each cover",
+      "section": "B Coverage guided test case generation",
+      "page": 10,
+      "char_offset": 34903,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Throughout the generation process, SQLancer maintains a set of keywords and functionalities, from which it randomly selects keywords to incorporate into the test cases, subject to syntactic rules of SQL (so that they remain syntactically valid).",
+      "context_before": "g to varied query results that may potentially perplex users. This also underscore the importance of a comprehensively documented SQL specification. B. Coverage guided test case generation The state-of-the-art practice in test case generation involves randomly generating SQL queries guided by the syntax of SQL, among which SQLancer [14] stands out as one of the most effective tools of this kind. It is tailored to the syntactical structures of various RDBMSs. SQLancer considers database objects, such as tables, views, and indexes, as well as keywords and functionalities within query statements.",
+      "context_after": "However, this generation process is entirely random and does not consider coverage of the SQL semantics. As a result, certain aspects of the semantics may never be tested. To address this problem, we propose three coverage criteria, i.e., keyword coverage, rule coverage, and composite rule coverage, based on the formal semantics we defined. Each coverage criterion defines coverage at a different granularity level. Keyword coverage simply assesses whether each individual keyword in the SQL specification is covered. Rule coverage goes a step further by calculating whether each semantic rule, wh",
+      "section": "B Coverage guided test case generation",
+      "page": 10,
+      "char_offset": 35041,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We adopt SQLancer to randomly generatea large number of SQL statements (line 2), which serves as the seed pool of our query generation algorithm.",
+      "context_before": "and match the rules based on the parameter or input of that keyword. In this case, the SELECT rule that takes a column list as input and the FROM rule that takes one table as input are matched to form the composite rule covered by the given query. The time complexity of Algorithm 3 is O(n) with n being the number of operators in the given SQL query. Coverage-guided query generation. Algorithm 2 describes the process of query generation guided by coverage. We set the initial coverage to be 0 and the declare covered set (coveredSet ), which records the covered keywords, rules, or combined rules.",
+      "context_after": "The algorithm begins with randomly selecting an SQL statement from the seed pool (line 6), and mutates the query based on the mutation rules we proposed. Then we calculate coverage of the mutated query (line 8). We keep this mutation process (line 5-9) until the mutated query increases the overall coverage. Then the mutated query is added into the seed pool for future test case generation. The mutated query is executed to explore potential inconsistencies (line 11). The process terminates upon timeout. Function CalculateCoverage calculates the coverage of the given query. It first checks whet",
+      "section": "B Coverage guided test case generation",
+      "page": 11,
+      "char_offset": 41312,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker",
+      "surface": "[40]",
+      "technique": "norec",
+      "sentence": "It is important to note that we used the latest release of each RDBMS, which has been extensively tested by existing approaches [40], [41].",
+      "context_before": "e conducted all experiments on a server with two Intel(R) Xeon(R) Platinum 8260 CPUs at 2.30 GHz and 502 GB of memory, running Ubuntu 18.04.6 LTS. The SQL formal semantics were implemented in Prolog, while the SQL query generation program was developed in Java. We ran the experiments using Java version 11.0.15.1. Target RDBMS. We selected six popular and widely used RDBMSs, each offering a range of distinct features and application scenarios, to demonstrate the effectiveness of our approach. The statistics of these RDBMSs, as obtained from their opensource repositories, are shown in Table III.",
+      "context_after": "MySQL [3] and PostgreSQL [5] are the two most popular open-source database management systems. SQLite [6] and DuckDB [13] are both embedded DBMSs, running within the process of other applications. TiDB [12] and OceanBase [11] are popular distributed RDBMSs. 14 TABLE IV: Bugs and inconsistencies detected by SEMCONT SNID Target Type Reason Status 1 109146 MySQL Bug missing spec duplicate 2 109837 MySQL Bug missing spec comfirmed 3 109842 MySQL Bug missing spec comfirmed 4 109149 MySQL Bug missing spec comfirmed 5 110438 MySQL Bug violate spec comfirmed 6 109147 MySQL Inconsistency missing spec",
+      "section": "A Experiment setup",
+      "page": 13,
+      "char_offset": 55223,
+      "cited_reference": {
+        "number": 40,
+        "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "We compared SEMCONT with TLP [41] and NoREC [40], which are state-of-the-art metamorphic testing methods for testing RDBMS.",
+      "context_before": "irmed 21 42378 TiDB Bug violate spec comfirmed 22 42379 TiDB Bug violate spec comfirmed 23 42377 TiDB Bug violate spec comfirmed 24 42773 TiDB Inconsistency missing spec comfirmed 25 40995 TiDB Inconsistency missing spec comfirmed 26 7e03a4420a SQLite Bug missing spec comfirmed 27 3f085531bf SQLite Bug missing spec comfirmed 28 6e4d3e389e SQLite Bug violate spec comfirmed 29 411bce39d0 SQLite Inconsistency missing spec comfirmed 30 6804 DuckDB Bug violate spec fixed 31 2104 OceanBase Inconsistency missing spec confirmed 32 2105 OceanBase Inconsistency missing spec confirmed Compared baselines.",
+      "context_after": "NoREC constructs two semantically equivalent queries, one triggers the optimization and the other does not, executes the queries and compare the results. TLP, on the other hand, partitions the conditional expression of the original query into three segments, corresponding to the three possible results, i.e., TRUE, FALSE, and NULL, of the conditional expression. It then compares the union of the result sets from executing the three queries with the three segments each, with the result set of the original statement, expecting them to be identical. Both approaches have demonstrated effectiveness",
+      "section": "A Experiment setup",
+      "page": 14,
+      "char_offset": 57222,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC constructs two semantically equivalent queries, one triggers the optimization and the other does not, executes the queries and compare the results.",
+      "context_before": "rmed 24 42773 TiDB Inconsistency missing spec comfirmed 25 40995 TiDB Inconsistency missing spec comfirmed 26 7e03a4420a SQLite Bug missing spec comfirmed 27 3f085531bf SQLite Bug missing spec comfirmed 28 6e4d3e389e SQLite Bug violate spec comfirmed 29 411bce39d0 SQLite Inconsistency missing spec comfirmed 30 6804 DuckDB Bug violate spec fixed 31 2104 OceanBase Inconsistency missing spec confirmed 32 2105 OceanBase Inconsistency missing spec confirmed Compared baselines. We compared SEMCONT with TLP [41] and NoREC [40], which are state-of-the-art metamorphic testing methods for testing RDBMS.",
+      "context_after": "TLP, on the other hand, partitions the conditional expression of the original query into three segments, corresponding to the three possible results, i.e., TRUE, FALSE, and NULL, of the conditional expression. It then compares the union of the result sets from executing the three queries with the three segments each, with the result set of the original statement, expecting them to be identical. Both approaches have demonstrated effectiveness in RDBMS bug detection. Both NoREC and TLP are implemented in SQLancer [14] and SQLRight [34]. SQLancer adopts a generative approach for query generation",
+      "section": "A Experiment setup",
+      "page": 14,
+      "char_offset": 57346,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP, on the other hand, partitions the conditional expression of the original query into three segments, corresponding to the three possible results, i.",
+      "context_before": "27 3f085531bf SQLite Bug missing spec comfirmed 28 6e4d3e389e SQLite Bug violate spec comfirmed 29 411bce39d0 SQLite Inconsistency missing spec comfirmed 30 6804 DuckDB Bug violate spec fixed 31 2104 OceanBase Inconsistency missing spec confirmed 32 2105 OceanBase Inconsistency missing spec confirmed Compared baselines. We compared SEMCONT with TLP [41] and NoREC [40], which are state-of-the-art metamorphic testing methods for testing RDBMS. NoREC constructs two semantically equivalent queries, one triggers the optimization and the other does not, executes the queries and compare the results.",
+      "context_after": "e., TRUE, FALSE, and NULL, of the conditional expression. It then compares the union of the result sets from executing the three queries with the three segments each, with the result set of the original statement, expecting them to be identical. Both approaches have demonstrated effectiveness in RDBMS bug detection. Both NoREC and TLP are implemented in SQLancer [14] and SQLRight [34]. SQLancer adopts a generative approach for query generation and SQLRight adopts a mutation-based approach for generating queries. Therefore, in our experiment, we have four combined settings (concerning the oracl",
+      "section": "A Experiment setup",
+      "page": 14,
+      "char_offset": 57500,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Both NoREC and TLP are implemented in SQLancer [14] and SQLRight [34].",
+      "context_before": "mantically equivalent queries, one triggers the optimization and the other does not, executes the queries and compare the results. TLP, on the other hand, partitions the conditional expression of the original query into three segments, corresponding to the three possible results, i.e., TRUE, FALSE, and NULL, of the conditional expression. It then compares the union of the result sets from executing the three queries with the three segments each, with the result set of the original statement, expecting them to be identical. Both approaches have demonstrated effectiveness in RDBMS bug detection.",
+      "context_after": "SQLancer adopts a generative approach for query generation and SQLRight adopts a mutation-based approach for generating queries. Therefore, in our experiment, we have four combined settings (concerning the oracle and query generation method) for the compared baselines, i.e., NoREC (SQLancer), NoREC (SQLRight), TLP (SQLancer) and TLP (SQLRight). B. Experiment results RQ1: Bugs and inconsistencies. We ran SEMCONT on four RDBMSs for a period of 3 months and reported the detected issues to the corresponding developer communities. Table IV shows the details of the confirmed bugs and inconsistencie",
+      "section": "A Experiment setup",
+      "page": 14,
+      "char_offset": 57970,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer adopts a generative approach for query generation and SQLRight adopts a mutation-based approach for generating queries.",
+      "context_before": "her does not, executes the queries and compare the results. TLP, on the other hand, partitions the conditional expression of the original query into three segments, corresponding to the three possible results, i.e., TRUE, FALSE, and NULL, of the conditional expression. It then compares the union of the result sets from executing the three queries with the three segments each, with the result set of the original statement, expecting them to be identical. Both approaches have demonstrated effectiveness in RDBMS bug detection. Both NoREC and TLP are implemented in SQLancer [14] and SQLRight [34].",
+      "context_after": "Therefore, in our experiment, we have four combined settings (concerning the oracle and query generation method) for the compared baselines, i.e., NoREC (SQLancer), NoREC (SQLRight), TLP (SQLancer) and TLP (SQLRight). B. Experiment results RQ1: Bugs and inconsistencies. We ran SEMCONT on four RDBMSs for a period of 3 months and reported the detected issues to the corresponding developer communities. Table IV shows the details of the confirmed bugs and inconsistencies in four RDBMSs detected by SEMCONT. We have submitted 32 issues and 19 of them are confirmed by the developers as bugs. Out of",
+      "section": "A Experiment setup",
+      "page": 14,
+      "char_offset": 58041,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ", NoREC (SQLancer), NoREC (SQLRight), TLP (SQLancer) and TLP (SQLRight).",
+      "context_before": "en compares the union of the result sets from executing the three queries with the three segments each, with the result set of the original statement, expecting them to be identical. Both approaches have demonstrated effectiveness in RDBMS bug detection. Both NoREC and TLP are implemented in SQLancer [14] and SQLRight [34]. SQLancer adopts a generative approach for query generation and SQLRight adopts a mutation-based approach for generating queries. Therefore, in our experiment, we have four combined settings (concerning the oracle and query generation method) for the compared baselines, i.e.",
+      "context_after": "B. Experiment results RQ1: Bugs and inconsistencies. We ran SEMCONT on four RDBMSs for a period of 3 months and reported the detected issues to the corresponding developer communities. Table IV shows the details of the confirmed bugs and inconsistencies in four RDBMSs detected by SEMCONT. We have submitted 32 issues and 19 of them are confirmed by the developers as bugs. Out of the issues identified, 23 are related to scalarexpressions and 9 to other keywords, including joins and various relational operators. Our primary objective is to detect inconsistencies between RDBMS implementations and",
+      "section": "A Experiment setup",
+      "page": 14,
+      "char_offset": 58316,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "citation_marker",
+      "surface": "[40]–\n[42]",
+      "technique": "norec",
+      "sentence": "They are also under-specified in the SQL standard and insufficiently tested by existing approaches [34], [40]– [42].",
+      "context_before": "es and 19 of them are confirmed by the developers as bugs. Out of the issues identified, 23 are related to scalarexpressions and 9 to other keywords, including joins and various relational operators. Our primary objective is to detect inconsistencies between RDBMS implementations and the SQL specification by generating test cases that achieve high coverage across different SQL keywords. Our implementation focuses on scalar expressions, query expressions, and predicates. Among these, scalar expressions are the most complex, as they often involve combinations of multiple keywords and subqueries.",
+      "context_after": "In contrast, query expressions and predicates are clearly defined in the SQL specification, leading to fewer ambiguities across RDBMSs. Moreover, they have been extensively tested by prior research [34], [40]–[42], making it more challenging to uncover new inconsistencies. Among the confirmed bugs, 1 has been reported previously and 1 has been fixed. The remaining 13 issues are confirmed as inconsistencies, and the developers claim that they were their design choices. Among the 13 inconsistencies, 2 of them are due to violation of the SQL specification and 11 of them are due to unclear descri",
+      "section": "B Experiment results",
+      "page": 14,
+      "char_offset": 59304,
+      "cited_reference": {
+        "number": 40,
+        "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "citation_marker",
+      "surface": "[40]–[42]",
+      "technique": "norec",
+      "sentence": "Moreover, they have been extensively tested by prior research [34], [40]–[42], making it more challenging to uncover new inconsistencies.",
+      "context_before": "tween RDBMS implementations and the SQL specification by generating test cases that achieve high coverage across different SQL keywords. Our implementation focuses on scalar expressions, query expressions, and predicates. Among these, scalar expressions are the most complex, as they often involve combinations of multiple keywords and subqueries. They are also under-specified in the SQL standard and insufficiently tested by existing approaches [34], [40]– [42]. In contrast, query expressions and predicates are clearly defined in the SQL specification, leading to fewer ambiguities across RDBMSs.",
+      "context_after": "Among the confirmed bugs, 1 has been reported previously and 1 has been fixed. The remaining 13 issues are confirmed as inconsistencies, and the developers claim that they were their design choices. Among the 13 inconsistencies, 2 of them are due to violation of the SQL specification and 11 of them are due to unclear descriptions in the SQL specification. Developers of different RDBMSs could have different interpretations on the SQL specification, and thus design and implement their RDBMS differently. Among the nine inconsistencies arising from unclear standard descriptions, eight inconsisten",
+      "section": "B Experiment results",
+      "page": 14,
+      "char_offset": 59557,
+      "cited_reference": {
+        "number": 40,
+        "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "citation_marker",
+      "surface": "[40]–[42]",
+      "technique": "norec",
+      "sentence": "It is noteworthy that all four databases have been extensively tested by existing methods [40]–[42], yet SEMCONTis still able to detect bugs that were not detected by those approaches.",
+      "context_before": "SQL specification and 11 of them are due to unclear descriptions in the SQL specification. Developers of different RDBMSs could have different interpretations on the SQL specification, and thus design and implement their RDBMS differently. Among the nine inconsistencies arising from unclear standard descriptions, eight inconsistencies were detected in both MySQL (109147, 109148, 109836, 109845, 109962, 110711) and TiDB (42773, 40995). The queries triggering the inconsistencies have the same results when executed in MySQL, TiDB, and MariaDB databases, and are different from that of PostgreSQL.",
+      "context_after": "By a careful inspection on the detected bugs, we find that most of them indeed violate the SQL specification. One of the most representative bugs is related to the mishandling of NULL operands in keyword operations. According to the SQL specification, “ If the value of one or more, <string value expression >s,<datetime value expression >s,<interval value expression >s, and <collection value expression >s that are simply contained in a <numeric value function >is the NULL value, then the result of the <numeric value function >is the NULL value ” [30]. However, MySQL violates the specification b",
+      "section": "B Experiment results",
+      "page": 14,
+      "char_offset": 60562,
+      "cited_reference": {
+        "number": 40,
+        "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In Figure 9, SQLancer+ keyword syntax represents the setting of adding keywords and the corresponding generation rules which were not supported by SQLancer.",
+      "context_before": "onsistencies are either due to RDBMS violating the SQL specification, or missing or unclear SQL specification. RQ2: Effectiveness of the coverage criteria? We measure the effectiveness of the proposed coverage criteria in two aspects, i.e., whether they are effective in guiding generating test cases that achieve higher coverage, and whether they are effective in guiding generating test cases that uncover unknown bugs or inconsistencies. The experiment results on keyword coverage, rule coverage and composite rule coverage improvement are shown in Figure 9, Figure 10 and Figure 11, respectively.",
+      "context_after": "SQLancer+ keyword syntax greatly improved the keyword coverage for all four databases. Notably, within the first 1500 SQL statements, over 80% of the keywords were covered on all four databases, with SQLite achieving an impressive keyword coverage of 99%. Keyword coverage guided query generation (SQLancer+ keyword coverage) further improves the keyword coverage, and achieved 100% keyword coverage within the first 200 generate queries for all databases, demonstrating the effectiveness of our keyword-guided query generation method. Figure 10 shows the results on rule coverage, which show simila",
+      "section": "B Experiment results",
+      "page": 15,
+      "char_offset": 65358,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M19",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer+ keyword syntax greatly improved the keyword coverage for all four databases.",
+      "context_before": "We measure the effectiveness of the proposed coverage criteria in two aspects, i.e., whether they are effective in guiding generating test cases that achieve higher coverage, and whether they are effective in guiding generating test cases that uncover unknown bugs or inconsistencies. The experiment results on keyword coverage, rule coverage and composite rule coverage improvement are shown in Figure 9, Figure 10 and Figure 11, respectively.In Figure 9, SQLancer+ keyword syntax represents the setting of adding keywords and the corresponding generation rules which were not supported by SQLancer.",
+      "context_after": "Notably, within the first 1500 SQL statements, over 80% of the keywords were covered on all four databases, with SQLite achieving an impressive keyword coverage of 99%. Keyword coverage guided query generation (SQLancer+ keyword coverage) further improves the keyword coverage, and achieved 100% keyword coverage within the first 200 generate queries for all databases, demonstrating the effectiveness of our keyword-guided query generation method. Figure 10 shows the results on rule coverage, which show similar trend with that on keyword coverage. Due to the limited support of SQL features, e.g.",
+      "section": "B Experiment results",
+      "page": 15,
+      "char_offset": 65514,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M20",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Keyword coverage guided query generation (SQLancer+ keyword coverage) further improves the keyword coverage, and achieved 100% keyword coverage within the first 200 generate queries for all databases, demonstrating the effectiveness of our keyword-guided query generation method.",
+      "context_before": "own bugs or inconsistencies. The experiment results on keyword coverage, rule coverage and composite rule coverage improvement are shown in Figure 9, Figure 10 and Figure 11, respectively.In Figure 9, SQLancer+ keyword syntax represents the setting of adding keywords and the corresponding generation rules which were not supported by SQLancer. SQLancer+ keyword syntax greatly improved the keyword coverage for all four databases. Notably, within the first 1500 SQL statements, over 80% of the keywords were covered on all four databases, with SQLite achieving an impressive keyword coverage of 99%.",
+      "context_after": "Figure 10 shows the results on rule coverage, which show similar trend with that on keyword coverage. Due to the limited support of SQL features, e.g., data types, by SQLancer, especially for DBMS such as DuckDB and TiDB, relying only on SQLancer achieves low rule coverage, as shown in Figure 10. Therefore, we add those missing features in SQLancer for the corresponding DBMS query generation and refer this as SQLancer + rule syntax. We can observe that adding those missing features improves the rule coverage, especially for DuckDB and TiDB. Rule coverage-guided query generation (SQLancer+ rul",
+      "section": "B Experiment results",
+      "page": 15,
+      "char_offset": 65770,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M21",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ", data types, by SQLancer, especially for DBMS such as DuckDB and TiDB, relying only on SQLancer achieves low rule coverage, as shown in Figure 10.",
+      "context_before": "Notably, within the first 1500 SQL statements, over 80% of the keywords were covered on all four databases, with SQLite achieving an impressive keyword coverage of 99%. Keyword coverage guided query generation (SQLancer+ keyword coverage) further improves the keyword coverage, and achieved 100% keyword coverage within the first 200 generate queries for all databases, demonstrating the effectiveness of our keyword-guided query generation method. Figure 10 shows the results on rule coverage, which show similar trend with that on keyword coverage. Due to the limited support of SQL features, e.g.",
+      "context_after": "Therefore, we add those missing features in SQLancer for the corresponding DBMS query generation and refer this as SQLancer + rule syntax. We can observe that adding those missing features improves the rule coverage, especially for DuckDB and TiDB. Rule coverage-guided query generation (SQLancer+ rule coverage) achieves the highest rule coverage with the fewest number of queries. The results indicate the effectiveness of our rule coverage-guided query generation algorithm. Figure 11 depicts the improvements in composite rule coverage by the generated queries for the four databases. With SQLan",
+      "section": "B Experiment results",
+      "page": 15,
+      "char_offset": 66201,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M22",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Therefore, we add those missing features in SQLancer for the corresponding DBMS query generation and refer this as SQLancer + rule syntax.",
+      "context_before": "yword coverage of 99%. Keyword coverage guided query generation (SQLancer+ keyword coverage) further improves the keyword coverage, and achieved 100% keyword coverage within the first 200 generate queries for all databases, demonstrating the effectiveness of our keyword-guided query generation method. Figure 10 shows the results on rule coverage, which show similar trend with that on keyword coverage. Due to the limited support of SQL features, e.g., data types, by SQLancer, especially for DBMS such as DuckDB and TiDB, relying only on SQLancer achieves low rule coverage, as shown in Figure 10.",
+      "context_after": "We can observe that adding those missing features improves the rule coverage, especially for DuckDB and TiDB. Rule coverage-guided query generation (SQLancer+ rule coverage) achieves the highest rule coverage with the fewest number of queries. The results indicate the effectiveness of our rule coverage-guided query generation algorithm. Figure 11 depicts the improvements in composite rule coverage by the generated queries for the four databases. With SQLancer, which conducts random query generation, we observed that the increase in composite rule coverage tends to plateau after generating 60",
+      "section": "B Experiment results",
+      "page": 15,
+      "char_offset": 66348,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M23",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Rule coverage-guided query generation (SQLancer+ rule coverage) achieves the highest rule coverage with the fewest number of queries.",
+      "context_before": "veness of our keyword-guided query generation method. Figure 10 shows the results on rule coverage, which show similar trend with that on keyword coverage. Due to the limited support of SQL features, e.g., data types, by SQLancer, especially for DBMS such as DuckDB and TiDB, relying only on SQLancer achieves low rule coverage, as shown in Figure 10. Therefore, we add those missing features in SQLancer for the corresponding DBMS query generation and refer this as SQLancer + rule syntax. We can observe that adding those missing features improves the rule coverage, especially for DuckDB and TiDB.",
+      "context_after": "The results indicate the effectiveness of our rule coverage-guided query generation algorithm. Figure 11 depicts the improvements in composite rule coverage by the generated queries for the four databases. With SQLancer, which conducts random query generation, we observed that the increase in composite rule coverage tends to plateau after generating 60 million data points. At this stage, MySQL, SQLite, DuckDB and OceanBase each achieved a composite rule coverage of around 70% and TiDB 50%. With the introduction of composite rule coverage guidance, all four databases were able to reach 100% co",
+      "section": "B Experiment results",
+      "page": 15,
+      "char_offset": 66597,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M24",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "With SQLancer, which conducts random query generation, we observed that the increase in composite rule coverage tends to plateau after generating 60 million data points.",
+      "context_before": "Figure 10. Therefore, we add those missing features in SQLancer for the corresponding DBMS query generation and refer this as SQLancer + rule syntax. We can observe that adding those missing features improves the rule coverage, especially for DuckDB and TiDB. Rule coverage-guided query generation (SQLancer+ rule coverage) achieves the highest rule coverage with the fewest number of queries. The results indicate the effectiveness of our rule coverage-guided query generation algorithm. Figure 11 depicts the improvements in composite rule coverage by the generated queries for the four databases.",
+      "context_after": "At this stage, MySQL, SQLite, DuckDB and OceanBase each achieved a composite rule coverage of around 70% and TiDB 50%. With the introduction of composite rule coverage guidance, all four databases were able to reach 100% composite rule coverage after generating 20 million queries (our Prolog implementation has a total of 19 million composite rules). The results indicate the effectiveness of our composite rule coverage-guided query generation algorithm. To verify the effectiveness of the coverage-guided query generation algorithm in assisting detecting bugs and inconsistencies in relational DB",
+      "section": "B Experiment results",
+      "page": 15,
+      "char_offset": 66937,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M25",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Note that to conduct fair comparisons, we improved SQLancer by incorporating all keywords supported by our semantics and related generation rules in SEMCONT.",
+      "context_before": "uided query generation algorithm. To verify the effectiveness of the coverage-guided query generation algorithm in assisting detecting bugs and inconsistencies in relational DBMS, we conducted an ablation study of SEMCONT with and without coverage guidance. Table V] presents the experimental results obtained from testing four databases over a period of 6 hours. We record the number of bugs and inconsistencies detected on the four settings, i.e., SEMCONT without coverage guidance, and SEMCONT with three coverage guidance. We also report the time taken to discover the first bug or inconsistency.",
+      "context_after": "The experimental results indicate that within a 6-hour timeframe, all three coverage metrics successfully assist detecting more bugs and inconsistencies compared with random generation. Composite rule coverage is the most effective among all three coverage metrics. In terms of the time taken to detect the first bug or inconsistency, all three coverage guidance algorithm are faster than SEMCONT with 16 (a) MySQL (b) TiDB (c) SQLite (d) DuckDB (e) OceanBase (f) PostgreSQL Fig. 9: The keyword coverage increment (y-axis) with the number of queries (x-axis) (a) MySQL (b) TiDB (c) SQLite (d",
+      "section": "B Experiment results",
+      "page": 15,
+      "char_offset": 68131,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M26",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "We compare SEMCONT with two state-of-the-art approaches TLP [40] and NoREC [41], which are metamorphic testing approaches for relational DBMS.",
+      "context_before": "5 2 7.46 7 2 8.62 SQLite 1 1 20.50 2 1 17.83 3 1 14.33 3 1 13.05 DuckDB 1 0 29.37 1 0 27.32 1 0 31.68 1 0 26.29 OceanBase 0 2 13.25 0 2 13.37 0 2 7.92 0 2 9.13 random query generation. In particular, keyword coverage, rule coverage and composite rule coverage are 5.22%, 24.19% and 21.41% faster than random query generation. Answer to RQ2: The three coverage criteria all improve the query generating process, triggering more bugs and inconsistencies with faster speed. Composite rule coverage achieves the most significant improvement. RQ3: How does SEMCONT perform compared to baseline approaches?",
+      "context_after": "For both approaches, we adopt SQLancer [14] and SQLRight [34] for query generation. Notably, SQLancer does not support the NoREC oracle for MySQL and TiDB, while SQLRight does not support TiDB, DuckDB and OceanBase. Therefore, we excluded these specific scenarios from our experiments. We ran the comparedtools for a period of 6 hours and report the results in Table VI. The experimental results show that both SQLancer and SQLRight using the NoREC as the oracle were unable to detect new bugs or inconsistencies. The TLP oracle with SQLancer for query generation detected 4 bugs in three databases,",
+      "section": "B Experiment results",
+      "page": 16,
+      "char_offset": 70163,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M27",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For both approaches, we adopt SQLancer [14] and SQLRight [34] for query generation.",
+      "context_before": "2 7.92 0 2 9.13 random query generation. In particular, keyword coverage, rule coverage and composite rule coverage are 5.22%, 24.19% and 21.41% faster than random query generation. Answer to RQ2: The three coverage criteria all improve the query generating process, triggering more bugs and inconsistencies with faster speed. Composite rule coverage achieves the most significant improvement. RQ3: How does SEMCONT perform compared to baseline approaches? We compare SEMCONT with two state-of-the-art approaches TLP [40] and NoREC [41], which are metamorphic testing approaches for relational DBMS.",
+      "context_after": "Notably, SQLancer does not support the NoREC oracle for MySQL and TiDB, while SQLRight does not support TiDB, DuckDB and OceanBase. Therefore, we excluded these specific scenarios from our experiments. We ran the comparedtools for a period of 6 hours and report the results in Table VI. The experimental results show that both SQLancer and SQLRight using the NoREC as the oracle were unable to detect new bugs or inconsistencies. The TLP oracle with SQLancer for query generation detected 4 bugs in three databases, and with SQLRight for query generation detectd 1 bug in MySQL. SEMCONT outperformed",
+      "section": "B Experiment results",
+      "page": 16,
+      "char_offset": 70306,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M28",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Notably, SQLancer does not support the NoREC oracle for MySQL and TiDB, while SQLRight does not support TiDB, DuckDB and OceanBase.",
+      "context_before": "rage and composite rule coverage are 5.22%, 24.19% and 21.41% faster than random query generation. Answer to RQ2: The three coverage criteria all improve the query generating process, triggering more bugs and inconsistencies with faster speed. Composite rule coverage achieves the most significant improvement. RQ3: How does SEMCONT perform compared to baseline approaches? We compare SEMCONT with two state-of-the-art approaches TLP [40] and NoREC [41], which are metamorphic testing approaches for relational DBMS. For both approaches, we adopt SQLancer [14] and SQLRight [34] for query generation.",
+      "context_after": "Therefore, we excluded these specific scenarios from our experiments. We ran the comparedtools for a period of 6 hours and report the results in Table VI. The experimental results show that both SQLancer and SQLRight using the NoREC as the oracle were unable to detect new bugs or inconsistencies. The TLP oracle with SQLancer for query generation detected 4 bugs in three databases, and with SQLRight for query generation detectd 1 bug in MySQL. SEMCONT outperformed the compared approaches and detected 16 bugs and 9 inconsistencies in the four databases. The reason is that existing approaches do",
+      "section": "B Experiment results",
+      "page": 16,
+      "char_offset": 70390,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M29",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The experimental results show that both SQLancer and SQLRight using the NoREC as the oracle were unable to detect new bugs or inconsistencies.",
+      "context_before": "ignificant improvement. RQ3: How does SEMCONT perform compared to baseline approaches? We compare SEMCONT with two state-of-the-art approaches TLP [40] and NoREC [41], which are metamorphic testing approaches for relational DBMS. For both approaches, we adopt SQLancer [14] and SQLRight [34] for query generation. Notably, SQLancer does not support the NoREC oracle for MySQL and TiDB, while SQLRight does not support TiDB, DuckDB and OceanBase. Therefore, we excluded these specific scenarios from our experiments. We ran the comparedtools for a period of 6 hours and report the results in Table VI.",
+      "context_after": "The TLP oracle with SQLancer for query generation detected 4 bugs in three databases, and with SQLRight for query generation detectd 1 bug in MySQL. SEMCONT outperformed the compared approaches and detected 16 bugs and 9 inconsistencies in the four databases. The reason is that existing approaches do not consider the SQL specification and thus fail to find bugs that violated the SQL specification. For instance, One bug (109842) we detected in MySQL is related to the MOD function. When applied to negative numbers, MySQL incorrectly represents the result as-0. Both TLP and NoREC failed to detec",
+      "section": "B Experiment results",
+      "page": 16,
+      "char_offset": 70677,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M30",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The TLP oracle with SQLancer for query generation detected 4 bugs in three databases, and with SQLRight for query generation detectd 1 bug in MySQL.",
+      "context_before": "TLP [40] and NoREC [41], which are metamorphic testing approaches for relational DBMS. For both approaches, we adopt SQLancer [14] and SQLRight [34] for query generation. Notably, SQLancer does not support the NoREC oracle for MySQL and TiDB, while SQLRight does not support TiDB, DuckDB and OceanBase. Therefore, we excluded these specific scenarios from our experiments. We ran the comparedtools for a period of 6 hours and report the results in Table VI. The experimental results show that both SQLancer and SQLRight using the NoREC as the oracle were unable to detect new bugs or inconsistencies.",
+      "context_after": "SEMCONT outperformed the compared approaches and detected 16 bugs and 9 inconsistencies in the four databases. The reason is that existing approaches do not consider the SQL specification and thus fail to find bugs that violated the SQL specification. For instance, One bug (109842) we detected in MySQL is related to the MOD function. When applied to negative numbers, MySQL incorrectly represents the result as-0. Both TLP and NoREC failed to detect this bug, even after successfully generated the bug triggering query. On average, our tool finds a bug in 67 minutes using 19,381 test cases, compa",
+      "section": "B Experiment results",
+      "page": 16,
+      "char_offset": 70820,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M31",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Both TLP and NoREC failed to detect this bug, even after successfully generated the bug triggering query.",
+      "context_before": "detect new bugs or inconsistencies. The TLP oracle with SQLancer for query generation detected 4 bugs in three databases, and with SQLRight for query generation detectd 1 bug in MySQL. SEMCONT outperformed the compared approaches and detected 16 bugs and 9 inconsistencies in the four databases. The reason is that existing approaches do not consider the SQL specification and thus fail to find bugs that violated the SQL specification. For instance, One bug (109842) we detected in MySQL is related to the MOD function. When applied to negative numbers, MySQL incorrectly represents the result as-0.",
+      "context_after": "On average, our tool finds a bug in 67 minutes using 19,381 test cases, compared to 300 minutes and 1.3 million test cases for SQLancer, and 30 hours and 8.4 million test cases for SQLRight. Our approach finds more bugs/inconsistencies 17 TABLE VI: The bugs and inconsistencies detected by SQLancer, SQLRight and SEMCONT in 6h DBMSTLP (SQLancer) NoREC (SQLancer) TLP (SQLRight) NoREC (SQLRight) SEMCONT Bugs Inconsistencies Bugs Inconsistencies Bugs Inconsistencies Bugs Inconsistencies Bugs Inconsistencies MySQL 1 0 - - 1 0 0 0 5 6 TiDB 2 0 - - - - - - 7 2 SQLite 0 1 0 0 0 0 0 0 3 1 DuckDB 1 0 0",
+      "section": "B Experiment results",
+      "page": 16,
+      "char_offset": 71385,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M32",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "3 million test cases for SQLancer, and 30 hours and 8.",
+      "context_before": "compared approaches and detected 16 bugs and 9 inconsistencies in the four databases. The reason is that existing approaches do not consider the SQL specification and thus fail to find bugs that violated the SQL specification. For instance, One bug (109842) we detected in MySQL is related to the MOD function. When applied to negative numbers, MySQL incorrectly represents the result as-0. Both TLP and NoREC failed to detect this bug, even after successfully generated the bug triggering query. On average, our tool finds a bug in 67 minutes using 19,381 test cases, compared to 300 minutes and 1.",
+      "context_after": "4 million test cases for SQLRight. Our approach finds more bugs/inconsistencies 17 TABLE VI: The bugs and inconsistencies detected by SQLancer, SQLRight and SEMCONT in 6h DBMSTLP (SQLancer) NoREC (SQLancer) TLP (SQLRight) NoREC (SQLRight) SEMCONT Bugs Inconsistencies Bugs Inconsistencies Bugs Inconsistencies Bugs Inconsistencies Bugs Inconsistencies MySQL 1 0 - - 1 0 0 0 5 6 TiDB 2 0 - - - - - - 7 2 SQLite 0 1 0 0 0 0 0 0 3 1 DuckDB 1 0 0 0 - - - - 1 0 OceanBase 0 1 0 0 - - - - 0 2 with fewer test cases, demonstrating its effectiveness and efficiency in detecting bugs and inconsistencies that",
+      "section": "B Experiment results",
+      "page": 16,
+      "char_offset": 71594,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M33",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Our approach finds more bugs/inconsistencies 17 TABLE VI: The bugs and inconsistencies detected by SQLancer, SQLRight and SEMCONT in 6h DBMSTLP (SQLancer) NoREC (SQLancer) TLP (SQLRight) NoREC (SQLRight) SEMCONT Bugs Inconsistencies Bugs Inconsistencies Bugs Inconsistencies Bugs Inconsistencies Bugs Inconsistencies MySQL 1 0 - - 1 0 0 0 5 6 TiDB 2 0 - - - - - - 7 2 SQLite 0 1 0 0 0 0 0 0 3 1 DuckDB 1 0 0 0 - - - - 1 0 OceanBase 0 1 0 0 - - - - 0 2 with fewer test cases, demonstrating its effectiveness and efficiency in detecting bugs and inconsistencies that violating SQL specifications.",
+      "context_before": "he reason is that existing approaches do not consider the SQL specification and thus fail to find bugs that violated the SQL specification. For instance, One bug (109842) we detected in MySQL is related to the MOD function. When applied to negative numbers, MySQL incorrectly represents the result as-0. Both TLP and NoREC failed to detect this bug, even after successfully generated the bug triggering query. On average, our tool finds a bug in 67 minutes using 19,381 test cases, compared to 300 minutes and 1.3 million test cases for SQLancer, and 30 hours and 8.4 million test cases for SQLRight.",
+      "context_after": "(a) MySQL (b) TiDB (c) SQLite (d) DuckDB (e) OceanBase (f) PostgreSQL Fig. 12: The memory consumption of SEMCONT with SQLancer. Memory Consumption. Figure 12 and Figure 13 shows the memory usage of SEMCONT and SQLancer during a 6-hour test on six databases. Memory usage is mainly influenced by query generation, execution, and result comparison, with query generation being the most memory-intensive. We report stabilized memory consumption, with detailed time-based changes provided in our technical report [35]. Results indicate that SEMCONT’s memory usage is comparable to the baseline. Memor",
+      "section": "B Experiment results",
+      "page": 16,
+      "char_offset": 71682,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M34",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "12: The memory consumption of SEMCONT with SQLancer.",
+      "context_before": "nconsistencies detected by SQLancer, SQLRight and SEMCONT in 6h DBMSTLP (SQLancer) NoREC (SQLancer) TLP (SQLRight) NoREC (SQLRight) SEMCONT Bugs Inconsistencies Bugs Inconsistencies Bugs Inconsistencies Bugs Inconsistencies Bugs Inconsistencies MySQL 1 0 - - 1 0 0 0 5 6 TiDB 2 0 - - - - - - 7 2 SQLite 0 1 0 0 0 0 0 0 3 1 DuckDB 1 0 0 0 - - - - 1 0 OceanBase 0 1 0 0 - - - - 0 2 with fewer test cases, demonstrating its effectiveness and efficiency in detecting bugs and inconsistencies that violating SQL specifications. (a) MySQL (b) TiDB (c) SQLite (d) DuckDB (e) OceanBase (f) PostgreSQL Fig.",
+      "context_after": "Memory Consumption. Figure 12 and Figure 13 shows the memory usage of SEMCONT and SQLancer during a 6-hour test on six databases. Memory usage is mainly influenced by query generation, execution, and result comparison, with query generation being the most memory-intensive. We report stabilized memory consumption, with detailed time-based changes provided in our technical report [35]. Results indicate that SEMCONT’s memory usage is comparable to the baseline. Memory consumption is low because we use small tables (a few hundred records). We do not test concurrent query execution, resulting in s",
+      "section": "B Experiment results",
+      "page": 17,
+      "char_offset": 72355,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M35",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Figure 12 and Figure 13 shows the memory usage of SEMCONT and SQLancer during a 6-hour test on six databases.",
+      "context_before": "SQLancer) NoREC (SQLancer) TLP (SQLRight) NoREC (SQLRight) SEMCONT Bugs Inconsistencies Bugs Inconsistencies Bugs Inconsistencies Bugs Inconsistencies Bugs Inconsistencies MySQL 1 0 - - 1 0 0 0 5 6 TiDB 2 0 - - - - - - 7 2 SQLite 0 1 0 0 0 0 0 0 3 1 DuckDB 1 0 0 0 - - - - 1 0 OceanBase 0 1 0 0 - - - - 0 2 with fewer test cases, demonstrating its effectiveness and efficiency in detecting bugs and inconsistencies that violating SQL specifications. (a) MySQL (b) TiDB (c) SQLite (d) DuckDB (e) OceanBase (f) PostgreSQL Fig. 12: The memory consumption of SEMCONT with SQLancer. Memory Consumption.",
+      "context_after": "Memory usage is mainly influenced by query generation, execution, and result comparison, with query generation being the most memory-intensive. We report stabilized memory consumption, with detailed time-based changes provided in our technical report [35]. Results indicate that SEMCONT’s memory usage is comparable to the baseline. Memory consumption is low because we use small tables (a few hundred records). We do not test concurrent query execution, resulting in stable memory usage. Our goal is to detect compliance bugs in RDBMSs, not to evaluate performance. SEMCONT is designed for offline",
+      "section": "B Experiment results",
+      "page": 17,
+      "char_offset": 72428,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M36",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "13: Memory consumption of SEMCONT and SQLancer 1SELECT MOD( ’ −12 ’ ,-4); 2−−e x p e c t e d: 0 \", a c t u a l :−0 % Fig.",
+      "context_before": "t concurrent query execution, resulting in stable memory usage. Our goal is to detect compliance bugs in RDBMSs, not to evaluate performance. SEMCONT is designed for offline testing during RDBMS development, and its overhead is manageable. SEMCONT shows very low memory consumption and it requires far less test cases to detect a compliance issue, demonstrating its efficiency. Answer to RQ3: SEMCONT detected more bugs and inconsistencies than the compared baseline approaches. Baseline approaches fail to detect those bugs since they do not refer to SQL specification in their testing process. Fig.",
+      "context_after": "14: A bug in MySQL 8.0.29 RQ4: Case study. SEMCONT has identified 19 bugs and 13 inconsistencies, which arise from two reasons, i.e., (1) DBMS implementations are not consistent with SQL specification and (2) unclear or missing description in the SQL specification. These problems have resulted in variations in the specific implementations across different RDBMSs, consequently affecting the user experience. A bug due to missing specifications. Figure 14 is a bug we detected in MySQL 8.0.29. The query conducts MOD function with the string type as the first parameter. The expected result of the",
+      "section": "B Experiment results",
+      "page": 17,
+      "char_offset": 73564,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": [],
+      "text_is_letter_spaced": true
+    },
+    {
+      "id": "M37",
+      "found_by": "citation_marker",
+      "surface": "[40]–[42]",
+      "technique": "norec",
+      "sentence": "Numerous testing methods involve constructing a test oracle by proposing a variety of metamorphic relations [21], [28], [40]–[42].",
+      "context_before": "rammar-based mutations. Furthermore, it boosts the accuracy of feedback through the use of binary coverage linking and bijective block mapping, thereby enhancing the overall performance of RDBMS testing. SparkFuzz [28] introduces a fuzzing-based method that utilizes the query results from a reference database as test oracles. The effectiveness of these differential testing methods is limited by the shared functionalities and syntax supported across the databases under test. Moreover, they may yield false positives due to the varied implementation choices inherent in different database systems.",
+      "context_after": "MUTASQL [21] and Eqsql [17] are tools that construct test cases by defining mutation rules. These rules are used to generate or synthesize SQL query statements that are functionally equivalent to the original ones. In recent years, SQLancer [14] has emerged as the most effective black-box fuzz testing tool, distinguished by its adoption of three complementary oracles [40]–[42]. PQS [42] operates by first selecting a row of data, and then synthesizing a query based on this selected data. The design of the query is such that it must return the initially chosen row. Thisapproach detects bugs by",
+      "section": "VI RELATED WORK",
+      "page": 19,
+      "char_offset": 83989,
+      "cited_reference": {
+        "number": 40,
+        "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M38",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In recent years, SQLancer [14] has emerged as the most effective black-box fuzz testing tool, distinguished by its adoption of three complementary oracles [40]–[42].",
+      "context_before": "of these differential testing methods is limited by the shared functionalities and syntax supported across the databases under test. Moreover, they may yield false positives due to the varied implementation choices inherent in different database systems. Numerous testing methods involve constructing a test oracle by proposing a variety of metamorphic relations [21], [28], [40]–[42]. MUTASQL [21] and Eqsql [17] are tools that construct test cases by defining mutation rules. These rules are used to generate or synthesize SQL query statements that are functionally equivalent to the original ones.",
+      "context_after": "PQS [42] operates by first selecting a row of data, and then synthesizing a query based on this selected data. The design of the query is such that it must return the initially chosen row. Thisapproach detects bugs by verifying whether the returned result includes the specific row of data. NoREC [40] transforms an optimized SQL query into an equivalent non-optimized version and then compares the execution results of both. TLP [41] divides a SQL query into three separate SQL statements that collectively retain the same semantics as the original query. If the results of executing the original q",
+      "section": "VI RELATED WORK",
+      "page": 19,
+      "char_offset": 84335,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M39",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS [42] operates by first selecting a row of data, and then synthesizing a query based on this selected data.",
+      "context_before": "sitives due to the varied implementation choices inherent in different database systems. Numerous testing methods involve constructing a test oracle by proposing a variety of metamorphic relations [21], [28], [40]–[42]. MUTASQL [21] and Eqsql [17] are tools that construct test cases by defining mutation rules. These rules are used to generate or synthesize SQL query statements that are functionally equivalent to the original ones. In recent years, SQLancer [14] has emerged as the most effective black-box fuzz testing tool, distinguished by its adoption of three complementary oracles [40]–[42].",
+      "context_after": "The design of the query is such that it must return the initially chosen row. Thisapproach detects bugs by verifying whether the returned result includes the specific row of data. NoREC [40] transforms an optimized SQL query into an equivalent non-optimized version and then compares the execution results of both. TLP [41] divides a SQL query into three separate SQL statements that collectively retain the same semantics as the original query. If the results of executing the original query differ from those obtained from the three divided queries, it likely indicates the presence of logical err",
+      "section": "VI RELATED WORK",
+      "page": 19,
+      "char_offset": 84501,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M40",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC [40] transforms an optimized SQL query into an equivalent non-optimized version and then compares the execution results of both.",
+      "context_before": "ning mutation rules. These rules are used to generate or synthesize SQL query statements that are functionally equivalent to the original ones. In recent years, SQLancer [14] has emerged as the most effective black-box fuzz testing tool, distinguished by its adoption of three complementary oracles [40]–[42]. PQS [42] operates by first selecting a row of data, and then synthesizing a query based on this selected data. The design of the query is such that it must return the initially chosen row. Thisapproach detects bugs by verifying whether the returned result includes the specific row of data.",
+      "context_after": "TLP [41] divides a SQL query into three separate SQL statements that collectively retain the same semantics as the original query. If the results of executing the original query differ from those obtained from the three divided queries, it likely indicates the presence of logical errors. SQLRight [34] focuses on enhancing the semantic correctness of generated SQL queries and adopts the oracles proposed by PQS [42], NoREC [40], and TLP [41]. GRIFFIN [27] executes mutation testing within the grammatical boundaries of SQL language, transforming data into metadata for this purpose. While metamorp",
+      "section": "VI RELATED WORK",
+      "page": 19,
+      "char_offset": 84792,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M41",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP [41] divides a SQL query into three separate SQL statements that collectively retain the same semantics as the original query.",
+      "context_before": "al ones. In recent years, SQLancer [14] has emerged as the most effective black-box fuzz testing tool, distinguished by its adoption of three complementary oracles [40]–[42]. PQS [42] operates by first selecting a row of data, and then synthesizing a query based on this selected data. The design of the query is such that it must return the initially chosen row. Thisapproach detects bugs by verifying whether the returned result includes the specific row of data. NoREC [40] transforms an optimized SQL query into an equivalent non-optimized version and then compares the execution results of both.",
+      "context_after": "If the results of executing the original query differ from those obtained from the three divided queries, it likely indicates the presence of logical errors. SQLRight [34] focuses on enhancing the semantic correctness of generated SQL queries and adopts the oracles proposed by PQS [42], NoREC [40], and TLP [41]. GRIFFIN [27] executes mutation testing within the grammatical boundaries of SQL language, transforming data into metadata for this purpose. While metamorphic testing approaches address syntax differences arising from various database implementations, consistently returned results do n",
+      "section": "VI RELATED WORK",
+      "page": 19,
+      "char_offset": 84927,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M42",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "SQLRight [34] focuses on enhancing the semantic correctness of generated SQL queries and adopts the oracles proposed by PQS [42], NoREC [40], and TLP [41].",
+      "context_before": "design of the query is such that it must return the initially chosen row. Thisapproach detects bugs by verifying whether the returned result includes the specific row of data. NoREC [40] transforms an optimized SQL query into an equivalent non-optimized version and then compares the execution results of both. TLP [41] divides a SQL query into three separate SQL statements that collectively retain the same semantics as the original query. If the results of executing the original query differ from those obtained from the three divided queries, it likely indicates the presence of logical errors.",
+      "context_after": "GRIFFIN [27] executes mutation testing within the grammatical boundaries of SQL language, transforming data into metadata for this purpose. While metamorphic testing approaches address syntax differences arising from various database implementations, consistently returned results do not always guarantee the absence of bugs. Furthermore, these methods fall short in detecting bugs caused by violations of SQL specifications. Formal semantics for SQL. There have been several approaches [18], [24], [25], [36], [38], [48], [49] that made attempts to formalize the semantics of SQL. Chinaei [23] was",
+      "section": "VI RELATED WORK",
+      "page": 19,
+      "char_offset": 85216,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "uses_infrastructure": [
+        "M12"
+      ],
+      "compares_with": [
+        "M9",
+        "M26"
+      ],
+      "describes_as_state_of_the_art": [
+        "M4",
+        "M9",
+        "M26",
+        "M38"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:12:40Z",
+    "is_model_written": true,
+    "summary": "This paper introduces semantic conformance testing for relational DBMSs -- checking a system against the semantics of SQL rather than against another system. Two obstacles are identified: the standard is written in ambiguous natural language and is not executable, and it is hard to generate queries covering all its keywords and parameters. The authors formally define SQL's denotational semantics and implement them in Prolog as an executable reference, then add coverage criteria over those semantics and a coverage-guided generation algorithm. Across six widely used RDBMSs it uncovered 19 bugs and 13 inconsistencies, all confirmed.",
+    "narrative": "SEMCONT is built on SQLancer, whose syntax-guided generation it enhances with coverage guidance and uses as the seed pool for its own query generation. TLP and NoREC are then its baselines, described as state-of-the-art metamorphic testing methods and run in both their SQLancer and SQLRight implementations.",
+    "roles": {
+      "M3": "reuse_implementation",
+      "M4": "state_of_the_art",
+      "M5": "definition",
+      "M6": "definition",
+      "M7": "reuse_component",
+      "M9": "state_of_the_art",
+      "M10": "definition",
+      "M11": "definition",
+      "M12": "baseline",
+      "M13": "background",
+      "M14": "baseline",
+      "M18": "extension",
+      "M19": "result_comparison",
+      "M20": "result_comparison"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M3",
+          "M7",
+          "M12"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M3",
+            "sentence": "Here, we 10 enhance the syntax-guided generation method, SQLancer [14], with coverage-guided test case generation.",
+            "section": "A Overview of our approach",
+            "page": 9
+          },
+          {
+            "mention_id": "M7",
+            "sentence": "We adopt SQLancer to randomly generatea large number of SQL statements (line 2), which serves as the seed pool of our query generation algorithm.",
+            "section": "B Coverage guided test case generation",
+            "page": 11
+          },
+          {
+            "mention_id": "M12",
+            "sentence": "Both NoREC and TLP are implemented in SQLancer [14] and SQLRight [34].",
+            "section": "A Experiment setup",
+            "page": 14
+          }
+        ],
+        "reasoning": "M3 says the approach enhances SQLancer's syntax-guided generation with coverage guidance, and M7 that SQLancer is adopted to generate the seed pool the query generation works from.",
+        "reuse_kind": "implementation"
+      },
+      "extends_technique": {
+        "value": "uncertain",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "M18 describes adding keywords and generation rules SQLancer did not support, which extends the tool's generator rather than one of the named oracles. Nothing shown claims to extend PQS, NoREC or TLP."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M9",
+          "M12",
+          "M14"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M9",
+            "sentence": "We compared SEMCONT with TLP [41] and NoREC [40], which are state-of-the-art metamorphic testing methods for testing RDBMS.",
+            "section": "A Experiment setup",
+            "page": 14
+          },
+          {
+            "mention_id": "M12",
+            "sentence": "Both NoREC and TLP are implemented in SQLancer [14] and SQLRight [34].",
+            "section": "A Experiment setup",
+            "page": 14
+          },
+          {
+            "mention_id": "M14",
+            "sentence": ", NoREC (SQLancer), NoREC (SQLRight), TLP (SQLancer) and TLP (SQLRight).",
+            "section": "A Experiment setup",
+            "page": 14
+          }
+        ],
+        "reasoning": "TLP and NoREC are the baselines, run in both their SQLancer and SQLRight implementations.",
+        "techniques": [
+          "tlp",
+          "norec"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M4",
+          "M9"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M4",
+            "sentence": "Coverage guided test case generation The state-of-the-art practice in test case generation involves randomly generating SQL queries guided by the syntax of SQL, among which SQLancer [14] stands out as one of the most effective tools of this kind.",
+            "section": "B Coverage guided test case generation",
+            "page": 10
+          },
+          {
+            "mention_id": "M9",
+            "sentence": "We compared SEMCONT with TLP [41] and NoREC [40], which are state-of-the-art metamorphic testing methods for testing RDBMS.",
+            "section": "A Experiment setup",
+            "page": 14
+          }
+        ],
+        "reasoning": "M9 calls TLP and NoREC state-of-the-art metamorphic testing methods for RDBMSs, and M4 describes syntax-guided random generation as the state-of-the-art practice."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

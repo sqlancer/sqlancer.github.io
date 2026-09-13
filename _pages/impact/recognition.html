@@ -1,0 +1,58 @@
+---
+permalink: /impact/recognition/
+title: "Papers calling SQLancer state of the art"
+excerpt: "Every paper that describes SQLancer or one of its techniques as the state of the art, with the sentence it says it in."
+author_profile: false
+toc: true
+toc_label: "On this page"
+toc_sticky: true
+---
+
+{%- comment -%}
+The full list. The impact page quotes the papers whose recognition stands on
+its own; most of the rest say it while naming their comparison set, which the
+comparison section there already shows. Neither is more true than the other,
+so the whole list lives here rather than being cut.
+
+Which papers are quoted on the impact page is recorded in
+_data/impact/recognition_highlights.json, with the reason for each.
+{%- endcomment -%}
+{%- assign impact = site.data.impact -%}
+{%- assign stats = impact.stats -%}
+{%- assign external_papers = impact.papers.papers | where_exp: "p", "p.is_sqlancer_publication != true" -%}
+{%- assign sota_papers = "" | split: "" -%}
+{%- for paper in external_papers -%}
+  {%- if paper.relationships.describes_as_state_of_the_art.value == "yes" -%}
+    {%- assign sota_papers = sota_papers | push: paper -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<div class="impact" markdown="0">
+
+<p class="impact-breadcrumb">
+  <a href="{{ '/impact/#papers' | relative_url }}">&larr; Research building on SQLancer</a>
+</p>
+
+<p>
+  Recognition rather than reuse: these papers describe SQLancer or one of its
+  techniques as the state of the art, the most effective, or the approach that
+  established the field. That is a different claim from building on it, so it
+  counts towards no figure on the
+  <a href="{{ '/impact/' | relative_url }}">impact page</a> &mdash; not the
+  {{ stats.headline.papers_reusing_or_extending_sqlancer }} that reuse or
+  extend SQLancer, nor the
+  {{ stats.headline.papers_comparing_against_sqlancer }} that compare against
+  it. Each entry quotes the sentence itself.
+</p>
+
+<h2 id="all">Every paper ({{ sota_papers.size }})</h2>
+
+{% include impact/paper-list.html papers=sota_papers relationship="describes_as_state_of_the_art" %}
+
+<p class="impact-meta">
+  Every quotation is stored verbatim from the paper's extracted text. The
+  <a href="{{ '/impact/#methodology' | relative_url }}">attribution policy</a>
+  explains what has to be true for this classification to be recorded.
+</p>
+
+</div>

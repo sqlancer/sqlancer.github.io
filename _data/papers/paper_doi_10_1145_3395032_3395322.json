@@ -1,0 +1,210 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:27:29Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3395032.3395322",
+    "title": "Testing query execution engines with mutations",
+    "authors": [
+      "Xinyue Chen",
+      "Chenglong Wang",
+      "Alvin Cheung"
+    ],
+    "year": 2020,
+    "venue": "DBTest@SIGMOD",
+    "doi": "10.1145/3395032.3395322",
+    "arxiv_id": null,
+    "s2_paper_id": "a49a96c561c10177764e63817fecf814b04a1739",
+    "url": "https://doi.org/10.1145/3395032.3395322",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3395032.3395322",
+      "retrieved_at": "2026-09-08T15:27:29Z",
+      "chars": 24801,
+      "content_sha256": "sha256:b79b79f8ccfaa0be9c99a63156d835b801a15880903ad48fafd088f80aef3f30"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 5,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 1543
+      },
+      {
+        "number": "2",
+        "title": "SYSTEM OVERVIEW",
+        "start": 6328
+      },
+      {
+        "number": "3",
+        "title": "INSIDE MUTASQL",
+        "start": 11643
+      },
+      {
+        "number": "4",
+        "title": "EXPERIMENTS",
+        "start": 16600
+      },
+      {
+        "number": "4.1",
+        "title": "Reproducing Known SQLite Bugs",
+        "start": 17308
+      },
+      {
+        "number": "4.2",
+        "title": "Discovering New Bugs in SQLite 3.31.1",
+        "start": 20101
+      },
+      {
+        "number": "5",
+        "title": "RELATED WORK",
+        "start": 21648
+      },
+      {
+        "number": "6",
+        "title": "CONCLUSION",
+        "start": 23409
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Hardik Bati, Leo Giakoumakis, Steve Herbert, and Aleksandras Surna. 2007. A genetic approach for random testing of database systems. In Proceedings of the 33rd international conference on Very large data bases. VLDB Endowment, 1243–1251.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. 2014. Compiler validation via equivalence modulo inputs. In ACMSIGPLAN Notices, Vol. 49. ACM, 216–226.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. arXiv:cs.DB/2001.04174",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 4,
+      "text": "Donald R. Slutz. 1998. Massive Stochastic Testing of SQL. In VLDB’98, Proceedings of 24rd International Conference on Very Large Data Bases, August 24-27, 1998, New York City, New York, USA. 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Chengnian Sun, Vu Le, and Zhendong Su. 2016. Finding compiler bugs via live code mutation. In ACMSIGPLAN Notices, Vol. 51. ACM, 849–863.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 3,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. arXiv:cs.DB/2001.04174",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "prints the arXiv id of the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Meanwhile, pivot query synthesis (PQS) [ 3] is a new testing algorithm that also utilizes equivalence mutation so that the mutated query contains a specific row in the original output.",
+      "context_before": "stochastic or genetic algorithms to randomly generate queries to test relational database systems [ 1,4]. In RAGS [ 4], queries are automatically generated and evaluated by multiple database systems. If the results are inconsistent, a bug has been found. While this method can be effective, it requires that the tested features be compatible with all tested query engines, and thus limited to only engine-specific SQL features that can be tested. MutaSQL generalizes this testing approach by comparing query results within the same database system so that the testing result can be directly verified.",
+      "context_after": "In comparison, MutaSQL focuses more on structural mutations (e.g., insert and removal of subqueries) while PQS focuses on predicate level mutation (e.g., arithmetic expression, string functions). The two approaches can potentially be combined to enlarge the design of richer mutation rules for better coverage. Outside of database engine testing, equivalence mutation has also been previously used in C compiler testing [ 2,5]. Comparing to random testing, equivalence mutation has the advantage of exploring a larger testing space, in. We particular complex control flow structures, and thus often",
+      "section": "5 RELATED WORK",
+      "page": 4,
+      "char_offset": 22319,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": ", insert and removal of subqueries) while PQS focuses on predicate level mutation (e.",
+      "context_before": "nd. While this method can be effective, it requires that the tested features be compatible with all tested query engines, and thus limited to only engine-specific SQL features that can be tested. MutaSQL generalizes this testing approach by comparing query results within the same database system so that the testing result can be directly verified. Meanwhile, pivot query synthesis (PQS) [ 3] is a new testing algorithm that also utilizes equivalence mutation so that the mutated query contains a specific row in the original output. In comparison, MutaSQL focuses more on structural mutations (e.g.",
+      "context_after": "g., arithmetic expression, string functions). The two approaches can potentially be combined to enlarge the design of richer mutation rules for better coverage. Outside of database engine testing, equivalence mutation has also been previously used in C compiler testing [ 2,5]. Comparing to random testing, equivalence mutation has the advantage of exploring a larger testing space, in. We particular complex control flow structures, and thus often achieves better coverage in the testing process. We believe such strategies can also be adopted for query engine testing. 4http://sqlite.1065341.n5.nab",
+      "section": "5 RELATED WORK",
+      "page": 4,
+      "char_offset": 22570,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T17:01:52Z",
+    "is_model_written": true,
+    "summary": "This short paper tests query execution engines by mutating queries in ways that preserve or predictably change their results, focusing on structural mutations such as inserting and removing subqueries. Published in 2020, it is contemporaneous with the first SQLancer oracles.",
+    "narrative": "PQS is discussed in related work as the closest neighbour: the paper notes it also uses equivalence mutation, arranging for the mutated query to contain a specific row from the original output. The distinction drawn is one of level -- this work mutates query structure, while PQS mutates at the predicate level.",
+    "roles": {
+      "M1": "definition",
+      "M2": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited as related work; no reuse of its code, generator or workload is described."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No SQLancer technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer or one of its oracles is reported."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The text does not describe SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

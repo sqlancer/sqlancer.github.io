@@ -1,0 +1,675 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:31:28Z",
+  "paper": {
+    "id": "paper:doi:10.1109/ictai62512.2024.00085",
+    "title": "NNTailor: A Neural Network-Driven Fuzzer for DataBase Management Systems",
+    "authors": [
+      "Shutao Chu",
+      "Yongjun Wang",
+      "Haoran Xu",
+      "Zhiyuan Jiang",
+      "Yongxin Chen"
+    ],
+    "year": 2024,
+    "venue": "IEEE International Conference on Tools with Artificial Intelligence",
+    "doi": "10.1109/ictai62512.2024.00085",
+    "arxiv_id": null,
+    "s2_paper_id": "4577684b2119f110b0704f21225e1212fa4b33dd",
+    "url": "https://doi.org/10.1109/ictai62512.2024.00085",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/ictai62512.2024.00085",
+      "retrieved_at": "2026-09-09T01:31:28Z",
+      "chars": 40828,
+      "content_sha256": "sha256:f0d9e0cf6b2153d8c3169f17fd7d8aac81c8c300f9123bd17be4355350d1847b"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 9,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 1376
+      },
+      {
+        "number": "II",
+        "title": "BACKGROUND",
+        "start": 8477
+      },
+      {
+        "number": "III",
+        "title": "DESIGN",
+        "start": 13006
+      },
+      {
+        "number": "B",
+        "title": "Preprocessing",
+        "start": 14399
+      },
+      {
+        "number": "C",
+        "title": "Extracting Code fragments",
+        "start": 15339
+      },
+      {
+        "number": "D",
+        "title": "Training",
+        "start": 17426
+      },
+      {
+        "number": "E",
+        "title": "Mutations",
+        "start": 19851
+      },
+      {
+        "number": "F",
+        "title": "Convert AST back to SQL",
+        "start": 22957
+      },
+      {
+        "number": "G",
+        "title": "Test",
+        "start": 23397
+      },
+      {
+        "number": "A",
+        "title": "Experimental Setup",
+        "start": 24613
+      },
+      {
+        "number": "B",
+        "title": "Code Coverage",
+        "start": 26856
+      },
+      {
+        "number": "C",
+        "title": "Validity",
+        "start": 28529
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Data science revealed: A data-driven glimpse into the burgeoning new field. URL https://www. predictiveanalyticsworld.com/machinelearningtimes/ august12/emc-data-science-study.pdf.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Wikipedia, 2024. URL https://en.wikipedia.org/wiki/ Database.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Seltenreich A. Bug squashing with sqlsmith, 2018. URL https://www.postgresql.eu/events/pgconfeu2018/ sessions/session/2221/slides/145/sqlsmith-talk.pdf.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Uri Alon, Roy Sadaka, Omer Levy, and Eran Yahav. Structural language models of code, 2020. URL https: //arxiv.org/abs/1910.00577.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Seltenreich Andreas, Tang Bo, and Mullender Sjoerd. A random sql query generator, 2015. URL https://github. com/anse1/sqlsmith.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Jinsheng Ba and Manuel Rigger. Testing database engines via query plan guidance. In The 45th International Conference on Software Engineering (ICSE’23), May 2023.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 7,
+      "text": "caca labs. Zzuf-multi-purpose fuzzer, 2009. URL http: //caca.zoy.org/wiki/zzuf.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Chris Cummins, Pavlos Petoumenos, Alastair Murray, and Hugh Leather. Compiler fuzzing through deep learning. In Proceedings of the 27th ACMSIGSOFT In570 Fuzzer PostgreSQL SQLite NNTailor 34% 37% SQLsmith 29% 24% SQLancer 31% 34% TABLE I: Code CoverageFuzzer PostgreSQL syntax PostgreSQL semantic SQLite syntax SQLite semantic NNTailor 94% 41% 91% 46% SQLsmith 92% 34% 79% 37% SQLancer 75% 29% 91% 66%",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 9,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. Griffin: Grammar-free dbms fuzzing. InProceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering, ASE ’22, New York, NY, USA, 2023. Association for Computing Machinery. ISBN 9781450394758. doi: 10. 1145/3551349.3560431. URL https://doi.org/10.1145/ 3551349.3560431.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Xiyue Gao, Zhuang Liu, Jiangtao Cui, Hui Li, Hui Zhang, Kewei Wei, and Kankan Zhao. A comprehensive survey on database management system fuzzing: Techniques, taxonomy and experimental comparison, 2023. URL https://arxiv.org/pdf/2311.06728.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Patrice Godefroid, Hila Peleg, and Rishabh Singh. Learn&fuzz: Machine learning for input fuzzing. In Proceedings of the 32nd IEEE/ACM International Conference on Automated Software Engineering, pages 50– 59. IEEE Press, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "HyungSeok Han, DongHyeon Oh, and Sang Kil Cha. Codealchemist: Semantics-aware code generation to find vulnerabilities in javascript engines. In NDSS, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Zhiyuan Jiang Shuhui Fan Shaojing Fu Peidai Xie Haoran Xu, Yongjun Wang. Fuzzing javascript engines with a syntax-aware neural program model, 2024. URL https://doi.org/10.1016/j.cose.2024.103947.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Sepp Hochreiter and J ¨urgen Schmidhuber. Long shortterm memory. Neural computation, 9(8):1735–1780, 1997.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Christian Holler, Kim Herzig, and Andreas Zeller. Fuzzing with code fragments. In Presented as part of the 21st {USENIX} Security Symposium ({USENIX} Security 12), pages 445–458, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Liang J, Wu ZY, Fu JZ, Zhu J, Jiang Y, and Sun JG. Survey on database management system fuzzing techniques, 2023. URL http://www.jos.org.cn/1000-9825/7048.htm.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. DynSQL: Stateful fuzzing for database management systems with complex and valid SQL query generation. In 32nd USENIX Security Symposium (USENIX Security 23), pages 4949–4965, Anaheim, CA, August 2023. USENIX Association. ISBN 978-1939133-37-3. URL https://www.usenix.org/conference/ usenixsecurity23/presentation/jiang-zu-ming.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. Apollo: automatic detection and diagnosis of performance regressions in database systems.Proc. VLDB Endow., 13(1):57–70, sep 2019. ISSN 2150-8097. doi: 10.14778/3357377.3357382. URL https://doi.org/10.14778/3357377.3357382.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Suyoung Lee, HyungSeok Han, Sang Kil Cha, and Sooel Son. Montage: A neural network language modelguided javascript engine fuzzer. In 29th USENIX Security Symposium (USENIX Security 20), pages 2613–2630, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Jun Li, Bodong Zhao, and Chaomo Zhang. Fuzzing: a survey. Cybersecurity, 1, 2018. URL https://api. semanticscholar.org/CorpusID:257107250.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. Sequence-oriented dbms fuzzing. In Data Engineering (ICDE), pages 668–681, 2023. doi: 10.1109/ICDE55515.2023.00057.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Yu Liang, Song Liu, and Hong Hu. Detecting logical bugs of DBMS with coverage-based guidance. In 31st USENIX Security Symposium (USENIX Security 22), pages 4309–4326, Boston, MA, August 2022. USENIX Association. ISBN 978-1939133-31-1. URL https://www.usenix.org/conference/ usenixsecurity22/presentation/liang.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "LLVM. libfuzzer:a library for coverage-guided fuzz testing, 2017. URL https://llvm.org/docs/LibFuzzer.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Gehrke J Ramakrishnan R. Database Management Systems. McGraw-Hili, 2003.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Manuel Rigger and Zhendong Su. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of the 2020 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/FSE 2020, 2020. doi: 10.1145/3368089.3409710.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 26,
+      "text": "Manuel Rigger and Zhendong Su. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang., 4(OOPSLA), 2020. doi: 10.1145/3428279.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 27,
+      "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20, page 667–682, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 28,
+      "text": "Hong Hu Hangfan Zhang Wenke Lee Rui Zhong, Yongheng Chen and Dinghao Wu. Squirrel: Testing database management systems with language validity and coverage feedback, 2020. URL https://dl.acm.org/doi/ pdf/10.1145/3372297.3417260. 571",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Ilya Sutskever, James Martens, and Geoffrey E Hinton. Generating text with recurrent neural networks. In Proceedings of the 28th International Conference on Machine Learning (ICML-11), pages 1017–1024, 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Spandan Veggalam, Sanjay Rawat, Istvan Haller, and Herbert Bos. Ifuzzer: An evolutionary interpreter fuzzer using genetic programming. In European Symposium on Research in Computer Security, pages 581–601. Springer, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Liu L Feng LZ Bao T Peng T Wang NY, Ye YX. Language models based on deep learning: A review, 2021. URL http://www.jos.org.cn/1000-9825/6169.htm.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Michal Zalewski. american fuzzy lop, 2017. URL http: //lcamtuf.coredump.cx/afl.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Xuya Cong Xiaobo Li Li Yin Zhenhua Yu, Zhengqi Liu. Fuzzing: Progress, challenges, and perspectives. Computers, Materials & Continua, 78(1):1–29, 2024. ISSN 1546-2226. doi: 10.32604/cmc.2023.042361. URL http://www.techscience.com/cmc/v78n1/55370.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Xiaogang Zhu, Sheng Wen, Seyit Camtepe, and Yang Xiang. Fuzzing: a survey for roadmap. ACM Computing Surveys (CSUR), 54(11s):1–36, 2022. 572",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 6,
+      "text": "Jinsheng Ba and Manuel Rigger. Testing database engines via query plan guidance. In The 45th International Conference on Software Engineering (ICSE’23), May 2023.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 8,
+      "text": "Chris Cummins, Pavlos Petoumenos, Alastair Murray, and Hugh Leather. Compiler fuzzing through deep learning. In Proceedings of the 27th ACMSIGSOFT In570 Fuzzer PostgreSQL SQLite NNTailor 34% 37% SQLsmith 29% 24% SQLancer 31% 34% TABLE I: Code CoverageFuzzer PostgreSQL syntax PostgreSQL semantic SQLite syntax SQLite semantic NNTailor 94% 41% 91% 46% SQLsmith 92% 34% 79% 37% SQLancer 75% 29% 91% 66% TABLE II: Validity ternational Symposium on Software Testing and Analysis, pages 95–105. ACM, 2018.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 25,
+      "text": "Manuel Rigger and Zhendong Su. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of the 2020 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/FSE 2020, 2020. doi: 10.1145/3368089.3409710.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 26,
+      "text": "Manuel Rigger and Zhendong Su. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang., 4(OOPSLA), 2020. doi: 10.1145/3428279.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 27,
+      "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20, page 667–682, 2020.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We conducted evaluations of NNTailor on the latest versions of PostgreSQL and SQLite, comparing its performance with SQLsmith[5] and SQLancer[6, 25, 26, 27].",
+      "context_before": "ssion test cases as a seed set, preprocessing each seed’s corresponding AST by extracting 1-level subtrees as code fragment in a pre-order traversal from the root node. These fragments form a sequence input for model. The preprocessed inputs are fed into the neural network model for AST completion through subtree pruning, resulting in a complete AST. This AST is then converted into an SQL test case. The mutated test case is then used as input of the SQL engine. We introduces NNTailor, a prototype for fuzzing DBMS that enhances efficiency through a neural network model-driven mutation approach.",
+      "context_after": "With the neural network model-driven mutation approach, NNTailor achieves 35% and 10% higher code line coverage compared to SQLsmith and SQLancer. In terms of test case effectiveness, NNTailor is 23% higher than SQLsmith. NNTailor and SQLancer have their own advantages in different DBMS.Experimental results demonstrate that NNTailor surpasses open-source black box fuzzing tools such as SQLsmith and SQLancer in terms of code coverage and test case effectiveness. Overall, the method proposed in this paper effectively complements existing approaches in DBMS fuzzing. The contributions of this pap",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 7035,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "With the neural network model-driven mutation approach, NNTailor achieves 35% and 10% higher code line coverage compared to SQLsmith and SQLancer.",
+      "context_before": "root node. These fragments form a sequence input for model. The preprocessed inputs are fed into the neural network model for AST completion through subtree pruning, resulting in a complete AST. This AST is then converted into an SQL test case. The mutated test case is then used as input of the SQL engine. We introduces NNTailor, a prototype for fuzzing DBMS that enhances efficiency through a neural network model-driven mutation approach. We conducted evaluations of NNTailor on the latest versions of PostgreSQL and SQLite, comparing its performance with SQLsmith[5] and SQLancer[6, 25, 26, 27].",
+      "context_after": "In terms of test case effectiveness, NNTailor is 23% higher than SQLsmith. NNTailor and SQLancer have their own advantages in different DBMS.Experimental results demonstrate that NNTailor surpasses open-source black box fuzzing tools such as SQLsmith and SQLancer in terms of code coverage and test case effectiveness. Overall, the method proposed in this paper effectively complements existing approaches in DBMS fuzzing. The contributions of this paper are summarized as follows: •We propose a method based on AST subtree mutation, employing a strategy of subtree replacement of the same type to e",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 7193,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "NNTailor and SQLancer have their own advantages in different DBMS.",
+      "context_before": "into an SQL test case. The mutated test case is then used as input of the SQL engine. We introduces NNTailor, a prototype for fuzzing DBMS that enhances efficiency through a neural network model-driven mutation approach. We conducted evaluations of NNTailor on the latest versions of PostgreSQL and SQLite, comparing its performance with SQLsmith[5] and SQLancer[6, 25, 26, 27]. With the neural network model-driven mutation approach, NNTailor achieves 35% and 10% higher code line coverage compared to SQLsmith and SQLancer. In terms of test case effectiveness, NNTailor is 23% higher than SQLsmith.",
+      "context_after": "Experimental results demonstrate that NNTailor surpasses open-source black box fuzzing tools such as SQLsmith and SQLancer in terms of code coverage and test case effectiveness. Overall, the method proposed in this paper effectively complements existing approaches in DBMS fuzzing. The contributions of this paper are summarized as follows: •We propose a method based on AST subtree mutation, employing a strategy of subtree replacement of the same type to ensure syntactic correctness and semantic validity of produced test cases. •We utilize a neural network model to extract features from high-qua",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 7415,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Experimental results demonstrate that NNTailor surpasses open-source black box fuzzing tools such as SQLsmith and SQLancer in terms of code coverage and test case effectiveness.",
+      "context_before": "of the SQL engine. We introduces NNTailor, a prototype for fuzzing DBMS that enhances efficiency through a neural network model-driven mutation approach. We conducted evaluations of NNTailor on the latest versions of PostgreSQL and SQLite, comparing its performance with SQLsmith[5] and SQLancer[6, 25, 26, 27]. With the neural network model-driven mutation approach, NNTailor achieves 35% and 10% higher code line coverage compared to SQLsmith and SQLancer. In terms of test case effectiveness, NNTailor is 23% higher than SQLsmith. NNTailor and SQLancer have their own advantages in different DBMS.",
+      "context_after": "Overall, the method proposed in this paper effectively complements existing approaches in DBMS fuzzing. The contributions of this paper are summarized as follows: •We propose a method based on AST subtree mutation, employing a strategy of subtree replacement of the same type to ensure syntactic correctness and semantic validity of produced test cases. •We utilize a neural network model to extract features from high-quality seed sets, enabling the generation of higher-quality test cases. •We introduce a language model-driven by neural networks to facilitate cross-DBMS test case generation thro",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 7482,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker",
+      "surface": "[8]",
+      "technique": null,
+      "sentence": "[8] introduced a method leveraging Long Short-Term Memory (LSTM)[14] models to autonomously learn syntax specifications of the OpenCL programming language.",
+      "context_before": "rates and ensure robust testing outcomes. Recent advancements in neural network language models have revolutionized test case mutation methods across various software domains. Researchers have conceptualized test case generation as a language modeling [31] challenge, employing Recurrent Neural Networks (RNNs) as fundamental components[29] to produce fuzz test cases. Initially, Godefroid et al. [11] applied RNNs to learn PDF file format specifications, subsequently using a character-level generative model 565 Fig. 1: Overview of NNTailor for fuzzing PDF parsers. Following this, Cummins et al.",
+      "context_after": "Their approach facilitated the automatic production of compiler fuzz test cases. Their prototype tool, DeepSmith, predicts subsequent tokens based on preceding token sequences, utilizing a token-level language model specific to OpenCL. Source code contains rich structured information. Learning source code representations through AST node sequences enhances model’s ability to understand the code and improves code completion[4] accuracy. Constructing source programs using ASTs based on code fragments has been successful in fuzzing code execution engines. LangFuzz [15], for instance, extracts co",
+      "section": "II BACKGROUND",
+      "page": 3,
+      "char_offset": 11262,
+      "cited_reference": {
+        "number": 8,
+        "text": "Chris Cummins, Pavlos Petoumenos, Alastair Murray, and Hugh Leather. Compiler fuzzing through deep learning. In Proceedings of the 27th ACMSIGSOFT In570 Fuzzer PostgreSQL SQLite NNTailor 34% 37% SQLsmith 29% 24% SQLancer 31% 34% TABLE I: Code CoverageFuzzer PostgreSQL syntax PostgreSQL semantic SQLi",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "EVALUATION This section compares NNTailor with typical DBMS blackbox fuzzing tools SQLsmith and SQLancer in terms of coverage on the target DBMS, syntactic and semantic correctness of synthetic queries.",
+      "context_before": "or executes them on the target DBMS. It inputs the test cases into the instrumented DBMS, monitors the system’s feedback, and collects statistics on code coverage, as well as grammatical and semantic validity. 568 IMPLEMENTATION This paper employs Python 3.10 for development and implements NNTailor on a 64-bit Ubuntu 20.04 machine featuring an Intel i9-13900K processor with 24 cores (3.0GHz), 32 threads, 16GB memory, and an NVIDIA GeForce RTX 4090 graphics card. It utilizes sqlite-parser to convert SQL queries to AST, and Algorithm 2 handles the reverse conversion of AST back to SQL queries.",
+      "context_after": "SQLsmith detects database system crashes,while SQLancer detects database system logical problems. We aim to answer the following three research questions through our experiments: RQ1: How effective is NNTailor’s coverage of DBMSs? RQ2: Can NNTailor handle the variability across different DBMS dialects? RQ3: How does NNTailor compare with advanced DBMS fuzzing tools? A. Experimental Setup Evaluation Targets. To assess versatility and efficiency, most tools typically evaluate three popular open-source DBMS: PostgreSQL, MySQL, and SQLite. These systems are widely adopted in industry and have und",
+      "section": "G Test",
+      "page": 6,
+      "char_offset": 24040,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLsmith detects database system crashes,while SQLancer detects database system logical problems.",
+      "context_before": "idity. 568 IMPLEMENTATION This paper employs Python 3.10 for development and implements NNTailor on a 64-bit Ubuntu 20.04 machine featuring an Intel i9-13900K processor with 24 cores (3.0GHz), 32 threads, 16GB memory, and an NVIDIA GeForce RTX 4090 graphics card. It utilizes sqlite-parser to convert SQL queries to AST, and Algorithm 2 handles the reverse conversion of AST back to SQL queries. EVALUATION This section compares NNTailor with typical DBMS blackbox fuzzing tools SQLsmith and SQLancer in terms of coverage on the target DBMS, syntactic and semantic correctness of synthetic queries.",
+      "context_after": "We aim to answer the following three research questions through our experiments: RQ1: How effective is NNTailor’s coverage of DBMSs? RQ2: Can NNTailor handle the variability across different DBMS dialects? RQ3: How does NNTailor compare with advanced DBMS fuzzing tools? A. Experimental Setup Evaluation Targets. To assess versatility and efficiency, most tools typically evaluate three popular open-source DBMS: PostgreSQL, MySQL, and SQLite. These systems are widely adopted in industry and have undergone extensive testing. At the time of writing, SQLsmith’s official support for PostgreSQL and S",
+      "section": "G Test",
+      "page": 6,
+      "char_offset": 24243,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "At the time of writing, SQLsmith’s official support for PostgreSQL and SQLite was notably robust,and SQLancer has not yet implemented the NoREC test oracle on MySQL.",
+      "context_before": "e system crashes,while SQLancer detects database system logical problems. We aim to answer the following three research questions through our experiments: RQ1: How effective is NNTailor’s coverage of DBMSs? RQ2: Can NNTailor handle the variability across different DBMS dialects? RQ3: How does NNTailor compare with advanced DBMS fuzzing tools? A. Experimental Setup Evaluation Targets. To assess versatility and efficiency, most tools typically evaluate three popular open-source DBMS: PostgreSQL, MySQL, and SQLite. These systems are widely adopted in industry and have undergone extensive testing.",
+      "context_after": "Therefore, this paper selected PostgreSQL and SQLite as the evaluation targets. Experimental environment. The experiments in this paper were conducted on a 64-bit Ubuntu 20.04 machine equipped with a 24-core Intel i9-13900K processor running at 3.0GHz and 16GiB of RAM. To facilitate quantitative comparisons, the experiment duration was set to 24 hours, aligning with common practice in evaluating fuzzing tools. Test process. The experiment consists of four main steps: environment preparation, DBMS construction, test execution, and result collection. 1.Environment Preparation: This involves dow",
+      "section": "A Experimental Setup",
+      "page": 6,
+      "char_offset": 24868,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLsmith and SQLancer achieves considerable coverage using predefined rules and extensive executions, yet its reliance on templates limits their ability to fully explore the code space.",
+      "context_before": "1) Compiling the program with coverage parameters, 2) Executing the instrumented program, and 3) Generating a coverage report. Specifically, clang was used to compile the DBMS with ”-fprofile-instrgenerate -fcoverage-mapping” parameters. Test cases produced by the fuzzing tool were executed on this instrumented DBMS version to capture raw profiles. These raw profiles were then merged using llvm-profdata into an intermediate file, which was subsequently used by llvm-cov to produce a detailed coverage statistical report. Table I displays row coverage for each fuzzing tool on the target database.",
+      "context_after": "In contrast, NNTailor employs mutation based on grammatically correct seed sets derived from AST. This approach ensures syntactic correctness without template constraints, allowing for broader exploration of state spaces. Moreover, NNTailor leverages a neural network model to extract features from high-quality seed sets, enhancing its ability to utilize context dependencies in subtree replacements of the same type. This strategy improves semantic validity and results in superior coverage performance compared to SQLsmith and SQLancer. C. Validity Ensuring both grammatical and semantic correctn",
+      "section": "B Code Coverage",
+      "page": 6,
+      "char_offset": 27802,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "This strategy improves semantic validity and results in superior coverage performance compared to SQLsmith and SQLancer.",
+      "context_before": "mith and SQLancer achieves considerable coverage using predefined rules and extensive executions, yet its reliance on templates limits their ability to fully explore the code space. In contrast, NNTailor employs mutation based on grammatically correct seed sets derived from AST. This approach ensures syntactic correctness without template constraints, allowing for broader exploration of state spaces. Moreover, NNTailor leverages a neural network model to extract features from high-quality seed sets, enhancing its ability to utilize context dependencies in subtree replacements of the same type.",
+      "context_after": "C. Validity Ensuring both grammatical and semantic correctness in test cases is crucial for effective DBMS testing and poses a significant challenge for fuzzing tools. To evaluate the grammatical and semantic accuracy of these tools on the target DBMS, this study collected test cases generated over 24 hours by each tool, parsed them into expressions, and re-executed them. The DBMS feedback determined whether each expression adhered to grammatical and semantic rules. Specifically, if the DBMS detected a grammatical error, the expression was marked as syntactically incorrect. If other errors we",
+      "section": "B Code Coverage",
+      "page": 6,
+      "char_offset": 28407,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer is not fully adapted to the latest version of PostgreSQL, so its grammatical correctness is lower than that of other tools.",
+      "context_before": "ally incorrect. If other errors were flagged by the DBMS, the expression was deemed semantically incorrect. This paper defines grammatical correctness as the proportion of SQL expressions without syntax errors, and semantic 569 correctness as the proportion passing the DBMS’s semantic checks out of the total expressions tested. Table II displays the grammatical and semantic accuracy of test cases generated by each fuzzing tool within a 24hour period. SQLsmith achieves high grammatical correctness on PostgreSQL by embedding PostgreSQL’s grammar directly into its code for test case generation.",
+      "context_after": "Similarly, NNTailor maintains grammatical correctness by initially using complete and correct grammar in its seed cases. In terms of semantic correctness, there are notable differences among the tools. SQLsmith primarily generates SELECT expressions based on templates, which, despite lacking semantic checks, minimally alters the database schema, thus maintaining reasonable semantic correctness. SQLancer’s test oracle require it to generate SQL expressions according to predefined semantic rules, so it can achieve high semantic correctness on SQLite.In contrast, NNTailor introduces a wider range",
+      "section": "C Validity",
+      "page": 7,
+      "char_offset": 29694,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer’s test oracle require it to generate SQL expressions according to predefined semantic rules, so it can achieve high semantic correctness on SQLite.",
+      "context_before": "PostgreSQL’s grammar directly into its code for test case generation. SQLancer is not fully adapted to the latest version of PostgreSQL, so its grammatical correctness is lower than that of other tools.Similarly, NNTailor maintains grammatical correctness by initially using complete and correct grammar in its seed cases. In terms of semantic correctness, there are notable differences among the tools. SQLsmith primarily generates SELECT expressions based on templates, which, despite lacking semantic checks, minimally alters the database schema, thus maintaining reasonable semantic correctness.",
+      "context_after": "In contrast, NNTailor introduces a wider range of SQL expression types beyond SELECT queries, which enhances diversity but also heightens the challenge of maintaining semantic correctness. RELATED WORK DBMS Fuzzing. In recent years, several DBMS fuzzing tools like Sqlsmith, Sqlancer, Squirrel [28], SQLRight [22], DynSQL [17], Apollo[18], Griffin[9], and LEGO[21] have emerged, effectively uncovering numerous issues in popular DBMS and bolstering their security. These tools are categorized based on the types of vulnerabilities they target: crash vulnerabilities, logic vulnerabilities, and perfor",
+      "section": "C Validity",
+      "page": 7,
+      "char_offset": 30224,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "Sqlancer",
+      "technique": null,
+      "sentence": "In recent years, several DBMS fuzzing tools like Sqlsmith, Sqlancer, Squirrel [28], SQLRight [22], DynSQL [17], Apollo[18], Griffin[9], and LEGO[21] have emerged, effectively uncovering numerous issues in popular DBMS and bolstering their security.",
+      "context_before": "ble differences among the tools. SQLsmith primarily generates SELECT expressions based on templates, which, despite lacking semantic checks, minimally alters the database schema, thus maintaining reasonable semantic correctness. SQLancer’s test oracle require it to generate SQL expressions according to predefined semantic rules, so it can achieve high semantic correctness on SQLite.In contrast, NNTailor introduces a wider range of SQL expression types beyond SELECT queries, which enhances diversity but also heightens the challenge of maintaining semantic correctness. RELATED WORK DBMS Fuzzing.",
+      "context_after": "These tools are categorized based on the types of vulnerabilities they target: crash vulnerabilities, logic vulnerabilities, and performance vulnerabilities. Each tool establishes specific test oracle to detect these vulnerabilities. For crash vulnerabilities, tools typically utilize ASAN and system signal detection. Other types of vulnerabilities are addressed with innovative oracle like PQS and TLP introduced by SQLancer. Test case generation forms the core of DBMS fuzzing, primarily employing rule-based generation and syntax tree-based mutation methods. These approaches often rely on feedb",
+      "section": "C Validity",
+      "page": 7,
+      "char_offset": 30596,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Other types of vulnerabilities are addressed with innovative oracle like PQS and TLP introduced by SQLancer.",
+      "context_before": "ness. RELATED WORK DBMS Fuzzing. In recent years, several DBMS fuzzing tools like Sqlsmith, Sqlancer, Squirrel [28], SQLRight [22], DynSQL [17], Apollo[18], Griffin[9], and LEGO[21] have emerged, effectively uncovering numerous issues in popular DBMS and bolstering their security. These tools are categorized based on the types of vulnerabilities they target: crash vulnerabilities, logic vulnerabilities, and performance vulnerabilities. Each tool establishes specific test oracle to detect these vulnerabilities. For crash vulnerabilities, tools typically utilize ASAN and system signal detection.",
+      "context_after": "Test case generation forms the core of DBMS fuzzing, primarily employing rule-based generation and syntax tree-based mutation methods. These approaches often rely on feedback mechanisms such as DBMS coverage and query legitimacy. Given the diverse dialects and characteristics of different DBMS, most fuzzing tools require customization to adapt to specific DBMS. Compared to traditional methods, our approach significantly reduces the development overhead of supporting diverse DBMS targets and fuzzing tools using neural network language models. Neural Network Driven Fuzzing. Neural network langu",
+      "section": "C Validity",
+      "page": 7,
+      "char_offset": 31164,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Experimental results demonstrate that, compared to the classic black-box DBMS fuzzing tools SQLsmith and SQLancer, NNTailor outperforms SQLsmith and SQLancer in terms of comprehensive performance in code coverage and test case validity.",
+      "context_before": "test case validity, extracting features from high-quality seed sets, and overcoming the limitations imposed by different DBMS dialects on the portability of test case generation methods in DBMS fuzzing. We introduce a method driven by a neural network model for mutation-based test case generation and implement this approach in a prototype called NNTailor for DBMS fuzzing. This method significantly reduces the manual effort and development time required, minimizes the development work associated with test case generation logic, and mitigates the effectiveness issues caused by random mutations.",
+      "context_after": "REFERENCES [1] Data science revealed: A data-driven glimpse into the burgeoning new field. URL https://www. predictiveanalyticsworld.com/machinelearningtimes/ august12/emc-data-science-study.pdf. [2] Wikipedia, 2024. URL https://en.wikipedia.org/wiki/ Database. [3] Seltenreich A. Bug squashing with sqlsmith, 2018. URL https://www.postgresql.eu/events/pgconfeu2018/ sessions/session/2221/slides/145/sqlsmith-talk.pdf. [4] Uri Alon, Roy Sadaka, Omer Levy, and Eran Yahav. Structural language models of code, 2020. URL https: //arxiv.org/abs/1910.00577. [5] Seltenreich Andreas, Tang Bo, and Mullende",
+      "section": "C Validity",
+      "page": 7,
+      "char_offset": 33669,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M1"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:55:50Z",
+    "is_model_written": true,
+    "summary": "NNTailor drives DBMS fuzzing with a neural network: a model trained on SQL learns how to mutate queries so they stay syntactically and semantically valid, instead of relying on hand-written templates. On the latest PostgreSQL and SQLite it reports 35% higher line coverage than SQLsmith and 10% higher than SQLancer, along with better validity of the generated queries.",
+    "narrative": "SQLancer is one of NNTailor's two baselines, compared on code coverage and on the syntactic and semantic correctness of generated queries. The paper attributes SQLancer's coverage ceiling to template reliance -- predefined rules achieve considerable coverage but bound how much of the code space can be explored -- while acknowledging the other side of that trade: because SQLancer's oracles require expressions built to predefined semantic rules, it achieves high semantic correctness on SQLite. The comparison is reported as mixed rather than one-sided, with the paper noting that the two tools have their own advantages on different systems.",
+    "roles": {
+      "M1": "baseline",
+      "M2": "result_comparison",
+      "M3": "result_comparison",
+      "M4": "result_comparison",
+      "M5": "background",
+      "M6": "baseline",
+      "M7": "definition",
+      "M8": "incidental",
+      "M9": "result_comparison",
+      "M10": "result_comparison",
+      "M11": "result_comparison",
+      "M12": "result_comparison"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is run as a baseline; NNTailor's generation is driven by a neural network model of its own."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No SQLancer oracle is extended. NNTailor changes how queries are produced, not what makes a result wrong."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M1",
+          "M2",
+          "M6"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M1",
+            "sentence": "We conducted evaluations of NNTailor on the latest versions of PostgreSQL and SQLite, comparing its performance with SQLsmith[5] and SQLancer[6, 25, 26, 27].",
+            "section": "I INTRODUCTION",
+            "page": 2
+          },
+          {
+            "mention_id": "M2",
+            "sentence": "With the neural network model-driven mutation approach, NNTailor achieves 35% and 10% higher code line coverage compared to SQLsmith and SQLancer.",
+            "section": "I INTRODUCTION",
+            "page": 2
+          },
+          {
+            "mention_id": "M6",
+            "sentence": "EVALUATION This section compares NNTailor with typical DBMS blackbox fuzzing tools SQLsmith and SQLancer in terms of coverage on the target DBMS, syntactic and semantic correctness of synthetic queries.",
+            "section": "G Test",
+            "page": 6
+          }
+        ],
+        "reasoning": "M1 states the evaluation compares NNTailor's performance with SQLsmith and SQLancer, M6 that the comparison covers coverage and query correctness, and M2 gives the coverage result."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is called an open-source black box fuzzing tool; the paper makes no state-of-the-art claim about it."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

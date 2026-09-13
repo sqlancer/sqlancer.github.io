@@ -1,0 +1,827 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T17:12:45Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3552326.3587448",
+    "title": "Fail through the Cracks: Cross-System Interaction Failures in Modern Cloud Systems",
+    "authors": [
+      "Lilia Tang",
+      "Chaitanya Bhandari",
+      "Yongle Zhang",
+      "Anna Karanika",
+      "Shuyang Ji",
+      "Indranil Gupta",
+      "Tianyi Xu"
+    ],
+    "year": 2023,
+    "venue": "European Conference on Computer Systems",
+    "doi": "10.1145/3552326.3587448",
+    "arxiv_id": null,
+    "s2_paper_id": "916557d95f3d95a83d3f3503350c05c42e8c2272",
+    "url": "https://doi.org/10.1145/3552326.3587448",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3552326.3587448",
+      "retrieved_at": "2026-09-07T17:12:45Z",
+      "chars": 104621,
+      "content_sha256": "sha256:f621c947a3630ddc900c482c4f5bd1085a10186ccc19d9d25e49545e4192befe"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 19,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2985
+      },
+      {
+        "number": "2",
+        "title": "Definition",
+        "start": 10712
+      },
+      {
+        "number": "2.1",
+        "title": "CSI Failure Mode",
+        "start": 10725
+      },
+      {
+        "number": "2.2",
+        "title": "Failure Planes",
+        "start": 13682
+      },
+      {
+        "number": "2.3",
+        "title": "Examples",
+        "start": 14724
+      },
+      {
+        "number": "5.1",
+        "title": "Failure Plane",
+        "start": 24046
+      },
+      {
+        "number": "5.2",
+        "title": "Failure Symptoms",
+        "start": 26695
+      },
+      {
+        "number": "6.1",
+        "title": "Data-Plane Discrepancies",
+        "start": 30477
+      },
+      {
+        "number": "6.2",
+        "title": "Management-Plane Discrepancies",
+        "start": 38451
+      },
+      {
+        "number": "6.3",
+        "title": "Control-Plane Discrepancies",
+        "start": 44673
+      },
+      {
+        "number": "8.1",
+        "title": "Methodology",
+        "start": 55452
+      },
+      {
+        "number": "8.2",
+        "title": "Results and Findings",
+        "start": 57805
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "ANSI Compliance. https://spark.apache.org/docs/latest/sql-ref-ansicompliance.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Apache Avro. https://avro.apache.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Apache Flink. https://flink.apache.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Apache Hadoop YARN. https://hadoop.apache.org/docs/current/ hadoop-yarn/hadoop-yarn-site/YARN.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Apache HBase. https://hbase.apache.org/book.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Apache Hive. https://cwiki.apache.org/confluence/display/Hive/ Tutorial.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Apache Kafka. https://kafka.apache.org/documentation/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Apache ORC: The smallest, fastest columnar storage for Hadoop workloads. https://orc.apache.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Apache Parquet. https://parquet.apache.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Apache Spark Codebase. https://github.com/apache/spark.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Apache Spark Website. https://spark.apache.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "ASFJIRA. https://issues.apache.org/jira/secure/Dashboard.jspa.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "AWS Post-Event Summaries. https://aws.amazon.com/ premiumsupport/technology/pes/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Azure status history. https://status.azure.com/en-us/status/history/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Data types (Databricks SQL). https://docs.databricks.com/sql/ language-manual/sql-ref-datatypes.html#data-types-databrickssql.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Dynamic Tables. https://nightlies.apache.org/flink/flink-docsrelease-1.14/docs/dev/table/concepts/dynamic_tables/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Google Cloud Service Health. https://status.cloud.google.com/ summary.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Google was hit with massive outage, including youtube, gmail and google classroom | cnn business. https://www.cnn.com/2020/12/14/ tech/google-youtube-gmail-down/index.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Google’s apps crash in a worldwide outage. - the new york times. https://www.nytimes.com/2020/12/14/business/google-downworldwide.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Hadoop Common. https://github.com/apache/hadoop/tree/trunk/ hadoop-common-project.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Hadoop Distributed File System. http://hadoop.apache.org/docs/ current/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Implicit assumptions of the Hadoop FileSystem APIs. https://hadoop.apache.org/docs/stable/hadoop-projectdist/hadoop-common/filesystem/introduction.html#Implicit_ assumptions_of_the_Hadoop_FileSystem_APIs.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Incident affecting Google App Engine. https://status.cloud.google. com/incidents/NuaWbbv8n8V8PMHNR7kT.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Incident affecting Google BigQuery. https://status.cloud.google.com/ incidents/qq7VS3aLtp6Nmgs5Nux4.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Incident affecting Google Cloud Infrastructure Components, Google Cloud Support, Google Cloud Console, Google BigQuery, Google Cloud Storage, Google Cloud Networking, Google Kubernetes Engine, Virtual Private Cloud (VPC). https://status.cloud.google.com/ incidents/cFXPsFUnUELR8U2bQeGz.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Incident affecting Google Compute Engine, Google Cloud Networking, Access Approval, Google App Engine. https://status.cloud.google. com/incidents/1tX748pbxW2JjTUuTJsx.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Integration with Cloud Infrastructures. https://spark.apache.org/ docs/latest/cloud-integration.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Massive google outage takes millions offline. https: //www.forbes.com/sites/paulmonckton/2020/12/14/massivegoogle-outage-takes-millions-offline/?sh=40f33d060ad1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Protocol buffers guide. https://developers.google.com/protocolbuffers/docs/proto.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Spark SQL Guide. https://spark.apache.org/docs/latest/sqlprogramming-guide.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Mars Climate Orbiter Mishap Investigation Board Phase I Report. https://llis.nasa.gov/llis_lib/pdf/1009464main1_0641-mr.pdf, Nov. 1999.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "CBS: Cloud Bug Study Database. https://ucare.cs.uchicago.edu/ projects/cbs/, 2014.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Apache Hive SQL Conformance. https://cwiki.apache.org/ confluence/display/Hive/Apache+Hive+SQL+Conformance, Nov. 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Alfatafta, M., Alkhatib, B., Alqraan, A., and Al-Kiswany, S. Toward a Generic Fault Tolerance Technique for Partial Network Partitioning. In Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI’20) (Nov. 2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Allspaw, J. Fault injection in production: Making the case for resilience testing. Communications of the ACM (CACM) 55, 10 (Oct 2012), 48–52.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Alluxio Docs. The Need for a New Data Orchestration Platform. https://www.alluxio.io/data-orchestration/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Alqraan, A., Takruri, H., Alfatafta, M., and Al-Kiswany, S. An Analysis of Network-Partitioning Failures in Cloud Systems. In Proceedings of the 13th USENIX Symposium on Operating Systems Design and Implementation (OSDI’18) (Oct. 2018).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Altekar, G., and Stoica, I. Focus Replay Debugging Effort on the Control Plane. In Proceedings of the 6th Workshop on Hot Topics in System Dependability (HotDep’10) (Oct. 2010).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Amann, S., Nguyen, H. A., Nadi, S., Nguyen, T. N., and Mezini, M.A Systematic Evaluation of Static API-Misuse Detectors. IEEE Transactions on Software Engineering 45, 12 (Dec. 2019), 1170–1188.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Attariyan, M., Chow, M., and Flinn, J. X-ray: Automating RootCause Diagnosis of Performance Anomalies in Production Software. InProceedings of the 10th USENIX Conference on Operating Systems Design and Implementation (OSDI’12) (Oct. 2012).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Attariyan, M., and Flinn, J. Automating Configuration Troubleshooting with Dynamic Information Flow Analysis. In Proceedings of the 9th USENIX Conference on Operating Systems Design and Implementation (OSDI’10) (Oct. 2010).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Basiri, A., Behnam, N., de Rooij, R., Hochstein, L., Kosewski, L., Reynolds, J., and Rosenthal, C. Chaos engineering. IEEE Software 33, 3 (May 2016), 35–41.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Behrang, F., Cohen, M. B., and Orso, A. Users Beware: Preference Inconsistencies Ahead. In Proceedings of the 10th Joint Meeting of the European Software Engineering Conference and the ACMSIGSOFT Symposium on the Foundations of Software Engineering (ESEC/FSE’15) (Aug. 2015).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Bogart, C., Kästner, C., Herbsleb, J., and Thung, F. How to Break an API: Cost Negotiation and Community Values in Three Software Ecosystems. In Proceedings of the 24th ACMSIGSOFT International Symposium on Foundations of Software Engineering (FSE’16) (Nov. 2016).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Bronson, N., Aghayev, A., Charapko, A., and Zhu, T. Metastable Failures in Distributed Systems. In Proceedings of the 18th Workshop on Hot Topics in Operating Systems (HotOS’21) (May 2021). 178 Cross-System Interaction Failures in Modern Cloud Systems EuroSys ’23, May 8–12, 2023, Rome, Italy",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Brooker, M. The Fundamental Mechanism of Scaling. http://brooker. co.za/blog/2021/01/22/cloud-scale.html, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Burns, B., Grant, B., Oppenheimer, D., Brewer, E., and Wilkes, J.Borg, Omega, and Kubernetes. Communications of the ACM 59, 5 (May 2016), 50–57.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Chen, H., Dou, W., Jiang, Y., and Qin, F. Understanding ExceptionRelated Bugs in Large-Scale Cloud Systems. In Proceedings of the 34th IEEE/ACM International Conference on Automated Software Engineering (ASE’19) (Nov. 2019).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Chen, Q., Wang, T., Legunsen, O., Li, S., and Xu, T. Understanding and Discovering Software Configuration Dependencies in Cloud and Datacenter Systems. In Proceedings of the 2020 ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE’20) (November 2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Chou, A., Yang, J., Chelf, B., Hallem, S., and Engler, D. An Empirical Study of Operating Systems Errors. In Proceedings of the Eighteenth ACM Symposium on Operating Systems Principles (SOSP’01) (Oct. 2001).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Cotroneo, D., De Simone, L., Liguori, P., Natella, R., and Bidokhti, N. How Bad Can a Bug Get? An Empirical Analysis of Software Failures in the OpenStack Cloud Computing Platform. InProceedings of the 27th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE’19) (Aug. 2019).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Databricks Docs. Databricks architecture overview. https://docs. databricks.com/getting-started/overview.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Engler, D., Chen, D. Y., Hallem, S., Chou, A., and Chelf, B. Bugs as Deviant Behavior: A General Approach to Inferring Errors in Systems Code. In Proceedings of the Eighteenth ACM Symposium on Operating Systems Principles (SOSP’01) (Oct. 2001).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Flink Docs. Checkpointing. https://nightlies.apache. org/flink/flink-docs-release-1.14/docs/dev/datastream/faulttolerance/checkpointing/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Ford, D., Labelle, F., Popovici, F. I., Stokely, M., Truong, V.-A., Barroso, L., Grimes, C., and Quinlan, S. Availability in Globally Distributed Storage Systems. In Proceedings of the 9th USENIX Conference on Operating Systems Design and Implementation (OSDI’10) (Oct. 2010).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Gao, Y., Dou, W., Qin, F., Gao, C., Wang, D., Wei, J., Huang, R., Zhou, L., and Wu, Y. An Empirical Study on Crash Recovery Bugs in Large-Scale Distributed Systems. In Proceedings of the 26th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE’18) (Nov. 2018).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Gember-Jacobson, A., Wu, W., Li, X., Akella, A., and Mahajan, R.Management Plane Analytics. In Proceedings of the 2015 Internet Measurement Conference (IMC’15) (Oct. 2015).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Ghemawat, S., Gobioff, H., and Leung, S.-T. The Google File System. InProceedings of the 19th ACM Symposium on Operating Systems Principles (SOSP’03) (Oct. 2003).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Google Cloud. What is a hybrid cloud? https://cloud.google.com/ learn/what-is-hybrid-cloud.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Govindan, R., Minei, I., Kallahalla, M., Koley, B., and Vahdat, A.Evolve or Die: High-Availability Design Principles Drawn from Google’s Network Infrastructure. In Proceedings of the 2011 ACMSIGCOMM Conference (SIGCOMM’11) (Aug. 2016).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Grant, S., Cech, H., and Beschastnikh, I. Inferring and Asserting Distributed System Invariants. In Proceedings of the 40th International Conference on Software Engineering (ICSE’18) (May 2018).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Gunawi, H. S., Hao, M., Leesatapornwongsa, T., Patana-anake, T., Do, T., Adityatama, J., Eliazar, K. J., Laksono, A., Lukman, J. F., Martin, V., and Satria, A. D. What Bugs Live in the Cloud? A Study of 3000+ Issues in Cloud Systems. In Proceedings of the 5th ACM Symposium on Cloud Computing (SoCC’14) (Nov. 2014).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Gunawi, H. S., Hao, M., Suminto, R. O., Laksono, A., Satria, A. D., Adityatama, J., and Eliazar, K. J. Why Does the Cloud Stop Computing? Lessons from Hundreds of Service Outages. In Proceedings of the 7th ACM Symposium on Cloud Computing (SoCC’16) (Oct. 2016).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Gunawi, H. S., Suminto, R. O., Sears, R., Golliher, C., Sundararaman, S., Lin, X., Emami, T., Sheng, W., Bidokhti, N., McCaffrey, C., Grider, G., Fields, P. M., Harms, K., Ross, R. B., Jacobson, A., Ricci, R., Webb, K., Alvaro, P., Runesha, H. B., Hao, M., and Li, H. Fail-Slow at Scale: Evidence of Hardware Performance Faults in Large Production Systems. In Proceedings of the 16th USENIX Conferenc",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Gyori, A., Lambeth, B., Shi, A., Legunsen, O., and Marinov, D. NonDex: A Tool for Detecting and Debugging Wrong Assumptions on Java API Specifications. In Proceedings of the 24th ACMSIGSOFT International Symposium on Foundations of Software Engineering (FSE’16) (Nov. 2016).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "HBase Docs. HBase Cluster Replication. https://hbase.apache.org/ book.html#_cluster_replication.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "HBase Docs. HBase Write Ahead Log. https://hbase.apache.org/ book.html#wal.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "HDFS Docs. Data Replication. https://hadoop.apache.org/docs/ stable/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html#Data_ Replication.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "Huang, L., Magnusson, M., Muralikrishna, A. B., Estyak, S., Isaacs, R., Aghayev, A., Zhu, T., and Charapko, A. Metastable Failures in the Wild. In Proceedings of the 16th USENIX Symposium on Operating Systems Design and Implementation (OSDI’22) (July 2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Huang, P., Guo, C., Zhou, L., Lorch, J. R., Dang, Y., Chintalapati, M., and Yao, R. Gray Failure: The Achilles’ Heel of Cloud-Scale Systems. In Proceedings of the 16th Workshop on Hot Topics in Operating Systems (HotOS-XVI) (May 2017).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Istio Docs. Architecture. https://istio.io/latest/docs/ops/ deployment/architecture/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Jia, Z., Li, S., Yu, T., Zeng, C., Xu, E., Liu, X., Wang, J., and Liao, X. DepOwl: Detecting Dependency Bugs to Prevent Compatibility Failures. In Proceedings of the 43rd International Conference on Software Engineering (ICSE’21) (May 2021).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Jiang, L., and Su, Z. Osprey: A Practical Type System for Validating Dimensional Unit Correctness of C Programs. In Proceedings of the 28th International Conference on Software Engineering (ICSE’06) (May 2006).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "Kafka Docs. Auto Restart. https://kafka.apache.org/documentation/ streams/architecture#streams_architecture_recovery.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "Kubernetes Docs. Control Plane Components. https://kubernetes. io/docs/concepts/overview/components/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "Leesatapornwongsa, T., Lukman, J. F., Lu, S., and Gunawi, H. S. TaxDC: A Taxonomy of Non-Deterministic Concurrency Bugs in Datacenter Distributed Systems. In Proceedings of the 21st International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS’16) (Mar. 2016).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "Legunsen, O., Hassan, W. U., Xu, X., Rosu, G., and Marinov, D. How Good are the Specs? A Study of the Bug-Finding Effectiveness of Existing Java API Specifications. In Proceedings of the 31th IEEE/ACM International Conference on Automated Software Engineering (ASE’16) (2016).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "Li, G., Lu, S., Musuvathi, M., Nath, S., and Padhye, R. Efficient Scalable Thread-Safety-Violation Detection. In Proceedings of the 27th ACM Symposium on Operating Systems Principles (SOSP’19) (2019).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "Liu, H., Lu, S., Musuvathi, M., and Nath, S. What Bugs Cause Production Cloud Incidents? In Proceedings of the 17th Workshop on Hot Topics in Operating Systems (HotOS’19) (Nov. 2019).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "Lou, C., Chen, C., Huang, P., Dang, Y., Qin, S., Yang, X., Li, X., Lin, Q., and Chintalapati, M. RESIN: A Holistic Service for Dealing with Memory Leaks in Production Cloud Infrastructure. In Proceedings 179 EuroSys ’23, May 8–12, 2023, Rome, Italy L. Tang, C. Bhandari, Y. Zhang, A. Karanika, S. Ji, I. Gupta, and T. Xu of the 16th USENIX Symposium on Operating Systems Design and Implementation (OS",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 81,
+      "text": "Lou, C., Huang, P., and Smith, S. Understanding, Detecting and Localizing Partial Failures in Large System Software. In Proceedings of the 17th USENIX Symposium on Networked Systems Design and Implementation (NSDI’20) (Feb. 2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 82,
+      "text": "Lou, C., Jing, Y., and Huang, P. Demystifying and Checking Silent Semantic Violations in Large Distributed Systems. In Proceedings of the 16th USENIX Symposium on Operating Systems Design and Implementation (OSDI’22) (July 2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 83,
+      "text": "Lu, L., Arpaci-Dusseau, A. C., Arpaci-Dusseau, R. H., and Lu, S. A Study of Linux File System Evolution. ACM Trans. Storage 10, 1 (Jan. 2014).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 84,
+      "text": "Lu, S., Park, S., Seo, E., and Zhou, Y. Learning from Mistakes: A Comprehensive Study on Real World Concurrency Bug Characteristics. SIGARCH Comput. Archit. News 36, 1 (Mar. 2008), 329–339.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 85,
+      "text": "Ma, H., Goel, A., Jeannin, J.-B., Kapritsos, M., Kasikci, B., and Sakallah, K. A. I4: Incremental Inference of Inductive Invariants for Verification of Distributed Protocols. In Proceedings of the 27th ACM Symposium on Operating Systems Principles (SOSP’19) (2019).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 86,
+      "text": "Ma, S., Zhou, F., Bond, M. D., and Wang, Y. Finding HeterogeneousUnsafe Configuration Parameters in Cloud Systems. In Proceedings of the 16th ACM European Conference on Computer Systems (EuroSys’21) (Apr. 2021).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 87,
+      "text": "Maurer, B. Fail at Scale: Reliability in the Face of Rapid Change. Communications of the ACM 58, 11 (Nov. 2015), 44–49.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 88,
+      "text": "Mehta, S., Bhagwan, R., Kumar, R., Ashok, B., Bansal, C., Maddila, C., Bird, C., Asthana, S., and Kumar, A. Rex: Preventing Bugs and Misconfiguration in Large Services using Correlated Change Analysis. InProceedings of the 17th USENIX Symposium on Networked Systems Design and Implementation (NSDI’20) (Feb. 2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 89,
+      "text": "Min, C., Kashyap, S., Lee, B., Song, C., and Kim, T. Cross-checking Semantic Correctness: The Case of Finding File System Bugs. In Proceedings of the 25th ACM Symposium on Operating Systems Principles (SOSP’15) (Oct. 2015).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 90,
+      "text": "Nagaraja, K., Oliveira, F., Bianchini, R., Martin, R. P., and Nguyen, T. D. Understanding and Dealing with Operator Mistakes in Internet Services. In Proceedings of the 6th USENIX Conference on Operating Systems Design and Implementation (OSDI’04) (Dec. 2004).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 91,
+      "text": "OpenStack Docs. Logical architecture. https://docs.openstack.org/ install-guide/get-started-logical-architecture.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 92,
+      "text": "Oppenheimer, D., Ganapathi, A., and Patterson, D. A. Why Do Internet Services Fail, and What Can Be Done About It? In Proceedings of the 4th USENIX Symposium on Internet Technologies and Systems (USITS’03) (Mar. 2003).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 93,
+      "text": "Ore, J.-P., Detweiler, C., and Elbaum, S. Phriky-Units: A Lightweight, Annotation-Free Physical Unit Inconsistency Detection Tool. InProceedings of the 26th ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA’17) (2017).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 94,
+      "text": "Pillai, T. S., Chidambaram, V., Alagappan, R., Al-Kiswany, S., Arpaci-Dusseau, A. C., and Arpaci-Dusseau, R. H. All File Systems Are Not Created Equal: On the Complexity of Crafting CrashConsistent Applications. In Proceedings of the 11th USENIX Symposium on Operating Systems Design and Implementation (OSDI’14) (Oct. 2014).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 95,
+      "text": "Rabkin, A., and Katz, R. Static Extraction of Program Configuration Options. In Proceedings of the 33rd International Conference on Software Engineering (ICSE’11) (May 2011).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 96,
+      "text": "Rabkin, A., and Katz, R. How Hadoop Clusters Break. IEEE Software Magazine 30, 4 (July 2013), 88–94.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 97,
+      "text": "Ramachandran, V., Gupta, M., Sethi, M., and Chowdhury, S. R. Determining Configuration Parameter Dependencies via Analysis of Configuration Data from Multi-tiered Enterprise Applications. In Proceedings of the 6th International Conference on Autonomic Computingand Communications (ICAC’09) (June 2009).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 98,
+      "text": "Rigger, M., and Su, Z. Testing Database Engines via Pivoted Query Synthesis. In Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI’20) (Nov. 2020).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 99,
+      "text": "Robillard, M. P., Bodden, E., Kawrykow, D., Mezini, M., and Ratchford, T. Automated API Property Inference Techniques. IEEE Transactions on Software Engineering 39, 5 (May 2013), 613–637.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 100,
+      "text": "Rosu, G., and Chen, F. Certifying Measurement Unit Safety Policy. InProceedings of the 18th IEEE International Conference on Automated Software Engineering (ASE’03) (Oct. 2003).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 101,
+      "text": "Schumilo, S., Aschermann, C., Jemmett, A., Abbasi, A., and Holz, T.Nyx-Net: Network Fuzzing with Incremental Snapshots. In Proceedings of the Seventeenth European Conference on Computer Systems (EuroSys’22) (Apr. 2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 102,
+      "text": "Stoica, I., and Shenker, S. From Cloud Computing to Sky Computing. In Proceedings of the 18th Workshop on Hot Topics in Operating Systems (HotOS’21) (May 2021).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 103,
+      "text": "Sun, X., Cheng, R., Chen, J., Ang, E., Legunsen, O., and Xu, T. Testing Configuration Changes in Context to Prevent Production Failures. In Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI’20) (Nov. 2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 104,
+      "text": "Sun, X., Suresh, L., Ganesan, A., Alagappan, R., Gasch, M., Tang, L., and Xu, T. Reasoning about modern datacenter infrastructures using partial histories. In Proceedings of the 18th Workshop on Hot Topics in Operating Systems (HotOS-XVIII) (May 2021).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 105,
+      "text": "Treynor, B., Dahlin, M., Rau, V., and Beyer, B. The Calculus of Service Availability. Communications of the ACM (CACM) 60, 9 (Sept. 2017), 42–47.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 106,
+      "text": "van Renesse, R., Weatherspoon, H., Shen, Z., and Song, W. The Supercloud: Applying Internet Design Principles to Interconnecting Clouds. In IEEE Internet Computing (IEEE Internet Computing’18) (Mar. 2018).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 107,
+      "text": "Veeraraghavan, K., Meza, J., Michelson, S., Panneerselvam, S., Gyori, A., Chou, D., Margulis, S., Obenshain, D., Padmanabha, S., Shah, A., Song, Y. J., and Xu, T. Maelstrom: Mitigating Datacenterlevel Disasters by Draining Interdependent Traffic Safely and Efficiently. In Proceedings of the 13th USENIX Symposium on Operating Systems Design and Implementation (OSDI’18) (Oct. 2018).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 108,
+      "text": "Wang, Y., Wen, M., Liu, Y., Wang, Y., Li, Z., Wang, C., Yu, H., Cheung, S.-C., Xu, C., and Zhu, Z. Watchman: Monitoring Dependency Conflicts for Python Library Ecosystem. In Proceedings of the ACM/IEEE 42nd International Conference on Software Engineering (ICSE’20) (July 2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 109,
+      "text": "Wen, M., Liu, Y., Wu, R., Xie, X., Cheung, S.-C., and Su, Z. Exposing Library API Misuses via Mutation Analysis. In Proceedings of the 41st International Conference on Software Engineering (ICSE’19) (May 2019).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 110,
+      "text": "Xia, H., Zhang, Y., Zhou, Y., Chen, X., Wang, Y., Zhang, X., Cui, S., Hong, G., Zhang, X., Yang, M., and Yang, Z. How Android Developers Handle Evolution-Induced API Compatibility Issues: A Large-Scale Study. In Proceedings of the ACM/IEEE 42nd International Conference on Software Engineering (ICSE’20) (July 2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 111,
+      "text": "Xia, W., Wen, Y., Foh, C. H., Niyato, D., and Xie, H. A Survey on Software-Defined Networking. IEEE Communications Surveys & Tutorials 17, 1 (June 2014), 27–51.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 112,
+      "text": "Xu, T., Jin, X., Huang, P., Zhou, Y., Lu, S., Jin, L., and Pasupathy, S. Early Detection of Configuration Errors to Reduce Failure Damage. InProceedings of the 12th USENIX Symposium on Operating Systems Design and Implementation (OSDI’16) (Nov. 2016).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 113,
+      "text": "Xu, T., Zhang, J., Huang, P., Zheng, J., Sheng, T., Yuan, D., Zhou, Y., and Pasupathy, S. Do Not Blame Users for Misconfigurations. InProceedings of the 24th Symposium on Operating System Principles (SOSP’13) (Nov. 2013). 180 Cross-System Interaction Failures in Modern Cloud Systems EuroSys ’23, May 8–12, 2023, Rome, Italy",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 114,
+      "text": "Xu, T., and Zhou, Y. Systems Approaches to Tackling Configuration Errors: A Survey. ACM Computing Surveys (CSUR) 47, 4 (July 2015).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 115,
+      "text": "Yang, J. Modeling API Traffic to Catch Breaking Changes. https://www.akitasoftware.com/blog-posts/modeling-api-trafficto-catch-breaking-changes, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 116,
+      "text": "YARN Docs. YARN ResourceManager HA. https: //hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarnsite/ResourceManagerHA.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 117,
+      "text": "Yin, Z., Ma, X., Zheng, J., Zhou, Y., Bairavasundaram, L. N., and Pasupathy, S. An Empirical Study on Configuration Errors in Commercial and Open Source Systems. In Proceedings of the 23rd ACM Symposium on Operating Systems Principles (SOSP’11) (Oct. 2011).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 118,
+      "text": "Yoo, A., Wang, Y., Sinha, R., Mu, S., and Xu, T. Fail-slow fault tolerance needs programming support. In Proceedings of the 18th Workshop on Hot Topics in Operating Systems (HotOS-XVIII) (May 2021).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 119,
+      "text": "Yoo, S., and Harman, M. Regression Testing Minimisation, Selection and Prioritization: A Survey. Software Testing, Verification, and Reliability 22, 2 (Mar. 2012), 67–120.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 120,
+      "text": "Yuan, D., Luo, Y., Zhuang, X., Rodrigues, G., Zhao, X., Zhang, Y., Jain, P. U., and Stumm, M. Simple Testing Can Prevent Most Critical Failures: An Analysis of Production Failures in Distributed Dataintensive Systems. In Proceedings of the 11th USENIX Conference on Operating Systems Design and Implementation (OSDI’14) (Oct. 2014).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 121,
+      "text": "Yun, I., Min, C., Si, X., Jang, Y., Kim, T., and Naik, M. APISan: Sanitizing API Usages through Semantic Cross-Checking. In Proceedings of the 25th USENIX Security Symposium (USENIX Security ’16) (Aug. 2016).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 122,
+      "text": "Zaharia, M., Chowdhury, M., Das, T., Dave, A., Ma, J., McCauley, M., Franklin, M. J., Shenker, S., and Stoica, I. Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing. In Proceedings of the 9th USENIX Symposium on Networked Systems Design and Implementation (NSDI’12) (Apr. 2012).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 123,
+      "text": "Zamfir, C., Altekar, G., and Stoica:, I. Automating the Debugging of Datacenter Applications with ADDA. In Proceedings of the 43rd Annual IEEE/IFIP International Conference on Dependable Systems and Networks (DSN’13) (June 2013).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 124,
+      "text": "Zhai, E., Chen, A., Piskac, R., Balakrishnan, M., Tian, B., Song, B., and Zhang, H. Check before You Change: Preventing Correlated Failures in Service Updates. In Proceedings of the 17th USENIX Symposium on Networked Systems Design and Implementation (NSDI’20) (Feb. 2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 125,
+      "text": "Zhang, J., Renganarayana, L., Zhang, X., Ge, N., Bala, V., Xu, T., and Zhou, Y. EnCore: Exploiting System Environment and Correlation Information for Misconfiguration Detection. In Proceedings of the 19th International Conference on Architecture Support for Programming Languages and Operating Systems (ASPLOS’14) (Mar. 2014).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 126,
+      "text": "Zhang, Y., Yang, J., Jin, Z., Sethi, U., Rodrigues, K., Lu, S., and Yuan, D. Understanding and Detecting Software Upgrade Failures in Distributed Systems. In Proceedings of the 28th ACM Symposium on Operating Systems Principles (SOSP’21) (2021). A Artifact Appendix A.1 Abstract The artifact can be found at https://github.com/xlab-uiuc/csiaeandhttps://github.com/xlab-uiuc/csi-test-ae. The first rep",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 98,
+      "text": "Rigger, M., and Su, Z. Testing Database Engines via Pivoted Query Synthesis. In Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI’20) (Nov. 2020).",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 94,98]",
+      "technique": "pqs",
+      "sentence": ", [ 1,22,33]), which also exist in traditional systems that follow POSIX or SQL standards [ 94,98], but are magnified by the heterogeneity and composability of cloud APIs.",
+      "context_before": "r encrypted), location (e.g., local or remote), permission for impersonation, etc. Without POSIX-compliance by design [ 22,58], it is natural for cloud storage systems to extend file properties in order to expose custom information. However, custom properties could be error-prone, especially when they require special handling by upstream systems. For example, in a few cases upstream systems have to operate on files stored in local and remote storage differently (FLINK-13758), or be aware of an overloaded field (e.g., Figure 2). Lastly, non-standard data APIs often have implicit semantics (e.g.",
+      "context_after": "Implication. Our results indicate that many data-plane CSI failures, especially those induced by metadata properties, could potentially be prevented by cross-testing data-plane interactions of involved systems collectively. Such cross-testing should take a data-centric view to achieve high coverage over the metadata/data properties listed in Table 5. We explore the feasibility of cross-testing data-plane crosssystem interactions in §8. Finding 5: Complicated data abstractions (e.g., tables) are more error-prone to CSI failures, compared with simple data abstractions. 57% (35/61) of data-plane",
+      "section": "6.1 Data-Plane Discrepancies",
+      "page": 7,
+      "char_offset": 33068,
+      "cited_reference": {
+        "number": 98,
+        "text": "Rigger, M., and Su, Z. Testing Database Engines via Pivoted Query Synthesis. In Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI’20) (Nov. 2020).",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:16:45Z",
+    "is_model_written": true,
+    "summary": "This paper studies cross-system interaction failures in cloud systems, where reliability depends not only on each subsystem but on how independently developed systems interact. Analysing 11 such incidents at Google, Azure and AWS plus 120 failure cases across seven co-deployed open-source systems, the authors focus on discrepancies between interacting systems as the root cause, and demonstrate cross-system testing on the Spark-Hive data plane.",
+    "narrative": "One citation, noting that data-plane discrepancies of the kind studied also exist in traditional systems following POSIX or SQL standards, where SQLancer's work is among the references given.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -2,3 +2,33 @@ _site
 .sass-cache
 .jekyll-metadata
 Gemfile.lock
+__pycache__/
+*.pyc
+
+# Impact pipeline caches. The bulky, disposable layers -- fetched HTTP bodies,
+# GitHub payloads, scholarly API responses -- are re-fetchable and restored from
+# the GitHub Actions cache instead. The compact layers below them are committed
+# because they are the collector's reproducible state: what has been scanned,
+# what was deterministically extracted, and every classification answer.
+.cache/impact/http/
+.cache/impact/github/
+.cache/impact/papers/
+.cache/impact/artifacts/
+.cache/impact/last-run.json
+.cache/impact/pr-body.md
+.jekyll-cache
+
+# Hand-supplied paper PDFs. These stay on the machine that downloaded them:
+# they are publisher copies, often licensed to one reader, and the pipeline
+# only ever needs them locally. Everything in the folder is ignored except the
+# two files that explain it, so a PDF cannot be committed by arriving with an
+# unexpected name -- an uppercase .PDF, which the loader also reads, or a
+# subfolder of a bulk download.
+.cache/impact/papers-pdf/*
+!.cache/impact/papers-pdf/README.md
+!.cache/impact/papers-pdf/WANTED.md
+
+# Extracted paper text, cached locally. The dossiers in _data/papers keep the
+# mentions and their context; the whole text of a publisher's PDF does not
+# belong in the repository.
+.cache/impact/papers-text/

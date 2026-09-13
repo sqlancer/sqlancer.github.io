@@ -1,0 +1,940 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T17:07:15Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3588909",
+    "title": "Detecting Logic Bugs of Join Optimizations in DBMS",
+    "authors": [
+      "Xiu Tang",
+      "Sai Wu",
+      "Dongxiang Zhang",
+      "Fei Li",
+      "Gang Chen"
+    ],
+    "year": 2023,
+    "venue": "Proc. ACM Manag. Data",
+    "doi": "10.1145/3588909",
+    "arxiv_id": "2602.21955",
+    "s2_paper_id": "728c97e05665b2e966a1b17abc5d6d4eaf7e136f",
+    "url": "https://doi.org/10.1145/3588909",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2602.21955",
+      "retrieved_at": "2026-09-07T17:07:15Z",
+      "chars": 77776,
+      "content_sha256": "sha256:54b240932cf1e5d835aa37d78bf011b2a8761913d24420adb6eb762920e28c72"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 14,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2083
+      },
+      {
+        "number": "2",
+        "title": "Overview",
+        "start": 8625
+      },
+      {
+        "number": "2.1",
+        "title": "Problem Definition",
+        "start": 9202
+      },
+      {
+        "number": "2.2",
+        "title": "Scheme Overview",
+        "start": 10461
+      },
+      {
+        "number": "3.1",
+        "title": "Schema Normalization",
+        "start": 15983
+      },
+      {
+        "number": "3.2",
+        "title": "Noise Injection",
+        "start": 19639
+      },
+      {
+        "number": "3.3",
+        "title": "Join Query Generator",
+        "start": 26737
+      },
+      {
+        "number": "3.4",
+        "title": "Ground-truth Result Generation",
+        "start": 29753
+      },
+      {
+        "number": "5.1",
+        "title": "Overview and Showcase of Bug Reports",
+        "start": 43565
+      },
+      {
+        "number": "5.1.1",
+        "title": "Bugs in MySQL.A large portion of bugs in MySQL involves",
+        "start": 45325
+      },
+      {
+        "number": "5.1.2",
+        "title": "Bugs in MariaDB.Different from MySQL, many bugs were",
+        "start": 47807
+      },
+      {
+        "number": "5.1.3",
+        "title": "Bugs in TiDB.Merge join and join index are the main causes",
+        "start": 51480
+      },
+      {
+        "number": "5.1.4",
+        "title": "Bugs in X-DB.In our X-DB, most bugs are produced from",
+        "start": 55236
+      },
+      {
+        "number": "5.2",
+        "title": "Comparison with Existing Tools",
+        "start": 57346
+      },
+      {
+        "number": "5.3",
+        "title": "Ablation Studies",
+        "start": 60656
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Günes Aluç, Olaf Hartig, M. Tamer Özsu, and Khuzaima Daudjee. 2014. Diversified Stress Testing of RDF Data Management Systems. InISWC. Springer, 197–212.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Güneş Aluç, Olaf Hartig, M Tamer Özsu, and Khuzaima Daudjee. 2014. Diversified stress testing of RDF data management systems. InInternational Semantic Web Conference. 197–212.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Akhil Arora, Sakshi Sinha, Piyush Kumar, and Arnab Bhattacharya. 2018. HDIndex: Pushing the Scalability-Accuracy Boundary for Approximate kNN Search in High-Dimensional Spaces.Proc. VLDB Endow.11, 8 (2018), 906–919.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Guillaume Bagan, Angela Bonifati, Radu Ciucanu, George H. L. Fletcher, Aurélien Lemay, and Nicky Advokaat. 2017. gMark: Schema-Driven Generation of Graphs and Queries. InICDE. 63–64.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Hardik Bati, Leo Giakoumakis, Steve Herbert, and Aleksandras Surna. 2007. A genetic approach for random testing of database systems. InVLDB. ACM, 1243–1251.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Carsten Binnig, Donald Kossmann, Eric Lo, and M. Tamer Özsu. 2007. QAGen: generating query-aware test databases. InSIGMOD. ACM, 341–352.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Joachim Biskup. 1995. Achievements of Relational Database Schema Design Theory Revisited. InSemantics in Databases. Springer, 29–54.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Joachim Biskup, Umeshwar Dayal, and Philip A. Bernstein. 1979. Synthesizing Independent Database Schemas. InSIGMOD, Philip A. Bernstein (Ed.). ACM, 143–151.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Christian Bizer and Andreas Schultz. 2009. The berlin sparql benchmark.IJSWIS 5, 2 (2009), 1–24.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Daniel Blum and Sara Cohen. 2011. Grr: generating random RDF. InExtended Semantic Web Conference. Springer, 16–30.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Manuel Bodirsky. 2015. Graph homomorphisms and universal algebra course notes.TU Dresden(2015).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Robert Brummayer and Armin Biere. 2009. Fuzzing and delta-debugging SMT solvers. InProceedings of the 7th International Workshop on Satisfiability Modulo Theories. 1–5.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Nicolas Bruno and Surajit Chaudhuri. 2005. Flexible Database Generators. In VLDB. ACM, 1097–1107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Nicolas Bruno, Surajit Chaudhuri, and Dilys Thomas. 2006. Generating Queries with Cardinality Constraints for DBMS Testing.IEEE Trans. Knowl. Data Eng.18, 12 (2006), 1721–1725.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Wei Cao, Yingqiang Zhang, Xinjun Yang, Feifei Li, Sheng Wang, Qingda Hu, Xuntao Cheng, Zongzhi Chen, Zhenjun Liu, Jing Fang, Bo Wang, Yuhui Wang, Haiqing Sun, Ze Yang, Zhushi Cheng, Sen Chen, Jian Wu, Wei Hu, Jianwei Zhao, Yusong Gao, Songlu Cai, Yunyang Zhang, and Jiawang Tong. 2021. PolarDB Serverless: A Cloud Native Database for Disaggregated Data Centers. InSIGMOD. ACM, 2477–2489.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Pascal Cuoq, Benjamin Monate, Anne Pacalet, Virgile Prevosto, John Regehr, Boris Yakobowski, and Xuejun Yang. 2012. Testing Static Analyzers with Randomly Generated Programs. InNASA Formal Methods-4th International Symposium, NFM. Springer, 120–125.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Angjela Davitkova, Damjan Gjurovski, and Sebastian Michel. 2022. LMKG: Learned Models for Cardinality Estimation in Knowledge Graphs. InEDBT. OpenProceedings.org, 2:169–2:182.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "DB-Engines. 2018. DB-Engines Ranking. [EB/OL]. https://db-engines.com/en/ ranking.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Jim Diederich and Jack Milton. 1988. New Methods and Fast Algorithms for Database Normalization.ACM Trans. Database Syst.13, 3 (1988), 339–365.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Chi Thang Duong, Dung Hoang, Hongzhi Yin, Matthias Weidlich, Quoc Viet Hung Nguyen, and Karl Aberer. 2021. Efficient Streaming Subgraph Isomorphism with Graph Neural Networks.VLDB14, 5 (2021), 730–742.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Orri Erling, Alex Averbuch, Josep Larriba-Pey, Hassan Chafi, Andrey Gubichev, Arnau Prat, Minh-Duc Pham, and Peter Boncz. 2015. The LDBC social network benchmark: Interactive workload. InSIGMOD. 619–630.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "M. R. Garey and David S. Johnson. 1979.Computers and Intractability: A Guide to the Theory of NP-Completeness. W. H. Freeman.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Jim Gray, Prakash Sundaresan, Susanne Englert, Kenneth Baclawski, and Peter J. Weinberger. 1994. Quickly Generating Billion-Record Synthetic Databases. In SIGMOD. ACM Press, 243–252.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Zhongxian Gu, Mohamed A Soliman, and Florian M Waas. 2012. Testing the accuracy of query optimizers. InProceedings of the Fifth International Workshop on Testing Database Systems. 1–6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Yuanbo Guo, Zhengxiang Pan, and Jeff Heflin. 2005. LUBM: A benchmark for OWL knowledge base systems.Journal of Web Semantics3, 2-3 (2005), 158–182.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Kenneth Houkjær, Kristian Torp, and Rico Wind. 2006. Simple and Realistic Data Generation. InVLDB. ACM, 1243–1246.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Dongxu Huang, Qi Liu, Qiu Cui, Zhuhe Fang, Xiaoyu Ma, Fei Xu, Li Shen, Liu Tang, Yuxing Zhou, Menglong Huang, et al .2020. TiDB: a Raft-based HTAP database.VLDB13, 12 (2020), 3072–3084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Yka Huhtala, Juha Kärkkäinen, Pasi Porkka, and Hannu Toivonen. 1999. TANE: An efficient algorithm for discovering functional and approximate dependencies.The computer journal42, 2 (1999), 100–111.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woon-Hak Kang. 2019. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems.VLDB13, 1 (2019), 57–70.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Timotej Kapus and Cristian Cadar. 2017. Automatic testing of symbolic execution engines via program generation and differential testing. InASE. IEEE Computer Society, 590–600.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Shadi Abdul Khalek, Bassem Elkarablieh, Yai O. Laleye, and Sarfraz Khurshid. 2008. Query-Aware Test Generation Using a Relational Constraint Solver. InASE. IEEE Computer Society, 238–247.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Shadi Abdul Khalek and Sarfraz Khurshid. 2010. Automated SQL query generation for systematic testing of database engines. InASE. ACM, 329–332.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. 2014. Compiler validation via equivalence modulo inputs. InPLDI. ACM, 216–226.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Eric Lo, Carsten Binnig, Donald Kossmann, M. Tamer Özsu, and Wing-Kai Hon. 2010. A framework for testing DBMS features.VLDB J.19, 2 (2010), 203–230.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "David Maier. 1983.The Theory of Relational Databases. Computer Science Press.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "MariaDB. 2022. MariaDB hints. [EB/OL]. https://mariadb.com/kb/en/optimizerswitch/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Mariadb. 2022. Mariadb Homepage. [EB/OL]. https://mariadb.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "William M. McKeeman. 1998. Differential Testing for Software.Digit. Tech. J.10, 1 (1998), 100–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Chaitanya Mishra, Nick Koudas, and Calisto Zuzarte. 2008. Generating targeted queries for database testing. InSIGMOD. ACM, 499–510.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "MySQL. 2022. MySQL hints. [EB/OL]. https://dev.mysql.com/doc/refman/8.0/ en/optimizer-hints.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "MySQL. 2022. MySQL Homepage. [EB/OL]. https://www.mysql.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Stack Overflow. 2021. Developer Survey Results. [EB/OL]. https://insights. stackoverflow.com/survey/2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Thorsten Papenbrock and Felix Naumann. 2016. A Hybrid Approach to Functional Dependency Discovery. InSIGMOD, Fatma Özcan, Georgia Koutrika, and Sam Madden (Eds.). ACM, 821–833.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Thorsten Papenbrock and Felix Naumann. 2017. Data-driven Schema Normalization. InEDBT. OpenProceedings.org, 342–353.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Meikel Poess and John M. Stephens. 2004. Generating Thousand Benchmark Queries in Seconds. InVLDB. Morgan Kaufmann, 1045–1053.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Kim-Thomas Rehmann, Changyun Seo, Dongwon Hwang, Binh Than Truong, Alexander Boehm, and Dong Hun Lee. 2016. Performance Monitoring in SAPHANA’s Continuous Integration Process.SIGMETRICS Perform. Evaluation Rev. 43, 4 (2016), 43–52.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InACM Joint Meeting on ESEC and FSE. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 48,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proceedings of the ACM on Programming Languages4, OOPSLA (2020), 1–30.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 49,
+      "text": "Manuel Rigger and Zhendong Su. 2020. SQLancer. [EB/OL]. https://github.com/ sqlancer/sqlancer.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 50,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. InOSDI 20. 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 51,
+      "text": "Michael Schmidt, Thomas Hornung, Georg Lausen, and Christoph Pinkel. 2009. SPˆ 2Bench: a SPARQL performance benchmark. InICDE. IEEE, 222–233.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Andreas Seltenreich. 2020. SQLSmith. [EB/OL]. https://github.com/anse1/ sqlsmith.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Donald R. Slutz. 1998. Massive Stochastic Testing of SQL. InVLDB, Ashish Gupta, Oded Shmueli, and Jennifer Widom (Eds.). Morgan Kaufmann, 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "TiDB. 2022. TiDB hints. [EB/OL]. https://docs.pingcap.com/tidb/v5.3/optimizerhints.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Manasi Vartak, Venkatesh Raghavan, and Elke A. Rundensteiner. 2010. QRelX: generating meaningful queries that provide cardinality assurance. InSIGMOD. ACM, 1215–1218.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Ziheng Wei and Sebastian Link. 2019. Embedded Functional Dependencies and Data-completeness Tailored Database Design.VLDB12, 11 (2019), 1458–1470.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Kesheng Wu, Ekow J. Otoo, and Arie Shoshani. 2002. Compressing Bitmap Indexes for Faster Search Operations. InSSDBM. IEEE Computer Society, 99–108.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Jiaqi Yan, Qiuye Jin, Shrainik Jain, Stratis D. Viglas, and Allison W. Lee. 2018. Snowtrail: Testing with Production Queries on a Cloud Database. InSIGMOD. ACM, 4:1–4:6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. 2011. Finding and understanding bugs in C compilers. InSIGPLAN, PLDI. ACM, 283–294.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Yixing Yang, Yixiang Fang, Maria E. Orlowska, Wenjie Zhang, and Xuemin Lin. 2021. Efficient Bi-triangle Counting for Large Bipartite Networks.VLDB14, 6 (2021), 984–996.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Rex Ying, Zhaoyu Lou, Jiaxuan You, Chengtao Wen, Arquimedes Canedo, and Jure Leskovec. 2020. Neural Subgraph Matching.CoRRabs/2007.03092 (2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. InCCS. ACM, 955–970.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 47,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InACM Joint Meeting on ESEC and FSE. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 48,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proceedings of the ACM on Programming Languages4, OOPSLA (2020), 1–30.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 49,
+      "text": "Manuel Rigger and Zhendong Su. 2020. SQLancer. [EB/OL]. https://github.com/ sqlancer/sqlancer.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 50,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. InOSDI 20. 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "technique",
+      "surface": "Pivoted Query Synthesis",
+      "technique": "pqs",
+      "sentence": "Pivoted Query Synthesis (PQS) has recently emerged as a promising way to detect logic bugs in DBMS [ 50].",
+      "context_before": "execution plan with the assistance of built-in cost models. The implementation errors in a query optimizer can ∗Sai Wu is the corresponding author. (a) MySQL’s incorrect hash join execution. (b) MySQL’s incorrect semi-join execution. Figure 1: Logic bug cases of join optimizations in MySQL. result in bugs, including crashes and logic bugs. Crashes are easier to detect as the system will halt immediately. Whereas, logic bugs are prone to be ignored, because they simply cause the DBMS to return incorrect result sets that are hard to detect. In this paper, we focus on detecting these silent bugs.",
+      "context_after": "Its core idea is to select a pivot row from a table and generate queries that fetch this row as the result. A logic bug is detected if the pivot row is not returned in any synthesized query. PQS is mainly designed to support selection queries in a single table and90%of its reported bugs are for queries involving only one table. There still exists substantial research gap regarding multi-table queries with different join algorithms and join structures, which are more error-prone than single-table queries. In Figure 1, we illustrate two logic bugs of MySQL for join queries. These two bugs can b",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 3103,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS is mainly designed to support selection queries in a single table and90%of its reported bugs are for queries involving only one table.",
+      "context_before": "t in bugs, including crashes and logic bugs. Crashes are easier to detect as the system will halt immediately. Whereas, logic bugs are prone to be ignored, because they simply cause the DBMS to return incorrect result sets that are hard to detect. In this paper, we focus on detecting these silent bugs. Pivoted Query Synthesis (PQS) has recently emerged as a promising way to detect logic bugs in DBMS [ 50]. Its core idea is to select a pivot row from a table and generate queries that fetch this row as the result. A logic bug is detected if the pivot row is not returned in any synthesized query.",
+      "context_after": "There still exists substantial research gap regarding multi-table queries with different join algorithms and join structures, which are more error-prone than single-table queries. In Figure 1, we illustrate two logic bugs of MySQL for join queries. These two bugs can be detected by our proposed tool in this paper. Figure 1(a) demonstrates a logic bug of hash join in MySQL 8.0.18. In this example, the first query returns the correct result set because it is executed with the block nested loop join. However, when thearXiv:2602.21955v1 [cs.DB] 25 Feb 2026 Conference acronym ’XX, June 03–05, 2023",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 3400,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "3 Data-guided Schema and Query Generation (DSG) SQLancer [ 49] is a tool to automatically find logic bugs in the implementation of DBMS.",
+      "context_before": "unknown query space. For a query𝑞𝑖, TQS transforms the query with hint sets 𝑡𝑟𝑎𝑛𝑠_𝑞𝑖 to execute multiply different physical query plans (line 11). Finally, the result set of query 𝑡𝑟𝑎𝑛𝑠_𝑞𝑖is compared with the ground-truth 𝐺𝑇𝑞𝑖(line 14). If they are not consistent, a join optimization bug is detected (lines 15). TQS currently focuses on bug detection of equi-join queries. However, the idea of DSG and KQE can be extended to non-equal joins. The only challenge is how to generate and manage groundtruth results, whose sizes increase exponentially for non-equal joins. We leave it to our future work.",
+      "context_after": "It first creates a populated database with randomly generated tables. Afterwards, it randomly chooses SQL statements to create, modify, and delete data. Based on the randomly generated database, it adopts testing approaches such as Pivoted Query Synthesis (PQS) [ 50] to detect logic bugs. Note that SQLancer Conference acronym ’XX, June 03–05, 2023, Woodstock, NY Xiu Tang, et al. is designed for logic bug detection of single-table queries. We can extend it directly to multi-table queries by modifying its data and query generator, but many bugs are ignored in that case. For details, please refe",
+      "section": "2.2 Scheme Overview",
+      "page": 3,
+      "char_offset": 14591,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Based on the randomly generated database, it adopts testing approaches such as Pivoted Query Synthesis (PQS) [ 50] to detect logic bugs.",
+      "context_before": "s detected (lines 15). TQS currently focuses on bug detection of equi-join queries. However, the idea of DSG and KQE can be extended to non-equal joins. The only challenge is how to generate and manage groundtruth results, whose sizes increase exponentially for non-equal joins. We leave it to our future work. 3 Data-guided Schema and Query Generation (DSG) SQLancer [ 49] is a tool to automatically find logic bugs in the implementation of DBMS. It first creates a populated database with randomly generated tables. Afterwards, it randomly chooses SQL statements to create, modify, and delete data.",
+      "context_after": "Note that SQLancer Conference acronym ’XX, June 03–05, 2023, Woodstock, NY Xiu Tang, et al. is designed for logic bug detection of single-table queries. We can extend it directly to multi-table queries by modifying its data and query generator, but many bugs are ignored in that case. For details, please refer to the experimental section. To effectively support bug detection of multi-table join queries, we generate a test database as a wide table and leverage schema normalization to split the wide table into multiple tables with normal form. In addition, we propose an effective noise injection",
+      "section": "2.2 Scheme Overview",
+      "page": 3,
+      "char_offset": 14881,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Note that SQLancer Conference acronym ’XX, June 03–05, 2023, Woodstock, NY Xiu Tang, et al.",
+      "context_before": "on-equal joins. The only challenge is how to generate and manage groundtruth results, whose sizes increase exponentially for non-equal joins. We leave it to our future work. 3 Data-guided Schema and Query Generation (DSG) SQLancer [ 49] is a tool to automatically find logic bugs in the implementation of DBMS. It first creates a populated database with randomly generated tables. Afterwards, it randomly chooses SQL statements to create, modify, and delete data. Based on the randomly generated database, it adopts testing approaches such as Pivoted Query Synthesis (PQS) [ 50] to detect logic bugs.",
+      "context_after": "is designed for logic bug detection of single-table queries. We can extend it directly to multi-table queries by modifying its data and query generator, but many bugs are ignored in that case. For details, please refer to the experimental section. To effectively support bug detection of multi-table join queries, we generate a test database as a wide table and leverage schema normalization to split the wide table into multiple tables with normal form. In addition, we propose an effective noise injection techniques to increase the probability of causing logic bugs with inconsistent database sta",
+      "section": "2.2 Scheme Overview",
+      "page": 3,
+      "char_offset": 15018,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer is not designed to test multi-table queries.",
+      "context_before": "d TPCH data and the dataset from UCI machine learning repository2. However, since TPC-H dataset follows uniform distribution and has a simple schema, all reported bugs on TPC-H dataset have been covered by the UCI dataset. Therefore, we only show the results on the UCI data. As TQS runs, it continuously reports bugs and to be fair for all DBMSs, we only report the results for the first 24 hours. All DBMSs are run with default configurations and compilation options. Baseline approaches.We compare TQS with the SQLancer3 which is the start-of-the-art approach to detecting logic bugs in databases.",
+      "context_after": "However, it can be tailored for multi-table queries by artificially generating queries and tuples across more than one tables. Similar to the single table case, all queries and tuples are randomly generated. We use three methods in SQLancer as our baselines. The first one is PQS [ 50], which constructs queries to fetch a randomly selected tuple from a table. The tested DBMS may contain a bug if it fails to fetch that tuple. The second one is TLP [ 50], which decomposes a query into three partitioning queries, each of which computes its result on that tuple. The third one is NoRec [ 47], which",
+      "section": "3.4 Ground-truth Result Generation",
+      "page": 8,
+      "char_offset": 42213,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We use three methods in SQLancer as our baselines.",
+      "context_before": "the UCI data. As TQS runs, it continuously reports bugs and to be fair for all DBMSs, we only report the results for the first 24 hours. All DBMSs are run with default configurations and compilation options. Baseline approaches.We compare TQS with the SQLancer3 which is the start-of-the-art approach to detecting logic bugs in databases. SQLancer is not designed to test multi-table queries. However, it can be tailored for multi-table queries by artificially generating queries and tuples across more than one tables. Similar to the single table case, all queries and tuples are randomly generated.",
+      "context_after": "The first one is PQS [ 50], which constructs queries to fetch a randomly selected tuple from a table. The tested DBMS may contain a bug if it fails to fetch that tuple. The second one is TLP [ 50], which decomposes a query into three partitioning queries, each of which computes its result on that tuple. The third one is NoRec [ 47], which targets at logic bugs generated by the optimization process in DBMS. It performs a comparison between the results of randomly-generated queries and their rewritten ones. DBMS versions. Note that DBMS bugs will be fixed once reported to the community. In our",
+      "section": "3.4 Ground-truth Result Generation",
+      "page": 8,
+      "char_offset": 42475,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "The first one is PQS [ 50], which constructs queries to fetch a randomly selected tuple from a table.",
+      "context_before": "bugs and to be fair for all DBMSs, we only report the results for the first 24 hours. All DBMSs are run with default configurations and compilation options. Baseline approaches.We compare TQS with the SQLancer3 which is the start-of-the-art approach to detecting logic bugs in databases. SQLancer is not designed to test multi-table queries. However, it can be tailored for multi-table queries by artificially generating queries and tuples across more than one tables. Similar to the single table case, all queries and tuples are randomly generated. We use three methods in SQLancer as our baselines.",
+      "context_after": "The tested DBMS may contain a bug if it fails to fetch that tuple. The second one is TLP [ 50], which decomposes a query into three partitioning queries, each of which computes its result on that tuple. The third one is NoRec [ 47], which targets at logic bugs generated by the optimization process in DBMS. It performs a comparison between the results of randomly-generated queries and their rewritten ones. DBMS versions. Note that DBMS bugs will be fixed once reported to the community. In our experiments, we report the results of the latest released versions during our testing, namely, MySQL 8",
+      "section": "3.4 Ground-truth Result Generation",
+      "page": 8,
+      "char_offset": 42526,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "The second one is TLP [ 50], which decomposes a query into three partitioning queries, each of which computes its result on that tuple.",
+      "context_before": "roaches.We compare TQS with the SQLancer3 which is the start-of-the-art approach to detecting logic bugs in databases. SQLancer is not designed to test multi-table queries. However, it can be tailored for multi-table queries by artificially generating queries and tuples across more than one tables. Similar to the single table case, all queries and tuples are randomly generated. We use three methods in SQLancer as our baselines. The first one is PQS [ 50], which constructs queries to fetch a randomly selected tuple from a table. The tested DBMS may contain a bug if it fails to fetch that tuple.",
+      "context_after": "The third one is NoRec [ 47], which targets at logic bugs generated by the optimization process in DBMS. It performs a comparison between the results of randomly-generated queries and their rewritten ones. DBMS versions. Note that DBMS bugs will be fixed once reported to the community. In our experiments, we report the results of the latest released versions during our testing, namely, MySQL 8.0.28, MariaDB 10.8.2, TiDB 5.4.0 and X-DB beta 8.0.18 respectively. Setup.All experiments are conducted on our in-house server equipped with Intel Xeon CPU E5-2682 (2.50GHz) 16 cores and 128GB memory. F",
+      "section": "3.4 Ground-truth Result Generation",
+      "page": 8,
+      "char_offset": 42695,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "pqs"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "NoRec",
+      "technique": "norec",
+      "sentence": "The third one is NoRec [ 47], which targets at logic bugs generated by the optimization process in DBMS.",
+      "context_before": "esigned to test multi-table queries. However, it can be tailored for multi-table queries by artificially generating queries and tuples across more than one tables. Similar to the single table case, all queries and tuples are randomly generated. We use three methods in SQLancer as our baselines. The first one is PQS [ 50], which constructs queries to fetch a randomly selected tuple from a table. The tested DBMS may contain a bug if it fails to fetch that tuple. The second one is TLP [ 50], which decomposes a query into three partitioning queries, each of which computes its result on that tuple.",
+      "context_after": "It performs a comparison between the results of randomly-generated queries and their rewritten ones. DBMS versions. Note that DBMS bugs will be fixed once reported to the community. In our experiments, we report the results of the latest released versions during our testing, namely, MySQL 8.0.28, MariaDB 10.8.2, TiDB 5.4.0 and X-DB beta 8.0.18 respectively. Setup.All experiments are conducted on our in-house server equipped with Intel Xeon CPU E5-2682 (2.50GHz) 16 cores and 128GB memory. For our cloud-native database X-DB, we run an instance on our public cloud with similar computation capabi",
+      "section": "3.4 Ground-truth Result Generation",
+      "page": 8,
+      "char_offset": 42831,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "sqlancer",
+      "technique": null,
+      "sentence": "com/sqlancer/sqlancer Detecting Logic Bugs of Join Optimizations in DBMS Conference acronym ’XX, June 03–05, 2023, Woodstock, NY Table 3: We tested a diverse set of popular and emerging DBMS.",
+      "context_before": ", namely, MySQL 8.0.28, MariaDB 10.8.2, TiDB 5.4.0 and X-DB beta 8.0.18 respectively. Setup.All experiments are conducted on our in-house server equipped with Intel Xeon CPU E5-2682 (2.50GHz) 16 cores and 128GB memory. For our cloud-native database X-DB, we run an instance on our public cloud with similar computation capability to our in-house server. 5.1 Overview and Showcase of Bug Reports TQS has successfully detected 115 bugs from tested DBMSs within 24 hours, including 31 bugs in MySQL, 30 bugs in MariaDB, 31 bugs 2https://archive.ics.uci.edu/ml/datasets/KDD+Cup+1998+Data 3https://github.",
+      "context_after": "All numbers are the lasted as of July 2022. DBMSPopularity Rank LOCFirst ReleaseDBEnginesStack OverflowGithub Stars MySQL 2 1 8.0k 3.8M 1995 MariaDB 12 7 4.3k 3.6M 2009 TiDB 96 – 31.8k 0.8M 2017 in TiDB, and 23 bugs in X-DB respectively. However, some bugs may be caused by the same relational algebras. Hence, once finding a possible bug, it is essential to produce a minimal test case with C-Reduce4before reporting the bug, to save the DBMS developers’ time and effort. Then, we submit all bugs and the corresponding test cases to developer communities and received their positive feedbacks. Thro",
+      "section": "5.1 Overview and Showcase of Bug Reports",
+      "page": 8,
+      "char_offset": 43811,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "CREATE TABLEt 1 ( i d b i g i n t ( 6 4 )NOT NULLAUTO_INCREMENT, c o l 1varchar( 5 1 1 )DEFAULT NULL, PRIMARY KEY( i d ) ); CREATE TABLEt 2 ( i d b i g i n t ( 6 4 )NOT NULLAUTO_INCREMENT, c o l 1varchar( 5 1 1 )DEFAULT NULL, PRIMARY KEY( i d ) ); Detecting Logic Bugs of Join Optimizations in DBMS Conference acronym ’XX, June 03–05, 2023, Woodstock, NY 0 4 8 12 16 20 24 /uni0000004b/uni00000052/uni00000058/uni00000055/uni000000560100200300400/uni00000047/uni0000004c/uni00000059/uni00000048/uni00000055/uni00000056/uni00000048/uni00000003/uni0000004a/uni00000055/uni00000044/uni00000053/uni0000004b/uni00000056/uni00000003/uni00000012/uni00000003/uni0000004e TQSPQS TLP (a) MySQL diversity 0 4 8 12 16 20 24 /uni0000004b/uni00000052/uni00000058/uni00000055/uni000000560100200300400/uni00000047/uni0000004c/uni00000059/uni00000048/uni00000055/uni00000056/uni00000048/uni00000003/uni0000004a/uni00000055/uni00000044/uni00000053/uni0000004b/uni00000056/uni00000003/uni00000012/uni00000003/uni0000004e TQS NoRec (b) MariaDB diversity 0 4 8 12 16 20 24 /uni0000004b/uni00000052/uni00000058/uni00000055/uni000000560100200300400/uni00000047/uni0000004c/uni00000059/uni00000048/uni00000055/uni00000056/uni00000048/uni00000003/uni0000004a/uni00000055/uni00000044/uni00000053/uni0000004b/uni00000056/uni00000003/uni00000012/uni00000003/uni0000004e TQSTLP (c) TiDB diversity 0 4 8 12 16 20 24 /uni0000004b/uni00000052/uni00000058/uni00000055/uni000000560100200300400/uni00000047/uni0000004c/uni00000059/uni00000048/uni00000055/uni00000056/uni00000048/uni00000003/uni0000004a/uni00000055/uni00000044/uni00000053/uni0000004b/uni00000056/uni00000003/uni00000012/uni00000003/uni0000004e TQSPQS TLP (d) X-DB diversity 0 4 8 12 16 20 24 /uni0000004b/uni00000052/uni00000058/uni00000055/uni000000560510152025/uni00000045/uni00000058/uni0000004a/uni00000003/uni00000046/uni00000052/uni00000058/uni00000051/uni00000057 TQSPQS TLP (e) MySQL efficiency 0 4 8 12 16 20 24 /uni0000004b/uni00000052/uni00000058/uni00000055/uni000000560510152025/uni00000045/uni00000058/uni0000004a/uni00000003/uni00000046/uni00000052/uni00000058/uni00000051/uni00000057 TQS NoRec (f) MariaDB efficiency 0 4 8 12 16 20 24 /uni0000004b/uni00000052/uni00000058/uni00000055/uni00000056051015202530/uni00000045/uni00000058/uni0000004a/uni00000003/uni00000046/uni00000052/uni00000058/uni00000051/uni00000057 TQSTLP (g) TiDB efficiency 0 4 8 12 16 20 24 /uni0000004b/uni00000052/uni00000058/uni00000055/uni0000005605101520/uni00000045/uni00000058/uni0000004a/uni00000003/uni00000046/uni00000052/uni00000058/uni00000051/uni00000057 TQSPQS TLP (h) X-DB efficiency Figure 8: Comparison with existing tools in the query graph diversity and the efficiency of detecting bugs.",
+      "context_before": "−−−−−+ |NULL| |NULL| +−−−−−−+ t r a n s f o r m e d query: SETo p t i m i z e r _ s w i t c h ='j o i n _ c a c h e _ b k a = o f f'; SELECTt 3. c0FROMt 3RIGHT OUTER JOINt 4ONt 3. c1 = t 4. c1 JOINt 2ONt 2. c1 = t 4. c1CROSS JOINt 1; r e s u l t: Emptyset Listing 4: MariaDB’s incorrect index join execution. 5.1.3 Bugs in TiDB.Merge join and join index are the main causes of bugs in TiDB. Listing 5 shows an example query, where incorrect result set is obtained when hash join is converted to merge join (due to space constraints, the ground truth results and incorrect results are discarded here).",
+      "context_after": "CREATE TABLEt 3 ( i d b i g i n t ( 6 4 )NOT NULLAUTO_INCREMENT, c o l 1varchar( 5 1 1 )DEFAULT NULL, PRIMARY KEY( i d ) ); SELECT/∗+ me rge _j oi n ( t1, t2, t 3 )∗/ t 3. c o l 1FROM( t 1LEFT JOINt 2ONt 1. c o l 1 = t 2. c o l 1 )LEFT JOINt 3ONt 2. c o l 1 = t 3. c o l 1; SELECT/∗+ h a s h _ j o i n ( t1, t2, t 3 )∗/ t 3. c o l 1FROM( t 1LEFT JOINt 2ONt 1. c o l 1 = t 2. c o l 1 )LEFT JOINt 3ONt 2. c o l 1 = t 3. c o l 1; Listing 5: TiDB’s merge join executed incorrect result set which misses-0. We find that when TiDB executes the above merge join, intermediate data are mistakenly materializ",
+      "section": "5.1.3 Bugs in TiDB.Merge join and join index are the main causes",
+      "page": 10,
+      "char_offset": 51771,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ],
+      "text_is_letter_spaced": true
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Note that due to the compatibility problem, SQLancer implements different approaches on different databases (PQS and TLP on MySQL and X-DB; NoRec on MariaDB; TLP on TiDB).",
+      "context_before": "To p t i m i z e r _ s w i t c h ='m a t e r i a l i z a t i o n = o f f'; Conference acronym ’XX, June 03–05, 2023, Woodstock, NY Xiu Tang, et al. SELECT ALLt 1. c0FROMt 1RIGHT OUTER JOINt 0ONt 1. c0 = t 0. c0WHEREt 1. c0IN(SELECTt 0. c0FROMt 0WHERE( t 1. c0NOT IN(SELECTt 1. c0FROMt 1 ) ) = ( 1 )INt 1. c0 ); r e s u l t: +−−−−−−−−−−−+ | c0 | +−−−−−−−−−−−+ | 292269000 | +−−−−−−−−−−−+ Listing 7: X-DB’s incorrect hash join execution. 5.2 Comparison with Existing Tools We compare TQS with three state-of-the-art DBMS testing approaches in different aspects to show its effectiveness and efficiency.",
+      "context_after": "Figure 8 shows our comparison results. We adopt two metrics. The diversity of graphs shows the number of different isomorphic sets tested, and the bug type count represents the number of returned logic bug types. Query graph diversity.Figure 8(a), (b), (c) and (d) show the query graph diversity (in thousands of isomorphic sets) of MySQL, MariaDB, TiDB and X-DB, respectively. TQS significantly outperforms baseline approaches on testing diversity. This is because that (1) SQLancer approaches may generate random joins with empty results which are not usable for testing and (2) TQS adopts the KQE",
+      "section": "5.2 Comparison with Existing Tools",
+      "page": 12,
+      "char_offset": 57510,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "This is because that (1) SQLancer approaches may generate random joins with empty results which are not usable for testing and (2) TQS adopts the KQE to avoid repeatedly testing the same query structure.",
+      "context_before": "compatibility problem, SQLancer implements different approaches on different databases (PQS and TLP on MySQL and X-DB; NoRec on MariaDB; TLP on TiDB). Figure 8 shows our comparison results. We adopt two metrics. The diversity of graphs shows the number of different isomorphic sets tested, and the bug type count represents the number of returned logic bug types. Query graph diversity.Figure 8(a), (b), (c) and (d) show the query graph diversity (in thousands of isomorphic sets) of MySQL, MariaDB, TiDB and X-DB, respectively. TQS significantly outperforms baseline approaches on testing diversity.",
+      "context_after": "Efficiency.Figure 8(e), (f), (g) and (h) show the testing efficiency of MySQL, MariaDB, TiDB and X-DB, respectively. Not surprisingly, we obtain a similar result as the diversity experiment. More query structures are being tested, more bugs can be discovered. 04812162024283236404448 /uni0000004b/uni00000052/uni00000058/uni00000055/uni0000005601020304050/uni00000045/uni00000058/uni0000004a/uni00000003/uni00000046/uni00000052/uni00000058/uni00000051/uni00000057 bug count bug type Figure 9: Bug types vs bug counts on MySQL. In fact, we run the TQS for 48 hours and continue to find logic bugs for",
+      "section": "5.2 Comparison with Existing Tools",
+      "page": 12,
+      "char_offset": 58132,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M15",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [ 49] is a current stateof-the-art tool in testing DBMS for logic bugs and is the most closely related work to ours.",
+      "context_before": "rectness of the system, have received less attention. Generation-based testings [24,32,34,39,46,58,62] have been adopted for extensive testings on DBMSs for purposes such as bug-finding and benchmarking. SQLSmith is a widely-used generation-based DBMS tester [ 52]. It synthesizes a schema from initial databases and generates limited types of queries, whose target is at the code coverage. Squirrel focuses on generating queries to detect memory corruption bugs [62]. All above random generators are mostly applied to detect crashing bugs, while our focus is the logic bug.Logic Bug Testing of DBMS.",
+      "context_after": "SQLancer proposes three approaches to detect logic bugs. PQS constructs queries to fetch a randomly selected tuple from a table [ 50]. TLP decomposes a query into three partitioning queries, each of which computes its result on a selected tuple [ 48]. NoRec compares the results of randomly-generated optimized queries and rewritten queries that DBMS cannot optimize [47]. SQLancer targets at single table queries and 90.0% of its bug reports include only one table. On the other hand, our TQS targets at detecting logic bugs of multi-table joins, which are more prone to bugs. Database Schema Norma",
+      "section": "5.3 Ablation Studies",
+      "page": 13,
+      "char_offset": 64967,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M16",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer proposes three approaches to detect logic bugs.",
+      "context_before": "extensive testings on DBMSs for purposes such as bug-finding and benchmarking. SQLSmith is a widely-used generation-based DBMS tester [ 52]. It synthesizes a schema from initial databases and generates limited types of queries, whose target is at the code coverage. Squirrel focuses on generating queries to detect memory corruption bugs [62]. All above random generators are mostly applied to detect crashing bugs, while our focus is the logic bug.Logic Bug Testing of DBMS.SQLancer [ 49] is a current stateof-the-art tool in testing DBMS for logic bugs and is the most closely related work to ours.",
+      "context_after": "PQS constructs queries to fetch a randomly selected tuple from a table [ 50]. TLP decomposes a query into three partitioning queries, each of which computes its result on a selected tuple [ 48]. NoRec compares the results of randomly-generated optimized queries and rewritten queries that DBMS cannot optimize [47]. SQLancer targets at single table queries and 90.0% of its bug reports include only one table. On the other hand, our TQS targets at detecting logic bugs of multi-table joins, which are more prone to bugs. Database Schema Normalization.The well-known database design framework for rel",
+      "section": "5.3 Ablation Studies",
+      "page": 13,
+      "char_offset": 65092,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M17",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS constructs queries to fetch a randomly selected tuple from a table [ 50].",
+      "context_before": "ing and benchmarking. SQLSmith is a widely-used generation-based DBMS tester [ 52]. It synthesizes a schema from initial databases and generates limited types of queries, whose target is at the code coverage. Squirrel focuses on generating queries to detect memory corruption bugs [62]. All above random generators are mostly applied to detect crashing bugs, while our focus is the logic bug.Logic Bug Testing of DBMS.SQLancer [ 49] is a current stateof-the-art tool in testing DBMS for logic bugs and is the most closely related work to ours. SQLancer proposes three approaches to detect logic bugs.",
+      "context_after": "TLP decomposes a query into three partitioning queries, each of which computes its result on a selected tuple [ 48]. NoRec compares the results of randomly-generated optimized queries and rewritten queries that DBMS cannot optimize [47]. SQLancer targets at single table queries and 90.0% of its bug reports include only one table. On the other hand, our TQS targets at detecting logic bugs of multi-table joins, which are more prone to bugs. Database Schema Normalization.The well-known database design framework for relational databases is centered around the notion of data redundancy [ 7,35]. Th",
+      "section": "5.3 Ablation Studies",
+      "page": 13,
+      "char_offset": 65149,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP decomposes a query into three partitioning queries, each of which computes its result on a selected tuple [ 48].",
+      "context_before": "52]. It synthesizes a schema from initial databases and generates limited types of queries, whose target is at the code coverage. Squirrel focuses on generating queries to detect memory corruption bugs [62]. All above random generators are mostly applied to detect crashing bugs, while our focus is the logic bug.Logic Bug Testing of DBMS.SQLancer [ 49] is a current stateof-the-art tool in testing DBMS for logic bugs and is the most closely related work to ours. SQLancer proposes three approaches to detect logic bugs. PQS constructs queries to fetch a randomly selected tuple from a table [ 50].",
+      "context_after": "NoRec compares the results of randomly-generated optimized queries and rewritten queries that DBMS cannot optimize [47]. SQLancer targets at single table queries and 90.0% of its bug reports include only one table. On the other hand, our TQS targets at detecting logic bugs of multi-table joins, which are more prone to bugs. Database Schema Normalization.The well-known database design framework for relational databases is centered around the notion of data redundancy [ 7,35]. The redundant data value occurrences originate from functional dependencies (FDs) [ 8]. The data-driven normalization a",
+      "section": "5.3 Ablation Studies",
+      "page": 13,
+      "char_offset": 65227,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "technique",
+      "surface": "NoRec",
+      "technique": "norec",
+      "sentence": "NoRec compares the results of randomly-generated optimized queries and rewritten queries that DBMS cannot optimize [47].",
+      "context_before": "ode coverage. Squirrel focuses on generating queries to detect memory corruption bugs [62]. All above random generators are mostly applied to detect crashing bugs, while our focus is the logic bug.Logic Bug Testing of DBMS.SQLancer [ 49] is a current stateof-the-art tool in testing DBMS for logic bugs and is the most closely related work to ours. SQLancer proposes three approaches to detect logic bugs. PQS constructs queries to fetch a randomly selected tuple from a table [ 50]. TLP decomposes a query into three partitioning queries, each of which computes its result on a selected tuple [ 48].",
+      "context_after": "SQLancer targets at single table queries and 90.0% of its bug reports include only one table. On the other hand, our TQS targets at detecting logic bugs of multi-table joins, which are more prone to bugs. Database Schema Normalization.The well-known database design framework for relational databases is centered around the notion of data redundancy [ 7,35]. The redundant data value occurrences originate from functional dependencies (FDs) [ 8]. The data-driven normalization algorithms [ 19,44,56] can remove FDrelated redundancy effectively. Schema normalization has been well studied. In our app",
+      "section": "5.3 Ablation Studies",
+      "page": 13,
+      "char_offset": 65344,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M20",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer targets at single table queries and 90.",
+      "context_before": "re mostly applied to detect crashing bugs, while our focus is the logic bug.Logic Bug Testing of DBMS.SQLancer [ 49] is a current stateof-the-art tool in testing DBMS for logic bugs and is the most closely related work to ours. SQLancer proposes three approaches to detect logic bugs. PQS constructs queries to fetch a randomly selected tuple from a table [ 50]. TLP decomposes a query into three partitioning queries, each of which computes its result on a selected tuple [ 48]. NoRec compares the results of randomly-generated optimized queries and rewritten queries that DBMS cannot optimize [47].",
+      "context_after": "0% of its bug reports include only one table. On the other hand, our TQS targets at detecting logic bugs of multi-table joins, which are more prone to bugs. Database Schema Normalization.The well-known database design framework for relational databases is centered around the notion of data redundancy [ 7,35]. The redundant data value occurrences originate from functional dependencies (FDs) [ 8]. The data-driven normalization algorithms [ 19,44,56] can remove FDrelated redundancy effectively. Schema normalization has been well studied. In our approach, we adopt previous database normalization a",
+      "section": "5.3 Ablation Studies",
+      "page": 13,
+      "char_offset": 65465,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M7"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:38:14Z",
+    "is_model_written": true,
+    "summary": "TQS targets logic bugs in join optimisation, which earlier oracles largely miss: PQS is designed for selection over a single table, and 90% of the bugs it reported involve one table only. TQS generates a schema and data together so that the correct result of a multi-table join is known by construction, then uses a knowledge-guided query enumerator to avoid re-testing equivalent query shapes. It found bugs in MySQL, MariaDB, TiDB and others.",
+    "narrative": "SQLancer is the work TQS is built against and the paper says so directly, calling it the current state-of-the-art tool for finding logic bugs in DBMSs and the most closely related work to its own. All three of its oracles serve as baselines -- PQS, TLP and NoREC -- and the paper is careful about the comparison's mechanics, noting that SQLancer supports different oracles on different systems and that its generated joins often return empty results and so cannot be used for testing. The gap TQS identifies is single-table scope: SQLancer is not designed to test multi-table queries, which is exactly where join-optimisation bugs live.",
+    "roles": {
+      "M1": "background",
+      "M2": "motivation",
+      "M3": "definition",
+      "M4": "definition",
+      "M5": "incidental",
+      "M6": "motivation",
+      "M7": "baseline",
+      "M8": "definition",
+      "M9": "definition",
+      "M10": "definition",
+      "M11": "incidental",
+      "M12": "incidental",
+      "M13": "result_comparison",
+      "M14": "result_comparison",
+      "M15": "state_of_the_art",
+      "M16": "definition",
+      "M17": "definition",
+      "M18": "definition",
+      "M19": "definition",
+      "M20": "motivation"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The three oracles are run as baselines. Nothing states that TQS's own schema-and-data generation or its query enumerator is built on the SQLancer codebase."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "TQS constructs the schema and data so a join's correct result is known in advance, which is a different oracle from PQS, TLP or NoREC rather than a generalisation of one. Its relationship to them is that it covers the multi-table case they do not."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M7",
+          "M13",
+          "M14"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M7",
+            "sentence": "We use three methods in SQLancer as our baselines.",
+            "section": "3.4 Ground-truth Result Generation",
+            "page": 8
+          },
+          {
+            "mention_id": "M13",
+            "sentence": "Note that due to the compatibility problem, SQLancer implements different approaches on different databases (PQS and TLP on MySQL and X-DB; NoRec on MariaDB; TLP on TiDB).",
+            "section": "5.2 Comparison with Existing Tools",
+            "page": 12
+          },
+          {
+            "mention_id": "M14",
+            "sentence": "This is because that (1) SQLancer approaches may generate random joins with empty results which are not usable for testing and (2) TQS adopts the KQE to avoid repeatedly testing the same query structure.",
+            "section": "5.2 Comparison with Existing Tools",
+            "page": 12
+          }
+        ],
+        "reasoning": "M7 states that three methods in SQLancer are used as baselines, M13 records which oracle was run against which system, and M14 explains a difference in the measured outcome.",
+        "techniques": [
+          "pqs",
+          "tlp",
+          "norec"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M15"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M15",
+            "sentence": "SQLancer [ 49] is a current stateof-the-art tool in testing DBMS for logic bugs and is the most closely related work to ours.",
+            "section": "5.3 Ablation Studies",
+            "page": 13
+          }
+        ],
+        "reasoning": "M15 calls SQLancer a current state-of-the-art tool in testing DBMSs for logic bugs and the work most closely related to this one."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

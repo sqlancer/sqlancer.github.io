@@ -1,0 +1,476 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:24:04Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3828685",
+    "title": "Programmable Property-Based Testing",
+    "authors": [
+      "A. Keles",
+      "Justine Frank",
+      "Ceren Mert",
+      "Harrison Goldstein",
+      "Leonidas Lampropoulos"
+    ],
+    "year": 2026,
+    "venue": "Proceedings of the ACM on Programming Languages",
+    "doi": "10.1145/3828685",
+    "arxiv_id": "2602.18545",
+    "s2_paper_id": "1b21dbf4dfd10358f77bf5ba3b9ba39c81e18b25",
+    "url": "https://doi.org/10.1145/3828685",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2602.18545",
+      "retrieved_at": "2026-09-08T15:24:04Z",
+      "chars": 97220,
+      "content_sha256": "sha256:18f9d2692798274f96304f464e9dbafa2f863d4d06b3579434b5ad8e14387231"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 32,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 1587
+      },
+      {
+        "number": "2",
+        "title": "BACKGROUND: PROPERTY RUNNERS",
+        "start": 9212
+      },
+      {
+        "number": "2.1",
+        "title": "Simple Generational Property Runner",
+        "start": 9930
+      },
+      {
+        "number": "2.2",
+        "title": "Integrated Shrinking Property Runner",
+        "start": 11562
+      },
+      {
+        "number": "2.5",
+        "title": "Combinatorial Property Runner",
+        "start": 17983
+      },
+      {
+        "number": "2.6",
+        "title": "Parallel Property Runner",
+        "start": 18680
+      },
+      {
+        "number": "2.7",
+        "title": "Discussion",
+        "start": 20538
+      },
+      {
+        "number": "3",
+        "title": "PROPERTY LANGUAGES",
+        "start": 21190
+      },
+      {
+        "number": "3.1",
+        "title": "Background Terminology: Deep and Shallow Embeddings",
+        "start": 22048
+      },
+      {
+        "number": "3.2",
+        "title": "Status Quo: A Shallow Property Language",
+        "start": 22913
+      },
+      {
+        "number": "3.3",
+        "title": "Hypothetical: A Deep Property Language",
+        "start": 25626
+      },
+      {
+        "number": "3.4",
+        "title": "Proposal: A Mixed Property Language",
+        "start": 26364
+      },
+      {
+        "number": "6.1",
+        "title": "Property Runners with DBAS",
+        "start": 44641
+      },
+      {
+        "number": "6.2",
+        "title": "Comparison of Deep and Shallow Embeddings",
+        "start": 53268
+      },
+      {
+        "number": "6.3",
+        "title": "DBAS-powered Experiments",
+        "start": 57119
+      },
+      {
+        "number": "6.4",
+        "title": "Comparison of Integrated Shrinking with External Shrinking",
+        "start": 64086
+      },
+      {
+        "number": "6.5",
+        "title": "Parallelizing Property-Based Testing",
+        "start": 67768
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. InThe 45th International Conference on Software Engineering (ICSE’23).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 2,
+      "text": "Marcel Böhme, Valentin J. M. Manès, and Sang Kil Cha. 2020. Boosting fuzzer efficiency: an information theoretic perspective. InESEC/FSE ’20: 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, Virtual Event, USA, November 8-13, 2020, Prem Devanbu, Myra B. Cohen, and Thomas Zimmermann (Eds.). ACM, 678–689. https://doi.org/10.1145/336808",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Marcel Böhme, Van-Thuan Pham, and Abhik Roychoudhury. 2019. Coverage-Based Greybox Fuzzing as Markov Chain. IEEE Trans. Software Eng.45, 5 (2019), 489–506. https://doi.org/10.1109/TSE.2017.2785841",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Marcel Böhme, Van-Thuan Pham, Manh-Dung Nguyen, and Abhik Roychoudhury. 2017. Directed Greybox Fuzzing. In Proceedings of the 2017 ACMSIGSAC Conference on Computer and Communications Security(Dallas, Texas, USA)(CCS ’17). Association for Computing Machinery, New York, NY, USA, 2329–2344. https://doi.org/10.1145/3133956.3134020",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Richard J. Boulton, Andy Gordon, Michael J. C. Gordon, John Harrison, John Herbert, and John Van Tassel. 1992. Experience with Embedding Hardware Description Languages in HOL. InProceedings of the IFIP TC10/WG 10.2 International Conference on Theorem Provers in Circuit Design: Theory, Practice and Experience(proceedings of the ifip tc10/wg 10.2 international conference on theorem provers in circui",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Cameron Bytheway. [n. d.].Bolero: A fuzzing and property testing front-end framework for Rust.https://github.com/ camshaft/bolero",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Jacques Carrete, Oleg Kiselyov, and Chung-Chieh Shan. 2009. Finally tagless, partially evaluated: Tagless staged interpreters for simpler typed languages.Journal of Functional Programming19, 5 (2009), 509–543. https://doi.org/10. 1017/S0956796809007205 Programmable Property-Based Testing",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Jinfu Chen, Shengran Wang, Saihua Cai, Chi Zhang, Haibo Chen, Jingyi Chen, and Jianming Zhang. 2023. A Novel Coverage-guided Greybox Fuzzing based on Power Schedule Optimization with Time Complexity. InProceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering(Rochester, MI, USA)(ASE ’22). Association for Computing Machinery, New York, NY, USA, Article 172, 5 pages",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Adam Chlipala. 2008. Parametric Higher-order Abstract Syntax for Mechanized Semantics. InProceedings of the 13th ACMSIGPLAN International Conference on Functional Programming(Victoria, BC, Canada)(ICFP ’08). ACM, New York, NY, USA, 143–156. https://doi.org/10.1145/1411204.1411226",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Koen Claessen and John Hughes. 2000. QuickCheck: a lightweight tool for random testing of Haskell programs. In Proceedings of the 5th ACMSIGPLAN International Conference on Functional Programming. ACM, 268–279. https: //doi.org/10.1145/351240.351266",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Koen Claessen and Michał Pałka. 2013. Splittable pseudorandom number generators using cryptographic hashing. In ACMSIGPLAN Symposium on Haskell. ACM, 47–58. http://publications.lib.chalmers.se/records/fulltext/183348/local_ 183348.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Edsko de Vries. 2023. falsify: Internal Shrinking Reimagined for Haskell. InProceedings of the 16th ACMSIGPLAN International Haskell Symposium(Seattle, WA, USA)(Haskell 2023). Association for Computing Machinery, New York, NY, USA, 97–109. https://doi.org/10.1145/3609026.3609733",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Stephen Dolan. 2017. Property Fuzzing for OCaml. https://github.com/stedolan/crowbar.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Andrea Fioraldi, Dominik Maier, Heiko Eißfeldt, and Marc Heuse. 2020. AFL++: combining incremental steps of fuzzing research. InProceedings of the 14th USENIX Conference on Offensive Technologies (WOOT’20). USENIX Association, USA, Article 10, 1 pages.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Harrison Goldstein, Joseph W. Cutler, Daniel Dickstein, Benjamin C. Pierce, and Andrew Head. 2024. Property-Based Testing in Practice. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering (ICSE ’24, Vol. 187). Association for Computing Machinery, Lisbon, Portugal, 1–13. https://doi.org/10.1145/3597503.3639581",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Harrison Goldstein, John Hughes, Leonidas Lampropoulos, and Benjamin C. Pierce. 2021. Do Judge a Test by its Cover: Combining Combinatorial and Property-Based Testing. InProceedings of the European Symposium on Programming (ESOP) (Lecture Notes in Computer Science). https://doi.org/10.1007/978-3-030-72019-3_10",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Harrison Goldstein and Benjamin C. Pierce. 2022. Parsing Randomness.Proceedings of the ACM on Programming Languages6, OOPSLA2 (Oct. 2022), 128:89–128:113. https://doi.org/10.1145/3563291",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Alex Groce, Chaoqiang Zhang, Eric Eide, Yang Chen, and John Regehr. 2012. Swarm Testing. InProceedings of the 2012 International Symposium on Software Testing and Analysis(Minneapolis, MN, USA)(ISSTA 2012). ACM, New York, NY, USA, 78–88. https://doi.org/10.1145/2338965.2336763",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Zac Hatfield-Dodds and contributors. [n. d.].HypoFuzz: Adaptive fuzzing of Hypothesis tests. https://github.com/ZacHD/hypofuzz",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Paul Hudak. 1996. Building domain-specific embedded languages.Comput. Surveys28, 4es (Dec. 1996), 196. https: //doi.org/10.1145/242224.242477",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Robert Krook, Nicholas Smallbone, Bo Joel Svensson, and Koen Claessen. 2024. QuickerCheck: Implementing and Evaluating a Parallel Run-Time for QuickCheck. arXiv:2404.16062 [cs.PL] https://arxiv.org/abs/2404.16062",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Leonidas Lampropoulos. 2018.Random Testing for Language Design. Ph. D. Dissertation. University of Pennsylvania.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Leonidas Lampropoulos, Michael Hicks, and Benjamin C. Pierce. 2019. Coverage Guided, Property Based Testing. In Proceedings of the ACM Conference on Object-Oriented Programming Languages, Systems, and Applications (OOPSLA). https://doi.org/10.1145/3360607",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Leonidas Lampropoulos, Zoe Paraskevopoulou, and Benjamin C. Pierce. 2018. Generating Good Generators for Inductive Relations. InProceedings of the ACM Conference on Principles of Programming Languages (POPL). https: //doi.org/10.1145/3158133",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Caroline Lemieux, Rohan Padhye, Koushik Sen, and Dawn Song. 2018. PerfFuzz: automatically generating pathological inputs. InProceedings of the 27th ACMSIGSOFT International Symposium on Software Testing and Analysis(Amsterdam, Netherlands)(ISSTA 2018). Association for Computing Machinery, New York, NY, USA, 254–265. https://doi.org/10. 1145/3213846.3213874",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Caroline Lemieux and Koushik Sen. 2018. FairFuzz: a targeted mutation strategy for increasing greybox fuzz testing coverage. InProceedings of the 33rd ACM/IEEE International Conference on Automated Software Engineering(Montpellier, France)(ASE ’18). Association for Computing Machinery, New York, NY, USA, 475–485. https://doi.org/10.1145/ 3238147.3238176",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Yao Li and Stephanie Weirich. 2022. Program Adverbs and Tlön Embeddings.Proceedings of the ACM on Programming Languages6. https://doi.org/10.1145/3547632",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Yao Li and Stephanie Weirich. 2022. Program adverbs and Tlön embeddings.Proc. ACM Program. Lang.6, ICFP (2022), 312–342. https://doi.org/10.1145/3547632 Alperen Keles, Justine Frank, Ceren Mert, Harrison Goldstein, and Leonidas Lampropoulos",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Andreas Löscher and Konstantinos Sagonas. 2017. Targeted Property-Based Testing. InProceedings of the 26th ACMSIGSOFT International Symposium on Software Testing and Analysis. ACM, 46–56. https://doi.org/10.1145/3092703. 3092711",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "David Maciver and Alastair F. Donaldson. 2020. Test-Case Reduction via Test-Case Generation: Insights from the Hypothesis Reducer (Tool Insights Paper). In34th European Conference on Object-Oriented Programming (LIPIcs, Vol. 166). Schloss Dagstuhl-Leibniz-Zentrum für Informatik, 13:1–13:27. https://doi.org/10.4230/LIPIcs.ECOOP.2020.13",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "David R. MacIver. 2016. Hypothesis: Property-Based Testing for Python. https://hypothesis.works/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Kazutaka Matsuda, Samantha Frohlich, Meng Wang, and Nicolas Wu. 2023. Embedding by Unembedding.Proc. ACM Program. Lang.7, ICFP, Article 189 (Aug. 2023), 47 pages. https://doi.org/10.1145/3607830",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Segev Elazar Mittelman, Alvin Resnick, Ivan Perez, Alwyn Goodloe, and Leonidas Lampropoulos. 2023. Don’t Go Down the Rabbit Hole: Reprioritizing Enumeration for Property-Based Testing. InProceedings of the ACMSIGPLAN International Symposium on Haskell.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Rohan Padhye, Caroline Lemieux, and Koushik Sen. 2019. JQF: coverage-guided property-based testing in Java. In Proceedings of the 28th ACMSIGSOFT International Symposium on Software Testing and Analysis(Beijing, China)(ISSTA 2019). Association for Computing Machinery, New York, NY, USA, 398–401. https://doi.org/10.1145/3293882.3339002",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Rohan Padhye, Caroline Lemieux, Koushik Sen, Mike Papadakis, and Yves Le Traon. 2019. Semantic Fuzzing with Zest. InProceedings of the 28th ACMSIGSOFT International Symposium on Software Testing and Analysis. ACM, 329–340. https://doi.org/10.1145/3293882.3330576",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Rohan Padhye, Caroline Lemieux, Koushik Sen, Mike Papadakis, and Yves Le Traon. 2019. Validity fuzzing and parametric generators for effective random testing. InProceedings of the 41st International Conference on Software Engineering: Companion Proceedings, ICSE 2019, Montreal, QC, Canada, May 25-31, 2019, Joanne M. Atlee, Tevfik Bultan, and Jon Whittle (Eds.). IEEE / ACM, 266–267. https://doi.org",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Rohan Padhye, Caroline Lemieux, Koushik Sen, Laurent Simon, and Hayawardh Vijayakumar. 2019. FuzzFactory: domain-specific fuzzing with waypoints.Replication Package for \"FuzzFactory: Domain-Specific Fuzzing with Waypoints\" 3, OOPSLA (Oct. 2019), 174:1–174:29. https://doi.org/10.1145/3360600",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Zoe Paraskevopoulou, Catalin Hritcu, Maxime Denes, Leonidas Lampropoulos, and Benjamin C. Pierce. 2015. Foundational Property-Based Testing. In6th International Conference on Interactive Theorem Proving (ITP). https: //doi.org/10.1007/978-3-319-22102-1_22",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Jiwon Park, Dominik Winterer, Chengyu Zhang, and Zhendong Su. 2021. Generative type-aware mutation for testing SMT solvers.Proc. ACM Program. Lang.5, OOPSLA (2021), 1–19. https://doi.org/10.1145/3485529",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Theofilos Petsios, Jason Zhao, Angelos D. Keromytis, and Suman Jana. 2017. SlowFuzz: Automated Domain-Independent Detection of Algorithmic Complexity Vulnerabilities. InProceedings of the 2017 ACMSIGSAC Conference on Computer and Communications Security(Dallas, Texas, USA)(CCS ’17). Association for Computing Machinery, New York, NY, USA, 2155–2168. https://doi.org/10.1145/3133956.3134073",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Bogdan Popa. 2020. RackCheck: Property-Based Testing for Racket. https://docs.racket-lang.org/rackcheck/index.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Jacob Prinz, Alex Kavvos, and Leonidas Lampropoulos. 2022. Deeper Shallow Embeddings. In13th International Conference on Interactive Theorem Proving (ITP) (Lecture Notes in Computer Science). https://doi.org/10.4230/LIPIcs.ITP. 2022.28",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "John Regehr, Yang Chen, Pascal Cuoq, Eric Eide, Chucky Ellison, and Xuejun Yang. 2012. Test-case reduction for C compiler bugs. InACM SIGPLAN Conference on Programming Language Design and Implementation, PLDI ’12, Beijing, China-June 11 - 16, 2012. 335–346. https://doi.org/10.1145/2254064.2254104",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Jessica Shi, Alperen Keles, Harrison Goldstein, Benjamin C. Pierce, and Leonidas Lampropoulos. 2023. Etna: An Evaluation Platform for Property-Based Testing (Experience Report).Proc. ACM Program. Lang.7, ICFP, Article 218 (aug 2023), 17 pages. https://doi.org/10.1145/3607860",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "SQLancer contributors. [n. d.].SQLancer: Automated testing to find logic and performance bugs in database systems. https://github.com/sqlancer/sqlancer",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 46,
+      "text": "Jacob Stanley. 2019. Hedgehog: Release with Confidence. https://hackage.haskell.org/package/hedgehog/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Jingling Sun, Ting Su, Jiayi Jiang, Jue Wang, Geguang Pu, and Zhendong Su. 2023. Property-Based Fuzzing for Finding Data Manipulation Errors in Android Apps. InProceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/FSE 2023, San Francisco, CA, USA, December 3-9, 2023, Satish Chandra, Kelly Blincoe, and Paolo Tonella",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Li-yao Xia, Yannick Zakowski, Paul He, Chung-Kil Hur, Gregory Malecha, Benjamin C. Pierce, and Steve Zdancewic. 2020. Interaction trees: representing recursive and impure programs in Coq.Proc. ACM Program. Lang.4, POPL (2020), 51:1–51:32. https://doi.org/10.1145/3371119",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. 2011. Finding and understanding bugs in C compilers. In Proceedings of the 32nd ACMSIGPLAN Conference on Programming Language Design and Implementation. ACM, Programmable Property-Based Testing 283–294. https://doi.org/10.1145/1993498.1993532",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Brent A. Yorgey, Stephanie Weirich, Julien Cretin, Simon Peyton Jones, Dimitrios Vytiniotis, and José Pedro Magalhães. 2012. Giving Haskell a promotion. InProceedings of the 8th ACMSIGPLAN Workshop on Types in Language Design and Implementation(Philadelphia, Pennsylvania, USA)(TLDI ’12). Association for Computing Machinery, New York, NY, USA, 53–66. https://doi.org/10.1145/2103786.2103795",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "A. Zeller and R. Hildebrandt. 2002. Simplifying and isolating failure-inducing input.IEEE Transactions on Software Engineering28, 2 (2002), 183–200. http://pag-www.gtisc.gatech.edu/courses/common/zeller-tse02.pdf Alperen Keles, Justine Frank, Ceren Mert, Harrison Goldstein, and Leonidas Lampropoulos AAPPENDIX A.1 Custom-Feedback Guided (Targeted) Property Runner In recent years, PBT tools and muta",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 1,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. InThe 45th International Conference on Software Engineering (ICSE’23).",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 45,
+      "text": "SQLancer contributors. [n. d.].SQLancer: Automated testing to find logic and performance bugs in database systems. https://github.com/sqlancer/sqlancer",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The literature is rife with domain-specific metrics that can be used to produce interesting inputs: in SlowFuzz [ 40] and PerfFuzz [ 25], the goal of the testing campaign is to discover algorithmic complexity vulnerabilities that could lead to Denial of Service attacks in systems, which is achieved by maximizing instruction counts and execution path lengths; in SQLancer [ 45], the goal is to find bugs in SQL engines, achieved by maximizing the diversity of the generated query plans [ 1].",
+      "context_before": "tein, and Leonidas Lampropoulos instead of experimenting with new options in the new higher-level setting; in part because each option in such an experimentation would effectively require a new framework. Situations like this are precisely what a programmable and flexible runner framework addresses; in § 6.3.1, we carry out an extensive case study to explore what effect different search strategies and seed pool experimentations have in testing. 2.4 Custom-Feedback Guided (Targeted) Property Runner Coverage information is not the only form of feedback that can be used to guide input generation.",
+      "context_after": "It is also possible to consolidate such different feedback forms under a single compositional design, as demonstrated by FuzzFactory [ 37] and Target [ 29], which allows users to define and combine different feedback functions for guiding the generation of inputs. Fig. 6 depicts an abstract representation of this last targeted property runner, where the feedback is a separate function that is computed over the input instead of a value obtained via instrumentation. Targeting Loop Shrinking Loop G MSeed Pool FCcheck e feedback e gen/mutate fS Ccheck e’ shrink e’ | eshrink ePprint e/e’ Fig. 6. A",
+      "section": "2.2 Integrated Shrinking Property Runner",
+      "page": 6,
+      "char_offset": 16538,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:17:50Z",
+    "is_model_written": true,
+    "summary": "This paper proposes a deeper language for expressing properties in property-based testing. Properties in modern frameworks are written in shallowly embedded DSLs and tightly coupled to how they are run, so users are limited to whatever configuration the framework authors anticipated. The alternative, a mixed embedding called deferred binding abstract syntax, reifies a property as a data structure and separates it from the runner. The authors implement it in Rocq and Racket and prototype a variety of property runners.",
+    "narrative": "One citation, in a discussion of domain-specific metrics used to produce interesting inputs, alongside SlowFuzz and PerfFuzz.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

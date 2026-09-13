@@ -1,0 +1,474 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T17:16:05Z",
+  "paper": {
+    "id": "paper:doi:10.1007/978-3-031-51479-1_17",
+    "title": "Syntax-Aware Mutation for Testing the Solidity Compiler",
+    "authors": [
+      "Charalambos Mitropoulos",
+      "T. Sotiropoulos",
+      "S. Ioannidis",
+      "Dimitris Mitropoulos"
+    ],
+    "year": 2023,
+    "venue": "European Symposium on Research in Computer Security",
+    "doi": "10.1007/978-3-031-51479-1_17",
+    "arxiv_id": null,
+    "s2_paper_id": "372393a671600484f8859510cc5553b1345bdec7",
+    "url": "https://doi.org/10.1007/978-3-031-51479-1_17",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1007/978-3-031-51479-1_17",
+      "retrieved_at": "2026-09-08T17:16:05Z",
+      "chars": 57383,
+      "content_sha256": "sha256:0089c96e581264450ee942b0a14650d7e7001e5755dbe7f65d831232b4d855d4"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 21,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2115
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 8642
+      },
+      {
+        "number": "2.1",
+        "title": "The Solidity Compiler",
+        "start": 8900
+      },
+      {
+        "number": "2.2",
+        "title": "Bugs in the Solidity Compiler",
+        "start": 10199
+      },
+      {
+        "number": "2.3",
+        "title": "Limitations of State-of-the-Art Fuzzers",
+        "start": 12044
+      },
+      {
+        "number": "3",
+        "title": "Fuzzing Approach",
+        "start": 14648
+      },
+      {
+        "number": "3.1",
+        "title": "Syntax-Aware Mutation",
+        "start": 17134
+      },
+      {
+        "number": "3.1.1",
+        "title": "Operator, Statement and Data Type Change Strategy Our ﬁrst",
+        "start": 17397
+      },
+      {
+        "number": "3.2",
+        "title": "Mutation Strategy Prioritization",
+        "start": 24603
+      },
+      {
+        "number": "3.3",
+        "title": "Fuzzol",
+        "start": 27226
+      },
+      {
+        "number": "4",
+        "title": "Evaluation",
+        "start": 28342
+      },
+      {
+        "number": "4.1",
+        "title": "Evaluation Setup",
+        "start": 28776
+      },
+      {
+        "number": "4.2",
+        "title": "RQ1: Discovering Bugs",
+        "start": 29451
+      },
+      {
+        "number": "4.3",
+        "title": "RQ2: Comparing Syntax-Aware and Grammar-Blind Strategies",
+        "start": 33795
+      },
+      {
+        "number": "4.4",
+        "title": "RQ3: Comparison with State-of-the-Art Fuzzers",
+        "start": 36461
+      },
+      {
+        "number": "4.5",
+        "title": "RQ4: Mutation Strategy Prioritization Algorithm",
+        "start": 39315
+      },
+      {
+        "number": "5",
+        "title": "Related Work",
+        "start": 42242
+      },
+      {
+        "number": "6",
+        "title": "Conclusion",
+        "start": 45247
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "The Counterparty ﬁnancial platform. https://counterparty.io/. Accessed 15 Jan 2023 Syntax-Aware Mutation for Testing the Solidity Compiler 345",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Hedera hashgraph. Accessed 15 Jan 2023",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Optimized contract crash. https://github.com/ethereum/solidity/issues/12840. Accessed 05 Jan 2023",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Optimized contract freeze. https://github.com/ethereum/solidity/issues/12848. Accessed 03 Jan 2023",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Solidity. https://docs.soliditylang.org/en/v0.8.0/. Accessed 03 Jan 2023",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Solidity compilerissues catalog. https://github.com/ethereum/solidity/issues. Accessed 15 Jan 2023",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "The Solidity contract-oriented programming language Github repository. https:// github.com/ethereum/solidity. Accessed 05 Jan 2023",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Z3 GitHub repository (2021). https://github.com/Z3Prover/z3. Accessed 20 Jan 2023",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Aschermann, C., Frassetto, T., Holz, T., Jauernig, P., Sadeghi, A., Teuchert, D.: NAUTILUS: ﬁshing for deep bugs with grammars. In: Proceedings of the 26thAnnual Network and Distributed System Security Symposium (NDSS) (2019)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Atlidakis, V., Godefroid, P., Polishchuk, M.: Restler: stateful rest API fuzzing. In: Proceedings of the 41st International Conference on Software Engineering, ICSE2019, pp. 748–758. IEEE Press (2019)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Blazytko, T., et al.: Grimoire: synthesizing structure while fuzzing. In: Proceedings of the 28th USENIX Conference on Security Symposium, pp. 1985–2002. USENIXAssociation, USA (2019)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "B¨ ohme, M., Pham, V.T., Nguyen, M.D., Roychoudhury, A.: Directed greybox fuzzing. In: Proceedings of the 2017 ACMSIGSAC Conference on Computer andCommunications Security, CCS 2017, pp. 2329–2344. Association for Computing Machinery, New York (2017)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "B¨ ohme, M., Pham, V.T., Roychoudhury, A.: Coverage-based greybox fuzzing as Markov chain, CCS 2016, pp. 1032–1043. Association for Computing Machinery, New York (2016)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Bounimova, E., Godefroid, P., Molnar, D.: Billions and billions of constraints: whitebox fuzz testing in production. In: Proceedings of the 2013 International Conference on Software Engineering, ICSE 2013, pp. 122–131. IEEE Press (2013)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Brent, L., Grech, N., Lagouvardos, S., Scholz, B., Smaragdakis, Y.: Ethainter: a smart contract security analyzer for composite vulnerabilities. In: Proceedings of the 41st ACMSIGPLAN Conference on Programming Language Design and Implementation, PLDI 2020, pp. 454–469. Association for Computing Machinery,New York (2020)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Browne, R.: Ether, the world’s second-biggest cryptocurrency, is closing in on an all-time high (2021). https://www.cnbc.com/2021/01/19/bitcoin-ethereum-ethcryptocurrency-nears-all-time-high.html. Accessed 20 Jan 2023",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Cha, S.K., Woo, M., Brumley, D.: Program-adaptive mutational fuzzing. In: Proceedings of the. 725–741. IEEE Computer Society, USA (2015)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Chaliasos, S., Gervais, A., Livshits, B.: A study of inline assembly in solidity smart contracts. Proc. ACM Program. Lang. 6(OOPSLA2) (2022)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Chaliasos, S., Sotiropoulos, T., Spinellis, D., Gervais, A., Livshits, B., Mitropoulos, D.: Finding typing compiler bugs. In: Proceedings of the 43rd ACM SIGPLANInternational Conference on Programming Language Design and Implementation, PLDI 2022, pp. 183–198. ACM, New York (2022)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Chen, H., et al.: Hawkeye: towards a desired directed grey-box fuzzer. In: Proceedings of the 2018 ACMSIGSAC Conference on Computer and Communications 346 C. Mitropoulos et al. Security, CCS 2018, pp. 2095–2108. Association for Computing Machinery, New York (2018)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Chen, J., et al.: A survey of compiler testing. ACM Comput. Surv. 53(1), 1–36 (2020)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Cordeiro, L., Fischer, B., Marques-Silva, J.: SMT-based bounded model checking for embedded ANSI-C software. In: Proceedings of the 2009 IEEE/ACM International Conference on Automated Software Engineering, ASE 2009, pp. 137–148. IEEE Computer Society, USA (2009)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "de Moura, L., Bjørner, N.: Z3: an eﬃcient SMT solver. In: Ramakrishnan, C.R., Rehof, J. (eds.) TACAS 2008. LNCS, vol. 4963, pp. 337–340. Springer, Heidelberg(2008). https://doi.org/10.1007/978-3-540-78800-3 24",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Ghaleb, A., Pattabiraman, K.: How eﬀective are smart contract analysis tools? Evaluating smart contract static analysis tools using bug injection. In: Proceedingsof the 29th ACMSIGSOFT International Symposium on Software Testing and Analysis, ISSTA 2020, pp. 415–427. ACM, New York (2020)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Godefroid, P.: Fuzzing: hack, art, and science. Commun. ACM 63(2), 70–76 (2020)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Godefroid, P., Levin, M.Y., Molnar, D.: Sage: whitebox fuzzing for security testing: Sage has had a remarkable impact at Microsoft. Queue 10(1), 20–27 (2012)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Grech, N., Kong, M., Jurisevic, A., Brent, L., Scholz, B., Smaragdakis, Y.: Madmax: analyzing the out-of-gas world of smart contracts. Commun. ACM 63(10), 87–95 (2020)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Groce, A., van Tonder, R., Kalburgi, G.T., Le Goues, C.: Making no-fuss compiler fuzzing eﬀective. In: Proceedings of the 31st ACMSIGPLAN International Confer-ence on Compiler Construction, CC 2022, pp. 194–204. Association for Computing Machinery, New York (2022)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Holler, C., Herzig, K., Zeller, A.: Fuzzing with code fragments. In: Proceedings of the 21st USENIX Conference on Security Symposium, Security 2012, p. 38. USENIX Association, USA (2012)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Jiang, B., Liu, Y., Chan, W.K.: Contractfuzzer: fuzzing smart contracts for vulnerability detection. In: Proceedings of the 33rd ACM/IEEE International Conferenceon Automated Software Engineering, ASE 2018, pp. 259–269. Association for Computing Machinery, New York (2018)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Klees, G., Ruef, A., Cooper, B., Wei, S., Hicks, M.: Evaluating fuzz testing. In: Proceedings of the 2018 ACMSIGSAC Conference on Computer and Communications Security, CCS 2018, pp. 2123–2138. Association for Computing Machinery, New York (2018)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Lemieux, C., Sen, K.: Fairfuzz: a targeted mutation strategy for increasing greybox fuzz testing coverage. In: Proceedings of the 33rd ACM/IEEE International Con-ference on Automated Software Engineering, ASE 2018, pp. 475–485. Association for Computing Machinery, New York (2018)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Li, Y., et al.: Cerebro: context-aware adaptive fuzzing for eﬀective vulnerability detection. In: Proceedings of the 2019 27th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/FSE 2019, pp. 533–544. ACM, New York (2019)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Livinskii, V., Babokin, D., Regehr, J.: Random testing for C and C++ compilers with YARPGen. Proc. ACM Program. Lang. 4(OOPSLA) (2020)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Lyu, C., et al.: MOPT: optimized mutation scheduling for fuzzers. In: Proceedings of the 28th USENIX Conference on Security Symposium, pp. 1949–1966. USENIX Association, USA (2019)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Lyu, C., et al.: EMS: history-driven mutation for coverage-based fuzzing. In: 29th Annual Network and Distributed System Security Symposium (2022) Syntax-Aware Mutation for Testing the Solidity Compiler 347",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Zalewski, M.: American fuzzy lop (2013). https://lcamtuf.coredump.cx/aﬂ/. Accessed 13 Jan 2023",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Rash, M.: AFL-COV-AFL fuzzing code coverage (2021). https://github.com/ mrash/aﬂ-cov. Accessed 06 Jan 2023",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Rigger, M., Su, Z.: Testing database engines via pivoted query synthesis. In: 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI2020), pp. 667–682. USENIX Association (2020)",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 40,
+      "text": "Sotiropoulos, T., Chaliasos, S., Atlidakis, V., Mitropoulos, D., Spinellis, D.: Data-oriented diﬀerential testing of object-relational mapping systems. In:. 1535–1547 (2021)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Sun, C., Le, V., Su, Z.: Finding and analyzing compiler warning defects. In: Proceedings of the 38th International Conference on Software Engineering, ICSE 2016, pp. 203–213. Association for Computing Machinery, New York (2016)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Sun, C., Le, V., Zhang, Q., Su, Z.: Toward understanding compiler bugs in GCC and LLVM. In: Proceedings of the 25th International Symposium on Software Testing and Analysis, ISSTA 2016, pp. 294–305. Association for Computing Machinery,New York (2016)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Veggalam, S., Rawat, S., Haller, I., Bos, H.: IFuzzer: an evolutionary interpreter fuzzer using genetic programming. In: Askoxylakis, I., Ioannidis, S., Katsikas, S.,Meadows, C. (eds.) ESORICS 2016. LNCS, vol. 9878, pp. 581–601. Springer, Cham (2016). https://doi.org/10.1007/978-3-319-45744-4 29",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Wang, J., Chen, B., Wei, L., Liu, Y.: Superion: Grammar-aware greybox fuzzing. In: Proceedings of the 41st International Conference on Software Engineering, ICSE 2019, pp. 724–735. IEEE Press (2019)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Weimer, W., Nguyen, T., Le Goues, C., Forrest, S.: Automatically ﬁnding patches using genetic programming. In: Proceedings of the 31st International Conference on Software Engineering, ICSE 2009, pp. 364–374. IEEE, USA (2009)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "W¨ ustholz, V., Christakis, M.: Harvey: a greybox fuzzer for smart contracts. In: Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/FSE 2020, pp. 1398–1409. Association for Computing Machinery, New York (2020)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Yan, S., Wu, C., Li, H., Shao, W., Jia, C.: Pathaﬂ: path-coverage assisted fuzzing. In: Proceedings of the 15th ACM Asia Conference on Computer and Communications Security, ASIACCS 2020, pp. 598–609. Association for Computing Machin-ery, New York (2020)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Yang, X., Chen, Y., Eide, E., Regehr, J.: Finding and understanding bugs in C compilers. SIGPLAN Not. 46(6), 283–294 (2011)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Yang, X., Chen, Y., Eide, E., Regehr, J.: Finding and understanding bugs in c compilers. In: Proceedings of the 32nd ACMSIGPLAN Conference on Programming Language Design and Implementation, PLDI 2011, pp. 283–294. Association for Computing Machinery, New York (2011)",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Zubairy, R.: Create a blockchain app for loyalty points with Hyperledger Fabric Ethereum Virtual Machine (2018). Accessed 06 Jan 2023",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 39,
+      "text": "Rigger, M., Su, Z.: Testing database engines via pivoted query synthesis. In: 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI2020), pp. 667–682. USENIX Association (2020)",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 39,40]",
+      "technique": "pqs",
+      "sentence": "Fuzzing has been used to identify bugs in miscellaneous entities such as system libraries [ 35], web and cloud applications [ 10], data-oriented systems [ 39,40], and compilers [ 19,34,48].",
+      "context_before": "gh studies focusing onsolc,t h estandard Solidity compiler. solcis a relatively new compiler that counts ∼100 releases since 2015 [ 5]. Given the intricate nature of Solidity, solc oﬀers various special constructs related to smart contract functionalities includ-ing formal software veriﬁcation and inline assembly. Due to this complexity, solc has exhibited a variety of bugs related to data structure mishandling, inadequate sanity checks, and unsound optimizations [ 6]. For the last two decades, fuzzing has become a standard technique for assessing software reliability and security [ 14,25,26].",
+      "context_after": "When it comes to programs whose inputs follow speciﬁc grammars (e.g. compilers), grammar-blind fuzzers (such as AFL [ 37]) struggle to get past syntax checks and explore deeper code. To this end, researchers have introduced a number of grammar-based fuzzing strategies [ 9,43,44], and have applied them to various domains, from PHP and Lua interpreters to JavaScript engines. However, current grammar-based fuzzers have a number of disadvantages. For instance, Superion [44], performs some mutations that fail to preserve a correct syntax for the test cases it generates. In addition, many of these",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 3638,
+      "cited_reference": {
+        "number": 39,
+        "text": "Rigger, M., Su, Z.: Testing database engines via pivoted query synthesis. In: 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI2020), pp. 667–682. USENIX Association (2020)",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T17:23:30Z",
+    "is_model_written": true,
+    "summary": "This work tests the Solidity compiler with syntax-aware mutation, transforming smart-contract source in ways that keep it compilable so the mutants reach the compiler's later stages, where miscompilation bugs live.",
+    "narrative": "Data-oriented systems are cited once, in the introduction's list of domains fuzzing has been applied to, alongside system libraries, web and cloud applications, and compilers. SQLancer's work is the citation behind the data-oriented half. The paper's subject is compiler testing and nothing of SQLancer's plays a role in it.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited as related work; no reuse of its code, generator or workload is described."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No SQLancer technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer or one of its oracles is reported."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The text does not describe SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

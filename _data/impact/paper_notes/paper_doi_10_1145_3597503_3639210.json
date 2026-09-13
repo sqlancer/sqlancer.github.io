@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "paper": {
+    "id": "paper:doi:10.1145/3597503.3639210",
+    "title": "Sedar: Obtaining High-Quality Seeds for DBMS Fuzzing via Cross-DBMS SQL Transfer",
+    "authors": [
+      "Jingzhou Fu",
+      "Jie Liang",
+      "Zhiyong Wu",
+      "Yu Jiang"
+    ],
+    "year": 2024,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1145/3597503.3639210",
+    "url": "https://doi.org/10.1145/3597503.3639210"
+  },
+  "summary": {
+    "text": "Sedar produces high-quality initial seeds for DBMS fuzzing by transferring test cases from other DBMSs, addressing the problem that many systems lack comprehensive built-in test suites. The insight is that DBMSs share many features, so a seed reaching deep paths in one can be adapted for another; the difficulty is converting it to the target's grammar. Sedar executes existing test cases in their original DBMS while capturing schema information, uses an LLM guided by that information to generate new cases, and temporarily comments out unparsable sections so fuzzers can mutate them. It found 70 new vulnerabilities, 19 with CVEs.",
+    "relationship_to_sqlancer": "Improves the seed corpus for DBMS fuzzers; SQLancer is cited among DBMS testing tools.",
+    "is_model_generated": true,
+    "grounded_in_source": true,
+    "written_from": "abstract",
+    "written_from_url": "https://doi.org/10.1145/3597503.3639210",
+    "source_sha256": "sha256:ab52e66269a6d007f79c28ebfd5e6e23bbf1f96f153ac7231e1ced775e460d99",
+    "supporting_excerpts": [
+      "While built-in test cases are typically used as initial seeds, many DBMSs lack comprehensive test cases, making it difficult to apply state-of-the-art fuzzing techniques directly.",
+      "To address this, we propose Sedar which produces initial seeds for a target DBMS by transferring test cases from other DBMSs.",
+      "Moreover, Sedar discovered 70 new vulnerabilities, with 60 out of them being uniquely found by Sedar with transferred seeds, and 19 of them have been assigned with CVEs."
+    ],
+    "model": "claude-opus-5",
+    "generated_by": "claude_code_session",
+    "classifier_version": null,
+    "generated_at": "2026-09-07T02:34:18Z"
+  },
+  "evidence": [
+    {
+      "relationship": "references",
+      "title": "Cites SQLancer",
+      "value": "yes",
+      "method": "citation_graph",
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp",
+        "qpg"
+      ],
+      "sources": [
+        {
+          "source_url": "https://doi.org/10.1145/3597503.3639210",
+          "source_type": "paper_citation_context",
+          "excerpt": "Typically, DBMSs adhere to basic features of ANSI SQL standard [1] for common uses, while they support more advanced features with their unique SQL dialects.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Query Plan Guidance (QPG), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1145/3597503.3639210",
+          "source_type": "paper_citation_context",
+          "excerpt": "PQS [32] generates queries that should fetch a specific row, and indicates a bug triggered when the row is not included in result sets.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1145/3597503.3639210",
+          "source_type": "paper_citation_context",
+          "excerpt": "Some generation-based approaches [15, 22, 30–32, 34, 37] are proposed to find specific types of DBMS bugs.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    }
+  ]
+}

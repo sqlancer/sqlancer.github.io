@@ -1,0 +1,1010 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:32:41Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3650212.3680392",
+    "title": "Testing Gremlin-Based Graph Database Systems via Query Disassembling",
+    "authors": [
+      "Yingying Zheng",
+      "Wensheng Dou",
+      "Leile Tang",
+      "Ziyu Cui",
+      "Yu Gao",
+      "Jiansen Song",
+      "Liangying Xu",
+      "Jiaxin Zhu",
+      "Wei Wang",
+      "Jun Wei",
+      "Hua Zhong",
+      "Tao Huang"
+    ],
+    "year": 2024,
+    "venue": "International Symposium on Software Testing and Analysis",
+    "doi": "10.1145/3650212.3680392",
+    "arxiv_id": null,
+    "s2_paper_id": "dce7daf3d485e83ae503cfa60e7a0ccce994a764",
+    "url": "https://doi.org/10.1145/3650212.3680392",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3650212.3680392",
+      "retrieved_at": "2026-09-09T01:32:41Z",
+      "chars": 85333,
+      "content_sha256": "sha256:907c0d3e374eae6906a410f45055043dc523fdc13e7d94ec9a49baa45186b79d"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2725
+      },
+      {
+        "number": "2",
+        "title": "Preliminaries",
+        "start": 11361
+      },
+      {
+        "number": "2.1",
+        "title": "Labeled Property GraphModel",
+        "start": 11611
+      },
+      {
+        "number": "2.2",
+        "title": "Gremlin QueryLanguage",
+        "start": 14629
+      },
+      {
+        "number": "2.3",
+        "title": "Gremlin Traversal Model",
+        "start": 16280
+      },
+      {
+        "number": "2.4",
+        "title": "Gremlin QueryExecution",
+        "start": 18099
+      },
+      {
+        "number": "3",
+        "title": "Approach",
+        "start": 19397
+      },
+      {
+        "number": "3.1",
+        "title": "GraphDatabaseandQueryGeneration",
+        "start": 22655
+      },
+      {
+        "number": "3.2",
+        "title": "QueryDisassembling",
+        "start": 26041
+      },
+      {
+        "number": "3.3",
+        "title": "Atomic Traversal Execution",
+        "start": 31826
+      },
+      {
+        "number": "3.3.1",
+        "title": "Parameter Passing Strategy. In this strategy, we store the",
+        "start": 32958
+      },
+      {
+        "number": "3.3.2",
+        "title": "TemporaryIDTableStrategy. Inthisstrategy,westorethe",
+        "start": 35918
+      },
+      {
+        "number": "3.3.3",
+        "title": "Barrier Strategy. The core insight of this strategy is that the",
+        "start": 38954
+      },
+      {
+        "number": "4",
+        "title": "Evaluation",
+        "start": 40763
+      },
+      {
+        "number": "4.1",
+        "title": "Methodology",
+        "start": 41977
+      },
+      {
+        "number": "4.2",
+        "title": "Detected Bugs",
+        "start": 46707
+      },
+      {
+        "number": "4.2.1",
+        "title": "Bug Overview. We obtain 3,047 bug reportsin the six tested",
+        "start": 46725
+      },
+      {
+        "number": "4.2.2",
+        "title": "BugAnalysis. Weanalyzelogicbugsdetectedby QuDiinthe",
+        "start": 48916
+      },
+      {
+        "number": "4.2.3",
+        "title": "Execution Strategies Comparison. We design three execution",
+        "start": 53154
+      },
+      {
+        "number": "4.3",
+        "title": "Comparingwith ExistingApproaches",
+        "start": 55945
+      },
+      {
+        "number": "4.4",
+        "title": "SelectedInterestingBugs",
+        "start": 62500
+      },
+      {
+        "number": "5",
+        "title": "Discussion",
+        "start": 65610
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2024. AFL. https://github.com/google/AFL.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2024. Alloy. https://alloytools.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "2024. DB-Engines Ranking of Graph DBMS. https://db-engines.com/en/ranking/ graph+ dbms.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "2024. Gremlin QueryLanguage. https://tinkerpop.apache.org/gremlin.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "2024. Gremlin TraversalStrategy. https://tinkerpop.apache.org/docs/3.5.2/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "2024. HugeGraph. https://hugegraph.github.io/hugegraph-doc/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "2024. Introducing the new Cypher Query Optimizer. https://neo4j.com/blog/ introducing-new-cypher-query-optimizer/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "2024. JanusGraph. https://janusgraph.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "2024. MariaDB. https://mariadb.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "2024. MySQL. https://www.mysql.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "2024. NebulaGraphQueryLanguage(nGQL). https://docs.nebula-graph.io/2.0. 1/3.ngql-guide/1.nGQL-overview/1.overview/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "2024. Neo4j. https://neo4j.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "2024. Neo4j-Gremlin. https://github.com/thinkaurelius/neo4j-gremlin-plugin.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "2024. TheNextGenerationMulti-ModelDatabaseSupportingGraphsKey/Value, Documents and Time-Series. https://arcadedb.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "2024. OpenSource,Distributed,Scalable,Lightning Fast. https://nebula-graph. io/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "2024. OrientDB. https://orientdb.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "2024. PostgreSQL. https://www.postgresql.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "2024. SPARQL 1.1QueryLanguage. https://www.w3.org/TR/sparql11-query/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "2024. SQLsmith. https://github.com/anse1/sqlsmith.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "2024.TestingGremlin-BasedGraphDatabaseSystemsviaQueryDisassembling. Retrieved July18,2024 from https://doi.org/10.5281/zenodo.12771889",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "2024. TiDB, PingCAP. https://pingcap.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "2024. TinkerGraph. https://github.com/tinkerpop/blueprints/wiki/tinkergraph.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "2024. TinkerPop. https://tinkerpop.apache.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "2024. What is openCypher? http://www.opencypher.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Renzo Angles, Juan L. Reutter, and Hannes Voigt. 2019. Graph Query Languages. InEncyclopediaofBigDataTechnologies ,SherifSakrandAlbertY.Zomaya(Eds.).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Marcelo Arenas, Claudio Gutiérrez, and Juan F. Sequeda. 2021. Querying in the Age of Graph Databases and Knowledge Graphs. In Proceedings of ACMSIGMOD International Conference on Management of Data (SIGMOD). 2821–2828. https://doi.org/10.1145/3448016.3457545",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE). 2060–2071. https://doi.org/10.1109/ICSE48619.2023.00174",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 28,
+      "text": "Earl T. Barr, Mark Harman, Phil McMinn, Muzammil Shahbaz, and Shin Yoo. 2015. TheOracleProbleminSoftwareTesting:ASurvey. IEEETrans.Software Eng.41,5 (2015), 507–525.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Sha/f_iul Azam Chowdhury, SoumikMohian, Sidharth Mehra, Siddhant Gawsane, Taylor T. Johnson, and Christoph Csallner. 2018. Automatically Finding Bugs in a Commercial Cyber-Physical System Development Tool Chain with SLforge. In ProceedingsofInternationalConferenceonSoftwareEngineering(ICSE) .981–992. https://doi.org/10.1145/3180155.3180231",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Ziyu Cui, Wensheng Dou, Qianwang Dai, Jiansen Song, Wei Wang, Jun Wei, and Dan Ye. 2022. Diﬀerentially Testing Database Transactions for Fun and Pro/f_it. In Proceedings of International Conference on Automated Software Engineering (ASE). 35:1–35:12. https://doi.org/10.1145/3551349.3556924",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "ZiyuCui,WenshengDou,YuGao,DongWang,JiansenSong,YingyingZheng, Tao Wang, Rui Yang, Kang Xu, Yixin Hu, Jun Wei, and Tao Huang. 2024. Understanding Transaction Bugs in Database Systems. In Proceedings of the 46th IEEE/ACM International Conference on Software Engineering (ICSE). 163:1–163:13. https://doi.org/10.1145/3597503.3639207",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Alin Deutsch. 2018. Querying Graph Databases with the GSQL Query Language. InProceedingsofSimpósio BrasileirodeBanco deDados(SBBD). 313.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Alin Deutsch, Yu Xu, Mingxi Wu, and Victor E. Lee. 2020. Aggregation Support for Modern Graph Analytics in TigerGraph. In Proceedings of ACMSIGMOD International Conference on Management of Data (SIGMOD). 377–392. https: //doi.org/10.1145/3318464.3386144",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Wensheng Dou, Ziyu Cui, Qianwang Dai, Jiansen Song, Dong Wang, Yu Gao, Wei Wang, Jun Wei, Lei Chen, Hanmo Wang, Hua Zhong, and Tao Huang. 2023. DetectingIsolation Bugs viaTransactionOracleConstruction. In Proceedings of IEEE/ACMInternationalConferenceonSoftwareEngineering(ICSE) .1123–1135. https://doi.org/10.1109/ICSE48619.2023.00101",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "OrriErling,AlexAverbuch,JosepLluísLarriba-Pey,HassanCha/f_i,AndreyGubichev, Arnau Prat-Pérez, Minh-Duc Pham, and Peter A. Boncz. 2015. The LDBC Social NetworkBenchmark: Interactive Workload. In Proceedings of ACM SIGMODInternationalConferenceonManagementofData(SIGMOD) .619–630. https://doi.org/10.1145/2723372.2742786",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Nadime Francis, Alastair Green, Paolo Guagliardo, Leonid Libkin, Tobias Lindaaker, Victor Marsault, Stefan Plantikow, Mats Rydberg, Petra Selmer, and Andrés Taylor.2018. Cypher: AnEvolvingQueryLanguage forPropertyGraphs. InProceedings of ACMSIGMOD International Conference on Management of Data(SIGMOD). 1433–1445. https://doi.org/10.1145/3183713.3190657",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Zongyin Hao, Quanfeng Huang, Chengpeng Wang, Jianfeng Wang, Yushan Zhang,RongxinWu,andCharlesZhang.2023. Pinolo:DetectingLogicalBugs inDatabaseManagementSystemswithApproximateQuerySynthesis.In ProceedingsofUSENIXAnnual TechnicalConference (USENIXATC). 345–358.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "ZhenzhenHe,JiongYu,andBingleiGuo.2022. ExecutionTimePredictionfor CypherQueriesintheNeo4jDatabaseUsingaLearningApproach. Symmetry 14,1 (2022), 55.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Ziyue Hua, Wei Lin, Luyao Ren, Zongyang Li, Lu Zhang, and Tao Xie. 2023. GDsmith: Detecting Bugs in Cypher Graph Database Engines. In Proceedings of International Symposium on Software Testing and Analysis (ISSTA). 163–174. https://doi.org/10.1145/3597926.3598046",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland H. C. Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management SystemsviaInjectiveandSurjectiveGraphQueryTransformation.In Proceedings of the 46th IEEE/ACM International Conference on Software Engineering (ICSE). 46:1–46:12. https://doi.org/10.1109/ICST60714.2024.00012",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 41,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woon-Hak Kang. 2019. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems. Proceedings of the VLDB Endowment (VLDB) 13, 1 (2019), 57–70.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. In Proceedings of ACMSIGSOFT InternationalSymposiumonSoftwareTestingandAnalysis(ISSTA) .https://doi. org/10.1145/3597926.3598044",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 43,
+      "text": "Shadi Abdul Khalek, Bassem Elkarablieh, Yai O. Laleye, and Sarfraz Khurshid. 2008. Query-Aware Test Generation Using a Relational Constraint Solver. In ProceedingsofIEEE/ACMInternationalConferenceonAutomatedSoftwareEngineering (ASE). 238–247. https://doi.org/10.1109/ASE.2008.34",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "ShadiAbdulKhalekandSarfrazKhurshid.2010. AutomatedSQLquerygenerationforsystematictestingofdatabaseengines.In InternationalConferenceon AutomatedSoftwareEngineering(ASE) .329–332. https://doi.org/10.1145/1858996. 1859063",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Baozhu Liu, Xin Wang, Pengkai Liu, Sizhuo Li, Qiang Fu, and Yunpeng Chai. 2021. UniKG: A Uni/f_ied Interoperable Knowledge Graph Database System. In ProceedingsofIEEEInternationalConferenceonDataEngineering(ICDE) .2681– 2684.https://doi.org/10.1109/ICDE51399.2021.00303",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "XinyuLiu,QiZhou,JoyArulraj,andAlessandroOrso.2022. AutomaticDetection of Performance Bugs in Database Systems Using Equivalent Queries. In ProceedingsofInternationalConferenceonSoftwareEngineering(ICSE) .225–236. https://doi.org/10.1145/3510003.3510093",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "QiuyangMang,AoyangFang,BoxiYu,HanfeiChen,andPinjiaHe.2024. Testing GraphDatabaseSystemsviaEquivalentQueryRewriting.In Proceedingsofthe 46thIEEE/ACMInternationalConferenceonSoftwareEngineering(ICSE) .143:1– 143:12.https://doi.org/10.1145/3597503.3639200",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Muhammad Numair Mansur, Maria Christakis, and Valentin Wüstholz. 2021. Metamorphic Testing of Datalog Engines. In Proceedings of ACM Joint European SoftwareEngineeringConferenceandSymposiumontheFoundationsofSoftware Engineering (ESEC/FSE). 639–650. https://doi.org/10.1145/3468264.3468573",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "William M. McKeeman. 1998. Diﬀerential Testing for Software. Digit. Tech. J. 10, 1 (1998), 100–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Yuxiang Ren, Hao Zhu, Jiawei Zhang, Peng Dai, and Liefeng Bo. 2021. EnsemFDet: An Ensemble Approach to Fraud Detection based on Bipartite Graph. InProceedingsofInternationalConferenceonDataEngineering(ICDE) .2039–2044. https://doi.org/10.1109/ICDE51399.2021.00197",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "ManuelRiggerandZhendongSu.2020. DetectingOptimizationBugsinDatabase EnginesviaNon-OptimizingReferenceEngineConstruction.In Proceedingsof ACM Joint European Software Engineering Conference and Symposium on the FoundationsofSoftwareEngineering(ESEC/FSE) .1140–1152. https://doi.org/10. 1145/3368089.3409710",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 52,
+      "text": "ManuelRiggerandZhendongSu.2020. FindingBugsinDatabaseSystemsvia QueryPartitioning. 4,Article211(2020), 30pages.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 53,
+      "text": "ManuelRiggerandZhendongSu.2020. TestingDatabaseEnginesviaPivoted Query Synthesis. In Proceedings of USENIX Symposium on Operating Systems Designand Implementation(OSDI). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 54,
+      "text": "Marko A. Rodriguez. 2015. The Gremlin Graph Traversal Machine and Language (Invited Talk). In Proceedings of the Symposium on Database Programming Languages (DBPL). 1–10.https://doi.org/10.1145/2815072.2815073",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Donald S. Slutz. 1998. Massive Stochastic Testing of SQL. In Proceedings of InternationalConference onVeryLarge Data Bases (VLDB). 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Jiansen Song, Wensheng Dou, Ziyu Cui, Qianwang Dai, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2023. Testing Database Systems via Diﬀerential QueryExecution.In ProceedingsofIEEE/ACMInternationalConferenceonSoftware Engineering (ICSE). 2072–2084. https://doi.org/10.1109/ICSE48619.2023.00175",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "JiansenSong,WenshengDou,YuGao,ZiyuCui,YingyingZheng,DongWang, Wei Wang, Jun Wei, and Tao Huang. 2024. Detecting Metadata-Related Logic Bugs in Database Systems via Raw Database Construction. Proceedings of the VLDBEndowment (VLDB) (2024). 1706 TestingGremlin-BasedGraphDatabase Systems via/Q_uery Disassembling ISSTA ’24, September16–20, 2024,Vienna, Austria",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "RanWang,ZhengyiYang,WenjieZhang,andXueminLin.2020. AnEmpirical StudyonRecentGraphDatabaseSystems.In ProceedingsofInternationalConference on Knowledge Science, Engineering and Management (KSEM). 328–340. https://doi.org/10.1007/978-3-030-55130-8_29",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "MinWu,XingluYi,HuiYu,YuLiu,andYujueWang.2022. NebulaGraph:An Open Source Distributed GraphDatabase. CoRRabs/2206.07278 (2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "RuiYang,YingyingZheng,LeiTang,WenshengDou,WeiWang,andJunWei. 2023. RandomizedDiﬀerentialTestingofRDFStores.In ProceedingsofIEEE/ACM InternationalConferenceonSoftwareEngineering(ICSEDemo) .136–140. https: //doi.org/10.1109/ICSE-Companion58688.2023.00041",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. 2011. Finding and Understanding Bugs in C Compilers. In Proceedings of International Conference on Programming Language Design and Implementation (PLDI). 283–294. https://doi.org/10.1145/1993316.1993532",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "YuiYang,YingyingZheng,LeiTang,WenshengDou,WeiWang,andJunWei. 2023. RandomizedDiﬀerentialTestingofRDFStores.In ProceedingsofInternational Conference on Software Engineering: Companion Proceedings (ICSE Companion). 136–140. https://doi.org/10.1109/ICSE-Companion58688.2023.00041",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "YingyingZheng,WenshengDou,LeiTang,ZiyuCui,JiansenSong,ZiyueCheng, WeiWang,JunWei,HuaZhong,andTaoHuang.2024. DiﬀerentialOptimization TestingofGremlin-BasedGraphDatabaseSystems.In Proceedingsofthe17thIEEE InternationalConferenceonSoftwareTesting,Veri/f_icationandValidation(ICST). 25–36.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "YingyingZheng,WenshengDou,YichengWang,ZhengQin,LeiTang,YuGao, Dong Wang, Wei Wang, and Jun Wei. 2022. Finding Bugs in Gremlin-Based Graph Database Systems via Randomized Diﬀerential Testing. In Proceedings of International Symposium on Software Testing and Analysis (ISSTA). 302–313. https://doi.org/10.1145/3533767.3534409",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "ZeyangZhuang,PenghuiLi,PingchuanMa,WeiMeng,andShuaiWang.2023. Testing Graph Database Systems via Graph-Aware Metamorphic Relations. Proceedingsofthe VLDBEndowment (VLDB) 17,4 (2023), 836–848. 1707",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 27,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE). 2060–2071. https://doi.org/10.1109/ICSE48619.2023.00174",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "prints the DOI of the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 40,
+      "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland H. C. Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management SystemsviaInjectiveandSurjectiveGraphQueryTransformation.In Proceedings of the 46th IEEE/ACM International Conference on Software Engineering (ICSE). 46:1–46:12. https://doi.org/10.1109/ICST60714.2024.00012",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 42,
+      "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. In Proceedings of ACMSIGSOFT InternationalSymposiumonSoftwareTestingandAnalysis(ISSTA) .https://doi. org/10.1145/3597926.3598044",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 51,
+      "text": "ManuelRiggerandZhendongSu.2020. DetectingOptimizationBugsinDatabase EnginesviaNon-OptimizingReferenceEngineConstruction.In Proceedingsof ACM Joint European Software Engineering Conference and Symposium on the FoundationsofSoftwareEngineering(ESEC/FSE) .1140–1152. https://doi.org/10. 1145/3368089.3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec"
+      ]
+    },
+    {
+      "number": 52,
+      "text": "ManuelRiggerandZhendongSu.2020. FindingBugsinDatabaseSystemsvia QueryPartitioning. 4,Article211(2020), 30pages.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp"
+      ]
+    },
+    {
+      "number": 53,
+      "text": "ManuelRiggerandZhendongSu.2020. TestingDatabaseEnginesviaPivoted Query Synthesis. In Proceedings of USENIX Symposium on Operating Systems Designand Implementation(OSDI). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "GDBMeter[ 42] adopts Ternary LogicPartitioning (TLP)[52]toderiveagraphqueryintothreedisjointsub-queries based on a randomly generated predicate, and only focuses on detecting predicate-related bugs.",
+      "context_before": "entation for the assembly of multiple /f_iltering conditions, and /f_ixed it quicklyafter we submittedit. Logic bugs in GDBs are likely to go unnoticed by GDB developers,becausewelackaneﬀectivetestoracleforautomatictestingto verify whether a GDB behaves correctly for a given Gremlin query, thusdetectinglogicbugs.Someapproaches[ 39,62,64]adoptdifferential testing [ 49] to reveal discrepancies among multiple GDBs forthesamegraphdatabaseandgraphqueries.Thecleardrawback ofthistechniqueisthatitcannotdetectthesamebugsthatexist inalltarget GDBs and can onlybe usedto testcommon features intarget GDBs.",
+      "context_after": "Furthermore, some testing approaches [ 27,30,37,51–53,56,57] have proposed new test oracles to eﬀectively /f_ind logic bugs in an individual relational database system. However, these approaches cannot be applied on GremlinbasedGDBsbecausethe procedural Gremlinquerylanguageadopts diﬀerentsyntaxesandquery patterns from declarative SQL. We observe that a complex Gremlin query can be disassembled into a sequence of atomic graph traversals (an atomic graph traversal can achieve one-step traversal in the graph database), which shares the equivalent execution semantics as the original query. Inspir",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 6792,
+      "found_by_all": [
+        "technique",
+        "citation_marker_project_authored",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[ 27,30,37,51–53,56,57]",
+      "technique": "qpg",
+      "sentence": "Furthermore, some testing approaches [ 27,30,37,51–53,56,57] have proposed new test oracles to eﬀectively /f_ind logic bugs in an individual relational database system.",
+      "context_before": "racleforautomatictestingto verify whether a GDB behaves correctly for a given Gremlin query, thusdetectinglogicbugs.Someapproaches[ 39,62,64]adoptdifferential testing [ 49] to reveal discrepancies among multiple GDBs forthesamegraphdatabaseandgraphqueries.Thecleardrawback ofthistechniqueisthatitcannotdetectthesamebugsthatexist inalltarget GDBs and can onlybe usedto testcommon features intarget GDBs.GDBMeter[ 42] adopts Ternary LogicPartitioning (TLP)[52]toderiveagraphqueryintothreedisjointsub-queries based on a randomly generated predicate, and only focuses on detecting predicate-related bugs.",
+      "context_after": "However, these approaches cannot be applied on GremlinbasedGDBsbecausethe procedural Gremlinquerylanguageadopts diﬀerentsyntaxesandquery patterns from declarative SQL. We observe that a complex Gremlin query can be disassembled into a sequence of atomic graph traversals (an atomic graph traversal can achieve one-step traversal in the graph database), which shares the equivalent execution semantics as the original query. Inspiredbythisobservation,wepropose QueryDisassembling (QuDi), aneﬀectivetestoracletoreveallogicbugsinindividualGremlinbasedGDBs.Speci/f_ically,givenaGremlinquery /u1D444,wedi",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 6990,
+      "cited_reference": {
+        "number": 27,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE). 2060–2071. https://doi.org/10.1109/ICSE48619.2023.00174",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "prints the DOI of the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 42]",
+      "technique": null,
+      "sentence": ",Grand[ 64],GDsmith[ 39],RD2[62], and GDBMeter [ 42], can /f_ind bugs in GDBs.",
+      "context_before": "er.However, TempIDisageneralstrategythat canbepotentiallyappliedtotestotherdatabasesystems(Section 5), and can also work with large graph data. Overall, since these three execution strategies construct and execute the disassembled query using diﬀerent Gremlin features, they have diﬀerent bug detection capabilities, and thus do not detect exactly the same bugs. Thus, our three executionstrategies can complementeachother. OurthreeexecutionstrategiescancoverdiﬀerentGremlinfeatures and complementeach other,thusdetecting morelogicbugs. 4.3 Comparingwith ExistingApproaches Fourrelatedapproaches,i.e.",
+      "context_after": "Speci/f_ically, Grand, GDsmith, and RD2utilizediﬀerential testing [49] toreveal discrepancies among multiple target GDBs. GDBMeter utilizes Ternary Logic Partitioning (TLP), an invariant of query partitioning [52], toreveallogicbugsinatarget GDB.Therefore,wecompare QuDi withdiﬀerentialtesting andquerypartitioning .Notethatwecannot compareQuDiwithrelationaldatabasetestingtools,e.g.,SQLancer [51–53],sinceQuDiandSQLancertargetdiﬀerenttypesofdatabase systems, which utilize diﬀerent query languages (Gremlin vs. SQL) anddata models (graph modelvs. relationalmodel). Comparison with diﬀerential testin",
+      "section": "4.3 Comparingwith ExistingApproaches",
+      "page": 9,
+      "char_offset": 56008,
+      "cited_reference": {
+        "number": 42,
+        "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. In Proceedings of ACMSIGSOFT InternationalSymposiumonSoftwareTestingandAnalysis(ISSTA) .https://doi. org/10.1145/3597926.3598044",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "GDBMeter utilizes Ternary Logic Partitioning (TLP), an invariant of query partitioning [52], toreveallogicbugsinatarget GDB.",
+      "context_before": "t and execute the disassembled query using diﬀerent Gremlin features, they have diﬀerent bug detection capabilities, and thus do not detect exactly the same bugs. Thus, our three executionstrategies can complementeachother. OurthreeexecutionstrategiescancoverdiﬀerentGremlinfeatures and complementeach other,thusdetecting morelogicbugs. 4.3 Comparingwith ExistingApproaches Fourrelatedapproaches,i.e.,Grand[ 64],GDsmith[ 39],RD2[62], and GDBMeter [ 42], can /f_ind bugs in GDBs. Speci/f_ically, Grand, GDsmith, and RD2utilizediﬀerential testing [49] toreveal discrepancies among multiple target GDBs.",
+      "context_after": "Therefore,wecompare QuDi withdiﬀerentialtesting andquerypartitioning .Notethatwecannot compareQuDiwithrelationaldatabasetestingtools,e.g.,SQLancer [51–53],sinceQuDiandSQLancertargetdiﬀerenttypesofdatabase systems, which utilize diﬀerent query languages (Gremlin vs. SQL) anddata models (graph modelvs. relationalmodel). Comparison with diﬀerential testing. Diﬀerential testing (e.g.,Grand)requiresmorethanonetarget GDBasinput.IfaGremlinfeatureisnot supported byall target GDBs,diﬀerentialtesting willnotbeabletoapplyonthisfeature.Thus,diﬀerentialtesting canonlybeusedtotestcommonfeaturesinthetarget GDB",
+      "section": "4.3 Comparingwith ExistingApproaches",
+      "page": 9,
+      "char_offset": 56208,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ",SQLancer [51–53],sinceQuDiandSQLancertargetdiﬀerenttypesofdatabase systems, which utilize diﬀerent query languages (Gremlin vs.",
+      "context_before": "ﬀerentGremlinfeatures and complementeach other,thusdetecting morelogicbugs. 4.3 Comparingwith ExistingApproaches Fourrelatedapproaches,i.e.,Grand[ 64],GDsmith[ 39],RD2[62], and GDBMeter [ 42], can /f_ind bugs in GDBs. Speci/f_ically, Grand, GDsmith, and RD2utilizediﬀerential testing [49] toreveal discrepancies among multiple target GDBs. GDBMeter utilizes Ternary Logic Partitioning (TLP), an invariant of query partitioning [52], toreveallogicbugsinatarget GDB.Therefore,wecompare QuDi withdiﬀerentialtesting andquerypartitioning .Notethatwecannot compareQuDiwithrelationaldatabasetestingtools,e.g.",
+      "context_after": "SQL) anddata models (graph modelvs. relationalmodel). Comparison with diﬀerential testing. Diﬀerential testing (e.g.,Grand)requiresmorethanonetarget GDBasinput.IfaGremlinfeatureisnot supported byall target GDBs,diﬀerentialtesting willnotbeabletoapplyonthisfeature.Thus,diﬀerentialtesting canonlybeusedtotestcommonfeaturesinthetarget GDBs.We can encounter the following casesindiﬀerential testing. •C1: At least two GDBs can return inconsistent results, then diﬀerential testingreports abug. •C2:AllGDBsreturnthesamewrongresults,thendiﬀerential testingcan miss abug. •C3:AllGDBsreturnthesameresults.How",
+      "section": "4.3 Comparingwith ExistingApproaches",
+      "page": 9,
+      "char_offset": 56469,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "technique",
+      "surface": "query partitioning",
+      "technique": "tlp",
+      "sentence": "Comparison with query partitioning.",
+      "context_before": "ally, foranoriginalGremlinquerythattriggersabuginthese21bug reports,wedisassembleitintoatomicgraphtraversalsandverify whethertheycancomputediﬀerentqueryresultsastheoriginal query. If yes, we consider that QuDican detect the logic bug. We /f_indthat, QuDican/f_ind16(76%)logicbugsdetectedbyGrand. QuDi misses the remaining 5 bugs because their original queries and the corresponding disassembledqueriesreturnthesamewrongresults. This result indicates that QuDihas the capability to detect most logic bugsdetectedbyGrandwithoutsuﬀeringfromGrand’sdrawbacks, e.g.,multiple GDBsas inputand false positives.",
+      "context_after": "In query partitioning (e.g., GDBMeter), a given query /u1D444can derive multiple disjoint subqueries (e.g., /u1D444′ /u1D45D=/u1D447/u1D445/u1D448/u1D438,/u1D444′ /u1D45D=/u1D439/u1D434/u1D43F/u1D446/u1D438, and/u1D444′ /u1D45D /u1D456/u1D460 /u1D441/u1D448/u1D43F/u1D43Fbased on a random predicate /u1D45Din TLP). These individual partitions are composed to obtain a result set /u1D445/u1D446/u1D444′, which should be equal to /u1D445/u1D446/u1D444. However,querypartitioningcannotprevent GDBoptimizationsfrom kickinginandrevealassemblyissuesin GDBs,sothatitcanhardly detect logic bugs that are cause",
+      "section": "4.3 Comparingwith ExistingApproaches",
+      "page": 9,
+      "char_offset": 59303,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "technique",
+      "surface": "query partitioning",
+      "technique": "tlp",
+      "sentence": "In query partitioning (e.",
+      "context_before": "riggersabuginthese21bug reports,wedisassembleitintoatomicgraphtraversalsandverify whethertheycancomputediﬀerentqueryresultsastheoriginal query. If yes, we consider that QuDican detect the logic bug. We /f_indthat, QuDican/f_ind16(76%)logicbugsdetectedbyGrand. QuDi misses the remaining 5 bugs because their original queries and the corresponding disassembledqueriesreturnthesamewrongresults. This result indicates that QuDihas the capability to detect most logic bugsdetectedbyGrandwithoutsuﬀeringfromGrand’sdrawbacks, e.g.,multiple GDBsas inputand false positives. Comparison with query partitioning.",
+      "context_after": "g., GDBMeter), a given query /u1D444can derive multiple disjoint subqueries (e.g., /u1D444′ /u1D45D=/u1D447/u1D445/u1D448/u1D438,/u1D444′ /u1D45D=/u1D439/u1D434/u1D43F/u1D446/u1D438, and/u1D444′ /u1D45D /u1D456/u1D460 /u1D441/u1D448/u1D43F/u1D43Fbased on a random predicate /u1D45Din TLP). These individual partitions are composed to obtain a result set /u1D445/u1D446/u1D444′, which should be equal to /u1D445/u1D446/u1D444. However,querypartitioningcannotprevent GDBoptimizationsfrom kickinginandrevealassemblyissuesin GDBs,sothatitcanhardly detect logic bugs that are caused by incorrect implementat",
+      "section": "4.3 Comparingwith ExistingApproaches",
+      "page": 9,
+      "char_offset": 59339,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": ", /u1D444′ /u1D45D=/u1D447/u1D445/u1D448/u1D438,/u1D444′ /u1D45D=/u1D439/u1D434/u1D43F/u1D446/u1D438, and/u1D444′ /u1D45D /u1D456/u1D460 /u1D441/u1D448/u1D43F/u1D43Fbased on a random predicate /u1D45Din TLP).",
+      "context_before": "rentqueryresultsastheoriginal query. If yes, we consider that QuDican detect the logic bug. We /f_indthat, QuDican/f_ind16(76%)logicbugsdetectedbyGrand. QuDi misses the remaining 5 bugs because their original queries and the corresponding disassembledqueriesreturnthesamewrongresults. This result indicates that QuDihas the capability to detect most logic bugsdetectedbyGrandwithoutsuﬀeringfromGrand’sdrawbacks, e.g.,multiple GDBsas inputand false positives. Comparison with query partitioning. In query partitioning (e.g., GDBMeter), a given query /u1D444can derive multiple disjoint subqueries (e.g.",
+      "context_after": "These individual partitions are composed to obtain a result set /u1D445/u1D446/u1D444′, which should be equal to /u1D445/u1D446/u1D444. However,querypartitioningcannotprevent GDBoptimizationsfrom kickinginandrevealassemblyissuesin GDBs,sothatitcanhardly detect logic bugs that are caused by incorrect implementations and optimizationsoftheassemblyofatomic graphtraversals,andour query disassembling iscomplementary to query partitioning. We /f_irst verify whether query partitioning in GDBMeter can detect the 25 logic bugs detected by QuDi. For each test case in our 25bugreports,wetrytoconstructdisj",
+      "section": "4.3 Comparingwith ExistingApproaches",
+      "page": 9,
+      "char_offset": 59446,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "query partitioning",
+      "technique": "tlp",
+      "sentence": "However,querypartitioningcannotprevent GDBoptimizationsfrom kickinginandrevealassemblyissuesin GDBs,sothatitcanhardly detect logic bugs that are caused by incorrect implementations and optimizationsoftheassemblyofatomic graphtraversals,andour query disassembling iscomplementary to query partitioning.",
+      "context_before": "most logic bugsdetectedbyGrandwithoutsuﬀeringfromGrand’sdrawbacks, e.g.,multiple GDBsas inputand false positives. Comparison with query partitioning. In query partitioning (e.g., GDBMeter), a given query /u1D444can derive multiple disjoint subqueries (e.g., /u1D444′ /u1D45D=/u1D447/u1D445/u1D448/u1D438,/u1D444′ /u1D45D=/u1D439/u1D434/u1D43F/u1D446/u1D438, and/u1D444′ /u1D45D /u1D456/u1D460 /u1D441/u1D448/u1D43F/u1D43Fbased on a random predicate /u1D45Din TLP). These individual partitions are composed to obtain a result set /u1D445/u1D446/u1D444′, which should be equal to /u1D445/u1D446/u1D444.",
+      "context_after": "We /f_irst verify whether query partitioning in GDBMeter can detect the 25 logic bugs detected by QuDi. For each test case in our 25bugreports,wetrytoconstructdisjointsub-queriesaccording tothe TLPoracleandcheckwhetherthesedisjointsub-queriescan reportaninconsistency.We/f_indthat,only6bugsdetectedby QuDi can be found by GDBMeter theoretically. Among these six bugs, 5 bugsareidenti/f_iedbyunexpectedexceptionsindisjointsub-queries and the remaining one is identi/f_ied by incorrect query results. The remaining19bugscouldnotbedetectedbyGDBMeterbecausethe original queries in these test cases can co",
+      "section": "4.3 Comparingwith ExistingApproaches",
+      "page": 9,
+      "char_offset": 59790,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "query partitioning",
+      "technique": "tlp",
+      "sentence": "We /f_irst verify whether query partitioning in GDBMeter can detect the 25 logic bugs detected by QuDi.",
+      "context_before": "438,/u1D444′ /u1D45D=/u1D439/u1D434/u1D43F/u1D446/u1D438, and/u1D444′ /u1D45D /u1D456/u1D460 /u1D441/u1D448/u1D43F/u1D43Fbased on a random predicate /u1D45Din TLP). These individual partitions are composed to obtain a result set /u1D445/u1D446/u1D444′, which should be equal to /u1D445/u1D446/u1D444. However,querypartitioningcannotprevent GDBoptimizationsfrom kickinginandrevealassemblyissuesin GDBs,sothatitcanhardly detect logic bugs that are caused by incorrect implementations and optimizationsoftheassemblyofatomic graphtraversals,andour query disassembling iscomplementary to query partitioning.",
+      "context_after": "For each test case in our 25bugreports,wetrytoconstructdisjointsub-queriesaccording tothe TLPoracleandcheckwhetherthesedisjointsub-queriescan reportaninconsistency.We/f_indthat,only6bugsdetectedby QuDi can be found by GDBMeter theoretically. Among these six bugs, 5 bugsareidenti/f_iedbyunexpectedexceptionsindisjointsub-queries and the remaining one is identi/f_ied by incorrect query results. The remaining19bugscouldnotbedetectedbyGDBMeterbecausethe original queries in these test cases can compute the same wrong queryresultsastheunionqueryresultsoftheirdisjointsub-queries. We further verify whe",
+      "section": "4.3 Comparingwith ExistingApproaches",
+      "page": 9,
+      "char_offset": 60090,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "query partitioning",
+      "technique": "tlp",
+      "sentence": ", query partitioning and query disassembling).",
+      "context_before": "dby GDBMeterbecausethe original queries in these test cases can compute the same wrong queryresultsastheunionqueryresultsoftheirdisjointsub-queries. We further verify whether QuDican detect the 3 logic bugs reported by GDBMeter in JanusGraph, which adopt Gremlin as the querylanguage.Weignoretheother36bugsreportedbyGDBMeter since their test cases use Cypher queries, which we do not support fornow.Wetrytoruneachtestcaseinthese3bugreportsvia QuDi, and check whether QuDican reveal them. However, 2 of 3 bugs are internal errors that are triggered by query generation instead of the test oracles (e.g.",
+      "context_after": "1703 ISSTA ’24, September16–20, 2024,Vienna, Austria Y. Zheng,W. Dou, L.Tang,Z.Cui,Y. Gao, J. Song,L.Xu,J. Zhu, W. Wang,J. Wei, H.Zhong,andT. Huang 1v1 = g.addV( 'vL').next(); 2v2 = g.addV( 'vL').next(); 3e1 = g.addE( 'eL').from(v1).to(v2).next(); 4g.E(e1).property( 'p',newFloat(0.94461)); 5 6// original query 7g.E().has( 'p', 0.94461); -- e:{1} ✘ 8 9// disassembled queries 10g.E(); -- e:{1} 11g.E(1).has( 'p', 0.94461); -- {} ✔ Figure 9: JanusGraph inconsistently retrieves properties without explicit data type inJanusGraph#3200. 1v1 = g.addV( 'vL').property( 'p0', 1).next(); 2v2 = g.addV( 'vL",
+      "section": "4.3 Comparingwith ExistingApproaches",
+      "page": 9,
+      "char_offset": 61225,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "citation_marker",
+      "surface": "[37,51,52,56,57]",
+      "technique": "norec",
+      "sentence": "Somemetamorphictestingapproaches [37,51,52,56,57]for/f_indingbugsinrelationaldatabasesystems have beenproposed.",
+      "context_before": "testing. DT2[30] utilizes diﬀerential testing to /f_ind transaction bugs in relational database systems. To test GDBs, Grand [ 64], GDsmith [39], and RD2[60] utilize diﬀerential testing to /f_ind logic bugs in multiple GDBs with Gremlin, Cypher, and SPARQL query languages,respectively.However,diﬀerentialtestingcannotprovide a testing oracle for a target GDB, and can miss logic bugs and encounter false positives dueto target GDBs’specialsemantics. Metamorphic testing. Metamorphic testing [ 48] aims to address the test oracle problem [ 28] by mutating test cases according tometamorphicrelations.",
+      "context_after": "For example,query partitioning[ 52]derives a given querytomultiple disjointsub-queries,in whichtheresult of the given query is the same as the combination result of disjoint sub-queries. NoREC [ 51] transforms an optimized SQL query toanon-optimized SQLquery,andcan/f_indoptimizationbugsin relational database systems. However, all the above approaches targetdatabasesystemswith declarative SQLquerylanguage.They cannot eﬀectivelytestGremlin-based GDBs becauseGremlinand SQL have totallydiﬀerentsyntaxesandquery patterns.TotestGDBs,GDBMeter[ 42]derivesagraphqueryintothree disjoint sub-queries by rando",
+      "section": "5 Discussion",
+      "page": 11,
+      "char_offset": 69555,
+      "cited_reference": {
+        "number": 51,
+        "text": "ManuelRiggerandZhendongSu.2020. DetectingOptimizationBugsinDatabase EnginesviaNon-OptimizingReferenceEngineConstruction.In Proceedingsof ACM Joint European Software Engineering Conference and Symposium on the FoundationsofSoftwareEngineering(ESEC/FSE) .1140–1152. https://doi.org/10. 1145/3368089.340",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "query partitioning",
+      "technique": "tlp",
+      "sentence": "For example,query partitioning[ 52]derives a given querytomultiple disjointsub-queries,in whichtheresult of the given query is the same as the combination result of disjoint sub-queries.",
+      "context_before": "t GDBs, Grand [ 64], GDsmith [39], and RD2[60] utilize diﬀerential testing to /f_ind logic bugs in multiple GDBs with Gremlin, Cypher, and SPARQL query languages,respectively.However,diﬀerentialtestingcannotprovide a testing oracle for a target GDB, and can miss logic bugs and encounter false positives dueto target GDBs’specialsemantics. Metamorphic testing. Metamorphic testing [ 48] aims to address the test oracle problem [ 28] by mutating test cases according tometamorphicrelations.Somemetamorphictestingapproaches [37,51,52,56,57]for/f_indingbugsinrelationaldatabasesystems have beenproposed.",
+      "context_after": "NoREC [ 51] transforms an optimized SQL query toanon-optimized SQLquery,andcan/f_indoptimizationbugsin relational database systems. However, all the above approaches targetdatabasesystemswith declarative SQLquerylanguage.They cannot eﬀectivelytestGremlin-based GDBs becauseGremlinand SQL have totallydiﬀerentsyntaxesandquery patterns.TotestGDBs,GDBMeter[ 42]derivesagraphqueryintothree disjoint sub-queries by randomly generating a predicate, which mainly focuses on predicate-related bugs. Gamera [ 65] designs threetypesofgraph-awaremetamorphicrelations,whichcanbe usedtogeneratediverseandcomplexgra",
+      "section": "5 Discussion",
+      "page": 11,
+      "char_offset": 69666,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC [ 51] transforms an optimized SQL query toanon-optimized SQLquery,andcan/f_indoptimizationbugsin relational database systems.",
+      "context_before": "erentialtestingcannotprovide a testing oracle for a target GDB, and can miss logic bugs and encounter false positives dueto target GDBs’specialsemantics. Metamorphic testing. Metamorphic testing [ 48] aims to address the test oracle problem [ 28] by mutating test cases according tometamorphicrelations.Somemetamorphictestingapproaches [37,51,52,56,57]for/f_indingbugsinrelationaldatabasesystems have beenproposed.For example,query partitioning[ 52]derives a given querytomultiple disjointsub-queries,in whichtheresult of the given query is the same as the combination result of disjoint sub-queries.",
+      "context_after": "However, all the above approaches targetdatabasesystemswith declarative SQLquerylanguage.They cannot eﬀectivelytestGremlin-based GDBs becauseGremlinand SQL have totallydiﬀerentsyntaxesandquery patterns.TotestGDBs,GDBMeter[ 42]derivesagraphqueryintothree disjoint sub-queries by randomly generating a predicate, which mainly focuses on predicate-related bugs. Gamera [ 65] designs threetypesofgraph-awaremetamorphicrelations,whichcanbe usedtogeneratediverseandcomplexgraphqueries,andthenreveal logic bugs in GDBs. Mang et al. [ 47] propose equivalent query rewriting (EQR), which rewrites a graph quer",
+      "section": "5 Discussion",
+      "page": 11,
+      "char_offset": 69852,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 42]",
+      "technique": null,
+      "sentence": "TotestGDBs,GDBMeter[ 42]derivesagraphqueryintothree disjoint sub-queries by randomly generating a predicate, which mainly focuses on predicate-related bugs.",
+      "context_before": "es [37,51,52,56,57]for/f_indingbugsinrelationaldatabasesystems have beenproposed.For example,query partitioning[ 52]derives a given querytomultiple disjointsub-queries,in whichtheresult of the given query is the same as the combination result of disjoint sub-queries. NoREC [ 51] transforms an optimized SQL query toanon-optimized SQLquery,andcan/f_indoptimizationbugsin relational database systems. However, all the above approaches targetdatabasesystemswith declarative SQLquerylanguage.They cannot eﬀectivelytestGremlin-based GDBs becauseGremlinand SQL have totallydiﬀerentsyntaxesandquery patterns.",
+      "context_after": "Gamera [ 65] designs threetypesofgraph-awaremetamorphicrelations,whichcanbe usedtogeneratediverseandcomplexgraphqueries,andthenreveal logic bugs in GDBs. Mang et al. [ 47] propose equivalent query rewriting (EQR), which rewrites a graph query into equivalent graph queries that trigger distinct query plans, to detect bugs in GDBs. Given a graph query /u1D444, GraphGenie [ 40] derives a mutated graphquerywhosequeryresultsetiseithersemanticallyequivalent totheresultsetof /u1D444orconstitutesasubsetorsupersetoftheresult set of/u1D444, dependingon the mutationapplied. DOT [ 63] candetect optimizat",
+      "section": "5 Discussion",
+      "page": 11,
+      "char_offset": 70185,
+      "cited_reference": {
+        "number": 42,
+        "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. In Proceedings of ACMSIGSOFT InternationalSymposiumonSoftwareTestingandAnalysis(ISSTA) .https://doi. org/10.1145/3597926.3598044",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M16",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 40]",
+      "technique": null,
+      "sentence": "Given a graph query /u1D444, GraphGenie [ 40] derives a mutated graphquerywhosequeryresultsetiseithersemanticallyequivalent totheresultsetof /u1D444orconstitutesasubsetorsupersetoftheresult set of/u1D444, dependingon the mutationapplied.",
+      "context_before": "They cannot eﬀectivelytestGremlin-based GDBs becauseGremlinand SQL have totallydiﬀerentsyntaxesandquery patterns.TotestGDBs,GDBMeter[ 42]derivesagraphqueryintothree disjoint sub-queries by randomly generating a predicate, which mainly focuses on predicate-related bugs. Gamera [ 65] designs threetypesofgraph-awaremetamorphicrelations,whichcanbe usedtogeneratediverseandcomplexgraphqueries,andthenreveal logic bugs in GDBs. Mang et al. [ 47] propose equivalent query rewriting (EQR), which rewrites a graph query into equivalent graph queries that trigger distinct query plans, to detect bugs in GDBs.",
+      "context_after": "DOT [ 63] candetect optimization bugs by testing a graph query with two diﬀerent optimization con/f_igurations. However, these approaches cannot reveal assembly issuesin GDBs.Our approach proposesa newmetamorphic rule to detect logic bugs related to incorrect implementations andoptimizationsoftheassemblyofatomicgraphtraversals.Thus, our approach iscomplementary to theseapproaches. Othertestingapproachesofrelationaldatabasesystems. SQLsmith [ 19] can test relational database systems by randomly generating SQL queries. The generic fuzzing tools (e.g., AFL [ 1]) can also be used to test relation",
+      "section": "5 Discussion",
+      "page": 11,
+      "char_offset": 70673,
+      "cited_reference": {
+        "number": 40,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland H. C. Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management SystemsviaInjectiveandSurjectiveGraphQueryTransformation.In Proceedings of the 46th IEEE/ACM International Conference on Software Engineering (ICSE). ",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M17",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS[ 53]teststhecorrectness ofrelationaldatabasesystemsbyrandomlyselectingapivotrow and generating random SQL queries that contain the selected row.",
+      "context_before": "aches cannot reveal assembly issuesin GDBs.Our approach proposesa newmetamorphic rule to detect logic bugs related to incorrect implementations andoptimizationsoftheassemblyofatomicgraphtraversals.Thus, our approach iscomplementary to theseapproaches. Othertestingapproachesofrelationaldatabasesystems. SQLsmith [ 19] can test relational database systems by randomly generating SQL queries. The generic fuzzing tools (e.g., AFL [ 1]) can also be used to test relational database systems. ADUSA [ 43, 44] uses a relational constraint solver, Alloy [ 2], to generate the expectedresultofagiven SQLquery.",
+      "context_after": "QPG [27] can improve testing eﬃciency by exploring a variety ofuniquequeryplans.Troc[ 34]detectstransactionbugs[ 31]by inferring the expected results of concurrent transaction executions. However,theseapproachescannotbedirectlyappliedtotest GDBs. 7 Conclusion Buggy implementations and optimizations of Gremlin-based graph database systems can introduce logic bugs, which can lead to severeconsequences,e.g.,incorrectqueryresults.Inthispaper,we proposequerydisassembling( QuDi)toreveallogicbugsingraph databasesystemsbydisassemblingacomplexGremlinqueryinto anequivalentatomicgraphtraversalsequence.We",
+      "section": "5 Discussion",
+      "page": 11,
+      "char_offset": 71644,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "QPG [27] can improve testing eﬃciency by exploring a variety ofuniquequeryplans.",
+      "context_before": "ptimizationsoftheassemblyofatomicgraphtraversals.Thus, our approach iscomplementary to theseapproaches. Othertestingapproachesofrelationaldatabasesystems. SQLsmith [ 19] can test relational database systems by randomly generating SQL queries. The generic fuzzing tools (e.g., AFL [ 1]) can also be used to test relational database systems. ADUSA [ 43, 44] uses a relational constraint solver, Alloy [ 2], to generate the expectedresultofagiven SQLquery.PQS[ 53]teststhecorrectness ofrelationaldatabasesystemsbyrandomlyselectingapivotrow and generating random SQL queries that contain the selected row.",
+      "context_after": "Troc[ 34]detectstransactionbugs[ 31]by inferring the expected results of concurrent transaction executions. However,theseapproachescannotbedirectlyappliedtotest GDBs. 7 Conclusion Buggy implementations and optimizations of Gremlin-based graph database systems can introduce logic bugs, which can lead to severeconsequences,e.g.,incorrectqueryresults.Inthispaper,we proposequerydisassembling( QuDi)toreveallogicbugsingraph databasesystemsbydisassemblingacomplexGremlinqueryinto anequivalentatomicgraphtraversalsequence.Weevaluate QuDi onsixwidely-usedgraphdatabasesystems,andhavedetected25 uniquelogicb",
+      "section": "5 Discussion",
+      "page": 11,
+      "char_offset": 71792,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:50:48Z",
+    "is_model_written": true,
+    "summary": "QuDi tests Gremlin-based graph databases by disassembling a traversal into its atomic steps and checking that reassembling them reproduces the original result. The bugs it targets are in how a system implements and optimises the assembly of traversals, which a predicate-based oracle cannot reach because it varies the predicate rather than the traversal structure. It found 25 logic bugs across Gremlin-based systems.",
+    "narrative": "Query partitioning is the technique QuDi positions itself against, reached through GDBMeter, which the paper describes as adopting TLP to derive a graph query into three disjoint sub-queries and so focusing on predicate-related bugs. The comparison is run: the authors check whether GDBMeter's query partitioning can detect the 25 bugs QuDi found. The conclusion is complementarity rather than replacement -- query partitioning cannot stop the system's optimisations from kicking in and so cannot expose assembly issues, and the paper says the two are complementary. SQLancer itself is explicitly not compared against, since QuDi targets Gremlin and SQLancer targets SQL.",
+    "roles": {
+      "M1": "definition",
+      "M2": "background",
+      "M3": "baseline",
+      "M4": "definition",
+      "M5": "incidental",
+      "M6": "baseline",
+      "M7": "definition",
+      "M8": "definition",
+      "M9": "result_comparison",
+      "M10": "result_comparison",
+      "M11": "definition",
+      "M12": "background",
+      "M13": "definition",
+      "M14": "definition",
+      "M15": "definition",
+      "M16": "background",
+      "M17": "definition",
+      "M18": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "M5 states QuDi and SQLancer target different database systems with different query languages, and that no comparison with SQLancer was run; nothing indicates reuse of its code either."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Query disassembling operates on the structure of a traversal rather than on a predicate, and M9 calls it complementary to query partitioning rather than a development of it."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M3",
+          "M6",
+          "M10"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M3",
+            "sentence": ",Grand[ 64],GDsmith[ 39],RD2[62], and GDBMeter [ 42], can /f_ind bugs in GDBs.",
+            "section": "4.3 Comparingwith ExistingApproaches",
+            "page": 9
+          },
+          {
+            "mention_id": "M6",
+            "sentence": "Comparison with query partitioning.",
+            "section": "4.3 Comparingwith ExistingApproaches",
+            "page": 9
+          },
+          {
+            "mention_id": "M10",
+            "sentence": "We /f_irst verify whether query partitioning in GDBMeter can detect the 25 logic bugs detected by QuDi.",
+            "section": "4.3 Comparingwith ExistingApproaches",
+            "page": 9
+          }
+        ],
+        "reasoning": "M3 and M6 name GDBMeter among the tools QuDi is compared with, and M10 states the authors verified whether its query partitioning could detect the 25 bugs QuDi found. The comparison reaches TLP through GDBMeter, which M4 identifies as a TLP-based tool.",
+        "techniques": [
+          "tlp"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The techniques are described by what they do and where they fall short; no state-of-the-art claim is made."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

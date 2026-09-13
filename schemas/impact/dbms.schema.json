@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sqlancer.github.io/schemas/impact/dbms.schema.json",
+  "title": "Database system registry",
+  "description": "Canonical list of database systems referenced by impact records. 'Supported by SQLancer' is deliberately a separate concept from 'SQLancer found bugs in it' and from 'its developers use SQLancer'.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "dbms"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "$ref": "common.schema.json#/definitions/schema_version"
+    },
+    "dbms": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "aliases",
+          "supported_by_sqlancer"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/definitions/slug"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "description": "Spellings seen in upstream sources; used to normalise incoming records."
+          },
+          "url": {
+            "$ref": "common.schema.json#/definitions/url"
+          },
+          "repository": {
+            "$ref": "common.schema.json#/definitions/url"
+          },
+          "github_owners": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "description": "Additional GitHub organisations the project operates under, beyond the owner of its main repository. Used to recognise a SQLancer fork as the project's own."
+          },
+          "supported_by_sqlancer": {
+            "type": "boolean",
+            "description": "True when the main SQLancer repository ships a testing implementation for this DBMS."
+          },
+          "support": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "provider_path",
+              "evidence"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "provider_path": {
+                "type": "string",
+                "maxLength": 200,
+                "description": "Path of the DBMS provider package inside the SQLancer repository."
+              },
+              "umbrella_tool": {
+                "$ref": "common.schema.json#/definitions/slug",
+                "description": "Which umbrella tool provides the support (e.g. sqlancer, sqlancer_pp)."
+              },
+              "evidence": {
+                "$ref": "common.schema.json#/definitions/evidence_list"
+              }
+            }
+          },
+          "notes": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "gitee_repositories": {
+            "type": "array",
+            "description": "Repositories on gitee.com whose issue tracker belongs to this project, as owner/name. Several Chinese database projects take bug reports there rather than on GitHub.",
+            "items": {
+              "type": "string",
+              "maxLength": 140
+            }
+          },
+          "github_repositories": {
+            "type": "array",
+            "description": "Further repositories the project owns whose issues are its own -- a fuzzer's bug tracker, for instance -- given as owner/name.",
+            "items": {
+              "type": "string",
+              "maxLength": 140
+            }
+          }
+        }
+      }
+    }
+  }
+}

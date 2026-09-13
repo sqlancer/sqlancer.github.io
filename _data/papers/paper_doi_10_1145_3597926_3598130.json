@@ -1,0 +1,755 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:26:56Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3597926.3598130",
+    "title": "GrayC: Greybox Fuzzing of Compilers and Analysers for C",
+    "authors": [
+      "Karine Even-Mendoza",
+      "Arindam Sharma",
+      "Alastair F. Donaldson",
+      "Cristian Cadar"
+    ],
+    "year": 2023,
+    "venue": "International Symposium on Software Testing and Analysis",
+    "doi": "10.1145/3597926.3598130",
+    "arxiv_id": null,
+    "s2_paper_id": "86a60acfe93752af1159dea65d01808134754467",
+    "url": "https://doi.org/10.1145/3597926.3598130",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3597926.3598130",
+      "retrieved_at": "2026-09-08T15:26:56Z",
+      "chars": 77498,
+      "content_sha256": "sha256:a8254799f9ab108b95ac3dad72360144384681c4dd21b51dcf4837c6f8d9f355"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 3191
+      },
+      {
+        "number": "2.1",
+        "title": "Compiler Bugs andProgramValidity",
+        "start": 13911
+      },
+      {
+        "number": "3.1",
+        "title": "CustomMutators",
+        "start": 18571
+      },
+      {
+        "number": "3.3",
+        "title": "Implementation Details",
+        "start": 29861
+      },
+      {
+        "number": "4.1",
+        "title": "ExperimentalSetup",
+        "start": 31537
+      },
+      {
+        "number": "4.2",
+        "title": "Bugs Found",
+        "start": 33893
+      },
+      {
+        "number": "4.3",
+        "title": "Compiler TestCaseContributions",
+        "start": 35747
+      },
+      {
+        "number": "5.1",
+        "title": "ExperimentalSetup",
+        "start": 36510
+      },
+      {
+        "number": "5.2",
+        "title": "Throughput andStatic ValidityRate",
+        "start": 41848
+      },
+      {
+        "number": "5.3",
+        "title": "Coverage",
+        "start": 44609
+      },
+      {
+        "number": "5.4",
+        "title": "Bug Finding",
+        "start": 48704
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "CorneliusAschermann,TommasoFrassetto,ThorstenHolz,PatrickJauernig, Ahmad-Reza Sadeghi, and Daniel Teuchert. 2019. NAUTILUS: Fishing for Deep BugswithGrammars.In Proc.ofthe26thNetworkandDistributedSystemSecurity Symposium (NDSS’19) (San Diego, CA, USA). https://doi.org/10.14722/ndss. 2019.23412",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "C-Reduce Bugclang delta (found as a by-product of fuzzing). Date Conﬁrmed and Fixed Jan. 16, 2022. https://www.ﬂux.utah.edu/listarchives/creducebugs/msg00555.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "C-Reduce Bugclang delta (found as a by-product of fuzzing). Date Conﬁrmed and Fixed Jan. 4, 2022. https://www.ﬂux.utah.edu/listarchives/creducebugs/msg00553.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "C-Reduce Bugclang delta (found as a by-product of fuzzing). Date Conﬁrmed Jun. 7, 2021 and Fixed Jun. 20, 2021. https://www.ﬂux.utah.edu/listarchives/ creduce-bugs/msg00537.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "C-Reduce Bugclang delta (found as a by-product of fuzzing). Date Conﬁrmed November 2, 2022. https://www.ﬂux.utah.edu/listarchives/creduce-bugs/ msg00563.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "C-ReduceBug-clangdelta(foundasaby-productoffuzzing).DateReportedDec. 17,2021. https://www.ﬂux.utah.edu/listarchives/creduce-bugs/msg00551.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Cristian Cadar and Alastair Donaldson. 2016. Analysing the Program Analyser. InProc. of the 38th International Conference on SoftwareEngineering, New Ideas and EmergingResults (ICSENIER’16) (Austin,TX, USA).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "JunjieChen,JibeshPatra,MichaelPradel,YingfeiXiong,HongyuZhang,Dan Hao, and Lu Zhang. 2020. A Survey of Compiler Testing. Comput. Surveys 53, 1 (2020), 4:1–4:36. https://doi.org/10.1145/3363562",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "T.Y.Chen,S.C.Cheung,andS.M.Yiu.1998. Metamorphictesting:anewapproach for generating next test cases. Technical Report HKUST-CS98-01. Hong Kong Universityof Science and Technology.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "YutingChen,TingSu,ChengnianSun,ZhendongSu,andJianjunZhao.2016. Coverage-directeddiﬀerentialtestingofJVMimplementations.In Proc.ofthe 1229 ISSTA ’23, July 17–21, 2023,Sea/t_tle, WA,USA KarineEven-Mendoza,Arindam Sharma,AlastairF. Donaldson, andCristian Cadar ConferenceonProgramingLanguageDesignandImplementation(PLDI’16) (Santa Barbara, CA, USA). https://doi.org/10.1145/2908080.2908095",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Yongheng Chen, Rui Zhong, Hong Hu, Hangfan Zhang, Yupeng Yang, Dinghao Wu, and Wenke Lee. 2022. One Engine to Fuzz ’em All: Generic Language Processor Testing with Semantic Validation. In Proc. of the IEEE Symposium on SecurityandPrivacy(IEEES&P’22) (SanFrancisco,CA,USA). https://doi.org/ 10.1109/SP40001.2021.00071",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Clang LibTooling 2023. LibTooling. https://clang.llvm.org/docs/LibTooling. html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "clangfuzzer [n.d.]. clang-fuzzer. https://github.com/llvm/llvm-project/tree/ main/clang/tools/clang-fuzzer.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "clangprotofuzzer [n.d.]. clang-proto-fuzzer. https://llvm.org/docs/ FuzzingLLVM.html#clang-proto-fuzzer.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "PascalCuoq,FlorentKirchner,NikolaiKosmatov,VirgilePrevosto,JulienSignoles,and BorisYakobowski.2012. Frama-C: Asoftwareanalysisperspective. InProc. of the 10th International Conference on Software Engineering and Formal Methods(SEFM’12) (Thessaloniki, Greece). https://doi.org/10.1007/s00165-0140326-7",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "PascalCuoq,BenjaminMonate,AnnePacalet,VirgilePrevosto,JohnRegehr, Boris Yakobowski, and Xuejun Yang. 2012. Testing StaticAnalyzers with RandomlyGeneratedPrograms.In Proc.ofthe4thInternationalConferenceonNASA Formal Methods(NFM’12) (Norfolk, VA, USA).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Alastair F. Donaldson, Hugues Evrard, Andrei Lascu, and Paul Thomson. 2017. Automated Testing of Graphics Shader Compilers. Proceedings of the ACM on Programming Languages (PACMPL) 1, OOPSLA (2017), 93:1–93:29. https: //doi.org/10.1145/3133917",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "KarineEven-Mendoza,ArindamSharma,AlastairF.Donaldson,andCristian Cadar.2023. ArtifactofGrayC:GreyboxFuzzingofCompilersandAnalysers for C.https://doi.org/10.5281/zenodo.7978251. Zenodo.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Frama-C Bug-Eva plugin. Date Conﬁrmed Mar. 13, 2022 and Closed and ﬁxed Jul. 11,2022. https://git.frama-c.com/pub/frama-c/-/issues/2595.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Frama-C Bug-Eva plugin. Date Conﬁrmed May 10, 2022 and Fixed Jun. 10, 2022.https://git.frama-c.com/pub/frama-c/-/issues/2610.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Frama-CBug-Evaplugin.DateConﬁrmedNov.8,2021andFixedSept.15,2022. https://git.frama-c.com/pub/frama-c/-/issues/2585.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Frama-C Bug-Eva plugin, kernel, abstract interpretation. Date Conﬁrmed and Fixed Jun. 10,2021. https://git.frama-c.com/pub/frama-c/-/issues/2563.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Frama-C Bug-Front-end. Date Conﬁrmed Oct. 14, 2021 and Date Fixed Dec. 3, 2021.https://git.frama-c.com/pub/frama-c/-/issues/2576.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Frama-CBug-Front-end(foundasaby-productoffuzzing).DateConﬁrmed May 28, 2022 and Fixed Oct. 20, 2021. https://git.frama-c.com/pub/frama-c//issues/2559.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Frama-CBug-Front-end(foundasaby-productoffuzzing).DateConﬁrmed Sept. 14, 2021 and Fixed Jul. 11, 2022. https://git.frama-c.com/pub/frama-c//issues/2573.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Frama-CBug-Front-end(foundasaby-productoffuzzing).DateConﬁrmed Sept.16,2021andFixedOct.20,2021. https://git.frama-c.com/pub/frama-c//issues/2574.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Frama-CBug-Kernel.DateConﬁrmedApr.20,2021andFixedApr.30,2021. https://git.frama-c.com/pub/frama-c/-/issues/2551.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Frama-C Bug-Kernel. Date Conﬁrmed Apr. 6, 2021 and Fixed Oct. 13, 2021. https://git.frama-c.com/pub/frama-c/-/issues/2550.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Frama-C Bugkernel. Date Conﬁrmed Jan. 11, 2022 and Fixed Jul. 11, 2022. https://git.frama-c.com/pub/frama-c/-/issues/2592.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Frama-CBug-kernel,abstractinterpretation.DateConﬁrmedandFixedJan. 24,2022. https://git.frama-c.com/pub/frama-c/-/issues/2588.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Frama-C Bugkernel, abstract interpretation. Date Conﬁrmed May 18, 2021 and Fixed May 21,2021. https://git.frama-c.com/pub/frama-c/-/issues/2556.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Frama-CBug-kernel,Front-end.DateConﬁrmedJan.10,2022andFixedFeb. 9,2022.https://git.frama-c.com/pub/frama-c/-/issues/2590.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Frama-CBug-Parsing,EVA-plugin.DateConﬁrmedMay18,2021andFixed May 21,2021. https://git.frama-c.com/pub/frama-c/-/issues/2555.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "GCC Bug. Date Reported Aug. 6, 2016. https://gcc.gnu.org/bugzilla/show_bug. cgi?id=72825.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "GCC Bug-Front-end. Date Conﬁrmed Apr. 9, 2021 and Fixed Apr. 22, 2021. https://gcc.gnu.org/bugzilla/show_bug.cgi?id=99990.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "GCC Bug-Front-end. Date Conﬁrmed Aug. 8, 2022 and Fixed Nov. 21, 2022. https://gcc.gnu.org/bugzilla/show_bug.cgi?id=106560.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "GCC Bugipa. Date Conﬁrmed Dec. 23, 2021 and Fixed Apr. 20, 2022. https: //gcc.gnu.org/bugzilla/show_bug.cgi?id=103818.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "GCCBug-Middle-end.DateConﬁrmedDec.22,2021andFixedJan.24,2022. https://gcc.gnu.org/bugzilla/show_bug.cgi?id=103813.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "GCCBug-Middle-end.DateConﬁrmedMay02,2022andFixedMay27,2022. https://gcc.gnu.org/bugzilla/show_bug.cgi?id=104402.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "GCC Bug-Middle-end (reported independently before we found it). Date Conﬁrmed Mar. 20, 2018 and Fixed Apr. 14, 2022. https://gcc.gnu.org/bugzilla/ show_bug.cgi?id=84964.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "GCC Bug-Middle-end (reported independently shortly before we found it). Date Conﬁrmed Nov. 18, 2022 and Fixed Nov. 19, 2022. https://gcc.gnu.org/bugzilla/show_bug.cgi?id=103314.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "GCCBug-rtl-optimization,middle-end.DateReportedJun.9,2022andConﬁrmed May 17,2023. https://gcc.gnu.org/bugzilla/show_bug.cgi?id=105910.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "GCCBug-Treeoptimization.DateConﬁrmedandFixedApr.12,2022. https: //gcc.gnu.org/bugzilla/show_bug.cgi?id=105232.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "GCCBug-Treeoptimization.DateConﬁrmedandFixedJun.10,2022. https: //gcc.gnu.org/bugzilla/show_bug.cgi?id=107170.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "GCCBug-Treeoptimization.DateConﬁrmedDec.23,2021andFixedJan.5, 2022.https://gcc.gnu.org/bugzilla/show_bug.cgi?id=103816.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "GCCBug-Tree-optimization(reportedindependentlybeforewefoundit).Date ConﬁrmedJul.27,2021andFixedMar.23,2022. https://gcc.gnu.org/bugzilla/ show_bug.cgi?id=101636.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "GCC Bug: incomplete program (several duplicate reports exist). Date Reported Aug.28,2022. https://gcc.gnu.org/bugzilla/show_bug.cgi?id=106764.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "GCC Bug (several related reports exist). Date Reported May 11, 2021, and Fixed 15November 2022. https://gcc.gnu.org/bugzilla/show_bug.cgi?id=100525.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "GitHub.2023. GitRepositoryofGrayC. https://github.com/srg-imperial/GrayC.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "GitHub.DateAccessedDecember31,2022. GitRepositoryofGrammarinator. https://github.com/renatahodovan/grammarinator.git.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "GitHub.DateAccessedMarch23,2022. GitRepositoryofgfauto. https://github. com/google/graphicsfuzz.git.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Google.2020. AFLdictionaries. https://github.com/google/AFL/blob/master/ dictionaries/README.dictionaries.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Alex Groce, Josie Holmes, Darko Marinov, August Shi, and Lingming Zhang. 2018. AnExtensible,Regular-Expression-BasedToolforMulti-languageMutant Generation.In Proc.ofthe40thInternationalConferenceonSoftwareEngineering (ICSE’18) (Gothenburg,Sweden). https://doi.org/10.1145/3183440.3183485",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "AlexGroce,GerardJ.Holzmann,andRajeevJoshi.2007.RandomizedDiﬀerential Testing as a Prelude to Formal Veriﬁcation. In Proc. of the 29th International ConferenceonSoftwareEngineering(ICSE’07) (Minneapolis,MN,USA). https: //doi.org/10.1109/ICSE.2007.68",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Alex Groce, Rijnard van Tonder, Goutamkumar Tulajappa Kalburgi, and Claire Le Goues. 2022. Making No-Fuss Compiler Fuzzing Eﬀective. In Proc. of the31stInternationalConferenceonCompilerConstruction(CC’22) (Seoul,Korea). https://doi.org/10.1145/3497776.3517765",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "VladimirHerdt,DanielGroße,HoangM.Le,andRolfDrechsler.2019. Verifying Instruction Set Simulators using Coverage-guided Fuzzing*. InProc. of the 22nd Design,Automation&TestinEuropeConference&Exhibition(DATE’19) (Florence, Italy).IEEE,360–365. https://doi.org/10.23919/DATE.2019.8714912",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Yann Herklotz and John Wickerson. 2020. Finding and Understanding Bugs in FPGA Synthesis Tools. In Proc. of the 28th InternationalSymposium on FieldProgrammableGateArrays(FPGA’20) .ACM/SIGDA,277–287. https://doi.org/ 10.1145/3373087.3375310",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Renáta Hodován, Ákos Kiss, and Tibor Gyimóthy. 2018. Grammarinator: A Grammar-Based Open Source Fuzzer. In Proc. of the 9th ACMSIGSOFT International Workshop on Automating TEST Case Design, Selection, and Evaluation (ATEST’18) (Lake Buena Vista, FL, USA). https://doi.org/10.1145/3278186.3278193",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Christian Holler, Kim Herzig, and Andreas Zeller. 2012. Fuzzing with Code Fragments.In Proc.ofthe21stUSENIXSecuritySymposium(USENIXSecurity’12) (Bellevue, WA, USA).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "GrayCHomepage. Date Accessed May 23, 2022. https://srg.doc.ic.ac.uk/ projects/grayc/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Timotej Kapus and Cristian Cadar. 2017. Automatic Testing of Symbolic Execution Engines via Program Generation and Diﬀerential Testing. In Proc. of the 32nd IEEE International Conference on Automated Software Engineering (ASE’17) (Urbana-Champaign,IL, USA).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Fitsum Meshesha Kifetew, Roberto Tiella, and Paolo Tonella. 2017. Generating Valid Grammar-Based Test Inputs by Means of Genetic Programming and Annotated Grammars. Empirical Softw. Engg. 22, 2 (apr 2017), 928–961. https://doi.org/10.1007/s10664-015-9422-4",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Christian Klinger, Maria Christakis, and Valentin Wüstholz. 2019. Diﬀerentially Testing Soundness and Precision of Program Analyzers. In Proc. of the InternationalSymposiumonSoftwareTestingandAnalysis(ISSTA’19) (Beijing, China).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "ChrisLattnerandVikramAdve.2004. LLVM:ACompilationFrameworkfor LifelongProgramAnalysis&Transformation.In Proc.ofthe2ndInternational SymposiumonCodeGenerationandOptimization(CGO’04) (PaloAlto,CA,USA). https://doi.org/0.1109/CGO.2004.1281665",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. 2014. Compiler Validation via Equivalence Modulo Inputs. In Proc. of the Conference on Programing Language Design and Implementation (PLDI’14) (Edinburgh, UK). https://doi.org/10.1145/ 2594291.2594334",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "LibFuzzer 2022. http://llvm.org/docs/LibFuzzer.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Christopher Lidbury,Andrei Lascu,NathanChong,andAlastairF. Donaldson. 2015. Many-core compiler fuzzing. In Proc. of the Conference on Programing Language Design and Implementation (PLDI’15) (Portland, OR, USA). https: //doi.org/10.1145/2737924.2737986 1230 GrayC:GreyboxFuzzing of CompilersandAnalysers forC ISSTA ’23, July 17–21, 2023,Sea/t_tle, WA,USA",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "Vsevolod Livinskii, Dmitry Babokin, and John Regehr. 2020. Random testing forCandC++compilerswith YARPGen.In Proc.ofthe ACMonProgramming Languages (OOPSLA’20) (Chicago, IL, USA). https://doi.org/10.1145/3428264",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "LLVMBug-Arrays.DateReportedJun.9,2021andClosedJan.7,2022. https: //github.com/llvm/llvm-project/issues/49983.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "LLVMBug-Clangcodegen(foundasaby-productoffuzzing).DateConﬁrmed Jan. 15,2022. https://github.com/llvm/llvm-project/issues/53105.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "LLVM Bug-Clang Front-end. Date Reported May 6, 2022. https://github.com/ llvm/llvm-project/issues/55312.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "LLVMBug-compiler-rt:ubsan(foundasaby-productoffuzzing).DateConﬁrmed Jan. 16,2022. https://github.com/llvm/llvm-project/issues/51421.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "LLVMBug-IR(foundasaby-productoffuzzing).DateReportedJul.5,2021. https://github.com/llvm/llvm-project/issues/50332.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "LLVM Bug-Union declaration. Date Reported Jun. 10, 2021 and Closed Jan. 13, 2022.https://github.com/llvm/llvm-project/issues/49993.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "LLVM Project.DateAccessed July 21, 2022. libFuzzer – a libraryfor coverageguided fuzz testing. https://llvm.org/docs/LibFuzzer.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "LLVM website [n.d.]. LLVM website. http://llvm.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "Michaël Marcozzi, Qiyi Tang, Alastair Donaldson, and Cristian Cadar. 2019. Compiler Fuzzing: How Much Does It Matter?. In Proc. of the ACM on ProgrammingLanguages(OOPSLA’19) (Athens,Greece). https://doi.org/10.1145/3360581",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "W. M. McKeeman. 1998. Diﬀerential testing for software. Digital Technical Journal10(1998), 100–107. Issue 1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "MSVC Bug-CppCompiler, Front-end. Date Conﬁrmed May 20, 2021. https: //developercommunity.visualstudio.com/t/internal-compiler-error-whencompiling-program-wit/1427557.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "MSVCBug-CppCompiler,Front-end.DateConﬁrmedMay20,2021andClosed Nov. 24, 2021. https://developercommunity.visualstudio.com/t/internalcompiler-error-when-compiling-program-wit/1427553.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 81,
+      "text": "MSVC Bug-CppCompiler, Front-end. Date Conﬁrmed May 20, 2021 and Fixed Nov. 9, 2021. https://developercommunity.visualstudio.com/t/syntacticallyinvalid-c-program-causes-microsoft-c/1427550.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 82,
+      "text": "Kazuhiro Nakamura andNagisaIshiura.2016. Random testing ofCcompilers based on test program generation by equivalence transformation. In 2016 IEEE AsiaPaciﬁcConferenceonCircuitsandSystems(APCCAS) .https://doi.org/10. 1109/APCCAS.2016.7804063",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 83,
+      "text": "Phabricator-LLVM.2020. RequestsD88931andD97686. https://reviews.llvm. org/D88931. Date Approved March3,2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 84,
+      "text": "Phabricator-LLVM. 2022. Request D118234. https://reviews.llvm.org/D118234. Date Approved October 11,2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 85,
+      "text": "Phabricator-LLVM. 2023. Requests D142638 and D150857. https://reviews.llvm. org/D150857. Underreview: dateJanuary26,2023 (re-open:May 18,2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 86,
+      "text": "John Regehr. 2020. The Saturation Eﬀect in Fuzzing. https://blog.regehr.org/ archives/1796.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 87,
+      "text": "JohnRegehr,YangChen,PascalCuoq,EricEide,ChuckyEllison,andXuejun Yang. 2012. Test-casereductionforCcompiler bugs.In Proc.oftheConference on Programing Language Design and Implementation (PLDI’12) (Beijing, China). https://doi.org/10.1145/2254064.2254104",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 88,
+      "text": "LLVM Bug-Front-end (reported independently before we found it). Date Conﬁrmed Jan. 26,2022. https://github.com/llvm/llvm-project/issues/49081.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 89,
+      "text": "LLVM Bug-ASan (reported independently before we found it). Date Reported Feb. 20,2021. https://github.com/llvm/llvm-project/issues/48633.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 90,
+      "text": "LLVMBug-Front-end(reportedindependentlybeforewefoundit).DateReported Jun. 26,2021. https://github.com/llvm/llvm-project/issues/50222.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 91,
+      "text": "LLVMBug-Front-end(reportedindependentlybeforewefoundit).DateReported Nov. 12, 2015 and Fixed on early 2022. https://github.com/llvm/llvm-project/issues/25871.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 92,
+      "text": "ManuelRiggerandZhendongSu.2020.DetectingOptimizationBugsinDatabase Engines via Non-optimizing Reference Engine Construction. In Proc. of the Joint Meeting of the European Software Engineering Conference and the ACM SymposiumontheFoundationsofSoftwareEngineering(ESEC/FSE’20) (Online). https://doi.org/10.1145/3368089.3409710",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 93,
+      "text": "Sergio Segura, Gordon Fraser, Ana Sanchez, and Antonio Ruiz-Cortés. 2016. A SurveyonMetamorphicTesting. (2016).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 94,
+      "text": "KostyaSerebryany. 2022. Personal communication.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 95,
+      "text": "Konstantin Serebryany, Derek Bruening, Alexander Potapenko, and Dmitry Vyukov.2012. AddressSanitizer:AFastAddressSanity Checker.In Proc.ofthe 2012 USENIX Annual Technical Conference (USENIX ATC’12) (Boston, MA, USA). https://doi.org/10.5555/2342821.2342849",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 96,
+      "text": "KostyaSerebryany,VitalyBuka,andMattMorehouse.2017. Structure-aware fuzzing for Clang and LLVM with libprotobuf-mutator. In 2017 USLLVM Developers’Meeting .https://llvm.org/devmtg/2017-10/slides/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 97,
+      "text": "KostyaSerebryany,MaximLifantsev,KonstantinShtoyk,DougKwan,andPeter Hochschild.2021. SiliFuzz:FuzzingCPUsbyproxy. CoRRabs/2110.11519(2021). arXiv:2110.11519",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 98,
+      "text": "Evgeniy Stepanov and Konstantin Serebryany. 2015. MemorySanitizer: fast detectorofuninitializedmemoryuseinC++.In Proc.oftheInternationalSymposium on Code Generation and Optimization (CGO’15) (San Francisco, CA, USA). https://doi.org/10.1109/CGO.2015.7054186",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 99,
+      "text": "UBSan 2017. Undeﬁned Behavior Sanitizer. https://clang.llvm.org/docs/ UndeﬁnedBehaviorSanitizer.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 100,
+      "text": "Phillip van Heerden, Moeketsi Raselimo, Konstantinos Sagonas, and Bernd Fischer. 2020. Grammar-Based Testing for Little Languages: An Experience Report with Student Compilers. In Proceedings of the 13th ACMSIGPLAN International Conference on Software Language Engineering (Virtual, USA) (SLE 2020). Association for Computing Machinery, New York, NY, USA, 253–269. https://doi.org/10.1145/3426425.3426",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 101,
+      "text": "Rijnard van Tonder and Claire Le Goues. 2019. Lightweight multi-language syntaxtransformationwithparserparsercombinators.In Proc.oftheConference on Programing Language Design and Implementation (PLDI’19) (Phoenix, AZ, USA).https://doi.org/10.1145/3314221.3314589",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 102,
+      "text": "RijnardvanTonderandAlexGroce.2022. MakingNo-FussCompilerFuzzing Eﬀective: CC 2022 Artifact (0.1.0). https://doi.org/10.5281/zenodo.5982794. Zenodo.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 103,
+      "text": "JunjieWang,BihuanChen,LeiWei,andYangLiu.2019. Superion:GrammarAwareGreyboxFuzzing.In Proc.ofthe41stInternationalConferenceonSoftware Engineering(ICSE’19) (Montreal,Canada). https://doi.org/10.1109/ICSE.2019. 00081",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 104,
+      "text": "Wikipedia: GNU Compiler Collection. Date Accessed May 18, 2022. https: //en.wikipedia.org/wiki/GNU_Compiler_Collection#cite_note-loc-4.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 105,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. 2011. Finding and Understanding Bugs in C Compilers. In Proc. of the Conference on Programing Language Design and Implementation (PLDI’11) (San Jose, CA, USA). https: //doi.org/10.1145/1993498.1993532",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 106,
+      "text": "Michal Zalewski. [n.d.]. Technical “whitepaper” for aﬂ-fuzz. http://lcamtuf. coredump.cx/aﬂ/technical_details.txt.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 107,
+      "text": "Zig Software Foundation. Date Accessed September 1, 2022. Zig programming language. https://ziglang.org/. Received 2023-02-16; accepted 2023-05-03 1231",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 92,
+      "text": "ManuelRiggerandZhendongSu.2020.DetectingOptimizationBugsinDatabase Engines via Non-optimizing Reference Engine Construction. In Proc. of the Joint Meeting of the European Software Engineering Conference and the ACM SymposiumontheFoundationsofSoftwareEngineering(ESEC/FSE’20) (Online). https://doi.org/10.1145/3368089.3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[92]",
+      "technique": "norec",
+      "sentence": "3598130 1 INTRODUCTION Over the last decade or so, randomised compiler testing, often termedcompiler fuzzing, has seen an explosion of interest, with compilerfuzzersleadingtotheﬁndingand ﬁxingof thousandsof bugs in C compilers such as Clang/ LLVMandGCC[65,82,105], aswell asincompilers forother languagessuchasOpenCL[ 67], OpenGL[ 17],SQL[92]and Verilog[ 57].",
+      "context_before": "doi.org/10.1145/3597926.3598130CCSCONCEPTS •Software and its engineering →Compilers ;Maintaining software;Software testing and debugging. KEYWORDS Greybox fuzzing, compilers, program analysers, code mutators, LibFuzzer,Clang,LLVM,GCC,MSVC,Frama-CACM Reference Format: KarineEven-Mendoza,ArindamSharma,AlastairF.Donaldson,andCristian Cadar. 2023. GrayC: Greybox Fuzzing of Compilers and Analysers for C. In Proceedings of the 32nd ACMSIGSOFT International Symposium on Software TestingandAnalysis(ISSTA’23),July17–21,2023,Seattle,WA,USA. ACM, NewYork, NY, USA, 13pages.https://doi.org/10.1145/3597926.",
+      "context_after": "Similar eﬀorts have been proposedfortestingcodeanalysers,leadingtothediscoveryofbugs in popular frameworks such as model checkers, static analysers andsymbolic executors [ 16,61,63]. During roughly the same period, fuzzing has revolutionised the ﬁeldofsoftwaretesting.However,mostcompilerfuzzersoperate very diﬀerently from mainstream general-purpose fuzzers, such as AFL [106]andLibFuzzer [75], which are coverage-directed and mutation-based .Takinginspirationfromgeneticalgorithms,such general-purposefuzzerssynthesisenewinputsbymutatingexisting ones, and use coverage feedback as a ﬁtness functio",
+      "section": null,
+      "page": 1,
+      "char_offset": 3183,
+      "cited_reference": {
+        "number": 92,
+        "text": "ManuelRiggerandZhendongSu.2020.DetectingOptimizationBugsinDatabase Engines via Non-optimizing Reference Engine Construction. In Proc. of the Joint Meeting of the European Software Engineering Conference and the ACM SymposiumontheFoundationsofSoftwareEngineering(ESEC/FSE’20) (Online). https://doi.org",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[92]",
+      "technique": "norec",
+      "sentence": "[ 65,82,105]), but also on other languages such as OpenCL [ 67], OpenGL [ 17], SQL [92] and Verilog [57].",
+      "context_before": "surprisingthat Csmithdid not uncover any bugs during this controlled experiment. We note that Frama-C hasbeenextensivelytestedusing Csmithinthepast[ 16]. Grammarinator detectednobugs,probablyduetoitsextremely lowcompilationrateandthefactthematureahead-of-timecompilers’ front-ends have already been heavily tested. Similarly, GrayCFragments-Fuzzing ’spoorcoveragedelta(fromtheinitialcorpus) inboth LLVMandGCCcan explaintheseresults. 6 RELATED WORK Asdiscussedin§ 1,randomisedtestingtechniqueshavebeensuccessful in ﬁnding bugs in compilers for a range of languages, with a recent major focus on C (e.g.",
+      "context_after": "There has also been signiﬁcant work on applying similar techniques to testingcode analysers(see e.g.[ 7,16,61,63]). Randomised compiler testing techniques mainly work by crosscheckingmultiplecompilers(e.g.[ 57,67,105],aformofdiﬀerential testing [54,78], or checking expected equivalences between programs (e.g. [ 17,65]), a form of metamorphic testing [ 9,93]. We 1228 GrayC:GreyboxFuzzing of CompilersandAnalysers forC ISSTA ’23, July 17–21, 2023,Sea/t_tle, WA,USA refer the reader to a survey for an overview of state-of-the-art techniques [ 8] and toa recent paper for a discussionof the importan",
+      "section": "5.4 Bug Finding",
+      "page": 10,
+      "char_offset": 53438,
+      "cited_reference": {
+        "number": 92,
+        "text": "ManuelRiggerandZhendongSu.2020.DetectingOptimizationBugsinDatabase Engines via Non-optimizing Reference Engine Construction. In Proc. of the Joint Meeting of the European Software Engineering Conference and the ACM SymposiumontheFoundationsofSoftwareEngineering(ESEC/FSE’20) (Online). https://doi.org",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:18:50Z",
+    "is_model_written": true,
+    "summary": "GrayC brings coverage-directed, mutation-based greybox fuzzing to C compilers and analysers, which have become relatively resistant to the blackbox fuzzers used until now. The difficulty is that naive mutations produce programs that do not compile and so cannot reach deep bugs. GrayC introduces mutations targeting common C constructs and transforms fuzzed programs so they produce meaningful output, enabling differential testing. It found 30 confirmed bugs, 25 previously unknown.",
+    "narrative": "Two citations placing SQL among the languages, alongside OpenCL, OpenGL and Verilog, where randomised compiler-style testing has been applied.",
+    "roles": {
+      "M1": "background",
+      "M2": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,696 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-10T15:24:50Z",
+  "paper": {
+    "id": "paper:doi:10.1109/sp54263.2024.00109",
+    "title": "Chronos: Finding Timeout Bugs in Practical Distributed Systems by Deep-Priority Fuzzing with Transient Delay",
+    "authors": [
+      "Yuanliang Chen",
+      "Fuchen Ma",
+      "Yuanhang Zhou",
+      "Ming Gu",
+      "Qing Liao",
+      "Yu Jiang"
+    ],
+    "year": 2024,
+    "venue": "IEEE Symposium on Security and Privacy",
+    "doi": "10.1109/sp54263.2024.00109",
+    "arxiv_id": null,
+    "s2_paper_id": "7b3bc7fdb7d6a6234ed892b057f8feb6118de0b8",
+    "url": "https://doi.org/10.1109/sp54263.2024.00109",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/sp54263.2024.00109",
+      "retrieved_at": "2026-09-10T15:24:50Z",
+      "chars": 93049,
+      "content_sha256": "sha256:815d9a0f66d30d4d56edb934b87a8cab56c622f2666b07185ad06425b166c473"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 17,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 1831
+      },
+      {
+        "number": "2",
+        "title": "Background of Timeout Mechanism",
+        "start": 9487
+      },
+      {
+        "number": "3",
+        "title": "Overview",
+        "start": 12264
+      },
+      {
+        "number": "3.1",
+        "title": "Definition of Timeout Bugs",
+        "start": 12276
+      },
+      {
+        "number": "3.2",
+        "title": "A Motivation Example",
+        "start": 14706
+      },
+      {
+        "number": "4",
+        "title": "Chronos Design",
+        "start": 19086
+      },
+      {
+        "number": "4.1",
+        "title": "Chronos Workflow",
+        "start": 19926
+      },
+      {
+        "number": "4.2",
+        "title": "Delay Injector",
+        "start": 21757
+      },
+      {
+        "number": "4.3",
+        "title": "Delay Selector",
+        "start": 28187
+      },
+      {
+        "number": "4.4",
+        "title": "Delay Executor",
+        "start": 34672
+      },
+      {
+        "number": "4.5",
+        "title": "Bug Analyzer",
+        "start": 38185
+      },
+      {
+        "number": "5",
+        "title": "Implementation",
+        "start": 40291
+      },
+      {
+        "number": "6",
+        "title": "Evaluation",
+        "start": 49143
+      },
+      {
+        "number": "6.1",
+        "title": "Timeout bugs in real-world distributed systems",
+        "start": 50363
+      },
+      {
+        "number": "6.1.1",
+        "title": "Case Study. Now we use two cases to illustrate",
+        "start": 54621
+      },
+      {
+        "number": "6.3",
+        "title": "Effectiveness of Transient Delay",
+        "start": 65305
+      },
+      {
+        "number": "6.4",
+        "title": "Accuracy of Chronos",
+        "start": 66613
+      },
+      {
+        "number": "7",
+        "title": "Discussion",
+        "start": 69895
+      },
+      {
+        "number": "8",
+        "title": "Related Work",
+        "start": 72458
+      },
+      {
+        "number": "9",
+        "title": "Conclusion",
+        "start": 76952
+      },
+      {
+        "number": "10",
+        "title": "ACKNOWLEDGEMENTS",
+        "start": 77830
+      },
+      {
+        "number": "L",
+        "title": "Zhang, and L. Zhou, “Modist: Transparent model checking of",
+        "start": 78874
+      },
+      {
+        "number": "D",
+        "title": "Simon, S. Priambada, C. Tian, F. Ye, T. Leesatapornwongsa",
+        "start": 79343
+      },
+      {
+        "number": "J",
+        "title": "Reynolds, and C. Rosenthal, “Chaos engineering,” IEEE Software,",
+        "start": 80153
+      },
+      {
+        "number": "H",
+        "title": "Li, “Phoenix: Detect and locate resilience issues in blockchain via",
+        "start": 89604
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "G. Le Lann, “Distributed systems-towards a formal approach.” in IFIP congress, vol. 7, 1977, pp. 155–160.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "R. C. Nunes and I. Jansch-P ˆorto, “Modeling communication delays in distributed systems using time series,” in 21st IEEE Symposium on Reliable Distributed Systems, 2002. Proceedings. IEEE, 2002, pp. 268–273.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "E. A. Brewer, “Towards robust distributed systems,” in PODC, vol. 7, no. 10.1145. Portland, OR, 2000, pp. 343 477–343 502.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "apache ZooKeeper, “Zookeeper connect timeout,” https://www.theverge.com/2020/12/10/22168439/ facebook-down-outage-instagram-messenger-whatsapp, 2023, accessed on March 31, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "ZOOKEEPER-3189, “Zookeeper connect timeout,” https: //issues.apache.org/jira/browse/ZOOKEEPER-3189, 2023, accessed on March 31, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "J. Yang, T. Chen, M. Wu, Z. Xu, X. Liu, H. Lin, M. Yang, F. Long, L. Zhang, and L. Zhou, “Modist: Transparent model checking of unmodified distributed systems,” in NSDI’09, 2009, pp. 213–228.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "T. Leesatapornwongsa, M. Hao, P. Joshi, J. F. Lukman, and H. S. Gunawi, “ {SAMC }:{Semantic-Aware }model checking for fast discovery of deep bugs in cloud systems,” in 11th USENIX Symposium on Operating Systems Design and Implementation (OSDI 14), 2014, pp. 399–414.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "J. F. Lukman, H. Ke, C. A. Stuardo, R. O. Suminto, D. H. Kurniawan, D. Simon, S. Priambada, C. Tian, F. Ye, T. Leesatapornwongsa et al., “Flymc: Highly scalable testing of complex interleavings in distributed systems,” in Proceedings of the Fourteenth EuroSys Conference 2019, 2019, pp. 1–16.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "M. Musuvathi, D. Y. Park, A. Chou, D. R. Engler, and D. L. Dill, “Cmc: A pragmatic approach to model checking real code,” ACMSIGOPS Operating Systems Review, vol. 36, no. SI, pp. 75–88, 2002.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "H. Ziade, R. A. Ayoubi, R. Velazco et al., “A survey on fault injection techniques,” Int. Arab J. Inf. Technol., vol. 1, no. 2, pp. 171–186, 2004.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "M. Eslami, B. Ghavami, M. Raji, and A. Mahani, “A survey on fault injection methods of digital integrated circuits,” Integration, vol. 71, pp. 154–163, 2020. 1952",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "A. Basiri, N. Behnam, R. De Rooij, L. Hochstein, L. Kosewski, J. Reynolds, and C. Rosenthal, “Chaos engineering,” IEEE Software, vol. 33, no. 3, pp. 35–41, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Netflix, “Chaos monkey,” https://netflix.github.io/chaosmonkey/, 2022, accessed at December 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "A. Netflix, “Simian army,” https://github.com/Netflix/SimianArmy, 2022, accessed at December 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "chaosblade io, “Chaos blade,” https://netflix.github.io/chaosmonkey/, 2022, accessed at December 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "chaos mesh org, “Chaos mesh a powerful chaos engineering platform for kubernetes,” https://chaos-mesh.org/, 2022, accessed at December 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "J.-J. Bai, Y .-P. Wang, H.-Q. Liu, and S.-M. Hu, “Mining and checking paired functions in device drivers using characteristic fault injection,” Information and Software Technology, vol. 73, pp. 122–133, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Z.-M. Jiang, J.-J. Bai, K. Lu, and S.-M. Hu, “Fuzzing error handling code using context-sensitive software fault injection,” in the 29th USENIX Security Symposium (Security’20), 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "R. Banabic and G. Candea, “Fast black-box testing of system recovery code,” in Proceedings of the 7th ACM european conference on Computer Systems, 2012, pp. 281–294.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "R. Natella, D. Cotroneo, J. A. Duraes, and H. S. Madeira, “On fault representativeness of software fault injection,” IEEE Transactions on Software Engineering, vol. 39, no. 1, pp. 80–96, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "K. Cong, L. Lei, Z. Yang, and F. Xie, “Automatic fault injection for driver robustness testing,” in Proceedings of the 2015 International Symposium on Software Testing and Analysis, 2015, pp. 361–372.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "H. S. Gunawi, T. Do, P. Joshi, P. Alvaro, J. M. Hellerstein, A. C. Arpaci-Dusseau, R. H. Arpaci-Dusseau, K. Sen, and D. Borthakur, “{FATE}and{DESTINI }: A framework for cloud recovery testing,” in8th USENIX Symposium on Networked Systems Design and Implementation (NSDI 11), 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "R. Kumar, P. Jovanovic, W. Burleson, and I. Polian, “Parametric trojans for fault-injection attacks on cryptographic hardware,” in 2014 Workshop on Fault Diagnosis and Tolerance in Cryptography. IEEE, 2014, pp. 18–28.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "M. S. R. M. T. Millstein and M. Musuvathi, “Can you fool me? towards automatically checking protocol gullibility.”",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Y. Gao, W. Dou, D. Wang, W. Feng, J. Wei, H. Zhong, and T. Huang, “Coverage guided fault injection for cloud systems,” in Proceedings of IEEE/ACMSIGSOFT International Conference on Software Engineering (ICSE), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "F. Junqueira and B. Reed, ZooKeeper: distributed process coordination. ” O’Reilly Media, Inc.”, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "A. Davies and H. Fisk, MySQL clustering. Sams Publishing, 2006.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "D. Borthakur et al., “Hdfs architecture guide,” Hadoop apache project, vol. 53, no. 1-13, p. 2, 2008.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "go ethereum, “go-ethereum. official go implementation of the ethereum protocol,” https://geth.ethereum.org/, 2022, accessed at December 6, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "V. K. Garg, Elements of distributed computing. John Wiley & Sons, 2002.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "csis.pace.edu, “communication,” http://csis.pace.edu/ ∼marchese/ CS865/Lectures/Chap4/Chapter4.htm, 2023, accessed on March 31, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "ida.liu.se, “Communication in distributed systems,” https://www.ida. liu.se/∼TDDD25/lectures/lect3.pdf, 2023, accessed on March 31, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "webstor.srmist.edu.in, “Communication in distributed system,” https: //www.ida.liu.se/ ∼TDDD25/lectures/lect3.pdf, 2023, accessed on March 31, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "inf.fu berlin.de, “Indirect communication,” http://www.inf. fu-berlin.de/inst/ag-se/teaching/V-NETZPR-2015/07 Indirect Communication%20-%20I.pdf, 2023, accessed on March 31, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "M. Hedayati and S. Gravani, “Hodor: Intra-process isolation for highthroughput data plane libraries,” in Proceedings of the 2019 USENIX Annual Technical Conference, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "R. J. Connor, T. McDaniel, J. M. Smith, and M. Schuchard, “Pku pitfalls: Attacks on pku-based memory isolation systems,” in Proceedings of the 29th USENIX Conference on Security Symposium, 2020, pp. 1409–1426.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "B. H. Tay and A. L. Ananda, “A survey of remote procedure calls,” ACMSIGOPS Operating Systems Review, vol. 24, no. 3, pp. 68–79, 1990.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "A. Venkataraman and K. K. Jagadeesha, “Evaluation of inter-process communication mechanisms,” Architecture, vol. 86, p. 64, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "S. Androutsellis-Theotokis and D. Spinellis, “A survey of peer-to-peer content distribution technologies,” ACM computing surveys (CSUR), vol. 36, no. 4, pp. 335–371, 2004.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "G. F. Coulouris, J. Dollimore, and T. Kindberg, Distributed systems: concepts and design. pearson education, 2005.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "J. D. Herbsleb and A. Mockus, “An empirical study of speed and communication in globally distributed software development,” IEEE Transactions on software engineering, vol. 29, no. 6, pp. 481–494, 2003.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "N. M. Josuttis, SOA in practice: the art of distributed system design. ” O’Reilly Media, Inc.”, 2007.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "L. Lamport, “Paxos made simple,” ACMSIGACT News (Distributed Computing Column) 32, 4 (Whole Number 121, December 2001), pp. 51–58, 2001.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "ludun, “Datastreamer should reset thread interrupted state in createblockoutputstream,” https://issues.apache.org/jira/ browse/HDFS-15379?page=com.atlassian.jira.plugin.system. issuetabpanels%3Acomment-tabpanel&focusedCommentId= 17125997#comment-17125997, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "D. Borthakur, “The hadoop distributed file system: Architecture and design,” Hadoop Project Website, vol. 11, no. 2007, p. 21, 2007.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "A. MySQL, “Mysql,” 2001.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Ethereum, “Welcome to ethereum,” https://ethereum.org/en/, 2022, accessed at December 23, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "L. WIKI, “netem,” https://wiki.linuxfoundation.org/networking/ netem, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "S. Koranne and S. Koranne, “Standard libraries,” Handbook of Open Source Tools, pp. 105–111, 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "S. Koranne, “Boost c++ libraries,” Handbook of open source tools, pp. 127–143, 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "american fuzzy lop, “American fuzzy lop user guide,” https://afl-1. readthedocs.io/en/latest/user guide.htmlL, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "G. Cloud, “Setting request timeout (services),” https://cloud.google. com/run/docs/configuring/request-timeout, 2023, accessed at March 30, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "J. Y. Monteith, J. D. McGregor, and J. E. Ingram, “Hadoop and its evolving ecosystem,” in 5th International Workshop on Software Ecosystems (IWSECO 2013), vol. 50. Citeseer, 2013, p. 74.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "A. Lentz and M. AB, “An introduction to mysql cluster architecture and use,” MySQL AB, November, 2006.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "CoinMarketCap, “Coinmarketcap,” https://coinmarketcap.com, 2023, accessed on March 31, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Intel, “Hibench suite,” https://github.com/Intel-bigdata/HiBench, 2023, accessed at March 30, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis.” in OSDI, vol. 20, 2020, pp. 667–682. 1953",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 58,
+      "text": "Ethereum, https://github.com/drandreaskrueger/chainhammer, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "vdcresearch, “Languaged used in distributed system,” https://www.vdcresearch.com/results.html?addsearch=languaged+ used+ in+ distribuetd+ systems, 2023, accessed on March 31, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "dzone.com, “Top language for distributed system,” https://dzone. com/articles/top-languages-for-distributed-systems, 2023, accessed on March 31, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "jaxenter.com, “Best languages in distributed system,” https://jaxenter. com/programming-languages-best-distributed-systems-169281.html, 2023, accessed on March 31, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "I. Docker, “Docker,” lınea].[Junio de 2017]. Disponible en: https://www. docker. com/what-docker, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "H. S. Gunawi, R. O. Suminto, R. Sears, C. Golliher, S. Sundararaman, X. Lin, T. Emami, W. Sheng, N. Bidokhti, C. McCaffrey et al., “Fail-slow at scale: Evidence of hardware performance faults in large production systems,” ACM Transactions on Storage (TOS), vol. 14, no. 3, pp. 1–26, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "B. Panda, D. Srinivasan, H. Ke, K. Gupta, V. Khot, and H. S. Gunawi, “Iaso: A fail-slow detection and mitigation framework for distributed storage services.” in USENIX Annual Technical Conference, 2019, pp. 47–62.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "R. Lu, E. Xu, Y. Zhang, F. Zhu, Z. Zhu, M. Wang, Z. Zhu, G. Xue, J. Shu, M. Li et al., “Perseus: A {Fail-Slow }detection framework for cloud storage systems,” in 21st USENIX Conference on File and Storage Technologies (FAST 23), 2023, pp. 49–64.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "J. M. V oas and G. McGraw, Software fault injection: inoculating programs against errors. John Wiley & Sons, Inc., 1997.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "M.-C. Hsueh, T. K. Tsai, and R. K. Iyer, “Fault injection techniques and tools,” Computer, vol. 30, no. 4, pp. 75–82, 1997.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "Jepsen, “Distributed systems safety research,” http://jepsen.io/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "L. Zhang, B. Morin, P. Haller, B. Baudry, and M. Monperrus, “A chaos engineering system for live analysis and falsification of exception-handling in the jvm,” IEEE Transactions on Software Engineering, vol. 47, no. 11, pp. 2534–2548, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "K. Murdock, D. Oswald, F. D. Garcia, J. Van Bulck, D. Gruss, and F. Piessens, “Plundervolt: Software-based fault injection attacks against intel sgx,” in (SP). IEEE, 2020, pp. 1466–1482.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "J. Gravellier, J.-M. Dutertre, Y. Teglia, and P. L. Moundi, “Faultline: Software-based fault injection on memory transfers,” in (HOST). IEEE, 2021, pp. 46–55.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "J. Calhoun, L. Olson, and M. Snir, “Flipit: An llvm based fault injector for hpc,” 08 2014, pp. 547–558.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "J.-J. Bai, Y .-P. Wang, H.-Q. Liu, and S.-M. Hu, “Mining and checking paired functions in device drivers using characteristic fault injection,” Information and Software Technology, vol. 73, pp. 122–133, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "F. Ma, Y. Chen, Y. Zhou, J. Sun, Z. Su, Y. Jiang, J. Sun, and H. Li, “Phoenix: Detect and locate resilience issues in blockchain via context-sensitive chaos,” in Proceedings of the 2023 ACMSIGSAC Conference on Computer and Communications Security, 2023, pp. 1182–1196.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "P. D. Marinescu and G. Candea, “Efficient testing of recovery code using fault injection,” ACM Transactions on Computer Systems (TOCS), vol. 29, no. 4, pp. 1–38, 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "P. Joshi, H. S. Gunawi, and K. Sen, “Prefail: A programmable tool for multiple-failure injection,” in Proceedings of the 2011 ACM international conference on Object oriented programming systems languages and applications, 2011, pp. 171–188.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "Y. Chen, Y. Jiang, F. Ma, J. Liang, M. Wang, C. Zhou, X. Jiao, and Z. Su, “ {EnFuzz }: Ensemble fuzzing with seed synchronization among diverse fuzzers,” in 28th USENIX Security Symposium (USENIX Security 19), 2019, pp. 1967–1983.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "Z. Luo, J. Yu, F. Zuo, J. Liu, Y. Jiang, T. Chen, A. Roychoudhury, and J. Sun, “Bleem: packet sequence oriented fuzzing for protocol implementations,” in 32nd USENIX Security Symposium (USENIX Security 23), 2023, pp. 4481–4498.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "H. Sun, Y. Shen, C. Wang, J. Liu, Y. Jiang, T. Chen, and A. Cui, “Healer: Relation learning guided kernel fuzzing,” in Proceedings of the ACMSIGOPS 28th Symposium on Operating Systems Principles, 2021, pp. 344–358.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "Y. Chen, F. Ma, Y. Zhou, Y. Jiang, T. Chen, and J. Sun, “Tyr: Finding consensus failure bugs in blockchain system with behaviour divergent model,” in. IEEE, 2023, pp. 2517–2532.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 81,
+      "text": "F. Ma, Y. Chen, M. Ren, Y. Zhou, Y. Jiang, T. Chen, H. Li, and J. Sun, “Loki: State-aware fuzzing framework for the implementation of blockchain consensus protocols,” in Proceedings 2023 Network and Distributed System Security Symposium, 2023. 1954 Appendix A. Meta-Review The following meta-review was prepared by the program committee for the Privacy (S&P) as part of the review process as detailed",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 57,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis.” in OSDI, vol. 20, 2020, pp. 667–682. 1953",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For MySQL-Cluster, the workload is generated by SQLancer [57], one of the widely used SQL generators for testing database systems.",
+      "context_before": "o interact with target systems, including sending workloads to DSUTs and monitoring bugs within them. The second part is the Delay Model which is implemented for generating high-quality transient delay sequences to explore deep logic in DSUTs based on their runtime traces. The third part is the Delay Library which contains runtime libraries instrumented with deeppriority transient delays. The rest of the section describes notable implementation details. Workload Loader: For Hadoop Distributed File Systems, the workload is collected from Intel HiBench [56], a widely used testing workload suite.",
+      "context_after": "For ZooKeeper, we developed an automatic tool to generate the workload based on its API documentation and instruction manual. The tool is also open-source and available in our git1. For Go-Etheruem, the workload is generated by chainhammer [58], which is an art-of-the-state tool for generating test transactions for blockchain systems. Trace Analyzer: In the deep-priority guided delay selector, before calculating the depth of each delay block di, Chronos first obtains the call trace and identifies the caller (which delay block). In Java language, the trace analyzer is implemented by ‘Thread.cu",
+      "section": "5 Implementation",
+      "page": 8,
+      "char_offset": 42776,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": {
+    "url": "https://github.com/SecTechTool/Chronos",
+    "markers": [
+      "sqlancer_source_content_match"
+    ],
+    "evidence": [
+      {
+        "source_url": "https://github.com/SecTechTool/Chronos",
+        "source_type": "github_repository",
+        "excerpt": "# Chronos: An Automatical Testing Framework for Finding Timeout Bugs in Distributed Systems by Self-Adaptive Delay Model.",
+        "note": "Repository is named after Chronos, the tool this paper says it built, and is about database testing.",
+        "retrieved_at": "2026-09-10T15:15:32Z",
+        "first_seen": "2026-09-10T15:15:32Z",
+        "last_verified": "2026-09-10T15:15:32Z",
+        "excerpt_is_verbatim": true
+      },
+      {
+        "source_url": "https://github.com/SecTechTool/Chronos/blob/main/workload/mysql-cluster/sqlancer/src/sqlancer/Randomly.java",
+        "source_type": "github_code",
+        "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.SOPHISTICATED;",
+        "excerpt_is_verbatim": true,
+        "note": "workload/mysql-cluster/sqlancer/src/sqlancer/Randomly.java is SQLancer's Randomly.java (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+        "content_sha256": "sha256:301936f755ab919b50c82cd983f3b382fd82eff22830ba0dd5d4575c95ecce80",
+        "retrieved_at": "2026-09-10T15:15:32Z",
+        "first_seen": "2026-09-10T15:15:32Z",
+        "last_verified": "2026-09-10T15:15:32Z"
+      }
+    ]
+  },
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:17:50Z",
+    "is_model_written": true,
+    "summary": "Chronos automatically finds timeout bugs in distributed systems, where incorrect timeout handling can hang or crash a system. It injects fine-grained delays through general runtime delayed libraries, uses deep-priority guided fuzzing to reach bugs on deep paths, and applies transient delays so the test does not pay the wall-clock cost of really waiting. On ZooKeeper, MySQL-Cluster, HDFS and Go-Ethereum it found 27 timeout bugs, all repaired.",
+    "narrative": "SQLancer serves as a workload generator, not an oracle: it produces the SQL workload used to exercise MySQL-Cluster while Chronos injects delays around it. The artifact carries SQLancer source content, consistent with it being bundled for that purpose. The bugs reported are timeout bugs found by delay injection, not logic bugs found by a SQLancer oracle.",
+    "roles": {
+      "M1": "reuse_component"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M1"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M1",
+            "sentence": "For MySQL-Cluster, the workload is generated by SQLancer [57], one of the widely used SQL generators for testing database systems.",
+            "section": "5 Implementation",
+            "page": 8
+          }
+        ],
+        "reasoning": "M1 states the MySQL-Cluster workload is generated by SQLancer, described as one of the widely used SQL generators for testing database systems. That is reuse to produce input for a different system rather than building on SQLancer, which is why the kind is recorded as workload.",
+        "reuse_kind": "workload"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

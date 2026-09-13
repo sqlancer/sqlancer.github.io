@@ -1,0 +1,438 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:33:09Z",
+  "paper": {
+    "id": "paper:arxiv:2304.10044",
+    "title": "Finding Bug-Inducing Program Environments",
+    "authors": [
+      "Z. Mirzamomen",
+      "Marcel Böhme"
+    ],
+    "year": 2023,
+    "venue": "arXiv.org",
+    "doi": null,
+    "arxiv_id": "2304.10044",
+    "s2_paper_id": "e10d0a78b6e4dd6e074f925e669bf632b5d48f53",
+    "url": "https://arxiv.org/abs/2304.10044",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2304.10044",
+      "retrieved_at": "2026-09-09T01:33:09Z",
+      "chars": 64272,
+      "content_sha256": "sha256:dc0aebc22c1378d7caa27c5935674fdeeae2729356b7c5a2b26fba67bf740fd9"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 11,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 1793
+      },
+      {
+        "number": "2.1",
+        "title": "Runtime: Capturing Environment",
+        "start": 9492
+      },
+      {
+        "number": "2.2",
+        "title": "Fuzzer: Modifying Environment",
+        "start": 12603
+      },
+      {
+        "number": "4.1",
+        "title": "Research Questions",
+        "start": 21999
+      },
+      {
+        "number": "4.2",
+        "title": "Fuzzer Implementation",
+        "start": 23121
+      },
+      {
+        "number": "4.3",
+        "title": "Benchmarking",
+        "start": 24939
+      },
+      {
+        "number": "4.4",
+        "title": "Setup and Infrastructure",
+        "start": 26377
+      },
+      {
+        "number": "5.1",
+        "title": "Performance analysis",
+        "start": 43136
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2020. libFuzzer-a ibrary for coverage-guided fuzz testing. https://llvm.org/ docs/LibFuzzer.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Cornelius Aschermann, Tommaso Frassetto, Thorsten Holz, Patrick Jauernig, Ahmad-Reza Sadeghi, and Daniel Teuchert. 2019. Nautilus: Fishing for Deep Bugs with Grammars.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Ali Basiri, Niosha Behnam, Ruud de Rooij, Lorin Hochstein, Luke Kosewski, Justin Reynolds, and Casey Rosenthal. 2016. Chaos Engineering. IEEE Software 33, 3 (2016), 35–41. https://doi.org/10.1109/MS.2016.60",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Massimo Bernaschi, Emanuele Gabrielli, and Luigi V. Mancini. 2002. Remus: A Security-Enhanced Operating System. ACM Trans. Inf. Syst. Secur. 5, 1 (feb 2002), 36–61. https://doi.org/10.1145/504909.504911",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Marcel Böhme, Van-Thuan Pham, and Abhik Roychoudhury. 2016. Coveragebased Greybox Fuzzing As Markov Chain. In Proceedings of the 2016 ACMSIGSAC Conference on Computer and Communications Security. 1032–1043.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Huning Dai, Christian Murphy, and Gail Kaiser. 2010. Configuration Fuzzing for Software Vulnerability Detection. In 2010 International Conference on Availability, Reliability and Security. 525–530. https://doi.org/10.1109/ARES.2010.22",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Hugo Gascon, Christian Wressnegger, Fabian Yamaguchi, Daniel Arp, and Konrad Rieck. 2015. Pulsar: Stateful Black-Box Fuzzing of Proprietary Network Protocols. InSecurity and Privacy in Communication Networks. 330–347.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Google. 2012. ClusterFuzz. https://github.com/google/clusterfuzz# trophies. Accessed: 2022-08-12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Google. 2016. OSS-Fuzz: Continuous Fuzzing for Open Source Software. https: //github.com/google/oss-fuzz#trophies. Accessed: 2022-08-12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Ahmad Hazimeh, Adrian Herrera, and Mathias Payer. 2021. Magma: A GroundTruth Fuzzing Benchmark. Proceedings of the ACM Conference on Measurement and Analysis of Computing Systems 4, 3, Article 49 (jun 2021), 29 pages. https: //doi.org/10.1145/3428334",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Zhihao Hu and Zulie Pan. 2021. A Systematic Review of Network Protocol Fuzzing Techniques. In 2021 IEEE 4th Advanced Information Management, Communicates, Electronic and Automation Control Conference (IMCEC), Vol. 4. 1000–1005. https: //doi.org/10.1109/IMCEC51613.2021.9482063",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "]intel Intel. [n. d.]. Specs of Intel Pentium 4 (Model 662; 2005), the first chip to implement VT-x Vitualization Technology. https://ark.intel.com/content/ www/us/en/ark/products/27486/intel-pentium-4-processor-662supporting-ht-technology-2m-cache-3-60-ghz-800-mhz-fsb.html. Accessed: 2022-08-12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, Kangjie Lu, and Shi-Min Hu. 2020. Fuzzing Error Handling Code using Context-Sensitive Software Fault Injection. In 29th USENIX Security Symposium (USENIX Security 20). USENIX Association, 2595–2612. https: //www.usenix.org/conference/usenixsecurity20/presentation/jiang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. 2014. Compiler Validation via Equivalence modulo Inputs. SIGPLAN Not. 49, 6 (jun 2014), 216–226. https: //doi.org/10.1145/2666356.2594334 Finding Bug-Inducing Program Environments",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Caroline Lemieux and Koushik Sen. 2018. FairFuzz: A Targeted Mutation Strategy for Increasing Greybox Fuzz Testing Coverage. In Proceedings of the 33rd ACM/IEEE International Conference on Automated Software Engineering (Montpellier, France) (ASE 2018). ACM, New York, NY, USA, 475–485. https: //doi.org/10.1145/3238147.3238176",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Wang Li, Zhouyang Jia, Shanshan Li, Yuanliang Zhang, Teng Wang, Erci Xu, Ji Wang, and Xiangke Liao. 2021. Challenges and Opportunities: An in-Depth Empirical Study on Configuration Error Injection Testing. In Proceedings of the 30th ACMSIGSOFT International Symposium on Software Testing and Analysis (Virtual, Denmark) (ISSTA 2021). Association for Computing Machinery, New York, NY, USA, 478–490. h",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Eichelberg Marco, Riesmeier Joerg, Wilkens Thomas, J. Hewett Andrew, Barth Andreas, and Jensch Peter. 2004. Ten years of medical imaging standardization and prototypical implementation: the DICOM standard and the OFFIS DICOM toolkit (DCMTK). In Proc.SPIE, Vol. 5371. https://doi.org/10.1117/12.534853",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Jonathan Metzman, László Szekeres, Laurent Simon, Read Sprabery, and Abhishek Arya. 2021. FuzzBench: An Open Fuzzer Benchmarking Platform and Service. InProceedings of the Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1393–1403. https: //doi.org/10.1145/3468264.3473932",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Chaitanya Mishra, Nick Koudas, and Calisto Zuzarte. 2008. Generating Targeted Queries for Database Testing. In Proceedings of the 2008 ACMSIGMOD International Conference on Management of Data (Vancouver, Canada) (SIGMOD ’08). Association for Computing Machinery, New York, NY, USA, 499–510. https://doi.org/10.1145/1376616.1376668",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Roberto Natella and Van-Thuan Pham. 2021. ProFuzzBench: A Benchmark for Stateful Protocol Fuzzing. In Proceedings of the 30th ACMSIGSOFT International Symposium on Software Testing and Analysis.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Changhai Nie and Hareton Leung. 2011. A Survey of Combinatorial Testing. ACM Comput. Surv. 43, 2, Article 11 (feb 2011), 29 pages. https://doi.org/10. 1145/1883612.1883618",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Sebastian Österlund, Kaveh Razavi, Herbert Bos, and Cristiano Giuffrida. 2020. ParmeSan: Sanitizer-Guided Greybox Fuzzing. USENIX Association, USA.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Van-Thuan Pham, Marcel Böhme, Andrew E. Santosa, Alexandru Razvan Caciulescu, and Abhik Roychoudhury. 2018. Smart Greybox Fuzzing. CoRR abs/1811.09447 (2018). arXiv:1811.09447 http://arxiv.org/abs/1811.09447",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Van-Thuan Pham, Marcel Boehme, and Abhik Roychoudhury. 2020. AFLNet: A Greybox Fuzzer for Network Protocols. In IEEE International Conf. on Software Testing Verification and Validation.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Niels Provos, Markus Friedl, and Peter Honeyman. 2003. Preventing Privilege Escalation. In Proceedings of the 12th Conference on USENIX Security Symposium Volume 12 (Washington, DC) (SSYM’03). USENIX Association, USA, 16.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (nov 2020), 30 pages. https://doi.org/10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 27,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). USENIX Association, 667–682. https://www.usenix. org/conference/osdi20/presentation/rigger",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 28,
+      "text": "Alton F Sanders and Robert Pickering. 2018. the Unix System. Revival: The Handbook of Software for Engineers and Scientists (1995) (2018), 77.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Sergej Schumilo, Cornelius Aschermann, Andrea Jemmett, Ali Abbasi, and Thorsten Holz. 2022. Nyx-Net: Network Fuzzing with Incremental Snapshots. In Proceedings of the Seventeenth European Conference on Computer Systems (Rennes, France) (EuroSys ’22). Association for Computing Machinery, New York, NY, USA, 166–180. https://doi.org/10.1145/3492321.3519591",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Sergej Schumilo, Cornelius Aschermann, Andrea Jemmett, Ali Abbasi, and Thorsten Holz. 2022. Nyx-net: network fuzzing with incremental snapshots. InProceedings of the Seventeenth European Conference on Computer Systems. 166– 180.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Kostya Serebryany. 2022. Fuzzer Test Suite. https://github.com/google/fuzzertest-suite.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Website. 2017. American Fuzzy Lop (AFL) Fuzzer. http://lcamtuf.coredump. cx/afl/technical_details.txt. Accessed: 2017-05-13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Website. 2017. Search engine for the internet of things – devices still vulnerable to Heartbleed. https://www.shodan.io/report/89bnfUyJ. Accessed: 201705-13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Website. 2020. Openssl bug fixing commit. https://github.com/openssl/ openssl/commit/6ab6ecfd6d2d659326f427dceb1b65ae1b4b012b. Accessed: 2022-07-22.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Website. 2022. DCMTK bug reports. https://support.dcmtk.org/redmine/ issues/1026. Accessed: 2022-07-22.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Website. 2022. Kamailio bug fixing commit. https://github.com/kamailio/ kamailio/commit/f0cea1a7c03e400b4398795c2d8b0f7e45d1dfb5. Accessed: 2022-07-22.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Website. 2022. Live555 bug report 1. https://github.com/rgaufman/live555/ issues/38. Accessed: 2022-07-26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Website. 2022. Live555 bug report 2. https://github.com/rgaufman/live555/ issues/39. Accessed: 2022-07-27.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Website. 2022. Live555 bug report 3. https://github.com/rgaufman/live555/ issues/40. Accessed: 2022-07-27.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Website. 2022. Pure-ftpd bug report 1. https://github.com/bajinsheng/ pure-ftpd/issues/1. Accessed: 2022-07-25.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Website. 2022. Pure-ftpd bug report 2. https://github.com/bajinsheng/ pure-ftpd/issues/2. Accessed: 2022-07-25.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Website. 2022. Pure-ftpd bug report 3. https://github.com/bajinsheng/ pure-ftpd/issues/3. Accessed: 2022-07-25.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. 2011. Finding and Understanding Bugs in C Compilers. SIGPLAN Not. 46, 6 (jun 2011), 283–294. https://doi.org/10.1145/1993316.1993532",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Andreas Zeller, Rahul Gopinath, Marcel Böhme, Gordon Fraser, and Christian Holler. 2022. Testing Configurations. In The Fuzzing Book. CISPA Helmholtz Center for Information Security. https://www.fuzzingbook.org/ html/ConfigurationFuzzer.html Retrieved 2022-01-23 13:06:27+01:00.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Proceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security (Virtual Event, USA) (CCS ’20). Association for Computing Machinery, New York, NY, USA, 955–970. https://doi.org/10.1145/3372297.3417260",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 26,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (nov 2020), 30 pages. https://doi.org/10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 27,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). USENIX Association, 667–682. https://www.usenix. org/conference/osdi20/presentation/rigger",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 14,19,26,27,43,45]",
+      "technique": "tlp",
+      "sentence": "For instance, there are domain-specific works on fuzzing a program’s configuration [ 6,16,44], databases [ 14,19,26,27,43,45], the network [7,11,24,29], et cetera.",
+      "context_before": "11https://github.com/DCMTK/dcmtk/blob/7f8564c/dcmqrdb/libsrc/dcmqrcnf.cc#L691 12https://github.com/DCMTK/dcmtk/blob/master/dcmqrdb/libsrc/dcmqrcnf.cc#L686 Zahra Mirzamomen and Marcel Böhme However, existing works do not actually modify the environment within which the program-under-test runs. Since fuzzing the environment itself might yield unrealistic environments or may not impact the program behavior, we propose to fuzz the interaction with the program’s environment instead. Domain-specific approaches. There exist several domain-specific approaches to fuzz non-traditional program “inputs\".",
+      "context_after": "For instance, in the Fuzzing Book [ 44], the importance of testing all possible configuration options passed to the program is addressed by proposing a way of automatically inferring configuration options. The program’s configuration can then be tested using combinatorial testing [ 21]. However, all previous approaches focus on domain-specific improvements. There are programs that take non-traditional inputs. For instance, database management systems (DBMS) take databases as input; compilers take program source code as inputs. In order to test these systems automatically domain-specific appro",
+      "section": "5.1 Performance analysis",
+      "page": 10,
+      "char_offset": 50539,
+      "cited_reference": {
+        "number": 26,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (nov 2020), 30 pages. https://doi.org/10.1145/3428279",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "prints the DOI of the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[14,19,26,27,43,45]",
+      "technique": "tlp",
+      "sentence": ", databases and programs) [14,19,26,27,43,45].",
+      "context_before": "possible configuration options passed to the program is addressed by proposing a way of automatically inferring configuration options. The program’s configuration can then be tested using combinatorial testing [ 21]. However, all previous approaches focus on domain-specific improvements. There are programs that take non-traditional inputs. For instance, database management systems (DBMS) take databases as input; compilers take program source code as inputs. In order to test these systems automatically domain-specific approaches have been develop that generate these non-traditional inputs (i.e.",
+      "context_after": "However, these domain-specific approaches cannot be applied to test general programs, e.g., that use databases. Our work can be viewed as a general unification by fuzzing, without discrimination and in a coverage-guided manner, all environment resources that the program-under-test accesses. Chaos engineering. The key idea behind chaos engineering is to arbitrarily modify a running system and observe the system’s ability (i.e., robustness) to handle those faults [ 3]. Basiri et al [ 3] discuss Chaos engineering as an experimental discipline in which the software is viewed as a set of processes",
+      "section": "5.1 Performance analysis",
+      "page": 10,
+      "char_offset": 51375,
+      "cited_reference": {
+        "number": 26,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (nov 2020), 30 pages. https://doi.org/10.1145/3428279",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "prints the DOI of the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:18:50Z",
+    "is_model_written": true,
+    "summary": "This paper synthesises bug-inducing program environments -- the databases, files and devices a program accesses -- for bugs that no program input alone can expose. The approach is coverage-guided and mutation-based: it intercepts the system calls through which a program interacts with its environment, captures the resources touched, then mutates them, keeping any environment that increases coverage. The prototype found bugs in five of seven open-source projects including OpenSSL.",
+    "narrative": "Two citations, listing databases among the domains with dedicated fuzzing work.",
+    "roles": {
+      "M1": "background",
+      "M2": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

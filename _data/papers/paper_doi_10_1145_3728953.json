@@ -1,0 +1,920 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:24:34Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3728953",
+    "title": "Detecting Isolation Anomalies in Relational DBMSs",
+    "authors": [
+      "Rui Yang",
+      "Ziyu Cui",
+      "Wensheng Dou",
+      "Yu Gao",
+      "Jiansen Song",
+      "Xudong Xie",
+      "Jun Wei"
+    ],
+    "year": 2025,
+    "venue": "Proc. ACM Softw. Eng.",
+    "doi": "10.1145/3728953",
+    "arxiv_id": null,
+    "s2_paper_id": "189d9b84961fe904388013b4a8f7448854a847c6",
+    "url": "https://doi.org/10.1145/3728953",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3728953",
+      "retrieved_at": "2026-09-08T15:24:34Z",
+      "chars": 94203,
+      "content_sha256": "sha256:ca349ef2551286709577940749bb238ce05ec11ec193a2976d7ea7179600e646"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 23,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 4019
+      },
+      {
+        "number": "2",
+        "title": "Motivation and Preliminaries",
+        "start": 13370
+      },
+      {
+        "number": "2.1",
+        "title": "Motivating Example",
+        "start": 13580
+      },
+      {
+        "number": "2.2",
+        "title": "Transactions and SQL Statements",
+        "start": 16189
+      },
+      {
+        "number": "2.3",
+        "title": "Transaction Execution Histories and Dependency Graphs",
+        "start": 19129
+      },
+      {
+        "number": "2.4",
+        "title": "Isolation Anomalies",
+        "start": 21815
+      },
+      {
+        "number": "3.1",
+        "title": "Database Generation",
+        "start": 28320
+      },
+      {
+        "number": "3.2",
+        "title": "Transaction Generation and SQL Statement Instrumentation",
+        "start": 32961
+      },
+      {
+        "number": "3.3",
+        "title": "Dependency Inference",
+        "start": 39498
+      },
+      {
+        "number": "3.4",
+        "title": "Isolation Anomaly Detection",
+        "start": 51338
+      },
+      {
+        "number": "5.1",
+        "title": "Experimental Methodology",
+        "start": 59329
+      },
+      {
+        "number": "5.2",
+        "title": "Isolation Anomaly Detection Results",
+        "start": 63549
+      },
+      {
+        "number": "5.3",
+        "title": "Analyzing Isolation Anomalies in Relational DBMSs",
+        "start": 65896
+      },
+      {
+        "number": "5.4",
+        "title": "Comparison with Existing Isolation Checkers",
+        "start": 70708
+      },
+      {
+        "number": "6.1",
+        "title": "Limitations",
+        "start": 72576
+      },
+      {
+        "number": "6.2",
+        "title": "Future Work",
+        "start": 74485
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2023. go-randgen. https://github.com/pingcap/go-randgen.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2024. The ANSI Isolation Levels. http://www.adp-gmbh.ch/ora/misc/isolation_level.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "2024. CockroachDB. https://www.cockroachlabs.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "2024. DB-Engines. https://db-engines.com/en/ranking.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "2024. GitHub. https://github.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "2024. Jepsen. https://github.com/jepsen-io/jepsen.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "2024. MariaDB. https://mariadb.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "2024. MySQL. https://www.mysql.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "2024. MySQL 8.0.34. https://jepsen.io/analyses/mysql-8.0.34?file=mysql-8.0.34.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "2024. PostgreSQL. https://www.postgresql.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "2024. PostgreSQL 12.3. https://jepsen.io/analyses/postgresql-12.3?file=postgresql-12.3.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "2024. SQLancer. https://www.manuelrigger.at/dbms-bugs.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 13,
+      "text": "2024. SQLsmith. https://jepsen.io.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "2024. TiDB 2.1.7. https://jepsen.io/analyses/tidb-2.1.7?file=tidb-2.1.7.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "2024. TiDB, PingCAP. https://pingcap.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Atul Adya. 1999. Weak Consistency: A Generalized Theory and Optimistic Implementations for Distributed Transactions. Ph. D. Dissertation. Massachusetts Institute of Technology.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Atul Adya, Barbara Liskov, and Patrick O’Neil. 2000. Generalized Isolation Level Definitions. In Proceedings of International Conference on Data Engineering (ICDE). 67–78.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE). 2060–2071.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 19,
+      "text": "Peter Bailis, Aaron Davidson, Alan Fekete, Ali Ghodsi, Joseph M. Hellerstein, and Ion Stoica. 2013. Highly Available Transactions: Virtues and Limitations. Proceedings of the VLDB Endowment (VLDB) 7, 3 (2013), 181–192.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Peter Bailis, Alan Fekete, Ali Ghodsi, Joseph M. Hellerstein, and Ion Stoica. 2016. Scalable Atomic Visibility with RAMP Transactions. ACM Transactions on Database Systems (TODS) 41, 3 (2016), 15:1–15:45.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Hal Berenson, Phil Bernstein, Jim Gray, Jim Melton, Elizabeth O’Neil, and Patrick O’Neil. 1995. A Critique of ANSI SQL Isolation Levels. In Proceedings of ACMSIGMOD International Conference on Management of Data (SIGMOD). 1–10.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Philip A Bernstein, Vassos Hadzilacos, Nathan Goodman, et al .1987. Concurrency Control and Recovery in Database Systems. Addison-Wesley Longman Publishing Co., Inc.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Carsten Binnig, Donald Kossmann, Eric Lo, and M. Tamer Özsu. 2007. QAGen: Generating Query-Aware Test Databases. InProceedings of ACMSIGMOD International Conference on Management of Data (SIGMOD). 341–352.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Ranadeep Biswas and Constantin Enea. 2019. On the Complexity of Checking Transactional Consistency. In Proceedings of ACMSIGPLAN Conference on Object-Oriented Programming Systems, Languages, and Applications (OOPSLA). 165:1– 165:28.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Nicolas Bruno and Surajit Chaudhuri. 2005. Flexible Database Generators. In Proceedings of International Conference on Very Large Data Bases (VLDB). 1097–1107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Nicolas Bruno, Surajit Chaudhuri, and Dilys Thomas. 2006. Generating Queries with Cardinality Constraints for DBMS Testing. IEEE Transactions on Knowledge and Data Engineering (TKDE) 18, 12 (2006), 1721–1725.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Lucas Brutschy, Dimitar Dimitrov, Peter Müller, and Martin Vechev. 2017. Serializability for Eventual Consistency: Criterion, Analysis, and Applications. In Proceedings of ACMSIGPLAN Symposium on Principles of Programming Languages (POPL). 458–472.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Andrea Cerone, Giovanni Bernardi, and Alexey Gotsman. 2015. A Framework for Transactional Consistency Models with Atomic Visibility. In Proceedings of International Conference on Concurrency Theory (CONCUR). 58–71.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Donald D. Chamberlin and Raymond F. Boyce. 1974. SEQUEL: A Structured English Query Language. In Proceedings of ACMSIGFIDET Workshop on Data Description, Access and Control (SIGFIDET). 249–264.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Jack Clark, Alastair F Donaldson, John Wickerson, and Manuel Rigger. 2024. Validating Database System Isolation Level Implementations with Version Certificate Recovery. In Proceedings of European Conference on Computer Systems (EuroSys). 754–768.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 31,
+      "text": "Edgar F. Codd. 1970. A Relational Model of Data for Large Shared Data Banks. Commun. ACM 13, 6 (1970), 377–387.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Ziyu Cui, Wensheng Dou, Qianwang Dai, Jiansen Song, Wei Wang, Jun Wei, and Dan Ye. 2022. Differentially Testing Database Transactions for Fun and Profit. In Proceedings of IEEE/ACM International Conference on Automated Software Engineering (ASE). 35:1–35:12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Ziyu Cui, Wensheng Dou, Yu Gao, Dong Wang, Jiansen Song, Yingying Zheng, Tao Wang, Rui Yang, Kang Xu, Yixin Hu, Jun Wei, and Tao Huang. 2024. Understanding Transaction Bugs in Database Systems. In Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE). 163:1–163:13. Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA076. Publication date: July 2025. ISSTA076:22 Rui Yan",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Ziyu Cui, Wensheng Dou, Yu Gao, Rui Yang, Yingying Zheng, Jiansen Song, Yuan Feng, and Jun Wei. 2025. Simple Testing Can Expose Most Critical Transaction Bugs: Understanding and Detecting Write-Specific Serializability Violations in Database Systems. Proceedings of the VLDB Endowment (VLDB) (2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Wensheng Dou, Ziyu Cui, Qianwang Dai, Jiansen Song, Dong Wang, Yu Gao, Wei Wang, Jun Wei, Lei Chen, Hanmo Wang, Hua Zhong, and Tao Huang. 2023. Detecting Isolation Bugs via Transaction Oracle Construction. In Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE). 1123–1135.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Jim Gray. 1981. The Transaction Concept: Virtues and Limitations. In Proceedings of International Conference on Very Large Data Bases (VLDB). 144–154.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Jim Gray and Andreas Reuter. 1992. Transaction Processing: Concepts and Techniques. Elsevier.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Jim Gray, Prakash Sundaresan, Susanne Englert, Ken Baclawski, and Peter J. Weinberger. 1994. Quickly Generating Billion-Record Synthetic Databases. In Proceedings of ACMSIGMOD International Conference on Management of Data (SIGMOD). 243–252.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Theo Haerder and Andreas Reuter. 1983. Principles of Transaction-Oriented Database Recovery. ACM Computing Surveys (CSUR) 15, 4 (1983), 287–317.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Kenneth Houkjær, Kristian Torp, and Rico Wind. 2006. Simple and Realistic Data Generation. In Proceedings of International Conference on Very Large Data Bases (VLDB). 1243–1246.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Ziyue Hua, Wei Lin, Luyao Ren, Zongyang Li, Lu Zhang, Wenpin Jiao, and Tao Xie. 2023. GDsmith: Detecting Bugs in Cypher Graph Database Engines. In Proceedings of ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA). 163–174.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Kaile Huang, Si Liu, Zhenge Chen, Hengfeng Wei, David Basin, Haixiang Li, and Anqun Pan. 2023. Efficient Black-box Checking of Snapshot Isolation in Databases. Proceedings of the VLDB Endowment (VLDB) 16, 6 (2023), 1264–1276.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland H. C. Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE). Article 46, 12 pages.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 44,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI). 397–417.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 45,
+      "text": "Shadi Abdul Khalek, Bassem Elkarablieh, Yai O Laleye, and Sarfraz Khurshid. 2008. Query-Aware Test Generation Using a Relational Constraint Solver. In Proceedings of IEEE/ACM International Conference on Automated Software Engineering (ASE). 238–247.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Kyle Kingsbury and Peter Alvaro. 2020. Elle: Inferring Isolation Anomalies from Experimental Observations. In Proceedings of the VLDB Endowment (VLDB), Vol. 14. 268–280.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Philip M Lewis, Arthur Bernstein, and Michael Kifer. 2002. Databases and Transaction Processing: An ApplicationOriented Approach. ACMSIGMOD Record 31, 1 (2002), 74–75.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Haixiang Li, Xiaoyan Li, Chang Liu, Xiaoyong Du, Wei Lu, and Anqun Pan. 2021. Systematic Definition and Classification of Data Anomalies in DBMS. Journal of Software 33, 3 (2021), 909–930.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Keqiang Li, Siyang Weng, Peiyuan Liu, Lyu Ni, Chengcheng Yang, Rong Zhang, Xuan Zhou, Jianghang Lou, Gui Huang, Weining Qian, and Aoying Zhou. 2023. Leopard: A Black-Box Approach for Efficiently Verifying Various Isolation Levels. In Proceedings of IEEE International Conference on Data Engineering (ICDE). 722–735.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Qiuyang Mang, Aoyang Fang, Boxi Yu, Hanfei Chen, and Pinjia He. 2024. Testing Graph Database Systems via Equivalent Query Rewriting. In Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE). Article 143, 12 pages.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 52,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 211:1–211:30.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 53,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 54,
+      "text": "Donald R. Slutz. 1998. Massive Stochastic Testing of SQL. In Proceedings of International Conference on Very Large Data Bases (VLDB). 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Jiansen Song, Wensheng Dou, Ziyu Cui, Qianwang Dai, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2023. Testing Database Systems via Differential Query Execution. In Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE). 2072–2084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Jiansen Song, Wensheng Dou, Yu Gao, Ziyu Cui, Yingying Zheng, Dong Wang, Wei Wang, Jun Wei, and Tao Huang. 2024. Detecting Metadata-Related Logic Bugs in Database Systems via Raw Database Construction. Proceedings of the VLDB Endowment (VLDB) 17, 8 (2024), 1884–1897. Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA076. Publication date: July 2025. Detecting Isolation Anomalies in Relational",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Jiansen Song, Wensheng Dou, Yingying Zheng, Yu Gao, Ziyu Cui, Wei Wang, and Jun Wei. 2025. Detecting SchemaRelated Logic Bugs in Relational DBMSs via Equivalent Database Construction. Proceedings of the VLDB Endowment (VLDB) (2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Cheng Tan, Changgeng Zhao, Shuai Mu, and Michael Walfish. 2020. Cobra: Making Transactional Key-Value Stores Verifiably Serializable. In Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI). 63–80.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Lei Tang, Wensheng Dou, Yingying Zheng, Lijie Xu, Wei Wang, Jun Wei, and Tao Huang. 2025. Proving Cypher Query Equivalence. In Proceedings of IEEE International Conference on Data Engineering (ICDE).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Robert Tarjan. 1972. Depth-First Search and Linear Graph Algorithms. SIAM J. Comput. 1, 2 (1972), 146–160.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Rui Yang, Yingying Zheng, Lei Tang, Wensheng Dou, Wei Wang, and Jun Wei. 2023. Randomized Differential Testing of RDF Stores. In Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE Demo). 136–140.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Jian Zhang, Ye Ji, Shuai Mu, and Cheng Tan. 2023. Viper: A Fast Snapshot Isolation Checker. In Proceedings of European Conference on Computer Systems (EuroSys). 654–671.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Yingying Zheng, Wensheng Dou, Lei Tang, Ziyu Cui, Yu Gao, Jiansen Song, Liang Xu, Jiaxin Zhu, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2024. Testing Gremlin-Based Graph Database Systems via Query Disassembling. In Proceedings of ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA). 1695–1707.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Yingying Zheng, Wensheng Dou, Lei Tang, Ziyu Cui, Jiansen Song, Ziyue Cheng, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2024. Differential Optimization Testing of Gremlin-Based Graph Database Systems. In Proceedings of IEEE International Conference on Software Testing, Verification and Validation (ICST). 25–36.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Yingying Zheng, Wensheng Dou, Yicheng Wang, Zheng Qin, Lei Tang, Yu Gao, Dong Wang, Wei Wang, and Jun Wei. 2022. Finding Bugs in Gremlin-Based Graph Database Systems via Randomized Differential Testing. In Proceedings of ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA). 302–313.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Proceedings of ACMSIGSAC Conference on Computer and Communications Security (CCS). 58–71. Received 2025-02-20; accepted 2025-03-31 Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA076. Publication date: July 2025.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 12,
+      "text": "2024. SQLancer. https://www.manuelrigger.at/dbms-bugs.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 18,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE). 2060–2071.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 30,
+      "text": "Jack Clark, Alastair F Donaldson, John Wickerson, and Manuel Rigger. 2024. Validating Database System Isolation Level Implementations with Version Certificate Recovery. In Proceedings of European Conference on Computer Systems (EuroSys). 754–768.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 43,
+      "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland H. C. Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE). Article 46, 12 pages.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 44,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI). 397–417.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 51,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 52,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 211:1–211:30.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 53,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 24,27,28,30,42,46,49,58,62]",
+      "technique": null,
+      "sentence": "Existing isolation checkers [ 24,27,28,30,42,46,49,58,62] mainly work on 𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 -like data models, in which data is organized in a 𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 format.",
+      "context_before": "mechanisms can undermine the isolation levels claimed by relational DBMSs, leading to isolation anomalies. Isolation anomalies can lead to serious consequences, e.g., incorrect query results and incorrect database states. In relational DBMSs, isolation anomalies usually involve relational data models and complex SQL operations. A recent study on 140 real-world transaction bugs collected from six relational DBMSs has found that 31.4% of these transaction bugs are caused by isolation anomalies, and 93.2%1of these isolation anomalies involve relational data models or complex SQL operations [33].",
+      "context_after": "These checkers analyze the execution history of transactions based on 𝑟𝑒𝑎𝑑(𝑘𝑒𝑦)and𝑤𝑟𝑖𝑡𝑒(𝑘𝑒𝑦,𝑣𝑎𝑙𝑢𝑒)operations, infer dependencies among transactions based on the read and written 𝑘𝑒𝑦s, and construct a transaction dependency graph to detect isolation anomalies. These checkers are limited to detecting isolation anomalies within𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 -like data models and the associated 𝑟𝑒𝑎𝑑(𝑘𝑒𝑦)and𝑤𝑟𝑖𝑡𝑒(𝑘𝑒𝑦,𝑣𝑎𝑙𝑢𝑒)operations. Consequently, existing isolation checkers designed for 𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 -like data models cannot be easily adapted to relational DBMSs. In 𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 -like data models, transaction dependencies",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 6641,
+      "cited_reference": {
+        "number": 30,
+        "text": "Jack Clark, Alastair F Donaldson, John Wickerson, and Manuel Rigger. 2024. Validating Database System Isolation Level Implementations with Version Certificate Recovery. In Proceedings of European Conference on Computer Systems (EuroSys). 754–768.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 24,27,28,30,42,46,49,58,62]",
+      "technique": null,
+      "sentence": "Existing isolation checkers are designed specifically for 𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 -like data models [ 24,27,28,30,42,46,49,58,62], and are not equipped to handle the complexities of relational data models in relational DBMSs.",
+      "context_before": "s involve complex SQL operations in relational DBMSs. Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA076. Publication date: July 2025. Detecting Isolation Anomalies in Relational DBMSs ISSTA076:3 •Relational data models. Unlike𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 data models that utilize 𝑘𝑒𝑦and𝑣𝑎𝑙𝑢𝑒 to manage data, the data models in relational DBMSs [ 31] manage data in tables and support complex data structures (e.g., multiple tables, multi-column primary keys, and foreign keys), and column constraints (e.g., unique constraints and data constraints). A relational table may contain no keys, compound keys, etc.",
+      "context_after": "•Flexible SQL operations. Relational DBMSs support different kinds of complex SQL operations, e.g., SELECT ,INSERT ,UPDATE ,DELETE, and REPLACE. Unlike the simple 𝑟𝑒𝑎𝑑(𝑘𝑒𝑦)and 𝑤𝑟𝑖𝑡𝑒(𝑘𝑒𝑦,𝑣𝑎𝑙𝑢𝑒)operations, SQL operations can support predicates, subqueries, compound queries, aggregate functions, etc. For example, a SELECT statement “ SELECT name, gender FROM student WHERE age < 20 ” retrieves the name and gender of students who are under 20. An UPDATE statement “ UPDATE student SET age = age+1 WHERE age < 20 ” updates the age by adding 1for students who are under 20. Existing isolation checkers [",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 8911,
+      "cited_reference": {
+        "number": 30,
+        "text": "Jack Clark, Alastair F Donaldson, John Wickerson, and Manuel Rigger. 2024. Validating Database System Isolation Level Implementations with Version Certificate Recovery. In Proceedings of European Conference on Computer Systems (EuroSys). 754–768.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 24,27,28,30,42,46,49,58,62]",
+      "technique": null,
+      "sentence": "Existing isolation checkers [ 24,27,28,30,42,46,49,58,62] are limited to supporting simple read and write operations based on 𝑘𝑒𝑦, i.",
+      "context_before": "ta models in relational DBMSs. •Flexible SQL operations. Relational DBMSs support different kinds of complex SQL operations, e.g., SELECT ,INSERT ,UPDATE ,DELETE, and REPLACE. Unlike the simple 𝑟𝑒𝑎𝑑(𝑘𝑒𝑦)and 𝑤𝑟𝑖𝑡𝑒(𝑘𝑒𝑦,𝑣𝑎𝑙𝑢𝑒)operations, SQL operations can support predicates, subqueries, compound queries, aggregate functions, etc. For example, a SELECT statement “ SELECT name, gender FROM student WHERE age < 20 ” retrieves the name and gender of students who are under 20. An UPDATE statement “ UPDATE student SET age = age+1 WHERE age < 20 ” updates the age by adding 1for students who are under 20.",
+      "context_after": "e.,𝑟𝑒𝑎𝑑(𝑘𝑒𝑦)and 𝑤𝑟𝑖𝑡𝑒(𝑘𝑒𝑦,𝑣𝑎𝑙𝑢𝑒). Thus, they cannot support such complex SQL operations in relational DBMSs. In this paper, we propose a novel black-box Isolation checker for Relational DBMSs ,IsoRel. The core idea of IsoRel is to add two auxiliary columns into each table and instrument SQL statements in an isolation-agnostic manner. By analyzing the execution history of the instrumented SQL statements, IsoRel can infer dependencies among transactions that involve relational data models and complex SQL operations. Specifically, we add an auxiliary column 𝑟𝑜𝑤𝐼𝑑 into each table and assign a uniq",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 9693,
+      "cited_reference": {
+        "number": 30,
+        "text": "Jack Clark, Alastair F Donaldson, John Wickerson, and Manuel Rigger. 2024. Validating Database System Isolation Level Implementations with Version Certificate Recovery. In Proceedings of European Conference on Computer Systems (EuroSys). 754–768.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 24,27,28,30,42,46,49,58,62]",
+      "technique": null,
+      "sentence": "For these 48 isolation anomalies, existing isolation checkers [ 24,27,28,30,42,46,49,58,62] can only identify 2 anomalies due to their incapability of handling relational data models and complex SQL operations.",
+      "context_before": "idely-used relational DBMSs, i.e., MySQL [ 8], PostgreSQL [ 10], MariaDB [ 7], CockroachDB [ 3], and TiDB [ 15]. We further evaluate IsoRel on all the isolation levels that these relational DBMSs support. In total, IsoRel has revealed 325 isolation anomalies. From these anomalies, we identify 48 unique isolation anomalies. Among the 48 isolation anomalies, 12 anomalies cause lost update, 12 anomalies cause read-write skew, and 24 anomalies cause write skew. These isolation anomalies violate the isolation levels defined by Adya [ 16,17], and have been confirmed by the respective DBMS community.",
+      "context_after": "This result demonstrates that IsoRel can effectively handle the intricacies of relational data models and complex SQL operations. Such advancements would mitigate the risks associated with isolation anomalies and enhance the reliability of relational DBMSs. In summary, we make the following contributions in this paper. 2Note that the instrumentation for DELETE and REPLACE statements may potentially affect concurrent transaction execution. However, based on our analysis of real-world relational DBMSs, we do not find such cases in real-world relational DBMSs. We will further explain this in Sect",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 11985,
+      "cited_reference": {
+        "number": 30,
+        "text": "Jack Clark, Alastair F Donaldson, John Wickerson, and Manuel Rigger. 2024. Validating Database System Isolation Level Implementations with Version Certificate Recovery. In Proceedings of European Conference on Computer Systems (EuroSys). 754–768.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 24,27,28,30,42,46,49,58,62]",
+      "technique": null,
+      "sentence": "However, existing isolation checkers [ 24,27,28,30,42,46,49,58,62] are limited to 𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 -like data models and the associated 𝑟𝑒𝑎𝑑(𝑘𝑒𝑦)and𝑤𝑟𝑖𝑡𝑒(𝑘𝑒𝑦,𝑣𝑎𝑙𝑢𝑒) operations.",
+      "context_before": "infer that 𝑇2 read-write depends on 𝑇1through𝑟1(we userw(𝑟1)to denote read-write dependency through 𝑟1), and𝑇1write-write depends on 𝑇2through𝑟5(we useww(𝑟5)to denote write-write dependency through𝑟5). This causes a read-write and write-write dependency cycle between 𝑇1and𝑇2in the dependency graph that indicates read-write skew. This may cause incorrect database states. It is difficult to infer dependencies among transactions in relational DBMSs. In this example, tables 𝑡1and𝑡2are constructed without a 𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 structure, and SQL statements involve complex SQL operations, i.e., range queries.",
+      "context_after": "They cannot identify transaction dependencies in such cases. For example, they cannot identify that 𝑠12retrieves𝑟1from its query result, because the query result of 𝑠12is 1, and both 𝑟1and𝑟2have the value of 1 for 𝑐2. They also cannot identify that 𝑠22updates𝑟1, since𝑡1is not a𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 structure and allows different rows to store the same value (e.g., 𝑟1and𝑟3have the same value of 2for𝑐2). Isolation checkers for 𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 -like data models cannot determine which rows a transaction has updated by identifying unique values. As a result, they cannot infer that 𝑇2 read-write depends on 𝑇1through",
+      "section": "2.1 Motivating Example",
+      "page": 4,
+      "char_offset": 15300,
+      "cited_reference": {
+        "number": 30,
+        "text": "Jack Clark, Alastair F Donaldson, John Wickerson, and Manuel Rigger. 2024. Validating Database System Isolation Level Implementations with Version Certificate Recovery. In Proceedings of European Conference on Computer Systems (EuroSys). 754–768.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 16,17,30,42,\n46,49,58,62]",
+      "technique": null,
+      "sentence": "Existing works [ 16,17,30,42, 46,49,58,62] have proved that the appearance of different kinds of cycles in the dependency graph 𝐺indicates different kinds of isolation anomalies, e.",
+      "context_before": "𝑚𝑡𝑊in𝑇𝑗writes the version of row 𝑟with𝑤𝐿𝑖𝑠𝑡𝑟=[...,𝑇𝑘,𝑇𝑗]. No other statements can update row 𝑟between𝑆𝑡𝑚𝑡𝑅 and𝑆𝑡𝑚𝑡𝑊. Therefore, 𝑇𝑗read-write depends on 𝑇𝑖through row 𝑟. The above three lemmas prove that the transaction dependencies inferred by IsoRel are sound, and have no false positives. Therefore, the dependency graph 𝐺=(𝐶𝑇,𝑆𝑂,𝑊𝑅,𝑊𝑊,𝑅𝑊 ), in which 𝑆𝑂represents the session order on concurrent transactions 𝐶𝑇, and𝑊𝑅,𝑊𝑊 and𝑅𝑊represent the set of write-read dependencies, write-write dependencies and read-write dependencies among transactions 𝐶𝑇, is sound and does not contain wrong dependencies.",
+      "context_after": "g., a cycle caused by read-write and write-write dependencies through the same row in the dependency graph 𝐺indicates a lost update. In IsoRel, we adopt the Tarjan algorithm [ 60] to identify cycles in the dependency graph, which is sound and does not report false positives. Therefore, IsoRel is sound. 5 Evaluation We evaluate IsoRel on five widely-used relational DBMSs, i.e., MySQL [ 8], PostgreSQL [ 10], MariaDB [ 7], CockroachDB [ 3], and TiDB [ 15], and answer the following three research questions: •RQ1: How effective is IsoRel in detecting isolation anomalies in relational DBMSs? •RQ2: W",
+      "section": "3.4 Isolation Anomaly Detection",
+      "page": 15,
+      "char_offset": 58396,
+      "cited_reference": {
+        "number": 30,
+        "text": "Jack Clark, Alastair F Donaldson, John Wickerson, and Manuel Rigger. 2024. Validating Database System Isolation Level Implementations with Version Certificate Recovery. In Proceedings of European Conference on Computer Systems (EuroSys). 754–768.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 24,27,28,30,42,46,49,58,62]",
+      "technique": null,
+      "sentence": "4 Comparison with Existing Isolation Checkers Existing isolation checkers [ 24,27,28,30,42,46,49,58,62] mainly work on 𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 -like data models, in which data is organized in a 𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 format.",
+      "context_before": "this case, two transactions 𝑇1 and𝑇2write different rows in the same table. If the relational DBMS does not apply gap locks (e.g., TiDB does not apply gap locks), lock conflicts do not occur between 𝑇1and𝑇2. Figure 6 shows a write skew detected in MySQL under Repeatable Read. In this case, 𝑇1and 𝑇3are in the same session. 𝑇2rwdepends on 𝑇1through row 𝑟1, and𝑇1rwdepends on 𝑇2through row𝑟3. Thus, this isolation anomaly satisfies write skew defined by Berenson [ 21]. However, it is allowed to occur in MySQL, since row 𝑟3and𝑟1are in different tables, and no lock conflict occurs between𝑇1and𝑇2. 5.",
+      "context_after": "These checkers are limited to detecting isolation anomalies only within simple 𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 -like data models and the associated 𝑟𝑒𝑎𝑑(𝑘𝑒𝑦)and 𝑤𝑟𝑖𝑡𝑒(𝑘𝑒𝑦,𝑣𝑎𝑙𝑢𝑒)operations. They cannot infer wr,wwandrwdependencies among transactions that involve complex SQL operations and relational data models in relational DBMSs, which IsoRel can infer. Therefore, we cannot directly compare IsoRel with existing checkers when these checkers are applied to relational DBMSs. Thus, we analyze whether three existing checkers (Elle [ 46], Cobra [58], PolySI [42]) can conceptually detect the 48 isolation anomalies revea",
+      "section": "5.4 Comparison with Existing Isolation Checkers",
+      "page": 18,
+      "char_offset": 70710,
+      "cited_reference": {
+        "number": 30,
+        "text": "Jack Clark, Alastair F Donaldson, John Wickerson, and Manuel Rigger. 2024. Validating Database System Isolation Level Implementations with Version Certificate Recovery. In Proceedings of European Conference on Computer Systems (EuroSys). 754–768.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 24,27,28,30,42,46,49,58,62]",
+      "technique": null,
+      "sentence": "Existing isolation anomaly detection algorithms [ 24,27,28,30,42,46,49,58,62] also aim to detect cycles in the dependency graph, among which there are some efficient anomaly detection algorithms, e.",
+      "context_before": "isolation anomalies detected in one relational DBMS. These templates can potentially lead to anomalies in other relational DBMSs. Thus, we can use these templates to speed up isolation anomaly detection in other relational DBMSs, and help converge more quickly. Extending IsoRel by adopting existing anomaly detection algorithms. In our work, building the dependency graph from the transaction execution history in relational DBMSs is our main contribution. We further adopt a simple algorithm (i.e., graph traversal by utilizing the Tarjan algorithm [ 60]) to detect cycles in the dependency graph.",
+      "context_after": "g., resolving uncertain dependencies through SMT solvers [ 42,58,62]. Therefore, once we build the dependency graph in relational DBMSs through our SQL statement instrumentation and dependency inference approach, we can potentially adopt existing anomaly detection algorithms (e.g., Cobra [ 58] and PolySI [ 42]) to detect isolation anomalies in relational DBMSs to improve detection efficiency. 7 Related Work Isolation level specification. ANSI [ 2] defines four isolation levels, i.e., Read Uncommitted ,Read Committed ,Repeatable Read, andSerializable, and the corresponding four isolation anomal",
+      "section": "6.2 Future Work",
+      "page": 19,
+      "char_offset": 75685,
+      "cited_reference": {
+        "number": 30,
+        "text": "Jack Clark, Alastair F Donaldson, John Wickerson, and Manuel Rigger. 2024. Validating Database System Isolation Level Implementations with Version Certificate Recovery. In Proceedings of European Conference on Computer Systems (EuroSys). 754–768.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[30]",
+      "technique": null,
+      "sentence": "Emme [30] is a white-box checker that retrieves transaction timestamps and recovers a version certificate to check isolation levels in DBMSs that use multi-version concurrency control timestamp ordering protocol to guarantee serializability.",
+      "context_before": "A076. Publication date: July 2025. ISSTA076:20 Rui Yang, Ziyu Cui, Wensheng Dou, Yu Gao, Jiansen Song, Xudong Xie, and Jun Wei models. Cobra [ 58] utilizes polygraph, which utilizes constraints to capture unknown dependencies, and uses SMT solvers to detect cycles. PolySI [ 42] proposes a generalized polygraph and the formal definition of Snapshot Isolation. It accelerates the checking of Snapshot Isolation in𝑘𝑒𝑦𝑣𝑎𝑙𝑢𝑒 -like data models through SMT solvers. Viper [ 62] proposes a BC-polygraph, and accelerates the checking of Snapshot Isolation in𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 -like data models through SMT solvers.",
+      "context_after": "However, these isolation checkers focus on 𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 -like data models, and can not be applied to relational data models. Transaction testing. To improve the quality of transaction implementation, some transaction testing approaches have been proposed. DT2[32] executes the same group of transactions in multiple DBMSs and compares their execution results to detect transaction bugs. Troc [ 35] builds a transaction test oracle to determine whether a group of transactions executes correctly. TxCheck [44] constructs semantically equivalent test cases and compares their execution results to detect",
+      "section": "6.2 Future Work",
+      "page": 20,
+      "char_offset": 77910,
+      "cited_reference": {
+        "number": 30,
+        "text": "Jack Clark, Alastair F Donaldson, John Wickerson, and Manuel Rigger. 2024. Validating Database System Isolation Level Implementations with Version Certificate Recovery. In Proceedings of European Conference on Computer Systems (EuroSys). 754–768.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[44]",
+      "technique": null,
+      "sentence": "TxCheck [44] constructs semantically equivalent test cases and compares their execution results to detect transaction bugs.",
+      "context_before": "DBMSs that use multi-version concurrency control timestamp ordering protocol to guarantee serializability. However, these isolation checkers focus on 𝑘𝑒𝑦-𝑣𝑎𝑙𝑢𝑒 -like data models, and can not be applied to relational data models. Transaction testing. To improve the quality of transaction implementation, some transaction testing approaches have been proposed. DT2[32] executes the same group of transactions in multiple DBMSs and compares their execution results to detect transaction bugs. Troc [ 35] builds a transaction test oracle to determine whether a group of transactions executes correctly.",
+      "context_after": "WriteCheck [ 34] proposes write-specific serializability, and uses this property to detect write-specific serializability violations. However, these works cannot detect isolation anomalies under non-deterministic executions in relational DBMSs. DBMS testing. Many approaches have been proposed to test DBMSs. SQLsmith [ 13] detects crash bugs by executing randomly generated SQL statements. Rigger et al. propose SQLancer [ 12] and several approaches, e.g., PQS [ 53], TLP [ 52] and NoREC [ 51], to detect logic bugs in SELECT statements. QPG [ 18] utilizes query plans to guide DBMS testing. DQE [",
+      "section": "6.2 Future Work",
+      "page": 20,
+      "char_offset": 78645,
+      "cited_reference": {
+        "number": 44,
+        "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI). 397–417.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "propose SQLancer [ 12] and several approaches, e.",
+      "context_before": "oracle to determine whether a group of transactions executes correctly. TxCheck [44] constructs semantically equivalent test cases and compares their execution results to detect transaction bugs. WriteCheck [ 34] proposes write-specific serializability, and uses this property to detect write-specific serializability violations. However, these works cannot detect isolation anomalies under non-deterministic executions in relational DBMSs. DBMS testing. Many approaches have been proposed to test DBMSs. SQLsmith [ 13] detects crash bugs by executing randomly generated SQL statements. Rigger et al.",
+      "context_after": "g., PQS [ 53], TLP [ 52] and NoREC [ 51], to detect logic bugs in SELECT statements. QPG [ 18] utilizes query plans to guide DBMS testing. DQE [ 55] executes SELECT ,UPDATE and DELETE statements with the same predicate to detect logic bugs. Radar [ 56] differentially tests the original database and raw database that wipes out the metadata to detect metadata-related logic bugs. DDLCheck [ 57] examines the behavior differences on the same database schema created by different DDL sequences to detect schema-related logic bugs. Grand [ 65], GDsmith [ 41] and RD2[61] adopt differential testing to det",
+      "section": "6.2 Future Work",
+      "page": 20,
+      "char_offset": 79174,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": ", PQS [ 53], TLP [ 52] and NoREC [ 51], to detect logic bugs in SELECT statements.",
+      "context_before": "executes correctly. TxCheck [44] constructs semantically equivalent test cases and compares their execution results to detect transaction bugs. WriteCheck [ 34] proposes write-specific serializability, and uses this property to detect write-specific serializability violations. However, these works cannot detect isolation anomalies under non-deterministic executions in relational DBMSs. DBMS testing. Many approaches have been proposed to test DBMSs. SQLsmith [ 13] detects crash bugs by executing randomly generated SQL statements. Rigger et al. propose SQLancer [ 12] and several approaches, e.g.",
+      "context_after": "QPG [ 18] utilizes query plans to guide DBMS testing. DQE [ 55] executes SELECT ,UPDATE and DELETE statements with the same predicate to detect logic bugs. Radar [ 56] differentially tests the original database and raw database that wipes out the metadata to detect metadata-related logic bugs. DDLCheck [ 57] examines the behavior differences on the same database schema created by different DDL sequences to detect schema-related logic bugs. Grand [ 65], GDsmith [ 41] and RD2[61] adopt differential testing to detect logic bugs in graph DBMSs. Qudi [ 63], GQT [ 43] and GRev [ 50] further utilize",
+      "section": "6.2 Future Work",
+      "page": 20,
+      "char_offset": 79226,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "QPG [ 18] utilizes query plans to guide DBMS testing.",
+      "context_before": "compares their execution results to detect transaction bugs. WriteCheck [ 34] proposes write-specific serializability, and uses this property to detect write-specific serializability violations. However, these works cannot detect isolation anomalies under non-deterministic executions in relational DBMSs. DBMS testing. Many approaches have been proposed to test DBMSs. SQLsmith [ 13] detects crash bugs by executing randomly generated SQL statements. Rigger et al. propose SQLancer [ 12] and several approaches, e.g., PQS [ 53], TLP [ 52] and NoREC [ 51], to detect logic bugs in SELECT statements.",
+      "context_after": "DQE [ 55] executes SELECT ,UPDATE and DELETE statements with the same predicate to detect logic bugs. Radar [ 56] differentially tests the original database and raw database that wipes out the metadata to detect metadata-related logic bugs. DDLCheck [ 57] examines the behavior differences on the same database schema created by different DDL sequences to detect schema-related logic bugs. Grand [ 65], GDsmith [ 41] and RD2[61] adopt differential testing to detect logic bugs in graph DBMSs. Qudi [ 63], GQT [ 43] and GRev [ 50] further utilize equivalent queries [ 59] to detect logic bugs in graph",
+      "section": "6.2 Future Work",
+      "page": 20,
+      "char_offset": 79308,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 43]",
+      "technique": null,
+      "sentence": "Qudi [ 63], GQT [ 43] and GRev [ 50] further utilize equivalent queries [ 59] to detect logic bugs in graph DBMSs.",
+      "context_before": "oREC [ 51], to detect logic bugs in SELECT statements. QPG [ 18] utilizes query plans to guide DBMS testing. DQE [ 55] executes SELECT ,UPDATE and DELETE statements with the same predicate to detect logic bugs. Radar [ 56] differentially tests the original database and raw database that wipes out the metadata to detect metadata-related logic bugs. DDLCheck [ 57] examines the behavior differences on the same database schema created by different DDL sequences to detect schema-related logic bugs. Grand [ 65], GDsmith [ 41] and RD2[61] adopt differential testing to detect logic bugs in graph DBMSs.",
+      "context_after": "DOT [ 64] further detects optimization bugs in graph DBMSs. However, these works cannot detect isolation anomalies in relational DBMSs. 8 Conclusion Incorrect implementations of transaction mechanisms can cause isolation anomalies and undermine the isolation levels claimed by relational DBMSs. In this paper, we propose IsoRel, a black-box isolation checker for relational DBMSs, which can support relational data models and complex SQL operations. The core idea of IsoRel is to instrument SQL statements in an isolation-agnostic manner and extract the accessed rows of each SQL statement to track",
+      "section": "6.2 Future Work",
+      "page": 20,
+      "char_offset": 79854,
+      "cited_reference": {
+        "number": 43,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland H. C. Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE). A",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:58:40Z",
+    "is_model_written": true,
+    "summary": "This work checks isolation levels in relational DBMSs directly, rather than through the key-value abstraction existing isolation checkers assume. Because those checkers model only read(key) and write(key,value), they cannot represent the SQL operations real workloads use: of 48 isolation anomalies the authors collect, existing checkers identify 2. The approach builds dependency graphs over relational operations and detects the cycles that indicate each anomaly class.",
+    "narrative": "SQLancer appears only in the future-work discussion, as background on what else DBMS testing covers: the paper notes that SQLancer and its approaches -- PQS, TLP and NoREC -- detect logic bugs in SELECT statements, that QPG uses query plans to guide testing, and that QuDi, GQT and GRev carry equivalent-query ideas to graph systems. That is a survey of the adjacent literature rather than a relationship: the paper's own comparison is against isolation checkers, and the anomaly work it builds on is Emme and TxCheck.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "background",
+      "M4": "background",
+      "M5": "background",
+      "M6": "background",
+      "M7": "background",
+      "M8": "background",
+      "M9": "definition",
+      "M10": "definition",
+      "M11": "definition",
+      "M12": "definition",
+      "M13": "definition",
+      "M14": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No reuse is described; the paper implements dependency-graph construction over relational operations."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Isolation-anomaly detection through dependency-graph cycles shares no mechanism with the SELECT-oriented oracles the paper cites."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "M7 states the comparison is with existing isolation checkers. SQLancer's oracles are mentioned only in the future-work survey, with no run reported."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The mentions describe what each technique does; no standing is claimed for any of them."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

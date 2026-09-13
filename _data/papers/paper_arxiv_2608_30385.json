@@ -1,0 +1,944 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:29:06Z",
+  "paper": {
+    "id": "paper:arxiv:2608.30385",
+    "title": "Detecting DBMS Bugs by Constructing Equivalent Representations of Intermediate Query Results",
+    "authors": [
+      "Xiao-Xu Niu",
+      "Gong Chen",
+      "Jin-Fu Chen",
+      "Xiaoyuan Xie"
+    ],
+    "year": 2026,
+    "venue": null,
+    "doi": null,
+    "arxiv_id": "2608.30385",
+    "s2_paper_id": "e239393bf8f261ed8f721e3d78859f15d52d239b",
+    "url": "https://arxiv.org/abs/2608.30385",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2608.30385",
+      "retrieved_at": "2026-09-09T01:29:06Z",
+      "chars": 66769,
+      "content_sha256": "sha256:14d5ee7feb84db80e5d89d8bd4d874acf64d3a4bf53aed3ff488ac48df3928fc"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 1722
+      },
+      {
+        "number": "2",
+        "title": "Background and Motivation",
+        "start": 6312
+      },
+      {
+        "number": "2.1",
+        "title": "Representations of Intermediate Query",
+        "start": 6573
+      },
+      {
+        "number": "2.2",
+        "title": "Motivating Example",
+        "start": 8611
+      },
+      {
+        "number": "2.3",
+        "title": "Key Insight",
+        "start": 12195
+      },
+      {
+        "number": "3",
+        "title": "Approach",
+        "start": 13325
+      },
+      {
+        "number": "3.1",
+        "title": "Overview of ERIQ",
+        "start": 13706
+      },
+      {
+        "number": "3.2",
+        "title": "Database and Query Generation",
+        "start": 16298
+      },
+      {
+        "number": "3.3",
+        "title": "Constructing Equivalent Representations of",
+        "start": 20849
+      },
+      {
+        "number": "3.4",
+        "title": "Result Comparison",
+        "start": 23198
+      },
+      {
+        "number": "4",
+        "title": "Evaluation",
+        "start": 26347
+      },
+      {
+        "number": "4.1",
+        "title": "Experimental Setup",
+        "start": 27477
+      },
+      {
+        "number": "4.2",
+        "title": "RQ1: Effectiveness of ERIQ",
+        "start": 28927
+      },
+      {
+        "number": "4.3",
+        "title": "RQ2: Comparison with Existing Approaches",
+        "start": 31828
+      },
+      {
+        "number": "4.4",
+        "title": "RQ3: Contribution of the Three",
+        "start": 36037
+      },
+      {
+        "number": "4.5",
+        "title": "RQ4: Bug Analysis",
+        "start": 39630
+      },
+      {
+        "number": "5",
+        "title": "Discussion",
+        "start": 49723
+      },
+      {
+        "number": "6",
+        "title": "Related Work",
+        "start": 52817
+      },
+      {
+        "number": "7",
+        "title": "Conclusion",
+        "start": 56200
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In Engineering (ICSE). IEEE, 2060–2071. https://doi.org/10.1109/icse48619.2023. 00174",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep it simple: Testing Databases via Differential Query Plans.Proceedings of the ACM on Management of Data2, 3 (2024), 1–26. https://doi.org/10.1145/3654991",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 3,
+      "text": "Yujia Chen, Yingli Zhou, Fangyuan Zhang, and Cuiyun Gao. 2026. LLM-Based Test Case Generation in DBMS through Monte Carlo Tree Search.arXiv preprint arXiv:2603.21530(2026). https://doi.org/10.48550/arXiv.2603.21530",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Wenqian Deng, Jie Liang, Zhiyong Wu, Jingzhou Fu, and Yu Jiang. 2025. Detecting Logic Bugs in DBMSs via Equivalent Data Construction.Proceedings of the ACM on Management of Data3, 6 (2025), 1–25. https://doi.org/10.1145/3769779",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, and Yu Jiang. 2024. Sedar: Obtaining Highquality Seeds for DBMS Fuzzing via Cross-DBMS SQL Transfer. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering (ICSE). 1–12. https://doi.org/10.1145/3597503.3639210",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-free DBMS Fuzzing. InProceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering (ASE). 1–12. https://doi.org/10. 1145/3551349.3560431",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Xiyue Gao, Zhuang Liu, Jiangtao Cui, Hui Li, Hui Zhang, Kewei Wei, and Kankan Zhao. 2026. A Comprehensive Survey on Database Management System Fuzzing: Techniques, Taxonomy and Evaluation.Comput. Surveys58, 10 (2026), 1–36. https://doi.org/10.1145/3799227",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Zongyin Hao, Quanfeng Huang, Chengpeng Wang, Jianfeng Wang, Yushan Zhang, Rongxin Wu, and Charles Zhang. 2023. Pinolo: Detecting Logical Bugs in Database Management Systems with Approximate Query Synthesis. In2023 USENIX Annual Technical Conference (USENIX ATC 23). 345–358. https://www. usenix.org/conference/atc23/presentation/hao",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "International Organization for Standardization. 2023.Information technology – Database languages SQL – Part 2: SQL/Foundation. Technical Report ISO/IEC 9075-2:2023. International Organization for Standardization. https://www.iso. org/standard/76584.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. 2023. DynSQL: Stateful Fuzzing for Database Management Systems with Complex and Valid SQL Query Generation. In32nd USENIX Security Symposium (USENIX Security 23). 4949–4965. https: //www.usenix.org/conference/usenixsecurity23/presentation/jiang-zu-ming",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Zu-Ming Jiang and Zhendong Su. 2024. Detecting Logic Bugs in Database Engines via Equivalent Expression Transformation. In18th USENIX Symposium on Operating Systems Design and Implementation (OSDI 24). 821–835. https: //www.usenix.org/conference/osdi24/presentation/jiang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Shadi Abdul Khalek, Bassem Elkarablieh, Yai O Laleye, and Sarfraz Khurshid. 2008. Query-aware Test Generation Using a Relational Constraint Solver. In 2008 23rd IEEE/ACM International Conference on Automated Software Engineering (ASE). IEEE, 238–247. https://doi.org/10.1109/ase.2008.34",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. 2023. Sequenceoriented DBMS Fuzzing. In Engineering (ICDE). IEEE, 668–681. https://doi.org/10.1109/icde55515.2023.00057",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Jie Liang, Zhiyong Wu, Jingzhou Fu, Yiyuan Bai, Qiang Zhang, and Yu Jiang. 2024. WingFuzz: Implementing Continuous Fuzzing for DBMSs. In2024 USENIX Annual Technical Conference (USENIX ATC 24). 479–492. https://www.usenix. org/conference/atc24/presentation/liang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting logical bugs of DBMS with Coverage-based Guidance. In31st USENIX Security Symposium (USENIX Security 22). 4309–4326. https://www.usenix.org/conference/usenixsecurity22/ presentation/liang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "MariaDB. 2026. MariaDB Server. https://mariadb.org/ Accessed: 2026-08-01.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "MySQL. 2026. Collation Coercibility in Expressions. https://dev.mysql.com/doc/ refman/9.6/en/charset-collation-coercibility.html Accessed: 2026-04-01.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "MySQL. 2026. CREATE TABLE ... SELECT Statement. https://dev.mysql.com/ doc/refman/9.6/en/create-table-select.html Accessed: 2026-04-01.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "MySQL. 2026. CREATE TEMPORARY TABLE Statement. https://dev.mysql. com/doc/refman/9.6/en/create-temporary-table.html Accessed: 2026-04-01.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "MySQL. 2026. CREATE VIEW Statement. https://dev.mysql.com/doc/refman/9. 6/en/create-view.html Accessed: 2026-04-01.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "MySQL. 2026. Floating-Point Types (Approximate Value) - FLOAT, DOUBLE. https://dev.mysql.com/doc/refman/9.6/en/floating-point-types.html Accessed: 2026-04-01.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "MySQL. 2026. MySQL Database. https://www.mysql.com/ Accessed: 2026-08-01.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "MySQL. 2026. Optimizing Derived Tables, View References, and Common Table Expressions with Merging or Materialization. https://dev.mysql.com/doc/ refman/9.6/en/derived-table-optimization.html Accessed: 2026-04-01.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "MySQL. 2026. Temporary Table Problems. https://dev.mysql.com/doc/refman/9. 6/en/temporary-table-problems.html Accessed: 2026-04-01.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "MySQL. 2026. WITH (Common Table Expressions). https://dev.mysql.com/doc/ refman/9.6/en/with.html Accessed: 2026-04-01.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "OceanBase. 2026. OceanBase Database. https://www.oceanbase.com/ Accessed: 2026-08-01.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Percona. 2026. Percona Database. https://www.percona.com/ Accessed: 202608-01. Xiaoxu Niu, Gong Chen, Jinfu Chen, and Xiaoyuan Xie",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "John Regehr, Yang Chen, Pascal Cuoq, Eric Eide, Chucky Ellison, and Xuejun Yang. 2012. Test-case Reduction for C Compiler Bugs. InProceedings of the 33rd ACMSIGPLAN conference on Programming Language Design and Implementation (PLDI). 335–346. https://doi.org/10.1145/2254064.2254104",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-optimizing Reference Engine Construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 1140–1152. https://doi.org/10.1145/3368089.3409710",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 30,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning.Proceedings of the ACM on Programming Languages4, OOPSLA (2020), 1–30. https://doi.org/10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 31,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682. https://www.usenix.org/conference/osdi20/ presentation/rigger",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 32,
+      "text": "Donald R Slutz. 1998. Massive Stochastic Testing of SQL. InProceedings of International Conference on Very Large Data Bases (VLDB), Vol. 98. 618–622. https://dl.acm.org/doi/abs/10.5555/645924.671199",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Jiansen Song, Wensheng Dou, Ziyu Cui, Qianwang Dai, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2023. Testing Database Systems via Differential Query Execution. In Engineering (ICSE). IEEE, 2072–2084. https://doi.org/10.1109/icse48619.2023. 00175",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Jiansen Song, Wensheng Dou, Yu Gao, Ziyu Cui, Yingying Zheng, Dong Wang, Wei Wang, Jun Wei, and Tao Huang. 2024. Detecting Metadata-Related Logic Bugs in Database Systems via Raw Database Construction.Proceedings of the VLDB Endowment17, 8 (2024), 1884–1897. https://doi.org/10.14778/3659437.3659445",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Jiansen Song, Wensheng Dou, Yingying Zheng, Yu Gao, Ziyu Cui, Wei Wang, and Jun Wei. 2025. Detecting Schema-Related Logic Bugs in Relational DBMSsvia Equivalent Database Construction.Proceedings of the VLDB Endowment18, 7 (2025), 2281–2294. https://doi.org/10.14778/3734839.3734861",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "SQLancer. 2026. Automated Testing to Find Logic and Performance Bugs in Database Systems. https://github.com/sqlancer/sqlancer Accessed: 2026-08-01.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 37,
+      "text": "SQLsmith. 2026. A Random SQL Query Generator. https://github.com/anse1/ sqlsmith Accessed: 2026-08-01.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Xiu Tang, Sai Wu, Dongxiang Zhang, Feifei Li, and Gang Chen. 2023. Detecting Logic Bugs of Join Optimizations in DBMS.Proceedings of the ACM on Management of Data1, 1 (2023), 1–26. https://doi.org/10.1145/3588909",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Xiu Tang, Shijie Yang, Sai Wu, Dongxiang Zhang, Wenchao Zhou, Feifei Li, and Gang Chen. 2025. Unveiling Logic Bugs in SPJG Query Optimizations within DBMS.ACM Transactions on Database Systems (TODS)51, 1 (2025), 1–35. https://doi.org/10.1145/3764583",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. 2021. Industry Practice of Coverage-guided Enterprise-level DBMS fuzzing. In Software Engineering in Practice (ICSE-SEIP). IEEE, 328–337. https://doi.org/10. 1109/icse-seip52600.2021.00042",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Zhiyong Wu, Jie Liang, Jingzhou Fu, Mingzhe Wang, and Yu Jiang. 2025. Puppy: Finding Performance Degradation Bugs in DBMSs via Limited-optimization Plan Construction. In Engineering (ICSE). IEEE, 679–690. https://doi.org/10.1109/icse55347.2025.00045",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Chi Zhang and Manuel Rigger. 2025. Constant Optimization Driven Database System Testing.Proceedings of the ACM on Management of Data3, 1 (2025), 1–24. https://doi.org/10.1145/3709674",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 43,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. Squirrel: Testing Database Management Systems with Language Validity and Coverage Feedback. InProceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security (CCS). 955–970. https: //doi.org/10.1145/3372297.3417260",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 1,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In Engineering (ICSE). IEEE, 2060–2071. https://doi.org/10.1109/icse48619.2023. 00174",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "prints the DOI of the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep it simple: Testing Databases via Differential Query Plans.Proceedings of the ACM on Management of Data2, 3 (2024), 1–26. https://doi.org/10.1145/3654991",
+      "technique": "dqp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing dqp",
+        "prints the DOI of the paper introducing dqp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 29,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-optimizing Reference Engine Construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 1140–1152. https://doi.org/10.1145/3368089.3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 30,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning.Proceedings of the ACM on Programming Languages4, OOPSLA (2020), 1–30. https://doi.org/10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 31,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682. https://www.usenix.org/conference/osdi20/ presentation/rigger",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 36,
+      "text": "SQLancer. 2026. Automated Testing to Find Logic and Performance Bugs in Database Systems. https://github.com/sqlancer/sqlancer Accessed: 2026-08-01.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 42,
+      "text": "Chi Zhang and Manuel Rigger. 2025. Constant Optimization Driven Database System Testing.Proceedings of the ACM on Management of Data3, 1 (2025), 1–24. https://doi.org/10.1145/3709674",
+      "technique": "coddtest",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing coddtest",
+        "prints the DOI of the paper introducing coddtest",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "For example, NoREC [ 29] compares the results of optimized and unoptimized queries; TLP [ 30] partitions queries based on ternary logic; PQS [ 31] checks whether a selected pivot row appears in the result of a generated query; Pinolo [ 8] checks result containment between synthesized queries and a seed query; EET [11] and CODDTest [42] apply equivalent transformations at the expression level; Radar [ 34] compares query results across databases with the same data but different metadata; and EDC [ 4] checks query consistency using precomputed results of data operation expressions.",
+      "context_before": "wever, we observe that such queries can return inconsistent results, as illustrated in Section 2.2.Such inconsistencies can indicate potential DBMS bugs, which may be ∗These authors have contributed equally to this work. †Corresponding author.exposed when the corresponding queries are processed through different paths within the DBMS. Many approaches have been proposed for detecting DBMS logic bugs.However, to the best of our knowledge, they have never explored the perspective of detecting such bugs by checking result consistency across equivalent representations of intermediate query results.",
+      "context_after": "In this paper, we propose ERIQ, a novel testing approach for detecting DBMS logic bugs from the perspective of checking result consistency across Equivalent Representations of Intermediate Query Results. ERIQ constructs corresponding SQL variants that use a VIEW, a CTE, or a TEMPT to represent the same intermediate query result, executes these variants, and compares their returned results. If the results are inconsistent, ERIQ reports the inconsistency as a bug. We implemented ERIQ and evaluated it on four widely used open-source DBMSs: MySQL, MariaDB, Percona, and OceanBase. In total, ERIQ d",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 3065,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp",
+        "pqs",
+        "coddtest"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "We further compared ERIQ with four state-of-the-art DBMS logic bug detection approaches: EDC [ 4], Radar [ 34], EET [ 11], and TLP [ 30].",
+      "context_before": "intermediate query result, executes these variants, and compares their returned results. If the results are inconsistent, ERIQ reports the inconsistency as a bug. We implemented ERIQ and evaluated it on four widely used open-source DBMSs: MySQL, MariaDB, Percona, and OceanBase. In total, ERIQ detected 64 bugs, including 29 in MySQL, 18 in MariaDB, 13 in Percona, and 4 in OceanBase. Developers confirmed 63 of them, including 54 unique and previously unknown logic bugs, 8 duplicates of other bugs reported by ERIQ, and one documentation issue. Among the 54 unique logic bugs, two have been fixed.",
+      "context_after": "Among these 54 unique logic bugs, the best-performing existing approach could detect only 9 of them, showing that ERIQ detects many bugs missed by each existing approach and thus provides complementary bug detection capability. Under the 24-hour testing arXiv:2608.30385v1 [cs.DB] 31 Aug 2026 Xiaoxu Niu, Gong Chen, Jinfu Chen, and Xiaoyuan Xie budget on each supported DBMS, ERIQ detected 54 logic bugs, compared with 16 detected by the best-performing existing approach, demonstrating its stronger bug detection capability. This paper makes the following contributions: •We introduce a new perspec",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 4554,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[ 8,29–\n31]",
+      "technique": "norec",
+      "sentence": "For example, existing approaches expose bugs by transforming, partitioning, or constructing queries [ 8,29– 31], transforming query expressions [ 11,42], varying database metadata [ 34], or using precomputed results of data operation expressions [4].",
+      "context_before": "velopers have fixed this bug (https://jira.mariadb.org/browse/MDEV40143), and its root cause is further analyzed in Section 4.5. Importantly, such logic bugs may silently produce incorrect query results without causing crashes or explicit errors, potentially propagating incorrect data to downstream applications. 2.3 Key Insight This observation motivates a new perspective for detecting DBMS logic bugs by checking result consistency across equivalent representations of the same intermediate query result. However, existing DBMS logic bug detection approaches have never explored this perspective.",
+      "context_after": "The rationale behind this perspective follows from the observation in Section 2.1: queries constructed using equivalent representations of the same intermediate query result may be processed through different paths within the DBMS. Consequently, an underlying DBMS logic bug can affect the corresponding queries differently, resulting in inconsistent query results, as demonstrated by the real-world bug presented in Section 2.2. Therefore, constructing such equivalent representations and comparing the correspondingquery results provides an effective approach to detecting DBMS logic bugs. 3 Appro",
+      "section": "2.3 Key Insight",
+      "page": 3,
+      "char_offset": 12481,
+      "cited_reference": {
+        "number": 29,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-optimizing Reference Engine Construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 1140–115",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "coddtest"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker",
+      "surface": "[ 2,4,10,14,33,41]",
+      "technique": "dqp",
+      "sentence": "These DBMSs have been extensively tested by many existing approaches [ 2,4,10,14,33,41].",
+      "context_before": "whether these representations provide complementary bug detection capability. •RQ4: What characteristics do the bugs detected by ERIQ exhibit?In this RQ, we analyze the SQL features involved in the detected bugs and examine representative root causes to understand the types of DBMS defects exposed by ERIQ. 4.1 Experimental Setup Target DBMSs.We selected 4 widely used open-source DBMSs: MySQL [ 22], MariaDB [ 16], Percona [ 27], and OceanBase [ 26]. We tested the latest release versions available when the experiments began: MySQL 9.6.0, MariaDB 12.2.2, Percona 8.0.45-36, and OceanBase 4.4.2.0.",
+      "context_after": "Therefore, finding new bugs in them is challenging. Baselines.We selected 4 state-of-the-art DBMS logic bug detection approaches as baselines: EDC [ 4], Radar [ 34], EET [ 11], and TLP [ 30]. These approaches have demonstrated their effectiveness by uncovering real-world DBMS logic bugs and represent different bug detection perspectives. EDC was selected as the primary baseline because it supports all target DBMSs in our evaluation. Radar, EET, and TLP were additionally included because they were used as baselines in EDC’s evaluation. These baselines enable us to evaluate whether ERIQ provide",
+      "section": "4.1 Experimental Setup",
+      "page": 6,
+      "char_offset": 27768,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep it simple: Testing Databases via Differential Query Plans.Proceedings of the ACM on Management of Data2, 3 (2024), 1–26. https://doi.org/10.1145/3654991",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing dqp",
+          "prints the DOI of the paper introducing dqp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "We selected 4 state-of-the-art DBMS logic bug detection approaches as baselines: EDC [ 4], Radar [ 34], EET [ 11], and TLP [ 30].",
+      "context_before": "Q, we analyze the SQL features involved in the detected bugs and examine representative root causes to understand the types of DBMS defects exposed by ERIQ. 4.1 Experimental Setup Target DBMSs.We selected 4 widely used open-source DBMSs: MySQL [ 22], MariaDB [ 16], Percona [ 27], and OceanBase [ 26]. We tested the latest release versions available when the experiments began: MySQL 9.6.0, MariaDB 12.2.2, Percona 8.0.45-36, and OceanBase 4.4.2.0. These DBMSs have been extensively tested by many existing approaches [ 2,4,10,14,33,41]. Therefore, finding new bugs in them is challenging. Baselines.",
+      "context_after": "These approaches have demonstrated their effectiveness by uncovering real-world DBMS logic bugs and represent different bug detection perspectives. EDC was selected as the primary baseline because it supports all target DBMSs in our evaluation. Radar, EET, and TLP were additionally included because they were used as baselines in EDC’s evaluation. These baselines enable us to evaluate whether ERIQ provides complementary bug detection capability by introducing a new testing perspective. Experimental infrastructure.We conducted all experiments on a server equipped with an Intel Xeon Gold 6254 pr",
+      "section": "4.1 Experimental Setup",
+      "page": 6,
+      "char_offset": 27920,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Radar, EET, and TLP were additionally included because they were used as baselines in EDC’s evaluation.",
+      "context_before": "an: MySQL 9.6.0, MariaDB 12.2.2, Percona 8.0.45-36, and OceanBase 4.4.2.0. These DBMSs have been extensively tested by many existing approaches [ 2,4,10,14,33,41]. Therefore, finding new bugs in them is challenging. Baselines.We selected 4 state-of-the-art DBMS logic bug detection approaches as baselines: EDC [ 4], Radar [ 34], EET [ 11], and TLP [ 30]. These approaches have demonstrated their effectiveness by uncovering real-world DBMS logic bugs and represent different bug detection perspectives. EDC was selected as the primary baseline because it supports all target DBMSs in our evaluation.",
+      "context_after": "These baselines enable us to evaluate whether ERIQ provides complementary bug detection capability by introducing a new testing perspective. Experimental infrastructure.We conducted all experiments on a server equipped with an Intel Xeon Gold 6254 processor (3.10 GHz, 18 cores, and 36 hardware threads), 64 GB of RAM, and approximately 1 TB of local storage. The server ran 64-bit Ubuntu 20.04.3 LTS. Each DBMS was deployed in a separate Docker container created from its official image and run with its default configuration. 4.2 RQ1: Effectiveness of ERIQ To answer RQ1, we evaluated ERIQ’s effec",
+      "section": "4.1 Experimental Setup",
+      "page": 6,
+      "char_offset": 28294,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "1: EDC [ 4], Radar [ 34], EET [ 11], and TLP [ 30].",
+      "context_before": "everity classifications. These results indicate that most of the unique logic bugs detected by ERIQ received relatively high severity classifications from the respective DBMS communities. Finding 1.ERIQ detected 64 bugs, 63 of which were confirmed by developers, and 2 have been fixed. Among the confirmed bugs, 54 were unique and previously unknown logic bugs, and 1 was a documentation issue. Of the 54 unique logic bugs, 48 received relatively high severity classifications. 4.3 RQ2: Comparison with Existing Approaches To answer RQ2, we compared ERIQ with the 4 baselines introduced in Section 4.",
+      "context_after": "We conducted two complementary experiments. First, we analyzed the distinctiveness of ERIQ’s 54 unique logic bugs by examining whether existing approaches could also detect them. Second, we compared ERIQ and the baselines under the same time budget to evaluate their practical bug detection capability. Distinctiveness of Bugs Detected by ERIQ.For each of the 54 unique logic bugs detected by ERIQ, we analyzed whether they could also be detected by existing approaches. Specifically, we started from each minimized test case and constructed corresponding test cases following the relation and const",
+      "section": "4.3 RQ2: Comparison with Existing Approaches",
+      "page": 6,
+      "char_offset": 31950,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker",
+      "surface": "[ 4,11,30,34]",
+      "technique": "tlp",
+      "sentence": "Specifically, we started from each minimized test case and constructed corresponding test cases following the relation and construction procedure defined by each approach [ 4,11,30,34].",
+      "context_before": "To answer RQ2, we compared ERIQ with the 4 baselines introduced in Section 4.1: EDC [ 4], Radar [ 34], EET [ 11], and TLP [ 30]. We conducted two complementary experiments. First, we analyzed the distinctiveness of ERIQ’s 54 unique logic bugs by examining whether existing approaches could also detect them. Second, we compared ERIQ and the baselines under the same time budget to evaluate their practical bug detection capability. Distinctiveness of Bugs Detected by ERIQ.For each of the 54 unique logic bugs detected by ERIQ, we analyzed whether they could also be detected by existing approaches.",
+      "context_after": "A bug was considered detectable by a baseline if the corresponding test case violated the relation checked by that baseline; otherwise, it was considered not detectable by that baseline. Because this analysis evaluates the Detecting DBMS Bugs by Constructing Equivalent Representations of Intermediate Query Results relations checked by the baselines rather than their released implementations, it is independent of whether those implementations support the corresponding DBMSs. Table 2 presents the results. Table 2: Number of ERIQ’s 54 unique logic bugs detectable by existing approaches. DBMSERIQ",
+      "section": "4.3 RQ2: Comparison with Existing Approaches",
+      "page": 6,
+      "char_offset": 32472,
+      "cited_reference": {
+        "number": 30,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning.Proceedings of the ACM on Programming Languages4, OOPSLA (2020), 1–30. https://doi.org/10.1145/3428279",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "prints the DOI of the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "DBMSERIQ EDC Radar EETTLP MySQL 26 4 4 5 6 MariaDB 11 2 1 1 3 Percona 13 2 1 0 0 OceanBase 4 0 0 0 0 Total 54 8 6 6 9 Among the 54 unique logic bugs detected by ERIQ, EDC, Radar, EET, and TLP could detect 8, 6, 6, and 9 bugs, respectively, corresponding to 14.",
+      "context_before": "1,30,34]. A bug was considered detectable by a baseline if the corresponding test case violated the relation checked by that baseline; otherwise, it was considered not detectable by that baseline. Because this analysis evaluates the Detecting DBMS Bugs by Constructing Equivalent Representations of Intermediate Query Results relations checked by the baselines rather than their released implementations, it is independent of whether those implementations support the corresponding DBMSs. Table 2 presents the results. Table 2: Number of ERIQ’s 54 unique logic bugs detectable by existing approaches.",
+      "context_after": "8%, 11.1%, 11.1%, and 16.7%. TLP detected the largest number of ERIQ-detected bugs in this analysis, but only 9 of the 54 bugs; the other baselines detected even fewer. For each baseline, at least 45 of the 54 bugs detected by ERIQ were not detected. These results show that ERIQ provides complementary bug detection capability by exposing many bugs that are not detected by existing approaches. Bug Detection Capability under the Same Time Budget.We further compared the practical bug detection capability of ERIQ and the baselines under the same time budget. We ran each tool for 24 hours on every",
+      "section": "4.3 RQ2: Comparison with Existing Approaches",
+      "page": 7,
+      "char_offset": 33249,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP detected the largest number of ERIQ-detected bugs in this analysis, but only 9 of the 54 bugs; the other baselines detected even fewer.",
+      "context_before": "ations of Intermediate Query Results relations checked by the baselines rather than their released implementations, it is independent of whether those implementations support the corresponding DBMSs. Table 2 presents the results. Table 2: Number of ERIQ’s 54 unique logic bugs detectable by existing approaches. DBMSERIQ EDC Radar EETTLP MySQL 26 4 4 5 6 MariaDB 11 2 1 1 3 Percona 13 2 1 0 0 OceanBase 4 0 0 0 0 Total 54 8 6 6 9 Among the 54 unique logic bugs detected by ERIQ, EDC, Radar, EET, and TLP could detect 8, 6, 6, and 9 bugs, respectively, corresponding to 14.8%, 11.1%, 11.1%, and 16.7%.",
+      "context_after": "For each baseline, at least 45 of the 54 bugs detected by ERIQ were not detected. These results show that ERIQ provides complementary bug detection capability by exposing many bugs that are not detected by existing approaches. Bug Detection Capability under the Same Time Budget.We further compared the practical bug detection capability of ERIQ and the baselines under the same time budget. We ran each tool for 24 hours on every target DBMS it supports. For ERIQ, we reused the results reported in Section 4.2. For each baseline, we used its publicly available implementation and executed it on al",
+      "section": "4.3 RQ2: Comparison with Existing Approaches",
+      "page": 7,
+      "char_offset": 33538,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Across the 4 target DBMSs, ERIQ detected 54 logic bugs, whereas EDC, Radar, EET, and TLP detected 16, 2, 1, and 6 bugs, respectively.",
+      "context_before": "s reported in Section 4.2. For each baseline, we used its publicly available implementation and executed it on all supported target DBMSs. All experiments used the same DBMS versions and experimental environment described in Section 4.1. For each baseline, we minimized and internally deduplicated the generated reports following the general procedure described in Section 4.2. The detected bugs were reported to the corresponding DBMS communities, and developer responses confirmed that they corresponded to real bugs. Table 3 presents the number of logic bugs detected by each tool within 24 hours.",
+      "context_after": "Among the baselines, EDC detected the largest number of bugs and, like ERIQ, was evaluated on all 4 target DBMSs. ERIQ detected 54 logic bugs compared with EDC’s 16, more than three times as many under the same time budget. At the time of writing, developers had not classified any of the bugs detected by the baselines as duplicates of the 54 unique logic bugs found by ERIQ. These results demonstrate that ERIQ detects more logic bugs than existing approaches under the same time budget and provide additional evidence that ERIQ complements these baselines. Finding 2.Existing approaches can detec",
+      "section": "4.3 RQ2: Comparison with Existing Approaches",
+      "page": 7,
+      "char_offset": 34765,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "citation_marker",
+      "surface": "[ 2,4,8,11,29–\n31,34–36,38,39,42]",
+      "technique": "dqp",
+      "sentence": "Existing approaches have proposed various techniques for detecting DBMS logic bugs [ 2,4,8,11,29– 31,34–36,38,39,42].",
+      "context_before": "functions cannot currently be detected. Second, ERIQ does not generate recursive CTEs because the recursive self-references required by such CTEs cannot be represented by the equivalent VIEW and TEMPT forms currently constructed by ERIQ. Third, when an equivalent TEMPT variant cannot be legally constructed, ERIQ can compare only the VIEW and CTE variants, potentially missing bugs that require TEMPT for exposure. Finally, ERIQ compares results using multiset semantics and therefore does not target bugs that manifest solely as differences in row ordering. 6 Related Work DBMS Logic Bug Detection.",
+      "context_after": "PQS [ 31] synthesizes queries that are guaranteed to return a selected pivot row and detects bugs when the pivot row is missing from the result. NoREC [ 29] rewrites a query into a form that inhibits DBMS optimizations and compares the results of the original and rewritten queries. TLP [ 30] partitions a query according to ternary logic and checks whether the combined results of the partitioned queries are consistent with the original query result. Pinolo [ 8] synthesizes queries whose results should be supersets or subsets of a seed query result and detects violations of the expected contain",
+      "section": "6 Related Work",
+      "page": 10,
+      "char_offset": 52857,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep it simple: Testing Databases via Differential Query Plans.Proceedings of the ACM on Management of Data2, 3 (2024), 1–26. https://doi.org/10.1145/3654991",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing dqp",
+          "prints the DOI of the paper introducing dqp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS [ 31] synthesizes queries that are guaranteed to return a selected pivot row and detects bugs when the pivot row is missing from the result.",
+      "context_before": "rences required by such CTEs cannot be represented by the equivalent VIEW and TEMPT forms currently constructed by ERIQ. Third, when an equivalent TEMPT variant cannot be legally constructed, ERIQ can compare only the VIEW and CTE variants, potentially missing bugs that require TEMPT for exposure. Finally, ERIQ compares results using multiset semantics and therefore does not target bugs that manifest solely as differences in row ordering. 6 Related Work DBMS Logic Bug Detection.Existing approaches have proposed various techniques for detecting DBMS logic bugs [ 2,4,8,11,29– 31,34–36,38,39,42].",
+      "context_after": "NoREC [ 29] rewrites a query into a form that inhibits DBMS optimizations and compares the results of the original and rewritten queries. TLP [ 30] partitions a query according to ternary logic and checks whether the combined results of the partitioned queries are consistent with the original query result. Pinolo [ 8] synthesizes queries whose results should be supersets or subsets of a seed query result and detects violations of the expected containment relation. EET [ 11] and CODDTest [ 42] apply equivalent transformations to query expressions and compare the results of the original and tra",
+      "section": "6 Related Work",
+      "page": 10,
+      "char_offset": 52974,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC [ 29] rewrites a query into a form that inhibits DBMS optimizations and compares the results of the original and rewritten queries.",
+      "context_before": "t TEMPT variant cannot be legally constructed, ERIQ can compare only the VIEW and CTE variants, potentially missing bugs that require TEMPT for exposure. Finally, ERIQ compares results using multiset semantics and therefore does not target bugs that manifest solely as differences in row ordering. 6 Related Work DBMS Logic Bug Detection.Existing approaches have proposed various techniques for detecting DBMS logic bugs [ 2,4,8,11,29– 31,34–36,38,39,42]. PQS [ 31] synthesizes queries that are guaranteed to return a selected pivot row and detects bugs when the pivot row is missing from the result.",
+      "context_after": "TLP [ 30] partitions a query according to ternary logic and checks whether the combined results of the partitioned queries are consistent with the original query result. Pinolo [ 8] synthesizes queries whose results should be supersets or subsets of a seed query result and detects violations of the expected containment relation. EET [ 11] and CODDTest [ 42] apply equivalent transformations to query expressions and compare the results of the original and transformed queries. Radar [ 34] compares the results of the same query on databases containing the same data but different metadata. EDC [ 4",
+      "section": "6 Related Work",
+      "page": 10,
+      "char_offset": 53119,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP [ 30] partitions a query according to ternary logic and checks whether the combined results of the partitioned queries are consistent with the original query result.",
+      "context_before": "T for exposure. Finally, ERIQ compares results using multiset semantics and therefore does not target bugs that manifest solely as differences in row ordering. 6 Related Work DBMS Logic Bug Detection.Existing approaches have proposed various techniques for detecting DBMS logic bugs [ 2,4,8,11,29– 31,34–36,38,39,42]. PQS [ 31] synthesizes queries that are guaranteed to return a selected pivot row and detects bugs when the pivot row is missing from the result. NoREC [ 29] rewrites a query into a form that inhibits DBMS optimizations and compares the results of the original and rewritten queries.",
+      "context_after": "Pinolo [ 8] synthesizes queries whose results should be supersets or subsets of a seed query result and detects violations of the expected containment relation. EET [ 11] and CODDTest [ 42] apply equivalent transformations to query expressions and compare the results of the original and transformed queries. Radar [ 34] compares the results of the same query on databases containing the same data but different metadata. EDC [ 4] replaces data operation expressions with precomputed results and compares the original and transformed query results. In contrast to these approaches, ERIQ checks resul",
+      "section": "6 Related Work",
+      "page": 10,
+      "char_offset": 53257,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "technique",
+      "surface": "CODDTest",
+      "technique": "coddtest",
+      "sentence": "EET [ 11] and CODDTest [ 42] apply equivalent transformations to query expressions and compare the results of the original and transformed queries.",
+      "context_before": "thesizes queries that are guaranteed to return a selected pivot row and detects bugs when the pivot row is missing from the result. NoREC [ 29] rewrites a query into a form that inhibits DBMS optimizations and compares the results of the original and rewritten queries. TLP [ 30] partitions a query according to ternary logic and checks whether the combined results of the partitioned queries are consistent with the original query result. Pinolo [ 8] synthesizes queries whose results should be supersets or subsets of a seed query result and detects violations of the expected containment relation.",
+      "context_after": "Radar [ 34] compares the results of the same query on databases containing the same data but different metadata. EDC [ 4] replaces data operation expressions with precomputed results and compares the original and transformed query results. In contrast to these approaches, ERIQ checks result consistency across equivalent representations of intermediate query results. It constructs SQL variants that use a VIEW, a CTE, or a TEMPT to represent the same intermediate query result and checks whether the variants return consistent results. ERIQ therefore explores a new perspective for detecting DBMS",
+      "section": "6 Related Work",
+      "page": 10,
+      "char_offset": 53588,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "coddtest"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "citation_marker",
+      "surface": "[ 1,3,5–7,10,12,13,15,32,37,40,43]",
+      "technique": "qpg",
+      "sentence": "Existing DBMS test case generation techniques aim to improve the validity and diversity of generated SQL inputs [ 1,3,5–7,10,12,13,15,32,37,40,43].",
+      "context_before": "ecomputed results and compares the original and transformed query results. In contrast to these approaches, ERIQ checks result consistency across equivalent representations of intermediate query results. It constructs SQL variants that use a VIEW, a CTE, or a TEMPT to represent the same intermediate query result and checks whether the variants return consistent results. ERIQ therefore explores a new perspective for detecting DBMS logic bugs, complementing existing approaches. Detecting DBMS Bugs by Constructing Equivalent Representations of Intermediate Query Results DBMS Test Case Generation.",
+      "context_after": "SQLsmith [ 37] randomly constructs queries using database-schema information and AST-based rules. SQUIRREL [ 43] performs typebased mutations on an intermediate representation and uses dependency information to improve the syntactic and semantic validity of generated statements. Griffin [ 6] constructs metadata graphs that capture dependencies between statements and database objects and uses them for statement reshuffling and metadata-guided substitution. LEGO [ 13] uses coverage feedback to discover SQL type affinities and progressively generate diverse SQL statement sequences. SQLRight [ 15",
+      "section": "6 Related Work",
+      "page": 11,
+      "char_offset": 54502,
+      "cited_reference": {
+        "number": 1,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In Engineering (ICSE). IEEE, 2060–2071. https://doi.org/10.1109/icse48619.2023. 00174",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "prints the DOI of the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "QPG [ 1] uses query-plan diversity to guide databasestate mutations, and MIST [ 3] combines hierarchical SQL-feature guidance, error feedback, and coverage-guided Monte Carlo tree search for LLM-based DBMS test-case generation.",
+      "context_before": "ependency information to improve the syntactic and semantic validity of generated statements. Griffin [ 6] constructs metadata graphs that capture dependencies between statements and database objects and uses them for statement reshuffling and metadata-guided substitution. LEGO [ 13] uses coverage feedback to discover SQL type affinities and progressively generate diverse SQL statement sequences. SQLRight [ 15] combines coverage guidance with validity-oriented mutations, whereas DynSQL [ 10] dynamically collects databasestate information to incrementally construct complex and valid SQL inputs.",
+      "context_after": "ERIQ complements these approaches by constructing equivalent representations of intermediate query results and checking their result consistency. The diverse query-generation techniques employed by existing approaches could be incorporated into ERIQ to generate more diverse intermediate queries and referencing queries, potentially exposing additional DBMS logic bugs. Conversely, ERIQ’s representation-based consistency checking could be integrated with these generation techniques to further enhance their bug detection capability. 7 Conclusion This paper presents ERIQ, a novel testing approach",
+      "section": "6 Related Work",
+      "page": 11,
+      "char_offset": 55436,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M2",
+        "M5",
+        "M6"
+      ],
+      "describes_as_state_of_the_art": [
+        "M2",
+        "M5"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:49:48Z",
+    "is_model_written": true,
+    "summary": "ERIQ builds a second representation of a query's intermediate results that must be equivalent to the first, and reports a bug when the two disagree. Where earlier oracles transform the query, the expression, or the database state, ERIQ works on what the query produces part-way through, which reaches bugs in how intermediate results are materialised and reused. On MySQL, MariaDB, Percona and OceanBase it found 54 logic bugs.",
+    "narrative": "TLP is one of ERIQ's four baselines, named among state-of-the-art DBMS logic-bug detection approaches alongside EDC, Radar and EET, and included partly because EDC's own evaluation used it. The comparison is a careful one: rather than running each tool, the authors reconstruct test cases from each approach's relation and construction procedure starting from the same minimised cases. TLP detected 9 of ERIQ's 54 bugs -- more than any other baseline, and still a sixth of the total. PQS, NoREC and TLP are each described in related work as the query-level oracles ERIQ is positioned against.",
+    "roles": {
+      "M1": "definition",
+      "M2": "state_of_the_art",
+      "M3": "background",
+      "M4": "background",
+      "M5": "state_of_the_art",
+      "M6": "baseline",
+      "M7": "baseline",
+      "M8": "result_comparison",
+      "M9": "result_comparison",
+      "M10": "result_comparison",
+      "M11": "result_comparison",
+      "M12": "background",
+      "M13": "definition",
+      "M14": "definition",
+      "M15": "definition",
+      "M16": "definition",
+      "M17": "background",
+      "M18": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The baselines are reconstructed from each approach's published procedure rather than run from SQLancer, and nothing states that ERIQ's implementation reuses the codebase."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "ERIQ constructs equivalent representations of intermediate results, which M3 lists as distinct from transforming, partitioning or constructing queries. It is a different oracle, not a generalisation of TLP."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M5",
+          "M9",
+          "M10",
+          "M11"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M5",
+            "sentence": "We selected 4 state-of-the-art DBMS logic bug detection approaches as baselines: EDC [ 4], Radar [ 34], EET [ 11], and TLP [ 30].",
+            "section": "4.1 Experimental Setup",
+            "page": 6
+          },
+          {
+            "mention_id": "M9",
+            "sentence": "DBMSERIQ EDC Radar EETTLP MySQL 26 4 4 5 6 MariaDB 11 2 1 1 3 Percona 13 2 1 0 0 OceanBase 4 0 0 0 0 Total 54 8 6 6 9 Among the 54 unique logic bugs detected by ERIQ, EDC, Radar, EET, and TLP could detect 8, 6, 6, and 9 bugs, respectively, corresponding to 14.",
+            "section": "4.3 RQ2: Comparison with Existing Approaches",
+            "page": 7
+          },
+          {
+            "mention_id": "M10",
+            "sentence": "TLP detected the largest number of ERIQ-detected bugs in this analysis, but only 9 of the 54 bugs; the other baselines detected even fewer.",
+            "section": "4.3 RQ2: Comparison with Existing Approaches",
+            "page": 7
+          },
+          {
+            "mention_id": "M11",
+            "sentence": "Across the 4 target DBMSs, ERIQ detected 54 logic bugs, whereas EDC, Radar, EET, and TLP detected 16, 2, 1, and 6 bugs, respectively.",
+            "section": "4.3 RQ2: Comparison with Existing Approaches",
+            "page": 7
+          }
+        ],
+        "reasoning": "M5 names TLP as one of four baselines, and M9, M10 and M11 report how many of ERIQ's bugs each baseline could detect and how many each found on its own.",
+        "techniques": [
+          "tlp"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M2",
+          "M5"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M2",
+            "sentence": "We further compared ERIQ with four state-of-the-art DBMS logic bug detection approaches: EDC [ 4], Radar [ 34], EET [ 11], and TLP [ 30].",
+            "section": "1 Introduction",
+            "page": 1
+          },
+          {
+            "mention_id": "M5",
+            "sentence": "We selected 4 state-of-the-art DBMS logic bug detection approaches as baselines: EDC [ 4], Radar [ 34], EET [ 11], and TLP [ 30].",
+            "section": "4.1 Experimental Setup",
+            "page": 6
+          }
+        ],
+        "reasoning": "M2 and M5 both describe TLP as one of four state-of-the-art DBMS logic bug detection approaches."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "effective_date": "2026-09-06",
+  "sections": [
+    {
+      "id": "scope",
+      "title": "What this page counts",
+      "body": [
+        "Every number on this page is computed from structured records stored in this website's repository under _data/impact/. Each record carries the primary source that justifies it, so any figure can be traced back to a bug report, a paper, a repository, or a published resource.",
+        "Records are proposed by an automated pipeline that runs weekly, but nothing is published without passing schema validation, and every claim that required a judgement call retains the exact excerpt it was based on. Candidates for which the evidence is inconclusive are rejected rather than rounded up."
+      ],
+      "rules": [
+        {
+          "id": "scope-evidence",
+          "kind": "include",
+          "text": "A record is published only when it carries at least one link to a primary source. Excerpts stored as evidence are copied verbatim from that source; they are never paraphrased or generated."
+        },
+        {
+          "id": "scope-uncertain",
+          "kind": "exclude",
+          "text": "Candidates classified as uncertain or as having insufficient evidence are never promoted into a positive category. They are recorded as rejected and are excluded from all counts."
+        },
+        {
+          "id": "scope-unquotable",
+          "kind": "note",
+          "text": "Two kinds of evidence carry no quotation. A frame captured from a talk shows what was on the slide instead of quoting it, because text read off a picture cannot be checked against a fetched source the way every other excerpt is. And a passage the PDF set with letter-spacing is described rather than printed: extraction returns it one character at a time and the word breaks are not in the file to restore, so no readable form of it exists to quote."
+        }
+      ]
+    },
+    {
+      "id": "umbrella",
+      "title": "The SQLancer umbrella",
+      "body": [
+        "SQLancer is the main testing tool, but the project also covers explicitly designated components such as SQLancer++ and ShQveL. Results produced by any umbrella component count towards the overall SQLancer impact statistics.",
+        "Individual tools are never collapsed into a single unstructured label. Every record preserves both the tool that produced the result and, where known, the specific technique responsible, so the contribution of each component stays visible."
+      ],
+      "rules": [
+        {
+          "id": "umbrella-preserve",
+          "kind": "note",
+          "text": "Each bug record stores a finder (for example sqlancer, sqlancer_pp or shqvel) and a technique (for example norec or tlp, or null when the report does not identify one)."
+        }
+      ]
+    },
+    {
+      "id": "bugs",
+      "title": "Bugs found by SQLancer",
+      "body": [
+        "A bug counts as found by SQLancer when the available evidence connects it to SQLancer or to a testing technique that was introduced as part of SQLancer. Bug reports frequently name the test oracle rather than the tool, so a report that credits NoREC, TLP, PQS or QPG is attributed to SQLancer even when it never uses the word “SQLancer”.",
+        "Reported bugs that the developers rejected as invalid or duplicate remain in the dataset for transparency, but they are excluded from the headline bug count. Only reports accepted as genuine bugs (fixed, verified, or still open) are counted.",
+        "The count is a floor rather than a total. A report reaches this dataset only when something public ties it to SQLancer, and a great deal of the testing leaves no such trace: bugs in closed-source systems are usually reported privately, a report is written about the bug rather than about what found it, and a project can run SQLancer routinely while fixing what it finds without ever naming the tool. Projects known to run SQLancer and contributing no bug at all to this page are the visible part of that gap; the invisible part cannot be sized from here.",
+        "One clause above rests on the reporter rather than on the report, and it is the weakest thing here, so it is labelled rather than blended in: those records carry the rule campaign_reporter and a confidence of low, and they cite the roster entry that admitted them alongside the report itself."
+      ],
+      "rules": [
+        {
+          "id": "bug-explicit",
+          "kind": "include",
+          "text": "A primary source explicitly states that SQLancer, SQLancer++ or ShQveL found the bug."
+        },
+        {
+          "id": "bug-technique",
+          "kind": "include",
+          "text": "The bug report attributes the discovery to a SQLancer-originated test oracle or technique, such as NoREC, TLP, PQS or QPG, even if SQLancer itself is not named."
+        },
+        {
+          "id": "bug-campaign",
+          "kind": "include",
+          "text": "The reporter and the surrounding evidence otherwise establish that the report resulted from a SQLancer testing campaign, for example because it comes from the project's own curated bug repository."
+        },
+        {
+          "id": "bug-campaign-reporter",
+          "kind": "include",
+          "text": "A defect report filed in a database system's own tracker by a member of the project or of the TEST lab counts as a SQLancer bug, whether or not the report names a tool. These people report database bugs because they run SQLancer campaigns, and a report is written about the bug rather than about what found it -- most of them never mention the tool, and reproducers are usually minimised by hand before filing, which removes the generated schema too. Such a record is marked with the rule campaign_reporter at low confidence, and its evidence names the roster it rests on, so every claim resting on who reported it can be found and re-judged."
+        },
+        {
+          "id": "bug-independent",
+          "kind": "exclude",
+          "text": "Bugs found with database-testing techniques developed independently of SQLancer are not counted, even when an implementation of the technique later landed in the SQLancer repository. EET and DQE are the concrete cases: both were introduced elsewhere and contributed to SQLancer afterwards, so bugs attributed to them are not SQLancer findings, and work citing their publications is not counted as citing SQLancer."
+        },
+        {
+          "id": "bug-ambiguous",
+          "kind": "exclude",
+          "text": "A bare mention of an ambiguous acronym such as TLP or PQS is not sufficient. Corroborating database-testing context is required before the match is treated as a SQLancer attribution."
+        },
+        {
+          "id": "bug-graph-systems",
+          "kind": "exclude",
+          "text": "A defect report filed against a graph database system by a member of the project or the lab is not counted. The lab tests graph systems with tools developed independently of SQLancer, and SQLancer has no provider for any of them, so the reporter's name is not evidence of a SQLancer campaign there."
+        }
+      ]
+    },
+    {
+      "id": "papers",
+      "title": "Papers and how they relate to SQLancer",
+      "body": [
+        "Papers are discovered from the citation graphs of the foundational SQLancer publications. Every paper that cites one of them is collected, and each is then classified into four overlapping relationships. A paper can hold several relationships at once, so the overall paper count deduplicates: a paper that both reuses the codebase and compares against SQLancer is counted once.",
+        "A fifth relationship records recognition rather than use: papers that call SQLancer or one of its techniques the state of the art. It is kept out of the “builds on” total on purpose, since describing a tool and building on one are different things."
+      ],
+      "rules": [
+        {
+          "id": "paper-references",
+          "kind": "include",
+          "text": "references — the paper cites a foundational SQLancer publication. Established deterministically from the citation graph, so no judgement is involved."
+        },
+        {
+          "id": "paper-infrastructure",
+          "kind": "include",
+          "text": "uses_infrastructure — concrete evidence that the paper's implementation uses or derives from the SQLancer codebase: an artifact based on the SQLancer repository, retained SQLancer source files or its package structure, SQLancer copyright notices or build coordinates, source history derived from SQLancer, or a README describing the reuse. This category is decided by inspecting the artifact, not from wording in the paper, because a paper that reuses the codebase very often says so nowhere — neither in its text nor in its artifact's README. No single signal is decisive on its own: the presence of Randomly.java, say, is weighed together with the rest."
+        },
+        {
+          "id": "paper-extends",
+          "kind": "include",
+          "text": "extends_technique — the authors extend, generalise, adapt or substantially build upon a technique introduced through SQLancer, for instance by generalising TLP to a new setting or extending NoREC with a new transformation. This is the most qualitative category; each accepted classification retains the exact excerpts that justify it."
+        },
+        {
+          "id": "paper-compares",
+          "kind": "include",
+          "text": "compares_with — the paper empirically evaluates its approach against SQLancer, a SQLancer implementation, or a SQLancer test oracle."
+        },
+        {
+          "id": "paper-sota",
+          "kind": "include",
+          "text": "describes_as_state_of_the_art — the paper describes SQLancer or one of its techniques as the state of the art. This is read directly off the citing sentence, which is quoted in full: a citation context is a single sentence, so one containing both the phrase and a SQLancer name is saying the one about the other. It is recognition rather than reuse, so it is reported separately and is not part of the count of papers building on SQLancer."
+        },
+        {
+          "id": "paper-self",
+          "kind": "exclude",
+          "text": "Publications that are part of the SQLancer project itself are marked as such and excluded from counts of external work building on SQLancer. A paper counts as ours if one of the project's authors is on it, if it is the paper that introduced one of the techniques or tools listed above, or if the project lists it explicitly. Co-authorship settles it on its own, whatever the paper is about: our own follow-up work is not external adoption, and counting it as such would flatter the numbers."
+        }
+      ]
+    },
+    {
+      "id": "adoption",
+      "title": "Database systems using SQLancer",
+      "body": [
+        "Three different things are tracked separately and never conflated: database systems that SQLancer can test, database systems in which SQLancer has found bugs, and database system projects whose own developers use or integrate SQLancer.",
+        "The fact that SQLancer supports a database system says nothing about whether that project uses it. Adoption is recorded only when the evidence comes from the database system's own project or developers.",
+        "A fourth thing is recorded and deliberately counted towards nothing: a project whose developers have proposed adopting SQLancer without anything yet showing the project running it. An intention is not use, so these are kept apart under planned_adoption, listed on their own page, and included in no figure here. A proposal from a project's own developers is worth recording, and it is the thing to re-check later: some become adoption and others do not."
+      ],
+      "rules": [
+        {
+          "id": "adopt-ci",
+          "kind": "include",
+          "text": "official_ci — the project runs SQLancer in its own continuous integration."
+        },
+        {
+          "id": "adopt-testing",
+          "kind": "include",
+          "text": "official_testing — the project maintains SQLancer scripts, configuration or testing documentation outside CI."
+        },
+        {
+          "id": "adopt-dev",
+          "kind": "include",
+          "text": "developer_use — a developer of the project describes using SQLancer, for example in an issue, pull request, blog post or documentation they authored."
+        },
+        {
+          "id": "adopt-integration",
+          "kind": "include",
+          "text": "integration_contributed_by_dbms_team — the SQLancer integration for that system was contributed or is maintained by the database system's team."
+        },
+        {
+          "id": "adopt-support",
+          "kind": "exclude",
+          "text": "Support by SQLancer alone is never adoption evidence, and neither is a third party testing a database system with SQLancer."
+        },
+        {
+          "id": "adoption-planned",
+          "kind": "note",
+          "text": "planned_adoption -- a proposal, a roadmap entry or a testing plan from the project's own developers, with nothing yet showing them running SQLancer. Superseded the moment adoption evidence arrives, so a project that has both is counted as using it and listed only there."
+        }
+      ]
+    },
+    {
+      "id": "resources",
+      "title": "Resources",
+      "body": [
+        "Resources are curated pointers to material other people have made about SQLancer or one of its techniques — talks, blog posts, documentation notes, datasets, artifacts and tools. Two things are deliberately excluded: pages that merely mention SQLancer in passing, and the project's own material. The site already links its own documentation, papers and blog, and listing them here would pad the count without saying anything about reach."
+      ],
+      "rules": [
+        {
+          "id": "resource-canonical",
+          "kind": "include",
+          "text": "Every resource carries a canonical URL, a type from a fixed vocabulary, a short factual description, and the source metadata it was collected from."
+        },
+        {
+          "id": "resource-own",
+          "kind": "exclude",
+          "text": "Material published by the SQLancer project itself is not a resource here, whether it is hosted on the project's own properties or simply named after it."
+        }
+      ]
+    },
+    {
+      "id": "method",
+      "title": "How the data is collected",
+      "body": [
+        "Discovery is deterministic. Bug records come from the project's own curated bug repository, from targeted GitHub searches for SQLancer and its technique names, from the forks that database system vendors maintain of SQLancer itself, which list the bugs each provider found, from vendor trackers that are not GitHub -- MariaDB's Jira, openGauss's Gitee -- and from the NUS TEST lab's published bug list — though nothing from that list is admitted for being on it: each candidate is taken back to its own bug report and put through the same attribution rules as any other. Papers come from scholarly citation APIs. Adoption evidence comes from code, workflow and issue searches scoped to database system repositories.",
+        "One route deserves spelling out, because most bug reports never mention SQLancer at all — a report is written about the bug, not about what found it. Searching for the tool's name therefore misses them. So the people who run SQLancer campaigns are recorded, each linked to their GitHub profile and each link established from issues they are credited with rather than assumed, and their reports are read whether or not they name the tool. Two things can then admit a report. The stronger is the reproducer itself: SQLancer generates its own schema, so its reproducers create tables named t0, t1 with columns c0, c1, a shape the tool leaves on the report even when the reporter says nothing. The weaker is membership alone, for the many reports whose reproducer was minimised by hand before filing and so carries no such trace; those are marked campaign_reporter at low confidence and cite the roster openly, so a reader can see exactly which claims rest on who reported them.",
+        "A language model is used only to answer bounded questions about material that deterministic collection has already found — for example whether an issue attributes a bug to a SQLancer technique, or whether a paper extends one. It is given the fetched source text and must answer yes, no, uncertain, or insufficient evidence, quoting the passage it relied on. It is never asked to browse the web, and it cannot introduce a record on its own.",
+        "Classifications are cached against the hash of the evidence, the policy version and the taxonomy version, so unchanged material is never reclassified. Proposed changes are opened as a pull request for human review rather than published directly."
+      ]
+    }
+  ]
+}

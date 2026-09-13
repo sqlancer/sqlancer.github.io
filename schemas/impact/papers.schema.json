@@ -1,0 +1,293 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sqlancer.github.io/schemas/impact/papers.schema.json",
+  "title": "Research papers related to SQLancer",
+  "description": "One record per distinct scholarly work that cites a foundational SQLancer publication. Relationship categories overlap by design: a paper may simultaneously reuse SQLancer infrastructure, extend a SQLancer technique and compare against SQLancer.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "policy_version",
+    "papers"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "$ref": "common.schema.json#/definitions/schema_version"
+    },
+    "policy_version": {
+      "type": "string",
+      "maxLength": 40
+    },
+    "papers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/paper"
+      }
+    }
+  },
+  "definitions": {
+    "relationship": {
+      "type": "object",
+      "required": [
+        "value",
+        "method"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "common.schema.json#/definitions/classification_value"
+        },
+        "method": {
+          "$ref": "common.schema.json#/definitions/determination_method"
+        },
+        "techniques": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/definitions/slug"
+          },
+          "description": "SQLancer technique ids involved; must reference techniques.json."
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/definitions/evidence"
+          },
+          "description": "Required to be non-empty whenever value is 'yes'."
+        },
+        "classifier": {
+          "$ref": "common.schema.json#/definitions/classifier_record"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "value": {
+                "const": "yes"
+              }
+            },
+            "required": [
+              "value"
+            ]
+          },
+          "then": {
+            "required": [
+              "evidence"
+            ],
+            "properties": {
+              "evidence": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "artifact": {
+      "type": "object",
+      "required": [
+        "url",
+        "kind"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "$ref": "common.schema.json#/definitions/url"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "github",
+            "zenodo",
+            "figshare",
+            "gitlab",
+            "bitbucket",
+            "website",
+            "other"
+          ]
+        },
+        "inspected": {
+          "type": "boolean"
+        },
+        "inspected_at": {
+          "$ref": "common.schema.json#/definitions/timestamp"
+        },
+        "sqlancer_markers": {
+          "type": "array",
+          "description": "Concrete infrastructure-reuse signals observed in the artifact. Individually weak; combined they support a 'uses_infrastructure' classification.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "fork_of_sqlancer_repository",
+              "sqlancer_package_structure",
+              "retained_sqlancer_source_files",
+              "sqlancer_copyright_or_license_notice",
+              "git_history_derived_from_sqlancer",
+              "readme_states_reuse",
+              "randomly_java_present",
+              "sqlancer_source_content_match",
+              "sqlancer_source_in_nested_artifact",
+              "renamed_sqlancer_package",
+              "sqlancer_build_file_reference",
+              "sqlancer_provider_directory"
+            ]
+          }
+        },
+        "marker_evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/definitions/evidence"
+          }
+        }
+      }
+    },
+    "paper": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "year",
+        "relationships",
+        "cites_seed_techniques",
+        "provenance"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/definitions/record_id",
+          "description": "Prefer 'paper:doi:<doi>'; fall back to 'paper:arxiv:<id>' or 'paper:s2:<paperId>'."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "maxItems": 60
+        },
+        "year": {
+          "$ref": "common.schema.json#/definitions/year"
+        },
+        "venue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 300
+        },
+        "doi": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^10\\.[0-9]{4,9}/[^\\s]+$",
+          "maxLength": 200,
+          "description": "Preferred stable scholarly identifier."
+        },
+        "arxiv_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 40
+        },
+        "s2_paper_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "$ref": "common.schema.json#/definitions/url"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "open_access_pdf": {
+          "anyOf": [
+            {
+              "$ref": "common.schema.json#/definitions/url"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cites_seed_techniques": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "common.schema.json#/definitions/slug"
+          },
+          "description": "Which foundational SQLancer publications this paper cites, by the id of the technique the paper introduced, or of the tool where the seed is a tool's own paper."
+        },
+        "relationships": {
+          "type": "object",
+          "required": [
+            "references",
+            "uses_infrastructure",
+            "extends_technique",
+            "compares_with",
+            "describes_as_state_of_the_art"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "references": {
+              "$ref": "#/definitions/relationship"
+            },
+            "uses_infrastructure": {
+              "$ref": "#/definitions/relationship"
+            },
+            "extends_technique": {
+              "$ref": "#/definitions/relationship"
+            },
+            "compares_with": {
+              "$ref": "#/definitions/relationship"
+            },
+            "describes_as_state_of_the_art": {
+              "$ref": "#/definitions/relationship",
+              "description": "The paper describes SQLancer or one of its techniques as state of the art. Recognition rather than reuse, so it is reported separately from the categories that mean a paper built on SQLancer."
+            }
+          }
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/artifact"
+          }
+        },
+        "is_sqlancer_publication": {
+          "type": "boolean",
+          "description": "True for papers authored as part of the SQLancer project itself; excluded from 'external papers building on SQLancer' counts."
+        },
+        "provenance": {
+          "$ref": "common.schema.json#/definitions/provenance"
+        },
+        "abstract": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The paper's abstract, as indexed. Source text for its note."
+        },
+        "also_indexed_as": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Ids this work was separately indexed under before being merged -- usually its own preprint. Kept so a reference to the old id can still be resolved."
+        }
+      }
+    }
+  }
+}

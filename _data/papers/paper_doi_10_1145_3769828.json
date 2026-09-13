@@ -1,0 +1,1667 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:31:01Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3769828",
+    "title": "SRS: Detecting Logic Bugs of Join Implementation in DBMSs via Set Relation Synthesis",
+    "authors": [
+      "Jinhui Lai",
+      "Chi Zhang",
+      "Bingyan Li",
+      "Chenglin Liang",
+      "Jie Liang",
+      "Zhiyong Wu",
+      "Jingzhou Fu",
+      "Yu Jiang",
+      "Zichen Xu"
+    ],
+    "year": 2025,
+    "venue": "Proc. ACM Manag. Data",
+    "doi": "10.1145/3769828",
+    "arxiv_id": null,
+    "s2_paper_id": "06d55988c1b284df5962886057f46df47fec17d7",
+    "url": "https://doi.org/10.1145/3769828",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3769828",
+      "retrieved_at": "2026-09-09T01:31:01Z",
+      "chars": 93587,
+      "content_sha256": "sha256:4f70236730d814ed990ffdea21080030124f214403797b772c320b3501be196c"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 24,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 3385
+      },
+      {
+        "number": "2",
+        "title": "Preliminaries",
+        "start": 11027
+      },
+      {
+        "number": "2.1",
+        "title": "Join Operations",
+        "start": 11043
+      },
+      {
+        "number": "2.2",
+        "title": "Set Relations Under SELECT Queries",
+        "start": 15451
+      },
+      {
+        "number": "2.3",
+        "title": "Metamorphic Testing",
+        "start": 19191
+      },
+      {
+        "number": "3",
+        "title": "Approach",
+        "start": 20202
+      },
+      {
+        "number": "3.1",
+        "title": "Overview",
+        "start": 21042
+      },
+      {
+        "number": "3.2",
+        "title": "Set Relation Model of Joins",
+        "start": 23699
+      },
+      {
+        "number": "3.3",
+        "title": "Set Relation-driven Join Transformation",
+        "start": 29318
+      },
+      {
+        "number": "3.4",
+        "title": "Results Checking",
+        "start": 35766
+      },
+      {
+        "number": "4",
+        "title": "Implementation",
+        "start": 40190
+      },
+      {
+        "number": "5",
+        "title": "Evaluation",
+        "start": 45359
+      },
+      {
+        "number": "5.1",
+        "title": "Testing Setup",
+        "start": 45791
+      },
+      {
+        "number": "5.2",
+        "title": "New Bugs",
+        "start": 47001
+      },
+      {
+        "number": "5.3",
+        "title": "Bugs Detected via Each Set Relation",
+        "start": 52880
+      },
+      {
+        "number": "5.4",
+        "title": "Comparison With the State-of-the-Art",
+        "start": 58862
+      },
+      {
+        "number": "6",
+        "title": "Discussion",
+        "start": 74344
+      },
+      {
+        "number": "7",
+        "title": "Related Work",
+        "start": 78323
+      },
+      {
+        "number": "8",
+        "title": "Conclusion",
+        "start": 84779
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Bo Tang Andreas Seltenreich and Sjoerd Mullender. 2018. SQLsmith: a random SQL query generator. https://github. com/anse1/sqlsmith.git",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering (Lisbon, Portugal)(ICSE ’24). Association for Computing Machinery, New York, NY, USA, Article 133, 13 pages. doi:10.1145/3597503.3639076",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 3,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. doi:10.1145/3654991",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 4,
+      "text": "Carsten Binnig, Donald Kossmann, Eric Lo, and M. Tamer Özsu. 2007. QAGen: generating query-aware test databases. InProceedings of the 2007 ACMSIGMOD International Conference on Management of Data(Beijing, China)(SIGMOD ’07). Association for Computing Machinery, New York, NY, USA, 341–352. doi:10.1145/1247480.1247520",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Nicolas Bruno and Surajit Chaudhuri. 2005. Flexible database generators. InProceedings of the 31st International Conference on Very Large Data Bases(Trondheim, Norway)(VLDB ’05). VLDB Endowment, 1097–1107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Tsong Yueh Chen, Fei-Ching Kuo, Huai Liu, Pak-Lok Poon, Dave Towey, TH Tse, and Zhi Quan Zhou. 2018. Metamorphic testing: A review of challenges and opportunities.ACM Computing Surveys (CSUR)51, 1 (2018), 1–27.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "E. F. Codd. 1970. A relational model of data for large shared data banks.Commun. ACM13, 6 (jun 1970), 377–387. doi:10.1145/362384.362685",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "DuckDB. 2025. https://duckdb.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Jim Gray, Prakash Sundaresan, Susanne Englert, Ken Baclawski, and Peter J. Weinberger. 1994. Quickly generating billion-record synthetic databases. InProceedings of the 1994 ACMSIGMOD International Conference on Management of Data(Minneapolis, Minnesota, USA)(SIGMOD ’94). Association for Computing Machinery, New York, NY, USA, 243–252. doi:10.1145/191839.191886",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Zhongxian Gu, Mohamed A. Soliman, and Florian M. Waas. 2012. Testing the accuracy of query optimizers. In Proceedings of the Fifth International Workshop on Testing Database Systems(Scottsdale, Arizona)(DBTest ’12). Association for Computing Machinery, New York, NY, USA, Article 11, 6 pages. doi:10.1145/2304510.2304525",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Zongyin Hao, Quanfeng Huang, Chengpeng Wang, Jianfeng Wang, Yushan Zhang, Rongxin Wu, and Charles Zhang. 2023. Pinolo: Detecting logical bugs in database management systems with approximate query synthesis. In2023 USENIX Annual Technical Conference (USENIX ATC 23). 345–358. 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. 363:24 Jinhui Lai et al.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. 2023. DynSQL: Stateful Fuzzing for Database Management Systems with Complex and Valid SQL Query Generation. In32nd USENIX Security Symposium (USENIX Security 23). USENIX Association, Anaheim, CA, 4949–4965. https://www.usenix.org/conference/usenixsecurity23/presentation/jiang-zuming",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Zu-Ming Jiang and Zhendong Su. 2024. Detecting logic bugs in database engines via equivalent expression transformation. InProceedings of the 18th USENIX Conference on Operating Systems Design and Implementation(Santa Clara, CA, USA)(OSDI’24). USENIX Association, USA, Article 44, 15 pages.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2019. APOLLO: automatic detection and diagnosis of performance regressions in database systems.Proc. VLDB Endow.13, 1 (sep 2019), 57–70. doi:10.14778/3357377.3357382",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Shadi Abdul Khalek, Bassem Elkarablieh, Yai O Laleye, and Sarfraz Khurshid. 2008. Query-Aware Test Generation Using a Relational Constraint Solver. InProceedings of the 23rd IEEE/ACM International Conference on Automated Software Engineering (ASE ’08). IEEE Computer Society, USA, 238–247. doi:10.1109/ASE.2008.34",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting Logical Bugs of DBMS with Coverage-based Guidance. In31st USENIX Security Symposium (USENIX Security 22). USENIX Association, Boston, MA, 4309–4326. https://www.usenix. org/conference/usenixsecurity22/presentation/liang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. 2022. Automatic detection of performance bugs in database systems using equivalent queries. InProceedings of the 44th International Conference on Software Engineering(Pittsburgh, Pennsylvania)(ICSE ’22). Association for Computing Machinery, New York, NY, USA, 225–236. doi:10.1145/3510003. 3510093",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "MariaDB. 2025. https://mariadb.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "William M McKeeman. 1998. Differential testing for software.Digital Technical Journal10, 1 (1998), 100–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Priti Mishra and Margaret H. Eich. 1992. Join processing in relational databases.ACM Comput. Surv.24, 1 (March 1992), 63–113. doi:10.1145/128762.128764",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "MySQL. 2025. https://www.mysql.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "PostgreSQL. 2025. https://www.postgresql.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Virtual Event, USA)(ESEC/FSE 2020). Association for Computing Machinery, New York, NY, USA, 1140–1152. doi:10.1145/33680",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 24,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proc. ACM Program. Lang.4, OOPSLA, Article 211 (nov 2020), 30 pages. doi:10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 25,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). USENIX Association, 667–682. https://www. usenix.org/conference/osdi20/presentation/rigger",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 26,
+      "text": "Donald R Slutz. 1998. Massive stochastic testing of SQL. InVLDB, Vol. 98. Citeseer, 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Jiansen Song, Wensheng Dou, Ziyu Cui, Qianwang Dai, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2023. Testing Database Systems via Differential Query Execution. In Engineering (ICSE). 2072–2084. doi:10.1109/ICSE48619.2023.00175",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Xiu Tang, Sai Wu, Dongxiang Zhang, Feifei Li, and Gang Chen. 2023. Detecting logic bugs of join optimizations in dbms.Proceedings of the ACM on Management of Data1, 1 (2023), 1–26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "TiDB. 2025. https://www.pingcap.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. 2011. Finding and understanding bugs in C compilers. In Proceedings of the 32nd ACMSIGPLAN Conference on Programming Language Design and Implementation(San Jose, California, USA)(PLDI ’11). Association for Computing Machinery, New York, NY, USA, 283–294. doi:10.1145/1993498. 1993532",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Michal Zalewski. 2015. AFL: American Fuzzy Lop. https://github.com/google/AFL",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Chi Zhang and Manuel Rigger. 2025. Constant Optimization Driven Database System Testing. 2025), 24 pages. doi:10.1145/3709674",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 33,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. InProceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security(Virtual Event, USA)(CCS ’20). Association for Computing Machinery, New York, NY, USA, 955–970. Received April 2025; revised July 2025; acc",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering (Lisbon, Portugal)(ICSE ’24). Association for Computing Machinery, New York, NY, USA, Article 133, 13 pages. doi:10.1145/3597503.3639076",
+      "technique": "cert",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing cert",
+        "prints the DOI of the paper introducing cert"
+      ]
+    },
+    {
+      "number": 3,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. doi:10.1145/3654991",
+      "technique": "dqp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing dqp",
+        "prints the DOI of the paper introducing dqp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 23,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Virtual Event, USA)(ESEC/FSE 2020). Association for Computing Machinery, New York, NY, USA, 1140–1152. doi:10.1145/3368089.3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 24,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proc. ACM Program. Lang.4, OOPSLA, Article 211 (nov 2020), 30 pages. doi:10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 25,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). USENIX Association, 667–682. https://www. usenix.org/conference/osdi20/presentation/rigger",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 32,
+      "text": "Chi Zhang and Manuel Rigger. 2025. Constant Optimization Driven Database System Testing. 2025), 24 pages. doi:10.1145/3709674",
+      "technique": "coddtest",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing coddtest",
+        "prints the DOI of the paper introducing coddtest",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "TQS [ 28] and DQP [ 3] are two state-of-the-art testing approaches that target logic bugs in the optimization of join operations.",
+      "context_before": ". Based on the standard string comparison method, if one string is a prefix of the other, the shorter one is considered smaller than the longer one. Therefore, -9876543210 is considered smaller than-9876543210.0. We expect this full outer join to produce one row, as the condition t0.c0 < t1.c1 should evaluate to true. However, DuckDB returns an incorrect result for this query, where t0.c0 < t1.c1 is incorrectly evaluated as false on the boundary values. Then two rows of incorrect results from the respective tables are retained independently in the resulting joined output, as shown in Figure 1.",
+      "context_after": "Both approaches use the equivalence among alternative query execution plans as a test oracle to indicate the presence of logic bugs. By leveraging query hints and system variables, they manipulate the behavior of the query optimizer to ensure that the same query is executed using different plans. Any inconsistency in the query results may indicate the presence of logic bugs in join optimization. However, this strategy becomes less effective for detecting logic bugs in join operations when query hints or system variables fail to influence the optimizer’s behavior, or when the logic bugs reside",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 5992,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "To detect the logic bug shown in Figure 1, we applied all query plan transformation techniques from both TQS and DQP to the bug-inducing query, i.",
+      "context_before": "ecution plans as a test oracle to indicate the presence of logic bugs. By leveraging query hints and system variables, they manipulate the behavior of the query optimizer to ensure that the same query is executed using different plans. Any inconsistency in the query results may indicate the presence of logic bugs in join optimization. However, this strategy becomes less effective for detecting logic bugs in join operations when query hints or system variables fail to influence the optimizer’s behavior, or when the logic bugs reside in parts of the join implementation unrelated to optimization.",
+      "context_after": "e., 𝑞1; however, no inconsistencies were observed. Therefore, neither approach was able to identify this bug. To tackle logic bugs in the implementation of join in DBMSs, we propose a testing approach namedSetRelationSynthesis (SRS). The key insight is that different join operations involve various join types, orders, and constraints, which are not mutually independent but instead follow specific set relations. SRS thoroughly tests join operations by transforming join operations within queries— enabling the execution of various code paths related to join processing in the DBMS—and then detects",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 6785,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[ 23–25]",
+      "technique": "norec",
+      "sentence": "In step 1, we randomly generate the database state with syntax-rule-based generators, which is a common practice in existing works [ 23–25].",
+      "context_before": "involve various join types, orders, and constraints, which are not mutually independent but instead follow specific set relations. Specifically, SRS first generates an original query containing randomly constructed join operations, then derives one or two follow-up queries based on our set relation model. The results of these follow-up queries are expected to satisfy predefined set relations with the result of the original query. Any violation of these expected set relations signals a potential logic bug in the DBMS’s join implementation. 3.1 Overview Figure 2 illustrates the overview of SRS.",
+      "context_after": "In Step 2, the original query is constructed by randomly selecting the join type, the participating tables, and the join condition to populate join skeletons. In step 3, we transform the join operations in the original query based on a manually extracted set relation model of different join operations. This transformation results in one or two transformed queries, depending on the synthesis rules of the set relation model. In step 4, we check whether the results of the original query and the transformed query reflect the set relation defined by the set relation model of the corresponding join",
+      "section": "3.1 Overview",
+      "page": 6,
+      "char_offset": 21096,
+      "cited_reference": {
+        "number": 23,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Virtual Event, USA)(",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Additionally, the influence of NULLvalues must be carefully considered, as addressed in TLP[24].",
+      "context_before": "set—for example, switching a condition from JOIN ON t0.c0 IS NULL to JOIN ON t0.c0 IS NOT NULL, which reverses the comparison logic and produces a complementary result. (4) Reducing the join set—for example, changing a condition from >=or<=to=, thereby narrowing the match criteria. These transformations allow flexible control over query behavior while preserving logical consistency. Notably, modifying join conditions is primarily suitable for inner joins, as other types of joins—such as outer joins— may produce overlapping result sets, making the effects of such modifications harder to predict.",
+      "context_after": "Algorithmic sketch of applying transformation.Algorithm 1 shows the procedure for applying transformations to an original query in order to generate the corresponding follow-up transformed queries. For each generated original query, we first determine the join type 𝑗𝑜𝑖𝑛_𝑡𝑦𝑝𝑒 used in the query using the GetJoinType function. To account for the fact that not all language features support every type of set relation, we extract the language features 𝑓𝑒𝑎𝑡𝑢𝑟𝑒𝑠 present in the original query using the GetFeaturesInQuery function. A detailed explanation is provided in Section 3.4. Next, we retrieve th",
+      "section": "3.3 Set Relation-driven Join Transformation",
+      "page": 9,
+      "char_offset": 33506,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker",
+      "surface": "[ 23,24]",
+      "technique": "norec",
+      "sentence": "4 Implementation We implemented SRS on top of SQLancer1, a DBMS testing framework designed for the random generation of database states and SQL queries, which also supports multiple test oracles [ 23,24].",
+      "context_before": "ER BY clauses, their generation poses no limitation, as these clauses are expected to preserve the same set relations. For the GROUP BY clause, only equivalent relations can be supported. For the LIMIT clause, only disjoint relations can be supported. For the SELECT clause, there is no limitation if it simply returns the original data without modification. However, for more complex cases, only equivalent and union relations can be supported. Finally, we identify potential logic bugs by detecting violations of the expected set relations among the results of the original and transformed queries.",
+      "context_after": "In total, SRS comprises 5,500 lines of code. This code is primarily used to generate more complex join operations, upon which transformations are applied based on the synthesis rules. Despite this, the approach remains simple and can be easily adapted to other testing frameworks, such as SQLsmith [1]. In this section, we present the technical details of SRS’s implementation. Database state generation.Following the standard pipeline in popular DBMS testing tools like SQLancer, we generate the database state first to improve semantic correctness by generating stateconforming queries. SRS applie",
+      "section": "3.4 Results Checking",
+      "page": 11,
+      "char_offset": 40189,
+      "cited_reference": {
+        "number": 23,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Virtual Event, USA)(",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Following the standard pipeline in popular DBMS testing tools like SQLancer, we generate the database state first to improve semantic correctness by generating stateconforming queries.",
+      "context_before": "ntation We implemented SRS on top of SQLancer1, a DBMS testing framework designed for the random generation of database states and SQL queries, which also supports multiple test oracles [ 23,24]. In total, SRS comprises 5,500 lines of code. This code is primarily used to generate more complex join operations, upon which transformations are applied based on the synthesis rules. Despite this, the approach remains simple and can be easily adapted to other testing frameworks, such as SQLsmith [1]. In this section, we present the technical details of SRS’s implementation. Database state generation.",
+      "context_after": "SRS applies the automated, syntax-rule-based random generation approach of SQLancer to ensure that the database state exhibits sufficient diversity, thereby enabling thorough and effective bug detection. SRS also incorporates several strategies, including the generation of diverse schemas and data characteristics, such as boundary values. The details of these strategies are further discussed in Section 6. 1https://github.com/sqlancer/sqlancer 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. 363:12 Jinhui Lai et al. Table 2. SQL grammar of join skeleton. Explicit Join explicit",
+      "section": "4 Implementation",
+      "page": 11,
+      "char_offset": 40799,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SRS applies the automated, syntax-rule-based random generation approach of SQLancer to ensure that the database state exhibits sufficient diversity, thereby enabling thorough and effective bug detection.",
+      "context_before": "s [ 23,24]. In total, SRS comprises 5,500 lines of code. This code is primarily used to generate more complex join operations, upon which transformations are applied based on the synthesis rules. Despite this, the approach remains simple and can be easily adapted to other testing frameworks, such as SQLsmith [1]. In this section, we present the technical details of SRS’s implementation. Database state generation.Following the standard pipeline in popular DBMS testing tools like SQLancer, we generate the database state first to improve semantic correctness by generating stateconforming queries.",
+      "context_after": "SRS also incorporates several strategies, including the generation of diverse schemas and data characteristics, such as boundary values. The details of these strategies are further discussed in Section 6. 1https://github.com/sqlancer/sqlancer 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. 363:12 Jinhui Lai et al. Table 2. SQL grammar of join skeleton. Explicit Join explicit-join::=SELECT <column-list> FROM <table> <join-clause> column-list::=[<column> [, <column> ...]]* join-clause::=[<join-type> <table> ON <join-condition>]* join-condition::=<term> [(AND|OR) <term> ]* term",
+      "section": "4 Implementation",
+      "page": 11,
+      "char_offset": 40983,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "sqlancer",
+      "technique": null,
+      "sentence": "com/sqlancer/sqlancer 3, No.",
+      "context_before": "the standard pipeline in popular DBMS testing tools like SQLancer, we generate the database state first to improve semantic correctness by generating stateconforming queries. SRS applies the automated, syntax-rule-based random generation approach of SQLancer to ensure that the database state exhibits sufficient diversity, thereby enabling thorough and effective bug detection. SRS also incorporates several strategies, including the generation of diverse schemas and data characteristics, such as boundary values. The details of these strategies are further discussed in Section 6. 1https://github.",
+      "context_after": "6 (SIGMOD), Article 363. Publication date: December 2025. 363:12 Jinhui Lai et al. Table 2. SQL grammar of join skeleton. Explicit Join explicit-join::=SELECT <column-list> FROM <table> <join-clause> column-list::=[<column> [, <column> ...]]* join-clause::=[<join-type> <table> ON <join-condition>]* join-condition::=<term> [(AND|OR) <term> ]* term::=<column> <comparison-operator> (<column>|<value>) Implicit Join implicit-join::=SELECT <column-list> FROM <table-list> <join-clause> column-list::=[<column> [, <column> ...]]* table-list::=[<table> [, <table> ...]]* join-clause::=WHERE <join-condit",
+      "section": "4 Implementation",
+      "page": 11,
+      "char_offset": 41409,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For the generation of other language features, aside from considering the tables involved in joins, our approach remains consistent with SQLancer’s query generation strategy for NoREC test oracle [23].",
+      "context_before": "itself via LEFT JOIN. This also enables SRS to cover as many join types as possible, thereby testing all the set relations proposed in this paper. Third, additional query clauses are randomly generated based on the table information in join operations. Although not all language features can preserve or reflect the input set relations in their output, we continue to use a fully random, syntax-rule-based generation approach for the rest of the SQL query. This approach decouples query generation from the set relation model, making it easier to extend the model with additional rules in the future.",
+      "context_after": "2https://dev.mysql.com/doc/refman/8.0/en/semijoins.html 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. SRS: Detecting Logic Bugs of Join Implementation in DBMSs via Set Relation Synthesis 363:13 Table 3. Tested DBMSs. DBMS Version Ranking Github Stars Categories MySQL 9.2.0 2 11.3k Traditional MariaDB 11.7.2 14 6k Traditional TiDB 8.5.1 73 38.3k Distributed PostgreSQL 17.5.1 4 18.1k Traditional DuckDB 1.2.0 44 28.4k Embedded 5 Evaluation We evaluate the effectiveness and efficiency of SRS by answering the following research questions: •Q1. New Bugs: How many unique and new",
+      "section": "4 Implementation",
+      "page": 12,
+      "char_offset": 44708,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "citation_marker",
+      "surface": "[ 3,23–25]",
+      "technique": "dqp",
+      "sentence": "These DBMSs are also commonly used in the evaluation of previous works [ 3,23–25].",
+      "context_before": "ring the following research questions: •Q1. New Bugs: How many unique and new bugs in real-world DBMSs can SRS detect? •Q2. Bugs Detected via Each Set Relation: How effective is the set relation model in detecting logic bugs? •Q3. Comparison with the State-of-the-Art: Can SRS outperform existing state-of-the-art approaches for detecting logic bug in DBMSs? 5.1 Testing Setup Tested DBMSs.We consider five DBMSs in our evaluation, including MySQL, MariaDB, TiDB, PostgreSQL, and DuckDB. According to the DB-Engine’s Ranking3, and GitHub, these DBMSs are among the most popular and widely-used DBMSs.",
+      "context_after": "Therefore, any bugs identified by SRS may have been overlooked by existing approaches. We tested the latest stable release versions of each DBMS— MySQL (9.2.0), MariaDB (11.7.2), TiDB (8.5.1), PostgreSQL (17.5.1), and DuckDB (1.2.0). Since release versions are generally considered stable, any bugs identified in these DBMSs serve as strong evidence of the effectiveness of our approach. These DBMSs represent different categories. MySQL, MariaDB, and PostgreSQL are traditional, relational, and client-server DBMSs, which are widely used in industry. TiDB is a distributed relational DBMS designed",
+      "section": "5.1 Testing Setup",
+      "page": 13,
+      "char_offset": 46032,
+      "cited_reference": {
+        "number": 3,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. doi:10.1145/3654991",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing dqp",
+          "prints the DOI of the paper introducing dqp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "citation_marker",
+      "surface": "[ 3,24]",
+      "technique": "dqp",
+      "sentence": "This aligns with observations from previous works [ 3,24], which limited our reporting of additional potential bugs to avoid duplication.",
+      "context_before": "g query—including its involved language features and the results of the join operation—also indicated that the root cause was independent of the join. This suggests that SRS can also detect logic bugs in the implementation of other language features. Bug status.All bugs have been confirmed by developers, with 12 already fixed and 33 identified as logic bugs. In our bug reports for MariaDB, PostgreSQL, and DuckDB, developers were highly responsive in addressing the issues, indicating that these bugs may pose significant risks. In contrast, MySQL and TiDB required more time to fix reported bugs.",
+      "context_after": "Bug importance.Most of the bugs found by SRS are critical and have a high likelihood of impacting real users. In MySQL, MariaDB, and TiDB, 27 bugs are classified as Serious, Major, or Moderate, highlighting their significant impact on the systems and underscoring the necessity for high-priority fixes. 5.3 Bugs Detected via Each Set Relation All 33 logic bugs were uncovered by SRS through the four types of set relations derived from our synthesis rules. Specifically, 14 bugs were uncovered via equivalent relations, 2 via intersecting relations, 4 via disjoint relations, and 13 via union relati",
+      "section": "5.2 New Bugs",
+      "page": 15,
+      "char_offset": 52438,
+      "cited_reference": {
+        "number": 3,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. doi:10.1145/3654991",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing dqp",
+          "prints the DOI of the paper introducing dqp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "We selected six state-of-the-art approaches for comparison: PQS [ 25], TLP [ 24], NoREC [ 23], Pinolo [ 11], EET [ 13], and DQP [ 3].",
+      "context_before": "er 24 hours. However, due to the implementation quality, a tool may not fully reflect the true bug-detection capability of its underlying approach. Therefore, we further compared the test oracles proposed by different approaches from a theoretical perspective. This evaluation focuses on the detection of logic bugs, and the results include only the logic bugs found, as SRS and the baseline methods are specifically designed to uncover logic bugs in join operations. Other types of bugs (e.g., runtime errors or assertion failures) can typically be detected by most existing testing tools. Baseline.",
+      "context_after": "Both DQP and TQS [ 28] are approaches designed to detect logic bugs in join operations by leveraging the equivalence among different query plans for a given query. These two approaches are the most closely aligned with the goal of SRS. We did not include TQS in our comparison because its source code is unavailable, and the authors informed us via email that they are currently unable to share it. DQP is a simpler alternative to TQS and has specifically studied TQS, concluding that it offers the same level of bug-finding effectiveness [ 13] as TQS. Therefore, we assume that comparing with DQP e",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 17,
+      "char_offset": 59768,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "tlp",
+        "norec",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "Both DQP and TQS [ 28] are approaches designed to detect logic bugs in join operations by leveraging the equivalence among different query plans for a given query.",
+      "context_before": "ying approach. Therefore, we further compared the test oracles proposed by different approaches from a theoretical perspective. This evaluation focuses on the detection of logic bugs, and the results include only the logic bugs found, as SRS and the baseline methods are specifically designed to uncover logic bugs in join operations. Other types of bugs (e.g., runtime errors or assertion failures) can typically be detected by most existing testing tools. Baseline.We selected six state-of-the-art approaches for comparison: PQS [ 25], TLP [ 24], NoREC [ 23], Pinolo [ 11], EET [ 13], and DQP [ 3].",
+      "context_after": "These two approaches are the most closely aligned with the goal of SRS. We did not include TQS in our comparison because its source code is unavailable, and the authors informed us via email that they are currently unable to share it. DQP is a simpler alternative to TQS and has specifically studied TQS, concluding that it offers the same level of bug-finding effectiveness [ 13] as TQS. Therefore, we assume that comparing with DQP effectively represents a comparison with this class of approaches. PQS generates queries based on the database state such that the result is guaranteed to include sp",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 17,
+      "char_offset": 59901,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "DQP is a simpler alternative to TQS and has specifically studied TQS, concluding that it offers the same level of bug-finding effectiveness [ 13] as TQS.",
+      "context_before": "can typically be detected by most existing testing tools. Baseline.We selected six state-of-the-art approaches for comparison: PQS [ 25], TLP [ 24], NoREC [ 23], Pinolo [ 11], EET [ 13], and DQP [ 3]. Both DQP and TQS [ 28] are approaches designed to detect logic bugs in join operations by leveraging the equivalence among different query plans for a given query. These two approaches are the most closely aligned with the goal of SRS. We did not include TQS in our comparison because its source code is unavailable, and the authors informed us via email that they are currently unable to share it.",
+      "context_after": "Therefore, we assume that comparing with DQP effectively represents a comparison with this class of approaches. PQS generates queries based on the database state such that the result is guaranteed to include specific rows from the database. It supports testing of join operations. EET leverages tautologies and contradictions to construct equivalent queries, enabling the testing of any syntactic feature involving expressions. As a result, it also supports the testing of join operations. Both TLP and Pionlo leverage set-based relationships to detect logic bugs, but their transformation targets a",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 17,
+      "char_offset": 60300,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "Therefore, we assume that comparing with DQP effectively represents a comparison with this class of approaches.",
+      "context_before": "C [ 23], Pinolo [ 11], EET [ 13], and DQP [ 3]. Both DQP and TQS [ 28] are approaches designed to detect logic bugs in join operations by leveraging the equivalence among different query plans for a given query. These two approaches are the most closely aligned with the goal of SRS. We did not include TQS in our comparison because its source code is unavailable, and the authors informed us via email that they are currently unable to share it. DQP is a simpler alternative to TQS and has specifically studied TQS, concluding that it offers the same level of bug-finding effectiveness [ 13] as TQS.",
+      "context_after": "PQS generates queries based on the database state such that the result is guaranteed to include specific rows from the database. It supports testing of join operations. EET leverages tautologies and contradictions to construct equivalent queries, enabling the testing of any syntactic feature involving expressions. As a result, it also supports the testing of join operations. Both TLP and Pionlo leverage set-based relationships to detect logic bugs, but their transformation targets are expressions within query clauses. Both tools provide support for generating join operations. NoREC generates",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 17,
+      "char_offset": 60454,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS generates queries based on the database state such that the result is guaranteed to include specific rows from the database.",
+      "context_before": "ugs in join operations by leveraging the equivalence among different query plans for a given query. These two approaches are the most closely aligned with the goal of SRS. We did not include TQS in our comparison because its source code is unavailable, and the authors informed us via email that they are currently unable to share it. DQP is a simpler alternative to TQS and has specifically studied TQS, concluding that it offers the same level of bug-finding effectiveness [ 13] as TQS. Therefore, we assume that comparing with DQP effectively represents a comparison with this class of approaches.",
+      "context_after": "It supports testing of join operations. EET leverages tautologies and contradictions to construct equivalent queries, enabling the testing of any syntactic feature involving expressions. As a result, it also supports the testing of join operations. Both TLP and Pionlo leverage set-based relationships to detect logic bugs, but their transformation targets are expressions within query clauses. Both tools provide support for generating join operations. NoREC generates equivalent queries by exploiting the equivalence between the WHERE and SELECT clauses. While NoREC is not designed to specificall",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 17,
+      "char_offset": 60566,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Both TLP and Pionlo leverage set-based relationships to detect logic bugs, but their transformation targets are expressions within query clauses.",
+      "context_before": "specifically studied TQS, concluding that it offers the same level of bug-finding effectiveness [ 13] as TQS. Therefore, we assume that comparing with DQP effectively represents a comparison with this class of approaches. PQS generates queries based on the database state such that the result is guaranteed to include specific rows from the database. It supports testing of join operations. EET leverages tautologies and contradictions to construct equivalent queries, enabling the testing of any syntactic feature involving expressions. As a result, it also supports the testing of join operations.",
+      "context_after": "Both tools provide support for generating join operations. NoREC generates equivalent queries by exploiting the equivalence between the WHERE and SELECT clauses. While NoREC is not designed to specifically test join operations, it has previously detected join-related bugs. As such, we include a comparison with NoREC in our evaluation. 5.4.1 Comparison to Other DBMS Logic Bug Testing Tools.We run each tool on the latest version of each supported DBMS for a duration of 24 hours. Since the baseline approaches do not support all the DBMSs that SRS does, our comparison is limited to the DBMSs comm",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 17,
+      "char_offset": 60944,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC generates equivalent queries by exploiting the equivalence between the WHERE and SELECT clauses.",
+      "context_before": "ss of approaches. PQS generates queries based on the database state such that the result is guaranteed to include specific rows from the database. It supports testing of join operations. EET leverages tautologies and contradictions to construct equivalent queries, enabling the testing of any syntactic feature involving expressions. As a result, it also supports the testing of join operations. Both TLP and Pionlo leverage set-based relationships to detect logic bugs, but their transformation targets are expressions within query clauses. Both tools provide support for generating join operations.",
+      "context_after": "While NoREC is not designed to specifically test join operations, it has previously detected join-related bugs. As such, we include a comparison with NoREC in our evaluation. 5.4.1 Comparison to Other DBMS Logic Bug Testing Tools.We run each tool on the latest version of each supported DBMS for a duration of 24 hours. Since the baseline approaches do not support all the DBMSs that SRS does, our comparison is limited to the DBMSs commonly supported by both SRS and each baseline. To ensure fair comparisons, we allocated four threads for each DBMS test in our experiments, following common practi",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 17,
+      "char_offset": 61149,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "While NoREC is not designed to specifically test join operations, it has previously detected join-related bugs.",
+      "context_before": "to include specific rows from the database. It supports testing of join operations. EET leverages tautologies and contradictions to construct equivalent queries, enabling the testing of any syntactic feature involving expressions. As a result, it also supports the testing of join operations. Both TLP and Pionlo leverage set-based relationships to detect logic bugs, but their transformation targets are expressions within query clauses. Both tools provide support for generating join operations. NoREC generates equivalent queries by exploiting the equivalence between the WHERE and SELECT clauses.",
+      "context_after": "As such, we include a comparison with NoREC in our evaluation. 5.4.1 Comparison to Other DBMS Logic Bug Testing Tools.We run each tool on the latest version of each supported DBMS for a duration of 24 hours. Since the baseline approaches do not support all the DBMSs that SRS does, our comparison is limited to the DBMSs commonly supported by both SRS and each baseline. To ensure fair comparisons, we allocated four threads for each DBMS test in our experiments, following common practice in previous work [ 11]. In this experiment, we aim to investigate the effectiveness and efficiency of SRS in",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 17,
+      "char_offset": 61252,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M20",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "As such, we include a comparison with NoREC in our evaluation.",
+      "context_before": "d contradictions to construct equivalent queries, enabling the testing of any syntactic feature involving expressions. As a result, it also supports the testing of join operations. Both TLP and Pionlo leverage set-based relationships to detect logic bugs, but their transformation targets are expressions within query clauses. Both tools provide support for generating join operations. NoREC generates equivalent queries by exploiting the equivalence between the WHERE and SELECT clauses. While NoREC is not designed to specifically test join operations, it has previously detected join-related bugs.",
+      "context_after": "5.4.1 Comparison to Other DBMS Logic Bug Testing Tools.We run each tool on the latest version of each supported DBMS for a duration of 24 hours. Since the baseline approaches do not support all the DBMSs that SRS does, our comparison is limited to the DBMSs commonly supported by both SRS and each baseline. To ensure fair comparisons, we allocated four threads for each DBMS test in our experiments, following common practice in previous work [ 11]. In this experiment, we aim to investigate the effectiveness and efficiency of SRS in comparison to state-of-the-art approaches. Results of effective",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 17,
+      "char_offset": 61364,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M21",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Table 5 shows that SRS found 12, 9, 10, 20, 17, and 13 more bugs than PQS, NoREC, TLP, DQP, Pinolo, and EET, respectively.",
+      "context_before": "xperiments, following common practice in previous work [ 11]. In this experiment, we aim to investigate the effectiveness and efficiency of SRS in comparison to state-of-the-art approaches. Results of effectiveness.Table 5 presents the number of unique logic bugs identified by each approach on each DBMS in the duration of 24 hours. Since not all approaches target join-related logic bugs, we did not exclude non-join-related data in Table 5 to facilitate a fair comparison of the bug detection capabilities of different approaches. For example, the 3 bugs detected by Pinolo are unrelated to joins.",
+      "context_after": "Note that the increments are calculated based only on the DBMSs commonly supported by both approaches. The other approaches were less effective in our experiments because we tested the latest versions of the DBMSs. Therefore, their 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. 363:18 Jinhui Lai et al. Table 5. Number of unique logic bugs triggered in 24 hours. DBMSPQS NoREC TLPDQP Pinolo EETSRS MySQL 0 - 4 0 2 310 MariaDB-0 - 0 1 -6 TiDB - - 2 0 0 04 PostgreSQL 0 0 0 - - 02 DuckDB-01- - -1 Total 0 0 7 0 3 323 Increment 12↑9↑10↑20↑17↑13↑“-” indicates that the tool does not",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 17,
+      "char_offset": 62417,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M22",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "DBMSPQS NoREC TLPDQP Pinolo EETSRS MySQL 0 - 4 0 2 310 MariaDB-0 - 0 1 -6 TiDB - - 2 0 0 04 PostgreSQL 0 0 0 - - 02 DuckDB-01- - -1 Total 0 0 7 0 3 323 Increment 12↑9↑10↑20↑17↑13↑“-” indicates that the tool does not support the DBMS.",
+      "context_before": "es of different approaches. For example, the 3 bugs detected by Pinolo are unrelated to joins. Table 5 shows that SRS found 12, 9, 10, 20, 17, and 13 more bugs than PQS, NoREC, TLP, DQP, Pinolo, and EET, respectively. Note that the increments are calculated based only on the DBMSs commonly supported by both approaches. The other approaches were less effective in our experiments because we tested the latest versions of the DBMSs. Therefore, their 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. 363:18 Jinhui Lai et al. Table 5. Number of unique logic bugs triggered in 24 hours.",
+      "context_after": "“Increments” are calculated only for commonly supported DBMSs. /uni00000013/uni00000017/uni0000001b/uni00000014/uni00000015/uni00000014/uni00000019/uni00000015/uni00000013/uni00000015/uni00000017 /uni0000004b/uni00000052/uni00000058/uni00000055/uni00000056/uni00000013/uni00000015/uni00000017/uni00000019/uni0000001b/uni00000014/uni00000013/uni00000045/uni00000058/uni0000004a/uni00000003/uni00000046/uni00000052/uni00000058/uni00000051/uni00000057 /uni0000000b/uni00000044/uni0000000c/uni00000003/uni00000030/uni0000005c/uni00000036/uni00000034/uni0000002f/uni00000036/uni00000035/uni00000036 /uni0",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 18,
+      "char_offset": 62923,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M23",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We compared the code coverage achieved by these approaches, and the results showed that the test oracles implemented on SQLancer— PQS, NoREC, TLP, DQP, and SRS—achieved similar code coverage.",
+      "context_before": "fficiency.Figure 5 illustrates the logic bug detection progress over time for SRS and the baselines. Results from baseline approaches are excluded if they pertain to unsupported DBMSs or if the approaches failed to detect any bugs. At each time point, SRS consistently detects an equal or greater number of unique logic bugs compared to all baselines, highlighting its effectiveness in identifying bugs both faster and more comprehensively. Code coverage is a commonly used metric in testing; however, it is mainly influenced by the test case generation strategy, which is not the focus of this work.",
+      "context_after": "For instance, when testing MySQL for 24 hours, PQS, TLP, DQP, and SRS achieved line coverage rates of 23.35%, 23.78%, 22.37%, and 24.19%, respectively. This similarity arises because these methods adopt comparable test case generation strategies, and the generated queries exercise similar language features. 5.4.2 Comparison to Other DBMS Logic Bug Testing Oracles.We conducted a best-effort manual analysis on the bug-inducing test cases to determine whether the logic bugs identified by SRS, as shown in Table 4, could theoretically be detected by other approaches’ oracle, and whether the join-r",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 18,
+      "char_offset": 66742,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M24",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "For instance, when testing MySQL for 24 hours, PQS, TLP, DQP, and SRS achieved line coverage rates of 23.",
+      "context_before": "e approaches failed to detect any bugs. At each time point, SRS consistently detects an equal or greater number of unique logic bugs compared to all baselines, highlighting its effectiveness in identifying bugs both faster and more comprehensively. Code coverage is a commonly used metric in testing; however, it is mainly influenced by the test case generation strategy, which is not the focus of this work. We compared the code coverage achieved by these approaches, and the results showed that the test oracles implemented on SQLancer— PQS, NoREC, TLP, DQP, and SRS—achieved similar code coverage.",
+      "context_after": "35%, 23.78%, 22.37%, and 24.19%, respectively. This similarity arises because these methods adopt comparable test case generation strategies, and the generated queries exercise similar language features. 5.4.2 Comparison to Other DBMS Logic Bug Testing Oracles.We conducted a best-effort manual analysis on the bug-inducing test cases to determine whether the logic bugs identified by SRS, as shown in Table 4, could theoretically be detected by other approaches’ oracle, and whether the join-related logic bugs detected by other approaches could be identified by SRS’s oracle. A test oracle is valua",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 18,
+      "char_offset": 66934,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M25",
+      "found_by": "citation_marker",
+      "surface": "[ 23]",
+      "technique": "norec",
+      "sentence": "And this is a widely used method for comparing different test oracles [ 23].",
+      "context_before": "ecause these methods adopt comparable test case generation strategies, and the generated queries exercise similar language features. 5.4.2 Comparison to Other DBMS Logic Bug Testing Oracles.We conducted a best-effort manual analysis on the bug-inducing test cases to determine whether the logic bugs identified by SRS, as shown in Table 4, could theoretically be detected by other approaches’ oracle, and whether the join-related logic bugs detected by other approaches could be identified by SRS’s oracle. A test oracle is valuable as long as it can detect logic bugs that other test oracles cannot.",
+      "context_after": "In this experiment, to determine whether the bugs detected by SRS could be identified by other approaches’ oracle, we selected TQS/DQP, TLP, and NoREC for comparison because their fixed transformation patterns allow for reliable manual validation. We excluded EET, Pinolo, and PQS due to their vast transformation spaces, 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. SRS: Detecting Logic Bugs of Join Implementation in DBMSs via Set Relation Synthesis 363:19 15 2 11 1 TQS/DQP ’s oracle TLP ’s oracle NoREC ’s oracle Logic bugs found by SRS 33 Fig. 6. Results of applying othe",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 18,
+      "char_offset": 67711,
+      "cited_reference": {
+        "number": 23,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Virtual Event, USA)(",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M26",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "In this experiment, to determine whether the bugs detected by SRS could be identified by other approaches’ oracle, we selected TQS/DQP, TLP, and NoREC for comparison because their fixed transformation patterns allow for reliable manual validation.",
+      "context_before": "e generated queries exercise similar language features. 5.4.2 Comparison to Other DBMS Logic Bug Testing Oracles.We conducted a best-effort manual analysis on the bug-inducing test cases to determine whether the logic bugs identified by SRS, as shown in Table 4, could theoretically be detected by other approaches’ oracle, and whether the join-related logic bugs detected by other approaches could be identified by SRS’s oracle. A test oracle is valuable as long as it can detect logic bugs that other test oracles cannot. And this is a widely used method for comparing different test oracles [ 23].",
+      "context_after": "We excluded EET, Pinolo, and PQS due to their vast transformation spaces, 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. SRS: Detecting Logic Bugs of Join Implementation in DBMSs via Set Relation Synthesis 363:19 15 2 11 1 TQS/DQP ’s oracle TLP ’s oracle NoREC ’s oracle Logic bugs found by SRS 33 Fig. 6. Results of applying other oracles on logic bugs detected by SRS. Of the total 33 logic bugs detected by SRS, 13 were undetectable by other oracles. which make manual validation infeasible. Specifically, EET constructs equivalent queries by adding expressions that always e",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 18,
+      "char_offset": 67788,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp",
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M27",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "We excluded EET, Pinolo, and PQS due to their vast transformation spaces, 3, No.",
+      "context_before": "wn in Table 4, could theoretically be detected by other approaches’ oracle, and whether the join-related logic bugs detected by other approaches could be identified by SRS’s oracle. A test oracle is valuable as long as it can detect logic bugs that other test oracles cannot. And this is a widely used method for comparing different test oracles [ 23]. In this experiment, to determine whether the bugs detected by SRS could be identified by other approaches’ oracle, we selected TQS/DQP, TLP, and NoREC for comparison because their fixed transformation patterns allow for reliable manual validation.",
+      "context_after": "6 (SIGMOD), Article 363. Publication date: December 2025. SRS: Detecting Logic Bugs of Join Implementation in DBMSs via Set Relation Synthesis 363:19 15 2 11 1 TQS/DQP ’s oracle TLP ’s oracle NoREC ’s oracle Logic bugs found by SRS 33 Fig. 6. Results of applying other oracles on logic bugs detected by SRS. Of the total 33 logic bugs detected by SRS, 13 were undetectable by other oracles. which make manual validation infeasible. Specifically, EET constructs equivalent queries by adding expressions that always evaluate to TRUE or FALSE. However, the search space for such expressions is extreme",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 18,
+      "char_offset": 68036,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M28",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "SRS: Detecting Logic Bugs of Join Implementation in DBMSs via Set Relation Synthesis 363:19 15 2 11 1 TQS/DQP ’s oracle TLP ’s oracle NoREC ’s oracle Logic bugs found by SRS 33 Fig.",
+      "context_before": "ches could be identified by SRS’s oracle. A test oracle is valuable as long as it can detect logic bugs that other test oracles cannot. And this is a widely used method for comparing different test oracles [ 23]. In this experiment, to determine whether the bugs detected by SRS could be identified by other approaches’ oracle, we selected TQS/DQP, TLP, and NoREC for comparison because their fixed transformation patterns allow for reliable manual validation. We excluded EET, Pinolo, and PQS due to their vast transformation spaces, 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025.",
+      "context_after": "6. Results of applying other oracles on logic bugs detected by SRS. Of the total 33 logic bugs detected by SRS, 13 were undetectable by other oracles. which make manual validation infeasible. Specifically, EET constructs equivalent queries by adding expressions that always evaluate to TRUE or FALSE. However, the search space for such expressions is extremely large, making manual generation infeasible. Similarly, Pinolo and PQS were excluded due to scalability issues: in Pinolo, the space of approximate queries is prohibitively large, and in PQS, there can be infinitely many possible pivoted qu",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 18,
+      "char_offset": 68176,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp",
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M29",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Similarly, Pinolo and PQS were excluded due to scalability issues: in Pinolo, the space of approximate queries is prohibitively large, and in PQS, there can be infinitely many possible pivoted queries for a given row.",
+      "context_before": "cember 2025. SRS: Detecting Logic Bugs of Join Implementation in DBMSs via Set Relation Synthesis 363:19 15 2 11 1 TQS/DQP ’s oracle TLP ’s oracle NoREC ’s oracle Logic bugs found by SRS 33 Fig. 6. Results of applying other oracles on logic bugs detected by SRS. Of the total 33 logic bugs detected by SRS, 13 were undetectable by other oracles. which make manual validation infeasible. Specifically, EET constructs equivalent queries by adding expressions that always evaluate to TRUE or FALSE. However, the search space for such expressions is extremely large, making manual generation infeasible.",
+      "context_after": "To determine whether SRS can detect join-related logic bugs identified by other approaches, we collected bug reports from baselines, extracted those involving join operations, and then applied SRS’s test oracle to these bug-inducing test cases to assess whether SRS could detect the bug. Results of other oracles on bugs detected by SRS.The results are presented in Figure 6. Out of the 33 logic bugs detected by SRS, 16 can be detected by TQS/DQP’s oracle; 4 can be detected by TLP’s oracle; 2 can be detected by NoREC’s oracle; and 13 are uniquely detected by SRS. For TQS/DQP’s oracle, we incorpo",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 19,
+      "char_offset": 68764,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M30",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "Out of the 33 logic bugs detected by SRS, 16 can be detected by TQS/DQP’s oracle; 4 can be detected by TLP’s oracle; 2 can be detected by NoREC’s oracle; and 13 are uniquely detected by SRS.",
+      "context_before": "sible. Similarly, Pinolo and PQS were excluded due to scalability issues: in Pinolo, the space of approximate queries is prohibitively large, and in PQS, there can be infinitely many possible pivoted queries for a given row. To determine whether SRS can detect join-related logic bugs identified by other approaches, we collected bug reports from baselines, extracted those involving join operations, and then applied SRS’s test oracle to these bug-inducing test cases to assess whether SRS could detect the bug. Results of other oracles on bugs detected by SRS.The results are presented in Figure 6.",
+      "context_after": "For TQS/DQP’s oracle, we incorporated query hints and relevant system variables on the buginducing test cases. The result shows that 17 bugs are undetectable by TQS/DQP’s oracle. When TQS/DQP fail to influence the optimizer’s behavior, or when the logic bugs lie in the join implementation unrelated to optimization, TQS/DQP is unable to detect certain issues. For the example shown in Listing 2, despite applying all optimizer switches5and query hints6of MySQL, the bug remained undetectable. The inconsistency between the intersection of a left outer join and a right outer join with an inner join",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 19,
+      "char_offset": 69358,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp",
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M31",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "For TQS/DQP’s oracle, we incorporated query hints and relevant system variables on the buginducing test cases.",
+      "context_before": "pivoted queries for a given row. To determine whether SRS can detect join-related logic bugs identified by other approaches, we collected bug reports from baselines, extracted those involving join operations, and then applied SRS’s test oracle to these bug-inducing test cases to assess whether SRS could detect the bug. Results of other oracles on bugs detected by SRS.The results are presented in Figure 6. Out of the 33 logic bugs detected by SRS, 16 can be detected by TQS/DQP’s oracle; 4 can be detected by TLP’s oracle; 2 can be detected by NoREC’s oracle; and 13 are uniquely detected by SRS.",
+      "context_after": "The result shows that 17 bugs are undetectable by TQS/DQP’s oracle. When TQS/DQP fail to influence the optimizer’s behavior, or when the logic bugs lie in the join implementation unrelated to optimization, TQS/DQP is unable to detect certain issues. For the example shown in Listing 2, despite applying all optimizer switches5and query hints6of MySQL, the bug remained undetectable. The inconsistency between the intersection of a left outer join and a right outer join with an inner join helps SRS detect this bug. Although the analysis shows that 16 out of the 33 logic bugs detected by SRS could",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 19,
+      "char_offset": 69549,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M32",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "The result shows that 17 bugs are undetectable by TQS/DQP’s oracle.",
+      "context_before": "er approaches, we collected bug reports from baselines, extracted those involving join operations, and then applied SRS’s test oracle to these bug-inducing test cases to assess whether SRS could detect the bug. Results of other oracles on bugs detected by SRS.The results are presented in Figure 6. Out of the 33 logic bugs detected by SRS, 16 can be detected by TQS/DQP’s oracle; 4 can be detected by TLP’s oracle; 2 can be detected by NoREC’s oracle; and 13 are uniquely detected by SRS. For TQS/DQP’s oracle, we incorporated query hints and relevant system variables on the buginducing test cases.",
+      "context_after": "When TQS/DQP fail to influence the optimizer’s behavior, or when the logic bugs lie in the join implementation unrelated to optimization, TQS/DQP is unable to detect certain issues. For the example shown in Listing 2, despite applying all optimizer switches5and query hints6of MySQL, the bug remained undetectable. The inconsistency between the intersection of a left outer join and a right outer join with an inner join helps SRS detect this bug. Although the analysis shows that 16 out of the 33 logic bugs detected by SRS could theoretically be detected by DQP’s oracle, the tool of DQP failed to",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 19,
+      "char_offset": 69660,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M33",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "When TQS/DQP fail to influence the optimizer’s behavior, or when the logic bugs lie in the join implementation unrelated to optimization, TQS/DQP is unable to detect certain issues.",
+      "context_before": "ose involving join operations, and then applied SRS’s test oracle to these bug-inducing test cases to assess whether SRS could detect the bug. Results of other oracles on bugs detected by SRS.The results are presented in Figure 6. Out of the 33 logic bugs detected by SRS, 16 can be detected by TQS/DQP’s oracle; 4 can be detected by TLP’s oracle; 2 can be detected by NoREC’s oracle; and 13 are uniquely detected by SRS. For TQS/DQP’s oracle, we incorporated query hints and relevant system variables on the buginducing test cases. The result shows that 17 bugs are undetectable by TQS/DQP’s oracle.",
+      "context_after": "For the example shown in Listing 2, despite applying all optimizer switches5and query hints6of MySQL, the bug remained undetectable. The inconsistency between the intersection of a left outer join and a right outer join with an inner join helps SRS detect this bug. Although the analysis shows that 16 out of the 33 logic bugs detected by SRS could theoretically be detected by DQP’s oracle, the tool of DQP failed to uncover any of them during 24 hours, as shown in Table 5. To determine why a gap exists between theoretical (Figure 6) and practical (Table 5) bug detection in DQP, we checked the j",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 19,
+      "char_offset": 69728,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M34",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "Although the analysis shows that 16 out of the 33 logic bugs detected by SRS could theoretically be detected by DQP’s oracle, the tool of DQP failed to uncover any of them during 24 hours, as shown in Table 5.",
+      "context_before": "ncorporated query hints and relevant system variables on the buginducing test cases. The result shows that 17 bugs are undetectable by TQS/DQP’s oracle. When TQS/DQP fail to influence the optimizer’s behavior, or when the logic bugs lie in the join implementation unrelated to optimization, TQS/DQP is unable to detect certain issues. For the example shown in Listing 2, despite applying all optimizer switches5and query hints6of MySQL, the bug remained undetectable. The inconsistency between the intersection of a left outer join and a right outer join with an inner join helps SRS detect this bug.",
+      "context_after": "To determine why a gap exists between theoretical (Figure 6) and practical (Table 5) bug detection in DQP, we checked the join queries generated by DQP’s tool, and found it supports limited join operations (i.e., cross/inner/outer/natural join). In contrast, SRS supports a broader range of join types, including semi joins and anti joins, even though these join types are not explicitly defined in the query—for example, as illustrated in Listing 4. For TLP’s oracle, we manually constructed three follow-up join queries based on the condition in the bug-inducing query, corresponding to the forms",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 19,
+      "char_offset": 70176,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M35",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "To determine why a gap exists between theoretical (Figure 6) and practical (Table 5) bug detection in DQP, we checked the join queries generated by DQP’s tool, and found it supports limited join operations (i.",
+      "context_before": "or when the logic bugs lie in the join implementation unrelated to optimization, TQS/DQP is unable to detect certain issues. For the example shown in Listing 2, despite applying all optimizer switches5and query hints6of MySQL, the bug remained undetectable. The inconsistency between the intersection of a left outer join and a right outer join with an inner join helps SRS detect this bug. Although the analysis shows that 16 out of the 33 logic bugs detected by SRS could theoretically be detected by DQP’s oracle, the tool of DQP failed to uncover any of them during 24 hours, as shown in Table 5.",
+      "context_after": "e., cross/inner/outer/natural join). In contrast, SRS supports a broader range of join types, including semi joins and anti joins, even though these join types are not explicitly defined in the query—for example, as illustrated in Listing 4. For TLP’s oracle, we manually constructed three follow-up join queries based on the condition in the bug-inducing query, corresponding to the forms p,NOT p, and p IS NULL. We then examined whether the union of the results from these three queries covered all relevant relations. Our analysis shows that four of the bugs detected by SRS can also be identified",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 19,
+      "char_offset": 70386,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M36",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For TLP’s oracle, we manually constructed three follow-up join queries based on the condition in the bug-inducing query, corresponding to the forms p,NOT p, and p IS NULL.",
+      "context_before": "detected by SRS could theoretically be detected by DQP’s oracle, the tool of DQP failed to uncover any of them during 24 hours, as shown in Table 5. To determine why a gap exists between theoretical (Figure 6) and practical (Table 5) bug detection in DQP, we checked the join queries generated by DQP’s tool, and found it supports limited join operations (i.e., cross/inner/outer/natural join). In contrast, SRS supports a broader range of join types, including semi joins and anti joins, even though these join types are not explicitly defined in the query—for example, as illustrated in Listing 4.",
+      "context_after": "We then examined whether the union of the results from these three queries covered all relevant relations. Our analysis shows that four of the bugs detected by SRS can also be identified by TLP’s oracle, whereas the remaining logic bugs cannot be detected by it. For NoREC’s oracle, we manually constructed two equivalent queries by leveraging the equivalence between the WHERE and SELECT clauses in the bug-inducing query. Our analysis shows that two of the bugs detected by SRS can also be identified by NoREC’s oracle, while the remaining logic bugs cannot be detected by it. Given that neither N",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 19,
+      "char_offset": 70837,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M37",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Our analysis shows that four of the bugs detected by SRS can also be identified by TLP’s oracle, whereas the remaining logic bugs cannot be detected by it.",
+      "context_before": "eries generated by DQP’s tool, and found it supports limited join operations (i.e., cross/inner/outer/natural join). In contrast, SRS supports a broader range of join types, including semi joins and anti joins, even though these join types are not explicitly defined in the query—for example, as illustrated in Listing 4. For TLP’s oracle, we manually constructed three follow-up join queries based on the condition in the bug-inducing query, corresponding to the forms p,NOT p, and p IS NULL. We then examined whether the union of the results from these three queries covered all relevant relations.",
+      "context_after": "For NoREC’s oracle, we manually constructed two equivalent queries by leveraging the equivalence between the WHERE and SELECT clauses in the bug-inducing query. Our analysis shows that two of the bugs detected by SRS can also be identified by NoREC’s oracle, while the remaining logic bugs cannot be detected by it. Given that neither NoREC nor TLP’s oracle is designed to test the implementation of join operations, it is unsurprising that they fail to detect most of these logic bugs. 5https://dev.mysql.com/doc/refman/8.4/en/switchable-optimizations.html 6https://dev.mysql.com/doc/refman/8.4/en/",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 19,
+      "char_offset": 71116,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M38",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "For NoREC’s oracle, we manually constructed two equivalent queries by leveraging the equivalence between the WHERE and SELECT clauses in the bug-inducing query.",
+      "context_before": "ge of join types, including semi joins and anti joins, even though these join types are not explicitly defined in the query—for example, as illustrated in Listing 4. For TLP’s oracle, we manually constructed three follow-up join queries based on the condition in the bug-inducing query, corresponding to the forms p,NOT p, and p IS NULL. We then examined whether the union of the results from these three queries covered all relevant relations. Our analysis shows that four of the bugs detected by SRS can also be identified by TLP’s oracle, whereas the remaining logic bugs cannot be detected by it.",
+      "context_after": "Our analysis shows that two of the bugs detected by SRS can also be identified by NoREC’s oracle, while the remaining logic bugs cannot be detected by it. Given that neither NoREC nor TLP’s oracle is designed to test the implementation of join operations, it is unsurprising that they fail to detect most of these logic bugs. 5https://dev.mysql.com/doc/refman/8.4/en/switchable-optimizations.html 6https://dev.mysql.com/doc/refman/8.4/en/optimizer-hints.html 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. 363:20 Jinhui Lai et al. Listing 5. Example of applying the SRS oracle to",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 19,
+      "char_offset": 71272,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M39",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Our analysis shows that two of the bugs detected by SRS can also be identified by NoREC’s oracle, while the remaining logic bugs cannot be detected by it.",
+      "context_before": "g 4. For TLP’s oracle, we manually constructed three follow-up join queries based on the condition in the bug-inducing query, corresponding to the forms p,NOT p, and p IS NULL. We then examined whether the union of the results from these three queries covered all relevant relations. Our analysis shows that four of the bugs detected by SRS can also be identified by TLP’s oracle, whereas the remaining logic bugs cannot be detected by it. For NoREC’s oracle, we manually constructed two equivalent queries by leveraging the equivalence between the WHERE and SELECT clauses in the bug-inducing query.",
+      "context_after": "Given that neither NoREC nor TLP’s oracle is designed to test the implementation of join operations, it is unsurprising that they fail to detect most of these logic bugs. 5https://dev.mysql.com/doc/refman/8.4/en/switchable-optimizations.html 6https://dev.mysql.com/doc/refman/8.4/en/optimizer-hints.html 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. 363:20 Jinhui Lai et al. Listing 5. Example of applying the SRS oracle to a join-related bug from other tools’ bug list -- A bug-inducing case from PQS's bug list: https://www.manuelrigger.at/dbms-bugs/ CREATE TABLEt0(c0INT); CRE",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 19,
+      "char_offset": 71433,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M40",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Given that neither NoREC nor TLP’s oracle is designed to test the implementation of join operations, it is unsurprising that they fail to detect most of these logic bugs.",
+      "context_before": "NOT p, and p IS NULL. We then examined whether the union of the results from these three queries covered all relevant relations. Our analysis shows that four of the bugs detected by SRS can also be identified by TLP’s oracle, whereas the remaining logic bugs cannot be detected by it. For NoREC’s oracle, we manually constructed two equivalent queries by leveraging the equivalence between the WHERE and SELECT clauses in the bug-inducing query. Our analysis shows that two of the bugs detected by SRS can also be identified by NoREC’s oracle, while the remaining logic bugs cannot be detected by it.",
+      "context_after": "5https://dev.mysql.com/doc/refman/8.4/en/switchable-optimizations.html 6https://dev.mysql.com/doc/refman/8.4/en/optimizer-hints.html 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. 363:20 Jinhui Lai et al. Listing 5. Example of applying the SRS oracle to a join-related bug from other tools’ bug list -- A bug-inducing case from PQS's bug list: https://www.manuelrigger.at/dbms-bugs/ CREATE TABLEt0(c0INT); CREATE TABLEt1(c0INT) ENGINE = MEMORY; INSERT INTOt0(c0)VALUES(0); INSERT INTOt1(c0)VALUES(-1); -- PQS's oracle: expected: row is fetched, actual: no row is fetched SELECT*FR",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 19,
+      "char_offset": 71588,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M41",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Example of applying the SRS oracle to a join-related bug from other tools’ bug list -- A bug-inducing case from PQS's bug list: https://www.",
+      "context_before": "LECT clauses in the bug-inducing query. Our analysis shows that two of the bugs detected by SRS can also be identified by NoREC’s oracle, while the remaining logic bugs cannot be detected by it. Given that neither NoREC nor TLP’s oracle is designed to test the implementation of join operations, it is unsurprising that they fail to detect most of these logic bugs. 5https://dev.mysql.com/doc/refman/8.4/en/switchable-optimizations.html 6https://dev.mysql.com/doc/refman/8.4/en/optimizer-hints.html 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. 363:20 Jinhui Lai et al. Listing 5.",
+      "context_after": "manuelrigger.at/dbms-bugs/ CREATE TABLEt0(c0INT); CREATE TABLEt1(c0INT) ENGINE = MEMORY; INSERT INTOt0(c0)VALUES(0); INSERT INTOt1(c0)VALUES(-1); -- PQS's oracle: expected: row is fetched, actual: no row is fetched SELECT*FROMt0, t1WHERE(CAST(t1.c0ASUNSIGNED)) > (IFNULL(\"u\", t0.c0)); -- SRS's oracle: \"{0, -1} != {0, null} intersect {0, -1}\", violating rule R06 in Table 1 SELECT*FROMt0INNER JOINt1ON(CAST(t1.c0ASUNSIGNED)) <= (IFNULL(\"u\", t0.c0)); -- {0, -1} SELECT*FROMt0LEFT JOINt1ON(CAST(t1.c0ASUNSIGNED)) <= (IFNULL(\"u\", t0.c0)); -- {0, null} SELECT*FROMt0RIGHT JOINt1ON(CAST(t1.c0ASUNSIGNED))",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 20,
+      "char_offset": 71994,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M42",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "at/dbms-bugs/ CREATE TABLEt0(c0INT); CREATE TABLEt1(c0INT) ENGINE = MEMORY; INSERT INTOt0(c0)VALUES(0); INSERT INTOt1(c0)VALUES(-1); -- PQS's oracle: expected: row is fetched, actual: no row is fetched SELECT*FROMt0, t1WHERE(CAST(t1.",
+      "context_before": "ing logic bugs cannot be detected by it. Given that neither NoREC nor TLP’s oracle is designed to test the implementation of join operations, it is unsurprising that they fail to detect most of these logic bugs. 5https://dev.mysql.com/doc/refman/8.4/en/switchable-optimizations.html 6https://dev.mysql.com/doc/refman/8.4/en/optimizer-hints.html 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. 363:20 Jinhui Lai et al. Listing 5. Example of applying the SRS oracle to a join-related bug from other tools’ bug list -- A bug-inducing case from PQS's bug list: https://www.manuelrigger.",
+      "context_after": "c0ASUNSIGNED)) > (IFNULL(\"u\", t0.c0)); -- SRS's oracle: \"{0, -1} != {0, null} intersect {0, -1}\", violating rule R06 in Table 1 SELECT*FROMt0INNER JOINt1ON(CAST(t1.c0ASUNSIGNED)) <= (IFNULL(\"u\", t0.c0)); -- {0, -1} SELECT*FROMt0LEFT JOINt1ON(CAST(t1.c0ASUNSIGNED)) <= (IFNULL(\"u\", t0.c0)); -- {0, null} SELECT*FROMt0RIGHT JOINt1ON(CAST(t1.c0ASUNSIGNED)) <= (IFNULL(\"u\", t0.c0)); -- {0, -1} Results of SRS oracle on bugs detected by other tools.We collected a total of 75 logic bugs involving join operations from the bug lists of baselines. We then applied the SRS’s oracle to these bug-inducing case",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 20,
+      "char_offset": 72148,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M43",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "We then applied the SRS’s oracle to these bug-inducing cases and successfully reproduced 69 of them, including 16 out of 18 in TQS, 14 out of 15 in DQP, 5 out of 6 in PQS, all 5 in NoREC, 16 out of 17 in TLP, 7 out of 8 in Pinolo, and all 6 in EET.",
+      "context_before": "d, actual: no row is fetched SELECT*FROMt0, t1WHERE(CAST(t1.c0ASUNSIGNED)) > (IFNULL(\"u\", t0.c0)); -- SRS's oracle: \"{0, -1} != {0, null} intersect {0, -1}\", violating rule R06 in Table 1 SELECT*FROMt0INNER JOINt1ON(CAST(t1.c0ASUNSIGNED)) <= (IFNULL(\"u\", t0.c0)); -- {0, -1} SELECT*FROMt0LEFT JOINt1ON(CAST(t1.c0ASUNSIGNED)) <= (IFNULL(\"u\", t0.c0)); -- {0, null} SELECT*FROMt0RIGHT JOINt1ON(CAST(t1.c0ASUNSIGNED)) <= (IFNULL(\"u\", t0.c0)); -- {0, -1} Results of SRS oracle on bugs detected by other tools.We collected a total of 75 logic bugs involving join operations from the bug lists of baselines.",
+      "context_after": "This high rate of detection demonstrates the effectiveness of the SRS oracle in capturing a wide range of join-related logic bugs. Listing 5 demonstrates the SRS oracle applied to a join-related bug from PQS’s bug list. The example shows a violation of rule R06 in Table 1, where the intersection of a left and right outer join’s results is not equivalent to the inner join’s result, thereby illustrating SRS’s effectiveness. The remaining six bugs that SRS could not detect involve queries that contain join operations but have root causes unrelated to the join logic itself. For example, in one su",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 20,
+      "char_offset": 72921,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp",
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M44",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Listing 5 demonstrates the SRS oracle applied to a join-related bug from PQS’s bug list.",
+      "context_before": "T JOINt1ON(CAST(t1.c0ASUNSIGNED)) <= (IFNULL(\"u\", t0.c0)); -- {0, -1} Results of SRS oracle on bugs detected by other tools.We collected a total of 75 logic bugs involving join operations from the bug lists of baselines. We then applied the SRS’s oracle to these bug-inducing cases and successfully reproduced 69 of them, including 16 out of 18 in TQS, 14 out of 15 in DQP, 5 out of 6 in PQS, all 5 in NoREC, 16 out of 17 in TLP, 7 out of 8 in Pinolo, and all 6 in EET. This high rate of detection demonstrates the effectiveness of the SRS oracle in capturing a wide range of join-related logic bugs.",
+      "context_after": "The example shows a violation of rule R06 in Table 1, where the intersection of a left and right outer join’s results is not equivalent to the inner join’s result, thereby illustrating SRS’s effectiveness. The remaining six bugs that SRS could not detect involve queries that contain join operations but have root causes unrelated to the join logic itself. For example, in one such case, the bug was caused by an incorrect result from the MAX() function used in the HAVING clause. Although the bug can be triggered when two tables are joined, its root cause is not related to the join itself, and th",
+      "section": "5.4 Comparison With the State-of-the-Art",
+      "page": 20,
+      "char_offset": 73301,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M45",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The implementation beyond SQLancer.",
+      "context_before": "ect these set relations, we can identify logic bugs in join operations and other language features. We received feedback from at least two logic bug reports indicating that the bug exists in language features beyond joins. Besides, if both query variants produce the same incorrect result, like all metamorphic testing tools, SRS may fail to detect certain logic bugs in a single test iteration. Nevertheless, our approach uses the set relation among join operations to construct oracle queries, which naturally perform cross-checking. Thus, SRS may expose these bugs across multiple test iterations.",
+      "context_after": "We made several modifications to SQLancer to enhance the diversity and effectiveness of the generated test cases. Specifically, we adjusted SQLancer to produce schemas with a wider range of data types (e.g., composite types) and to generate more boundary values, such as maximum and minimum values, nulls, and special characters. These boundary values are particularly effective for exposing latent bugs in DBMSs. For instance, one logic bug shown in Figure 1 could only be triggered by such boundary values, not by common inputs. To assess the impact of these enhancements, we conducted an ablation",
+      "section": "6 Discussion",
+      "page": 21,
+      "char_offset": 77500,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M46",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We made several modifications to SQLancer to enhance the diversity and effectiveness of the generated test cases.",
+      "context_before": "tify logic bugs in join operations and other language features. We received feedback from at least two logic bug reports indicating that the bug exists in language features beyond joins. Besides, if both query variants produce the same incorrect result, like all metamorphic testing tools, SRS may fail to detect certain logic bugs in a single test iteration. Nevertheless, our approach uses the set relation among join operations to construct oracle queries, which naturally perform cross-checking. Thus, SRS may expose these bugs across multiple test iterations. The implementation beyond SQLancer.",
+      "context_after": "Specifically, we adjusted SQLancer to produce schemas with a wider range of data types (e.g., composite types) and to generate more boundary values, such as maximum and minimum values, nulls, and special characters. These boundary values are particularly effective for exposing latent bugs in DBMSs. For instance, one logic bug shown in Figure 1 could only be triggered by such boundary values, not by common inputs. To assess the impact of these enhancements, we conducted an ablation study by disabling them. Within a 24-hour testing period, SRS without these strategies detected 3 fewer logic bug",
+      "section": "6 Discussion",
+      "page": 21,
+      "char_offset": 77536,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M47",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, we adjusted SQLancer to produce schemas with a wider range of data types (e.",
+      "context_before": "reports indicating that the bug exists in language features beyond joins. Besides, if both query variants produce the same incorrect result, like all metamorphic testing tools, SRS may fail to detect certain logic bugs in a single test iteration. Nevertheless, our approach uses the set relation among join operations to construct oracle queries, which naturally perform cross-checking. Thus, SRS may expose these bugs across multiple test iterations. The implementation beyond SQLancer.We made several modifications to SQLancer to enhance the diversity and effectiveness of the generated test cases.",
+      "context_after": "g., composite types) and to generate more boundary values, such as maximum and minimum values, nulls, and special characters. These boundary values are particularly effective for exposing latent bugs in DBMSs. For instance, one logic bug shown in Figure 1 could only be triggered by such boundary values, not by common inputs. To assess the impact of these enhancements, we conducted an ablation study by disabling them. Within a 24-hour testing period, SRS without these strategies detected 3 fewer logic bugs compared to the 23 bugs found by the full version, as shown in Table 5. 7 Related Work In",
+      "section": "6 Discussion",
+      "page": 21,
+      "char_offset": 77649,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M48",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Non-optimizing Reference Engine (NoREC) [ 23] assumes that a predicate should evaluate to the same value in both the WHERE and SELECT clauses, and leverages this assumption to construct a non-optimizable form of the query.",
+      "context_before": "t by common inputs. To assess the impact of these enhancements, we conducted an ablation study by disabling them. Within a 24-hour testing period, SRS without these strategies detected 3 fewer logic bugs compared to the 23 bugs found by the full version, as shown in Table 5. 7 Related Work In this section, we focus on several DBMS testing tasks and highlight how they differ from SRS. Metamorphic testing of DBMSs.Metamorphic testing [ 6] addresses the test oracle problem by generating new inputs based on an existing input-output pair, inferring the expected result through metamorphic relations.",
+      "context_after": "The original and transformed queries are expected to produce consistent results. Differential Query Execution (DQE) [ 27] adopts a similar idea to NoREC, assuming that a predicate should yield consistent results, regardless of whether it appears in a SELECT ,UPDATE, or DELETE statement. Equivalent Expression Transformation (EET) [ 13] introduces tautologies and contradictions into expressions, ensuring that the transformed query produces consistent results with the original one. Pinolo [ 11] transforms predicates to make them either more permissive or more restrictive, thereby generating over-",
+      "section": "7 Related Work",
+      "page": 21,
+      "char_offset": 78647,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M49",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Differential Query Execution (DQE) [ 27] adopts a similar idea to NoREC, assuming that a predicate should yield consistent results, regardless of whether it appears in a SELECT ,UPDATE, or DELETE statement.",
+      "context_before": "on, we focus on several DBMS testing tasks and highlight how they differ from SRS. Metamorphic testing of DBMSs.Metamorphic testing [ 6] addresses the test oracle problem by generating new inputs based on an existing input-output pair, inferring the expected result through metamorphic relations. Non-optimizing Reference Engine (NoREC) [ 23] assumes that a predicate should evaluate to the same value in both the WHERE and SELECT clauses, and leverages this assumption to construct a non-optimizable form of the query. The original and transformed queries are expected to produce consistent results.",
+      "context_after": "Equivalent Expression Transformation (EET) [ 13] introduces tautologies and contradictions into expressions, ensuring that the transformed query produces consistent results with the original one. Pinolo [ 11] transforms predicates to make them either more permissive or more restrictive, thereby generating over-approximations or underapproximations of the original query. CODDTest [ 32] leverages constant folding and propagation on expressions to produce equivalent queries. Ternary Logic Partitioning (TLP) [ 24] assumes that a predicate pcan evaluate to TRUE,FALSE, or NULL. Based on this, a que",
+      "section": "7 Related Work",
+      "page": 21,
+      "char_offset": 78951,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M50",
+      "found_by": "technique",
+      "surface": "CODDTest",
+      "technique": "coddtest",
+      "sentence": "CODDTest [ 32] leverages constant folding and propagation on expressions to produce equivalent queries.",
+      "context_before": "e consistent results. Differential Query Execution (DQE) [ 27] adopts a similar idea to NoREC, assuming that a predicate should yield consistent results, regardless of whether it appears in a SELECT ,UPDATE, or DELETE statement. Equivalent Expression Transformation (EET) [ 13] introduces tautologies and contradictions into expressions, ensuring that the transformed query produces consistent results with the original one. Pinolo [ 11] transforms predicates to make them either more permissive or more restrictive, thereby generating over-approximations or underapproximations of the original query.",
+      "context_after": "Ternary Logic Partitioning (TLP) [ 24] assumes that a predicate pcan evaluate to TRUE,FALSE, or NULL. Based on this, a query can be decomposed into three follow-up queries that return the results corresponding to p,NOT p, and p IS NULL, respectively. The union of these follow-up query results should be equivalent to the result of the original query. Although both TLP and SRS use the UNION 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. 363:22 Jinhui Lai et al. set relation as their test oracle, TLP and SRS differ in target and methodology: (1) SRS focuses on issues related t",
+      "section": "7 Related Work",
+      "page": 21,
+      "char_offset": 79530,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "coddtest"
+      ]
+    },
+    {
+      "id": "M51",
+      "found_by": "technique",
+      "surface": "Ternary Logic Partitioning",
+      "technique": "tlp",
+      "sentence": "Ternary Logic Partitioning (TLP) [ 24] assumes that a predicate pcan evaluate to TRUE,FALSE, or NULL.",
+      "context_before": "that a predicate should yield consistent results, regardless of whether it appears in a SELECT ,UPDATE, or DELETE statement. Equivalent Expression Transformation (EET) [ 13] introduces tautologies and contradictions into expressions, ensuring that the transformed query produces consistent results with the original one. Pinolo [ 11] transforms predicates to make them either more permissive or more restrictive, thereby generating over-approximations or underapproximations of the original query. CODDTest [ 32] leverages constant folding and propagation on expressions to produce equivalent queries.",
+      "context_after": "Based on this, a query can be decomposed into three follow-up queries that return the results corresponding to p,NOT p, and p IS NULL, respectively. The union of these follow-up query results should be equivalent to the result of the original query. Although both TLP and SRS use the UNION 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. 363:22 Jinhui Lai et al. set relation as their test oracle, TLP and SRS differ in target and methodology: (1) SRS focuses on issues related to the implementation bugs of join operations, while TLP targets bugs in predicate handling code via qu",
+      "section": "7 Related Work",
+      "page": 21,
+      "char_offset": 79634,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M52",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Although both TLP and SRS use the UNION 3, No.",
+      "context_before": "es to make them either more permissive or more restrictive, thereby generating over-approximations or underapproximations of the original query. CODDTest [ 32] leverages constant folding and propagation on expressions to produce equivalent queries. Ternary Logic Partitioning (TLP) [ 24] assumes that a predicate pcan evaluate to TRUE,FALSE, or NULL. Based on this, a query can be decomposed into three follow-up queries that return the results corresponding to p,NOT p, and p IS NULL, respectively. The union of these follow-up query results should be equivalent to the result of the original query.",
+      "context_after": "6 (SIGMOD), Article 363. Publication date: December 2025. 363:22 Jinhui Lai et al. set relation as their test oracle, TLP and SRS differ in target and methodology: (1) SRS focuses on issues related to the implementation bugs of join operations, while TLP targets bugs in predicate handling code via query decomposition. (2) SRS is a mathematically rigorous framework based on four core set relations (i.e., Equivalence, Intersection, Disjointness, Union) to formally characterize join behavior. TLP decomposes a query into 3 based on predicates with TRUE/FALSE/NULLresults. Transformed Query Synthesi",
+      "section": "7 Related Work",
+      "page": 21,
+      "char_offset": 79986,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M53",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "set relation as their test oracle, TLP and SRS differ in target and methodology: (1) SRS focuses on issues related to the implementation bugs of join operations, while TLP targets bugs in predicate handling code via query decomposition.",
+      "context_before": "iginal query. CODDTest [ 32] leverages constant folding and propagation on expressions to produce equivalent queries. Ternary Logic Partitioning (TLP) [ 24] assumes that a predicate pcan evaluate to TRUE,FALSE, or NULL. Based on this, a query can be decomposed into three follow-up queries that return the results corresponding to p,NOT p, and p IS NULL, respectively. The union of these follow-up query results should be equivalent to the result of the original query. Although both TLP and SRS use the UNION 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. 363:22 Jinhui Lai et al.",
+      "context_after": "(2) SRS is a mathematically rigorous framework based on four core set relations (i.e., Equivalence, Intersection, Disjointness, Union) to formally characterize join behavior. TLP decomposes a query into 3 based on predicates with TRUE/FALSE/NULLresults. Transformed Query Synthesis (TQS) [ 28] and Differential Query Plan (DQP) [ 3] target logic bugs in join optimizations and leverage equivalence relationships among different query plans generated for the same query. SRS is orthogonal to TQS and DQP in targets and methods: (1) TQS and DQP target join optimization bugs, while SRS focuses on join",
+      "section": "7 Related Work",
+      "page": 22,
+      "char_offset": 80117,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M54",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP decomposes a query into 3 based on predicates with TRUE/FALSE/NULLresults.",
+      "context_before": "should be equivalent to the result of the original query. Although both TLP and SRS use the UNION 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. 363:22 Jinhui Lai et al. set relation as their test oracle, TLP and SRS differ in target and methodology: (1) SRS focuses on issues related to the implementation bugs of join operations, while TLP targets bugs in predicate handling code via query decomposition. (2) SRS is a mathematically rigorous framework based on four core set relations (i.e., Equivalence, Intersection, Disjointness, Union) to formally characterize join behavior.",
+      "context_after": "Transformed Query Synthesis (TQS) [ 28] and Differential Query Plan (DQP) [ 3] target logic bugs in join optimizations and leverage equivalence relationships among different query plans generated for the same query. SRS is orthogonal to TQS and DQP in targets and methods: (1) TQS and DQP target join optimization bugs, while SRS focuses on join implementation bugs. Thus, SRS may also detect implementation bugs unrelated to optimization. (2) TQS and DQP construct test oracles by using query hints to execute different plans, while SRS generates test oracles by transforming the order, type, and c",
+      "section": "7 Related Work",
+      "page": 22,
+      "char_offset": 80529,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M55",
+      "found_by": "technique",
+      "surface": "Differential Query Plan",
+      "technique": "dqp",
+      "sentence": "Transformed Query Synthesis (TQS) [ 28] and Differential Query Plan (DQP) [ 3] target logic bugs in join optimizations and leverage equivalence relationships among different query plans generated for the same query.",
+      "context_before": "d SRS use the UNION 3, No. 6 (SIGMOD), Article 363. Publication date: December 2025. 363:22 Jinhui Lai et al. set relation as their test oracle, TLP and SRS differ in target and methodology: (1) SRS focuses on issues related to the implementation bugs of join operations, while TLP targets bugs in predicate handling code via query decomposition. (2) SRS is a mathematically rigorous framework based on four core set relations (i.e., Equivalence, Intersection, Disjointness, Union) to formally characterize join behavior. TLP decomposes a query into 3 based on predicates with TRUE/FALSE/NULLresults.",
+      "context_after": "SRS is orthogonal to TQS and DQP in targets and methods: (1) TQS and DQP target join optimization bugs, while SRS focuses on join implementation bugs. Thus, SRS may also detect implementation bugs unrelated to optimization. (2) TQS and DQP construct test oracles by using query hints to execute different plans, while SRS generates test oracles by transforming the order, type, and conditions of join operations to synthesize set relations. However, not all join operations can trigger the generation of multiple query plans. As a result, some join-related bugs detected by SRS cannot be uncovered b",
+      "section": "7 Related Work",
+      "page": 22,
+      "char_offset": 80607,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M56",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "SRS is orthogonal to TQS and DQP in targets and methods: (1) TQS and DQP target join optimization bugs, while SRS focuses on join implementation bugs.",
+      "context_before": "s related to the implementation bugs of join operations, while TLP targets bugs in predicate handling code via query decomposition. (2) SRS is a mathematically rigorous framework based on four core set relations (i.e., Equivalence, Intersection, Disjointness, Union) to formally characterize join behavior. TLP decomposes a query into 3 based on predicates with TRUE/FALSE/NULLresults. Transformed Query Synthesis (TQS) [ 28] and Differential Query Plan (DQP) [ 3] target logic bugs in join optimizations and leverage equivalence relationships among different query plans generated for the same query.",
+      "context_after": "Thus, SRS may also detect implementation bugs unrelated to optimization. (2) TQS and DQP construct test oracles by using query hints to execute different plans, while SRS generates test oracles by transforming the order, type, and conditions of join operations to synthesize set relations. However, not all join operations can trigger the generation of multiple query plans. As a result, some join-related bugs detected by SRS cannot be uncovered by these two approaches. Differential testing of DBMSs.Differential testing [ 19] involves executing the same input on multiple versions of a system or",
+      "section": "7 Related Work",
+      "page": 22,
+      "char_offset": 80823,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M57",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "(2) TQS and DQP construct test oracles by using query hints to execute different plans, while SRS generates test oracles by transforming the order, type, and conditions of join operations to synthesize set relations.",
+      "context_before": "alence, Intersection, Disjointness, Union) to formally characterize join behavior. TLP decomposes a query into 3 based on predicates with TRUE/FALSE/NULLresults. Transformed Query Synthesis (TQS) [ 28] and Differential Query Plan (DQP) [ 3] target logic bugs in join optimizations and leverage equivalence relationships among different query plans generated for the same query. SRS is orthogonal to TQS and DQP in targets and methods: (1) TQS and DQP target join optimization bugs, while SRS focuses on join implementation bugs. Thus, SRS may also detect implementation bugs unrelated to optimization.",
+      "context_after": "However, not all join operations can trigger the generation of multiple query plans. As a result, some join-related bugs detected by SRS cannot be uncovered by these two approaches. Differential testing of DBMSs.Differential testing [ 19] involves executing the same input on multiple versions of a system or on comparable systems, with the expectation that they produce consistent outputs. Any discrepancies observed may indicate the presence of logic bugs. RAGS [ 26] was one of the earliest applications of differential testing to DBMSs, identifying bugs by comparing query results across differe",
+      "section": "7 Related Work",
+      "page": 22,
+      "char_offset": 81047,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M58",
+      "found_by": "technique",
+      "surface": "Cardinality Estimation Restriction Testing",
+      "technique": "cert",
+      "sentence": "Cardinality Estimation Restriction Testing (CERT) [ 2] is designed to detect performance issues from the perspective of cardinality estimation.",
+      "context_before": "ues focus on identifying securityrelevant bugs, such as memory errors. For instance, SQLSmith [ 1] and DynSQL [ 12] use grammarbased approaches to generate test cases aimed at detecting memory errors. Inspired by greybox fuzzers like AFL [ 31], Squirrel [ 33] employs code coverage as a guide to uncover memory issues, intelligently generating inputs to explore more code paths. In addition to security issues, performance issues in DBMSs have also been a major focus of research. Amoeba [ 17] constructs semantically equivalent query pairs and compares their response times to find performance bugs.",
+      "context_after": "Given a query, CERT generates a more restrictive variant under the assumption that the cardinality estimator should predict a lower number of rows returned compared to the original query. Jung et al. [14] proposed the APOLLO system, which leverages differential testing to detect performance regression bugs in DBMSs. Database and SQL query generation.Multiple prior works have focused on automatically generating database states and SQL queries, serving as complementary approaches to our research. Gray et al. [9] introduced a set of techniques designed to efficiently generate billions of databas",
+      "section": "7 Related Work",
+      "page": 22,
+      "char_offset": 82870,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M59",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "Given a query, CERT generates a more restrictive variant under the assumption that the cardinality estimator should predict a lower number of rows returned compared to the original query.",
+      "context_before": "to generate test cases aimed at detecting memory errors. Inspired by greybox fuzzers like AFL [ 31], Squirrel [ 33] employs code coverage as a guide to uncover memory issues, intelligently generating inputs to explore more code paths. In addition to security issues, performance issues in DBMSs have also been a major focus of research. Amoeba [ 17] constructs semantically equivalent query pairs and compares their response times to find performance bugs. Cardinality Estimation Restriction Testing (CERT) [ 2] is designed to detect performance issues from the perspective of cardinality estimation.",
+      "context_after": "Jung et al. [14] proposed the APOLLO system, which leverages differential testing to detect performance regression bugs in DBMSs. Database and SQL query generation.Multiple prior works have focused on automatically generating database states and SQL queries, serving as complementary approaches to our research. Gray et al. [9] introduced a set of techniques designed to efficiently generate billions of database records. Data Generation Language (DGL) [ 5] is a domain-specific language for generating data exhibiting complex correlations within and across tables. Query-aware database state genera",
+      "section": "7 Related Work",
+      "page": 22,
+      "char_offset": 83014,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "uses_infrastructure": [
+        "M23"
+      ],
+      "compares_with": [
+        "M12",
+        "M20",
+        "M21",
+        "M23"
+      ],
+      "describes_as_state_of_the_art": [
+        "M1",
+        "M12"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:11:45Z",
+    "is_model_written": true,
+    "summary": "SRS detects logic bugs in how a DBMS implements joins rather than in how it optimises them. The authors argue that existing work perturbs query hints and system variables to change the optimizer's plan choice, which fails when those knobs do not influence the optimizer or when the fault lies in join implementation code unrelated to optimisation. SRS instead transforms a join query -- changing join types, orders and conditions -- so the original and transformed results must stand in a known set relation, and treats a violation as a bug. Across five extensively tested DBMSs it found 33 previously unknown bugs, all confirmed.",
+    "narrative": "SRS is implemented on SQLancer, generating its database state with SQLancer's syntax-rule-based random generation and keeping SQLancer's query generation strategy for features outside the join. SQLancer's oracles are then also its baselines: PQS, NoREC, TLP and DQP are four of the six approaches it is measured against, and it reports finding 9 to 12 more bugs than each.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M4": "definition",
+      "M6": "reuse_component",
+      "M7": "reuse_component",
+      "M8": "reuse_component",
+      "M9": "reuse_component",
+      "M12": "state_of_the_art",
+      "M13": "background",
+      "M14": "background",
+      "M15": "background",
+      "M16": "definition",
+      "M17": "definition",
+      "M18": "definition",
+      "M19": "background",
+      "M20": "baseline",
+      "M21": "result_comparison",
+      "M22": "result_comparison",
+      "M23": "reuse_implementation",
+      "M24": "result_comparison"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M7",
+          "M9",
+          "M23"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M7",
+            "sentence": "SRS applies the automated, syntax-rule-based random generation approach of SQLancer to ensure that the database state exhibits sufficient diversity, thereby enabling thorough and effective bug detection.",
+            "section": "4 Implementation",
+            "page": 11
+          },
+          {
+            "mention_id": "M9",
+            "sentence": "For the generation of other language features, aside from considering the tables involved in joins, our approach remains consistent with SQLancer’s query generation strategy for NoREC test oracle [23].",
+            "section": "4 Implementation",
+            "page": 12
+          },
+          {
+            "mention_id": "M23",
+            "sentence": "We compared the code coverage achieved by these approaches, and the results showed that the test oracles implemented on SQLancer— PQS, NoREC, TLP, DQP, and SRS—achieved similar code coverage.",
+            "section": "5.4 Comparison With the State-of-the-Art",
+            "page": 18
+          }
+        ],
+        "reasoning": "M7 states SRS applies SQLancer's automated random generation for the database state and M9 that its query generation follows SQLancer's strategy for other language features; M23 describes SRS itself as one of the test oracles implemented on SQLancer, alongside PQS, NoREC, TLP and DQP.",
+        "reuse_kind": "implementation"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Set Relation Synthesis is presented as its own oracle over join transformations. TLP is discussed as a related set-based approach whose transformation targets differ, not as something SRS generalises."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M12",
+          "M20",
+          "M21",
+          "M24"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M12",
+            "sentence": "We selected six state-of-the-art approaches for comparison: PQS [ 25], TLP [ 24], NoREC [ 23], Pinolo [ 11], EET [ 13], and DQP [ 3].",
+            "section": "5.4 Comparison With the State-of-the-Art",
+            "page": 17
+          },
+          {
+            "mention_id": "M20",
+            "sentence": "As such, we include a comparison with NoREC in our evaluation.",
+            "section": "5.4 Comparison With the State-of-the-Art",
+            "page": 17
+          },
+          {
+            "mention_id": "M21",
+            "sentence": "Table 5 shows that SRS found 12, 9, 10, 20, 17, and 13 more bugs than PQS, NoREC, TLP, DQP, Pinolo, and EET, respectively.",
+            "section": "5.4 Comparison With the State-of-the-Art",
+            "page": 17
+          },
+          {
+            "mention_id": "M24",
+            "sentence": "For instance, when testing MySQL for 24 hours, PQS, TLP, DQP, and SRS achieved line coverage rates of 23.",
+            "section": "5.4 Comparison With the State-of-the-Art",
+            "page": 18
+          }
+        ],
+        "reasoning": "Four of the six baselines are SQLancer oracles, all run for 24 hours on the same systems, with bug counts and line coverage reported for each.",
+        "techniques": [
+          "pqs",
+          "norec",
+          "tlp",
+          "dqp"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M1",
+          "M12"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M1",
+            "sentence": "TQS [ 28] and DQP [ 3] are two state-of-the-art testing approaches that target logic bugs in the optimization of join operations.",
+            "section": "1 Introduction",
+            "page": 2
+          },
+          {
+            "mention_id": "M12",
+            "sentence": "We selected six state-of-the-art approaches for comparison: PQS [ 25], TLP [ 24], NoREC [ 23], Pinolo [ 11], EET [ 13], and DQP [ 3].",
+            "section": "5.4 Comparison With the State-of-the-Art",
+            "page": 17
+          }
+        ],
+        "reasoning": "M12 calls the six approaches, PQS, NoREC and TLP among them, state-of-the-art; M1 says the same of DQP for join optimisation."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

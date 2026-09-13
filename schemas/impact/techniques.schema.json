@@ -1,0 +1,432 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sqlancer.github.io/schemas/impact/techniques.schema.json",
+  "title": "SQLancer technique and finder taxonomy",
+  "description": "Single source of truth for which testing techniques originated in SQLancer, which tools belong to the SQLancer umbrella, and which similarly-scoped techniques are explicitly out of scope. Collectors and classifiers read this file instead of hardcoding names.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "taxonomy_version",
+    "finders",
+    "sqlancer_techniques",
+    "excluded_techniques"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "$ref": "common.schema.json#/definitions/schema_version"
+    },
+    "taxonomy_version": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Bumping this invalidates cached LLM classifications."
+    },
+    "finders": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "display_name",
+          "umbrella_member",
+          "names"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/definitions/slug"
+          },
+          "display_name": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "names": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 80
+            },
+            "description": "Search aliases used for discovery."
+          },
+          "umbrella_member": {
+            "type": "boolean",
+            "description": "True when results attributed to this tool count towards overall SQLancer impact statistics."
+          },
+          "repository": {
+            "$ref": "common.schema.json#/definitions/url"
+          },
+          "paper": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "title"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "title": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "venue": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 120
+              },
+              "year": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "url": {
+                "$ref": "common.schema.json#/definitions/url"
+              },
+              "doi": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 200
+              },
+              "arxiv_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 40
+              },
+              "s2_paper_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^[0-9a-f]{40}$"
+              },
+              "is_citation_seed": {
+                "type": "boolean",
+                "description": "True when citations of this paper are crawled to discover SQLancer-citing literature. A tool's own paper can be a seed as an oracle's is: SQLancer++ is cited by work that cites no oracle paper."
+              }
+            }
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 600
+          }
+        }
+      }
+    },
+    "sqlancer_techniques": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "names",
+          "display_name",
+          "kind",
+          "sqlancer_originated"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/definitions/slug"
+          },
+          "names": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 120
+            },
+            "description": "Aliases used both for discovery queries and for attribution matching."
+          },
+          "display_name": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "test_oracle",
+              "test_input_generation",
+              "implicit_oracle",
+              "reduction"
+            ]
+          },
+          "sqlancer_originated": {
+            "type": "boolean",
+            "description": "True when the technique was introduced or first prototyped as part of SQLancer."
+          },
+          "introduced_year": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "origin_paper": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "title"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "title": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "venue": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 120
+              },
+              "year": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "url": {
+                "$ref": "common.schema.json#/definitions/url"
+              },
+              "doi": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 200
+              },
+              "arxiv_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 40
+              },
+              "s2_paper_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^[0-9a-f]{40}$"
+              },
+              "is_citation_seed": {
+                "type": "boolean",
+                "description": "True when citations of this paper are crawled to discover SQLancer-citing literature."
+              },
+              "also_titled": {
+                "type": "array",
+                "description": "Other titles this paper is cited under. A preprint and its published version often differ, and a bibliography prints whichever the citing authors used.",
+                "items": {
+                  "type": "string",
+                  "maxLength": 300
+                }
+              }
+            }
+          },
+          "ambiguous_acronym": {
+            "type": "boolean",
+            "description": "True for short names such as TLP or PQS that collide with unrelated terms. Matches for these require corroborating database-testing context."
+          },
+          "required_context_terms": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 60
+            },
+            "description": "At least one of these must co-occur before an ambiguous acronym match is treated as relevant."
+          },
+          "negative_context_terms": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 60
+            },
+            "description": "Presence of these strongly suggests an unrelated use of the acronym."
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 800
+          }
+        }
+      }
+    },
+    "project_authors": {
+      "type": "array",
+      "description": "Author-name fragments that identify a paper as the SQLancer project's own work. Matched as whole words against each author name, so a paper co-authored by one of these is not counted as external work building on SQLancer.",
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 80
+      }
+    },
+    "project_contributors": {
+      "type": "array",
+      "description": "People who found bugs as part of the SQLancer project rather than as outside adopters: its Google Summer of Code contributors and anyone else the project counts as its own. Members of the TEST lab are read from its people page at collection time and need no entry here.",
+      "items": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 120
+          },
+          "github": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 80
+          },
+          "role": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 120
+          }
+        }
+      }
+    },
+    "project_publications": {
+      "type": "array",
+      "description": "Publications authored as part of the SQLancer project that are not already named as a technique's origin paper or a tool's paper. Listed explicitly because whether a paper is the project's own is a fact its authors know, not something to infer from an author list.",
+      "items": {
+        "type": "object",
+        "required": [
+          "title",
+          "reason"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 300
+          },
+          "doi": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 200
+          },
+          "arxiv_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 40
+          },
+          "s2_paper_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "year": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "venue": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 200
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 500
+          }
+        }
+      }
+    },
+    "excluded_techniques": {
+      "type": "array",
+      "description": "Database-testing techniques that are deliberately NOT treated as SQLancer-originated, even though an implementation may live in the SQLancer repository. Bugs found with these do not count towards SQLancer bug statistics.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "names",
+          "reason"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/definitions/slug"
+          },
+          "names": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "maxLength": 120
+            }
+          },
+          "display_name": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 800
+          },
+          "evidence": {
+            "$ref": "common.schema.json#/definitions/evidence_list"
+          }
+        }
+      }
+    },
+    "bug_symptoms": {
+      "type": "array",
+      "description": "Controlled vocabulary describing how a bug manifested, orthogonal to the technique that found it.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "display_name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/definitions/slug"
+          },
+          "display_name": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 400
+          }
+        }
+      }
+    }
+  }
+}

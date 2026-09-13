@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "paper": {
+    "id": "paper:doi:10.1109/srds69199.2025.00038",
+    "title": "Diverse Database Replication Based on Snapshot Isolation – Performance Implications of Improved Dependability",
+    "authors": [
+      "Peter Popov",
+      "Vladimir Stankovic"
+    ],
+    "year": 2025,
+    "venue": "IEEE International Symposium on Reliable Distributed Systems",
+    "doi": "10.1109/srds69199.2025.00038",
+    "url": "https://doi.org/10.1109/srds69199.2025.00038"
+  },
+  "summary": {
+    "text": "This paper evaluates the performance cost of replicating a database across diverse DBMS implementations. Its premise is that most replication schemes assume crash failures, whereas studies have shown many faults in relational DBMSs cause systematic non-crash failures, which same-DBMS replication cannot mask. The authors built a middleware replication protocol, DivRep, deployed over diverse database servers as DivSQL, providing strict snapshot isolation under an incorrect-results failure model, and measure the overhead across three diverse DBMSs.",
+    "relationship_to_sqlancer": "Concerns fault tolerance against incorrect results rather than finding their causes; SQLancer is cited among work on DBMS faults.",
+    "is_model_generated": true,
+    "grounded_in_source": true,
+    "written_from": "abstract",
+    "written_from_url": "https://doi.org/10.1109/srds69199.2025.00038",
+    "source_sha256": "sha256:dc1a1cb214d67ec574de4d951630c341403d2babce6ec4918087f080379bad1f",
+    "supporting_excerpts": [
+      "Conversely, using diverse DBMSs is a suitable way of protecting against non-crash failures.",
+      "We have built a middleware-based database replication protocol, DivRep, and deployed it with diverse database servers (DivSQL), for improved fault tolerance.",
+      "DivSQL provides strict Snapshot Isolation (SI) guarantees, and assumes “incorrect results” failure model (IRFM) – the most realistic one based on the extensive experimental analyses of DBMS faults ([1], [2])."
+    ],
+    "model": "claude-opus-5",
+    "generated_by": "claude_code_session",
+    "classifier_version": null,
+    "generated_at": "2026-09-07T02:29:23Z"
+  },
+  "evidence": [
+    {
+      "relationship": "references",
+      "title": "Cites SQLancer",
+      "value": "yes",
+      "method": "citation_graph",
+      "techniques": [
+        "tlp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://doi.org/10.1109/srds69199.2025.00038",
+          "source_type": "paper_citation_context",
+          "excerpt": "In addition to crash failures, it guards against failures of SELECTs (e.g., erroneous omission of a row) – referred to by some as “logic bugs” [19], and DELETEs, INSERTs and UPDATEs wrongly changing the database state.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Ternary Logic Partitioning (TLP), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    }
+  ]
+}

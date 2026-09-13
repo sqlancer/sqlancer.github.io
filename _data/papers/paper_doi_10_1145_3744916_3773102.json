@@ -1,0 +1,781 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T17:06:15Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3744916.3773102",
+    "title": "Locus: Agentic Predicate Synthesis for Directed Fuzzing",
+    "authors": [
+      "Jie Zhu",
+      "Chihao Shen",
+      "Ziyang Li",
+      "Jiahao Yu",
+      "Yizheng Chen",
+      "Kexin Pei"
+    ],
+    "year": 2025,
+    "venue": "arXiv.org",
+    "doi": "10.1145/3744916.3773102",
+    "arxiv_id": "2508.21302",
+    "s2_paper_id": "1ea85ffff5bc84a288f30b95c2f2d44f2df5e633",
+    "url": "https://doi.org/10.1145/3744916.3773102",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2508.21302",
+      "retrieved_at": "2026-09-07T17:06:15Z",
+      "chars": 83566,
+      "content_sha256": "sha256:3a88df3032c171d938d1cad26200b6a0f29d01bd91f0649b0d13840e04ab72fc"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2925
+      },
+      {
+        "number": "2",
+        "title": "Overview",
+        "start": 10338
+      },
+      {
+        "number": "2.1",
+        "title": "Directed Fuzzing",
+        "start": 10542
+      },
+      {
+        "number": "2.2",
+        "title": "Motivating Example",
+        "start": 14347
+      },
+      {
+        "number": "3",
+        "title": "Methodology",
+        "start": 21999
+      },
+      {
+        "number": "3.1",
+        "title": "Formalization",
+        "start": 22712
+      },
+      {
+        "number": "3.2",
+        "title": "Agent Toolset",
+        "start": 26240
+      },
+      {
+        "number": "3.3",
+        "title": "Synthesis",
+        "start": 28901
+      },
+      {
+        "number": "4",
+        "title": "Evaluation",
+        "start": 35453
+      },
+      {
+        "number": "4.1",
+        "title": "Setup",
+        "start": 38593
+      },
+      {
+        "number": "4.2",
+        "title": "RQ1: Vulnerabilities Reproduction",
+        "start": 42193
+      },
+      {
+        "number": "4.3",
+        "title": "RQ2: Cost Analysis",
+        "start": 43080
+      },
+      {
+        "number": "4.4",
+        "title": "RQ3: Ablations",
+        "start": 45434
+      },
+      {
+        "number": "4.5",
+        "title": "RQ4: Detecting New Vulnerabilities",
+        "start": 48122
+      },
+      {
+        "number": "4.6",
+        "title": "Case Study",
+        "start": 50196
+      },
+      {
+        "number": "5",
+        "title": "Related Work",
+        "start": 57550
+      },
+      {
+        "number": "6",
+        "title": "Threats to Validity",
+        "start": 61052
+      },
+      {
+        "number": "7",
+        "title": "Conclusion",
+        "start": 62670
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Anthropic. 2024. Claude Code. https://claude.com/product/claude-code",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Cornelius Aschermann, Sergej Schumilo, et al .2020. Ijon: Exploring Deep State Spaces via Fuzzing. In. 1597–1612.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Jinsheng Ba, Marcel Böhme, et al .2022. Stateful Greybox Fuzzing. In31st USENIX Security Symposium (USENIX Security 22). 3255–3272.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Davide Balzarotti. 2021. The use of likely invariants as feedback for fuzzers. In 30th USENIX Security Symposium (USENIX Security 21).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Marcel Böhme, Bruno C d S Oliveira, and Abhik Roychoudhury. 2013. Regression tests to expose change interaction errors. InProceedings of the 2013 9th Joint Meeting on Foundations of Software Engineering.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Marcel Böhme, Van-Thuan Pham, et al .2017. Directed Greybox Fuzzing. In Proceedings of the 2017 ACM Sigsac Conference on Computer and Communications Security. 2329–2344.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "David Brumley, Pongsin Poosankam, Dawn Song, and Jiang Zheng. 2008. Automatic patch-based exploit generation is possible: Techniques and implications. In.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Cristian Cadar, Daniel Dunbar, et al .2008. KLEE: Unassisted and Automatic Generation of High-Coverage Tests for Complex Systems Programs. In8th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2008, December 8-10, 2008, San Diego, California, USA, Proceedings, Richard Draves and Robbert van Renesse (Eds.). 209–224.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Sicong Cao, Biao He, et al .2023. Oddfuzz: Discovering java deserialization vulnerabilities via structure-aware directed greybox fuzzing. In2023 IEEE Symposium on Security and Privacy (SP). IEEE.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Saikat Chakraborty, Shuvendu K Lahiri, et al .2023. Ranking llm-generated loop invariants for program verification.arXiv preprint arXiv:2310.09342(2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Chuyang Chen, Brendan Dolan-Gavitt, and Zhiqiang Lin. 2025. ELFuzz: Efficient Input Generation via LLM-driven Synthesis Over Fuzzer Space.arXiv preprint arXiv:2506.10323(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Hongxu Chen, Yinxing Xue, et al .2018. Hawkeye: Towards a Desired Directed Grey-box Fuzzer. InProceedings of the 2018 ACMSIGSAC Conference on Computer and Communications Security. 2095–2108.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Peng Chen and Hao Chen. 2018. Angora: Efficient Fuzzing by Principled Search. In. 711–725.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Tianyu Chen, Shuai Lu, et al .2024. Automated proof generation for rust code via self-evolution.arXiv preprint arXiv:2410.15756(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Yuanliang Chen, Yu Jiang, Fuchen Ma, Jie Liang, Mingzhe Wang, Chijin Zhou, Xun Jiao, and Zhuo Su. 2019. EnFuzz: Ensemble fuzzing with seed synchronization among diverse fuzzers. In28th USENIX Security Symposium (USENIX Security 19).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Maria Christakis, Peter Müller, and Valentin Wüstholz. 2016. Guiding dynamic symbolic execution toward unverified program executions. InProceedings of the 38th International Conference on Software Engineering.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Samuel Colvin. 2025.PydanticAI. https://ai.pydantic.dev/ Version 0.4.3.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "DARPA. 2024. DARPA AI Cyber Challenge. https://aicyberchallenge.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Yinlin Deng, Chunqiu Steven Xia, et al .2023. Large Language Models Are ZeroShot Fuzzers: Fuzzing Deep-Learning Libraries via Large Language Models. In Proceedings of the 32nd ACM Sigsoft International Symposium on Software Testing and Analysis. 423–435.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Yinlin Deng, Chunqiu Steven Xia, Chenyuan Yang, Shizhuo Dylan Zhang, Shujing Yang, and Lingming Zhang. 2024. Large language models are edge-case generators: Crafting unusual programs for fuzzing deep learning libraries. In Proceedings of the 46th IEEE/ACM international conference on software engineering.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Yangruibo Ding, Yanjun Fu, Omniyyah Ibrahim, Chawin Sitawarin, Xinyun Chen, Basel Alomair, David Wagner, Baishakhi Ray, and Yizheng Chen. 2024. Vulnerability detection with code language models: How far are we?arXiv preprint arXiv:2403.18624(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Yangruibo Ding, Yanjun Fu, Omniyyah Ibrahim, Chawin Sitawarin, Xinyun Chen, Basel Alomair, David Wagner, Baishakhi Ray, and Yizheng Chen. 2024. Vulnerability Detection with Code Language Models: How Far Are We?arXiv preprint arXiv:2403.18624(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Yangruibo Ding, Jinjun Peng, et al .2024. Semcoder: Training code language models with comprehensive semantics reasoning.Advances in Neural Information Processing Systems37 (2024), 60275–60308.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Yangruibo Ding, Benjamin Steenhoek, et al .2024. TRACED: Execution-aware Pre-training for Source Code. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Zhengjie Du, Yuekang Li, et al .2022. WindRanger: A Directed Greybox Fuzzer Driven by Deviation Basic Blocks. InProceedings of the 44th International Conference on Software Engineering. 2440–2451.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Rafael Dutra, Rahul Gopinath, and Andreas Zeller. 2023. Formatfuzzer: Effective fuzzing of binary file formats.ACM Transactions on Software Engineering and Methodology33, 2 (2023), 1–29.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Andrea Fioraldi, Daniele Cono D’Elia, et al .2021. The Use of Likely Invariants as Feedback for Fuzzers. In30th USENIX Security Symposium (USENIX Security 21). 2829–2846.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Andrea Fioraldi, Dominik Maier, et al .2020. AFL++: Combining Incremental Steps of Fuzzing Research. In14th Usenix Workshop on Offensive Technologies (Woot 20).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Code Intelligence GmbH and Contributors. 2020.Jazzer. https://github.com/ CodeIntelligenceTesting/jazzer",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Linyuan Gong, Sida Wang, Mostafa Elhoushi, and Alvin Cheung. 2024. Evaluation of llms on syntax-aware code fill-in-the-middle tasks.arXiv preprint arXiv:2403.04814(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Peter Goodman. 2025.Multiplier. https://github.com/trailofbits/multiplier Version 1705339.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Google and Contributors. 2020.Atheris. https://github.com/google/atheris",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Google DeepMind. 2024. Gemini 2.0 Flash. https://deepmind.google/ technologies/gemini/flash/. Accessed: 2025-03-29.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Alex Gu, Baptiste Rozière, et al .2024. CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution. InProceedings of the 41st International Conference on Machine Learning. 16568–16621.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Ahmad Hazimeh, Adrian Herrera, et al .2020. Magma: A Ground-Truth Fuzzing Benchmark. InProceedings of the ACM on Measurement and Analysis of Computing Systems, Vol. 4. 1–29.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Christian Holler, Kim Herzig, and Andreas Zeller. 2012. Fuzzing with code fragments. In21st USENIX Security Symposium (USENIX Security 12).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Jie Hu, Qian Zhang, and Heng Yin. 2023. Augmenting greybox fuzzing with generative ai.arXiv preprint arXiv:2306.06782(2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Heqing Huang et al .2022. BEACON: Directed Grey-Box Fuzzing with Provable Path Pruning. In. 36–50.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Heqing Huang, Peisen Yao, et al .2024. Titan: Efficient Multi-target Directed Greybox Fuzzing. In. 1849– 1864.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Heqing Huang, Anshunkang Zhou, et al .2024. Everything Is Good for Something: Counterexample-Guided Directed Fuzzing via Likely Invariant Inference. In. 1956–1973.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Kyriakos Ispoglou, Daniel Austin, Vishwath Mohan, and Mathias Payer. 2020. {FuzzGen}: Automatic fuzzer generation. In29th USENIX Security Symposium (USENIX Security 20).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Zongze Jiang, Ming Wen, Jialun Cao, Xuanhua Shi, and Hai Jin. 2024. Towards Understanding the Effectiveness of Large Language Models on Directed Test Input Generation. InProceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Carlos E Jimenez, John Yang, et al .2024. SWE-bench: Can Language Models Resolve Real-world Github Issues?. InThe Twelfth International Conference on Learning Representations.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Tae Eun Kim, Jaeseung Choi, et al .2023. DAFL: Directed Grey-Box Fuzzing Guided by Data Dependency. In32nd USENIX Security Symposium (USENIX Security 23). 4931–4948.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "George Klees, Andrew Ruef, et al .2018. Evaluating Fuzz Testing. InProceedings of the 2018 ACMSIGSAC Conference on Computer and Communications Security. 2123–2138.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Andrei Kozyrev, Gleb Solovev, Nikita Khramov, and Anton Podkopaev. 2024. CoqPilot, a plugin for LLM-based generation of proofs. InProceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Gwangmu Lee, Woochul Shim, et al .2021. Constraint-Guided Directed Greybox Fuzzing. In30th Usenix Security Symposium (Usenix Security 21). 3559–3576.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Haonan Li, Yu Hao, Yizhuo Zhai, and Zhiyun Qian. 2024. Enhancing static analysis for practical bug detection: An llm-integrated approach.Proceedings of the ACM on Programming Languages8, OOPSLA1 (2024), 474–499.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Haonan Li, Hang Zhang, Kexin Pei, and Zhiyun Qian. 2025. The Hitchhiker’s Guide to Program Analysis, Part II: Deep Thoughts by LLMs.arXiv preprint arXiv:2504.11711(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Penghui Li, Wei Meng, et al .2024. SDFuzz: Target States Driven Directed Fuzzing. In33rd Usenix Security Symposium (Usenix Security 24). 2441–2457.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Yuekang Li, Bihuan Chen, Mahinthan Chandramohan, Shang-Wei Lin, Yang Liu, and Alwen Tiu. 2017. Steelix: program-state based binary fuzzing. InProceedings of the 2017 11th joint meeting on foundations of software engineering.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Ziyang Li, Saikat Dutta, and Mayur Naik. 2024. Llm-assisted static analysis for detecting security vulnerabilities.arXiv preprint arXiv:2405.17238(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Hongliang Liang, Lin Jiang, Lu Ai, and Jinyi Wei. 2020. Sequence directed hybrid fuzzing. In Evolution and Reengineering (SANER). IEEE.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "libarchive contributors. 2025.libarchive: Multi-format archive and compression library. https://www.libarchive.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "libming contributors. 2025.libming: SWF (Flash) file creation library. https: //www.libming.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Dongge Liu, Oliver Chang, et al .2024. OSS-fuzz-gen: Automated Fuzz Target Generation. Locus: Agentic Predicate Synthesis for Directed Fuzzing ICSE ’26, April 12–18, 2026, Rio de Janeiro, Brazil",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Jiawei Liu, Songrun Xie, Junhao Wang, Yuxiang Wei, Yifeng Ding, and Lingming Zhang. 2024. Evaluating language models for efficient code generation.arXiv preprint arXiv:2408.06450(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Zhe Liu et al .2024. Testing the Limits: Unusual Text Inputs Generation for Mobile App Crash Detection with Large Language Model. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Minghai Lu, Benjamin Delaware, and Tianyi Zhang. 2024. Proof automation with large language models. InProceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Changhua Luo, Wei Meng, et al .2023. SelectFuzz: Efficient Directed Fuzzing with Selective Path Exploration. In (Sp). 2693–2707.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Chenyang Lyu, Shouling Ji, et al .2019. MOPT: Optimized Mutation Scheduling for Fuzzers. In28th USENIX Security Symposium (USENIX Security 19). 1949– 1966.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Yunlong Lyu, Yuxuan Xie, et al .2024. Prompt Fuzzing for Fuzz Driver Generation. InProceedings of the 2024 on ACMSIGSAC Conference on Computer and Communications Security. 3793–3807.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "H. B. Mann and D. R. Whitney. 1947. On a Test of Whether One of Two Random Variables Is Stochastically Larger than the Other.Annals of Mathematical Statistics18, 1 (March 1947), 50–60.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Paul Dan Marinescu and Cristian Cadar. 2013. KATCH: High-coverage testing of software patches. InProceedings of the 2013 9th Joint Meeting on Foundations of Software Engineering.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Ruijie Meng, Zhen Dong, et al .2022. Linear-Time Temporal Logic Guided Greybox Fuzzing. InProceedings of the 44th International Conference on Software Engineering. 1343–1355.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Charalambos Mitropoulos et al .2023. Syntax-aware mutation for testing the solidity compiler. InEuropean Symposium on Research in Computer Security. Springer.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Aniruddhan Murali, Noble Mathews, et al .2024. Fuzzslice: Pruning false positives in static analysis warnings through function-level fuzzing. InProceedings of the 46th IEEE/ACM International Conference on Software Engineering.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "Manh-Dung Nguyen, Sébastien Bardin, et al .2020. Binary-level directed fuzzing for{use-after-free}vulnerabilities. In23rd International Symposium on Research in Attacks, Intrusions and Defenses (RAID 2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "Rohan Padhye, Caroline Lemieux, Koushik Sen, Laurent Simon, and Hayawardh Vijayakumar. 2019. Fuzzfactory: domain-specific fuzzing with waypoints.Proceedings of the ACM on Programming Languages3, OOPSLA (2019), 1–29.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Jibesh Patra and Michael Pradel. 2016. Learning to fuzz: Applicationindependent fuzz testing with probabilistic, generative models of input data. TU Darmstadt, Department of Computer Science, Tech. Rep. TUD-CS-2016-14664 (2016).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Paul Gauthier. 2024. Aider, AI pair programming in your terminal. https: //aider.chat.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Hui Peng, Yan Shoshitaishvili, et al .2018. T-Fuzz: Fuzzing by Program Transformation. In. 697–710.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proceedings of the ACM on Programming Languages(2020).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 74,
+      "text": "Niklas Risse and Marcel Böhme. 2024. Uncovering the limits of machine learning for automatic vulnerability detection. In33rd USENIX Security Symposium (USENIX Security 24).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "Niklas Risse, Jing Liu, et al .2025. Top Score on the Wrong Exam: On Benchmarking in Machine Learning for Vulnerability Detection. InProceedings of the ACM on Software Engineering, Vol. 2. 388–410.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "Pranab Sahoo, Prabhash Meharia, et al .2024. A comprehensive survey of hallucination in large language, image, video and audio foundation models. arXiv preprint arXiv:2405.09589(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "Konstantin Serebryany, Derek Bruening, Alexander Potapenko, and Dmitriy Vyukov. 2012.{AddressSanitizer}: A fast address sanity checker. In2012 USENIX annual technical conference (USENIX ATC 12). 309–318.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "Abhishek Shah, Dongdong She, et al .2022. MC2: Rigorous and Efficient Directed Greybox Fuzzing. InProceedings of the 2022 ACMSIGSAC Conference on Computer and Communications Security. 2595–2609.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "Dongdong She, Adam Storek, et al .2024. FOX: Coverage-guided Fuzzing as Online Stochastic Control. InProceedings of the 2024 on ACMSIGSAC Conference on Computer and Communications Security. 765–779.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "Gabriel Sherman and Stefan Nagy. 2025. No Harness, No Problem: Oracleguided Harnessing for Auto-Generating CAPI Fuzzing Harnesses. InIEEE/ACM International Conference on Software Engineering (ICSE).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 81,
+      "text": "Wenxuan Shi, Yunhang Zhang, et al .2024. Harnessing Large Language Models for Seed Generation in Greybox Fuzzing.arXiv preprint arXiv:2411.18143(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 82,
+      "text": "Prashast Srivastava, Stefan Nagy, et al .2022. One Fuzz Doesn’t Fit All: Optimizing Directed Fuzzing via Target-tailored Program State Restriction. In Proceedings of the 38th Annual Computer Security Applications Conference. 388– 399.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 83,
+      "text": "Prashast Srivastava, Stefan Nagy, Matthew Hicks, Antonio Bianchi, and Mathias Payer. 2022. One fuzz doesn’t fit all: Optimizing directed fuzzing via targettailored program state restriction. InProceedings of the 38th Annual Computer Security Applications Conference.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 84,
+      "text": "Yulei Sui and Jingling Xue. 2016. SVF: Interprocedural Static Value-Flow Analysis in LLVM. InProceedings of the 25th International Conference on Compiler Construction. 265–266.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 85,
+      "text": "Xin Tan, Yuan Zhang, et al .2023. SyzDirect: Directed Greybox Fuzzing for Linux Kernel. InProceedings of the 2023 ACMSIGSAC Conference on Computer and Communications Security. 1630–1644.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 86,
+      "text": "{DeepSeek-AI}, Daya Guo, et al .2025. DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning. arXiv:2501.12948 [cs]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 87,
+      "text": "David Trabish, Andrea Mattavelli, et al .2018. Chopped Symbolic Execution. In Proceedings of the 40th International Conference on Software Engineering. 350– 360.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 88,
+      "text": "Aaron Turner and Contributors. 2001.Tcpreplay. https://tcpreplay.app/ Replay captured network traffic. Accessed: 2025-11-26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 89,
+      "text": "VideoLAN. 2025.VLC media player. https://www.videolan.org/vlc/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 90,
+      "text": "Dmitry Vyukov. 2015.go-fuzz. https://github.com/dvyukov/go-fuzz",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 91,
+      "text": "Chengpeng Wang, Wuqi Zhang, et al .2024. LLMDFA: Analyzing Dataflow in Code with Large Language Models. InAdvances in Neural Information Processing Systems, A. Globerson, L. Mackey, D. Belgrave, A. Fan, U. Paquet, J. Tomczak, and C. Zhang (Eds.), Vol. 37. 131545–131574.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 92,
+      "text": "Daimeng Wang, Zheng Zhang, et al .2021. SyzVegas: Beating Kernel Fuzzing Odds with Reinforcement Learning. In30th USENIX Security Symposium (USENIX Security 21). 2741–2758.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 93,
+      "text": "Junjie Wang, Yuhan Ma, et al .2025. PatchFuzz: Patch Fuzzing for JavaScript Engines.arXiv preprint arXiv:2505.00289(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 94,
+      "text": "Yanhao Wang, Xiangkun Jia, Yuwei Liu, Kyle Zeng, Tiffany Bao, Dinghao Wu, and Purui Su. 2020. Not All Coverage Measurements Are Equal: Fuzzing by Coverage Accounting for Input Prioritization.. InNDSS.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 95,
+      "text": "Felix Weissberg, Jonas Möller, et al .2024. SoK: Where to Fuzz? Assessing Target Selection Methods in Directed Fuzzing. InProceedings of the 19th ACM Asia Conference on Computer and Communications Security. 1539–1553.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 96,
+      "text": "Chunqiu Steven Xia, Matteo Paltenghi, et al .2024. Fuzz4ALL: Universal Fuzzing with Large Language Models. In on Software Engineering (ICSE). 1547–1559.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 97,
+      "text": "Hanxiang Xu, Yanjie Zhao, et al .2025. Directed Greybox Fuzzing via Large Language Model. arXiv:2505.03425 [cs]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 98,
+      "text": "Chenyuan Yang, Yinlin Deng, et al .2024. WhiteFox: White-Box Compiler Fuzzing Empowered by Large Language Models. InObject-Oriented Programming, Systems, Languages, and Applications, Vol. 8. 709–735.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 99,
+      "text": "Chenyuan Yang, Zijie Zhao, et al .2025. KNighter: Transforming Static Analysis with LLM-Synthesized Checkers. arXiv:2503.09002 [cs]",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 100,
+      "text": "Chenyuan Yang, Zijie Zhao, and Lingming Zhang. 2023. Kernelgpt: Enhanced kernel fuzzing via large language models.arXiv preprint arXiv:2401.00563(2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 101,
+      "text": "John Yang, Carlos E. Jimenez, et al .2024. SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering. InAdvances in Neural Information Processing Systems, A. Globerson, L. Mackey, D. Belgrave, A. Fan, U. Paquet, J. Tomczak, and C. Zhang (Eds.), Vol. 37. 50528–50652.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 102,
+      "text": "Yupeng Yang, Shenglong Yao, Jizhou Chen, and Wenke Lee. 2025. Hybrid Language Processor Fuzzing via LLM-Based Constraint Solving. In34th USENIX Security Symposium (USENIX Security 25).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 103,
+      "text": "Shunyu Yao et al .2023. ReAct: Synergizing Reasoning and Acting in Language Models. InThe Eleventh International Conference on Learning Representations.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 104,
+      "text": "Zijun Yao, Yantao Liu, et al .2025. Are Reasoning Models More Prone to Hallucination?arXiv preprint arXiv:2505.23646(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 105,
+      "text": "Michal Zalewski. 2020. American Fuzzy Lop.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 106,
+      "text": "Cen Zhang, Yuekang Li, et al .2023. Automata-Guided Control-Flow-Sensitive Fuzz Driver Generation.. InUSENIX Security Symposium.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 107,
+      "text": "Cen Zhang, Yaowen Zheng, et al .2024. How effective are they? Exploring large language model based fuzz driver generation. InProceedings of the 33rd ACMSIGSOFT International Symposium on Software Testing and Analysis.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 108,
+      "text": "Cen Zhang, Yaowen Zheng, et al .2024. How Effective Are They? Exploring Large Language Model Based Fuzz Driver Generation. InProceedings of the 33rd ACMSIGSOFT International Symposium on Software Testing and Analysis. 1223–1235.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 109,
+      "text": "Hongxiang Zhang, Yuyang Rong, Yifeng He, and Hao Chen. 2024. Llamafuzz: Large language model enhanced greybox fuzzing.arXiv preprint arXiv:2406.07714(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 110,
+      "text": "Qiang Zhang et al .2024. ECG: Augmenting Embedded Operating System Fuzzing via LLM-Based Corpus Generation.IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems43, 11 (2024), 4238–4249.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 111,
+      "text": "Yuntong Zhang, Haifeng Ruan, et al .2024. AutoCodeRover: Autonomous Program Improvement. InProceedings of the 33rd ACMSIGSOFT International Symposium on Software Testing and Analysis. 1592–1604.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 73,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proceedings of the ACM on Programming Languages(2020).",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 2,26,36,44,45,66,73,80,\n106]",
+      "technique": "tlp",
+      "sentence": "However, such feedback is sometimes too sparse or indirect to reliably measure the progress, especially when there is a long chain ofimplicitpreconditions guarding the target program states [ 2,26,36,44,45,66,73,80, 106].",
+      "context_before": "et, it has found numerous impactful zero-day vulnerabilities [9, 53, 68, 78, 93]. DGF is challenging, as the target program states are often deeply nested in the program, while the search space introduced by the complexity of real-world software is prohibitively large. To speed up the search and schedule promising inputs, most existing techniques rely on metrics based on control flow proximity,e.g.,the distance to target location in the control flow graph, or heuristics based on the semantics of the branch predicates [ 13,51,78],e.g.,the target state if x==42 has the distance metric of |𝑥−42|.",
+      "context_after": "For example, triggering CVE-2018-13785 in libpng requires a PNG file to satisfy a precise sequence of preconditions,i.e.,valid signature, correct chunk layout, specific IHDR fields (e.g.,bit depth, color type), and a magic image width ( 0x55555555 ), to trigger an integer overflow [ 44], while the predicates to explicitly check these conditions are largely absent in the code to provide an incremental progress guidance. To capture the intricate feedback to improve search efficiency, more advanced approaches identify progress-capturing constraints in the program to drive execution towards satis",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 4181,
+      "cited_reference": {
+        "number": 73,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proceedings of the ACM on Programming Languages(2020).",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:17:50Z",
+    "is_model_written": true,
+    "summary": "Locus improves directed fuzzing, where the goal is an input reaching a specified program state. The authors argue branch distances do not precisely capture progress toward a deeply nested target and manual constraints do not generalise. Locus synthesises predicates marking semantically meaningful intermediate states as milestones, instrumented into the program to reject executions unlikely to reach the target. It sped up eight fuzzers by 41.6x on average and found nine unpatched bugs.",
+    "narrative": "One citation, in a discussion of feedback signals being too sparse or indirect to measure progress.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

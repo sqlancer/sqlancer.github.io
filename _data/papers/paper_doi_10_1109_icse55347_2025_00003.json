@@ -1,0 +1,715 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T17:05:57Z",
+  "paper": {
+    "id": "paper:doi:10.1109/icse55347.2025.00003",
+    "title": "Coni: Detecting Database Connector Bugs via State-Aware Test Case Generation",
+    "authors": [
+      "Wenqian Deng",
+      "Jie Liang",
+      "Zhiyong Wu",
+      "Jingzhou Fu",
+      "Mingzhe Wang",
+      "Yu Jiang"
+    ],
+    "year": 2025,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1109/icse55347.2025.00003",
+    "arxiv_id": null,
+    "s2_paper_id": "7307f131c3d332683815de0634412c48e6a01a7a",
+    "url": "https://doi.org/10.1109/icse55347.2025.00003",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/icse55347.2025.00003",
+      "retrieved_at": "2026-09-07T17:05:57Z",
+      "chars": 66040,
+      "content_sha256": "sha256:c8431f3ca44815090e215d219b7972e9db5ec551823bb6492c12a6f48b9a2124"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 2274
+      },
+      {
+        "number": "II",
+        "title": "BACKGROUND",
+        "start": 10266
+      },
+      {
+        "number": "III",
+        "title": "STATE-AWARE TESTCASE GENERATION",
+        "start": 15238
+      },
+      {
+        "number": "A",
+        "title": "State Model Establishment",
+        "start": 16243
+      },
+      {
+        "number": "B",
+        "title": "Interface Call Sequence Generation",
+        "start": 21323
+      },
+      {
+        "number": "C",
+        "title": "Parameter Value Generation",
+        "start": 26525
+      },
+      {
+        "number": "IV",
+        "title": "IMPLEMENTATION",
+        "start": 31622
+      },
+      {
+        "number": "V",
+        "title": "EVALUATION",
+        "start": 33390
+      },
+      {
+        "number": "A",
+        "title": "Evaluation Setup",
+        "start": 33777
+      },
+      {
+        "number": "B",
+        "title": "Database Connector Bugs",
+        "start": 34869
+      },
+      {
+        "number": "C",
+        "title": "Comparison with Existing Techniques",
+        "start": 41229
+      },
+      {
+        "number": "D",
+        "title": "Effectiveness of Test Case Generation",
+        "start": 45460
+      },
+      {
+        "number": "VI",
+        "title": "DISCUSSION",
+        "start": 48382
+      },
+      {
+        "number": "VII",
+        "title": "RELATED WORK",
+        "start": 51336
+      },
+      {
+        "number": "VIII",
+        "title": "CONCLUSION",
+        "start": 56870
+      },
+      {
+        "number": "Y",
+        "title": "Jiang, “WingFuzz: Implementing Continuous Fuzzing",
+        "start": 59954
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "“Database connection,” https://en.wikipedia.org/wiki/ Database connection, 2024, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "“Java database connectivity,” https://en.wikipedia.org/ wiki/Java Database Connectivity, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "“Open database connectivity,” https://en.wikipedia.org/ wiki/Open Database Connectivity, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "“pgjdbc,” https://github.com/pgjdbc/pgjdbc, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "“mariadb-connector-j,” https://github.com/mariadbcorporation/mariadb-connector-j, 2024, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "“Binary bool values are not decoded correctly · Issue #2639 · pgjdbc/pgjdbc,” https://github.com/pgjdbc/ pgjdbc/issues/2639, 2022, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "“[conj-1071] error during bulk execution might result in connection wrong statejira,” https://jira.mariadb.org/ browse/CONJ-1071, 2023, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "“[conj-1091] can’t make a connection when the Read Replica DB is in a hang state when SocketTimeout=0 set-Jira,” https://jira.mariadb.org/browse/CONJ-1091, 2023, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "“MySQL Bugs: #109013: useServerPrepStmts and useLocalTransactionState could cause rollback failure,” https://bugs.mysql.com/bug.php?id=109013, 2022, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Z.-M. Jiang, J.-J. Bai, and Z. Su, “DynSQL: Stateful Fuzzing for Database Management Systems with Complex and Valid SQL Query Generation,” in 32nd USENIX Security Symposium, 2023, pp. 4949–4965.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "M. Rigger and Z. Su, “Testing Database Engines via Pivoted Query Synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20), 2020, pp. 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 12,
+      "text": "R. Zhong, Y. Chen, H. Hu, H. Zhang, W. Lee, and D. Wu, “Squirrel: Testing Database Management Systems with Language Validity and Coverage Feedback,” in The ACM Conference on Computer and Communications Security (CCS), 2020, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "J. Fu, J. Liang, Z. Wu, M. Wang, and Y. Jiang, “Griffin: Grammar-Free DBMS Fuzzing,” in 37th IEEE/ACM International Conference on Automated Software Engineering, 2022, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "J. Liang, Z. Wu, J. Fu, Y. Bai, Q. Zhang, and Y. Jiang, “WingFuzz: Implementing Continuous Fuzzing for DBMSs,” in 2024 USENIX Annual Technical Conference, 2024, pp. 479–492.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "C. Pacheco, S. K. Lahiri, M. D. Ernst, and T. Ball, “Feedback-Directed Random Test Generation,” in 29th International Conference on Software Engineering (ICSE 2007), Minneapolis, MN, USA, May 20-26, 2007. IEEE Computer Society, 2007, pp. 75–84. [Online]. Available: https://doi.org/10.1109/ICSE.2007.37",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Y. Lin, J. Sun, G. Fraser, Z. Xiu, T. Liu, and J. S. Dong, “Recovering Fitness Gradients for Interprocedural Boolean Flags in Search-based Testing,” in Proceedings of the 29th ACMSIGSOFT International Symposium on Software Testing and Analysis, 2020, pp. 440–451.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Z. Huang and Y. Wang, “JDriver: Automatic Driver Class Generation for AFL-Based Java Fuzzing Tools,” 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "“Differential testing,” https://en.wikipedia.org/wiki/ Differential testing, 2024, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "“mysql-connector-j,” https://github.com/mysql/mysql677 connector-j, 2024, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "“aws-mysql-jdbc,” https://github.com/awslabs/awsmysql-jdbc, 2024, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "“pgjdbc-ng,” https://github.com/impossibl/pgjdbc-ng, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "“TIOBE Index,” https://www.tiobe.com/tiobe-index/, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "“Maven JDBC,” https://mvnrepository.com/open-source/ jdbc-drivers, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "“SQL1992,” http://www .contrib.andrew.cmu.edu/ ∼shadow/sql/sql1992.txt, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "“Mysql,” https://www.mysql.com/, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "“Mariadb,” https://mariadb.org/, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "“Postgresql,” https://www.postgresql.org/, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "“Aws,” https://aws.amazon.com/, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "“JaCoCO,” https://www.jacoco.org/jacoco/, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "D. Nam, A. Macvean, V. Hellendoorn, B. Vasilescu, and B. Myers, “Using an LLM to Help With Code Understanding,” in Proceedings of the IEEE/ACM 46th International Conference on Software Engineering, 2024, pp. 1–13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "S. Bhosale, M. T. Patil, and M. P. Patil, “Sqlite: Light database system,” Int. J. Comput. Sci. Mob. Comput, vol. 44, no. 4, pp. 882–885, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "“Clickhouse,” https://clickhouse.com/docs/en/interfaces/ jdbc, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "“Oceanbase,” https://en.oceanbase.com/docs/commonoceanbase-connector-j-en-10000000001092963, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "B. P. Miller, L. Fredriksen, and B. So, “An Empirical Study of the Reliability of UNIX Utilities,” Commun. ACM, vol. 33, no. 12, Dec. 1990.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "J. Liang, Y. Chen, Z. Wu, J. Fu, M. Wang, Y. Jiang, X. Huang, T. Chen, J. Wang, and J. Li, “Sequenceoriented DBMS Fuzzing,” in Proceedings of IEEE International Conference on Data Engineering (ICDE), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Z. Wu, J. Liang, M. Wang, C. Zhou, and Y. Jiang, “Unicorn: Detect Runtime Errors in Time-series Databases with Hybrid Input Synthesis,” in ISSTA ’22: 31st ACMSIGSOFT International Symposium on Software Testing and Analysis, Virtual Event, South Korea, July 18 - 22, 2022. ACM, 2022, pp. 251–262.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "J. Fu, J. Liang, Z. Wu, and Y. Jiang, “Sedar: Obtaining High-Quality Seeds for DBMS Fuzzing via Cross-DBMS SQL Transfer,” in Proceedings of the IEEE/ACM 46th International Conference on Software Engineering, 2024, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "E. Albert, I. Cabanas, A. Flores-Montoya, M. GomezZamalloa, and S. Gutierrez, “jPET: An Automatic TestCase Generator for Java,” 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Z. Chen and Y. Wang, “JFD: Automatic Java Fuzz DriverGeneration,” 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "M. Chen, X. Qiu, W. Xu, L. Wang, J. Zhao, and X. Li, “UML Activity Diagram-based Automatic Test Case Generation for Java Programs,” The Computer Journal, vol. 52, no. 5, pp. 545–556, 2009.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "C. Gould, Z. Su, and P. Devanbu, “JDBC Checker: A Static Analysis Tool for SQL/JDBC Applications,” in Proceedings. 26th International Conference on Software Engineering. IEEE, 2004, pp. 697–698.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "C. Zhou and P. Frankl, “Mutation Testing for Java Database Applications,” pp. 396–405, 2009.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Y. Shin, L. A. Williams, and T. Xie, “SQLUnitgen: Test case generation for SQL injection detection,” North Carolina State University. Dept. of Computer Science, Tech. Rep., 2006.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "D. Ye, “Automated Testing Framework for ODBC Driver,” Journal of Software Engineering and Applications, vol. 04, no. 12, p. 688, Dec. 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "S. R. Dalal, A. Jain, N. Karunanithi, J. Leaton, C. M. Lott, G. C. Patton, and B. M. Horowitz, “Model-based Testing in Practice,” in Proceedings of the 21st international conference on Software engineering, 1999, pp. 285–294.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "M. Utting, A. Pretschner, and B. Legeard, “A Taxonomy of Model-based Testing Approaches,” Software testing, verification and reliability, vol. 22, no. 5, pp. 297–312, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "“Uppaal,” https://uppaal.org/, accessed: November 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "P. V. P. Pinheiro, A. T. Endo, and A. Simao, “Modelbased Testing of RESTful Web Services Using UML Protocol State Machines,” in Brazilian workshop on systematic and automated software testing. Citeseer, 2013, pp. 1–10.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "G. Tretmans and H. Brinksma, “Torx: Automated Modelbased Testing,” in First European Conference on ModelDriven Software Engineering, 2003, pp. 31–43.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "D. R. Slutz, “Massive Stochastic Testing of SQL,” vol. 98, pp. 618–622, 1998.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "J. Jung, H. Hu, J. Arulraj, T. Kim, and W. Kang, “APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems (to appear),” inProceedings of the 46th International Conference on Very Large Data Bases (VLDB), Tokyo, Japan, Aug. 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Z. Cui, W. Dou, Q. Dai, J. Song, W. Wang, J. Wei, and D. Ye, “Differentially Testing Database Transactions for Fun and Profit,” in Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering, 2022, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "J. Liang, Z. Wu, J. Fu, M. Wang, C. Sun, and Y. Jiang, “Mozi: Discovering DBMS Bugs via ConfigurationBased Equivalent Transformation,” in Proceedings of the IEEE/ACM 46th International Conference on Software Engineering, 2024, pp. 1–12. 678",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 11,
+      "text": "M. Rigger and Z. Su, “Testing Database Engines via Pivoted Query Synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20), 2020, pp. 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[10, 11, 12, 13, 14]",
+      "technique": "pqs",
+      "sentence": "On the one hand, most fuzzers primarily concentrate on generating effective SQL queries [10, 11, 12, 13, 14], whereas database connectors are not directly involved in the execution of these queries.",
+      "context_before": "in the type of parameter data within the batch. Specifically, in Figure 1, the “field” in the first INSERT statement is of type string, while the other has a null value. If an error occurs during any of these statements, the connector may fail to read the complete results of all statements, leading to an incorrect connection state. Subsequent commands on this corrupted connection may retrieve residual data from the preceding error, yielding inaccurate query results. Although there are many existing DBMS-related fuzzing works, they are hard to be directly applied to testing database connectors.",
+      "context_after": "Therefore, it is challenging for existing methods to assess the intricate logic embedded within database connectors thoroughly. On the other hand, existing fuzzers exhibit limited interaction with the database connector. They either refrain from utilizing the database connector entirely or leverage only a small subset of its interfaces to transmit SQL queries. For example, SQLANCER [11] relies on JDBC solely to execute SQL queries and retrieve results, without exploring additional functionalities like modifying configuration properties or batch execution. In addition, works like RANDOOP [15]",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 5802,
+      "cited_reference": {
+        "number": 11,
+        "text": "M. Rigger and Z. Su, “Testing Database Engines via Pivoted Query Synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "For example, SQLANCER [11] relies on JDBC solely to execute SQL queries and retrieve results, without exploring additional functionalities like modifying configuration properties or batch execution.",
+      "context_before": "pplied to testing database connectors. On the one hand, most fuzzers primarily concentrate on generating effective SQL queries [10, 11, 12, 13, 14], whereas database connectors are not directly involved in the execution of these queries. Therefore, it is challenging for existing methods to assess the intricate logic embedded within database connectors thoroughly. On the other hand, existing fuzzers exhibit limited interaction with the database connector. They either refrain from utilizing the database connector entirely or leverage only a small subset of its interfaces to transmit SQL queries.",
+      "context_after": "In addition, works like RANDOOP [15] and EVOSUITE [16] have already explored how to generate test cases automatically for programs [15, 16, 17]. However, due to the lack of domain knowledge, these tools can only generate test cases that cover limited scenarios and logic, typically identifying issues like null pointer errors or boundary condition handling errors. Testing connectors requires various interactions with databases, but these tools are almost incapable of generating effective database connections. Therefore, there is a great need for a framework designed specifically for testing dat",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 6364,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "In addition, SQLANCER [11] is a popular open-source tool for testing databases using JDBC.",
+      "context_before": "e connectors, among them 34 have been confirmed. The results indicate that C ONIcan detect previously unknown bugs in database connectors, which adequately answers RQ1. C. Comparison with Existing Techniques Compared Techniques. To the best of our knowledge, CONI is the first fuzzing framework for database connectors. Therefore, we selected closely related work as the evaluation baseline. RANDOOP [15] and EVOSUITE [16] are two prominentand open-source automated tools for generating test cases of Java programs, while CONI generates test cases for JDBC, which can be considered as a Java library.",
+      "context_after": "We implemented SQLANCER+ by adapting the target database connector and collecting results from different connectors to identify inconsistencies. We evaluated these techniques using two metrics, namely branch coverage and unique detected bugs. Coverage was collected using Jacoco [29] instrumentation. The bugs were deduplicated automatically by comparing the interface call information and the returned result, identifying inconsistencies. Then the deduplicated bugs were reported to developers for their verification. We ran the testing tools on five tested database connectors for 24 hours and col",
+      "section": "C Comparison with Existing Techniques",
+      "page": 8,
+      "char_offset": 41660,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "We implemented SQLANCER+ by adapting the target database connector and collecting results from different connectors to identify inconsistencies.",
+      "context_before": "previously unknown bugs in database connectors, which adequately answers RQ1. C. Comparison with Existing Techniques Compared Techniques. To the best of our knowledge, CONI is the first fuzzing framework for database connectors. Therefore, we selected closely related work as the evaluation baseline. RANDOOP [15] and EVOSUITE [16] are two prominentand open-source automated tools for generating test cases of Java programs, while CONI generates test cases for JDBC, which can be considered as a Java library. In addition, SQLANCER [11] is a popular open-source tool for testing databases using JDBC.",
+      "context_after": "We evaluated these techniques using two metrics, namely branch coverage and unique detected bugs. Coverage was collected using Jacoco [29] instrumentation. The bugs were deduplicated automatically by comparing the interface call information and the returned result, identifying inconsistencies. Then the deduplicated bugs were reported to developers for their verification. We ran the testing tools on five tested database connectors for 24 hours and collected the branch coverage and unique detected bugs. Coverage. Table III displays the number of branches covered by each technique in 24 hours. T",
+      "section": "C Comparison with Existing Techniques",
+      "page": 8,
+      "char_offset": 41751,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "The result shows that CONI covered 5950, 6608, and 6587 more branches than SQLANCER+, RANDOOP, and EVOSUITE respectively.",
+      "context_before": "s. We evaluated these techniques using two metrics, namely branch coverage and unique detected bugs. Coverage was collected using Jacoco [29] instrumentation. The bugs were deduplicated automatically by comparing the interface call information and the returned result, identifying inconsistencies. Then the deduplicated bugs were reported to developers for their verification. We ran the testing tools on five tested database connectors for 24 hours and collected the branch coverage and unique detected bugs. Coverage. Table III displays the number of branches covered by each technique in 24 hours.",
+      "context_after": "The main reason that CONI covered more branches is that CONI is capable of generating effective test cases that cover various functional scenarios. Specifically, SQLANCER+ only uses the database connector to send SQL queries, utilizing getConnection to create a database connection, createStatement to create a statement, and execute to execute SQL queries. For RANDOOP and EVOSUITE, the main problem is that due to the lack of domain knowledge, these tools can only generate test cases that cover limited scenarios and logic. Testing connectors requires complex interactions with databases, but the",
+      "section": "C Comparison with Existing Techniques",
+      "page": 8,
+      "char_offset": 42494,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "Specifically, SQLANCER+ only uses the database connector to send SQL queries, utilizing getConnection to create a database connection, createStatement to create a statement, and execute to execute SQL queries.",
+      "context_before": "dentifying inconsistencies. Then the deduplicated bugs were reported to developers for their verification. We ran the testing tools on five tested database connectors for 24 hours and collected the branch coverage and unique detected bugs. Coverage. Table III displays the number of branches covered by each technique in 24 hours. The result shows that CONI covered 5950, 6608, and 6587 more branches than SQLANCER+, RANDOOP, and EVOSUITE respectively. The main reason that CONI covered more branches is that CONI is capable of generating effective test cases that cover various functional scenarios.",
+      "context_after": "For RANDOOP and EVOSUITE, the main problem is that due to the lack of domain knowledge, these tools can only generate test cases that cover limited scenarios and logic. Testing connectors requires complex interactions with databases, but these tools, without the state model, are almost incapable of generating effective database connections. CONI attempts to alter configurations in the database connector, perform batch executions, and modify query results. Therefore, CONI can cover more branches than other techniques. TABLE III: Number of branches covered by each technique in 24 hours Connecto",
+      "section": "C Comparison with Existing Techniques",
+      "page": 8,
+      "char_offset": 42764,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "TABLE III: Number of branches covered by each technique in 24 hours Connector CONI SQLANCER+RANDOOP EVOSUITE MariaDB Connector/J 1073 466 583 581 MySQL Connector/J 2430 1256 1473 1489 AWS MySQL JDBC 2826 1445 1734 1739 PGJDBC 1660 987 1197 1181 PGJDBC NG 2425 1796 1621 1597 T otal 10414 5950 6608 6587 Impro vement-4464↑ 3806↑ 3827↑ Bugs.",
+      "context_before": "n, createStatement to create a statement, and execute to execute SQL queries. For RANDOOP and EVOSUITE, the main problem is that due to the lack of domain knowledge, these tools can only generate test cases that cover limited scenarios and logic. Testing connectors requires complex interactions with databases, but these tools, without the state model, are almost incapable of generating effective database connections. CONI attempts to alter configurations in the database connector, perform batch executions, and modify query results. Therefore, CONI can cover more branches than other techniques.",
+      "context_after": "Table IV shows the number of detected bugs in database connectors by each technique in 24 hours. During the evaluation, CONI found 5, 6, 3, 2, and 5 bugs in MariaDB Connecor/J, MySQL Connector/J, AWS MySQL JDBC, PGJDBC, and PGJDBC NG respectively, while other techniques did not find any bug. The main reason is as follows: SQLANCER+ did not call the interface methods that can trigger bugs, nor did it attempt to pass illegal values or set configurations for interface methods. For example, SQLANCER+ cannot find the 674 bug in Listing 1 because it did not call the setFetchSize method. RANDOOP a",
+      "section": "C Comparison with Existing Techniques",
+      "page": 8,
+      "char_offset": 43497,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "The main reason is as follows: SQLANCER+ did not call the interface methods that can trigger bugs, nor did it attempt to pass illegal values or set configurations for interface methods.",
+      "context_before": "vered by each technique in 24 hours Connector CONI SQLANCER+RANDOOP EVOSUITE MariaDB Connector/J 1073 466 583 581 MySQL Connector/J 2430 1256 1473 1489 AWS MySQL JDBC 2826 1445 1734 1739 PGJDBC 1660 987 1197 1181 PGJDBC NG 2425 1796 1621 1597 T otal 10414 5950 6608 6587 Impro vement-4464↑ 3806↑ 3827↑ Bugs. Table IV shows the number of detected bugs in database connectors by each technique in 24 hours. During the evaluation, CONI found 5, 6, 3, 2, and 5 bugs in MariaDB Connecor/J, MySQL Connector/J, AWS MySQL JDBC, PGJDBC, and PGJDBC NG respectively, while other techniques did not find any bug.",
+      "context_after": "For example, SQLANCER+ cannot find the 674 bug in Listing 1 because it did not call the setFetchSize method. RANDOOP and EVOSUITE focused on unit testing, which can only generate the test cases for several simple methods. Although they reported some potential errors during the experiment, they were all false positives which are NullPointerException caused by invalid sequences of interface calls. The performance improvement of CONI is primarily attributed to the validity and complexity of the generated test case. CONI generates test cases that explore more state space because the state-aware",
+      "section": "C Comparison with Existing Techniques",
+      "page": 8,
+      "char_offset": 44130,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "For example, SQLANCER+ cannot find the 674 bug in Listing 1 because it did not call the setFetchSize method.",
+      "context_before": "PGJDBC 1660 987 1197 1181 PGJDBC NG 2425 1796 1621 1597 T otal 10414 5950 6608 6587 Impro vement-4464↑ 3806↑ 3827↑ Bugs. Table IV shows the number of detected bugs in database connectors by each technique in 24 hours. During the evaluation, CONI found 5, 6, 3, 2, and 5 bugs in MariaDB Connecor/J, MySQL Connector/J, AWS MySQL JDBC, PGJDBC, and PGJDBC NG respectively, while other techniques did not find any bug. The main reason is as follows: SQLANCER+ did not call the interface methods that can trigger bugs, nor did it attempt to pass illegal values or set configurations for interface methods.",
+      "context_after": "RANDOOP and EVOSUITE focused on unit testing, which can only generate the test cases for several simple methods. Although they reported some potential errors during the experiment, they were all false positives which are NullPointerException caused by invalid sequences of interface calls. The performance improvement of CONI is primarily attributed to the validity and complexity of the generated test case. CONI generates test cases that explore more state space because the state-aware method covers more interface methods and their interactions. TABLE IV: Number of detected bugs in database con",
+      "section": "C Comparison with Existing Techniques",
+      "page": 8,
+      "char_offset": 44316,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "Connector CONI SQLANCER+RANDOOP EVOSUITE MariaDB Connector/J 5 0 0 0 MySQL Connector/J 6 0 0 0 AWS MySQL JDBC 3 0 0 0 PGJDBC 2 0 0 0 PGJDBC NG 5 0 0 0 T otal 21 0 0 0 Impro vement-21↑ 21↑ 21↑ In summary, CONI is unique in its ability to find bugs in database connectors, and compared to other techniques, it can cover more branches within the database connectors, which adequately answers RQ2.",
+      "context_before": "testing, which can only generate the test cases for several simple methods. Although they reported some potential errors during the experiment, they were all false positives which are NullPointerException caused by invalid sequences of interface calls. The performance improvement of CONI is primarily attributed to the validity and complexity of the generated test case. CONI generates test cases that explore more state space because the state-aware method covers more interface methods and their interactions. TABLE IV: Number of detected bugs in database connectors by each technique in 24 hours.",
+      "context_after": "D. Effectiveness of Test Case Generation To understand the contribution of each technique in CONI, we implemented two variants of CONI!sand CONI!p. CONI!s disabled the state-aware interface call sequence generation and generated random sequences. CONI!pdisabled the parameter value generation method and generated the values randomly. To avoid early errors in test cases from failed database connections, we used DriverManager.getConnection to build valid connections first for CONI!sand CONI!pand then subsequent interface call sequences or input parameter values were generated randomly. Bugs. Tab",
+      "section": "C Comparison with Existing Techniques",
+      "page": 9,
+      "char_offset": 45065,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "citation_marker",
+      "surface": "[11, 12, 13, 35, 36, 37]",
+      "technique": "pqs",
+      "sentence": "When applying fuzzing techniques to test DBMSs, the main challenge is to generate correct and effective SQL queries [11, 12, 13, 35, 36, 37].",
+      "context_before": "epends on the comparison objects used. If two connectors produce consistent results due to identical logic errors, C ONImay fail to detect these errors. To mitigate this, a practical solution is to expand the range of connectors used for comparison in CONI. For instance, to thoroughly test the AWS MySQL JDBC connector, it can be compared not only with MySQL Connector/J but also with MariaDB Connector/J. This broader comparison increases the likelihood of uncovering unique errors specific to each connector. VII. RELATED WORK DBMS Fuzzing. Fuzzing [34] is an automated software testing technique.",
+      "context_after": "For example, SQLANCER [11] generates valid SQL queries based on AST. SQUIRREL [12] employs mutation-based fuzzing on DBMSs. Griffin [13] introduces metadata graphs for SQL, providing a grammarfree method for mutating SQL test cases. LEGO [35] enhances DBMS fuzzing by generating SQL sequences with a diverse range of types. Unicorn [36] proposed the hybrid input synthesis and designed the time-series model to generate time-series queries. These works are difficult to directly adapt to testing database connectors, since they focus on SQL generation, while database connectors don’t execute SQL qu",
+      "section": "VII RELATED WORK",
+      "page": 10,
+      "char_offset": 51424,
+      "cited_reference": {
+        "number": 11,
+        "text": "M. Rigger and Z. Su, “Testing Database Engines via Pivoted Query Synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "For example, SQLANCER [11] generates valid SQL queries based on AST.",
+      "context_before": "se errors. To mitigate this, a practical solution is to expand the range of connectors used for comparison in CONI. For instance, to thoroughly test the AWS MySQL JDBC connector, it can be compared not only with MySQL Connector/J but also with MariaDB Connector/J. This broader comparison increases the likelihood of uncovering unique errors specific to each connector. VII. RELATED WORK DBMS Fuzzing. Fuzzing [34] is an automated software testing technique. When applying fuzzing techniques to test DBMSs, the main challenge is to generate correct and effective SQL queries [11, 12, 13, 35, 36, 37].",
+      "context_after": "SQUIRREL [12] employs mutation-based fuzzing on DBMSs. Griffin [13] introduces metadata graphs for SQL, providing a grammarfree method for mutating SQL test cases. LEGO [35] enhances DBMS fuzzing by generating SQL sequences with a diverse range of types. Unicorn [36] proposed the hybrid input synthesis and designed the time-series model to generate time-series queries. These works are difficult to directly adapt to testing database connectors, since they focus on SQL generation, while database connectors don’t execute SQL queries. Addi-tionally, many existing fuzzers do not use database conne",
+      "section": "VII RELATED WORK",
+      "page": 10,
+      "char_offset": 51566,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M5"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T17:00:23Z",
+    "is_model_written": true,
+    "summary": "Coni tests database connectors -- the JDBC drivers between an application and a DBMS -- rather than the database itself. Its observation is that SQL fuzzers exercise the connector only as a pipe: they open a connection, create a statement and execute a query, leaving batch execution, configuration properties and the rest of the interface untested. Coni generates state-aware sequences of connector API calls and found 21 bugs across five connectors, where the baselines found none.",
+    "narrative": "SQLancer is both the motivating example and a baseline the authors had to build. The paper notes that SQLancer relies on JDBC solely to execute queries and retrieve results, without touching configuration properties or batch execution, which is the gap Coni targets. To measure against it the authors implemented SQLANCER+, adapting the connector and collecting results across connectors to find inconsistencies. It covered 5950 fewer branches than Coni and found none of the 21 bugs -- and the paper explains precisely why, giving a bug that requires calling setFetchSize, a method SQLANCER+ never calls.",
+    "roles": {
+      "M1": "background",
+      "M2": "motivation",
+      "M3": "definition",
+      "M4": "baseline",
+      "M5": "result_comparison",
+      "M6": "result_comparison",
+      "M7": "result_comparison",
+      "M8": "result_comparison",
+      "M9": "result_comparison",
+      "M10": "result_comparison",
+      "M11": "background",
+      "M12": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "M4 describes building SQLANCER+ by adapting SQLancer so that it could serve as a comparison target. Coni's own test generation is its state-aware API sequence construction, not anything built on SQLancer."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The adaptation exists to make a baseline runnable on connectors, not to develop a SQLancer oracle. Coni's oracle is differential comparison across connectors."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M4",
+          "M5",
+          "M10"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M4",
+            "sentence": "We implemented SQLANCER+ by adapting the target database connector and collecting results from different connectors to identify inconsistencies.",
+            "section": "C Comparison with Existing Techniques",
+            "page": 8
+          },
+          {
+            "mention_id": "M5",
+            "sentence": "The result shows that CONI covered 5950, 6608, and 6587 more branches than SQLANCER+, RANDOOP, and EVOSUITE respectively.",
+            "section": "C Comparison with Existing Techniques",
+            "page": 8
+          },
+          {
+            "mention_id": "M10",
+            "sentence": "Connector CONI SQLANCER+RANDOOP EVOSUITE MariaDB Connector/J 5 0 0 0 MySQL Connector/J 6 0 0 0 AWS MySQL JDBC 3 0 0 0 PGJDBC 2 0 0 0 PGJDBC NG 5 0 0 0 T otal 21 0 0 0 Impro vement-21↑ 21↑ 21↑ In summary, CONI is unique in its ability to find bugs in database connectors, and compared to other techniques, it can cover more branches within the database connectors, which adequately answers RQ2.",
+            "section": "C Comparison with Existing Techniques",
+            "page": 9
+          }
+        ],
+        "reasoning": "M4 records SQLANCER+ being implemented as a comparison target, M5 reports the branch coverage difference, and M10 gives the per-connector bug table where it found none."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is called a popular open-source tool for testing databases using JDBC; popularity is not a state-of-the-art claim."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

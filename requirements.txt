@@ -1,0 +1,7 @@
+# Dependencies for the impact collection pipeline (tools/impact).
+# Deliberately minimal: the collectors use urllib from the standard library, so
+# only schema validation, reading PDFs, and the optional classifier need one.
+jsonschema>=4.0
+pypdf>=3.0        # reads supplied and fetched PDFs; every use degrades to "no
+                  # full text" without it, so a missing copy is silent
+anthropic>=0.40   # optional at runtime; without a key the classifier is skipped

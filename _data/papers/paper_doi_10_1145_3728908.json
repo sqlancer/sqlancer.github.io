@@ -1,0 +1,990 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:30:50Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3728908",
+    "title": "QTRAN: Extending Metamorphic-Oracle Based Logical Bug Detection Techniques for Multiple-DBMS Dialect Support",
+    "authors": [
+      "Li Lin",
+      "Qinglin Zhu",
+      "Hongqiao Chen",
+      "Zhuangda Wang",
+      "Rongxin Wu",
+      "Xiaoheng Xie"
+    ],
+    "year": 2025,
+    "venue": "Proc. ACM Softw. Eng.",
+    "doi": "10.1145/3728908",
+    "arxiv_id": null,
+    "s2_paper_id": "196fb1deaa2eda163dcfc0a7e0a7dec93228fea3",
+    "url": "https://doi.org/10.1145/3728908",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3728908",
+      "retrieved_at": "2026-09-09T01:30:50Z",
+      "chars": 85673,
+      "content_sha256": "sha256:2ced0a2090d0c5427802bba7679fe6bf69b0db9be87b76053074f4b235fbd67c"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 22,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 4444
+      },
+      {
+        "number": "2",
+        "title": "Background and Motivation",
+        "start": 14673
+      },
+      {
+        "number": "3",
+        "title": "Approach",
+        "start": 23611
+      },
+      {
+        "number": "3.1",
+        "title": "Transfer Phase",
+        "start": 27970
+      },
+      {
+        "number": "3.2",
+        "title": "Mutation Phase",
+        "start": 35149
+      },
+      {
+        "number": "4",
+        "title": "Evaluation",
+        "start": 39630
+      },
+      {
+        "number": "4.1",
+        "title": "Q1. Effectiveness and Efficiency",
+        "start": 43081
+      },
+      {
+        "number": "4.2",
+        "title": "Q2. Bug Detection",
+        "start": 49336
+      },
+      {
+        "number": "4.3",
+        "title": "Q3. Contributions of Dialect Mapping",
+        "start": 56944
+      },
+      {
+        "number": "4.4",
+        "title": "Q4. Contributions of Fine-tuning",
+        "start": 59468
+      },
+      {
+        "number": "5",
+        "title": "Discussion",
+        "start": 66128
+      },
+      {
+        "number": "6",
+        "title": "Related Work",
+        "start": 69419
+      },
+      {
+        "number": "7",
+        "title": "Conclusion",
+        "start": 74646
+      },
+      {
+        "number": "8",
+        "title": "Data Availability",
+        "start": 75277
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2015. SQLsmith. https://github.com/anse1/sqlsmith. Accessed: 2024-10-24.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2022. ANSI Standard. https://www.ansi.org/. Accessed: 2024-10-24.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "2023. SQLancer. https://github.com/sqlancer/sqlancer. Accessed: 2024-10-24.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 4,
+      "text": "2024. C to Go Translator. https://github.com/gotranspile/cxgo. Accessed: 2024-10-13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "2024. C2Rust Transpiler. https://github.com/immunant/c2rust. Accessed: 2024-10-13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "2024. Java 2 CSharp Translator for Eclipse. https://sourceforge.net/projects/j2cstranslator/. Accessed: 2024-10-13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "2024. Sharpen-Automated Java to C# Conversion. https://github.com/mono/sharpen. Accessed: 2024-10-13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Atul Adya. 1999. Weak consistency: a generalized theory and optimistic implementations for distributed transactions. (1999).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Hardik Bati, Leo Giakoumakis, Steve Herbert, and Aleksandras Surna. 2007. A genetic approach for random testing of database systems. In Proceedings of the 33rd international conference on Very large data bases. 1243–1251.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Tom B Brown. 2020. Language models are few-shot learners. arXiv preprint arXiv:2005.14165 (2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Aakanksha Chowdhery, Sharan Narang, Jacob Devlin, Maarten Bosma, Gaurav Mishra, Adam Roberts, Paul Barham, Hyung Won Chung, Charles Sutton, Sebastian Gehrmann, et al .2023. Palm: Scaling language modeling with pathways. Journal of Machine Learning Research 24, 240 (2023), 1–113.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, et al .2021. Training verifiers to solve math word problems. arXiv preprint arXiv:2110.14168 (2021).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Ziyu Cui, Wensheng Dou, Qianwang Dai, Jiansen Song, Wei Wang, Jun Wei, and Dan Ye. 2022. Differentially testing database transactions for fun and profit. In Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Arghavan Moradi Dakhel, Amin Nikanjam, Vahid Majdinasab, Foutse Khomh, and Michel C Desmarais. 2024. Effective test generation using pre-trained large language models and mutation testing. Information and Software Technology 171 (2024), 107468.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Victor Dantas. 2023. Large Language Model Powered Test Case Generation for Software Applications. (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Yinlin Deng, Chunqiu Steven Xia, Haoran Peng, Chenyuan Yang, and Lingming Zhang. 2023. Large language models are zero-shot fuzzers: Fuzzing deep-learning libraries via large language models. In Proceedings of the 32nd ACMSIGSOFT international symposium on software testing and analysis. 423–435.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Yinlin Deng, Chunqiu Steven Xia, Chenyuan Yang, Shizhuo Dylan Zhang, Shujing Yang, and Lingming Zhang. 2023. Large language models are edge-case fuzzers: Testing deep learning libraries via fuzzgpt. arXiv preprint arXiv:2304.02014 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Lukas Eder. 2024. JOOQ: Fluent API for Typesafe SQL Query Construction and Translation. https://www.jooq.org/. Accessed: 2024-12-29.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Daniela Florescu, Alon Levy, and Alberto Mendelzon. 1998. Database techniques for the World-Wide Web: A survey. ACM Sigmod Record 27, 3 (1998), 59–74.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Zongyin Hao, Quanfeng Huang, Chengpeng Wang, Jianfeng Wang, Yushan Zhang, Rongxin Wu, and Charles Zhang. 2023. Pinolo: Detecting Logical Bugs in Database Management Systems with Approximate Query Synthesis. In 2023 USENIX Annual Technical Conference (USENIX ATC 23). 345–358.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "William E Howden. 1978. Theoretical and empirical studies of program testing. IEEE Transactions on Software Engineering 4 (1978), 293–298.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Ali Reza Ibrahimzada, Yang Chen, Ryan Rong, and Reyhaneh Jabbarvand. 2023. Automated bug generation in the era of large language models. arXiv preprint arXiv:2310.02407 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Yu Jiang, Jie Liang, Fuchen Ma, Yuanliang Chen, Chijin Zhou, Yuheng Shen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Shanshan Li, et al .2024. When fuzzing meets llms: Challenges and opportunities. In Companion Proceedings of the 32nd ACM International Conference on the Foundations of Software Engineering. 492–496.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. 2023. {DynSQL}: Stateful Fuzzing for Database Management Systems with Complex and Valid {SQL}Query Generation. In 32nd USENIX Security Symposium (USENIX Security 23). 4949–4965.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Zu-Ming Jiang and Zhendong Su. 2024. Detecting Logic Bugs in Database Engines via Equivalent Expression Transformation. In 18th USENIX Symposium on Operating Systems Design and Implementation (OSDI 24). 821–835.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2019. Apollo: Automatic detection and diagnosis of performance regressions in database systems. Proceedings of the VLDB Endowment 13, 1 (2019), 57–70.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Zhenwen Li and Tao Xie. 2024. Using LLM to select the right SQL Query from candidates. arXiv preprint arXiv:2401.02115 (2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting logical bugs of {DBMS}with coverage-based guidance. In 31st USENIX Security Symposium (USENIX Security 22). 4309–4326. Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA033. Publication date: July 2025. ISSTA033:22 Li Lin, Qinglin Zhu, Hongqiao Chen, Zhuangda Wang, Rongxin Wu, and Xiaoheng Xie",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting Logical Bugs of DBMS with Coverage-based Guidance. In 31st USENIX Security Symposium (USENIX Security 22). USENIX Association, Boston, MA, 4309–4326. https://www.usenix. org/conference/usenixsecurity22/presentation/liang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Li Lin, Zongyin Hao, Chengpeng Wang, Zhuangda Wang, Rongxin Wu, and Gang Fan. 2024. SQLess: Dialect-Agnostic SQL Query Simplification. In Proceedings of the 33rd ACMSIGSOFT International Symposium on Software Testing and Analysis. 743–754.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Yunlong Lyu, Yuxuan Xie, Peng Chen, and Hao Chen. 2023. Prompt Fuzzing for Fuzz Driver Generation. arXiv preprint arXiv:2312.17677 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Toby Mao. 2024. SQLGlot: Python SQL Parser and Translator. https://github.com/tobymao/sqlglot. Accessed: 2024-12-29.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "OpenAI. 2024. GPT-4 Turbo Fine-Tuning. https://openai.com/index/gpt-4o-fine-tuning/. Accessed: 2024-10-30.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Terence Parr. 2013. The Definitive ANTLR 4 Reference. Pragmatic Bookshelf, Chapter 9.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "PingCap. 2023. go randgen. https://github.com/pingcap/go-randgen. [Online; accessed 2-October-2024].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Alec Radford. 2018. Improving language understanding by generative pre-training. (2018).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 38,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 1–30.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 39,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 40,
+      "text": "Manuel Rigger and Zhendong Su. 2022. Intramorphic testing: A new approach to the test oracle problem. In Proceedings of the 2022 ACMSIGPLAN International Symposium on New Ideas, New Paradigms, and Reflections on Programming and Software. 128–136.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 41,
+      "text": "Disha Shrivastava, Hugo Larochelle, and Daniel Tarlow. 2023. Repository-level prompt generation for large language models of code. In International Conference on Machine Learning. PMLR, 31693–31715.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Donald R Slutz. 1998. Massive stochastic testing of SQL. In VLDB, Vol. 98. Citeseer, 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Solid IT. 2024. DB-Engines Ranking. https://db-engines.com/en/ranking. Accessed: September 3, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Jiansen Song, Wensheng Dou, Ziyu Cui, Qianwang Dai, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2023. Testing database systems via differential query execution. In Engineering (ICSE). IEEE, 2072–2084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "QTRAN Team. 2024. QTRANBugReports. https://github.com/QTRANll/QTRAN-BUGLIST.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Fei Xia, Ed Chi, Quoc V Le, Denny Zhou, et al .2022. Chain-of-thought prompting elicits reasoning in large language models. Advances in neural information processing systems 35 (2022), 24824–24837.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Chunqiu Steven Xia, Matteo Paltenghi, Jia Le Tian, Michael Pradel, and Lingming Zhang. 2024. Fuzz4all: Universal fuzzing with large language models. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Congying Xu, Songqiang Chen, Jiarong Wu, Shing-Chi Cheung, Valerio Terragni, Hengcheng Zhu, and Jialun Cao. 2024. MR-Adopt: Automatic Deduction of Input Transformation Function for Metamorphic Testing. arXiv preprint arXiv:2408.15815 (2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Guixin Ye, Zhanyong Tang, Shin Hwei Tan, Songfang Huang, Dingyi Fang, Xiaoyang Sun, Lizhong Bian, Haibo Wang, and Zheng Wang. 2021. Automated conformance testing for JavaScript engines via deep compiler fuzzing. In Proceedings of the 42nd ACMSIGPLAN international conference on programming language design and implementation. 435–450.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Cen Zhang, Mingqiang Bai, Yaowen Zheng, Yeting Li, Wei Ma, Xiaofei Xie, Yuekang Li, Limin Sun, and Yang Liu. 2023. Understanding large language model based fuzz driver generation. arXiv e-prints (2023), arXiv–2307.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Qinggang Zhang, Junnan Dong, Hao Chen, Wentao Li, Feiran Huang, and Xiao Huang. 2024. Structure guided large language model for sql generation. arXiv preprint arXiv:2402.13284 (2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Xuanhe Zhou, Chengliang Chai, Guoliang Li, and Ji Sun. 2020. Database meets artificial intelligence: A survey. IEEE Transactions on Knowledge and Data Engineering 34, 3 (2020), 1096–1116. Received 2024-10-31; accepted 2025-03-31 Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA033. Publication date: July 2025.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 3,
+      "text": "2023. SQLancer. https://github.com/sqlancer/sqlancer. Accessed: 2024-10-24.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 37,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 38,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 1–30.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 39,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 40,
+      "text": "Manuel Rigger and Zhendong Su. 2022. Intramorphic testing: A new approach to the test oracle problem. In Proceedings of the 2022 ACMSIGPLAN International Symposium on New Ideas, New Paradigms, and Reflections on Programming and Software. 128–136.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 8,20,24,26,37–39]",
+      "technique": "norec",
+      "sentence": "However, the complex code logic and diverse functionalities of DBMSs often make them susceptible to bugs, especially logical bugs that result in incorrect result sets being returned without obvious symptoms [ 8,20,24,26,37–39].",
+      "context_before": "Zhu, Hongqiao Chen, Zhuangda Wang, Rongxin Wu, and Xiaoheng Xie Additional Key Words and Phrases: Database Testing, Metamorphic Testing, SQL Dialects ACM Reference Format: Li Lin, Qinglin Zhu, Hongqiao Chen, Zhuangda Wang, Rongxin Wu, and Xiaoheng Xie. 2025. QTRAN: Extending Metamorphic-Oracle Based Logical Bug Detection Techniques for Multiple-DBMS Dialect Support. Proc. ACM Softw. Eng. 2, ISSTA, Article ISSTA033 (July 2025), 22 pages. https://doi.org/10.1145/3728908 1 Introduction Database Management Systems (DBMSs) are crucial in applications such as online banking and e-commerce [ 19,52].",
+      "context_after": "Automated testing approaches use test oracles [ 21] to verify the correctness of DBMS results. Notably, metamorphic oracle, a widelyused method that constructs SQL statements maintaining either exact [ 25,28,29,37–39,44] or approximate equivalence [ 20] with the original query, has been recognized as state-of-the-art in DBMS testing for logical bug detection [ 20,38,40]. The detection of logical bugs is facilitated by comparing the results of these mutated queries with those of the original queries. Unlike traditional fuzzing [ 1,24], it is essential to ensure both syntactic and semantic corr",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 4570,
+      "cited_reference": {
+        "number": 37,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[ 25,28,29,37–39,44]",
+      "technique": "norec",
+      "sentence": "Notably, metamorphic oracle, a widelyused method that constructs SQL statements maintaining either exact [ 25,28,29,37–39,44] or approximate equivalence [ 20] with the original query, has been recognized as state-of-the-art in DBMS testing for logical bug detection [ 20,38,40].",
+      "context_before": "Techniques for Multiple-DBMS Dialect Support. Proc. ACM Softw. Eng. 2, ISSTA, Article ISSTA033 (July 2025), 22 pages. https://doi.org/10.1145/3728908 1 Introduction Database Management Systems (DBMSs) are crucial in applications such as online banking and e-commerce [ 19,52]. However, the complex code logic and diverse functionalities of DBMSs often make them susceptible to bugs, especially logical bugs that result in incorrect result sets being returned without obvious symptoms [ 8,20,24,26,37–39]. Automated testing approaches use test oracles [ 21] to verify the correctness of DBMS results.",
+      "context_after": "The detection of logical bugs is facilitated by comparing the results of these mutated queries with those of the original queries. Unlike traditional fuzzing [ 1,24], it is essential to ensure both syntactic and semantic correctness, while strictly preserving the metamorphic relationship between the queries. We call this approach MOLT (Metamorphic- Oracle based Logical Bug Detection Technique). To generate SQL statement pairs suitable for MOLT s, including original queries andmutated queries, a general idea is to model the SQL grammar as an Abstract Syntax Tree (AST). This AST model forms the",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 4893,
+      "cited_reference": {
+        "number": 37,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[ 20,38,40]",
+      "technique": "tlp",
+      "sentence": "Notably, the metamorphic testing based approach MOLT has been recognized to be state-of-the-art in DBMS testing for logical bug detection [ 20,38,40].",
+      "context_before": "of these SQL dialects are not compatible with one another, as similar features might be implemented with distinct grammar variations across different DBMSs. For example, while the character set comparison and sorting function is implemented as COLLATION in MySQL, it is implemented as COLLATE FOR in PostgreSQL. There are approximately 423 popular DBMS products [ 43], each differing in supported features, such as data types, functions, operators, etc. Metamorphic Testing in DBMSs. Recent years have witnessed tremendous efforts in resolving the test oracle for logical bug detection in the DBMSs.",
+      "context_after": "Metamorphic testing validates database systems by applying transformations to original queries to generate new, mutated queries. Let an original query be represented as 𝑄0, and Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA033. Publication date: July 2025. QTRAN: Extending Metamorphic-Oracle Based Logical Bug Detection Techniques... ISSTA033:5 a set of transformed queries {𝑄1,𝑄2,...,𝑄 𝑛}derived from applying metamorphic transformations. The testing process validates that for any test database 𝐷, the following relation holds: 𝐷(𝑄0)≈𝐷(𝑄𝑗),∀𝑗∈[1,𝑛] where≈represents either equivalence (",
+      "section": "2 Background and Motivation",
+      "page": 4,
+      "char_offset": 16045,
+      "cited_reference": {
+        "number": 38,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 1–30.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Table 1 shows the lines of extra code of SQLancer, SQRight, Pinolo and DQE to adapt for SQLite, PostgreSQL, MySQL, and MariaDB.",
+      "context_before": "ensure uniqueness in the results, thereby removing any potential duplicates. This specific alteration helps highlight discrepancies between the original and mutated query results, which, if present, may indicate a logical bug due to a violation of the defined approximation relation. Motivation. The dependency on grammar limits the adaptability of MOLT s. Specifically, no matter what generation model, SQL parser, or metamorphic mutator, they are all strongly dependent on the DBMS grammar, and adaptation to a new DBMS requires an amount of extra code, which is time-consuming and labor-intensive.",
+      "context_after": "This demonstrates that due to their dependency on grammar, all of these tools demand significant code expansion to accommodate different DBMSs. For example, SQLRight uses over 90,000 lines of code to build the generation model for PostgreSQL. In contrast, Pinolo simplifies its implementation by only supporting the common syntax shared between MySQL and MariaDB. Table 1. The lines of code of SQLancer, SQRight, Pinolo and DQE to adapt for SQLite, PostgreSQL, MySQL, and MariaDB. The numbers of lines of code are calculated from the official repositories of these tools. Due to the complexities in",
+      "section": "2 Background and Motivation",
+      "page": 5,
+      "char_offset": 18543,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The lines of code of SQLancer, SQRight, Pinolo and DQE to adapt for SQLite, PostgreSQL, MySQL, and MariaDB.",
+      "context_before": "tation to a new DBMS requires an amount of extra code, which is time-consuming and labor-intensive. Table 1 shows the lines of extra code of SQLancer, SQRight, Pinolo and DQE to adapt for SQLite, PostgreSQL, MySQL, and MariaDB. This demonstrates that due to their dependency on grammar, all of these tools demand significant code expansion to accommodate different DBMSs. For example, SQLRight uses over 90,000 lines of code to build the generation model for PostgreSQL. In contrast, Pinolo simplifies its implementation by only supporting the common syntax shared between MySQL and MariaDB. Table 1.",
+      "context_after": "The numbers of lines of code are calculated from the official repositories of these tools. Due to the complexities in adapting the grammar, SQLRight does not support MariaDB, and DQE does not support PostgreSQL. Notably, although Pinolo supports both MySQL and MariaDB, it is implemented on a grammar common to both. LoC SQLancer SQLRight Pinolo DQE SQLite 10,020 17,120 - 7,606 PostgreSQL 8,012 93,671 - MySQL 6,512 76,067 8,055 4,225 MariaDB 2,085 - 8,055 2,092 More importantly, there are 423 different DBMSs on the market [ 43], most of which use different grammar. Present-day leading MOLT s ar",
+      "section": "2 Background and Motivation",
+      "page": 5,
+      "char_offset": 19044,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "LoC SQLancer SQLRight Pinolo DQE SQLite 10,020 17,120 - 7,606 PostgreSQL 8,012 93,671 - MySQL 6,512 76,067 8,055 4,225 MariaDB 2,085 - 8,055 2,092 More importantly, there are 423 different DBMSs on the market [ 43], most of which use different grammar.",
+      "context_before": "to build the generation model for PostgreSQL. In contrast, Pinolo simplifies its implementation by only supporting the common syntax shared between MySQL and MariaDB. Table 1. The lines of code of SQLancer, SQRight, Pinolo and DQE to adapt for SQLite, PostgreSQL, MySQL, and MariaDB. The numbers of lines of code are calculated from the official repositories of these tools. Due to the complexities in adapting the grammar, SQLRight does not support MariaDB, and DQE does not support PostgreSQL. Notably, although Pinolo supports both MySQL and MariaDB, it is implemented on a grammar common to both.",
+      "context_after": "Present-day leading MOLT s are designed primarily for well-known DBMSs such as MySQL, PostgreSQL and MariaDB. If we want to adapt them to these different DBMSs, it will take too long and require too many human resources to be economically feasible. Consequently, there exists a pressing need for a technique that allows for the straightforward extension of various MOLT s across multiple DBMS environments. Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA033. Publication date: July 2025. ISSTA033:6 Li Lin, Qinglin Zhu, Hongqiao Chen, Zhuangda Wang, Rongxin Wu, and Xiaoheng Xie Challenges.",
+      "section": "2 Background and Motivation",
+      "page": 5,
+      "char_offset": 19469,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "technique",
+      "surface": "NoRec",
+      "technique": "norec",
+      "sentence": "In our evaluation, we selected four state-of-the-art MOLT s for extension: NoRec [ 37], TLP [38], Pinolo [20], and DQE [44].",
+      "context_before": "g help mutation for metamorphic testing? Test DBMSs. We focused on testing eight widely-used and large-scale open-source DBMSs: MySQL, MariaDB, TiDB, PostgreSQL, SQLite, MonetDB, DuckDB, and ClickHouse. Table 3 describes the detailed information of these databases. Table 3. The demographics of the DBMSs under test DBMS Version GitHub Stars DB-Engine First Release MySQL 8.0.39 8.6K 2 1995 MariaDB 11.5.2 4.6K 15 2009 TiDB 8.3.0 33.1K 77 2017 PostgreSQL 16.3 16.1K 4 1989 SQLite 3.45.1 6.5K 10 2000 MonetDB 11.5.3 375 135 2004 DuckDB 1.1.2 23.6K 57 2018 ClickHouse 24.9.2.42 37.2K 37 2016 Baselines.",
+      "context_after": "Below, we detail each of these tools: (1)NoRec [37]: This technique involves transferring predicates from the WHERE clause to the SELECT clause. A logical bug is identified if the results differ after this transformation. (2)TLP [38]: This method decomposes a single query into three separate queries, each isolated by its predicates. It asserts a logical bug if the collective results of these queries diverge from the original query’s outcome. (3)Pinolo [20]: Modifies query predicates to adjust constraints, expecting either a superset or subset of the original results, which serves to confirm t",
+      "section": "4 Evaluation",
+      "page": 11,
+      "char_offset": 40910,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "technique",
+      "surface": "NoRec",
+      "technique": "norec",
+      "sentence": "Below, we detail each of these tools: (1)NoRec [37]: This technique involves transferring predicates from the WHERE clause to the SELECT clause.",
+      "context_before": "s: MySQL, MariaDB, TiDB, PostgreSQL, SQLite, MonetDB, DuckDB, and ClickHouse. Table 3 describes the detailed information of these databases. Table 3. The demographics of the DBMSs under test DBMS Version GitHub Stars DB-Engine First Release MySQL 8.0.39 8.6K 2 1995 MariaDB 11.5.2 4.6K 15 2009 TiDB 8.3.0 33.1K 77 2017 PostgreSQL 16.3 16.1K 4 1989 SQLite 3.45.1 6.5K 10 2000 MonetDB 11.5.3 375 135 2004 DuckDB 1.1.2 23.6K 57 2018 ClickHouse 24.9.2.42 37.2K 37 2016 Baselines. In our evaluation, we selected four state-of-the-art MOLT s for extension: NoRec [ 37], TLP [38], Pinolo [20], and DQE [44].",
+      "context_after": "A logical bug is identified if the results differ after this transformation. (2)TLP [38]: This method decomposes a single query into three separate queries, each isolated by its predicates. It asserts a logical bug if the collective results of these queries diverge from the original query’s outcome. (3)Pinolo [20]: Modifies query predicates to adjust constraints, expecting either a superset or subset of the original results, which serves to confirm the logic’s soundness. (4)DQE [44]: This approach varies the types of SQL queries—such as SELECT ,UPDATE, and DELETE —while keeping the predicates",
+      "section": "4 Evaluation",
+      "page": 11,
+      "char_offset": 41035,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "(2)TLP [38]: This method decomposes a single query into three separate queries, each isolated by its predicates.",
+      "context_before": "gine First Release MySQL 8.0.39 8.6K 2 1995 MariaDB 11.5.2 4.6K 15 2009 TiDB 8.3.0 33.1K 77 2017 PostgreSQL 16.3 16.1K 4 1989 SQLite 3.45.1 6.5K 10 2000 MonetDB 11.5.3 375 135 2004 DuckDB 1.1.2 23.6K 57 2018 ClickHouse 24.9.2.42 37.2K 37 2016 Baselines. In our evaluation, we selected four state-of-the-art MOLT s for extension: NoRec [ 37], TLP [38], Pinolo [20], and DQE [44]. Below, we detail each of these tools: (1)NoRec [37]: This technique involves transferring predicates from the WHERE clause to the SELECT clause. A logical bug is identified if the results differ after this transformation.",
+      "context_after": "It asserts a logical bug if the collective results of these queries diverge from the original query’s outcome. (3)Pinolo [20]: Modifies query predicates to adjust constraints, expecting either a superset or subset of the original results, which serves to confirm the logic’s soundness. (4)DQE [44]: This approach varies the types of SQL queries—such as SELECT ,UPDATE, and DELETE —while keeping the predicates constant. It anticipates identical operations on rows and flags discrepancies as potential bugs. These MOLT s require an understanding of the SQL syntax for different DBMSs. Table 4 describ",
+      "section": "4 Evaluation",
+      "page": 11,
+      "char_offset": 41257,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Applicability of existing MOLT s for the selected DBMSs DBMS NoREC TLP Pinolo DQE MySQL ✗ ✓ ✓ ✓ MariaDB ✓ ✗ ✓ ✓ TiDB ✗ ✓ ✓ ✓ PostgreSQL ✓ ✗ ✗ ✗ SQLite ✓ ✓ ✗ ✓ MonetDB ✗ ✗ ✗ ✗ DuckDB ✗ ✓ ✗ ✗ ClickHouse ✗ ✗ ✗ ✗ Proc.",
+      "context_before": "er a superset or subset of the original results, which serves to confirm the logic’s soundness. (4)DQE [44]: This approach varies the types of SQL queries—such as SELECT ,UPDATE, and DELETE —while keeping the predicates constant. It anticipates identical operations on rows and flags discrepancies as potential bugs. These MOLT s require an understanding of the SQL syntax for different DBMSs. Table 4 describes the databases supported by these MOLT s. To avoid redundant testing, we employ QTRAN to extend these MOLT s and conduct tests on databases that are not natively supported by them. Table 4.",
+      "context_after": "ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA033. Publication date: July 2025. ISSTA033:12 Li Lin, Qinglin Zhu, Hongqiao Chen, Zhuangda Wang, Rongxin Wu, and Xiaoheng Xie Environment. We conduct the experiments on one server with 104-cores Intel(R) Xeon(R) Gold 6230R CPU @2.10GHz and 500 GB memory. The server operates under the Ubuntu 20.04 OS, with the 5.4.0-135-generic version of the Linux kernel. If not otherwise specified, our experiments are conducted by invoking OpenAI API (version gpt-4o-mini-2024-07-18), with the proposed prompt in Section 3. To harness the deterministic nature o",
+      "section": "4 Evaluation",
+      "page": 11,
+      "char_offset": 42161,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Specifically, NoREC uses SQLite, DQE uses TiDB, while TLP and Pinolo use MySQL.",
+      "context_before": "fectiveness and Efficiency InQ1, we aim to evaluate the effectiveness and efficiency of QTRAN in transferring SQL statement pairs from existing MOLT s across various DBMS environments. This is essential as it directly impacts the success of metamorphic testing. 4.1.1 Experimental Setup. We utilized QTRAN to extend four state-of-the-art MOLT s, denoted as QTRAN +NoREC, QTRAN +TLP, QTRAN +Pinolo, and QTRAN +DQE. These MOLT s were used to generate SQL statement pairs as source pairs for transfer. To generate the original SQL statement pairs, we selected the DBMS that each tool found the most bugs.",
+      "context_after": "Our focus was solely on databases not supported by the source MOLT s. In our experiments, a successfully transferred SQL statement pair is considered effective if it preserves syntactic and semantic correctness when executed on the target DBMSs, and fulfills predefined metamorphic relationships. We refer to such pairs as valid pairs. For SQL statements that fail during the transfer phase, we discard them immediately, foregoing the subsequent mutation phase. This strategy primarily impacts the efficiency of bug detection without causing false positives; we will discuss the impact of the transf",
+      "section": "4.1 Q1. Effectiveness and Efficiency",
+      "page": 12,
+      "char_offset": 43691,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "The source statement pair is derived from the NoREC oracle, which detects bugs by moving the predicate from the “ WHERE ” clause into the “ SUM” function, ensuring semantic consistency between the original and mutated statements.",
+      "context_before": "pers have confirmed or fixed. The Not a bug column indicates the bug reports that developers have not confirmed or will not fix. The Waiting column indicates the bug reports that are pending confirmation. DBMS Reported Confirmed Not a bug Waiting MySQL 2 1 1 0 MariaDB 9 9 0 0 TiDB 4 3 1 0 PostgreSQL 1 1 0 0 SQLite 1 0 1 0 MonetDB 1 0 1 0 DuckDB 2 1 1 0 ClickHouse 4 1 1 2 Total 24 16 6 2 4.2.3 Case Study. True Positive Bug. Figure 6 (b) shows a logical bug in DuckDB identified by QTRAN, triggered by the translation of the “ DATE ” function from SQLite to the “ CURRENT_DATE ” function in DuckDB.",
+      "context_after": "After the QTRAN transfer, however, the results of the original query and the mutated query in DuckDB diverged, indicating a logical bug. Figure 6 (c) shows the results of directly transferring SQL statement pairs using GPT-4o-mini, which resulted in execution failures. The lack of dialect-specific knowledge within LLMs led to the erroneous translation of the SQLite “ DATE ” function to the “ CURRENT_DATE ” function in DuckDB, causing the error “ Scalar Function with name date does not exist! ”. This highlights the superiority of QTRAN in translating SQL statement pairs, which better understan",
+      "section": "4.2 Q2. Bug Detection",
+      "page": 14,
+      "char_offset": 51472,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Sub-figure (a) demonstrates a SQL statement pair generated by NoREC in SQLite without errors.",
+      "context_before": "get Original Query SELECT COUNT(*) FROM v0 WHERE (DATE('now'), c0) != (CAST(NULL AS TEXT), '0’); --(duckdb.duckdb.CatalogException) Catalog Error: Scalar Function with name date does not exist! -- Target Mutated Query SELECT SUM(CASEWHEN (DATE('now'), c0) != (CAST(NULL AS TEXT), '0') THEN 1 ELSE 0 END) FROM v0; --(duckdb.duckdb.CatalogException) Catalog Error: Scalar Function with name date does not exist! (c) Result of Direct SQL Statement Pair Transfer in DuckDB Using GPT-4o-miniFailed! Fig. 6. True Positive Bug: A logical bug in DuckDB when transferring source SQL statement pair in SQLite.",
+      "context_after": "Sub-figure (b) demonstrates the target SQL statement pair in DuckDB transferred by QTRAN, resulting in an unexpected result due to a logical bug. Sub-figure (c) demonstrates the target SQL statement pair directly transferred using GPT-4o-mini, leading to translation failures due to limited understanding of the dialect difference between SQLite and DuckDB. The highlighted yellow background underscores the dialect differences between SQLite and DuckDB. kind of ill-formed;\" this inconsistency is due to different uses of implicit casting in the execution plans for =ANY and ≥ANY. The developers no",
+      "section": "4.2 Q2. Bug Detection",
+      "page": 15,
+      "char_offset": 55068,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": ", NoREC, TLP, Pinolo, and DQE) and then directly transfer both original and mutated queries to the target DBMS in transfer phase.",
+      "context_before": "uration, we implemented QTRAN-POM without using a customized model. We directly apply the same base model, GPT-4o-mini with carefully crafted prompts to mutate transferred original queries. No fine-tuning or additional metamorphic relationship knowledge is incorporated into the model. This baseline examines whether prompt engineering alone is sufficient for generating valid metamorphic pairs without disrupting the predefined relationships between queries. •QTRAN-DTM (Direct Transfer of Existing Mutated Queries). In this setup, we first mutate source original queries using existing MOLT s (e.g.",
+      "context_after": "This baseline tests if existing mutated queries can be effectively adapted to the target DBMS without requiring an LLM-driven mutation process during transfer. We selected 100 successfully transferred target original queries from each of the four baselines: QTRAN +NoREC, QTRAN +TLP, QTRAN +Pinolo, and QTRAN +DQE. We then performed mutations on these queries using QTRAN and two baselines, QTRAN-POM and QTRAN-DTM. We also employed the same evaluation method as in Q1. A valid SQL statement pair must ensure both syntactic and semantic correctness and fulfill predefined metamorphic relationships.",
+      "section": "4.4 Q4. Contributions of Fine-tuning",
+      "page": 17,
+      "char_offset": 61899,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "citation_marker",
+      "surface": "[ 1,13,35,37,38,42]",
+      "technique": "norec",
+      "sentence": "However, existing studies [ 1,13,35,37,38,42] highlight that differential testing is limited in its applicability, as not all DBMSs share the same SQL grammar or operation semantics, despite supporting the core SQL syntax, with each DBMS forming its own dialect [ 42], thus restricting the generality of differential testing.",
+      "context_before": "itigate them, and our findings provide valuable insights into using LLMs for extending MOLT s for logical bug detection in various DBMSs. 6 Related Work Logical Bug Detection in DBMSs. Researchers have proposed several methods for obtaining the test oracle to detect logical bugs, which can be categorized into three types: differential oracle, oracle-guided synthesis oracle and metamorphic oracle [20]. The first category is the differential oracles. Differential oracles [ 9,13,42] detect logical bugs by comparing the execution results of different DBMSs (or different versions of the same DBMS).",
+      "context_after": "The purpose of QTRAN is to extend existing MOLT s to support various dialects, therefore differential oracles are not considered within the scope of this paper. The second category is the oracle-guided synthesis approach [ 39]. PQS synthesizes a query that guarantees to return a specific row using its manually implemented interpreter. If the tested DBMS fails to fetch the row, PQS identifies a logical bug. Although such methods are tailored to the specific DBMS grammar, they only require constructing original queries to check the results. Therefore, the transfer phase of QTRAN can easily exte",
+      "section": "6 Related Work",
+      "page": 19,
+      "char_offset": 69881,
+      "cited_reference": {
+        "number": 37,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "citation_marker",
+      "surface": "[ 39]",
+      "technique": "pqs",
+      "sentence": "The second category is the oracle-guided synthesis approach [ 39].",
+      "context_before": "tect logical bugs by comparing the execution results of different DBMSs (or different versions of the same DBMS). However, existing studies [ 1,13,35,37,38,42] highlight that differential testing is limited in its applicability, as not all DBMSs share the same SQL grammar or operation semantics, despite supporting the core SQL syntax, with each DBMS forming its own dialect [ 42], thus restricting the generality of differential testing. The purpose of QTRAN is to extend existing MOLT s to support various dialects, therefore differential oracles are not considered within the scope of this paper.",
+      "context_after": "PQS synthesizes a query that guarantees to return a specific row using its manually implemented interpreter. If the tested DBMS fails to fetch the row, PQS identifies a logical bug. Although such methods are tailored to the specific DBMS grammar, they only require constructing original queries to check the results. Therefore, the transfer phase of QTRAN can easily extend this approach. The third category is the metamorphic oracles. To avoid the drawbacks of the differential oracle, many fuzzing methods [ 20,28,37,38] use the metamorphic oracle to detect logical bugs. NoREC [ 37] creates a que",
+      "section": "6 Related Work",
+      "page": 19,
+      "char_offset": 70368,
+      "cited_reference": {
+        "number": 39,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS synthesizes a query that guarantees to return a specific row using its manually implemented interpreter.",
+      "context_before": "BMSs (or different versions of the same DBMS). However, existing studies [ 1,13,35,37,38,42] highlight that differential testing is limited in its applicability, as not all DBMSs share the same SQL grammar or operation semantics, despite supporting the core SQL syntax, with each DBMS forming its own dialect [ 42], thus restricting the generality of differential testing. The purpose of QTRAN is to extend existing MOLT s to support various dialects, therefore differential oracles are not considered within the scope of this paper. The second category is the oracle-guided synthesis approach [ 39].",
+      "context_after": "If the tested DBMS fails to fetch the row, PQS identifies a logical bug. Although such methods are tailored to the specific DBMS grammar, they only require constructing original queries to check the results. Therefore, the transfer phase of QTRAN can easily extend this approach. The third category is the metamorphic oracles. To avoid the drawbacks of the differential oracle, many fuzzing methods [ 20,28,37,38] use the metamorphic oracle to detect logical bugs. NoREC [ 37] creates a query by transferring predicates from the WHERE clause to the SELECT clause; the discovery of a logical bug occu",
+      "section": "6 Related Work",
+      "page": 19,
+      "char_offset": 70435,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "If the tested DBMS fails to fetch the row, PQS identifies a logical bug.",
+      "context_before": "ifferential testing is limited in its applicability, as not all DBMSs share the same SQL grammar or operation semantics, despite supporting the core SQL syntax, with each DBMS forming its own dialect [ 42], thus restricting the generality of differential testing. The purpose of QTRAN is to extend existing MOLT s to support various dialects, therefore differential oracles are not considered within the scope of this paper. The second category is the oracle-guided synthesis approach [ 39]. PQS synthesizes a query that guarantees to return a specific row using its manually implemented interpreter.",
+      "context_after": "Although such methods are tailored to the specific DBMS grammar, they only require constructing original queries to check the results. Therefore, the transfer phase of QTRAN can easily extend this approach. The third category is the metamorphic oracles. To avoid the drawbacks of the differential oracle, many fuzzing methods [ 20,28,37,38] use the metamorphic oracle to detect logical bugs. NoREC [ 37] creates a query by transferring predicates from the WHERE clause to the SELECT clause; the discovery of a logical bug occurs if results vary post-movement. Similarly, TLP [ 38] breaks down a sing",
+      "section": "6 Related Work",
+      "page": 19,
+      "char_offset": 70544,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "citation_marker",
+      "surface": "[ 20,28,37,38]",
+      "technique": "norec",
+      "sentence": "To avoid the drawbacks of the differential oracle, many fuzzing methods [ 20,28,37,38] use the metamorphic oracle to detect logical bugs.",
+      "context_before": "rious dialects, therefore differential oracles are not considered within the scope of this paper. The second category is the oracle-guided synthesis approach [ 39]. PQS synthesizes a query that guarantees to return a specific row using its manually implemented interpreter. If the tested DBMS fails to fetch the row, PQS identifies a logical bug. Although such methods are tailored to the specific DBMS grammar, they only require constructing original queries to check the results. Therefore, the transfer phase of QTRAN can easily extend this approach. The third category is the metamorphic oracles.",
+      "context_after": "NoREC [ 37] creates a query by transferring predicates from the WHERE clause to the SELECT clause; the discovery of a logical bug occurs if results vary post-movement. Similarly, TLP [ 38] breaks down a single query into three, isolating each by its predicates, asserting a logical bug if the collective results diverge from the original query’s outcome. SQLancer [ 3] integrates the above techniques and has been deployed to test various DBMSs. DQE [ 44] varies query types—such as SELECT ,UPDATE, and DELETE —keeping predicates constant and anticipates identical row operations, flagging discrepan",
+      "section": "6 Related Work",
+      "page": 19,
+      "char_offset": 70871,
+      "cited_reference": {
+        "number": 37,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M20",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC [ 37] creates a query by transferring predicates from the WHERE clause to the SELECT clause; the discovery of a logical bug occurs if results vary post-movement.",
+      "context_before": "synthesis approach [ 39]. PQS synthesizes a query that guarantees to return a specific row using its manually implemented interpreter. If the tested DBMS fails to fetch the row, PQS identifies a logical bug. Although such methods are tailored to the specific DBMS grammar, they only require constructing original queries to check the results. Therefore, the transfer phase of QTRAN can easily extend this approach. The third category is the metamorphic oracles. To avoid the drawbacks of the differential oracle, many fuzzing methods [ 20,28,37,38] use the metamorphic oracle to detect logical bugs.",
+      "context_after": "Similarly, TLP [ 38] breaks down a single query into three, isolating each by its predicates, asserting a logical bug if the collective results diverge from the original query’s outcome. SQLancer [ 3] integrates the above techniques and has been deployed to test various DBMSs. DQE [ 44] varies query types—such as SELECT ,UPDATE, and DELETE —keeping predicates constant and anticipates identical row operations, flagging discrepancies as bugs. Pinolo [ 20] modifies query predicates to adjust constraints, expecting Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA033. Publication date: July",
+      "section": "6 Related Work",
+      "page": 19,
+      "char_offset": 71009,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M21",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Similarly, TLP [ 38] breaks down a single query into three, isolating each by its predicates, asserting a logical bug if the collective results diverge from the original query’s outcome.",
+      "context_before": "h the row, PQS identifies a logical bug. Although such methods are tailored to the specific DBMS grammar, they only require constructing original queries to check the results. Therefore, the transfer phase of QTRAN can easily extend this approach. The third category is the metamorphic oracles. To avoid the drawbacks of the differential oracle, many fuzzing methods [ 20,28,37,38] use the metamorphic oracle to detect logical bugs. NoREC [ 37] creates a query by transferring predicates from the WHERE clause to the SELECT clause; the discovery of a logical bug occurs if results vary post-movement.",
+      "context_after": "SQLancer [ 3] integrates the above techniques and has been deployed to test various DBMSs. DQE [ 44] varies query types—such as SELECT ,UPDATE, and DELETE —keeping predicates constant and anticipates identical row operations, flagging discrepancies as bugs. Pinolo [ 20] modifies query predicates to adjust constraints, expecting Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA033. Publication date: July 2025. ISSTA033:20 Li Lin, Qinglin Zhu, Hongqiao Chen, Zhuangda Wang, Rongxin Wu, and Xiaoheng Xie either a superset or subset of the original results to confirm logic soundness. EET [ 2",
+      "section": "6 Related Work",
+      "page": 19,
+      "char_offset": 71177,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M22",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [ 3] integrates the above techniques and has been deployed to test various DBMSs.",
+      "context_before": "the transfer phase of QTRAN can easily extend this approach. The third category is the metamorphic oracles. To avoid the drawbacks of the differential oracle, many fuzzing methods [ 20,28,37,38] use the metamorphic oracle to detect logical bugs. NoREC [ 37] creates a query by transferring predicates from the WHERE clause to the SELECT clause; the discovery of a logical bug occurs if results vary post-movement. Similarly, TLP [ 38] breaks down a single query into three, isolating each by its predicates, asserting a logical bug if the collective results diverge from the original query’s outcome.",
+      "context_after": "DQE [ 44] varies query types—such as SELECT ,UPDATE, and DELETE —keeping predicates constant and anticipates identical row operations, flagging discrepancies as bugs. Pinolo [ 20] modifies query predicates to adjust constraints, expecting Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA033. Publication date: July 2025. ISSTA033:20 Li Lin, Qinglin Zhu, Hongqiao Chen, Zhuangda Wang, Rongxin Wu, and Xiaoheng Xie either a superset or subset of the original results to confirm logic soundness. EET [ 25] transforms these expressions into semantically equivalent ones to construct queries that",
+      "section": "6 Related Work",
+      "page": 19,
+      "char_offset": 71364,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M7"
+      ],
+      "describes_as_state_of_the_art": [
+        "M7"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:15:22Z",
+    "is_model_written": true,
+    "summary": "QTRAN extends existing metamorphic-oracle logic bug detection techniques to DBMSs they were never written for. The obstacle is that these techniques depend on a specific DBMS's grammar to build valid statement pairs, so only a few systems are supported and extending them takes considerable manual work -- the paper counts the lines of code each tool needs per system. QTRAN uses an LLM in two phases: a transfer phase that identifies dialect differences and uses SQL documentation to translate the original queries, and a mutation phase using a fine-tuned model to mutate them while preserving the metamorphic relation. Over 99% of transferred pairs satisfied the relations, and it found 24 logic bugs.",
+    "narrative": "SQLancer's oracles are precisely what QTRAN extends: NoREC and TLP are two of the four state-of-the-art techniques it takes and carries to eight DBMSs, and the paper tabulates which systems each currently supports to show the gap it closes. SQLancer is also its measure of the per-DBMS adaptation cost.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "state_of_the_art",
+      "M4": "motivation",
+      "M5": "motivation",
+      "M6": "motivation",
+      "M7": "state_of_the_art",
+      "M8": "definition",
+      "M9": "definition",
+      "M10": "motivation",
+      "M11": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "uncertain",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "QTRAN takes statement pairs from existing implementations of these oracles, which implies running them, but no mention read says its own tool is built on SQLancer's codebase."
+      },
+      "extends_technique": {
+        "value": "yes",
+        "mention_ids": [
+          "M7",
+          "M8",
+          "M9"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M7",
+            "sentence": "In our evaluation, we selected four state-of-the-art MOLT s for extension: NoRec [ 37], TLP [38], Pinolo [20], and DQE [44].",
+            "section": "4 Evaluation",
+            "page": 11
+          },
+          {
+            "mention_id": "M8",
+            "sentence": "Below, we detail each of these tools: (1)NoRec [37]: This technique involves transferring predicates from the WHERE clause to the SELECT clause.",
+            "section": "4 Evaluation",
+            "page": 11
+          },
+          {
+            "mention_id": "M9",
+            "sentence": "(2)TLP [38]: This method decomposes a single query into three separate queries, each isolated by its predicates.",
+            "section": "4 Evaluation",
+            "page": 11
+          }
+        ],
+        "reasoning": "M7 states four state-of-the-art metamorphic oracles were selected for extension, NoREC and TLP among them, and M8 and M9 describe each before it is carried to DBMSs it did not support. Extending them is the paper's contribution.",
+        "techniques": [
+          "norec",
+          "tlp"
+        ]
+      },
+      "compares_with": {
+        "value": "uncertain",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The oracles are extended rather than run against QTRAN as competitors; the mentions read do not show a head-to-head comparison."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M3",
+          "M7"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M3",
+            "sentence": "Notably, the metamorphic testing based approach MOLT has been recognized to be state-of-the-art in DBMS testing for logical bug detection [ 20,38,40].",
+            "section": "2 Background and Motivation",
+            "page": 4
+          },
+          {
+            "mention_id": "M7",
+            "sentence": "In our evaluation, we selected four state-of-the-art MOLT s for extension: NoRec [ 37], TLP [38], Pinolo [20], and DQE [44].",
+            "section": "4 Evaluation",
+            "page": 11
+          }
+        ],
+        "reasoning": "M3 says the metamorphic testing approach has been recognised as state-of-the-art in DBMS testing for logical bug detection, and M7 calls the four selected oracles state-of-the-art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

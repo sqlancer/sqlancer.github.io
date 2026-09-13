@@ -1,0 +1,474 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T17:07:12Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3605157.3605177",
+    "title": "Beyond the Coverage Plateau: A Comprehensive Study of Fuzz Blockers (Registered Report)",
+    "authors": [
+      "Wentao Gao",
+      "Van-Thuan Pham",
+      "Dongge Liu",
+      "Oliver Chang",
+      "Toby C. Murray",
+      "Benjamin I. P. Rubinstein"
+    ],
+    "year": 2023,
+    "venue": "FUZZING",
+    "doi": "10.1145/3605157.3605177",
+    "arxiv_id": null,
+    "s2_paper_id": "1b13b395ea1d7d0f23fc78df96ca430831408634",
+    "url": "https://doi.org/10.1145/3605157.3605177",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3605157.3605177",
+      "retrieved_at": "2026-09-07T17:07:12Z",
+      "chars": 50567,
+      "content_sha256": "sha256:ce31ab2a5fc1a2ba362ab6b3caa3fd20792027d8ca5d9ed5ef4bcd787bdddcfa"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 9,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 2041
+      },
+      {
+        "number": "2.1",
+        "title": "Background of Coverage-Guided Greybox",
+        "start": 7197
+      },
+      {
+        "number": "2.2",
+        "title": "Introduction to Fuzz Introspector",
+        "start": 9272
+      },
+      {
+        "number": "2.3",
+        "title": "Motivating Example: A Challenging Fuzz",
+        "start": 10474
+      },
+      {
+        "number": "3.1",
+        "title": "Subject Selection",
+        "start": 13937
+      },
+      {
+        "number": "3.2",
+        "title": "Analysis Workflow",
+        "start": 18373
+      },
+      {
+        "number": "3.2.1",
+        "title": "Step-1. Understanding the subject program .It is worth",
+        "start": 18521
+      },
+      {
+        "number": "3.2.2",
+        "title": "Step-2. Identifying fuzz blockers .In this step, we use",
+        "start": 20274
+      },
+      {
+        "number": "3.2.3",
+        "title": "Step-3. Analyzing fuzz blockers .There could be several",
+        "start": 20800
+      },
+      {
+        "number": "3.2.4",
+        "title": "Step-4. Classifying fuzz blockers .We aim to classify the",
+        "start": 22855
+      },
+      {
+        "number": "4.1",
+        "title": "RQ1. Types of fuzz blockers",
+        "start": 26954
+      },
+      {
+        "number": "4.2",
+        "title": "RQ2. What makes them challenging?",
+        "start": 33968
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "[n. d.]. American Fuzzy Lop. https://lcamtuf.coredump.cx/afl/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "[n. d.]. Black Duck Open Hub. https://www.openhub.net/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "[n. d.]. ClusterFuzz. https://google.github.io/clusterfuzz/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "[n. d.]. Data Flow Sanitizer. https://clang.llvm.org/docs/DataFlowSanitizer.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "[n. d.]. Fuzz Introspector. https://github.com/ossf/fuzz-introspector",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "[n. d.]. Honggfuzz. https://github.com/google/honggfuzz",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "[n. d.]. Igraph The Network Analysis Package. https://igraph.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "[n. d.]. libFuzzer – a library for coverage-guided fuzz testing. https://github. com/llvm-mirror/llvm/blob/master/docs/LibFuzzer.rst",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "[n. d.]. libpng home page. http://www.libpng.org/pub/png/libpng.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "[n. d.]. libpng manual. http://www.libpng.org/pub/png/libpng-manual.txt",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "[n. d.]. libprotobuf-mutator. https://github.com/google/libprotobuf-mutator/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "[n. d.]. OpenSSL crytography and SSL/TLS toolket. https://www.openssl.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "[n. d.]. OSS-Fuzz: Continuous Fuzzing for Open Source Software. https://github. com/google/oss-fuzz",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "[n. d.]. Successful case studies of FuzzIntrospector. https://github.com/ossf/fuzzintrospector/blob/main/doc/CaseStudies.md",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Cornelius Aschermann, Tommaso Frassetto, Thorsten Holz, Patrick Jauernig, Ahmad-Reza Sadeghi, and Daniel Teuchert. 2019. NAUTILUS: Fishing for Deep Bugs with Grammars.. In NDSS.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Cornelius Aschermann, Sergej Schumilo, Ali Abbasi, and Thorsten Holz. 2020. Ijon: Exploring deep state spaces via fuzzing. In. IEEE, 1597–1612.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Cornelius Aschermann, Sergej Schumilo, Tim Blazytko, Robert Gawlik, and Thorsten Holz. 2019. REDQUEEN: Fuzzing with Input-to-State Correspondence.. InNDSS, Vol. 19. 1–15.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Jinsheng Ba, Marcel Böhme, Zahra Mirzamomen, and Abhik Roychoudhury. 2022. Stateful greybox fuzzing. In 31st USENIX Security Symposium (USENIX Security 22). 3255–3272.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Domagoj Babić, Stefan Bucur, Yaohui Chen, Franjo Ivančić, Tim King, Markus Kusano, Caroline Lemieux, László Szekeres, and Wei Wang. 2019. Fudge: fuzz driver generation at scale. In Proceedings of the 2019 27th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 975–985.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Tim Blazytko, Cornelius Aschermann, Moritz Schlögel, Ali Abbasi, Sergej Schumilo, Simon Wörner, and Thorsten Holz. 2019. GRIMOIRE: Synthesizing Structure while Fuzzing.. In USENIX Security Symposium, Vol. 19.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Marcel Böhme, Cristian Cadar, and Abhik Roychoudhury. 2021. Fuzzing: Challenges and Reflections. IEEE Softw. 38, 3 (2021), 79–86.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Marcel Böhme, Van-Thuan Pham, Manh-Dung Nguyen, and Abhik Roychoudhury. 2017. Directed greybox fuzzing. In Proceedings of the 2017 ACMSIGSAC Conference on Computer and Communications Security. 2329–2344.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Marcel Böhme, Van-Thuan Pham, and Abhik Roychoudhury. 2016. CoverageBased Greybox Fuzzing as Markov Chain. IEEE Transactions on Software Engineering 45 (2016), 489–506.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Gemma Catolino, Fabio Palomba, Andy Zaidman, and Filomena Ferrucci. 2019. Not all bugs are the same: Understanding, characterizing, and classifying bug types. Journal of Systems and Software 152 (2019), 165–181.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Jaeseung Choi, Joonun Jang, Choongwoo Han, and Sang Kil Cha. 2019. Grey-box concolic testing on binary code. In on Software Engineering (ICSE). IEEE, 736–747.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Karine Even-Mendoza, Cristian Cadar, and Alastair F Donaldson. 2022. CsmithEdge: more effective compiler testing by handling undefined behaviour less conservatively. Empirical Software Engineering 27, 6 (2022), 129.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Andrea Fioraldi, Daniele Cono D’Elia, and Davide Balzarotti. 2021. The Use of Likely Invariants as Feedback for Fuzzers. In 30th USENIX Security Symposium (USENIX Security 21). USENIX Association, 2829–2846. https://www.usenix.org/ conference/usenixsecurity21/presentation/fioraldi",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Andrea Fioraldi, Dominik Maier, Heiko Eißfeldt, and Marc Heuse. 2020. AFL++: Combining Incremental Steps of Fuzzing Research. In 14th USENIX Workshop on Offensive Technologies (WOOT 20). USENIX Association.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Shuitao Gan, Chao Zhang, Peng Chen, Bodong Zhao, Xiaojun Qin, Dong Wu, and Zuoning Chen. 2020. GREYONE: Data Flow Sensitive Fuzzing.. In USENIX Security Symposium. 2577–2594.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Adrian Herrera, Hendra Gunadi, Shane Magrath, Michael Norrish, Mathias Payer, and Antony L Hosking. 2021. Seed selection for successful fuzzing. In Proceedings of the 30th ACMSIGSOFT International Symposium on Software Testing and Analysis. 230–243.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Renáta Hodován, Ákos Kiss, and Tibor Gyimóthy. 2018. Grammarinator: a grammar-based open source fuzzer. In Proceedings of the 9th ACMSIGSOFT international workshop on automating TEST case design, selection, and evaluation. 45–48.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Kyriakos K Ispoglou, Daniel Austin, Vishwath Mohan, and Mathias Payer. 2020. Fuzzgen: Automatic fuzzer generation. In Proceedings of the 29th USENIX Conference on Security Symposium. 2271–2287.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Jie Liang, Yu Jiang, Yuanliang Chen, Mingzhe Wang, Chijin Zhou, and Jiaguang Sun. 2018. Pafl: extend fuzzing optimizations of single mode to industrial parallel mode. In Proceedings of the 2018 26th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 809–814.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Jie Liang, Mingzhe Wang, Yuanliang Chen, Yu Jiang, and Renwei Zhang. 2018. Fuzz testing in practice: Obstacles and solutions. In 2018 IEEE 25th International Conference on Software Analysis, Evolution and Reengineering (SANER). IEEE, 562–566.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Dongge Liu, Jonathan Metzman, Marcel Böhme, Oliver Chang, and Abhishek Arya. 2023. SBFT Tool Competition 2023–Fuzzing Track. arXiv preprint arXiv:2304.10070 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Valentin JM Manès, HyungSeok Han, Choongwoo Han, Sang Kil Cha, Manuel Egele, Edward J Schwartz, and Maverick Woo. 2019. The art, science, and engineering of fuzzing: A survey. IEEE Transactions on Software Engineering 47, 11 (2019), 2312–2331.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Jonathan Metzman, László Szekeres, Laurent Simon, Read Sprabery, and Abhishek Arya. 2021. Fuzzbench: an open fuzzer benchmarking platform and service. In Proceedings of the 29th ACM joint meeting on European software engineering conference and symposium on the foundations of software engineering. 1393–1403.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Sebastian Österlund, Elia Geretto, Andrea Jemmett, Emre Güler, Philipp Görz, Thorsten Holz, Cristiano Giuffrida, and Herbert Bos. 2021. Collabfuzz: A framework for collaborative fuzzing. In Proceedings of the 14th European Workshop on Systems Security. 1–7. 54 Beyond the Coverage Plateau: A Comprehensive Study of Fuzz Blockers (Registered Report) FUZZING ’23, July 17, 2023, Seattle, WA, USA",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Lianglu Pan, Shaanan Cohney, Toby Murray, and Van-Thuan Pham. 2023. Detecting Excessive Data Exposures in Web Server Responses with Metamorphic Fuzzing. arXiv preprint arXiv:2301.09258 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Jiwon Park, Dominik Winterer, Chengyu Zhang, and Zhendong Su. 2021. Generative type-aware mutation for testing SMT solvers. Proceedings of the ACM on Programming Languages 5, OOPSLA (2021), 1–19.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Hui Peng and Mathias Payer. 2020. Usbfuzz: A framework for fuzzing USB drivers by device emulation. In Proceedings of the 29th USENIX Conference on Security Symposium. 2559–2575.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Van-Thuan Pham, Manh-Dung Nguyen, Quang-Trung Ta, Toby Murray, and Benjamin I.P. Rubinstein. 2021. Towards Systematic and Dynamic Task Allocation for Collaborative Parallel Fuzzing. In Proceedings of the 36th IEEE/ACM International Conference on Automated Software Engineering: NIER Track.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Van-Thuan Pham, Marcel Böhme, and Abhik Roychoudhury. 2020. AFLNet: a greybox fuzzer for network protocols. In on Software Testing, Validation and Verification (ICST). IEEE, 460–465.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Van-Thuan Pham, Marcel Böhme, Andrew E Santosa, Alexandru Răzvan Căciulescu, and Abhik Roychoudhury. 2019. Smart greybox fuzzing. IEEE Transactions on Software Engineering 47, 9 (2019), 1980–1997.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis.. In OSDI, Vol. 20. 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 46,
+      "text": "Yang Song and Oscar Chaparro. 2020. BEE: a tool for structuring and analyzing bug reports. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1551–1555.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Junjie Wang, Bihuan Chen, Lei Wei, and Yang Liu. 2019. Superion: Grammaraware greybox fuzzing. In ware Engineering (ICSE). IEEE, 724–735.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Qian Zhang, Jiyuan Wang, and Miryung Kim. 2021. Heterofuzz: Fuzz testing to detect platform dependent divergence for heterogeneous applications. In Proceedings of the 29th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 242–254.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Zenong Zhang, George Klees, Eric Wang, Michael Hicks, and Shiyi Wei. 2023. Fuzzing Configurations of Program Options. ACM Transactions on Software Engineering and Methodology 32, 2 (2023), 1–21.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. Squirrel: Testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security. 955–970. 55",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 45,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis.. In OSDI, Vol. 20. 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 39,45]",
+      "technique": "pqs",
+      "sentence": "These efforts have focused on enhancing fuzzing in areas such as feedback collection [ 16,25,27,30], corpus management [ 29], seed selection algorithms [ 22,23], input generation algorithms [ 15,20,31,44,47], and novel test oracle designs [ 39,45].",
+      "context_before": "be honored. For all other uses, contact the owner/author(s). FUZZING ’23, July 17, 2023, Seattle, WA, USA ©2023 Copyright held by the owner/author(s). ACMISBN 979-8-4007-0247-1/23/07. https://doi.org/10.1145/3605157.3605177vulnerability discovery. Popular CGF Fuzzers such as libFuzzer [8], AFL/AFL++ [1,28], and Honggfuzz [6] have discovered thousands of vulnerabilities in large real-world systems [3, 21, 36]. The state-of-the-art in fuzzing has seen significant advancements, with hundreds of research papers and dozens of tools being published to improve the technique in various aspects [ 36].",
+      "context_after": "Additionally, researchers have attempted to extend the applicability of fuzzing to challenging targets such as network protocols [18, 43], database systems [45, 50], SMT solvers [ 40], compilers [ 26], device drivers [ 41], and heterogeneous applications [ 48]. Another noteworthy research direction is parallel or distributed fuzzing [ 33,38,42], which aims to improve fuzzing efficiency by utilizing high-performance computing resources. Figure 1: SBFT’23 Fuzzing Competition [ 35] result of LibPNG. Mean branch coverage growth over time is reported. At least 20 trials/fuzzer, 23 hours per trial.",
+      "section": "1 INTRODUCTION",
+      "page": 1,
+      "char_offset": 3192,
+      "cited_reference": {
+        "number": 45,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis.. In OSDI, Vol. 20. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[45, 50]",
+      "technique": "pqs",
+      "sentence": "Additionally, researchers have attempted to extend the applicability of fuzzing to challenging targets such as network protocols [18, 43], database systems [45, 50], SMT solvers [ 40], compilers [ 26], device drivers [ 41], and heterogeneous applications [ 48].",
+      "context_before": "Popular CGF Fuzzers such as libFuzzer [8], AFL/AFL++ [1,28], and Honggfuzz [6] have discovered thousands of vulnerabilities in large real-world systems [3, 21, 36]. The state-of-the-art in fuzzing has seen significant advancements, with hundreds of research papers and dozens of tools being published to improve the technique in various aspects [ 36]. These efforts have focused on enhancing fuzzing in areas such as feedback collection [ 16,25,27,30], corpus management [ 29], seed selection algorithms [ 22,23], input generation algorithms [ 15,20,31,44,47], and novel test oracle designs [ 39,45].",
+      "context_after": "Another noteworthy research direction is parallel or distributed fuzzing [ 33,38,42], which aims to improve fuzzing efficiency by utilizing high-performance computing resources. Figure 1: SBFT’23 Fuzzing Competition [ 35] result of LibPNG. Mean branch coverage growth over time is reported. At least 20 trials/fuzzer, 23 hours per trial. Most fuzzers reach their plateau within 14 hours. Despite these advancements, the top-performing fuzzers continue to exhibit limitations as evidenced by results obtained from FuzzBench [37] and FuzzIntrospector [5]. As shown in Figure 1, all fuzzers participate",
+      "section": "1 INTRODUCTION",
+      "page": 1,
+      "char_offset": 3441,
+      "cited_reference": {
+        "number": 45,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis.. In OSDI, Vol. 20. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:18:50Z",
+    "is_model_written": true,
+    "summary": "A registered report studying fuzz blockers -- the obstacles that make coverage-guided greybox fuzzers plateau, which benchmarks show typically happens after around 12 hours. Using the FuzzIntrospector platform the authors analyse and categorise these blockers, finding that most top blockers are not directly related to the program input, which points to fuzz driver generation as the area needing better techniques.",
+    "narrative": "Two citations, placing DBMS fuzzing among the challenging targets researchers have extended fuzzing to.",
+    "roles": {
+      "M1": "background",
+      "M2": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

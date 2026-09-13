@@ -1,0 +1,177 @@
+name: Impact data
+
+# Collects new impact evidence once a week and proposes it as a pull request.
+#
+# Nothing here writes to the default branch. The job restores its caches,
+# collects only what changed since the last successful scan, validates the
+# result against the JSON Schemas, rebuilds the derived statistics and charts,
+# checks the site still builds, and opens or updates a pull request -- but only
+# when the authoritative records actually changed. A run that merely warms the
+# cache exits without touching anything a human would have to review.
+
+on:
+  schedule:
+    # Weekly incremental run, Monday 04:17 UTC.
+    - cron: "17 4 * * 1"
+    # Monthly full reconciliation, 1st of the month. Deterministic discovery is
+    # repeated across every source; cached evidence and cached classifications
+    # are still reused, so this is far cheaper than it sounds.
+    - cron: "43 3 1 * *"
+  workflow_dispatch:
+    inputs:
+      full:
+        description: "Run a full reconciliation instead of an incremental scan"
+        type: boolean
+        default: false
+      only:
+        description: "Restrict to these sources (space separated)"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: impact-data
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    # 22.04 because this job also builds the site, and setup-ruby ships no
+    # Ruby 3.0 for 24.04 -- see the pin below for why 3.0 is required.
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Restore the bulky, disposable part of the cache
+        # Committed cache files under .cache/impact carry the collector state
+        # that is worth reproducing; this restores the rest (fetched bodies)
+        # so a run does not re-download unchanged pages. The pipeline is
+        # correct with this cache empty -- it is only ever an optimisation.
+        uses: actions/cache@v4
+        with:
+          path: |
+            .cache/impact/http
+            .cache/impact/papers
+            .cache/impact/artifacts
+          key: impact-http-${{ github.run_id }}
+          restore-keys: |
+            impact-http-
+
+      - name: Decide the run mode
+        id: mode
+        run: |
+          if [ "${{ github.event.schedule }}" = "43 3 1 * *" ] || \
+             [ "${{ inputs.full }}" = "true" ]; then
+            echo "full=--full" >> "$GITHUB_OUTPUT"
+            echo "label=full reconciliation" >> "$GITHUB_OUTPUT"
+          else
+            echo "full=" >> "$GITHUB_OUTPUT"
+            echo "label=incremental scan" >> "$GITHUB_OUTPUT"
+          fi
+          if [ -n "${{ inputs.only }}" ]; then
+            echo "only=--only ${{ inputs.only }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "only=" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Collect
+        env:
+          # Deterministic discovery. The default token is enough for the REST
+          # API; code search needs it too.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Optional: lifts the Semantic Scholar rate limit considerably.
+          SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
+          # Optional: without it, ambiguous candidates are reported as needing
+          # human judgement instead of being classified. The run still succeeds.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          IMPACT_CONTACT_EMAIL: ${{ secrets.IMPACT_CONTACT_EMAIL }}
+        run: |
+          python -m tools.impact.run collect \
+            ${{ steps.mode.outputs.full }} ${{ steps.mode.outputs.only }} \
+            --report .cache/impact/last-run.json
+
+      - name: Validate and rebuild derived outputs
+        run: python -m tools.impact.run build
+
+      - name: Run the test suite
+        run: python -m unittest discover -s tools/impact/tests -t . -v
+
+      - name: Decide whether there is anything to review
+        id: changes
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, pathlib
+          from tools.impact.pr import has_meaningful_changes
+          path = pathlib.Path(".cache/impact/last-run.json")
+          report = json.loads(path.read_text()) if path.exists() else {}
+          print(f"meaningful={'true' if has_meaningful_changes(report) else 'false'}")
+          PY
+          if git diff --quiet -- _data/impact _includes/impact; then
+            echo "dirty=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "dirty=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Ruby
+        if: steps.changes.outputs.dirty == 'true'
+        uses: ruby/setup-ruby@v1
+        with:
+        # Pinned low on purpose. The site is built with the github-pages
+        # gem, which pins liquid 4.0.3 -- and liquid 4.0.3 calls
+        # Object#tainted?, removed in Ruby 3.2. Its jekyll 3.9.0 also predates
+        # the Psych 4 shipped with Ruby 3.1. Ruby 3.0 is the newest that
+        # satisfies both, so it is what GitHub Pages itself effectively builds
+        # with; raising it here breaks the build without touching the site.
+          ruby-version: "3.0"
+          bundler-cache: true
+
+      - name: Build the website
+        if: steps.changes.outputs.dirty == 'true'
+        run: bundle exec jekyll build --trace
+
+      - name: Render the pull-request body
+        if: steps.changes.outputs.dirty == 'true'
+        run: |
+          python -m tools.impact.run report \
+            --input .cache/impact/last-run.json \
+            --output .cache/impact/pr-body.md
+          cat .cache/impact/pr-body.md
+
+      - name: Open or update the pull request
+        if: steps.changes.outputs.dirty == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: impact/automated-update
+          base: main
+          title: "Impact data update (${{ steps.mode.outputs.label }})"
+          body-path: .cache/impact/pr-body.md
+          commit-message: |
+            Update impact data (${{ steps.mode.outputs.label }})
+
+            Automated collection run. Every new claim carries the primary
+            source it rests on; see the pull-request body for the evidence.
+          labels: |
+            impact-data
+            automated
+          add-paths: |
+            _data/impact/**
+            _includes/impact/**
+            .cache/impact/state.json
+            .cache/impact/derived/**
+            .cache/impact/classifications/**
+          delete-branch: true
+
+      - name: Report a no-op run
+        if: steps.changes.outputs.dirty != 'true'
+        run: |
+          echo "No authoritative data changed; no pull request opened." \
+            >> "$GITHUB_STEP_SUMMARY"

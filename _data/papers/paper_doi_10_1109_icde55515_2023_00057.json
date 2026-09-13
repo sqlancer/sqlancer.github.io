@@ -1,0 +1,1009 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:33:18Z",
+  "paper": {
+    "id": "paper:doi:10.1109/icde55515.2023.00057",
+    "title": "Sequence-Oriented DBMS Fuzzing",
+    "authors": [
+      "Jie Liang",
+      "Yaoguang Chen",
+      "Zhiyong Wu",
+      "Jingzhou Fu",
+      "Mingzhe Wang",
+      "Yu Jiang",
+      "Xiangdong Huang",
+      "Ting Chen",
+      "Jiashui Wang",
+      "Jiajia Li"
+    ],
+    "year": 2023,
+    "venue": "IEEE International Conference on Data Engineering",
+    "doi": "10.1109/icde55515.2023.00057",
+    "arxiv_id": null,
+    "s2_paper_id": "058f7a552121c7417e783c995f8bc584d09b3eff",
+    "url": "https://doi.org/10.1109/icde55515.2023.00057",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/icde55515.2023.00057",
+      "retrieved_at": "2026-09-09T01:33:18Z",
+      "chars": 77636,
+      "content_sha256": "sha256:dd11ec7c8550976731e52fa4cee502bfa0dfa9cd6ce4091b0283990e80e1e5bb"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 14,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 1696
+      },
+      {
+        "number": "II",
+        "title": "SQL TYPE SEQUENCE",
+        "start": 9159
+      },
+      {
+        "number": "III",
+        "title": "DESIGN OFLEGO",
+        "start": 22208
+      },
+      {
+        "number": "A",
+        "title": "Proactive Affinity Analysis",
+        "start": 22465
+      },
+      {
+        "number": "B",
+        "title": "Progressive Sequence Synthesis",
+        "start": 30452
+      },
+      {
+        "number": "A",
+        "title": "Evaluation Setup",
+        "start": 38813
+      },
+      {
+        "number": "B",
+        "title": "DBMS Vulnerability Detection",
+        "start": 42370
+      },
+      {
+        "number": "C",
+        "title": "Comparison with Other DBMS Fuzzers",
+        "start": 49592
+      },
+      {
+        "number": "D",
+        "title": "Effectiveness of Sequence-Oriented Algorithms in LEGO",
+        "start": 54764
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Shadi Abdul Khalek and Sarfraz Khurshid. 2010. Automated SQL query generation for systematic testing of database engines. In Proceedings of the IEEE/ACM international conference on Automated software engineering. 329–332.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "alloy 2022. Documentation Alloy 6. https:// alloytools .org/documentation .html. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Cornelius Aschermann, Sergej Schumilo, Tim Blazytko, Robert Gawlik, and Thorsten Holz. 2019. REDQUEEN: Fuzzing with Input-to-State Correspondence. In Symposium on Network and Distributed System Security (NDSS).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Adam Bannister. 2021. SQLite patches use-after-free bug that left apps open to code execution, denial-ofservice exploits. https://portswigger .net/daily-swig/ sqlite-patches-use-after-free-bug-that-left-apps-open-tocode-execution-denial-of-service-exploits. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Daniel Bartholomew. 2014. MariaDB cookbook. Packt Publishing Ltd.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "ST Bhosale, Miss Tejaswini Patil, and Miss Pooja Patil. 2015. Sqlite: Light database system. Int. J. Comput. Sci. Mob. Comput 44, 4 (2015), 882–885.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Bison 2022. Bison. https://www .gnu.org/software/bison/. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Marcel B ¨ohme, L ´aszl´o Szekeres, and Jonathan Metzman. 2022. On the Reliability of Coverage-Based Fuzzer Benchmarking. In 44th IEEE/ACM International Conference on Software Engineering, ser. ICSE, V ol. 22.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Yuanliang Chen, Yu Jiang, Fuchen Ma, Jie Liang, Mingzhe Wang, Chijin Zhou, Xun Jiao, and Zhuo Su. 2019. EnFuzz: Ensemble Fuzzing with Seed Synchronization among Diverse Fuzzers. In USENIX Security Symposium.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Catalin Cimpanu. 2019. Google Chrome impacted by new Magellan 2.0 vulnerabilities. https://www .zdnet.com/article/google-chrome-impactedby-new-magellan-2-0-vulnerabilities. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "comdb2 2022. Comdb2 GitHub. https://github .com/ bloomberg/comdb2. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "CVSS 2022. Common Vulnerability Scoring System version 3.1: User Guide. https://www .first.org/cvss/userguide. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Andrea Fioraldi, Dominik Maier, Heiko Eißfeldt, and Marc Heuse. 2020. AFL++: Combining Incremental Steps of Fuzzing Research. In USENIX Workshop on Offensive Technologies (WOOT).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Flex 2022. Flex, the fast lexical analyzer generator. https: //github .com/westes/flex. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-Free DBMS Fuzzing. In Conference on Automated Software Engi-neering (ASE’22).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2020. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems (to appear). In Proceedings of the 46th International Conference on Very Large Data Bases (VLDB). Tokyo, Japan.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "George Klees, Andrew Ruef, Benji Cooper, Shiyi Wei, and Michael Hicks. 2018. Evaluating Fuzz Testing. InACM Conference on Computer and Communications Security (CCS).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Jie Liang, Yu Jiang, Yuanliang Chen, Mingzhe Wang, Chijin Zhou, and Jiaguang Sun. 2018. PAFL: Extend Fuzzing Optimizations of Single Mode to Industrial Parallel Mode.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Jie Liang, Yu Jiang, Mingzhe Wang, Xun Jiao, Yuanliang Chen, Houbing Song, and Kim-Kwang Raymond Choo. 2019. Deepfuzzer: Accelerated deep greybox fuzzing. IEEE Transactions on Dependable and Secure Computing(2019).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Jie Liang, Mingzhe Wang, Chijin Zhou, Zhiyong Wu, Yu Jiang, Jianzhong Liu, Zhe Liu, and Jiaguang Sun. 2022. PATA: Fuzzing with Path Aware Taint Analysis. In. IEEE Computer Society, Los Alamitos, CA, USA. 154–170.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Eric Lo, Carsten Binnig, Donald Kossmann, M Tamer ¨Ozsu, and Wing-Kai Hon. 2010. A framework for testing DBMS features. The VLDB Journal 19, 2 (2010), 203–230.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Micha ¨el Marcozzi, Wim Vanhoof, and Jean-Luc Hainaut. 2012. Test input generation for database programs using relational constraints. In Proceedings of the Fifth International Workshop on Testing Database Systems. 1– 6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "MariaDB 2022. MariaDB. https://mariadb .org/. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "MariaDB 2022. SQL Statements and Structure. https: //mariadb .com/kb/en/sql-statements-structure. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Chaitanya Mishra, Nick Koudas, and Calisto Zuzarte. 2008. Generating targeted queries for database testing. InProceedings of the 2008 ACMSIGMOD international conference on Management of data. 499–510.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Bruce Momjian. 2001. PostgreSQL: introduction and concepts. V ol. 192. Addison-Wesley New York.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "MySQL. 2022. MySQL. https://www .mysql .com/. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Oracle 2022. Oracle Official Website. https:// www.oracle .com/cn/index .html. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Yevgeny Pats. [n. d.]. Why (Continuous) Fuzzing. https://about .gitlab .com/blog/2020/12/10/whycontinuous-fuzzing/. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "PostgreSQL 2022. PostgreSQL. https: //www .postgresql .org/. Accessed: November 29, 680 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "PostgreSQL SQL Commands 2022. SQL Commands. https://www .postgresql .org/docs/13/sql-commands .html. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Manuel Rigger. 2022. Bugs found in Database Management Systems. https://www .manuelrigger .at/dbms-bugs. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 33,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 34,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA (2020), 211:1–211:30. https: //doi.org/10 .1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 35,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 36,
+      "text": "Alex Scotti, Mark Hannum, Michael Ponomarenko, Dorin Hogea, Akshat Sikarwar, Mohit Khullar, Adi Zaimi, James Leddy, Fabio Angius, Rivers Zhang, and Lingzhi Deng. 2016. Comdb2: Bloomberg’s Highly Available Relational Database System. Proc. VLDB Endow. 9, 13 (2016), 1377–1388. https://doi .org/10 .14778/ 3007263 .3007275",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Andreas Seltenreich, Bo Tang, and Sjoerd Mullender. 2018. SQLsmith: a random SQL query generator. https: //github .com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Konstantin Serebryany, Derek Bruening, Alexander Potapenko, and Dmitriy Vyukov. 2012. AddressSanitizer: A Fast Address Sanity Checker. In 2012 USENIX Annual Technical Conference, Boston, MA, USA, June 13-15, 2012, Gernot Heiser and Wilson C. Hsieh (Eds.). USENIX Association, 309–318. https://www .usenix .org/conference/atc12/technicalsessions/presentation/serebryany",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Donald R. Slutz. 1998. Massive Stochastic Testing of SQL. In VLDB’98, Proceedings of 24rd International Conference on Very Large Data Bases, New York, USA. Morgan Kaufmann, 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "SQL 2021. SQL — DDL, DQL, DML, DCL and TCL Commands. Retrieved April 1, 2023 from https://www .geeksforgeeks .org/sql-ddl-dqldml-dcl-tcl-commands/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "SQLsmith 2022. SQLsmith Description. https: //github .com/anse1/sqlsmith#description. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Hao Sun, Yuheng Shen, Cong Wang, Jianzhong Liu, YuJiang, Ting Chen, and Aiguo Cui. 2021. HEALER: Relation Learning Guided Kernel Fuzzing. In Proceedings of the ACMSIGOPS 28th Symposium on Operating Systems Principles. 344–358.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Jiajie Wang, Puhan Zhang, Lei Zhang, Haowen Zhu, and Xiaojun Ye. 2013. A model-based fuzzing approach for DBMS. In 2013 8th International Conference on Communications and Networking in China (CHINACOM). IEEE, 426–431.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Mingzhe Wang, Jie Liang, Chijin Zhou, Yuanliang Chen, Zhiyong Wu, and Yu Jiang. 2021. Industrial Oriented Evaluation of Fuzzing Techniques. In 2021 14th IEEE Conference on Software Testing, Verification and Validation (ICST). IEEE, 306–317.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Mingzhe Wang, Jie Liang, Chijin Zhou, Yu Jiang, Rui Wang, Chengnian Sun, and Jiaguang Sun. 2021. {RIFF}: Reduced Instruction Footprint for {Coverage-Guided } Fuzzing. In 2021 USENIX Annual Technical Conference (USENIX ATC 21). 147–159.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. 2021. Industry Practice of Coverage-Guided Enterprise-Level DBMS Fuzzing. In 2021 IEEE/ACM 43rd International Conference on Software Engineering: Software Engineering in Practice (ICSE-SEIP). IEEE, 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Michael Widenius, David Axmark, and Kaj Arno. 2002. MySQL reference manual: documentation from the source. ” O’Reilly Media, Inc.”.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "wikipedia. 2022. Abstract syntax tree. https:// en.wikipedia .org/wiki/Abstract syntax tree. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "wikipedia 2022. Databases. Retrieved April 1, 2023 from https://en .wikipedia .org/wiki/Database",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "wikipedia. 2022. SQL. https://en .wikipedia .org/wiki/ SQL. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Zhiyong Wu, Jie Liang, Mingzhe Wang, Chijin Zhou, and Yu Jiang. 2022. Unicorn: Detect Runtime Errors in TimeSeries Databases With Hybrid Input Synthesis. In Symposium on Software Testing and Analysis (ISSTA’22).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Insu Yun, Sangho Lee, Meng Xu, Yeongjin Jang, and Taesoo Kim. 2018. QSYM: A Practical Concolic Execution Engine Tailored for Hybrid Fuzzing. In USENIX Security Symposium.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Michał Zalewski. 2022. american fuzzy lop. http: //lcamtuf .coredump .cx/afl/. Accessed: November 29, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. Squirrel: Testing Database Management Systems with Language Validity and Coverage Feedback. In The ACM Conference on Computer and Communications Security (CCS), 2020. 681",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 32,
+      "text": "Manuel Rigger. 2022. Bugs found in Database Management Systems. https://www .manuelrigger .at/dbms-bugs. Accessed: November 29, 2022.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 33,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 34,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA (2020), 211:1–211:30. https: //doi.org/10 .1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 35,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We evaluate LEGO on PostgreSQL, MySQL, MariaDB, and Comdb2 against SQLancer, SQLsmith, and SQUIRREL.",
+      "context_before": "cannot cover the full input space and test the corresponding logic consequently. In this paper, we propose LEGO, a fuzzer to generate SQL sequences with abundant types to improve DBMS fuzzing coverage. The key idea of sequence generation is type-affinity, which indicates the meaningful occurrence of SQL type pairs (e.g., INSERT and SELECT ). During each fuzzing iteration, LEGO first proactively explores SQL statements of different types and analyzes affinities with coverage feedback. Next, when a new affinity is discovered, LEGO synthesizes new SQL sequences containing the types progressively.",
+      "context_after": "The sequence-oriented fuzzing helps LEGO outperform other fuzzers on branch coverage by 44%–198%. More importantly, in the continuous fuzzing, LEGO has discovered 102 new vulnerabilities confirmed by the corresponding vendors, including 6 bugs in PostgreSQL, 21 bugs in MySQL, 42 bugs in MariaDB, and 33 bugs in Comdb2. Among them, 22 CVEs have been assigned due to their severe security influences. Index Terms —DBMS fuzzing, SQL Type Sequence I. INTRODUCTION Database management systems (DBMSs) are crucial for modern data-intensive systems [49]. Serving as the intermediary between the user and t",
+      "section": null,
+      "page": 1,
+      "char_offset": 1149,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[4, 10, 32, 35, 51, 54]",
+      "technique": "pqs",
+      "sentence": "Security vulnerabilities, especially memory bugs such as buffer overflow are particularly dangerous for DBMS because they might allow attackers to steal information, tamper data, crash systems, and bring heavy losses [4, 10, 32, 35, 51, 54].",
+      "context_before": "ly, in the continuous fuzzing, LEGO has discovered 102 new vulnerabilities confirmed by the corresponding vendors, including 6 bugs in PostgreSQL, 21 bugs in MySQL, 42 bugs in MariaDB, and 33 bugs in Comdb2. Among them, 22 CVEs have been assigned due to their severe security influences. Index Terms —DBMS fuzzing, SQL Type Sequence I. INTRODUCTION Database management systems (DBMSs) are crucial for modern data-intensive systems [49]. Serving as the intermediary between the user and the database, a DBMS offers the solution to optimize and manage the storage and retrieval of data [6, 23, 27, 30].",
+      "context_after": "Existing works have focused on logic, performance, and memory bugs in DBMSs. To test logic and performance bugs, many representative schemes utilize differential testing [16, 35, 39]. Recently, many fuzzing methods are applied to detect memory bugs of DBMSs, focusing on generating valid SQL queries [37, 46, 53, 54]. The abundance of SQL Type Sequences contained by generated test cases is crucial for fuzzing a DBMS. As Figure 1 shows, a test case (surrounded by the grey box) is an input for a DBMS, and it always consists of a sequence of SQL statements [24, 40, 50] (surrounded by the orange bo",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 1963,
+      "cited_reference": {
+        "number": 35,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[16, 35, 39]",
+      "technique": "pqs",
+      "sentence": "To test logic and performance bugs, many representative schemes utilize differential testing [16, 35, 39].",
+      "context_before": "Type Sequence I. INTRODUCTION Database management systems (DBMSs) are crucial for modern data-intensive systems [49]. Serving as the intermediary between the user and the database, a DBMS offers the solution to optimize and manage the storage and retrieval of data [6, 23, 27, 30]. Security vulnerabilities, especially memory bugs such as buffer overflow are particularly dangerous for DBMS because they might allow attackers to steal information, tamper data, crash systems, and bring heavy losses [4, 10, 32, 35, 51, 54]. Existing works have focused on logic, performance, and memory bugs in DBMSs.",
+      "context_after": "Recently, many fuzzing methods are applied to detect memory bugs of DBMSs, focusing on generating valid SQL queries [37, 46, 53, 54]. The abundance of SQL Type Sequences contained by generated test cases is crucial for fuzzing a DBMS. As Figure 1 shows, a test case (surrounded by the grey box) is an input for a DBMS, and it always consists of a sequence of SQL statements [24, 40, 50] (surrounded by the orange box). Yu Jiang is the corresponding author.Generally, SQL statements have hundreds of types. Type is the category divided by the same functionalities, like SELECT and INSERT. SQL Type Se",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 2282,
+      "cited_reference": {
+        "number": 35,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker",
+      "surface": "[35,\n37]",
+      "technique": "pqs",
+      "sentence": "In general, fuzzers could be divided into generation-based [35, 37] and mutation-based [15, 51, 54].",
+      "context_before": "ORDER BY v1; 5:SELECTv2FROMt1WHEREv1=1;Mutation Areas StatementTest Case SQL Type SequenceMutated Seed Mutate… … 5:SELECTv2FROMt1ORDER BY v1; Fig. 1. Breakdown of inputs generation in mutation-based DBMS fuzzing. Executions are performed at test case level, where a test case consists of a sequence of statements. To generate mutated seeds from an original seed, fuzzers mutate the inner structure given a predefined SQL type. However, existing fuzzing works have put hard work into generating valid test cases since SQL is a highly-structured language, while neglecting to enrich SQL Type Sequences.",
+      "context_after": "Generation-based fuzzers generate test cases according to custom rules. Consequently, the number of states and relationships between sequences are limited by the rules. For example, SQLsmith mainly generates SELECT statements, so it will only explore limited state space and the relationships are limited to the same type. Mutation-based fuzzers select an test case (also called a seed) from an input pool, generate many new inputs with mutation, and save the input back to the pool if its execu668 2375-026X/23/$31.00 ©2023 IEEEDOI 10.1109/ICDE55515.2023.00057 .00 ©2023 IEEE | DOI: 10.1109/ICDE555",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 4486,
+      "cited_reference": {
+        "number": 35,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We evaluate LEGO on the latest version of PostgreSQL, MySQL, MariaDB, and Comdb2 against SQLancer, SQLsmith, and SQUIRREL.",
+      "context_before": "ype, and determines its significance by analyzing the coverage. If the change results in new code coverage, then an affinity will be recorded. Next, LEGO exploits the affinity by synthesizing new sequences it induces to further increase coverage. When a new affinity is discovered, LEGO permutes all SQL Type Sequences containing the affinity with a limited length. The sequences are then instantiated to executable test cases. With sequence-enriched test cases progressively synthesized from affinities discovered by proactive exploration, LEGO continuously explores the state space of target DBMSs.",
+      "context_after": "The sequence-oriented fuzzing helps LEGO cover 198%, 44%, and 120% more branches than SQLancer, SQLsmith, and SQUIRREL on average, respectively. More importantly, in the continuous fuzzing (i.e., constantly running fuzzing without stopping it until the code is modified [29]), LEGO finds 102 new vulnerabilities while others find 11 of them in total. The vulnerabilities include 6 bugs in PostgreSQL, 21 bugs in MySQL, 42 bugs in MariaDB, and 33 bugs in Comdb2. Among them, 22 bugs are confirmed as CVEs in the U.S. National Vulnerability Database. II. SQL TYPE SEQUENCE Basic concepts. Database Man",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 8487,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The sequence-oriented fuzzing helps LEGO cover 198%, 44%, and 120% more branches than SQLancer, SQLsmith, and SQUIRREL on average, respectively.",
+      "context_before": "ty will be recorded. Next, LEGO exploits the affinity by synthesizing new sequences it induces to further increase coverage. When a new affinity is discovered, LEGO permutes all SQL Type Sequences containing the affinity with a limited length. The sequences are then instantiated to executable test cases. With sequence-enriched test cases progressively synthesized from affinities discovered by proactive exploration, LEGO continuously explores the state space of target DBMSs.We evaluate LEGO on the latest version of PostgreSQL, MySQL, MariaDB, and Comdb2 against SQLancer, SQLsmith, and SQUIRREL.",
+      "context_after": "More importantly, in the continuous fuzzing (i.e., constantly running fuzzing without stopping it until the code is modified [29]), LEGO finds 102 new vulnerabilities while others find 11 of them in total. The vulnerabilities include 6 bugs in PostgreSQL, 21 bugs in MySQL, 42 bugs in MariaDB, and 33 bugs in Comdb2. Among them, 22 bugs are confirmed as CVEs in the U.S. National Vulnerability Database. II. SQL TYPE SEQUENCE Basic concepts. Database Management Systems (DBMSs) refer to the software used to manage the storage and retrieval data in databases [49]. Structured Query Language (SQL) is",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 8609,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ", SQLsmith and SQLancer) generate seeds based on custom rules.",
+      "context_before": "nd a seed fed to SQUIRREL that contains 945 SQL statements. It repeatedly calls hundreds of INSERT statements to store data. These statements have very similar behaviors, contributing little to coverage but increasing the workload to parse and execute. As a result, SQUIRREL hung for 23 minutes while executing this seed. Status of existing fuzzers. Existing fuzzers mainly focus on generating syntactically and semantically correct seeds, while neglecting to generate abundant SQL Type Sequences. Generation-based fuzzing and mutation-based fuzzing are two main types. Generation-based fuzzers (e.g.",
+      "context_after": "To meet challenges C1 and C2, a compromise solution is to manually add a large number of rules for generating sequences. However, the solution can be labor-intensive, while the abundance remains limited. For challenge C3, it is possible to simplify the rules to improve execution speed. But the simplification is likely to decrease coverage. Mutation-based fuzzers (e.g., SQUIRREL and RATEL ) mutate seeds by changing existing seeds, but most of them only change the structure or data in individual statements. Therefore, the sequence and the relationship the test case contained will not be changed",
+      "section": "II SQL TYPE SEQUENCE",
+      "page": 3,
+      "char_offset": 15836,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "To encompass as many state-of-the-art DBMS fuzzers as possible, we compared LEGO to popular fuzzer SQUIRREL and SQLancer from the academy and SQLsmith from the industry.",
+      "context_before": "re sequence-oriented algorithms? A. Evaluation Setup Tested DBMSs and compared fuzzers. To evaluate the generality and efficiency of LEGO, we used the latest version of four open-source DBMSs for evaluation, namely PostgreSQL, MySQL, MariaDB, and Comdb2, which are widely used in industry and academic research. PostgreSQL [26, 30] is a object-relational DBMS with over 30 years of active development. MySQL [27, 47] is one of the most popular opensource DBMSs. MariaDB [5, 23] is a community-developed fork of MySQL. Comdb2 [11, 36] clusters RDBMS built on optimistic concurrency control techniques.",
+      "context_after": "Basic setup. We performed all experiments on a machine running 64-bit Ubuntu 20.04 with 128 cores (AMDEPYC 7742 Processor @ 2.25 GHz) and 488 GiB of main memory. All the DBMSs were instrumented with AddressSanitizer (ASAN) [38]. For each fuzzer, we used their default configurations, such as instrumentation methods and seed corpus. We 674 TABLE ILEGO DISCOVERED 102 NEWVULNERABILITIES (POSTGRE SQL: 6, MYSQL: 21, MARIA DB: 42, COMDB 2: 33) WHILE OTHERS FOUND 11IN TOTAL. [UAF: USE-AFTER-FREE,BOF: BUFFER OVERFLOW [HEAP (H), STACK (S)], AF: ASSERTION FAILURE ,SEGV: SEGMENTATION VIOLATION ,UAP: US",
+      "section": "A Evaluation Setup",
+      "page": 7,
+      "char_offset": 39380,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, SQLancer and SQLsmith did not find any bugs.",
+      "context_before": "L. We ran each DBMS with one fuzzer for 24 hours, which is a widely used time setup. Each fuzzer instance was run separately in a docker with one CPU core. To distinguish bugs, we first got them from unique crashes by comparing the call stack. To improve accuracy, we also further analyzed the bugs manually. B. DBMS Vulnerability Detection 1) Overall Results: The four tested DBMSs are widely used by users and well tested by engineers, making it difficult to find new bugs. Nevertheless, LEGO managed to detect 102 vulnerabilities in continuous fuzzing, while others found only 11 of them in total.",
+      "context_after": "SQUIRREL found 3 bugs in MySQL and 8 bugs in MariaDB, respectively. Table I shows LEGO discovered 6, 21, 42, and 33 bugs in PostgreSQL, MySQL, MariaDB, and Comdb2, respectively. Some of these vulnerabilities can be exploited in just a few steps and have serious repercussions. Specifically, among 102 vulnerabilities, there are 61 vulnerabilities (17 buffer overflows, 7 use after frees, 29 segmentation violations, and 8 use-after-poisons) that are very dangerous. They could be powerful attack primitives which lead to arbitrary code execution. Specifically, they can be exploited to attack the DB",
+      "section": "B DBMS Vulnerability Detection",
+      "page": 8,
+      "char_offset": 42661,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer generates test cases based on custom pattern rules mainly for SELECT statements, while only a limited number of SQL Type Sequences can be generated.",
+      "context_before": "h is rarely used by testers, and as a result, the bug hides for a long time. With the analyzed type-affinities, LEGO synthesizes abundant SQL Type Sequences containing the expected sequence. Based on the type sequence of corresponding synthesized seeds, LEGO mutates them into more seeds effectively and finally synthesizes the specific test case to trigger this bug. Other fuzzer are hard to compose the specific SQL Type Sequence thus they cannot find the bug. Specifically, SQLsmith mainly generates SELECT SQL statements, which would ignore the bugs composed of different types of SQL statements.",
+      "context_after": "SQUIRREL generates test cases mainly by changing the structure or data in one individual statement, so it is hard to generate new sequences of SQL types beyond the sequence contained in the existing seeds. Consequently, the bugs which have new SQL Type Sequences will be missed by them. C. Comparison with Other DBMS Fuzzers We evaluated fuzzers using two metrics, namely branches covered and bugs triggered. The two metrics are used as the standard in fuzzing evaluation [8, 17, 44], and have been widely used in fuzzing works [35, 42, 54]. To evaluate LEGO, we compared it against SQLancer, SQLsmi",
+      "section": "B DBMS Vulnerability Detection",
+      "page": 9,
+      "char_offset": 49146,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "citation_marker",
+      "surface": "[35, 42, 54]",
+      "technique": "pqs",
+      "sentence": "The two metrics are used as the standard in fuzzing evaluation [8, 17, 44], and have been widely used in fuzzing works [35, 42, 54].",
+      "context_before": "ifferent types of SQL statements. SQLancer generates test cases based on custom pattern rules mainly for SELECT statements, while only a limited number of SQL Type Sequences can be generated. SQUIRREL generates test cases mainly by changing the structure or data in one individual statement, so it is hard to generate new sequences of SQL types beyond the sequence contained in the existing seeds. Consequently, the bugs which have new SQL Type Sequences will be missed by them. C. Comparison with Other DBMS Fuzzers We evaluated fuzzers using two metrics, namely branches covered and bugs triggered.",
+      "context_after": "To evaluate LEGO, we compared it against SQLancer, SQLsmith, and SQUIRREL. For a fair comparison, when we finished fuzzing, we collected the seeds generated by each fuzzer and rerun the input seeds to uniform the branch coverage. In addition, the bugs were distinguished and identified by comparing the call stack and manual analysis. PostgreSQL MySQL MariaDB Comdb2020000400006000080000100000120000140000 Lego squirrel sqlancer sqlsmith Fig. 9. Number of branches covered by LEGO, SQUIRREL, SQLancer, and SQLsmith on 4 DBMSs in 24 hours. Coverage. Figure 9 demonstrates the branches covered by thos",
+      "section": "C Comparison with Other DBMS Fuzzers",
+      "page": 9,
+      "char_offset": 49713,
+      "cited_reference": {
+        "number": 35,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "To evaluate LEGO, we compared it against SQLancer, SQLsmith, and SQUIRREL.",
+      "context_before": "y a limited number of SQL Type Sequences can be generated. SQUIRREL generates test cases mainly by changing the structure or data in one individual statement, so it is hard to generate new sequences of SQL types beyond the sequence contained in the existing seeds. Consequently, the bugs which have new SQL Type Sequences will be missed by them. C. Comparison with Other DBMS Fuzzers We evaluated fuzzers using two metrics, namely branches covered and bugs triggered. The two metrics are used as the standard in fuzzing evaluation [8, 17, 44], and have been widely used in fuzzing works [35, 42, 54].",
+      "context_after": "For a fair comparison, when we finished fuzzing, we collected the seeds generated by each fuzzer and rerun the input seeds to uniform the branch coverage. In addition, the bugs were distinguished and identified by comparing the call stack and manual analysis. PostgreSQL MySQL MariaDB Comdb2020000400006000080000100000120000140000 Lego squirrel sqlancer sqlsmith Fig. 9. Number of branches covered by LEGO, SQUIRREL, SQLancer, and SQLsmith on 4 DBMSs in 24 hours. Coverage. Figure 9 demonstrates the branches covered by those fuzzers over 24-hour fuzzing. It shows that LEGO performed better. Specif",
+      "section": "C Comparison with Other DBMS Fuzzers",
+      "page": 9,
+      "char_offset": 49846,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "sqlancer",
+      "technique": null,
+      "sentence": "PostgreSQL MySQL MariaDB Comdb2020000400006000080000100000120000140000 Lego squirrel sqlancer sqlsmith Fig.",
+      "context_before": "d by them. C. Comparison with Other DBMS Fuzzers We evaluated fuzzers using two metrics, namely branches covered and bugs triggered. The two metrics are used as the standard in fuzzing evaluation [8, 17, 44], and have been widely used in fuzzing works [35, 42, 54]. To evaluate LEGO, we compared it against SQLancer, SQLsmith, and SQUIRREL. For a fair comparison, when we finished fuzzing, we collected the seeds generated by each fuzzer and rerun the input seeds to uniform the branch coverage. In addition, the bugs were distinguished and identified by comparing the call stack and manual analysis.",
+      "context_after": "9. Number of branches covered by LEGO, SQUIRREL, SQLancer, and SQLsmith on 4 DBMSs in 24 hours. Coverage. Figure 9 demonstrates the branches covered by those fuzzers over 24-hour fuzzing. It shows that LEGO performed better. Specifically, LEGO covered 198%, 44%, and 120% more branches than SQLancer, SQLsmith, and SQUIRREL on average, respectively. The fundamental reason for improving coverage is that DBMSs are rich in states, and the states are sensitive to the type and execution order of SQL statements. The same set of SQL statements can 676 trigger different code regions when executed wit",
+      "section": "C Comparison with Other DBMS Fuzzers",
+      "page": 9,
+      "char_offset": 50181,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Number of branches covered by LEGO, SQUIRREL, SQLancer, and SQLsmith on 4 DBMSs in 24 hours.",
+      "context_before": "d and bugs triggered. The two metrics are used as the standard in fuzzing evaluation [8, 17, 44], and have been widely used in fuzzing works [35, 42, 54]. To evaluate LEGO, we compared it against SQLancer, SQLsmith, and SQUIRREL. For a fair comparison, when we finished fuzzing, we collected the seeds generated by each fuzzer and rerun the input seeds to uniform the branch coverage. In addition, the bugs were distinguished and identified by comparing the call stack and manual analysis. PostgreSQL MySQL MariaDB Comdb2020000400006000080000100000120000140000 Lego squirrel sqlancer sqlsmith Fig. 9.",
+      "context_after": "Coverage. Figure 9 demonstrates the branches covered by those fuzzers over 24-hour fuzzing. It shows that LEGO performed better. Specifically, LEGO covered 198%, 44%, and 120% more branches than SQLancer, SQLsmith, and SQUIRREL on average, respectively. The fundamental reason for improving coverage is that DBMSs are rich in states, and the states are sensitive to the type and execution order of SQL statements. The same set of SQL statements can 676 trigger different code regions when executed with different orders. Since LEGO focuses on generating abundant SQL Type Sequences, thus it is sen",
+      "section": "C Comparison with Other DBMS Fuzzers",
+      "page": 9,
+      "char_offset": 50292,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M15",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, LEGO covered 198%, 44%, and 120% more branches than SQLancer, SQLsmith, and SQUIRREL on average, respectively.",
+      "context_before": "UIRREL. For a fair comparison, when we finished fuzzing, we collected the seeds generated by each fuzzer and rerun the input seeds to uniform the branch coverage. In addition, the bugs were distinguished and identified by comparing the call stack and manual analysis. PostgreSQL MySQL MariaDB Comdb2020000400006000080000100000120000140000 Lego squirrel sqlancer sqlsmith Fig. 9. Number of branches covered by LEGO, SQUIRREL, SQLancer, and SQLsmith on 4 DBMSs in 24 hours. Coverage. Figure 9 demonstrates the branches covered by those fuzzers over 24-hour fuzzing. It shows that LEGO performed better.",
+      "context_after": "The fundamental reason for improving coverage is that DBMSs are rich in states, and the states are sensitive to the type and execution order of SQL statements. The same set of SQL statements can 676 trigger different code regions when executed with different orders. Since LEGO focuses on generating abundant SQL Type Sequences, thus it is sensitive to the order of execution of statements and can cover more code regions as well as unlock bugs hidden in them. SQLancer and SQLsmith are two state-of-the-art DBMS fuzzers that generate test cases from rules. However, they could only generate limit",
+      "section": "C Comparison with Other DBMS Fuzzers",
+      "page": 9,
+      "char_offset": 50514,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M16",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer and SQLsmith are two state-of-the-art DBMS fuzzers that generate test cases from rules.",
+      "context_before": "rmed better. Specifically, LEGO covered 198%, 44%, and 120% more branches than SQLancer, SQLsmith, and SQUIRREL on average, respectively. The fundamental reason for improving coverage is that DBMSs are rich in states, and the states are sensitive to the type and execution order of SQL statements. The same set of SQL statements can 676 trigger different code regions when executed with different orders. Since LEGO focuses on generating abundant SQL Type Sequences, thus it is sensitive to the order of execution of statements and can cover more code regions as well as unlock bugs hidden in them.",
+      "context_after": "However, they could only generate limited SQL Type Sequences. Specifically, SQLancer continuously generates test cases for fuzzing based on custom pattern rules, while only a limited number of SQL Type Sequences can be generated. Furthermore, SQLsmith mainly generates SELECT statements for PostgreSQL to ensure semantic correctness. SQUIRREL is an advanced mutation-based DBMS fuzzer. It uses coverage feedback to guide it in exploring the code regions of the target DBMS. Due to the coverage feedback and its efforts to improve syntactic and semantic correctness, SQUIRREL performs better than SQL",
+      "section": "C Comparison with Other DBMS Fuzzers",
+      "page": 10,
+      "char_offset": 51102,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M17",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, SQLancer continuously generates test cases for fuzzing based on custom pattern rules, while only a limited number of SQL Type Sequences can be generated.",
+      "context_before": "n for improving coverage is that DBMSs are rich in states, and the states are sensitive to the type and execution order of SQL statements. The same set of SQL statements can 676 trigger different code regions when executed with different orders. Since LEGO focuses on generating abundant SQL Type Sequences, thus it is sensitive to the order of execution of statements and can cover more code regions as well as unlock bugs hidden in them. SQLancer and SQLsmith are two state-of-the-art DBMS fuzzers that generate test cases from rules. However, they could only generate limited SQL Type Sequences.",
+      "context_after": "Furthermore, SQLsmith mainly generates SELECT statements for PostgreSQL to ensure semantic correctness. SQUIRREL is an advanced mutation-based DBMS fuzzer. It uses coverage feedback to guide it in exploring the code regions of the target DBMS. Due to the coverage feedback and its efforts to improve syntactic and semantic correctness, SQUIRREL performs better than SQLancer in these DBMSs. However, it still suffers from the lack of the abundance of SQL Type Sequences. Starting from the initial seeds, SQUIRREL mainly modifies the structure and data inside single SQL statements. Therefore the see",
+      "section": "C Comparison with Other DBMS Fuzzers",
+      "page": 10,
+      "char_offset": 51261,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M18",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Due to the coverage feedback and its efforts to improve syntactic and semantic correctness, SQUIRREL performs better than SQLancer in these DBMSs.",
+      "context_before": "s unlock bugs hidden in them. SQLancer and SQLsmith are two state-of-the-art DBMS fuzzers that generate test cases from rules. However, they could only generate limited SQL Type Sequences. Specifically, SQLancer continuously generates test cases for fuzzing based on custom pattern rules, while only a limited number of SQL Type Sequences can be generated. Furthermore, SQLsmith mainly generates SELECT statements for PostgreSQL to ensure semantic correctness. SQUIRREL is an advanced mutation-based DBMS fuzzer. It uses coverage feedback to guide it in exploring the code regions of the target DBMS.",
+      "context_after": "However, it still suffers from the lack of the abundance of SQL Type Sequences. Starting from the initial seeds, SQUIRREL mainly modifies the structure and data inside single SQL statements. Therefore the seeds it produces is hard to change the SQL Type Sequences of the initial seeds. Because of the limitation in sequences’ abundance, SQUIRREL may be not able to trigger some functionalities of target DBMSs. TABLE IINUMBER OFTYPE-AFFINITIES GENERATED BYDIFFERENT FUZZERS DBMS SQLancer SQUIRREL LEGO PostgreSQL 474 34 2101 MySQL 50 21 643 MariaDB 119 28 734 Comdb2 127 36 229 Total 770 119 3707 In",
+      "section": "C Comparison with Other DBMS Fuzzers",
+      "page": 10,
+      "char_offset": 51673,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M19",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "TABLE IINUMBER OFTYPE-AFFINITIES GENERATED BYDIFFERENT FUZZERS DBMS SQLancer SQUIRREL LEGO PostgreSQL 474 34 2101 MySQL 50 21 643 MariaDB 119 28 734 Comdb2 127 36 229 Total 770 119 3707 Increment 2937 3588 – In contrast, LEGO is designed to increase the abundance of SQL Type Sequences.",
+      "context_before": "oring the code regions of the target DBMS. Due to the coverage feedback and its efforts to improve syntactic and semantic correctness, SQUIRREL performs better than SQLancer in these DBMSs. However, it still suffers from the lack of the abundance of SQL Type Sequences. Starting from the initial seeds, SQUIRREL mainly modifies the structure and data inside single SQL statements. Therefore the seeds it produces is hard to change the SQL Type Sequences of the initial seeds. Because of the limitation in sequences’ abundance, SQUIRREL may be not able to trigger some functionalities of target DBMSs.",
+      "context_after": "Type affinity describes the pattern of composing sequences, which reflects the abundance of SQL Type Sequences. Table II shows the type-affinities contained by seeds generated by different fuzzers in 24 hours. SQLsmith is excluded because it contains only one statement per test case. The table shows that LEGO found more type-affinities than other fuzzers, which allowed LEGO to produce more meaningful sequences to increase the abundance. Specifically, it proactively explores the type sequence space through sequence-oriented mutations and analyzes type-affinities in mutated seeds that have new",
+      "section": "C Comparison with Other DBMS Fuzzers",
+      "page": 10,
+      "char_offset": 52231,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M20",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "It shows that LEGO found 52, 52, and 41 more bugs than SQLancer, SQLsmith, and SQUIRREL, respectively.",
+      "context_before": "at LEGO found more type-affinities than other fuzzers, which allowed LEGO to produce more meaningful sequences to increase the abundance. Specifically, it proactively explores the type sequence space through sequence-oriented mutations and analyzes type-affinities in mutated seeds that have new coverage. It then uses these typeaffinities to synthesize meaningful sequences. The increase in sequence abundance assists LEGO to trigger more logic in the target DBMSs. Consequently, LEGO had better coverage than others in the target DBMS. Bugs. Table III shows the number of bugs found by each fuzzer.",
+      "context_after": "SQLancer focuses on detecting logic bugs in DBMSs, but the bug-finding process is limited by its predefined rules.TABLE IIINUMBER OFBUGS TRIGGERED IN 24HOURS DBMS SQLancer SQLsmith SQUIRREL LEGO PostgreSQL 0 0 0 2 MySQL 0 – 3 11 MariaDB 0 – 8 32 Comdb2 0 – 0 7 Total 0 0 11 52 Increment 52 52 41 – Consequently, it did not trigger bugs in the latest versions of these DBMSs. SQLsmith generates only limited types of statements, especially the SELECT type. It greatly ensures syntax correctness, however, the abundance of SQL Type Sequences is also limited. The evaluation results show it did not fin",
+      "section": "C Comparison with Other DBMS Fuzzers",
+      "page": 10,
+      "char_offset": 53422,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M21",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer focuses on detecting logic bugs in DBMSs, but the bug-finding process is limited by its predefined rules.",
+      "context_before": "quences to increase the abundance. Specifically, it proactively explores the type sequence space through sequence-oriented mutations and analyzes type-affinities in mutated seeds that have new coverage. It then uses these typeaffinities to synthesize meaningful sequences. The increase in sequence abundance assists LEGO to trigger more logic in the target DBMSs. Consequently, LEGO had better coverage than others in the target DBMS. Bugs. Table III shows the number of bugs found by each fuzzer. It shows that LEGO found 52, 52, and 41 more bugs than SQLancer, SQLsmith, and SQUIRREL, respectively.",
+      "context_after": "TABLE IIINUMBER OFBUGS TRIGGERED IN 24HOURS DBMS SQLancer SQLsmith SQUIRREL LEGO PostgreSQL 0 0 0 2 MySQL 0 – 3 11 MariaDB 0 – 8 32 Comdb2 0 – 0 7 Total 0 0 11 52 Increment 52 52 41 – Consequently, it did not trigger bugs in the latest versions of these DBMSs. SQLsmith generates only limited types of statements, especially the SELECT type. It greatly ensures syntax correctness, however, the abundance of SQL Type Sequences is also limited. The evaluation results show it did not find any bugs in the latest version of PostgreSQL. Based on the improved coverage, LEGO explores more state space of t",
+      "section": "C Comparison with Other DBMS Fuzzers",
+      "page": 10,
+      "char_offset": 53525,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M22",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "TABLE IIINUMBER OFBUGS TRIGGERED IN 24HOURS DBMS SQLancer SQLsmith SQUIRREL LEGO PostgreSQL 0 0 0 2 MySQL 0 – 3 11 MariaDB 0 – 8 32 Comdb2 0 – 0 7 Total 0 0 11 52 Increment 52 52 41 – Consequently, it did not trigger bugs in the latest versions of these DBMSs.",
+      "context_before": "riented mutations and analyzes type-affinities in mutated seeds that have new coverage. It then uses these typeaffinities to synthesize meaningful sequences. The increase in sequence abundance assists LEGO to trigger more logic in the target DBMSs. Consequently, LEGO had better coverage than others in the target DBMS. Bugs. Table III shows the number of bugs found by each fuzzer. It shows that LEGO found 52, 52, and 41 more bugs than SQLancer, SQLsmith, and SQUIRREL, respectively. SQLancer focuses on detecting logic bugs in DBMSs, but the bug-finding process is limited by its predefined rules.",
+      "context_after": "SQLsmith generates only limited types of statements, especially the SELECT type. It greatly ensures syntax correctness, however, the abundance of SQL Type Sequences is also limited. The evaluation results show it did not find any bugs in the latest version of PostgreSQL. Based on the improved coverage, LEGO explores more state space of the target DBMSs. Exploring more states increases the likelihood of finding bugs. Besides, as the case study shows, many of the triggered bugs have unexpected SQL Type Sequences. LEGO proactively analyzes type-affinities of statements from meaningful test cases",
+      "section": "C Comparison with Other DBMS Fuzzers",
+      "page": 10,
+      "char_offset": 53640,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M23",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Thus, LEGO found more bugs than SQLancer, SQLsmith, and SQUIRREL.",
+      "context_before": "results show it did not find any bugs in the latest version of PostgreSQL. Based on the improved coverage, LEGO explores more state space of the target DBMSs. Exploring more states increases the likelihood of finding bugs. Besides, as the case study shows, many of the triggered bugs have unexpected SQL Type Sequences. LEGO proactively analyzes type-affinities of statements from meaningful test cases. Based on type-affinities, LEGO progressively synthesizes abundant SQL Type Sequences. Moreover, LEGO lays the foundation for conventional mutations to use these sequences to mutate and find bugs.",
+      "context_after": "D. Effectiveness of Sequence-Oriented Algorithms in LEGO To measure the effectiveness of the sequence-oriented fuzzing algorithm and exclude other differences such as the extension in AST parser, we implement L EGOfor comparison, which disables the sequence-oriented algorithms including proactively affinity analysis and progressive sequence synthesis. Note that the affinity analysis provides the fundamental elements for sequence synthesis, the tightly-coupled nature requires us to disable them altogether. We compare LEGOagainst LEGO on PostgreSQL, MySQL, MariaDB, and Comdb2 for 24 hours. Tabl",
+      "section": "C Comparison with Other DBMS Fuzzers",
+      "page": 10,
+      "char_offset": 54697,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M24",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [35] synthesizes queries to fetch a random row from existing tables in the target DBMS.",
+      "context_before": "LEGO’s results, existing work needs to reimplement LEGO’s logic to increase abundance effectively. VII. RELATED WORK In this section, we will focus on some tasks related to DBMS fuzzing and highlight how they differ from LEGO. Finding logic and performance bugs in DBMSs. Schemes aimed at logical bugs focus on the correctness of DBMSs. Logic bugs would not crash the system but may cause a DBMS to return unexpected results, such as leaking extra rows. RAGS [39] uses differential testing, namely detecting logic bugs by running the same query on different DBMSs and checking the result consistency.",
+      "context_after": "If the DBMS fails to fetch that, then the DBMS might have a bug. Its following works [34, 33] also apply similar strategies by building functionally equivalent queries. Schemes aimed at performance bugs focus on the actual execution of DBMSs. Performance bugs can slow down an entire DBMS system or even bring it to a halt. APOLLO [16] generates queries to test two versions of the same DBMS. If the execution times for two versions are significantly different, then a performance bug is found. These fuzzers focus on finding differences between versions to locate bugs, rather than increasing the a",
+      "section": "D Effectiveness of Sequence-Oriented Algorithms in LEGO",
+      "page": 12,
+      "char_offset": 62767,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M25",
+      "found_by": "citation_marker",
+      "surface": "[34, 33]",
+      "technique": "tlp",
+      "sentence": "Its following works [34, 33] also apply similar strategies by building functionally equivalent queries.",
+      "context_before": "related to DBMS fuzzing and highlight how they differ from LEGO. Finding logic and performance bugs in DBMSs. Schemes aimed at logical bugs focus on the correctness of DBMSs. Logic bugs would not crash the system but may cause a DBMS to return unexpected results, such as leaking extra rows. RAGS [39] uses differential testing, namely detecting logic bugs by running the same query on different DBMSs and checking the result consistency. SQLancer [35] synthesizes queries to fetch a random row from existing tables in the target DBMS. If the DBMS fails to fetch that, then the DBMS might have a bug.",
+      "context_after": "Schemes aimed at performance bugs focus on the actual execution of DBMSs. Performance bugs can slow down an entire DBMS system or even bring it to a halt. APOLLO [16] generates queries to test two versions of the same DBMS. If the execution times for two versions are significantly different, then a performance bug is found. These fuzzers focus on finding differences between versions to locate bugs, rather than increasing the abundance of SQL Type Sequences. LEGO differs from these works by aiming to find memory bugs by generating test cases containing abundant SQL Type Sequences. Compared to",
+      "section": "D Effectiveness of Sequence-Oriented Algorithms in LEGO",
+      "page": 12,
+      "char_offset": 62929,
+      "cited_reference": {
+        "number": 34,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA (2020), 211:1–211:30. https: //doi.org/10 .1145/3428279",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "prints the DOI of the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M26",
+      "found_by": "citation_marker",
+      "surface": "[25, 35, 37, 43]",
+      "technique": "pqs",
+      "sentence": "Generation-based fuzzers [25, 35, 37, 43] have been used to test DBMSs for decades.",
+      "context_before": "ffers from these works by aiming to find memory bugs by generating test cases containing abundant SQL Type Sequences. Compared to logic and performance bugs, memory bugs happen more frequently. We did a cursory survey of the number of different type of bugs reported on MariaDB since 2009, and we found that the number of memory bugs is larger than the other two types combined. More importantly, memory bugs are even more damaging. Because they allow an attacker to leak or corrupt memory, the attacker can execute remote code or even gain control of the whole system. Generation-based DBMS fuzzing.",
+      "context_after": "They always generate enormous test cases based on custom rules, but the rules in turn also limit the SQL Type Sequences they can generate. Because generating a fully valid test case proves to be an NP-complete problem [21], generation-based fuzzers generally enhance semantic correctness while ensuring syntactic correctness. Some works treat generation as the process to satisfy constraints [1, 22] and use SAT solvers to generate potential queries [2]. SQLsmith [37] is one of the state-of-the-art generation-based DBMS fuzzers. It continuously generates syntactically correct SQL statements. But",
+      "section": "D Effectiveness of Sequence-Oriented Algorithms in LEGO",
+      "page": 12,
+      "char_offset": 64103,
+      "cited_reference": {
+        "number": 35,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M1",
+        "M5",
+        "M6",
+        "M8",
+        "M12",
+        "M15",
+        "M18",
+        "M20",
+        "M23"
+      ],
+      "describes_as_state_of_the_art": [
+        "M8",
+        "M16"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:14:29Z",
+    "is_model_written": true,
+    "summary": "Lego generates SQL sequences with a wide range of statement types, addressing the problem that existing DBMS fuzzers reuse a limited set of predefined types and so cannot cover the hundreds of statement types in the SQL specification. Its key notion is type-affinity, the meaningful co-occurrence of statement type pairs such as INSERT and SELECT: each iteration explores statements of different types, analyses affinities using coverage feedback, and synthesises new sequences as affinities are discovered. Lego found 102 new vendor-confirmed vulnerabilities across four DBMSs, 22 with CVEs.",
+    "narrative": "SQLancer is one of the three fuzzers Lego is measured against, described as a state-of-the-art academic fuzzer that generates from custom rules mainly for SELECT statements. Lego reports covering 198% more branches than it, and notes that SQLancer found no bugs in their setting.",
+    "roles": {
+      "M1": "baseline",
+      "M2": "background",
+      "M3": "background",
+      "M4": "background",
+      "M5": "baseline",
+      "M6": "result_comparison",
+      "M7": "motivation",
+      "M8": "state_of_the_art",
+      "M9": "result_comparison",
+      "M10": "motivation",
+      "M11": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer appears only as a fuzzer run for comparison."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Type-affinity sequence generation is Lego's own; no SQLancer technique is generalised."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M1",
+          "M5",
+          "M6",
+          "M9"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M1",
+            "sentence": "We evaluate LEGO on PostgreSQL, MySQL, MariaDB, and Comdb2 against SQLancer, SQLsmith, and SQUIRREL.",
+            "section": null,
+            "page": 1
+          },
+          {
+            "mention_id": "M5",
+            "sentence": "We evaluate LEGO on the latest version of PostgreSQL, MySQL, MariaDB, and Comdb2 against SQLancer, SQLsmith, and SQUIRREL.",
+            "section": "I INTRODUCTION",
+            "page": 2
+          },
+          {
+            "mention_id": "M6",
+            "sentence": "The sequence-oriented fuzzing helps LEGO cover 198%, 44%, and 120% more branches than SQLancer, SQLsmith, and SQUIRREL on average, respectively.",
+            "section": "I INTRODUCTION",
+            "page": 2
+          },
+          {
+            "mention_id": "M9",
+            "sentence": "Specifically, SQLancer and SQLsmith did not find any bugs.",
+            "section": "B DBMS Vulnerability Detection",
+            "page": 8
+          }
+        ],
+        "reasoning": "Lego is evaluated against SQLancer on four DBMSs, reporting 198% more branches covered and that SQLancer found no bugs in that setting."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M8"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M8",
+            "sentence": "To encompass as many state-of-the-art DBMS fuzzers as possible, we compared LEGO to popular fuzzer SQUIRREL and SQLancer from the academy and SQLsmith from the industry.",
+            "section": "A Evaluation Setup",
+            "page": 7
+          }
+        ],
+        "reasoning": "M8 says the comparison was chosen to encompass as many state-of-the-art DBMS fuzzers as possible, naming SQLancer from the academic side."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

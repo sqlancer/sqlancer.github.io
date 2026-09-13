@@ -1,0 +1,801 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:32:49Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3597503.3639207",
+    "title": "Understanding Transaction Bugs in Database Systems",
+    "authors": [
+      "Ziyu Cui",
+      "Wensheng Dou",
+      "Yu Gao",
+      "Dong Wang",
+      "Jiansen Song",
+      "Yingying Zheng",
+      "Tao Wang",
+      "Rui Yang",
+      "Kang Xu",
+      "Yixin Hu",
+      "Jun Wei",
+      "Tao Huang"
+    ],
+    "year": 2024,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1145/3597503.3639207",
+    "arxiv_id": null,
+    "s2_paper_id": "c8376be6e5d269467545de4edffe06bb2b74b1c7",
+    "url": "https://doi.org/10.1145/3597503.3639207",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3597503.3639207",
+      "retrieved_at": "2026-09-09T01:32:49Z",
+      "chars": 84068,
+      "content_sha256": "sha256:cc5188028d9450e9ebc31238ebd52c5c36e2d8c9106adec4800bdce671800513"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 2108
+      },
+      {
+        "number": "2",
+        "title": "PRELIMINARIES",
+        "start": 9197
+      },
+      {
+        "number": "3",
+        "title": "METHODOLOGY",
+        "start": 13710
+      },
+      {
+        "number": "3.1",
+        "title": "Target DBMSs",
+        "start": 13724
+      },
+      {
+        "number": "3.2",
+        "title": "Collecting TXBugs",
+        "start": 14749
+      },
+      {
+        "number": "3.3",
+        "title": "Analyzing TXBugs",
+        "start": 17425
+      },
+      {
+        "number": "3.4",
+        "title": "Threats to Validity",
+        "start": 19703
+      },
+      {
+        "number": "3.5",
+        "title": "TXBug Dataset",
+        "start": 21629
+      },
+      {
+        "number": "4.1",
+        "title": "Initialization",
+        "start": 22537
+      },
+      {
+        "number": "6.1",
+        "title": "Failure Symptoms",
+        "start": 42091
+      },
+      {
+        "number": "7.1",
+        "title": "Unfixed TXBugs",
+        "start": 47781
+      },
+      {
+        "number": "8.1",
+        "title": "Transaction Verification",
+        "start": 50812
+      },
+      {
+        "number": "8.2",
+        "title": "Transaction Testing",
+        "start": 52401
+      },
+      {
+        "number": "9.1",
+        "title": "Detecting More Types of TXBugs",
+        "start": 55253
+      },
+      {
+        "number": "9.2",
+        "title": "Transaction Testing",
+        "start": 55927
+      },
+      {
+        "number": "9.3",
+        "title": "Transaction Verification",
+        "start": 59432
+      },
+      {
+        "number": "9.4",
+        "title": "Transaction Semantics",
+        "start": 60103
+      },
+      {
+        "number": "9.5",
+        "title": "TXBug Diagnosis",
+        "start": 61046
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2022. The ANSI isolation levels. https://renenyffenegger.ch/notes/development/ databases/SQL/transaction/isolation-level.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2022. Async Commit in TiDB. https://docs.pingcap.com/tidb/stable/release5.0.0#async-commit.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "2022. Character Set Support in PostgreSQL. https://www.postgresql.org/docs/ current/multibyte.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "2022. Character Sets, Collations, Unicode in MySQL. https://dev.mysql.com/doc/ refman/8.0/en/charset.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "2022. CockroachDB. https://www.cockroachlabs.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "2022. CockroachDB issues. https://github.com/cockroachdb/cockroach/issues/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "2022. DB-Engines. https://db-engines.com/en/ranking.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "2022. Gretchen: Offline serializability verification, in Clojure. https://jepsen.io/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "2022. MariaDB. https://mariadb.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "2022. MariaDB JIRA issues. https://jira.mariadb.org/issues/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "2022. MySQL. https://www.mysql.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "2022. MySQL Bugs Home. https://bugs.mysql.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "2022. Pgsql-bugs. https://www.postgresql.org/list/pgsql-bugs/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "2022. PostgreSQL. https://www.postgresql.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "2022. SQLite. https://www.sqlite.org/index.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "2022. SQLite Ticket Main Menu. https://www.sqlite.org/src/reportlist.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "2022. SQLsmith. https://github.com/anse1/sqlsmith.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "2022. TiDB issues. https://github.com/pingcap/tidb/issues/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "2022. TiDB, PingCAP. https://pingcap.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "2022. Transaction Isolation in PostgreSQL. https://www.postgresql.org/docs/14/ transaction-iso.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "2022. Transaction Isolation Levels in MySQL. https://dev.mysql.com/doc/refman/ 8.0/en/innodb-transaction-isolation-levels.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "2022. Transactions in TiDB. https://docs.pingcap.com/tidb/stable/transactionoverview.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "2023. JanusGraph. https://janusgraph.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "2023. Memcached. http://www.memcached.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "2023. Neo4j. https://neo4j.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "2023. OrientDB. https://orientdb.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "2023. Redis. https://redis.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "2023. XA Transactions in MariaDB. https://mariadb.com/kb/en/xa-transactions/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "2023. XA Transactions in MySQL. https://dev.mysql.com/doc/refman/8.0/en/xa. html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Atul Adya. 1999. Weak Consistency: A Generalized Theory and Optimistic Implementations for Distributed Transactions. Ph. D. Dissertation. Massachusetts Institute of Technology.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Atul Adya, Barbara Liskov, and Patrick O’Neil. 2000. Generalized Isolation Level Definitions. In Proceedings of International Conference on Data Engineering (ICDE). 67–78.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Mohammed Alfatafta, Basil Alkhatib, Ahmed Alquraan, and Samer Al-Kiswany. 2020. Toward a Generic Fault Tolerance Technique for Partial Network Partitioning. In Proceedings of USENIX Conference on Operating Systems Design and Implementation (OSDI). 351–368.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Ahmed Alquraan, Hatem Takruri, Mohammed Alfatafta, and Samer Al-Kiswany. 2018. An Analysis of Network-Partitioning Failures in Cloud Systems. In Proceedings of USENIX Conference on Operating Systems Design and Implementation (OSDI). 51–68.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In Proceedings of International Conference on Software Engineering (ICSE). 2060–2071.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 35,
+      "text": "Peter Bailis, Aaron Davidson, Alan Fekete, Ali Ghodsi, Joseph M. Hellerstein, and Ion Stoica. 2013. Highly Available Transactions: Virtues and Limitations. Proceedings of the VLDB Endowment 7, 3 (2013), 181–192.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Peter Bailis, Alan Fekete, Ali Ghodsi, Joseph M. Hellerstein, and Ion Stoica. 2016. Scalable Atomic Visibility with RAMP Transactions. ACM Transactions on Database Systems 41, 3 (2016), 15:1–15:45.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Hal Berenson, Phil Bernstein, Jim Gray, Jim Melton, Elizabeth O’Neil, and Patrick O’Neil. 1995. A Critique of ANSI SQL Isolation Levels. In Proceedings of International Conference on Management of Data (SIGMOD). 1–10.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Philip A. Bernstein and Nathan Goodman. 1983. Multiversion Concurrency Control—Theory and Algorithms. ACM Transactions on Database Systems (TODS) 8, 4 (1983), 465–483. ICSE ’24, April 14–20, 2024, Lisbon, Portugal Ziyu Cui, et al.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Ranadeep Biswas and Constantin Enea. 2019. On the Complexity of Checking Transactional Consistency. In Proceedings of ACMSIGPLAN Conference on ObjectOriented Programming Systems, Languages, and Applications (OOPSLA). 165:1– 165:28.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Lucas Brutschy, Dimitar Dimitrov, Peter Müller, and Martin Vechev. 2017. Serializability for Eventual Consistency: Criterion, Analysis, and Applications. In Proceedings of ACMSIGPLAN Symposium on Principles of Programming Languages (POPL). 458–472.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Andrea Cerone, Giovanni Bernardi, and Alexey Gotsman. 2015. A Framework for Transactional Consistency Models with Atomic Visibility. In Proceedings of International Conference on Concurrency Theory (CONCUR). 58–71.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Junjie Chen, Yihua Liang, Qingchao Shen, Jiajun Jiang, and Shuochuan Li. 2023. Toward Understanding Deep Learning Framework Bugs. ACM Trans. Softw. Eng. Methodol. 32, 6 (2023), 31 pages.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Natacha Crooks, Youer Pu, Lorenzo Alvisi, and Allen Clement. 2017. Seeing is Believing: A Client-Centric Specification of Database Isolation. In Proceedings of the ACM Symposium on Principles of Distributed Computing (PODC). 73–82.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Ziyu Cui, Wensheng Dou, Qianwang Dai, Jiansen Song, Wei Wang, Jun Wei, and Dan Ye. 2022. Differentially Testing Database Transactions for Fun and Profit. In Proceedings of International Conference on Automated Software Engineering (ASE). 35:1–35:12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Wensheng Dou, Ziyu Cui, Qianwang Dai, Jiansen Song, Dong Wang, Yu Gao, Wei Wang, Jun Wei, Lei Chen, Hanmo Wang, Hua Zhong, and Tao Huang. 2023. Detecting Isolation Bugs via Transaction Oracle Construction. In Proceedings of International Conference on Software Engineering (ICSE). 1123–1135.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Yu Gao, Wensheng Dou, Feng Qin, Chushu Gao, Dong Wang, Jun Wei, Ruirui Huang, Li Zhou, and Yongming Wu. 2018. An Empirical Study on Crash Recovery Bugs in Large-Scale Distributed Systems. In Proceedings of ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 539–550.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Hao Guan, Ying Xiao, Jiaying Li, Yepang Liu, and Guangdong Bai. 2023. A Comprehensive Study of Real-World Bugs in Machine Learning Model Optimization. In Proceedings of International Conference on Software Engineering (ICSE). 147–158.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Haryadi S. Gunawi, Mingzhe Hao, Tanakorn Leesatapornwongsa, Tiratat Patanaanake, Thanh Do, Jeffry Adityatama, Kurnia J. Eliazar, Agung Laksono, Jeffrey F. Lukman, Vincentius Martin, and Anang D. Satria. 2014. What Bugs Live in the Cloud? A Study of 3000+ Issues in Cloud Systems. In Proceedings of ACM Symposium on Cloud Computing (SOCC). 1–14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Ziyue Hua, Wei Lin, Luyao Ren, Zongyang Li, Lu Zhang, Wenpin Jiao, and Tao Xie. 2023. GDsmith: Detecting Bugs in Cypher Graph Database Engines. In Proceedings of International Symposium on Software Testing and Analysis (ISSTA). 163–174.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Daniel Jackson and Craig A. Damon. 1996. Elements of Style: Analyzing a Software Design Feature with a Counterexample Detector. IEEE Transactions on Software Engineering 22, 7 (1996), 484–495.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. 2023. DynSQL: Stateful Fuzzing for Database Management Systems with Complex and Valid SQL Query Generation. InProceedings of USENIX Security Symposium (USENIX Security). 4949–4965.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI). 397–417.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 53,
+      "text": "Guoliang Jin, Linhai Song, Xiaoming Shi, Joel Scherpelz, and Shan Lu. 2012. Understanding and Detecting Real-World Performance Bugs. In Proceedings of ACMSIGPLAN Conference on Programming Language Design and Implementation (PLDI). 77–88.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2019. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems. Proceedings of the VLDB Endowment (VLDB) 13, 1 (2019), 57–70.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. In Proceedings of International Symposium on Software Testing and Analysis (ISSTA). 140–149.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 56,
+      "text": "Kyle Kingsbury and Peter Alvaro. 2020. Elle: Inferring Isolation Anomalies from Experimental Observations. Proceedings of the VLDB Endowment 14, 3 (2020), 268–280.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Hsiang-Tsung Kung and John T Robinson. 1981. On Optimistic Methods for Concurrency Control. ACM Transactions on Database Systems (TODS) 6, 2 (1981), 213–226.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Tanakorn Leesatapornwongsa, Jeffrey F. Lukman, Shan Lu, and Haryadi S. Gunawi. 2016. TaxDC: A Taxonomy of Non-Deterministic Concurrency Bugs in Datacenter Distributed Systems. In Proceedings of International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS). 517–530.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. 2023. Sequence-OrientedDBMS Fuzzing. In Proceedings of International Conference on Data Engineering (ICDE). 668–681.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting Logical Bugs of DBMS with Coverage-based Guidance. In Proceedings of USENIX Security Symposium (USENIX Security). 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. 2022. Automatic Detection of Performance Bugs in Database Systems using Equivalent Queries. In Proceedings of International Conference on Software Engineering (ICSE). 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Shan Lu, Soyeon Park, Eunsoo Seo, and Yuanyuan Zhou. 2008. Learning from Mistakes: A Comprehensive Study on Real World Concurrency Bug Characteristics. In Proceedings of International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS). 329–339.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "David Patrick Reed. 1978. Naming and Synchronization in a Decentralized Computer System. Technical Report.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 65,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 211:1–211:30.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 66,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 67,
+      "text": "Donald R. Slutz. 1998. Massive Stochastic Testing of SQL. In Proceedings of International Conference on Very Large Data Bases (VLDB). 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "Jiansen Song, Wensheng Dou, Ziyu Cui, Qianwang Dai, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2023. Testing Database Systems via Differential Query Execution. In Proceedings of International Conference on Software Engineering (ICSE). 2072–2084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "Xiaohui Song and Jane W-S Liu. 1990. Performance of Multiversion Concurrency Control Algorithms in Maintaining Temporal Consistency. In Proceedings of Annual International Computer Software and Applications Conference (COMPSAC). 132–139.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Chengnian Sun, Vu Le, Qirun Zhang, and Zhendong Su. 2016. Toward Understanding Compiler Bugs in GCC and LLVM. In Proceedings of International Symposium on Software Testing and Analysis (ISSTA). 294–305.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Cheng Tan, Changgeng Zhao, Shuai Mu, and Michael Walfish. 2020. Cobra: Making Transactional Key-Value Stores Verifiably Serializable. In Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI). 63–80.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Jie Wang, Wensheng Dou, Yu Gao, Chushu Gao, Feng Qin, Kang Yin, and Jun Wei. 2017. A Comprehensive Study on Real World Concurrency Bugs in Node.Js. InProceedings of International Conference on Automated Software Engineering (ASE). 520–531.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. 2021. Industry Practice of Coverage-Guided Enterprise-Level DBMS Fuzzing. In Proceedings of International Conference on Software Engineering (ICSESEIP). 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "Rui Yang, Yingying Zheng, Lei Tang, Wensheng Dou, Wei Wang, and Jun Wei. 2023. Randomized Differential Testing of RDF Stores. In Proceedings of International Conference on Software Engineering (ICSE Demo). 136–140.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "Xiangyao Yu, Andrew Pavlo, Daniel Sanchez, and Srinivas Devadas. 2016. TicToc: Time Traveling Optimistic Concurrency Control. In Proceedings of International Conference on Management of Data (SIGMOD). 1629–1642.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "Yingying Zheng, Wensheng Dou, Lei Tang, Ziyu Cui, Jiansen Song, Ziyue Cheng, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2024. Differential Optimization Testing of Gremlin-Based Graph Database Systems. In Proceedings of IEEE International Conference on Software Testing, Verification and Validation (ICST).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "Yingying Zheng, Wensheng Dou, Yicheng Wang, Zheng Qin, Lei Tang, Yu Gao, Dong Wang, Wei Wang, and Jun Wei. 2022. Finding Bugs in Gremlin-Based Graph Database Systems via Randomized Differential Testing. In Proceedings of International Symposium on Software Testing and Analysis (ISSTA). 302–313.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Proceedings of ACMSIGSAC Conference on Computer and Communications Security (CCS). 955–970. ADETAILED STUDY METHODOLOGY Due to the space limit, we cannot present the detailed process about our study methodology in Section ",
+      "is_sqlancer_publication": true
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 34,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In Proceedings of International Conference on Software Engineering (ICSE). 2060–2071.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 52,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI). 397–417.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 55,
+      "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. In Proceedings of International Symposium on Software Testing and Analysis (ISSTA). 140–149.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 64,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 65,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 211:1–211:30.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 66,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 78,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Proceedings of ACMSIGSAC Conference on Computer and Communications Security (CCS). 955–970. ADETAILED STUDY METHODOLOGY Due to the space limit, we cannot present the detailed process about our study methodology in Section 3. In this appendix, we provide some supplementary details about the TXBug collection and categorization process. Understanding Transaction Bugs in Database Systems ICSE ’24, April 14–20, 2024, Lisbon, Portugal A.1 Collecting TXBugs In our empirical study, we adopt the following process to identify relevant DBMSs and TXBugs. 1)To make our studied TXBugs representative, we select six welldeveloped and popular DBMSs as our target systems, i.e., MySQL [11] , PostgreSQL [ 14], SQLite [ 15], MariaDB [ 9], CockroachDB [5] , and TiDB [ 19]. These systems cover various types of DBMSs (i.e., traditional, embedded and distributed DBMSs), and a diverse set of transaction features (e.g., transaction types, isolation levels and concurrency control mechanisms). Among them, MySQL, PostgreSQL, SQLite and MariaDB are well-developed DBMSs and rank high in the DB-Engines Ranking (2nd, 4th, 10th and 13th, respectively). CockroachDB and TiDB are two popular distributed DBMSs in the open source community (ranked as 3rd and 5th among DBMSs in GitHub). 2)We manually collect issues that are potentially related to TXBugs from the above six DBMSs’ issue repositories. a)Our studied DBMSs usually evolve quickly. To keep our study results up-to-date, we only consider issues confirmed by DBMS developers in the last 5 years, i.e., from January 2018 to December 2022. b)Our target DBMSs contain a huge amount of issues, e.g., MySQL contains about 20,000 issues in the last 5 years. In these DBMSs, they usually do not label whether an issue is related to transaction bugs. It is also challenging and time-consuming to manually check all the reported issues. Therefore, we use the following keywords, i.e., “transaction”, “abort”, “commit”, “isolation level”, and their variations, to effectively collect potentially relevant issues in these DBMSs. This search returns us with 7,775 issues. 3)Note that the above search keywords are general and widely used in DBMSs. Although some issues contain our search keywords, they are unrelated to transaction processing mechanisms in fact. To exclude these issues that are not related to transaction processing mechanisms from our study, we manually inspect the bug description and developer comments for each retrieved issue, and check whether the issue is related to transaction processing mechanisms in DBMSs. We only keep the issues that are related to transaction processing mechanisms. In this step, we filter out 7,220 issues, and keep 555 issues for further investigation. 4)For each remaining issue, we carefully investigate its bug description, test cases, developer discussions and available fixing patches, and further rebuild its bug test case step by step, and use the following criteria to select TXBugs. a)We keep an issue as a TXBug if it needs at least one explicit transaction or XA transaction to trigger, or it needs at least two transactions to trigger. b)If a bug can be triggered by only one auto transaction, we do not consider it as a TXBug, since it usually belongs to transaction-unrelated bugs, e.g., logic bugs in single SELECT statements. c)To maintain the accuracy of our study results, we only keep TXBugs that we can completely understand. To maintain the accuracy of our study, each issue has been investigated by at least three authors. For each issue, its investigatorscarefully discuss it and reach a consensus. If we cannot reach a consensus about an issue after discussion, we also exclude it from our study. Finally, we obtain 140 TXBugs in our study. A.2 Categorizing TXBugs We adopt the open card sorting approach to build the categories for TXBugs’ triggering conditions, root causes, impacts and fixing. The basic categorization process is described as follows. 1)For each TXBug, we extract necessary information from its issue report, e.g., test cases, expected execution results, developer discussions, and available fixing patches, and then write down its test case step by step. All the information is cross-checked by at least three authors. 2)Each TXBug is labeled by at least three investigators (i.e., authors) independently. Each investigator tries to classify a TXBug into an existing category in a dimension (e.g., root cause and bug impact) according to the extracted information. If a bug cannot be classified into any existing category, the investigator creates a new category for it. 3)For each TXBug, its investigators discuss their categorization results and try to reach a consensus. If some investigators have disagreements about a TXBug’s categorization result, they reinvestigate it further until they reach a consensus. They also refine categories in this step if necessary. 4)To ensure correctness and consistency, step 3 and 4 are performed multiple rounds, until all investigators reach a consensus for all transaction bugs’ categorization results. Specifically, we apply the following process to categorize the studied transaction bugs. •Triggering conditions. Triggering conditions are usually hidden in a TXBug’s test case, e.g., the number of transactions and the types of the involved transactions. Each investigator extracts these triggering information from a bug’s test case, and classifies TXBugs according to these triggering information. •Root causes. For root causes, we try to answer the question “what transaction semantics does a transaction bug violate?”. We investigate root causes from a bug’s transaction test case, expected execution results and developers’ discussions. Initially, we create four categories related to ACID properties (i.e., atomicity violations, consistency violations, isolation violations and durability violations). During our investigation, we further reveal more categories, e.g., read-only constraint violations and statement correctness violations. These are surprising categories to us. We do not find any TXBugs for durability violations, so we delete this category in our study. •Impacts. For bug impacts, we try to answer the question “what consequences does a transaction bug cause?”. We investigate bug impacts from a bug’s transaction test case and developers’ discussions about the unexpected execution results of the test case. We also reproduce some TXBugs if possible, and observe their consequences. •Fixing. We extract necessary information from issue reports, and available fixing patches. Then, we classify TXBugs according to these information.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 8,39,44,45,52,56,71]",
+      "technique": null,
+      "sentence": "Some approaches have been proposed to verify and test transaction processing mechanisms in DBMSs [ 8,39,44,45,52,56,71].",
+      "context_before": "e., transaction bugs, which can cause DBMSs to violate their transaction semantics, e.g., their claimed ACID (Atomicity, Consistency, Isolation, and Durability) properties [ 1,35–37,40,41,43]. We call transaction bugs in DBMSs as TXBugs for short. TXBugs can cause severe consequences in DBMSs, and easily go unnoticed by DBMS developers. For example, we find that about a third of TXBugs can result in incorrect query results, database states and DBMS states. Considering that DBMSs are usually used to handle important data assets, it is critically important to better understand and detect TXBugs.",
+      "context_after": "Transaction verification approaches [ 8,39,56,71] verify whether transactions’ concurrent executions violate the claimed isolation constraints. These approaches can only utilize simple data structures, e.g., 𝑘𝑒𝑦−𝑣𝑎𝑙𝑢𝑒, and cannot support the rich and complex features in modern DBMSs, e.g., partition configurations for data sharding. For transaction testing, DT2[44] utilizes differential testing to detect TXBugs, which cannot handle DBMS-specific features. Troc [ 45] detects TXBugs by decoupling a pair of transactions into independent statements and building test oracles for transactions. Howe",
+      "section": "1 INTRODUCTION",
+      "page": 1,
+      "char_offset": 4652,
+      "cited_reference": {
+        "number": 52,
+        "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI). 397–417.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[ 64–66]",
+      "technique": "norec",
+      "sentence": ", logic bugs in single SELECT statements [ 64–66].",
+      "context_before": "92.9%) issues do not involve transaction processing mechanisms. We exclude these issues from our study. For each remaining issue, we carefully investigate its description, embedded test cases, developer discussions and available fixing patches, and further rebuild its bug test case step by step. We keep an issue as a TXBug if it needs at least one explicit transaction or XA transaction to trigger, or it needs at least two transactions to trigger. If a bug can be triggered by only one auto transaction, we do not consider it as a TXBug, since it usually belongs to transactionunrelated bugs, e.g.",
+      "context_after": "To maintain the accuracy of our study results, we only keep TXBugs that we can completely understand. We finally collect 140 TXBugs from our studied DBMSs. Table 2 shows the detailed statistics from their isolation levels and concurrency control mechanisms. We can see that these TXBugs cover various isolation levels and concurrency control mechanisms. 3.3 Analyzing TXBugs To answer our five research questions, we perform an in-depth analysis on these 140 TXBugs based on their issue descriptions, embedded test cases, developer discussions, and available fixing patches, and further assign them",
+      "section": "3.2 Collecting TXBugs",
+      "page": 3,
+      "char_offset": 17020,
+      "cited_reference": {
+        "number": 64,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[ 17,34,49,\n51,54,55,59–61,64–68,73,74,77,78]",
+      "technique": "qpg",
+      "sentence": "Although many approaches have been proposed for DBMS testing [ 17,34,49, 51,54,55,59–61,64–68,73,74,77,78], there are only few works for transaction testing in DBMSs [ 44,45].",
+      "context_before": "constraint and statement correctness under transactions. Existing verification approaches [ 8,39,56,71] mainly focus on detecting insufficient isolation violations, while DT2[44] and Troc [ 45] can further detect some other violations except insufficient isolation violations, e.g., consistency violations. However, these approaches cannot detect some types of our studied TXBugs, e.g., atomicity and read-only constraint violations. Our community urgently needs to invest more effort to combat more types of TXBugs. 9.2 Transaction Testing Software testing plays an important role in exposing bugs.",
+      "context_after": "Our study provides guidance that can be exploited by transaction testing from several aspects. Transaction test case generation. A well-designed transaction test case generation approach can greatly improve the effectiveness of exposing TXBugs. We find that transaction test cases that trigger TXBugs are extremely diverse. Transaction test cases should consider specific database properties (Finding 3), multiple types of transactions (Finding 4), and various types of SQL statements (Finding 5). However, existing approaches, e.g., Cobra [ 71] and Elle [56], can only generate transactions that us",
+      "section": "9.2 Transaction Testing",
+      "page": 10,
+      "char_offset": 56009,
+      "cited_reference": {
+        "number": 34,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In Proceedings of International Conference on Software Engineering (ICSE). 2060–2071.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker",
+      "surface": "[ 17,34,49,51,54,55,59–\n61,64–68,73,74,76–78]",
+      "technique": "qpg",
+      "sentence": "Some techniques have been proposed to combat logic and crash bugs in DBMSs [ 17,34,49,51,54,55,59– 61,64–68,73,74,76–78].",
+      "context_before": "inds of bugs, e.g., concurrency bugs [ 58,62,72], crash / network partition recovery bugs in distributed systems [ 32,33,46], compiler bugs in GCC and LLVM [ 70], bugs in deep learning systems [ 42,47] and bugs in cloud systems [ 48]. These empirical studies have motivated researchers to develop various techniques to combating related bugs. In our study, we adopt similar study methodologies to existing studies in the process of bug selection, bug analysis, and bug categorization. To the best of our knowledge, our work is the first comprehensive study on TXBugs in DBMSs. Bug detection in DBMSs.",
+      "context_after": "SQLsmith [ 17] detects DBMS bugs by generating random SQL statements. RAGS [ 67] utilizes differential testing to find bugs in DBMSs. SQLancer [ 64–66] detects logic bugs in single SELECT statements. Squirrel [ 78] presents a fuzzing framework to find bugs in DBMSs. Grand [ 77] and DOT [ 76] present differential testing approaches to find logic bugs in graph database systems (GDBs). These approaches mainly focus on detecting bugs in single SELECT statements, and cannot detect TXBugs in DBMSs. 11 CONCLUSION Incorrect designs and implementations in DBMSs’ transaction processing mechanisms can i",
+      "section": "9.5 TXBug Diagnosis",
+      "page": 11,
+      "char_offset": 62630,
+      "cited_reference": {
+        "number": 34,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In Proceedings of International Conference on Software Engineering (ICSE). 2060–2071.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [ 64–66] detects logic bugs in single SELECT statements.",
+      "context_before": "es have motivated researchers to develop various techniques to combating related bugs. In our study, we adopt similar study methodologies to existing studies in the process of bug selection, bug analysis, and bug categorization. To the best of our knowledge, our work is the first comprehensive study on TXBugs in DBMSs. Bug detection in DBMSs. Some techniques have been proposed to combat logic and crash bugs in DBMSs [ 17,34,49,51,54,55,59– 61,64–68,73,74,76–78]. SQLsmith [ 17] detects DBMS bugs by generating random SQL statements. RAGS [ 67] utilizes differential testing to find bugs in DBMSs.",
+      "context_after": "Squirrel [ 78] presents a fuzzing framework to find bugs in DBMSs. Grand [ 77] and DOT [ 76] present differential testing approaches to find logic bugs in graph database systems (GDBs). These approaches mainly focus on detecting bugs in single SELECT statements, and cannot detect TXBugs in DBMSs. 11 CONCLUSION Incorrect designs and implementations in DBMSs’ transaction processing mechanisms can introduce transaction bugs, which lead to severe consequences. We conduct the first in-depth study on 140 transaction bugs from six popular DBMSs. From our study, we obtain many interesting findings an",
+      "section": "9.5 TXBug Diagnosis",
+      "page": 11,
+      "char_offset": 62886,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 78]",
+      "technique": null,
+      "sentence": "Squirrel [ 78] presents a fuzzing framework to find bugs in DBMSs.",
+      "context_before": "bating related bugs. In our study, we adopt similar study methodologies to existing studies in the process of bug selection, bug analysis, and bug categorization. To the best of our knowledge, our work is the first comprehensive study on TXBugs in DBMSs. Bug detection in DBMSs. Some techniques have been proposed to combat logic and crash bugs in DBMSs [ 17,34,49,51,54,55,59– 61,64–68,73,74,76–78]. SQLsmith [ 17] detects DBMS bugs by generating random SQL statements. RAGS [ 67] utilizes differential testing to find bugs in DBMSs. SQLancer [ 64–66] detects logic bugs in single SELECT statements.",
+      "context_after": "Grand [ 77] and DOT [ 76] present differential testing approaches to find logic bugs in graph database systems (GDBs). These approaches mainly focus on detecting bugs in single SELECT statements, and cannot detect TXBugs in DBMSs. 11 CONCLUSION Incorrect designs and implementations in DBMSs’ transaction processing mechanisms can introduce transaction bugs, which lead to severe consequences. We conduct the first in-depth study on 140 transaction bugs from six popular DBMSs. From our study, we obtain many interesting findings and lessons. We believe that our study can be beneficial for DBMS and",
+      "section": "9.5 TXBug Diagnosis",
+      "page": 11,
+      "char_offset": 62952,
+      "cited_reference": {
+        "number": 78,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Proceedings of ACMSIGSAC Conference on Computer and Communications Security (CCS). 955–970. ADETAILED STUDY METHODOLOGY Du",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:20:36Z",
+    "is_model_written": true,
+    "summary": "The first comprehensive study of transaction bugs in DBMSs, based on 140 bugs collected from MySQL, PostgreSQL, SQLite, MariaDB, CockroachDB and TiDB. The authors examine how the bugs manifest, their root causes, their impact -- incorrect database states and crashes among them -- and how they were fixed, arguing that understanding real transaction bugs is what effective detection techniques must be built on.",
+    "narrative": "SQLancer is cited as the work on logic bugs in single SELECT statements, which the authors distinguish from the transaction bugs they collect: the boundary that defines their dataset.",
+    "roles": {
+      "M1": "background",
+      "M2": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

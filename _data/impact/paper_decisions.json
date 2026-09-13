@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Decisions about paper records that automatic deduplication could not settle. Same authors and similar titles do not distinguish one work indexed twice from two works by one group, so each of these was read and decided, and the reason is recorded so the pair is not raised again.",
+  "same_work": [
+    {
+      "ids": [
+        "paper:doi:10.1145/3729175",
+        "paper:doi:10.1145/3712057"
+      ],
+      "canonical": "paper:doi:10.1145/3729175",
+      "reason": "One article published twice by ACM: 'Systems Correctness Practices at AWS' in Queue (2024) and 'at Amazon Web Services' in CACM (2025), same authors and same content. Automatic merging did not fire because both are published versions rather than a preprint and its paper."
+    },
+    {
+      "ids": [
+        "paper:doi:10.14778/3712221.3712247",
+        "paper:arxiv:2406.09469"
+      ],
+      "canonical": "paper:doi:10.14778/3712221.3712247",
+      "reason": "The PVLDB paper and its own preprint: the same Prolog implementation of SQL's denotational semantics used as a reference for differential testing, reporting the same 19 bugs. The published version rewrote the abstract and grew from four systems to six, so the abstracts score 0.04 alike and the automatic rule correctly declined to decide."
+    },
+    {
+      "ids": [
+        "paper:doi:10.1145/3650212.3680318",
+        "paper:s2:1b209b2da737fd26c50a2cb9116c73c9d1db904e"
+      ],
+      "canonical": "paper:doi:10.1145/3650212.3680318",
+      "reason": "One work indexed twice: the 2022 record is an earlier version of the 2024 ISSTA paper. Both are DBStorm, both generate workloads for transaction testing, and both measure validity and code coverage against the same three baselines -- SQLsmith and SQLancer as generation-based, Squirrel as mutation-based. The related-work sentence survives the rewrite: 'SQLancer [37] generates queries to fetch a specific target row' became 'SQLancer [60] creates a query that would fetch a target data to detect logical bug', renumbered for a new bibliography. An earlier note here claimed they were different work on the grounds that the 2022 sentences do not appear in the 2024 PDF, which shows only that the paper was rewritten. The automatic check could not compare them because the 2022 record carries no authors."
+    }
+  ],
+  "different_work": [
+    {
+      "ids": [
+        "paper:arxiv:2606.11132",
+        "paper:doi:10.1145/3803437.3806090"
+      ],
+      "reason": "Same authors and year, but two papers: the arXiv record is DiscPBT, a property-based testing engine for Spark with eight meta-properties and an evaluation against CometFuzz, while the ACM record is a short position paper arguing that data-intensive systems need property-based testing at all."
+    },
+    {
+      "ids": [
+        "paper:doi:10.1145/3597926.3598052",
+        "paper:doi:10.1145/3468264.3468573"
+      ],
+      "reason": "Two papers by one group on Datalog engines: the 2021 paper introduced metamorphic testing for them, and the 2023 paper builds on it using precedence information among relations, describing the earlier work as what it improves upon."
+    }
+  ]
+}

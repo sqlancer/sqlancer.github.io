@@ -1,0 +1,665 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:30:47Z",
+  "paper": {
+    "id": "paper:doi:10.1109/icse55347.2025.00045",
+    "title": "PUPPY: Finding Performance Degradation Bugs in DBMSs via Limited-Optimization Plan Construction",
+    "authors": [
+      "Zhiyong Wu",
+      "Jie Liang",
+      "Jingzhou Fu",
+      "Mingzhe Wang",
+      "Yu Jiang"
+    ],
+    "year": 2025,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1109/icse55347.2025.00045",
+    "arxiv_id": null,
+    "s2_paper_id": "263f26b2c7bca1d7ba82ab98f0824bcc5b291181",
+    "url": "https://doi.org/10.1109/icse55347.2025.00045",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/icse55347.2025.00045",
+      "retrieved_at": "2026-09-09T01:30:47Z",
+      "chars": 64807,
+      "content_sha256": "sha256:b46f16ba2aaef1f2145a22dde44ff0399e007d16273148374629670d764c6631"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 2236
+      },
+      {
+        "number": "II",
+        "title": "PERFORMANCE DEGRADATION BUGS",
+        "start": 9481
+      },
+      {
+        "number": "A",
+        "title": "Optimization-Guided SQL Synthesis",
+        "start": 16215
+      },
+      {
+        "number": "B",
+        "title": "Execution-Driven Limited Optimization Plan Construction",
+        "start": 21948
+      },
+      {
+        "number": "A",
+        "title": "Evaluation Setup",
+        "start": 34445
+      },
+      {
+        "number": "B",
+        "title": "DBMS Performance Degradation Bug Detection",
+        "start": 35035
+      },
+      {
+        "number": "C",
+        "title": "Compare with Other Techniques",
+        "start": 42381
+      },
+      {
+        "number": "D",
+        "title": "Efficiency of the Optimization Guided Algorithm",
+        "start": 44841
+      },
+      {
+        "number": "A",
+        "title": "DBMS Fuzzing",
+        "start": 50898
+      },
+      {
+        "number": "B",
+        "title": "DBMS Performance Testing",
+        "start": 53040
+      },
+      {
+        "number": "C",
+        "title": "DBMS Configuration Tuning",
+        "start": 53925
+      },
+      {
+        "number": "W",
+        "title": "APOLLO: Automatic Detection and Diagnosis of",
+        "start": 58793
+      },
+      {
+        "number": "J",
+        "title": "Sequence-oriented dbms fuzzing. In",
+        "start": 59484
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Mysql. https://www.mysql.com/. Accessed: August 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Polardb documentation. https://www.alibabacloud.com/ help/en. Accessed: August 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Polardb github. https://github.com/polardb/polardbx-sql. Accessed: August 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Postgresql. https://www.postgresql.org/. Accessed: August 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "B A, J., ANDRIGGER, M. Testing database engines via query plan guidance. In Proceedings of International Conference on Software Engineering (ICSE) (2023).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 6,
+      "text": "BANNISTER, A. Sqlite patches use-after-free bug that left apps open to code execution, denial-of-service exploits. https://portswigger.net/daily-swig/sqlitepatches-use-after-free-bug-that-left-apps-open-to-codeexecution-denial-of-service-exploits, 5 2021. Accessed: August 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "B L˚AUDD, A. M. Percona website. https:// www.percona.com/. Accessed: August 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "CIMPANU, C. Google chrome impacted by new magellan 2.0 vulnerabilities. https: //www.zdnet .com/article/google-chrome-impacted-bynew-magellan-2-0-vulnerabilities/, 12 2019. Accessed: August 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "COMMUNITY, P. Postgresql bug list. https:// www.postgresql.org/. Accessed: August 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "DIAS, K., RAMACHER, M., SHAFT, U., VENKATARA MANI, V., ANDWOOD, G. Automatic performance diagnosis and tuning in oracle. In CIDR (2005), pp. 84– 94.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "DUAN, S., THUMMALA, V., ANDBABU, S. Tuning database configuration parameters with ituned. Proceedings of the VLDB Endowment 2, 1 (2009), 1246–1257.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "F U, J., LIANG, J., W U, Z., ANDJIANG, Y. Sedar: Obtaining high-quality seeds for dbms fuzzing via crossdbms sql transfer. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering (2024), pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "F U, J., LIANG, J., W U, Z., WANG, M., ANDJIANG, Y. Griffin: Grammar-free dbms fuzzing. In Conference on Automated Software Engineering (ASE’22) (2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "GROUP, T. P. G. D. Using explain. https: //www.postgresql.org/docs/current/using-explain.html, 1 2024. Accessed: August 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "HUANG, D., LIU, Q., CUI, Q., FANG, Z., M A, X., X U, F., SHEN, L., TANG, L., ZHOU, Y., HUANG, M., ETAL. Tidb: a raft-based htap database. Proceedings of the VLDB Endowment 13, 12 (2020), 3072–3084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "IOANNIDIS, Y. E. Query optimization. ACM Computing Surveys (CSUR) 28, 1 (1996), 121–123.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "JARKE, M., ANDKOCH, J. Query optimization in database systems. ACM Computing surveys (CsUR) 16, 2 (1984), 111–152.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "JIANG, Z.-M., BAI, J.-J., ANDSU, Z. Dynsql: Stateful fuzzing for database management systems with complex and valid sql query generation, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "JUNG, J., H U, H., ARULRAJ, J., KIM, T., ANDKANG, W. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems (to appear). In Proceedings of the 46th International Conference on Very Large Data Bases (VLDB) (Tokyo, Japan, Aug. 2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "LAN, H., BAO, Z., ANDPENG, Y. A survey on advancing the dbms query optimizer: Cardinality estimation, cost model, and plan enumeration. Data Science and Engineering 6, 1 (2021), 86–101.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "L I, G., ZHOU, X., L I, S., ANDGAO, B. Qtune: A queryaware database tuning system with deep reinforcement learning. Proceedings of the VLDB Endowment 12, 12 (2019), 2118–2130.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "LIANG, J., CHEN, Y., W U, Z., F U, J., WANG, M., JIANG, Y., HUANG, X., CHEN, T., WANG, J., ANDLI, J. Sequence-oriented dbms fuzzing. In IEEE.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "LIANG, J., WANG, M., ZHOU, C., W U, Z., JIANG, Y., LIU, J., LIU, Z., ANDSUN, J. Pata: Fuzzing with path aware taint analysis. In 2022 Security and Privacy (SP)(SP). IEEE Computer Society, Los Alamitos, CA, USA. 154 ´s170 (2022). 689",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "LIANG, J., W U, Z., F U, J., BAI, Y., ZHANG, Q., ANDJIANG, Y.{WingFuzz}: Implementing continuous fuzzing for {DBMSs}. In 2024 USENIX Annual Technical Conference (USENIX ATC 24) (2024), pp. 479–492.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "LIU, X., ZHOU, Q., ARULRAJ, J., ANDORSO, A. Automatic detection of performance bugs in database systems using equivalent queries.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "LIU, X., ZHOU, Q., ARULRAJ, J., ANDORSO, A. Automatic detection of performance bugs in database systems using equivalent queries. In Proceedings of the 44th International Conference on Software Engineering (2022), pp. 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "LUO, Z., ZUO, F., JIANG, Y., GAO, J., JIAO, X., ANDSUN, J. Polar: Function code aware fuzz testing of ICS protocol. ACM Trans. Embed. Comput. Syst. 18, 5s (2019), 93:1–93:22.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "LUO, Z., ZUO, F., SHEN, Y., JIAO, X., CHANG, W., ANDJIANG, Y. Ics protocol fuzzing: coverage guided packet crack and generation. In 2020 57th ACM/IEEE Design Automation Conference (DAC) (2020), IEEE, pp. 1–6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "MOMJIAN, B. PostgreSQL: introduction and concepts, vol. 192. Addison-Wesley New York, 2001.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Understanding the query execution plan. https://dev.mysql.com/doc/refman/8.0/en/executionplan-information.html, 1 2024. Accessed: August 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "NARAYANAN, D., THERESKA, E., ANDAILAMAKI, A. Continuous resource monitoring for self-predicting dbms. In13th IEEE International Symposium on Modeling, Analysis, and Simulation of Computer and Telecommunication Systems (2005), IEEE, pp. 239–248.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "ORACLE. Mysql explain manual. https://dev.mysql.com/ doc/refman/8.0/en/using-explain.html. Accessed: August 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "ORACLE. Mysql bug list. https://bugs.mysql.com/, 1 2014. Accessed: August 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Continuous fuzzing for open source software. https://opensource.googleblog.com/2016/12/announcingoss-fuzz-continuous-fuzzing.html, 2016. Accessed: August 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "PINGCAP. Tidb. https://github.com/pingcap/tidb. Accessed: August 19, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "RAMAKRISHNAN, R., GEHRKE, J., ANDGEHRKE, J. Database management systems, vol. 3. McGraw-Hill New York, 2003.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "RIGGER, M. Bugs found in database management systems. https://www.manuelrigger.at/dbms-bugs, 2024. Accessed: August 19, 2024.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 38,
+      "text": "RIGGER, M., ANDSU, Z. Finding bugs in database systems via query partitioning. pacmpl 4 (oopsla)(nov 2020).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 39,
+      "text": "RIGGER, M., ANDSU, Z. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference andSymposium on the Foundations of Software Engineering (2020), pp. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 40,
+      "text": "RIGGER, M., ANDSU, Z. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20) (2020), pp. 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 41,
+      "text": "SELTENREICH, A., TANG, B., ANDMULLENDER, S. Sqlsmith: a random sql query generator.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "STORM, A. J., GARCIA-ARELLANO, C., LIGHTSTONE, S. S., DIAO, Y., ANDSURENDRA, M. Adaptive selftuning memory in db2. In Proceedings of the 32nd international conference on Very large data bases (2006), pp. 1081–1092.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "SUN, H., SHEN, Y., WANG, C., LIU, J., JIANG, Y., CHEN, T., ANDCUI, A. HEALER: relation learning guided kernel fuzzing. In SOSP ’21: ACMSIGOPS 28th Symposium on Operating Systems Principles, Virtual Event / Koblenz, Germany, October 26-29, 2021 (2021), R. van Renesse and N. Zeldovich, Eds., ACM, pp. 344– 358.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "VANAKEN, D., PAVLO, A., GORDON, G. J., ANDZHANG, B. Automatic database management system tuning through large-scale machine learning. In Proceedings of the 2017 ACM international conference on management of data (2017), pp. 1009–1024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "VERSHININ, I., ANDMUSTAFINA, A. Performance analysis of postgresql, mysql, microsoft sql server systems based on tpc-h tests. In 2021 International Russian Automation Conference (RusAutoCon) (2021), IEEE, pp. 683–687.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "WANG, M., W U, Z., X U, X., LIANG, J., ZHOU, C., ZHANG, H., ANDJIANG, Y. Industry practice of coverage-guided enterprise-level dbms fuzzing. In Engineering: Software Engineering in Practice (ICSESEIP) (2021), IEEE, pp. 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "WIDENIUS, M., AXMARK, D., ANDARNO, K. MySQL reference manual: documentation from the source. ” O’Reilly Media, Inc.”, 2002.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "W U, Z., LIANG, J., WANG, M., ZHOU, C., ANDJIANG, Y. Unicorn: Detect runtime errors in time-series databases with hybrid input synthesis. In Symposium on Software Testing and Analysis (ISSTA’22) (2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "X I, B., LIU, Z., RAGHAVACHARI, M., XIA, C. H., ANDZHANG, L. A smart hill-climbing algorithm for application server configuration. In Proceedings of the 13th international conference on World Wide Web (2004), pp. 287–296.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "YAGOUB, K., BELKNAP, P., DAGEVILLE, B., DIAS, K., JOSHI, S., ANDYU, H. Oracle’s sql performance analyzer. IEEE Data Eng. Bull. 31, 1 (2008), 51–58.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "ZHONG, R., CHEN, Y., H U, H., ZHANG, H., LEE, W., ANDWU, D. Squirrel: Testing database management systems with language validity and coverage feedback. In The ACM Conference on Computer and Communications Security (CCS), 2020 (2020). 690",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 5,
+      "text": "B A, J., ANDRIGGER, M. Testing database engines via query plan guidance. In Proceedings of International Conference on Software Engineering (ICSE) (2023).",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 37,
+      "text": "RIGGER, M. Bugs found in database management systems. https://www.manuelrigger.at/dbms-bugs, 2024. Accessed: August 19, 2024.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 38,
+      "text": "RIGGER, M., ANDSU, Z. Finding bugs in database systems via query partitioning. pacmpl 4 (oopsla)(nov 2020).",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 39,
+      "text": "RIGGER, M., ANDSU, Z. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference andSymposium on the Foundations of Software Engineering (2020), pp. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 40,
+      "text": "RIGGER, M., ANDSU, Z. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20) (2020), pp. 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[6, 8, 37, 9, 33]",
+      "technique": null,
+      "sentence": "Ensuring the efficiency of DBMSs is crucial as it directly influences the responsiveness, scalability, and user satisfaction of dependent applications [6, 8, 37, 9, 33].",
+      "context_before": "coverage. Secondly, PUPPY analyzes the query plan and selectively disables specific optimizations to construct the limited optimization plan. We evaluate PUPPY on five widely-used DBMSs, namely MySQL, Percona, TiDB, PolarDB, and PostgreSQL against the state-ofthe-art DBMS performance testing tools APOLLO and AMOEBA. More importantly, PUPPY reports 62 PDBs, with 54 anomalies confirmed as previously unknown bugs. I. INTRODUCTION Database Management Systems (DBMSs) serve as the backbone for various applications, ranging from simple web applications to complex, large-scale enterprise systems [36].",
+      "context_after": "To meet the growing performance demands, the query optimizer in the DBMS is specifically designed. This component incorporates amounts of sophisticated optimizations for query execution and is considered the most crucial component in the system [17]. The primary objective of the query optimizer ∗Zhiyong Wu and Jie Liang contributed equally to this work.†Yu Jiang are the corresponding author.is to determine the most efficient execution plan for a given query [20]. It aims to minimize the overall time cost of query execution. The plan generated by the query optimizer is typically represented as",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 2421,
+      "cited_reference": {
+        "number": 37,
+        "text": "RIGGER, M. Bugs found in database management systems. https://www.manuelrigger.at/dbms-bugs, 2024. Accessed: August 19, 2024.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "To further evaluate the performance of PUPPY, we also compare PUPPY with SQLancer, SQLsmith, and SQUIRREL, which are widely used in industry.",
+      "context_before": "es also decreased. In the table, we observe that when the threshold is raised from 1.2 to 1.5, false positives decrease by 80%, while true positives decrease by only 1. In cases where human resources are abundant, a lower threshold can be set, allowing for manual verification even with a higher occurrence of false positives. However, in our experiments, to minimize false positives while capturing more genuine issues, we opted for a threshold of 1.5. Compare With Other DBMS Testing Tools. In Section V-C, we compare PUPPY with APOLLO and AMOEBA to evaluate its ability to detect performance bugs.",
+      "context_after": "Table VII shows the number of detected bugs by each tool in 48 hours. It shows that PUPPY outperforms SQLancer and SQLsmith in detecting bugs. Specifically, PUPPY detect detected a total of 35 bugs (including 30 performance bugs and 5 crash bugs) in 48 hours, while SQLancer, SQLsmith and SQUIRREL only detected 29, 31, and 30 bugs in total. TABLE VIIDETECTED BUGS BY SQLANCER, SQLSMITH ANDPUPPY IN 48HOURS. DBMS SQLancer SQLsmith SQUIRREL PUPPY MySQL 2 1 2 11 Percona 2 1 1 9 T iDB 1 0 0 5 PolarDB 1 1 2 8 PostgreSQL 0 1 0 2 T otal 6 4 5 35 VII. RELATED WORK A. DBMS Fuzzing Fuzzing is an automated",
+      "section": "D Efficiency of the Optimization Guided Algorithm",
+      "page": 10,
+      "char_offset": 50195,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "It shows that PUPPY outperforms SQLancer and SQLsmith in detecting bugs.",
+      "context_before": ", a lower threshold can be set, allowing for manual verification even with a higher occurrence of false positives. However, in our experiments, to minimize false positives while capturing more genuine issues, we opted for a threshold of 1.5. Compare With Other DBMS Testing Tools. In Section V-C, we compare PUPPY with APOLLO and AMOEBA to evaluate its ability to detect performance bugs. To further evaluate the performance of PUPPY, we also compare PUPPY with SQLancer, SQLsmith, and SQUIRREL, which are widely used in industry. Table VII shows the number of detected bugs by each tool in 48 hours.",
+      "context_after": "Specifically, PUPPY detect detected a total of 35 bugs (including 30 performance bugs and 5 crash bugs) in 48 hours, while SQLancer, SQLsmith and SQUIRREL only detected 29, 31, and 30 bugs in total. TABLE VIIDETECTED BUGS BY SQLANCER, SQLSMITH ANDPUPPY IN 48HOURS. DBMS SQLancer SQLsmith SQUIRREL PUPPY MySQL 2 1 2 11 Percona 2 1 1 9 T iDB 1 0 0 5 PolarDB 1 1 2 8 PostgreSQL 0 1 0 2 T otal 6 4 5 35 VII. RELATED WORK A. DBMS Fuzzing Fuzzing is an automated software testing technique, which generates random data as program inputs. It has been widely adopted in practice for finding bugs in many cri",
+      "section": "D Efficiency of the Optimization Guided Algorithm",
+      "page": 10,
+      "char_offset": 50407,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, PUPPY detect detected a total of 35 bugs (including 30 performance bugs and 5 crash bugs) in 48 hours, while SQLancer, SQLsmith and SQUIRREL only detected 29, 31, and 30 bugs in total.",
+      "context_before": "h a higher occurrence of false positives. However, in our experiments, to minimize false positives while capturing more genuine issues, we opted for a threshold of 1.5. Compare With Other DBMS Testing Tools. In Section V-C, we compare PUPPY with APOLLO and AMOEBA to evaluate its ability to detect performance bugs. To further evaluate the performance of PUPPY, we also compare PUPPY with SQLancer, SQLsmith, and SQUIRREL, which are widely used in industry. Table VII shows the number of detected bugs by each tool in 48 hours. It shows that PUPPY outperforms SQLancer and SQLsmith in detecting bugs.",
+      "context_after": "TABLE VIIDETECTED BUGS BY SQLANCER, SQLSMITH ANDPUPPY IN 48HOURS. DBMS SQLancer SQLsmith SQUIRREL PUPPY MySQL 2 1 2 11 Percona 2 1 1 9 T iDB 1 0 0 5 PolarDB 1 1 2 8 PostgreSQL 0 1 0 2 T otal 6 4 5 35 VII. RELATED WORK A. DBMS Fuzzing Fuzzing is an automated software testing technique, which generates random data as program inputs. It has been widely adopted in practice for finding bugs in many critical areas, including operating systems [43], networking protocols [28, 27], third-part libraries [34, 23], and DBMS. DBMS Fuzzing is an effective technique for finding bugs in DBMSs. It could be di",
+      "section": "D Efficiency of the Optimization Guided Algorithm",
+      "page": 10,
+      "char_offset": 50480,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "TABLE VIIDETECTED BUGS BY SQLANCER, SQLSMITH ANDPUPPY IN 48HOURS.",
+      "context_before": "g Tools. In Section V-C, we compare PUPPY with APOLLO and AMOEBA to evaluate its ability to detect performance bugs. To further evaluate the performance of PUPPY, we also compare PUPPY with SQLancer, SQLsmith, and SQUIRREL, which are widely used in industry. Table VII shows the number of detected bugs by each tool in 48 hours. It shows that PUPPY outperforms SQLancer and SQLsmith in detecting bugs. Specifically, PUPPY detect detected a total of 35 bugs (including 30 performance bugs and 5 crash bugs) in 48 hours, while SQLancer, SQLsmith and SQUIRREL only detected 29, 31, and 30 bugs in total.",
+      "context_after": "DBMS SQLancer SQLsmith SQUIRREL PUPPY MySQL 2 1 2 11 Percona 2 1 1 9 T iDB 1 0 0 5 PolarDB 1 1 2 8 PostgreSQL 0 1 0 2 T otal 6 4 5 35 VII. RELATED WORK A. DBMS Fuzzing Fuzzing is an automated software testing technique, which generates random data as program inputs. It has been widely adopted in practice for finding bugs in many critical areas, including operating systems [43], networking protocols [28, 27], third-part libraries [34, 23], and DBMS. DBMS Fuzzing is an effective technique for finding bugs in DBMSs. It could be divided into generation-based fuzzing or mutation-based fuzzing. Gen",
+      "section": "D Efficiency of the Optimization Guided Algorithm",
+      "page": 10,
+      "char_offset": 50679,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "DBMS SQLancer SQLsmith SQUIRREL PUPPY MySQL 2 1 2 11 Percona 2 1 1 9 T iDB 1 0 0 5 PolarDB 1 1 2 8 PostgreSQL 0 1 0 2 T otal 6 4 5 35 VII.",
+      "context_before": "o evaluate its ability to detect performance bugs. To further evaluate the performance of PUPPY, we also compare PUPPY with SQLancer, SQLsmith, and SQUIRREL, which are widely used in industry. Table VII shows the number of detected bugs by each tool in 48 hours. It shows that PUPPY outperforms SQLancer and SQLsmith in detecting bugs. Specifically, PUPPY detect detected a total of 35 bugs (including 30 performance bugs and 5 crash bugs) in 48 hours, while SQLancer, SQLsmith and SQUIRREL only detected 29, 31, and 30 bugs in total. TABLE VIIDETECTED BUGS BY SQLANCER, SQLSMITH ANDPUPPY IN 48HOURS.",
+      "context_after": "RELATED WORK A. DBMS Fuzzing Fuzzing is an automated software testing technique, which generates random data as program inputs. It has been widely adopted in practice for finding bugs in many critical areas, including operating systems [43], networking protocols [28, 27], third-part libraries [34, 23], and DBMS. DBMS Fuzzing is an effective technique for finding bugs in DBMSs. It could be divided into generation-based fuzzing or mutation-based fuzzing. Generation-based fuzzing generates SQL queries based on pre-defined syntax or grammar models. SQLsmith [41] generates queries based on built-i",
+      "section": "D Efficiency of the Optimization Guided Algorithm",
+      "page": 10,
+      "char_offset": 50745,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [40, 39, 38] aims to find logic bugs and it generates queries based on the test oracle it builds.",
+      "context_before": "esting technique, which generates random data as program inputs. It has been widely adopted in practice for finding bugs in many critical areas, including operating systems [43], networking protocols [28, 27], third-part libraries [34, 23], and DBMS. DBMS Fuzzing is an effective technique for finding bugs in DBMSs. It could be divided into generation-based fuzzing or mutation-based fuzzing. Generation-based fuzzing generates SQL queries based on pre-defined syntax or grammar models. SQLsmith [41] generates queries based on built-in code that embeds the AST generation rules for the target DBMS.",
+      "context_after": "Mutation-based fuzzers mutate existing queries to produce new queries. SQUIRREL [51], LEGO [22] and Ratel [46] mutates queries based on their AST structure. DynSQL [18] captures DBMS state information for each statement to incrementally generate complex and valid SQL queries. GRIFFIN[13] introduces a grammar-free way to reshuffle existing statements from different queries and then repairs their semantic correctness by tracking database schema. Sedar [12] import the LLM help transfer the existing test cases for fuzzing. QPG [5] gradually mutates DDL and DML statements to change database states,",
+      "section": "A DBMS Fuzzing",
+      "page": 10,
+      "char_offset": 51548,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "QPG [5] gradually mutates DDL and DML statements to change database states, aiming to cover more unique query plans to cover more DBMS logic.",
+      "context_before": "find logic bugs and it generates queries based on the test oracle it builds.Mutation-based fuzzers mutate existing queries to produce new queries. SQUIRREL [51], LEGO [22] and Ratel [46] mutates queries based on their AST structure. DynSQL [18] captures DBMS state information for each statement to incrementally generate complex and valid SQL queries. GRIFFIN[13] introduces a grammar-free way to reshuffle existing statements from different queries and then repairs their semantic correctness by tracking database schema. Sedar [12] import the LLM help transfer the existing test cases for fuzzing.",
+      "context_after": "Unicorn [48] detects the implicit exceptions in the time-series database with hybrid input synthesis. WingFuzz [24] implements continuous fuzzing for DBMS. PUPPY could be regarded as a generation-based fuzzer. Different from other generation-based fuzzers, PUPPY generates SQL queries that incorporate a diverse range of optimization strategies. It utilizes optimization operation sequence coverage to guide the process of inserting different SQL clauses into the queries. Compared to QPG which utilizes plan-based guidance, using the sequence of optimization operations within the plan offers a fin",
+      "section": "A DBMS Fuzzing",
+      "page": 10,
+      "char_offset": 52179,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "Compared to QPG which utilizes plan-based guidance, using the sequence of optimization operations within the plan offers a finer-grained form of guidance.",
+      "context_before": "lly mutates DDL and DML statements to change database states, aiming to cover more unique query plans to cover more DBMS logic. Unicorn [48] detects the implicit exceptions in the time-series database with hybrid input synthesis. WingFuzz [24] implements continuous fuzzing for DBMS. PUPPY could be regarded as a generation-based fuzzer. Different from other generation-based fuzzers, PUPPY generates SQL queries that incorporate a diverse range of optimization strategies. It utilizes optimization operation sequence coverage to guide the process of inserting different SQL clauses into the queries.",
+      "context_after": "This enables PUPPY to achieve a more precise coverage of various optimization operations. B. DBMS Performance Testing The enduring goal within the realm of the DBMS has always been to attain exceptional performance. Traditional performance testing like TPC-H [45] benchmarks by executing DBMS under pre-defined workloads. APOLLO [19] utilizes differential testing on multiple versions to test regression testing. AMOEBA [25] generates equivalent queries and compares their response time to find performance issues. PUPPY is designed to detect PDBs, essentially a facet of performance testing. Unlike",
+      "section": "A DBMS Fuzzing",
+      "page": 10,
+      "char_offset": 52794,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M2"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T14:24:46Z",
+    "is_model_written": true,
+    "summary": "PUPPY finds performance degradation bugs, where a DBMS's fully optimised plan runs slower than a plan built with only some optimisations enabled, because interactions between optimisations are complex and some cases are overlooked. PUPPY generates queries covering sequences of optimisation operations, then selectively disables optimisations to build a limited-optimisation plan; if the restricted plan is faster, that indicates a bug. Across five DBMSs it reported 62 such bugs, 54 confirmed as previously unknown.",
+    "narrative": "SQLancer is one of three widely used tools PUPPY is measured against over 48 hours, finding 6 bugs to PUPPY's 35. Query plan guidance is discussed as the closest prior idea, with PUPPY arguing that the sequence of optimisation operations inside a plan is a finer-grained signal than the plan itself.",
+    "roles": {
+      "M1": "background",
+      "M2": "baseline",
+      "M3": "result_comparison",
+      "M4": "result_comparison",
+      "M5": "result_comparison",
+      "M6": "result_comparison",
+      "M7": "definition",
+      "M8": "definition",
+      "M9": "motivation"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M2",
+          "M3",
+          "M4"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M2",
+            "sentence": "To further evaluate the performance of PUPPY, we also compare PUPPY with SQLancer, SQLsmith, and SQUIRREL, which are widely used in industry.",
+            "section": "D Efficiency of the Optimization Guided Algorithm",
+            "page": 10
+          },
+          {
+            "mention_id": "M3",
+            "sentence": "It shows that PUPPY outperforms SQLancer and SQLsmith in detecting bugs.",
+            "section": "D Efficiency of the Optimization Guided Algorithm",
+            "page": 10
+          },
+          {
+            "mention_id": "M4",
+            "sentence": "Specifically, PUPPY detect detected a total of 35 bugs (including 30 performance bugs and 5 crash bugs) in 48 hours, while SQLancer, SQLsmith and SQUIRREL only detected 29, 31, and 30 bugs in total.",
+            "section": "D Efficiency of the Optimization Guided Algorithm",
+            "page": 10
+          }
+        ],
+        "reasoning": "M2 names SQLancer among the tools PUPPY is compared with, and M3 and M4 report the outcome: 35 bugs to SQLancer's 6 over 48 hours across five systems.",
+        "techniques": [
+          "qpg"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

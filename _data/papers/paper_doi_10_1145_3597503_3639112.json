@@ -1,0 +1,1095 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:31:28Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3597503.3639112",
+    "title": "Mozi: Discovering DBMS Bugs via Configuration-Based Equivalent Transformation",
+    "authors": [
+      "Jie Liang",
+      "Zhiyong Wu",
+      "Jingzhou Fu",
+      "Mingzhe Wang",
+      "Chengnian Sun",
+      "Yu Jiang"
+    ],
+    "year": 2024,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1145/3597503.3639112",
+    "arxiv_id": null,
+    "s2_paper_id": "53f3c597ee4fe41383364fdaf42b13973ee1cb39",
+    "url": "https://doi.org/10.1145/3597503.3639112",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3597503.3639112",
+      "retrieved_at": "2026-09-09T01:31:28Z",
+      "chars": 74368,
+      "content_sha256": "sha256:603df18ff863b98d85cb164f18fbd72ebe04ea4b80d5b7be4a6c590fda2fa071"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 3078
+      },
+      {
+        "number": "2",
+        "title": "BACKGROUND ANDMOTIVATION",
+        "start": 10605
+      },
+      {
+        "number": "3",
+        "title": "Filter ....",
+        "start": 16095
+      },
+      {
+        "number": "3.1",
+        "title": "Definitions",
+        "start": 20418
+      },
+      {
+        "number": "3.2",
+        "title": "Plan Analysis",
+        "start": 21657
+      },
+      {
+        "number": "3.3",
+        "title": "Plan-Guided Equivalent Transformation",
+        "start": 24323
+      },
+      {
+        "number": "3.4",
+        "title": "Various Test Oracles Construction",
+        "start": 26854
+      },
+      {
+        "number": "4",
+        "title": "IMPLEMENTATION",
+        "start": 30816
+      },
+      {
+        "number": "5",
+        "title": "EVALUATION",
+        "start": 33530
+      },
+      {
+        "number": "5.1",
+        "title": "Evaluation Setup",
+        "start": 33980
+      },
+      {
+        "number": "2.25",
+        "title": "GHz, 128 cores, and 504 GiB of main memory. All DBMSs were",
+        "start": 34249
+      },
+      {
+        "number": "5.2",
+        "title": "DBMS Vulnerability Detection",
+        "start": 34590
+      },
+      {
+        "number": "5.3",
+        "title": "Comparison with Other Techniques",
+        "start": 40472
+      },
+      {
+        "number": "5.4",
+        "title": "Importance of Plan-Guided Algorithm",
+        "start": 46465
+      },
+      {
+        "number": "5.5",
+        "title": "Scalability of Mozi to Other Fuzzers",
+        "start": 49551
+      },
+      {
+        "number": "6",
+        "title": "DISCUSSION",
+        "start": 53538
+      },
+      {
+        "number": "7",
+        "title": "RELATED WORK",
+        "start": 55686
+      },
+      {
+        "number": "8",
+        "title": "CONCLUSION",
+        "start": 62038
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2023. Null Value Differences in RDBMS. https://www .linkedin.com/pulse/nullvalue-differences-rdbms-sumit-sengupta. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2024. SQL Language Reference–ANSI Standards. https://docs .oracle.com/ en/database/oracle/oracle-database/19/sqlrf/ANSI-Standards .html#GUIDF51EA195-0669-4DED-9D81-B7205AAC642F/. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In Proceedings of International Conference on Software Engineering (ICSE).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 4,
+      "text": "Adam Bannister. 2021. SQLite patches use-after-free bug that left apps open to code execution, denial-of-service exploits. https://portswigger .net/dailyswig/sqlite-patches-use-after-free-bug-that-left-apps-open-to-codeexecution-denial-of-service-exploits. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Tsong Y Chen, Shing C Cheung, and Shiu Ming Yiu. 2020. Metamorphic testing: a new approach for generating next test cases. arXiv preprint arXiv:2002.12543 (2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Tsong Yueh Chen, Fei-Ching Kuo, Huai Liu, Pak-Lok Poon, Dave Towey, TH Tse, and Zhi Quan Zhou. 2018. Metamorphic testing: A review of challenges and opportunities. ACM Computing Surveys (CSUR) 51, 1 (2018), 1–27.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Yuanliang Chen, Yu Jiang, Fuchen Ma, Jie Liang, Mingzhe Wang, Chijin Zhou, Xun Jiao, and Zhuo Su. 2019. EnFuzz: Ensemble Fuzzing with Seed Synchronization among Diverse Fuzzers. In USENIX Security Symposium.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Catalin Cimpanu. 2019. Google Chrome impacted by new Magellan 2.0 vulnerabilities. https://www .zdnet.com/article/google-chrome-impacted-by-newmagellan-2-0-vulnerabilities/. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "ClickHouse 2024. ClickHouse Website. https://clickhouse .com/. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "PostgreSQL Community. 2014. PostgreSQL Bug List. https://www .postgresql.org/ list/pgsql-bugs/. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Carlos Coronel and Steven Morris. 2019. Database systems: design, implementation and management. Cengage learning.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Ziyu Cui, Wensheng Dou, Qianwang Dai, Jiansen Song, Wei Wang, Jun Wei, and Dan Ye. 2022. Differentially Testing Database Transactions for Fun and Profit. In37th IEEE/ACM International Conference on Automated Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Chris J Date. 1989. A Guide to the SQL Standard. Addison-Wesley Longman Publishing Co., Inc.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Songyun Duan, Vamsidhar Thummala, and Shivnath Babu. 2009. Tuning database configuration parameters with ituned. Proceedings of the VLDB Endowment 2, 1 (2009), 1246–1257. ICSE ’24, April 14–20, 2024, Lisbon, Portugal Jie Liang, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Chengnian Sun, and Yu Jiang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "R Elmasri, SB Navathe, R Elmasri, and SB Navathe. 2015. Fundamentals of Database Systems. In Advances in Databases and Information Systems. Springer, 139.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-free DBMS fuzzing. In Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "James R Groff, Paul N Weinberg, and Andrew J Oppel. 2002. SQL: the complete reference. Vol. 2. McGraw-Hill/Osborne.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "The PostgreSQL Global Development Group. 2023. PostgreSQL 14.10 Documentation. https://www .postgresql.org/files/documentation/pdf/14/postgresql-14A4.pdf. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "The PostgreSQL Global Development Group. 2023. Query Planning. https: //www.postgresql.org/docs/current/runtime-config-query .html. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "The PostgreSQL Global Development Group. 2024. EXPLAIN Statement of PostgreSQL. https://www .postgresql.org/docs/current/sql-explain .html. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "The PostgreSQL Global Development Group. 2024. Using EXPLAIN. https: //www.postgresql.org/docs/current/using-explain .html. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Kenneth Hoste and Lieven Eeckhout. 2008. Cole: compiler optimization level exploration. In Proceedings of the 6th annual IEEE/ACM international symposium on Code generation and optimization. 165–174.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Matthias Jarke and Jurgen Koch. 1984. Query optimization in database systems. ACM Computing surveys (CsUR) 16, 2 (1984), 111–152.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. 2023. DynSQL: Stateful Fuzzing for Database Management Systems with Complex and Valid SQL Query Generation.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2020. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems. In Proceedings of the 46th International Conference on Very Large Data Bases (VLDB). Tokyo, Japan.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. 2014. Compiler validation via equivalence modulo inputs. ACM Sigplan Notices 49, 6 (2014), 216–226.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Guoliang Li, Xuanhe Zhou, Shifu Li, and Bo Gao. 2019. Qtune: A query-aware database tuning system with deep reinforcement learning. Proceedings of the VLDB Endowment 12, 12 (2019), 2118–2130.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. 2023. Sequenceoriented DBMS fuzzing. In Proceedings of IEEE International Conference on Data Engineering (ICDE).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Jie Liang, Yu Jiang, Yuanliang Chen, Mingzhe Wang, Chijin Zhou, and Jiaguang Sun. 2018. PAFL: Extend Fuzzing Optimizations of Single Mode to Industrial Parallel Mode.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting Logical Bugs of {DBMS}with Coverage-based Guidance. In 31st USENIX Security Symposium (USENIX Security 22). 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "LibFuzzer 2024. LibFuzzer. https://www .llvm.org/docs/LibFuzzer .html. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Huai Liu, Fei-Ching Kuo, Dave Towey, and Tsong Yueh Chen. 2013. How effectively does metamorphic testing alleviate the oracle problem? IEEE Transactions on Software Engineering 40, 1 (2013), 4–22.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. 2022. Automatic detection of performance bugs in database systems using equivalent queries. In Proceedings of the 44th International Conference on Software Engineering. 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "MariaDB 2024. MariaDB. https://mariadb .org/. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "William M McKeeman. 1998. Differential testing for software. Digital Technical Journal 10, 1 (1998), 100–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Jim Melton. 1996. Sql language summary. Acm Computing Surveys (CSUR) 28, 1 (1996), 141–143.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Barton P. Miller, Louis Fredriksen, and Bryan So. 1990. An Empirical Study of the Reliability of UNIX Utilities. Commun. ACM 33, 12 (Dec. 1990).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "MySQL 2014. MySQL 8.0 Reference Manual, Switchable Optimizations. https: //dev.mysql.com/doc/refman/8 .0/en/switchable-optimizations .html. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "MySQL 2024. Understanding the Query Execution Plan. https://dev .mysql.com/ doc/refman/8 .0/en/execution-plan-information .html. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Oracle. 2014. MySQL Bug List. https://bugs .mysql.com/. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Oracle. 2024. EXPLAIN Statement of MySQL. https://dev .mysql.com/doc/refman/ 8.0/en/explain.html. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Oracle 2024. MySQL. https://www .mysql.com/. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "PostgreSQL 2024. PostgreSQL. https://www .postgresql.org/. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Manuel Rigger. 2024. Bugs found in Database Management Systems. https: //www.manuelrigger .at/dbms-bugs. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 45,
+      "text": "Manuel Rigger. 2024. SQLancer Website. https://github .com/sqlancer/sqlancer. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 46,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 47,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 1–30.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 48,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 49,
+      "text": "Sergio Segura, Gordon Fraser, Ana B Sanchez, and Antonio Ruiz-Cortés. 2016. A survey on metamorphic testing. IEEE Transactions on software engineering 42, 9 (2016), 805–824.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Andreas Seltenreich, Bo Tang, and Sjoerd Mullender. 2018. SQLsmith: a random SQL query generator. https://github .com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Konstantin Serebryany, Derek Bruening, Alexander Potapenko, and Dmitriy Vyukov. 2012. AddressSanitizer: A Fast Address Sanity Checker. In 2012 USENIX Annual Technical Conference, Boston, MA, USA, June 13-15, 2012, Gernot Heiser and Wilson C. Hsieh (Eds.). USENIX Association, 309–318. https://www .usenix.org/ conference/atc12/technical-sessions/presentation/serebryany",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Donald R. Slutz. 1998. Massive Stochastic Testing of SQL. In VLDB’98, Proceedings of 24rd International Conference on Very Large Data Bases, New York, USA. Morgan Kaufmann, 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Jiansen Song, Wensheng Dou, Ziyu Cui, Qianwang Dai, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2023. Testing Database Systems via Differential Query Execution. In Proceedings of International Conference on Software Engineering (ICSE).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Dana Van Aken, Andrew Pavlo, Geoffrey J Gordon, and Bohan Zhang. 2017. Automatic database management system tuning through large-scale machine learning. In Proceedings of the 2017 ACM international conference on management of data. 1009–1024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Dana Van Aken, Dongsheng Yang, Sebastien Brillard, Ari Fiorino, Bohan Zhang, Christian Bilien, and Andrew Pavlo. 2021. An inquiry into machine learningbased automatic configuration tuning services on real-world database management systems. Proceedings of the VLDB Endowment 14, 7 (2021), 1241–1253.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Mingzhe Wang, Jie Liang, Chijin Zhou, Zhiyong Wu, Xinyi Xu, and Yu Jiang. 2022. Odin: on-demand instrumentation with on-the-fly recompilation. In Proceedings of the 43rd ACMSIGPLAN International Conference on Programming Language Design and Implementation. 1010–1024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. 2021. Industry Practice of Coverage-Guided Enterprise-Level DBMS Fuzzing. In 43rd IEEE/ACM International Conference on Software Engineering: Software Engineering in Practice, ICSE (SEIP) 2021, Madrid, Spain, May 25-28, 2021. IEEE, 328–337. https://doi .org/10.1109/ICSE-SEIP52600 .2021.00042",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Wikipedia 2024. databases. https://en .wikipedia.org/wiki/Database. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Zhiyong Wu, Jie Liang, Mingzhe Wang, Chijin Zhou, and Yu Jiang. 2022. Unicorn: detect runtime errors in time-series databases with hybrid input synthesis. In Proceedings of the 31st ACMSIGSOFT International Symposium on Software Testing and Analysis. 251–262.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Michał Zalewski. 2017. american fuzzy lop. http://lcamtuf .coredump.cx/afl/. Accessed: January 18, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Xinyi Zhang, Hong Wu, Yang Li, Jian Tan, Feifei Li, and Bin Cui. 2022. Towards dynamic and safe configuration tuning for cloud databases. In Proceedings of the 2022 International Conference on Management of Data. 631–645.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. Squirrel: Testing Database Management Systems with Language Validity and Coverage Feedback. In The ACM Conference on Computer and Communications Security (CCS), 2020.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 3,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In Proceedings of International Conference on Software Engineering (ICSE).",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 44,
+      "text": "Manuel Rigger. 2024. Bugs found in Database Management Systems. https: //www.manuelrigger .at/dbms-bugs. Accessed: January 18, 2024.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 45,
+      "text": "Manuel Rigger. 2024. SQLancer Website. https://github .com/sqlancer/sqlancer. Accessed: January 18, 2024.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 46,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 47,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 1–30.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 48,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation OSDI 20). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 4,8,\n10,40,44]",
+      "technique": null,
+      "sentence": "It is crucial to ensure the correctness, reliability, and performance of DBMSs [ 4,8, 10,40,44].",
+      "context_before": "testing and debugging. KEYWORDS DBMS Testing, Configuration, Test Oracle ACM Reference Format: Jie Liang, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Chengnian Sun, and Yu Jiang. 2024. Mozi: Discovering DBMS Bugs via Configuration-Based Equivalent Transformation. In Software Engineering (ICSE ’24), April 14–20, 2024, Lisbon, Portugal. ACM, New York, NY, USA, 12 pages. https://doi .org/10.1145/3597503 .3639112 1 INTRODUCTION Database Management Systems (DBMSs) serve as the backbone for various applications, ranging from simple web applications to complex, large-scale enterprise systems [ 11,15,58].",
+      "context_after": "Metamorphic testing is a prevalent approach to testing DBMS, which focuses on building metamorphic relations [5, 6, 32, 46,47,49]. These relations represent mathematical relationships between the input and output of a software system, which should hold even when the input undergoes certain changes or transformations. One common way of building metamorphic relations for DBMSs is by creating different SQL queries with equivalent semantics and comparing their outputs. For instance, consider the SQL queries “SELECT 1+1” and “SELECT 2.” Although they have different syntactic representations, their",
+      "section": "1 INTRODUCTION",
+      "page": 1,
+      "char_offset": 3269,
+      "cited_reference": {
+        "number": 44,
+        "text": "Manuel Rigger. 2024. Bugs found in Database Management Systems. https: //www.manuelrigger .at/dbms-bugs. Accessed: January 18, 2024.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[5, 6, 32,\n46,47,49]",
+      "technique": "norec",
+      "sentence": "Metamorphic testing is a prevalent approach to testing DBMS, which focuses on building metamorphic relations [5, 6, 32, 46,47,49].",
+      "context_before": "ie Liang, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Chengnian Sun, and Yu Jiang. 2024. Mozi: Discovering DBMS Bugs via Configuration-Based Equivalent Transformation. In Software Engineering (ICSE ’24), April 14–20, 2024, Lisbon, Portugal. ACM, New York, NY, USA, 12 pages. https://doi .org/10.1145/3597503 .3639112 1 INTRODUCTION Database Management Systems (DBMSs) serve as the backbone for various applications, ranging from simple web applications to complex, large-scale enterprise systems [ 11,15,58]. It is crucial to ensure the correctness, reliability, and performance of DBMSs [ 4,8, 10,40,44].",
+      "context_after": "These relations represent mathematical relationships between the input and output of a software system, which should hold even when the input undergoes certain changes or transformations. One common way of building metamorphic relations for DBMSs is by creating different SQL queries with equivalent semantics and comparing their outputs. For instance, consider the SQL queries “SELECT 1+1” and “SELECT 2.” Although they have different syntactic representations, their semantics are equivalent, as both yield the same result. To identify metamorphic relations, a precise comprehension of the SQL spe",
+      "section": "1 INTRODUCTION",
+      "page": 1,
+      "char_offset": 3366,
+      "cited_reference": {
+        "number": 46,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "In 24-hour experiments, Mozi covers 64,973, 54,464, 43,236, 28,499, and 14,084 more branches, detects 25, 22, 21, 24, and 26 more bugs than PQS [ 48], NoREC [ 46], TLP1[47],Apollo [25], and Amoeba [33], respectively.",
+      "context_before": "e and configure the DBMS environment to test different scenarios and configurations.We conducted extensive experiments to evaluate the effectiveness of Mozi in identifying previously undiscovered bugs on four widely-used DBMSs, namely MySQL [ 42], MariaDB [ 34], Clickhouse [ 9], and PostgreSQL [ 43]. In the continuous testing of threeweeks, Mozi found a total of 101 previously unknown bugs, including 49 correctness and 52 performance bugs in four DBMSs. Among them, 90 bugs are confirmed and 57 bugs have been fixed. We also evaluate Mozi against some related state-of-the-art testing techniques.",
+      "context_after": "Additionally, we assess the significance of the plan-guided approach in Mozi and demonstrate its scalability by applying Mozi to other fuzzers for detecting correctness and performance bugs. In summary, our paper makes the following contributions: •We present Mozi, a framework for identifying DBMS bugs using configuration-based equivalent transformations, which complements existing methods such as metamorphic testing. Mozi aims to generate different DBMS instantiations that should produce equivalent results when executing the same SQL query. By designing test oracles based on the result compa",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 9045,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "1PQS, NoREC, and TLP are three correctness test oracles utilized in SQLancer.",
+      "context_before": "e settings and parameters that can adjust the behavior of database management systems. These configuration options can affect the performance, reliability, and security of the database system. Table 1 shows common categories of DBMS configurations. Table 1: Categories of DBMS Configurations Categor y Description Buffer cache Size and behavior of the buffer cache. Concurrency Contr ol of concurrency and locking. Memory allocation Memor y allocation and usage. Disk usage Contr ol of disk space usage. Query optimization Optimization of query execution. Security A ccess control and authentication.",
+      "context_after": "Mozi: Discovering DBMS Bugs via Configuration-Based Equivalent Transformation ICSE ’24, April 14–20, 2024, Lisbon, Portugal The buffer cache configuration determines the size and behavior of the buffer cache used by the DBMS to store frequently accessed data in memory. The concurrency configuration controls the degree of concurrency and locking used to manage access to shared data. Memory allocation configuration specifies how memory is allocated and used by the DBMS. Disk usage configuration controls how disk space is allocated and used by the DBMS. The optimization configuration refers to t",
+      "section": "2 BACKGROUND ANDMOTIVATION",
+      "page": 2,
+      "char_offset": 11414,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For example, the NoREC [ 46] method of SQLancer detects the logic bugs of DBMS optimizer by constructing equivalent non-optimization SQL query which can not be optimized by DBMSs based on the existing SQL query.",
+      "context_before": "od to construct oracles to detect correctness bugs of DBMSs. A metamorphic relation is a mathematical relationship between the input change and output change of a software system. When the input changes, and the relationship no longer holds for the corresponding output change, it indicates the presence of an error. A common method is like EMI [ 26] to construct different, but equivalent variants of a query. More concretely, given a query 𝑄 and its semantic equivalent query collection 𝐶. The collection 𝐶 can be used to perform a comparison for any DBMS 𝐷: if𝐷(𝑄)≠ 𝐷(𝑄′)for some𝑄′∈𝐶, D has a bug.",
+      "context_after": "If the non-optimization SQL query gets inconsistent results from the existing SQL query, they detect a logic bug of the optimizer. However, finding metamorphic relationships for DBMSs is very difficult. Discovering an effective metamorphic relation needs a deep understanding of SQL specification but one relationship can usually focus on only one SQL feature. For instance, the TLP [ 47] method can only be tested for queries that use WHERE ,HAVING, GROUP BY, aggregation functions, and DISTINCT features. Besides, the relation may be highly customized for a specific DBMS, which means that adaptin",
+      "section": "2 BACKGROUND ANDMOTIVATION",
+      "page": 3,
+      "char_offset": 13123,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For instance, the TLP [ 47] method can only be tested for queries that use WHERE ,HAVING, GROUP BY, aggregation functions, and DISTINCT features.",
+      "context_before": ")for some𝑄′∈𝐶, D has a bug. For example, the NoREC [ 46] method of SQLancer detects the logic bugs of DBMS optimizer by constructing equivalent non-optimization SQL query which can not be optimized by DBMSs based on the existing SQL query. If the non-optimization SQL query gets inconsistent results from the existing SQL query, they detect a logic bug of the optimizer. However, finding metamorphic relationships for DBMSs is very difficult. Discovering an effective metamorphic relation needs a deep understanding of SQL specification but one relationship can usually focus on only one SQL feature.",
+      "context_after": "Besides, the relation may be highly customized for a specific DBMS, which means that adapting it to other DBMSs can be costly. Basic Idea of Mozi. The key idea of Mozi is to change DBMS itself to an equivalent one as a reference to verify the execution results. Specifically, rather than finding a mathematical relationship to build a different query, we choose to transform the DBMS into an equivalent one by changing configurations. Based on the transformation process and query execution results, we can build test oracles to find bugs. For example, when two equivalent DBMSs have different resul",
+      "section": "2 BACKGROUND ANDMOTIVATION",
+      "page": 3,
+      "char_offset": 13696,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We also used SQLancer [ 45] (with test oracles PQS [ 48], TLP [ 47], and NoREC [ 46]), Apollo [25], and Amoeba [33] to test these DBMSs, but they can only find a subset of these bugs (shown in Section 5.",
+      "context_before": "128 cores, and 504 GiB of main memory. All DBMSs were tested using docker containers that were downloaded directly from their websites. Each docker container is allocated with 5 CPU cores and 40 GiB of RAM. Mozi: Discovering DBMS Bugs via Configuration-Based Equivalent Transformation ICSE ’24, April 14–20, 2024, Lisbon, Portugal 5.2 DBMS Vulnerability Detection Bug Statistics. We applied Mozi to test performance and correctness bugs in three weeks. The four evaluated DBMSs are widely used and well-tested. Nevertheless, Mozi performed well and finally found 101 previously unknown bugs in them.",
+      "context_after": "3). Table 2 shows the statistics of the bugs. Mozi reported a total of 49 correctness bugs and 52 performance bugs. We reported all the bugs to the corresponding DBMS developers. Among them, 46 correctness bugs and 44 performance bugs have been confirmed as previously unknown bugs. At the time of writing this paper, 57 bugs have been fixed, and we have received gratitude from the developers. In addition, 11 bugs are still being validated by the developers due to the complexity of DBMS. Table 2: Number of reported and confirmed bugs by Mozi in three weeks. Corr ectness Performance DBMS Rep orte",
+      "section": "5.2 DBMS Vulnerability Detection",
+      "page": 7,
+      "char_offset": 34858,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, SQLancer and Amoeba detect the bugs by constructing the equivalent SQL query, which does not change the configuration of DBMS.",
+      "context_before": "anning some records from table t1, which triggers the index_scan optimization of PostgreSQL. As shown, PostgreSQL takes 11.42 seconds to execute the SQL query. However, after disabling the index_scan optimization in Step 5, PostgreSQL only takes 0.534 seconds to execute the same SQL query. The performance decrease caused by using the index_scan optimization is significant, leading to a 20x slowdown compared to not using the optimization in execution. Why was the bug only discovered by Mozi? The bug involves DBMS configuration changes, which can hardly be detected by other DBMS testing methods.",
+      "context_after": "Therefore, this bug can not be discovered by them. Similarly, Apollo detects the regression performance bugs of DBMSs by comparing the response time of two different-version DBMSs with the same configuration, thus it cannot detect this kind of bug. In contrast, Mozi detected this bug ICSE ’24, April 14–20, 2024, Lisbon, Portugal Jie Liang, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Chengnian Sun, and Yu Jiang by constructing a test oracle for performance bug detection with configuration-based equivalent transformation. In summary, the results indicate that Mozi can detect previously unknown corre",
+      "section": "5.2 DBMS Vulnerability Detection",
+      "page": 7,
+      "char_offset": 39672,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, we compared Mozi𝑐𝑜𝑟against SQLancer using three logic test oracles, namely PQS [ 48], NoREC [ 46], and TLP [ 47] for correctness bug detection.",
+      "context_before": "acle for performance bug detection with configuration-based equivalent transformation. In summary, the results indicate that Mozi can detect previously unknown correctness and performance bugs, which adequately answers RQ1. 5.3 Comparison with Other Techniques We implement Mozi with correctness and performance test oracles into Mozi𝑐𝑜𝑟and Mozi𝑝𝑒𝑟to detect correctness bugs and performance bugs, respectively. Compared Techniques and Setup. To evaluate the effectiveness of our framework, Mozi, we conducted a comparison study between Mozi𝑐𝑜𝑟andMozi𝑝𝑒𝑟with the state-of-the-art DBMS testing methods.",
+      "context_after": "In the following text, we will refer to these three implementations of SQLancer by their respective oracle names. We also compared Mozi𝑝𝑒𝑟with Apollo [25] and Amoeba [33] for performance bug detection. Currently, Amoeba only supports PostgreSQL. We ran the testing tools on each DBMS for 24 hours and recorded the number of triggered bugs. All bugs were reported to the developers, and we used the confirmed number of bugs as the result. To ensure a fair comparison, we collected the generated queries from each testing method and dry-ran the queries to ensure uniform branch coverage. Results. Mozi",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 8,
+      "char_offset": 40848,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In the following text, we will refer to these three implementations of SQLancer by their respective oracle names.",
+      "context_before": "n correctness and performance bugs, which adequately answers RQ1. 5.3 Comparison with Other Techniques We implement Mozi with correctness and performance test oracles into Mozi𝑐𝑜𝑟and Mozi𝑝𝑒𝑟to detect correctness bugs and performance bugs, respectively. Compared Techniques and Setup. To evaluate the effectiveness of our framework, Mozi, we conducted a comparison study between Mozi𝑐𝑜𝑟andMozi𝑝𝑒𝑟with the state-of-the-art DBMS testing methods. Specifically, we compared Mozi𝑐𝑜𝑟against SQLancer using three logic test oracles, namely PQS [ 48], NoREC [ 46], and TLP [ 47] for correctness bug detection.",
+      "context_after": "We also compared Mozi𝑝𝑒𝑟with Apollo [25] and Amoeba [33] for performance bug detection. Currently, Amoeba only supports PostgreSQL. We ran the testing tools on each DBMS for 24 hours and recorded the number of triggered bugs. All bugs were reported to the developers, and we used the confirmed number of bugs as the result. To ensure a fair comparison, we collected the generated queries from each testing method and dry-ran the queries to ensure uniform branch coverage. Results. Mozi outperforms other testing methods in detecting both performance and correctness bugs. Table 3 displays the number",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 8,
+      "char_offset": 41006,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Compared to PQS, NoREC, and TLP, Mozi𝑐𝑜𝑟 found 25, 22, and 21 more bugs, respectively.",
+      "context_before": "ction. Currently, Amoeba only supports PostgreSQL. We ran the testing tools on each DBMS for 24 hours and recorded the number of triggered bugs. All bugs were reported to the developers, and we used the confirmed number of bugs as the result. To ensure a fair comparison, we collected the generated queries from each testing method and dry-ran the queries to ensure uniform branch coverage. Results. Mozi outperforms other testing methods in detecting both performance and correctness bugs. Table 3 displays the number of bugs detected by each method. In 24 hours, Mozi𝑐𝑜𝑟detected a total of 29 bugs.",
+      "context_after": "For performance bugs, Mozi𝑝𝑒𝑟discovered 27 bugs, while Apollo andAmoeba detected 3 and 1 bugs on the tested DBMSs, respectively. We investigated the bugs and found that the bugs identified by Mozi did not overlap with other techniques. This is because Mozi detects problems through the transformation of DBMS configurations, which is a process not employed by the other methods. On the other hand, Mozi did not find the bugs detected by other techniques. This disparity arises because PQS, NoREC, and TLP employ highly customized test oracles, with the latter two incorporating statement changes not",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 8,
+      "char_offset": 41802,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "This disparity arises because PQS, NoREC, and TLP employ highly customized test oracles, with the latter two incorporating statement changes not utilized in Mozi𝑐𝑜𝑟.",
+      "context_before": "h method. In 24 hours, Mozi𝑐𝑜𝑟detected a total of 29 bugs. Compared to PQS, NoREC, and TLP, Mozi𝑐𝑜𝑟 found 25, 22, and 21 more bugs, respectively. For performance bugs, Mozi𝑝𝑒𝑟discovered 27 bugs, while Apollo andAmoeba detected 3 and 1 bugs on the tested DBMSs, respectively. We investigated the bugs and found that the bugs identified by Mozi did not overlap with other techniques. This is because Mozi detects problems through the transformation of DBMS configurations, which is a process not employed by the other methods. On the other hand, Mozi did not find the bugs detected by other techniques.",
+      "context_after": "The test oracles of Amoeba and Apollo for identifying performance bugs differ from Mozi𝑝𝑒𝑟. The first one necessitates constructing an equivalent statement, while the other requires referencing the previous version. In contrast, Mozi utilizes DBMS transformation, resulting in a low likelihood of identifying common bugs. Table 3: The number of detected bugs by each DBMS testing method in 24 hours. Corr ectness Performance DBMSPQS NoREC TLP Mozi𝑐 𝑜𝑟Apollo Amoeba Mozi𝑝 𝑒𝑟 MySQL 1 2 2 9 1 – 11 MariaDB 2 3 2 10 0 – 13 Clickhouse 0 1 3 6 1 – 2 Postgr eSQL 1 1 1 4 1 1 1 T otal 4 7 8 29 3 1 27 Impr o",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 8,
+      "char_offset": 42344,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Corr ectness Performance DBMSPQS NoREC TLP Mozi𝑐 𝑜𝑟Apollo Amoeba Mozi𝑝 𝑒𝑟 MySQL 1 2 2 9 1 – 11 MariaDB 2 3 2 10 0 – 13 Clickhouse 0 1 3 6 1 – 2 Postgr eSQL 1 1 1 4 1 1 1 T otal 4 7 8 29 3 1 27 Impr ovement 25↑ 22↑ 21↑ - 24↑ 26↑ -Table 4 shows the number of branches covered by each method in 24 hours.",
+      "context_before": "bugs detected by other techniques. This disparity arises because PQS, NoREC, and TLP employ highly customized test oracles, with the latter two incorporating statement changes not utilized in Mozi𝑐𝑜𝑟. The test oracles of Amoeba and Apollo for identifying performance bugs differ from Mozi𝑝𝑒𝑟. The first one necessitates constructing an equivalent statement, while the other requires referencing the previous version. In contrast, Mozi utilizes DBMS transformation, resulting in a low likelihood of identifying common bugs. Table 3: The number of detected bugs by each DBMS testing method in 24 hours.",
+      "context_after": "It shows that Mozi covers more branches in 24 hours when compared to other testing methods. Specifically, compared to three correctness bug testing methods, Mozi𝑐𝑜𝑟covered a total of 64,973, 54,464, and 43,236 more branches than PQS, NoREC, and TLP, respectively. And compared to the performance bug testing fuzzer Apollo, Mozi𝑝𝑒𝑟covered a total of 28,499 more branches in MySQL, MariaDB, Clickhouse, and PostgreSQL. Compared to Amoeba, Mozi covered 14,084 more branches in PostgreSQL. Table 4: The number of covered branches by each DBMS testing method in 24 hours. Corr ectness Performance DBMSPQS",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 8,
+      "char_offset": 42910,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Specifically, compared to three correctness bug testing methods, Mozi𝑐𝑜𝑟covered a total of 64,973, 54,464, and 43,236 more branches than PQS, NoREC, and TLP, respectively.",
+      "context_before": "the previous version. In contrast, Mozi utilizes DBMS transformation, resulting in a low likelihood of identifying common bugs. Table 3: The number of detected bugs by each DBMS testing method in 24 hours. Corr ectness Performance DBMSPQS NoREC TLP Mozi𝑐 𝑜𝑟Apollo Amoeba Mozi𝑝 𝑒𝑟 MySQL 1 2 2 9 1 – 11 MariaDB 2 3 2 10 0 – 13 Clickhouse 0 1 3 6 1 – 2 Postgr eSQL 1 1 1 4 1 1 1 T otal 4 7 8 29 3 1 27 Impr ovement 25↑ 22↑ 21↑ - 24↑ 26↑ -Table 4 shows the number of branches covered by each method in 24 hours. It shows that Mozi covers more branches in 24 hours when compared to other testing methods.",
+      "context_after": "And compared to the performance bug testing fuzzer Apollo, Mozi𝑝𝑒𝑟covered a total of 28,499 more branches in MySQL, MariaDB, Clickhouse, and PostgreSQL. Compared to Amoeba, Mozi covered 14,084 more branches in PostgreSQL. Table 4: The number of covered branches by each DBMS testing method in 24 hours. Corr ectness Performance DBMSPQS NoREC TLP Mozi𝑐 𝑜𝑟Apollo Amoeba Mozi𝑝 𝑒𝑟 MySQL 50,294 52,984 60,274 75,293 70,923 – 74,836 MariaDB 40,154 42,938 45,792 54,982 46,365 – 55,387 Clickhouse 65,980 69,842 69,928 79,852 72,388 – 80,142 Postgr eSQL 59,811 60,984 61,982 71,085 63,748 56,844 70,928 T ot",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 8,
+      "char_offset": 43304,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Corr ectness Performance DBMSPQS NoREC TLP Mozi𝑐 𝑜𝑟Apollo Amoeba Mozi𝑝 𝑒𝑟 MySQL 50,294 52,984 60,274 75,293 70,923 – 74,836 MariaDB 40,154 42,938 45,792 54,982 46,365 – 55,387 Clickhouse 65,980 69,842 69,928 79,852 72,388 – 80,142 Postgr eSQL 59,811 60,984 61,982 71,085 63,748 56,844 70,928 T otal 216,239 226,748 237,976 281,212 252,794 56,844 281,293 Impr ovement 64,973↑54,464↑43,236↑ - 28,499↑14,084↑**The improvement is only for PostgreSQL since Amoeba only supports it among four DBMSs at the time of writing.",
+      "context_before": "vered by each method in 24 hours. It shows that Mozi covers more branches in 24 hours when compared to other testing methods. Specifically, compared to three correctness bug testing methods, Mozi𝑐𝑜𝑟covered a total of 64,973, 54,464, and 43,236 more branches than PQS, NoREC, and TLP, respectively. And compared to the performance bug testing fuzzer Apollo, Mozi𝑝𝑒𝑟covered a total of 28,499 more branches in MySQL, MariaDB, Clickhouse, and PostgreSQL. Compared to Amoeba, Mozi covered 14,084 more branches in PostgreSQL. Table 4: The number of covered branches by each DBMS testing method in 24 hours.",
+      "context_after": "The main reason for Mozi’s improvement in bug detection and branch coverage is its independence from specific SQL features in test oracle. This flexibility enables Mozi to test a broader range of functionalities within the DBMS. Specifically, PQS, NoREC, TLP, andAmoeba are constructed based on specific features to create test cases, which limits the SQL grammar they can support. For example, NoREC detects logic bugs in the DBMS optimizer by constructing equivalent optimized and unoptimized queries based on the optimizer rules. However, this approach only covers SQL grammar that conforms to th",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 8,
+      "char_offset": 43779,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Specifically, PQS, NoREC, TLP, andAmoeba are constructed based on specific features to create test cases, which limits the SQL grammar they can support.",
+      "context_before": "45,792 54,982 46,365 – 55,387 Clickhouse 65,980 69,842 69,928 79,852 72,388 – 80,142 Postgr eSQL 59,811 60,984 61,982 71,085 63,748 56,844 70,928 T otal 216,239 226,748 237,976 281,212 252,794 56,844 281,293 Impr ovement 64,973↑54,464↑43,236↑ - 28,499↑14,084↑**The improvement is only for PostgreSQL since Amoeba only supports it among four DBMSs at the time of writing. The main reason for Mozi’s improvement in bug detection and branch coverage is its independence from specific SQL features in test oracle. This flexibility enables Mozi to test a broader range of functionalities within the DBMS.",
+      "context_after": "For example, NoREC detects logic bugs in the DBMS optimizer by constructing equivalent optimized and unoptimized queries based on the optimizer rules. However, this approach only covers SQL grammar that conforms to the optimizer rules. In contrast, Mozi generates SQL queries without any limitations on the SQL grammar since it relies on the DBMS itself to evaluate query results. As a result, Mozi can support more SQL grammar and cover more branches compared to PQS, NoREC, and TLP, which explains why it can detect more correctness bugs in these DBMSs. Apollo generates queries by comparing the q",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 8,
+      "char_offset": 44525,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "For example, NoREC detects logic bugs in the DBMS optimizer by constructing equivalent optimized and unoptimized queries based on the optimizer rules.",
+      "context_before": "216,239 226,748 237,976 281,212 252,794 56,844 281,293 Impr ovement 64,973↑54,464↑43,236↑ - 28,499↑14,084↑**The improvement is only for PostgreSQL since Amoeba only supports it among four DBMSs at the time of writing. The main reason for Mozi’s improvement in bug detection and branch coverage is its independence from specific SQL features in test oracle. This flexibility enables Mozi to test a broader range of functionalities within the DBMS. Specifically, PQS, NoREC, TLP, andAmoeba are constructed based on specific features to create test cases, which limits the SQL grammar they can support.",
+      "context_after": "However, this approach only covers SQL grammar that conforms to the optimizer rules. In contrast, Mozi generates SQL queries without any limitations on the SQL grammar since it relies on the DBMS itself to evaluate query results. As a result, Mozi can support more SQL grammar and cover more branches compared to PQS, NoREC, and TLP, which explains why it can detect more correctness bugs in these DBMSs. Apollo generates queries by comparing the query performance of two versions of the same DBMS, which is effective for detecting performance regression bugs. However, Apollo is limited by utilizin",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 8,
+      "char_offset": 44678,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "As a result, Mozi can support more SQL grammar and cover more branches compared to PQS, NoREC, and TLP, which explains why it can detect more correctness bugs in these DBMSs.",
+      "context_before": "s Mozi to test a broader range of functionalities within the DBMS. Specifically, PQS, NoREC, TLP, andAmoeba are constructed based on specific features to create test cases, which limits the SQL grammar they can support. For example, NoREC detects logic bugs in the DBMS optimizer by constructing equivalent optimized and unoptimized queries based on the optimizer rules. However, this approach only covers SQL grammar that conforms to the optimizer rules. In contrast, Mozi generates SQL queries without any limitations on the SQL grammar since it relies on the DBMS itself to evaluate query results.",
+      "context_after": "Apollo generates queries by comparing the query performance of two versions of the same DBMS, which is effective for detecting performance regression bugs. However, Apollo is limited by utilizing differential testing on current and previous DBMS versions. The bugs that exist in both versions will not be detected. In addition, this approach relies heavily on the differences between the two versions, which can limit the diversity of its generated queries. If the differences between versions are minimal, Apollo may not be able to generate a sufficient number of unique queries to fully test the d",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 8,
+      "char_offset": 45059,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "citation_marker",
+      "surface": "[ 3,16,24,28,30,50,57,59,62]",
+      "technique": "qpg",
+      "sentence": "Most fuzzers [ 3,16,24,28,30,50,57,59,62] focus on generating complex and valid SQL test cases to find the memory safety bugs.",
+      "context_before": "ontrols and permissions. By generating alternative DBMSs with varying security settings, we can thoroughly examine whether certain accesses violate the intended restrictions. 7 RELATED WORK In this section, we will first introduce DBMS Fuzzing, and then focus on works related to DBMS test oracle construction and configuration settings. DBMS Fuzzing. Fuzzing [ 7,29,31,37,60] has been applied to DBMSs in recent years and has found hundreds of bugs. These DBMS fuzzers generate SQL test cases continuously, feed them to the target DBMS, and check whether the DBMS works normally when executing them.",
+      "context_after": "They could be roughly divided into generationbased and mutation-based fuzzers. Generation-based fuzzers generate SQL queries based on predefined SQL generation models. SQLsmith [ 50] generates SELECT statements with complex structures according to its predefined AST models. Amoeba [33] leverages domain-specific design languages to generate SQL queries from scratch based on the schema of the database. Mutation-based fuzzers mutate existing SQL queries to produce new queries, which are always guided by coverage information. Sqirrel [62] designs an intermediate representation (IR) to mutate SQL",
+      "section": "7 RELATED WORK",
+      "page": 10,
+      "char_offset": 56111,
+      "cited_reference": {
+        "number": 3,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In Proceedings of International Conference on Software Engineering (ICSE).",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M20",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "QPG [ 3] in SQLancer introduces a mutation technique to use DDL (e.",
+      "context_before": "which are always guided by coverage information. Sqirrel [62] designs an intermediate representation (IR) to mutate SQL test cases with code coverage guidance. DynSQL [ 24] establishes a mapping model between binary files and SQL query syntax trees. Lego [28] generates SQL statement sequences with abundant types by exploring SQL statements of different types and analyzing type affinities. Griffin[16] proposes metadata graphs of SQL statements to provide a grammar-free way for mutation of SQL test cases. Unicorn [59] utilizes hybrid input synthesis to generate queries with time-series elements.",
+      "context_after": "g., CREATE) and DML (e.g., INSERT) statements to change the database state. It saves those mutated cases that cover unseen query plans to explore more behaviors. SQLRight [ 30] separates SELECT and other statements for mutation, and finally concatenates them together. Unlike these works that generate complex SQL queries to test database management systems, Mozi takes a different approach. Instead, it is a framework that applies equivalent transformations to DBMSs. By using this technique, Mozi is able to test both correctness and performance bugs. Nevertheless, The SQL generation technique and",
+      "section": "7 RELATED WORK",
+      "page": 10,
+      "char_offset": 57318,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M21",
+      "found_by": "citation_marker",
+      "surface": "[ 30,33,46–48,53]",
+      "technique": "norec",
+      "sentence": "Many works [ 30,33,46–48,53] detect errors in a DBMS by verifying whether the execution results of SQL statements conform to predefined rules.",
+      "context_before": "queries to test database management systems, Mozi takes a different approach. Instead, it is a framework that applies equivalent transformations to DBMSs. By using this technique, Mozi is able to test both correctness and performance bugs. Nevertheless, The SQL generation technique and DBMS equivalent transformation are orthogonal. As Mozi: Discovering DBMS Bugs via Configuration-Based Equivalent Transformation ICSE ’24, April 14–20, 2024, Lisbon, Portugal a result, it is possible to adapt the SQL generation technique into Mozi to combine the advantages of both techniques. Metamorphic Testing.",
+      "context_after": "Amoeba [33] aims to find performance bugs in DBMS by constructing semantically equivalent query pairs and comparing the response times when the DBMS executes them. NOREC [ 46] and TLP [ 47] are two test oracles used in SQLancer. NoREC converts a SQL query to one that cannot be optimized by optimizers and compares the two’s execution results to find optimizer bugs. TLP employs the concept of partitioning, wherein a problem is identified by partitioning the original query into multiple more complex queries. The approach involves comparing the results of the original query with the composed resu",
+      "section": "7 RELATED WORK",
+      "page": 11,
+      "char_offset": 58300,
+      "cited_reference": {
+        "number": 46,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M22",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "NOREC [ 46] and TLP [ 47] are two test oracles used in SQLancer.",
+      "context_before": "sformation are orthogonal. As Mozi: Discovering DBMS Bugs via Configuration-Based Equivalent Transformation ICSE ’24, April 14–20, 2024, Lisbon, Portugal a result, it is possible to adapt the SQL generation technique into Mozi to combine the advantages of both techniques. Metamorphic Testing. Many works [ 30,33,46–48,53] detect errors in a DBMS by verifying whether the execution results of SQL statements conform to predefined rules. Amoeba [33] aims to find performance bugs in DBMS by constructing semantically equivalent query pairs and comparing the response times when the DBMS executes them.",
+      "context_after": "NoREC converts a SQL query to one that cannot be optimized by optimizers and compares the two’s execution results to find optimizer bugs. TLP employs the concept of partitioning, wherein a problem is identified by partitioning the original query into multiple more complex queries. The approach involves comparing the results of the original query with the composed result of the partitioned queries to determine their consistency. DQE [ 53] constructs SQL statements that should access the same rows and verifies whether the rows fetched by these statements are the same during execution. The EMI (",
+      "section": "7 RELATED WORK",
+      "page": 11,
+      "char_offset": 58607,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M23",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC converts a SQL query to one that cannot be optimized by optimizers and compares the two’s execution results to find optimizer bugs.",
+      "context_before": "figuration-Based Equivalent Transformation ICSE ’24, April 14–20, 2024, Lisbon, Portugal a result, it is possible to adapt the SQL generation technique into Mozi to combine the advantages of both techniques. Metamorphic Testing. Many works [ 30,33,46–48,53] detect errors in a DBMS by verifying whether the execution results of SQL statements conform to predefined rules. Amoeba [33] aims to find performance bugs in DBMS by constructing semantically equivalent query pairs and comparing the response times when the DBMS executes them. NOREC [ 46] and TLP [ 47] are two test oracles used in SQLancer.",
+      "context_after": "TLP employs the concept of partitioning, wherein a problem is identified by partitioning the original query into multiple more complex queries. The approach involves comparing the results of the original query with the composed result of the partitioned queries to determine their consistency. DQE [ 53] constructs SQL statements that should access the same rows and verifies whether the rows fetched by these statements are the same during execution. The EMI (Equivalence Modulo Inputs) [ 26] can be seen as a special case of metamorphic testing. It aims to reduce the complexity of validating the",
+      "section": "7 RELATED WORK",
+      "page": 11,
+      "char_offset": 58672,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M24",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP employs the concept of partitioning, wherein a problem is identified by partitioning the original query into multiple more complex queries.",
+      "context_before": "ion technique into Mozi to combine the advantages of both techniques. Metamorphic Testing. Many works [ 30,33,46–48,53] detect errors in a DBMS by verifying whether the execution results of SQL statements conform to predefined rules. Amoeba [33] aims to find performance bugs in DBMS by constructing semantically equivalent query pairs and comparing the response times when the DBMS executes them. NOREC [ 46] and TLP [ 47] are two test oracles used in SQLancer. NoREC converts a SQL query to one that cannot be optimized by optimizers and compares the two’s execution results to find optimizer bugs.",
+      "context_after": "The approach involves comparing the results of the original query with the composed result of the partitioned queries to determine their consistency. DQE [ 53] constructs SQL statements that should access the same rows and verifies whether the rows fetched by these statements are the same during execution. The EMI (Equivalence Modulo Inputs) [ 26] can be seen as a special case of metamorphic testing. It aims to reduce the complexity of validating the correctness of compilers. It mainly focuses on generating the EMI variants (i.e., the equivalent programs under some test inputs) by randomly de",
+      "section": "7 RELATED WORK",
+      "page": 11,
+      "char_offset": 58810,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M3",
+        "M9",
+        "M14"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:14:29Z",
+    "is_model_written": true,
+    "summary": "Mozi finds DBMS bugs by comparing one system against itself under different configurations rather than by comparing semantically equivalent queries. Its motivation is that metamorphic testing needs a precise grasp of the SQL specification to build equivalent inputs, and the specification is vague and intricate enough to make modelling query semantics hard. Mozi analyses the query plan, changes configuration to produce an equivalent system, re-executes and compares: different results indicate correctness bugs, faster execution with optimisations closed indicates performance bugs. It found 101 previously unknown bugs across four DBMSs.",
+    "narrative": "SQLancer's three oracles are the point of contrast and the baseline: Mozi argues that TLP applies only to queries using particular clauses and that NoREC's equivalent-query construction is limited by how well SQL semantics can be modelled, then runs PQS, NoREC and TLP against itself and reports 21 to 25 more bugs than each.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "result_comparison",
+      "M4": "definition",
+      "M5": "definition",
+      "M6": "motivation",
+      "M7": "baseline",
+      "M8": "background",
+      "M9": "baseline",
+      "M10": "baseline",
+      "M11": "result_comparison"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is run as a baseline with its three oracles; nothing shown says Mozi is built on it."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Configuration-based equivalent transformation replaces the equivalent-query idea rather than extending it."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M7",
+          "M9",
+          "M11"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M7",
+            "sentence": "We also used SQLancer [ 45] (with test oracles PQS [ 48], TLP [ 47], and NoREC [ 46]), Apollo [25], and Amoeba [33] to test these DBMSs, but they can only find a subset of these bugs (shown in Section 5.",
+            "section": "5.2 DBMS Vulnerability Detection",
+            "page": 7
+          },
+          {
+            "mention_id": "M9",
+            "sentence": "Specifically, we compared Mozi𝑐𝑜𝑟against SQLancer using three logic test oracles, namely PQS [ 48], NoREC [ 46], and TLP [ 47] for correctness bug detection.",
+            "section": "5.3 Comparison with Other Techniques",
+            "page": 8
+          },
+          {
+            "mention_id": "M11",
+            "sentence": "Compared to PQS, NoREC, and TLP, Mozi𝑐𝑜𝑟 found 25, 22, and 21 more bugs, respectively.",
+            "section": "5.3 Comparison with Other Techniques",
+            "page": 8
+          }
+        ],
+        "reasoning": "Mozi is compared against SQLancer running PQS, NoREC and TLP, with branch coverage and bug counts reported against each.",
+        "techniques": [
+          "pqs",
+          "norec",
+          "tlp"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The oracles are described by their limitations rather than as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

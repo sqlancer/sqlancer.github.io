@@ -1,0 +1,983 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:31:05Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3749186",
+    "title": "Testing Graph Databases with Synthesized Queries",
+    "authors": [
+      "Zijing Yin",
+      "Si Liu",
+      "David A. Basin"
+    ],
+    "year": 2025,
+    "venue": "Proc. ACM Manag. Data",
+    "doi": "10.1145/3749186",
+    "arxiv_id": null,
+    "s2_paper_id": "00940ec18283156770edb798589bf89c07d7544c",
+    "url": "https://doi.org/10.1145/3749186",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3749186",
+      "retrieved_at": "2026-09-09T01:31:05Z",
+      "chars": 91902,
+      "content_sha256": "sha256:8dac5928ddcd8824db500a2514f3900c6311847bea186d63c91bd093fd1a5cbd"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 26,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 1913
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 12170
+      },
+      {
+        "number": "2.1",
+        "title": "GDBs and Labeled Property Graphs",
+        "start": 12183
+      },
+      {
+        "number": "2.2",
+        "title": "The Cypher Query Language",
+        "start": 13526
+      },
+      {
+        "number": "3",
+        "title": "Graph Query Synthesis",
+        "start": 17284
+      },
+      {
+        "number": "3.1",
+        "title": "Overview",
+        "start": 17561
+      },
+      {
+        "number": "3.2",
+        "title": "Integrating Diverse Clauses",
+        "start": 21907
+      },
+      {
+        "number": "3.3",
+        "title": "Building Cross-Step Dependencies",
+        "start": 25932
+      },
+      {
+        "number": "3.4",
+        "title": "Mutating Search Patterns",
+        "start": 31525
+      },
+      {
+        "number": "3.5",
+        "title": "Generating Complex Expressions",
+        "start": 38402
+      },
+      {
+        "number": "4",
+        "title": "Implementation",
+        "start": 43164
+      },
+      {
+        "number": "5",
+        "title": "Experiments",
+        "start": 46764
+      },
+      {
+        "number": "5.1",
+        "title": "Experimental Setup",
+        "start": 47428
+      },
+      {
+        "number": "5.2",
+        "title": "Discovering New Bugs",
+        "start": 49435
+      },
+      {
+        "number": "5.3",
+        "title": "A Closer Look at GQS",
+        "start": 56239
+      },
+      {
+        "number": "5.4",
+        "title": "Comparison with State-of-the-Art",
+        "start": 61082
+      },
+      {
+        "number": "6",
+        "title": "Related Work",
+        "start": 72263
+      },
+      {
+        "number": "7",
+        "title": "Discussion and Concluding Remark",
+        "start": 75538
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "ISO/IEC 39075:2024. Accessed in July, 2024. Information technology — Database languages — GQL. https://www.iso. org/standard/76120.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Atul Adya. 1999.Weak consistency: a generalized theory and optimistic implementations for distributed transactions. Ph. D. Dissertation. Massachusetts Institute of Technology, Department of Electrical Engineering and Computer Science.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 4,
+      "text": "John W. Backus. 1959. The syntax and semantics of the proposed international algebraic language of the Zurich ACM-GAMM Conference. InInformation Processing, Proceedings of the 1st International Conference on Information Processing, UNESCO, Paris 15-20 June 1959. UNESCO (Paris), 125–131.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Peter Bailis, Aaron Davidson, Alan D. Fekete, Ali Ghodsi, Joseph M. Hellerstein, and Ion Stoica. 2013. Highly Available Transactions: Virtues and Limitations.Proc. VLDB Endow.7, 3 (2013), 181–192.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Maciej Besta, Robert Gerstenberger, Emanuel Peter, Marc Fischer, Michał Podstawski, Claude Barthels, Gustavo Alonso, and Torsten Hoefler. 2023. Demystifying Graph Databases: Analysis and Taxonomy of Data Organization, System Designs, and Graph Queries.ACM Comput. Surv.56, 2, Article 31 (sep 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Ranadeep Biswas and Constantin Enea. 2019. On the complexity of checking transactional consistency.Proc. ACM Program. Lang.3, OOPSLA (2019), 165:1–165:28. 3, No. 4 (SIGMOD), Article 268. Publication date: September 2025. Testing Graph Databases with Synthesized Queries 268:25",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Angela Bonifati, George H. L. Fletcher, Hannes Voigt, and Nikolay Yakovets. 2018.Querying Graphs. Morgan & Claypool Publishers.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Tsong Yueh Chen, S. C. Cheung, and Siu-Ming Yiu. 2020. Metamorphic Testing: A New Approach for Generating Next Test Cases.CoRRabs/2002.12543 (2020). arXiv:2002.12543 https://arxiv.org/abs/2002.12543",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Yang Chen, Alex Groce, Chaoqiang Zhang, Weng-Keen Wong, Xiaoli Z. Fern, Eric Eide, and John Regehr. 2013. Taming compiler fuzzers. InPLDI ’13, Hans-Juergen Boehm and Cormac Flanagan (Eds.). ACM, 197–208.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Cypher. Accessed in July, 2024. https://neo4j.com/docs/cypher-manual/current/introduction/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "FalkorDB. Accessed in July, 2024. https://www.falkordb.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Shabnam Ghasemirad, Si Liu, Christoph Sprenger, Luca Multazzu, and David Basin. 2025. VerIso: Verifiable Isolation Guarantees for Database Transactions.Proc. VLDB Endow.18, 5 (2025), 1362–1375.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Long Gu, Si Liu, Tiancheng Xing, Hengfeng Wei, Yuxing Chen, and David Basin. 2024. IsoVista: Black-box Checking Database Isolation Guarantees.Proc. VLDB Endow.17, 12 (2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Zongyin Hao, Quanfeng Huang, Chengpeng Wang, Jianfeng Wang, Yushan Zhang, Rongxin Wu, and Charles Zhang. 2023. Pinolo: Detecting Logical Bugs in Database Management Systems with Approximate Query Synthesis. InUSENIX ATC ’23. USENIX Association, 345–358.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Ziyue Hua, Wei Lin, Luyao Ren, Zongyang Li, Lu Zhang, Wenpin Jiao, and Tao Xie. 2023. GDsmith: Detecting Bugs in Cypher Graph Database Engines. InISSTA ’23. ACM, 163–174.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Kaile Huang, Si Liu, Zhenge Chen, Hengfeng Wei, David A. Basin, Haixiang Li, and Anqun Pan. 2023. Efficient Black-box Checking of Snapshot Isolation in Databases.Proc. VLDB Endow.16, 6 (2023), 1264–1276.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "JanusGraph. Accessed in April, 2025. https://janusgraph.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland H. C. Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. InICSE ’24. ACM, Article 46.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 20,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. InOSDI ’23. 397–417.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 21,
+      "text": "Zu-Ming Jiang and Zhendong Su. 2024. Detecting Logic Bugs in Database Engines via Equivalent Expression Transformation. InOSDI ’24. USENIX Association, 821–835.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. InISSTA ’23. ACM, 140–149.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 23,
+      "text": "Kyle Kingsbury and Peter Alvaro. 2020. Elle: Inferring Isolation Anomalies from Experimental Observations.Proc. VLDB Endow.14, 3 (2020), 268–280.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Kùzu. Accessed in July, 2024. https://kuzudb.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Shunyang Li, Zhengyi Yang, Xianhang Zhang, Wenjie Zhang, and Xuemin Lin. 2021. SQL2Cypher: Automated Data and Query Migration from RDBMS to GDBMS. InWISE 2021. Springer-Verlag, 510–517.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Jerry Liang. Accessed in April, 2025. openCypher Transpiler. https://github.com/microsoft/openCypherTranspiler.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Cypher Parser Library. Accessed in July, 2024. libcypher-parser. https://github.com/cleishm/libcypher-parser",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Si Liu, Long Gu, Hengfeng Wei, and David Basin. 2024. Plume: Efficient and Complete Black-box Checking of Weak Isolation Levels.Proc. ACM Program. Lang.8, OOPSLA2 (2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Si Liu, Luca Multazzu, Hengfeng Wei, and David A. Basin. 2024. NOC-NOC: Towards Performance-optimal Distributed Transactions.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Si Liu, Peter Csaba Ölveczky, Min Zhang, Qi Wang, and José Meseguer. 2019. Automatic Analysis of Consistency Properties of Distributed Transaction Systems in Maude. InTACAS 2019 (LNCS, Vol. 11428). Springer, 40–57.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Rupak Majumdar and Filip Niksic. 2017. Why is random testing effective for partition tolerance bugs?Proc. ACM Program. Lang.2, POPL, Article 46 (Dec. 2017), 24 pages.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Valerio Malenchino. Accessed in July, 2024. GQL is Here: Your Cypher Queries in a GQL World. https://neo4j.com/ blog/cypher-gql-world/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Qiuyang Mang, Aoyang Fang, Boxi Yu, Hanfei Chen, and Pinjia He. 2024. Testing Graph Database Systems via Equivalent Query Rewriting. InICSE ’24. ACM, Article 143, 12 pages.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "William M. McKeeman. 1998. Differential Testing for Software.Digit. Tech. J.10, 1 (1998), 100–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Memgraph. Accessed in July, 2024. https://memgraph.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Jonathan Mendelson, Aaditya Naik, Mukund Raghothaman, and Mayur Naik. 2021. GENSYNTH: Synthesizing Datalog Programs without Language Bias.AAAI’2135, 7 (May 2021), 6444–6453.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Peter Müller and Natarajan Shankar. 2021. The First Fifteen Years of the Verified Software Project. InTheories of Programming: The Life and Works of Tony Hoare. ACM Books, Vol. 39. ACM / Morgan & Claypool, 93–124.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Neo4j. Accessed in April, 2025. SQL to Cypher translation. https://neo4j.com/docs/jdbc-manual/current/sql2cypher/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Neo4j. Accessed in July, 2024. https://neo4j.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "openCypher. Accessed in July, 2024. https://opencypher.org/. 3, No. 4 (SIGMOD), Article 268. Publication date: September 2025. 268:26 Zijing Yin, Si Liu, & David Basin",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "openCypher. Accessed in July, 2024. Cypher for Gremlin. https://github.com/opencypher/cypher-for-gremlin.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "openCypher. Accessed in July, 2024. Cypher Query Language Reference, Version 9. https://s3.amazonaws.com/artifacts. opencypher.org/openCypher9.pdf.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Philip Rathle and Brad Bebee. Accessed in July, 2024. GQL: The ISO standard for graphs has arrived. https://aws. amazon.com/blogs/database/gql-the-iso-standard-for-graphs-has-arrived/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "RedisGraph. Accessed in July, 2024. https://github.com/RedisGraph/RedisGraph.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InESEC/FSE ’20. ACM, 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 46,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proc. ACM Program. Lang.4, OOPSLA, Article 211 (nov 2020), 30 pages.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 47,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. InOSDI ’20. USENIX Association, 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 48,
+      "text": "Marko A. Rodriguez. 2015. The Gremlin graph traversal machine and language (invited talk). InProceedings of the 15th Symposium on Database Programming Languages (DBPL 2015). ACM, 1–10.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Jiansen Song, Wensheng Dou, Ziyu Cui, Qianwang Dai, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2023. Testing Database Systems via Differential Query Execution. InICSE ’23. IEEE Press, 2072–2084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Jiansen Song, Wensheng Dou, Yu Gao, Ziyu Cui, Yingying Zheng, Dong Wang, Wei Wang, Jun Wei, and Tao Huang. 2024. Detecting Metadata-Related Logic Bugs in Database Systems via Raw Database Construction.Proc. VLDB Endow. 17, 8 (may 2024), 1884–1897.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Andrei Stefanescu, Daejun Park, Shijiao Yuwen, Yilong Li, and Grigore Rosu. 2016. Semantics-based program verifiers for all languages. InOOPSLA 2016. ACM, 74–91.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Keita Takenouchi, Takashi Ishio, Joji Okada, and Yuji Sakata. 2021. PATSQL: Efficient Synthesis of SQL Queries from Example Tables with Quick Inference of Projected Columns.Proc. VLDB Endow.14, 11 (2021), 1937–1949.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Cheng Tan, Changgeng Zhao, Shuai Mu, and Michael Walfish. 2020. COBRA: Making Transactional Key-Value Stores Verifiably Serializable(OSDI ’20). USENIX Association, Article 4.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Xiu Tang, Sai Wu, Dongxiang Zhang, Feifei Li, and Gang Chen. 2023. Detecting Logic Bugs of Join Optimizations in DBMS.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Aalok Thakkar, Aaditya Naik, Nathaniel Sands, Rajeev Alur, Mayur Naik, and Mukund Raghothaman. 2021. Exampleguided synthesis of relational queries. InPLDI ’21. ACM, 1110–1125.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Chenglong Wang, Alvin Cheung, and Rastislav Bodík. 2017. Synthesizing highly expressive SQL queries from input-output examples. InPLDI ’17. ACM, 452–466.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Qianqian Wang, Chris Parnin, and Alessandro Orso. 2015. Evaluating the usefulness of IR-based fault localization techniques. InISSTA ’15. ACM, 1–11.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Hengfeng Wei, Jiang Xiao, Na Yang, Si Liu, Zijing Yin, Yuxing Chen, and Anqun Pan. 2025. Boosting End-to-End Database Isolation Checking via Mini-Transactions. InICDE 2025. IEEE Computer Society, 3998–4010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Jian Zhang, Ye Ji, Shuai Mu, and Cheng Tan. 2023. Viper: A Fast Snapshot Isolation Checker. InEuroSys ’23. ACM, 654–671.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Sai Zhang and Yuyin Sun. 2013. Automatically synthesizing SQL queries from input-output examples. InASE ’13. IEEE, 224–234.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Yingying Zheng, Wensheng Dou, Yicheng Wang, Zheng Qin, Lei Tang, Yu Gao, Dong Wang, Wei Wang, and Jun Wei. 2022. Finding bugs in Gremlin-based graph database systems via randomized differential testing. InISSTA ’22. ACM, 302–313.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Zeyang Zhuang, Penghui Li, Pingchuan Ma, Wei Meng, and Shuai Wang. 2024. Testing Graph Database Systems via Graph-Aware Metamorphic Relations.Proc. VLDB Endow.17, 4 (mar 2024), 836–848. Received January 2025; revised April 2025; accepted May 2025 3, No. 4 (SIGMOD), Article 268. Publication date: September 2025.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 3,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans.",
+      "technique": "dqp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing dqp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 19,
+      "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland H. C. Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. InICSE ’24. ACM, Article 46.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 20,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. InOSDI ’23. 397–417.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 22,
+      "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. InISSTA ’23. ACM, 140–149.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 45,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InESEC/FSE ’20. ACM, 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 46,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proc. ACM Program. Lang.4, OOPSLA, Article 211 (nov 2020), 30 pages.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 47,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. InOSDI ’20. USENIX Association, 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[19, 47, 54, 62]",
+      "technique": "pqs",
+      "sentence": "Such logic bugs are widely recognized as being more challenging to detect than database crashes or exceptions [19, 47, 54, 62].",
+      "context_before": "operties attached to them (e.g., names for users and “since when” for friendships). This makes GDBs particularly well suited for applications such as recommender systems, social networks, and data mining [ 6], where intricate relationships and patterns in large datasets must be rapidly discovered and analyzed. Unfortunately, GDBs’ advanced features make them prone to logic bugs, where they silently produce incorrect query results. Figure 1 presents an example of a bug discovered in FalkorDB that existed for four years. FalkorDB returns an incorrect result that has a wrong value in the a3field.",
+      "context_after": "Authors’ Contact Information: Zijing Yin, ETH Zurich, Switzerland, zijing.yin@inf.ethz.ch; Si Liu, ETH Zurich, Switzerland, si.liu@inf.ethz.ch; David Basin, ETH Zurich, Switzerland, basin@inf.ethz.ch. This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. ©2025 Copyright held by the owner/author(s). ACM 2836-6573/2025/9-ART268 https://doi.org/10.1145/3749186 3, No. 4 (SIGMOD), Article 268. Publication date: September 2025. 268:2 Zijing Yin, Si Liu, & David Basin Related Work on GDB Testing.A key challenge in automatically detecting l",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 2794,
+      "cited_reference": {
+        "number": 47,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. InOSDI ’20. USENIX Association, 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 16,19,22,33,61,62]",
+      "technique": null,
+      "sentence": "Recent research has produced excellent testers [ 16,19,22,33,61,62] that attempt to address this challenge.",
+      "context_before": "Switzerland, si.liu@inf.ethz.ch; David Basin, ETH Zurich, Switzerland, basin@inf.ethz.ch. This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. ©2025 Copyright held by the owner/author(s). ACM 2836-6573/2025/9-ART268 https://doi.org/10.1145/3749186 3, No. 4 (SIGMOD), Article 268. Publication date: September 2025. 268:2 Zijing Yin, Si Liu, & David Basin Related Work on GDB Testing.A key challenge in automatically detecting logic bugs is to develop an effective test oracle for determining whether a GDB correctly answers a given query.",
+      "context_after": "In line with the growing trend of using randomized testing to effectively uncover system-level bugs in general [ 23,31] and relational databases in particular [ 20,47,54], these tools all generate random graph data and queries to exercise the GDB under test. To determine correctness, they rely on either differential [ 34] or metamorphic [ 9] test oracles. A common limitation of these efforts is the absence of ground truth for their test oracles, resulting in both false positives (incorrectly identified bugs) and false negatives (overlooked bugs). Differential testers [ 16,61] execute the same",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 3633,
+      "cited_reference": {
+        "number": 19,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland H. C. Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. InICSE ’24. ACM, Article 46.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[ 20,47,54]",
+      "technique": "pqs",
+      "sentence": "In line with the growing trend of using randomized testing to effectively uncover system-level bugs in general [ 23,31] and relational databases in particular [ 20,47,54], these tools all generate random graph data and queries to exercise the GDB under test.",
+      "context_before": "nsed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. ©2025 Copyright held by the owner/author(s). ACM 2836-6573/2025/9-ART268 https://doi.org/10.1145/3749186 3, No. 4 (SIGMOD), Article 268. Publication date: September 2025. 268:2 Zijing Yin, Si Liu, & David Basin Related Work on GDB Testing.A key challenge in automatically detecting logic bugs is to develop an effective test oracle for determining whether a GDB correctly answers a given query. Recent research has produced excellent testers [ 16,19,22,33,61,62] that attempt to address this challenge.",
+      "context_after": "To determine correctness, they rely on either differential [ 34] or metamorphic [ 9] test oracles. A common limitation of these efforts is the absence of ground truth for their test oracles, resulting in both false positives (incorrectly identified bugs) and false negatives (overlooked bugs). Differential testers [ 16,61] execute the same query on different GDBs or on different versions of the same GDB. The individual execution results are compared with each other, and any discrepancy suggests a bug. Consequently, bugs that arise from libraries shared by multiple database implementations unde",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 3741,
+      "cited_reference": {
+        "number": 47,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. InOSDI ’20. USENIX Association, 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[22, 62]",
+      "technique": null,
+      "sentence": "For instance, the Grand tool [ 61] was recently found to report a large number of false alarms [22, 62].",
+      "context_before": "gs) and false negatives (overlooked bugs). Differential testers [ 16,61] execute the same query on different GDBs or on different versions of the same GDB. The individual execution results are compared with each other, and any discrepancy suggests a bug. Consequently, bugs that arise from libraries shared by multiple database implementations under test may be missed, e.g., two query results are the same, but both are incorrect. In addition, false positives may occur when queries yield different yet expected results for different GDBs (due to their intended designs or implementations [ 35,39]).",
+      "context_after": "Metamorphic testers [ 19,22,33,62] avoid false positives by design. They rewrite the originally generated query into a set of semantically related queries and then check if their outputs maintain the same semantic relation, e.g., whether one result set is equivalent to another [ 33], is a subset of another [ 19], or is a union of multiple other result sets [ 22,62]. However, many bugs may still go unnoticed because these testers focus solely on the relationships between the answers to different queries, rather than establishing a ground truth for each individual query. For example, suppose th",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 4852,
+      "cited_reference": {
+        "number": 22,
+        "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. InISSTA ’23. ACM, 140–149.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 19,22,33,62]",
+      "technique": null,
+      "sentence": "Metamorphic testers [ 19,22,33,62] avoid false positives by design.",
+      "context_before": "ent GDBs or on different versions of the same GDB. The individual execution results are compared with each other, and any discrepancy suggests a bug. Consequently, bugs that arise from libraries shared by multiple database implementations under test may be missed, e.g., two query results are the same, but both are incorrect. In addition, false positives may occur when queries yield different yet expected results for different GDBs (due to their intended designs or implementations [ 35,39]). For instance, the Grand tool [ 61] was recently found to report a large number of false alarms [22, 62].",
+      "context_after": "They rewrite the originally generated query into a set of semantically related queries and then check if their outputs maintain the same semantic relation, e.g., whether one result set is equivalent to another [ 33], is a subset of another [ 19], or is a union of multiple other result sets [ 22,62]. However, many bugs may still go unnoticed because these testers focus solely on the relationships between the answers to different queries, rather than establishing a ground truth for each individual query. For example, suppose the query𝑄′is derived from the query 𝑄based on the subset relation, an",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 4957,
+      "cited_reference": {
+        "number": 19,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland H. C. Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. InICSE ’24. ACM, Article 46.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 19]",
+      "technique": null,
+      "sentence": ", whether one result set is equivalent to another [ 33], is a subset of another [ 19], or is a union of multiple other result sets [ 22,62].",
+      "context_before": "entations under test may be missed, e.g., two query results are the same, but both are incorrect. In addition, false positives may occur when queries yield different yet expected results for different GDBs (due to their intended designs or implementations [ 35,39]). For instance, the Grand tool [ 61] was recently found to report a large number of false alarms [22, 62]. Metamorphic testers [ 19,22,33,62] avoid false positives by design. They rewrite the originally generated query into a set of semantically related queries and then check if their outputs maintain the same semantic relation, e.g.",
+      "context_after": "However, many bugs may still go unnoticed because these testers focus solely on the relationships between the answers to different queries, rather than establishing a ground truth for each individual query. For example, suppose the query𝑄′is derived from the query 𝑄based on the subset relation, and their query result sets are𝑅′and𝑅, respectively. While𝑅′⊆𝑅passes the test, both result sets could be incorrect. Additionally, metamorphic testers rely on oracles that may constrain the complexity of test queries, which may be needed to trigger subtle logic bugs. For instance, GDBMeter [ 22] bases i",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 5186,
+      "cited_reference": {
+        "number": 19,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland H. C. Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. InICSE ’24. ACM, Article 46.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 22]",
+      "technique": null,
+      "sentence": "For instance, GDBMeter [ 22] bases its test oracle on a three-valued logic, which can be used only to filter clauses like WHERE (in Cypher language [ 11]).",
+      "context_before": "multiple other result sets [ 22,62]. However, many bugs may still go unnoticed because these testers focus solely on the relationships between the answers to different queries, rather than establishing a ground truth for each individual query. For example, suppose the query𝑄′is derived from the query 𝑄based on the subset relation, and their query result sets are𝑅′and𝑅, respectively. While𝑅′⊆𝑅passes the test, both result sets could be incorrect. Additionally, metamorphic testers rely on oracles that may constrain the complexity of test queries, which may be needed to trigger subtle logic bugs.",
+      "context_after": "Consequently, those bugs not rooted in incorrect predicate handling are likely to be overlooked. Our Approach.We introduce GQS (Graph Query Synthesis), the first automated testing approach for identifying logic bugs in GDBs using an established ground truth. GQS begins by randomly generating a graph and selecting a set of properties associated with its elements, whose key-value pairs constitute theexpected result setserving as the ground truth. It then synthesizes acomplex query aimed at retrieving these values from the graph. When the GDB under test executes this query on the initially gener",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 5889,
+      "cited_reference": {
+        "number": 22,
+        "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. InISSTA ’23. ACM, 140–149.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker",
+      "surface": "[ 16,47]",
+      "technique": "pqs",
+      "sentence": "Previous work [ 16,47] provides a good basis for generating complex expressions in general, likechar_length(‘abc’)+sqrt(round(1.",
+      "context_before": "ked. Note that for OPTIONAL MATCH clauses, the randomly extended pattern segments are also checked to ensure that the pattern uniquely matches one subgraph, thereby avoiding an increase in the multiplicity of the results. Finally, the expressions used in these predicates will be further substituted with more complicated ones that also achieve the same filtering, as described in Section 3.5. 3.5 Generating Complex Expressions While predicates with simple expressions, such as n’.id = 4, are sufficient to filter out undesired graph elements, more complex expressions help to extensively test GDBs.",
+      "context_after": "2)), that satisfy specific value constraints, such as evaluating to 4as in the right-hand side of the above predicate. GQS adapts the approach proposed in [16] to construct such expressions. Specifically, GQS first selects an expression template for the new expression. This template includes functions (e.g., sqrt(par) ), operator applications (e.g., par1 + par2 ), and string match expressions (e.g., par1 CONTAINS par2 ), wherepar1 andpar2 denote the parameters of the template. Such templates function as the skeleton of the expressions. Next, GQS converts the value constraint into respective su",
+      "section": "3.5 Generating Complex Expressions",
+      "page": 12,
+      "char_offset": 38608,
+      "cited_reference": {
+        "number": 47,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. InOSDI ’20. USENIX Association, 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 22]",
+      "technique": null,
+      "sentence": "•The metamorphic bug detectors, GDBMeter [ 22], Gamera [ 62], GQT [ 19], and GRev [ 33], each applying specifically designed query rewrite rules to identify discrepancies between the result of the original query and that of the rewritten query.",
+      "context_before": "lyze the variety of search patterns used and the depth of nested expressions involved in the bug-triggering test queries. Figure 14 presents the distribution of bugs based on the number of patterns used. Notably, two-thirds of the bugs are triggered by test queries containing more than three distinct patterns. Nested expressions also play a crucial role in triggering bugs. As shown in Figure 15, 83% of the bugs are associated with queries that contain more than five levels of nested expressions. 5.4 Comparison with State-of-the-Art We compare GQS with five state-of-the-art logic bug detectors.",
+      "context_after": "•The differential tester GDsmith [ 16], which detects logic bugs by comparing the results of the same query across multiple GDBs. 3, No. 4 (SIGMOD), Article 268. Publication date: September 2025. Testing Graph Databases with Synthesized Queries 268:19 5.4.1 Bug Latency.In line with common practice [ 21,33], we analyze the latencies of the bugs found by GQS, i.e., the time span between the earliest version of the GDB in which a bug was introduced and when it was first discovered by us. This analysis provides a perspective on GQS’s effectiveness in uncovering hidden bugs: if a bug exists in ve",
+      "section": "5.4 Comparison with State-of-the-Art",
+      "page": 18,
+      "char_offset": 61181,
+      "cited_reference": {
+        "number": 22,
+        "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. InISSTA ’23. ACM, 140–149.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 22]",
+      "technique": null,
+      "sentence": "Upon applying GDBMeter’s ternary logic partitioning [ 22] to the test query, all three partitioned queries (lines 5–13) also produce empty results.",
+      "context_before": "d GRev, we are able to quantify the number of missed bugs because GDBMeter’s metamorphic relations are straightforward to implement, and GRev provides direct interfaces for applying its rewrite rules to given queries. Out of 26 logic bugs detected by GQS, GDBMeter and GRev could only identify 11 and 3, respectively, even when using the bug-triggering test cases. Example 5.4.Figure 16 shows an example bug found by GQS that is missed by GDBMeter. When running Memgraph with the GQS-synthesized test query (lines 2–3), it produces an incorrect empty output, instead of the expected result (line 14).",
+      "context_after": "The union of these results matches the incorrect output (namely GDBMeter’s oracle), causing GDBMeter to mistakenly pass the test. The key factor triggering this bug lies in the WITH clause, which is not accounted for by GDBMeter’s metamorphic rules. 1// GQS-synthesized test query 2MATCH (n0)-[r0]->(n1) WITH r0 ... 3WHERE (\"1\"<>n0.k99) RETURN r0.id AS a0 4 5// GDBMeter-rewritten query #1 (NOT) 6MATCH (n0)-[r0]->(n1) WITH r0 ... 7WHERE NOT (\"1\"<>n0.k99) RETURN r0.id AS a0 8// GDBMeter-rewritten query #2 (IS NULL) 9MATCH (n0)-[r0]->(n1) WITH r0 ... 10WHERE (\"1\"<>n0.k99) IS NULL RETURN r0.id AS a",
+      "section": "5.4 Comparison with State-of-the-Art",
+      "page": 20,
+      "char_offset": 66496,
+      "cited_reference": {
+        "number": 22,
+        "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. InISSTA ’23. ACM, 140–149.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "citation_marker",
+      "surface": "[1,2,3]",
+      "technique": "dqp",
+      "sentence": "1UNWIND [1,2,3] AS a0 2MATCH (n2 :L12)-[r1]-(n3) WHERE (((r1.",
+      "context_before": "e: September 2025. Testing Graph Databases with Synthesized Queries 268:21 relations and observe that these tools are likely to miss some bugs reported by our tool, as their root causes are unrelated to the relations. Example 5.5.Figure 17 illustrates a representative bug found in the latest version of FalkorDB, which is unlikely to be detected by Gamera or GQT. This bug’s root cause lies in FalkorDB’s mishandling of UNWIND ’s semantics, resulting in some records not being fetched. Gamera’s and GQT’s oracles are unlikely to identify this bug because their metamorphic rules do not cover UNWIND.",
+      "context_after": "id) = 13) AND ... 3RETURN a0 4// expected result: [{a0:1},{a0:2},{a0:3}]✓ 5// actual result: [{a0:1}]ὁB Fig. 17. A bug found by GQS in FalkorDB’s latest version that is unlikely to be detected by Gamera or GQT. False Alarms.For the differential tester GDsmith, feeding it with GQS-generated bug-triggering queries resulted in no missed bugs. This is expected since our tested GDBs do not share a substantial common codebase; therefore, the same bugs do not exist across these GDBs. However, we observe a significant number of false positives, which may limit GDsmith’s practical applicability. In par",
+      "section": "5.4 Comparison with State-of-the-Art",
+      "page": 21,
+      "char_offset": 68732,
+      "cited_reference": {
+        "number": 3,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing dqp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "citation_marker",
+      "surface": "[ 3,15,20,21,46,47,49,50,54]",
+      "technique": "dqp",
+      "sentence": "In recent years, a wide range of logic bug detectors have been developed for RDBs [ 3,15,20,21,46,47,49,50,54].",
+      "context_before": "ontrast, GQS restarts the database instance for each new graph to ensure a clean execution environment. This design choice enhances bug reproducibility and accelerates the detection of logic bugs, but may reduce the likelihood of revealing crash bugs that emerge only after prolonged execution. Given our focus on logic bug detection, we consider this trade-off reasonable. 6 Related Work We have already discussed the state-of-the-art approaches for finding GDB logic bugs in Section 1. In this section, we focus on related work in relational database (RDB) testing and query synthesis. RDB Testing.",
+      "context_after": "While RDBs and GDBs differ in their data models and query languages, many of their bug-detection techniques are grounded in similar principles—most notably, the use of randomized testing with randomly generated initial database states and queries. Moreover, test oracles such as differential testing and certain metamorphic testing strategies developed for RDBs can, in principle, be adapted to the GDB setting. GDBMeter illustrates this by adopting the metamorphic oracles from TLP [ 46], originally designed for SQL, which partitions queries using three-valued logic. However, such adaptations may",
+      "section": "6 Related Work",
+      "page": 22,
+      "char_offset": 72489,
+      "cited_reference": {
+        "number": 3,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing dqp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "GDBMeter illustrates this by adopting the metamorphic oracles from TLP [ 46], originally designed for SQL, which partitions queries using three-valued logic.",
+      "context_before": "d work in relational database (RDB) testing and query synthesis. RDB Testing.In recent years, a wide range of logic bug detectors have been developed for RDBs [ 3,15,20,21,46,47,49,50,54]. While RDBs and GDBs differ in their data models and query languages, many of their bug-detection techniques are grounded in similar principles—most notably, the use of randomized testing with randomly generated initial database states and queries. Moreover, test oracles such as differential testing and certain metamorphic testing strategies developed for RDBs can, in principle, be adapted to the GDB setting.",
+      "context_after": "However, such adaptations may leave substantial parts of the graph-specific semantics untested. For example, key constructs in GDBs, such as paths, neighborhoods, and recursive traversals, do not map directly to the relational structures and operators in RDBs. Similar to our approach, PQS [ 47], Pinolo [ 15], and TQS [ 54] test RDBs by synthesizing SQL queries. However, PQS and Pinolo cannot establish the ground truth and, instead, rely on subset relationships as test oracles—an approach that doesnotguarantee the correctness of individual queries. TQS targets logic bugs in join optimizations",
+      "section": "6 Related Work",
+      "page": 22,
+      "char_offset": 73012,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Similar to our approach, PQS [ 47], Pinolo [ 15], and TQS [ 54] test RDBs by synthesizing SQL queries.",
+      "context_before": "ates and queries. Moreover, test oracles such as differential testing and certain metamorphic testing strategies developed for RDBs can, in principle, be adapted to the GDB setting. GDBMeter illustrates this by adopting the metamorphic oracles from TLP [ 46], originally designed for SQL, which partitions queries using three-valued logic. However, such adaptations may leave substantial parts of the graph-specific semantics untested. For example, key constructs in GDBs, such as paths, neighborhoods, and recursive traversals, do not map directly to the relational structures and operators in RDBs.",
+      "context_after": "However, PQS and Pinolo cannot establish the ground truth and, instead, rely on subset relationships as test oracles—an approach that doesnotguarantee the correctness of individual queries. TQS targets logic bugs in join optimizations by synthesizing join queries based on normal forms. This is a strategy specific to the relational model that does not naturally extend to graphs. While our stepwise synthesis approach is tailored to the semantic characteristics of Cypher queries, many SQL queries, particularly those involving sequences of joins or recursion, exhibit conceptually similar chain-li",
+      "section": "6 Related Work",
+      "page": 22,
+      "char_offset": 73431,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "However, PQS and Pinolo cannot establish the ground truth and, instead, rely on subset relationships as test oracles—an approach that doesnotguarantee the correctness of individual queries.",
+      "context_before": "trategies developed for RDBs can, in principle, be adapted to the GDB setting. GDBMeter illustrates this by adopting the metamorphic oracles from TLP [ 46], originally designed for SQL, which partitions queries using three-valued logic. However, such adaptations may leave substantial parts of the graph-specific semantics untested. For example, key constructs in GDBs, such as paths, neighborhoods, and recursive traversals, do not map directly to the relational structures and operators in RDBs. Similar to our approach, PQS [ 47], Pinolo [ 15], and TQS [ 54] test RDBs by synthesizing SQL queries.",
+      "context_after": "TQS targets logic bugs in join optimizations by synthesizing join queries based on normal forms. This is a strategy specific to the relational model that does not naturally extend to graphs. While our stepwise synthesis approach is tailored to the semantic characteristics of Cypher queries, many SQL queries, particularly those involving sequences of joins or recursion, exhibit conceptually similar chain-like structures. Hence, it should be possible to adapt our synthesis strategy to RDB testing as well. Query Synthesis.SQL and Datalog query synthesis has been extensively studied over the past",
+      "section": "6 Related Work",
+      "page": 22,
+      "char_offset": 73534,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "citation_marker",
+      "surface": "[ 45]",
+      "technique": "norec",
+      "sentence": "268:24 Zijing Yin, Si Liu, & David Basin of ground truth on the expected execution time, where the cardinality estimation approach [ 45] designed for RDBs may provide a direction for future research.",
+      "context_before": "these additional features in future work. Beyond Logic Bugs.Graph query generation is fundamental to GDB testing, not only for detecting logic bugs but also for assessing other properties. As already demonstrated by our experiments, the complex queries we synthesized are effective in triggering GDB crashes or unexpected exceptions (10 in total across four GDBs). Additionally, our query synthesizer can serve as a basis for examining GDB performance issues like inefficient query processing. The challenge lies in the current lack 3, No. 4 (SIGMOD), Article 268. Publication date: September 2025.",
+      "context_after": "Recent years have also seen advances in black-box checking of isolation levels [ 14,17,23,28, 53,58,59], such as serializability, snapshot isolation, and weaker levels [ 5,29]. These efforts primarily focus on RDBs and their concurrency control mechanisms for transactions (assuming the correctness for individual queries). Our work can be naturally extended to address this problem for GDBs, e.g., checking serializability claimed by Neo4j or snapshot isolation claimed by Memgraph. This can be done by wrapping generated Cypher queries as transactions and utilizing existing oracles like Adya’s th",
+      "section": "7 Discussion and Concluding Remark",
+      "page": 23,
+      "char_offset": 78792,
+      "cited_reference": {
+        "number": 45,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InESEC/FSE ’20. ACM, 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:55:50Z",
+    "is_model_written": true,
+    "summary": "This work tests graph databases by synthesising queries whose correct result is known by construction, so the oracle does not depend on comparing two queries. That distinguishes it from the metamorphic graph testers, which detect only discrepancies between an original and a rewritten query and are therefore bounded by what their rewrite rules can express. It reports bugs in Neo4j, RedisGraph and Memgraph that the existing detectors do not find.",
+    "narrative": "TLP reaches this paper through GDBMeter, which the authors describe as adopting the metamorphic oracles from TLP, originally designed for SQL, and partitioning queries using three-valued logic. That inheritance is the limitation they identify: a three-valued oracle applies only to filter clauses such as WHERE, and they show a case where all three of GDBMeter's partitioned queries return empty results and so reveal nothing. GDBMeter is one of four metamorphic detectors compared against. PQS is discussed as the closest relational analogue -- it also synthesises queries -- but is distinguished on the grounds that it relies on a subset relationship rather than establishing ground truth.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "background",
+      "M4": "background",
+      "M5": "background",
+      "M6": "definition",
+      "M7": "motivation",
+      "M8": "background",
+      "M9": "baseline",
+      "M10": "result_comparison",
+      "M11": "incidental",
+      "M12": "background",
+      "M13": "definition",
+      "M14": "definition",
+      "M15": "motivation",
+      "M16": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The comparison tools are graph testers run as baselines; nothing describes reuse of the SQLancer codebase."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The oracle is ground truth established by construction, which M15 contrasts with the subset relationships PQS relies on. It is an alternative to those oracles rather than a development of one."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M9",
+          "M10"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M9",
+            "sentence": "•The metamorphic bug detectors, GDBMeter [ 22], Gamera [ 62], GQT [ 19], and GRev [ 33], each applying specifically designed query rewrite rules to identify discrepancies between the result of the original query and that of the rewritten query.",
+            "section": "5.4 Comparison with State-of-the-Art",
+            "page": 18
+          },
+          {
+            "mention_id": "M10",
+            "sentence": "Upon applying GDBMeter’s ternary logic partitioning [ 22] to the test query, all three partitioned queries (lines 5–13) also produce empty results.",
+            "section": "5.4 Comparison with State-of-the-Art",
+            "page": 20
+          }
+        ],
+        "reasoning": "M9 lists GDBMeter among the metamorphic bug detectors compared against, and M10 works through what GDBMeter's ternary logic partitioning produces on a test query. M13 identifies GDBMeter's oracle as TLP's, carried over from SQL.",
+        "techniques": [
+          "tlp"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The section is headed as a comparison with state-of-the-art tools, but no sentence attributes that standing to TLP, PQS or SQLancer specifically."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}
