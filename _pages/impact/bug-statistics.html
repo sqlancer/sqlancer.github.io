@@ -1,0 +1,68 @@
+---
+permalink: /impact/bug-statistics/
+title: "More bug statistics"
+excerpt: "Further breakdowns of the bugs SQLancer found: which technique fired, which tool, and how each bug manifested."
+author_profile: false
+toc: true
+toc_label: "On this page"
+toc_sticky: true
+---
+
+{%- comment -%}
+Breakdowns that answer a narrower question than "how many bugs, and where".
+
+The impact page carries the figures a reader comes for -- the total, the
+systems, who found them, what happened to them. Everything that slices those
+same bugs a different way lives here, so the main page stays readable and this
+one can grow. Adding a breakdown means moving its section across unchanged;
+nothing here is shared with the page it came from.
+
+Every figure comes from _data/impact/stats.json, exactly as on the impact page.
+{%- endcomment -%}
+{%- assign impact = site.data.impact -%}
+{%- assign stats = impact.stats -%}
+
+<div class="impact" markdown="0">
+
+<p class="impact-breadcrumb">
+  <a href="{{ '/impact/#bugs' | relative_url }}">&larr; Bugs found by SQLancer</a>
+</p>
+
+<p>
+  Further breakdowns of the same {{ stats.bugs.total }} accepted bug reports the
+  <a href="{{ '/impact/#bugs' | relative_url }}">impact page</a> counts. Each
+  system's own page lists the individual reports behind its share.
+</p>
+
+<h2 id="bugs-by-technique">Which technique found them</h2>
+
+<p>
+  SQLancer is an umbrella: alongside the main tool, components such as
+  SQLancer++ and ShQveL count towards these figures. Each record keeps both the
+  tool that found the bug and, where the report says so, the specific technique —
+  they are never collapsed into one label. “Technique not recorded” means the
+  report identifies the campaign but not which oracle fired.
+</p>
+
+<div class="impact-figure">
+  <div class="impact-chart__scroll">
+    {% include impact/plots/bugs-by-technique.svg %}
+  </div>
+</div>
+
+<details class="impact-details">
+  <summary>Show these figures as a table</summary>
+  {% include impact/counts-table.html series=stats.bugs.by_technique heading="Technique" label="Bugs" %}
+  {% include impact/counts-table.html series=stats.bugs.by_finder heading="Tool" label="Bugs" %}
+  {% include impact/counts-table.html series=stats.bugs.by_symptom heading="How the bug manifested" label="Bugs" %}
+</details>
+
+<p class="impact-meta">
+  Every figure on this page is computed from
+  <a href="https://github.com/sqlancer/sqlancer.github.io/tree/main/_data/impact"><code>_data/impact/</code></a>.
+  The <a href="{{ '/impact/#methodology' | relative_url }}">attribution policy</a>
+  explains what has to be true for a bug to be counted, and how a technique is
+  credited.
+</p>
+
+</div>

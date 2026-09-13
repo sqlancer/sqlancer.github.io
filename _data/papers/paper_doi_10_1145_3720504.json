@@ -1,0 +1,587 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:30:03Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3720504",
+    "title": "Checking Observational Correctness of Database Systems",
+    "authors": [
+      "Lauren Pick",
+      "Amanda Xu",
+      "Ankush Desai",
+      "S. Seshia",
+      "Aws Albarghouthi"
+    ],
+    "year": 2025,
+    "venue": "Proc. ACM Program. Lang.",
+    "doi": "10.1145/3720504",
+    "arxiv_id": null,
+    "s2_paper_id": "8e351e69fa979c4de3f4534211b50b4052a44218",
+    "url": "https://doi.org/10.1145/3720504",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3720504",
+      "retrieved_at": "2026-09-09T01:30:03Z",
+      "chars": 108916,
+      "content_sha256": "sha256:1de6578302f65a54c891e9317a8c4f6e8d051fbea77fb3c895df944d50060858"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 28,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2162
+      },
+      {
+        "number": "2",
+        "title": "Motivating Example",
+        "start": 10192
+      },
+      {
+        "number": "2.1",
+        "title": "Verifying Observational Correctness",
+        "start": 14892
+      },
+      {
+        "number": "3",
+        "title": "Observational Correctness",
+        "start": 23529
+      },
+      {
+        "number": "3.1",
+        "title": "States, Transactions, and Execution Traces",
+        "start": 23620
+      },
+      {
+        "number": "3.2",
+        "title": "Version-Aware TDL Semantics",
+        "start": 27151
+      },
+      {
+        "number": "3.3",
+        "title": "Semantic Correctness of Traces",
+        "start": 31661
+      },
+      {
+        "number": "3.4",
+        "title": "Isolation Correctness of Traces",
+        "start": 33122
+      },
+      {
+        "number": "3.5",
+        "title": "Observational Correctness",
+        "start": 34086
+      },
+      {
+        "number": "4.1",
+        "title": "Checking Approach",
+        "start": 37117
+      },
+      {
+        "number": "5.1",
+        "title": "BMC-Based Encoding",
+        "start": 39483
+      },
+      {
+        "number": "5.2",
+        "title": "Improved Encoding",
+        "start": 44046
+      },
+      {
+        "number": "5.3",
+        "title": "Partially-Symbolic State Representation",
+        "start": 45493
+      },
+      {
+        "number": "5.4",
+        "title": "Semantic Constraint Generation",
+        "start": 48110
+      },
+      {
+        "number": "6.1",
+        "title": "Instrumented VA-TDL Semantics",
+        "start": 56759
+      },
+      {
+        "number": "6.2",
+        "title": "Isolation Constraints on Execution Traces",
+        "start": 58577
+      },
+      {
+        "number": "6.3",
+        "title": "Symbolic Encoding of Isolation Constraints",
+        "start": 61099
+      },
+      {
+        "number": "6.4",
+        "title": "Isolation-Level-Aware Reads",
+        "start": 61994
+      },
+      {
+        "number": "7.1",
+        "title": "Heuristics",
+        "start": 65197
+      },
+      {
+        "number": "8.1",
+        "title": "RQ1: Impact of the Improved Encoding",
+        "start": 70930
+      },
+      {
+        "number": "8.2",
+        "title": "RQ2: Classes of Bugs Considered",
+        "start": 72836
+      },
+      {
+        "number": "8.3",
+        "title": "RQ3: Scaling Across Workloads",
+        "start": 78758
+      },
+      {
+        "number": "8.4",
+        "title": "RQ4: Impact of Heuristics",
+        "start": 85850
+      },
+      {
+        "number": "8.5",
+        "title": "Industrial Case Study",
+        "start": 87853
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2011. Big data in real time at Twitter. https://www.infoq.com/presentations/Big-Data-in-Real-Time-at-Twitter.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2017. RUBiS. https://projects.ow2.org/view/rubis/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "2022. SQLsmith: a random sql query generator. https://github.com/anse1/sqlsmith. Accessed: 2023-11-15.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "2024. Jepsen. https://jepsen.io/. Accessed: 2024-04-05.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Atul Adya. 1999. Weak consistency: a generalized theory and optimistic implementations for distributed transactions. (1999).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Peter Alvaro and Kyle Kingsbury. 2020. Elle: Inferring Isolation Anomalies from Experimental Observations. Proc. VLDB Endow. 14, 3 (2020), 268–280. https://doi.org/10.5555/3430915.3442427",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Ranadeep Biswas and Constantin Enea. 2019. On the complexity of checking transactional consistency. Proc. ACM Program. Lang. 3, OOPSLA (2019), 165:1–165:28. https://doi.org/10.1145/3360591",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Ranadeep Biswas, Diptanshu Kakwani, Jyothi Vedurada, Constantin Enea, and Akash Lal. 2021. MonkeyDB: effectively testing correctness under weak isolation levels. Proc. ACM Program. Lang. 5, OOPSLA (2021), 1–27. https://doi.org/10. 1145/3485546",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Ahmed Bouajjani, Constantin Enea, Rachid Guerraoui, and Jad Hamza. 2017. On verifying causal consistency. In Proceedings of the 44th ACMSIGPLAN Symposium on Principles of Programming Languages, POPL 2017, Paris, France, January 18-20, 2017, Giuseppe Castagna and Andrew D. Gordon (Eds.). ACM, 626–638. https://doi.org/10.1145/3009837. 3009888",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Shumo Chu, Konstantin Weitz, Alvin Cheung, and Dan Suciu. 2017. HoTTSQL: proving query rewrites with univalent SQL semantics. In Proceedings of the 38th ACMSIGPLAN Conference on Programming Language Design and Implementation, PLDI 2017, Barcelona, Spain, June 18-23, 2017, Albert Cohen and Martin T. Vechev (Eds.). ACM, 510–524.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Edmund M. Clarke, Armin Biere, Richard Raimi, and Yunshan Zhu. 2001. Bounded Model Checking Using Satisfiability Solving. Formal Methods Syst. Des. 19, 1 (2001), 7–34. https://doi.org/10.1023/A:1011276507260",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Natacha Crooks, Youer Pu, Lorenzo Alvisi, and Allen Clement. 2017. Seeing is Believing: A Client-Centric Specification of Database Isolation. In Proceedings of the ACM Symposium on Principles of Distributed Computing, PODC 2017, Washington, DC, USA, July 25-27, 2017, Elad Michael Schiller and Alexander A. Schwarzmann (Eds.). ACM, 73–82. https://doi.org/10.1145/3087801.3087802",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Leonardo De Moura and Nikolaj Bjørner. 2008. Z3: An Efficient SMT Solver. In Proceedings of the Theory and Practice of Software, 14th International Conference on Tools and Algorithms for the Construction and Analysis of Systems (Budapest, Hungary) (TACAS’08/ETAPS’08). Springer-Verlag, Berlin, Heidelberg, 337–340.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Haoran Ding, Zhaoguo Wang, Yicun Yang, Dexin Zhang, Zhenglin Xu, Haibo Chen, Ruzica Piskac, and Jinyang Li. 2023. Proving Query Equivalence Using Linear Integer Arithmetic.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-Free DBMS Fuzzing. In 37th IEEE/ACM International Conference on Automated Software Engineering, ASE 2022, Rochester, MI, USA, October 10-14, 2022. ACM, 49:1–49:12. https://doi.org/10.1145/3551349.3560431",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Google Cloud. 2024. BigQuery: Multi-statement transactions. https://cloud.google.com/bigquery/docs/transactions. Accessed: 2024-04-02.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Jim Gray and Andreas Reuter. 1993. Transaction Processing: Concepts and Techniques. Morgan Kaufmann.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Thomas Haas, Roland Meyer, and Hernán Ponce de León. 2022. CAAT: consistency as a theory. Proc. ACM Program. Lang. 6, OOPSLA2 (2022), 114–144. https://doi.org/10.1145/3563292",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Fei He, Zhihang Sun, and Hongyu Fan. 2021. Satisfiability modulo ordering consistency theory for multi-threaded program verification. In PLDI ’21: 42nd ACMSIGPLAN International Conference on Programming Language Design and Implementation, Virtual Event, Canada, June 20-25, 2021, Stephen N. Freund and Eran Yahav (Eds.). ACM, 1264–1279. https://doi.org/10.1145/3453483.3454108",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Yang He, Pinhan Zhao, Xinyu Wang, and Yuepeng Wang. 2024. VeriEQL: Bounded Equivalence Verification for Complex SQL Queries with Integrity Constraints. Proc. ACM Program. Lang. 8, OOPSLA1 (2024), 1071–1099. https: Proc. ACM Program. Lang., Vol. 9, No. OOPSLA1, Article 139. Publication date: April 2025. Checking Observational Correctness of Database Systems 139:27 //doi.org/10.1145/3649849",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Kaile Huang, Si Liu, Zhenge Chen, Hengfeng Wei, David A. Basin, Haixiang Li, and Anqun Pan. 2023. Efficient Black-box Checking of Snapshot Isolation in Databases. Proc. VLDB Endow. 16, 6 (2023), 1264–1276. https://doi.org/10. 14778/3583140.3583145",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In 17th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2023, Boston, MA, USA, July 10-12, 2023, Roxana Geambasu and Ed Nightingale (Eds.). USENIX Association, 397–417. https://www.usenix.org/conference/osdi23/presentation/jiang",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 23,
+      "text": "Shadi Abdul Khalek and Sarfraz Khurshid. 2010. Automated SQL query generation for systematic testing of database engines. In ASE 2010, 25th IEEE/ACM International Conference on Automated Software Engineering, Antwerp, Belgium, September 20-24, 2010, Charles Pecheur, Jamie Andrews, and Elisabetta Di Nitto (Eds.). ACM, 329–332. https://doi.org/ 10.1145/1858996.1859063",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Shadi Abdul Khalek and Sarfraz Khurshid. 2011. Systematic Testing of Database Engines Using a Relational Constraint Solver. In Fourth IEEE International Conference on Software Testing, Verification and Validation, ICST 2011, Berlin, Germany, March 21-25, 2011. IEEE Computer Society, 50–59. https://doi.org/10.1109/ICST.2011.21",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Keqiang Li, Siyang Weng, Peiyuan Liu, Lyu Ni, Chengcheng Yang, Rong Zhang, Xuan Zhou, Jianghang Lou, Gui Huang, Weining Qian, and Aoying Zhou. 2023. Leopard: A Black-Box Approach for Efficiently Verifying Various Isolation Levels. In 39th IEEE International Conference on Data Engineering, ICDE 2023, Anaheim, CA, USA, April 3-7, 2023. IEEE, 722–735. https://doi.org/10.1109/ICDE55515.2023.00061",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Yang Liu, Wei Chen, Yanhong A. Liu, and Jun Sun. 2009. Model Checking Linearizability via Refinement. In FM 2009: Formal Methods, Second World Congress, Eindhoven, The Netherlands, November 2-6, 2009. Proceedings (Lecture Notes in Computer Science, Vol. 5850), Ana Cavalcanti and Dennis Dams (Eds.). Springer, 321–337. https://doi.org/10.1007/9783-642-05089-3_21",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Kartik Nagar and Suresh Jagannathan. 2018. Automated Detection of Serializability Violations Under Weak Consistency. In29th International Conference on Concurrency Theory, CONCUR 2018, September 4-7, 2018, Beijing, China (LIPIcs, Vol. 118), Sven Schewe and Lijun Zhang (Eds.). Schloss Dagstuhl-Leibniz-Zentrum für Informatik, 41:1–41:18. https: //doi.org/10.4230/LIPICS.CONCUR.2018.41",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Lauren Pick, Amanda Xu, Ankush Desai, Sanjit Seshia, and Aws Albarghouthi. 2024. Checking Observational Correctness of Database Systems Artifact (Troubadour). https://doi.org/10.5281/zenodo.14918621",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "PostgreSQL Global Development Group. 2023. PostgreSQL. http://www.postgresql.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Shaz Qadeer. 2003. Verifying Sequential Consistency on Shared-Memory Multiprocessors by Model Checking. IEEE Trans. Parallel Distributed Syst. 14, 8 (2003), 730–741. https://doi.org/10.1109/TPDS.2003.1225053",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA (2020), 211:1–211:30. https://doi.org/10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 32,
+      "text": "Arnab Sinha and Sharad Malik. 2010. Runtime checking of serializability in software transactional memory. In 24th IEEE International Symposium on Parallel and Distributed Processing, IPDPS 2010, Atlanta, Georgia, USA, 19-23 April 2010 - Conference Proceedings. IEEE, 1–12. https://doi.org/10.1109/IPDPS.2010.5470389",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Zhihang Sun, Hongyu Fan, and Fei He. 2022. Consistency-preserving propagation for SMT solving of concurrent program verification. Proc. ACM Program. Lang. 6, OOPSLA2 (2022), 929–956. https://doi.org/10.1145/3563321",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Cheng Tan, Changgeng Zhao, Shuai Mu, and Michael Walfish. 2020. Cobra: Making Transactional Key-Value Stores Verifiably Serializable. In 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020, Virtual Event, November 4-6, 2020. USENIX Association, 63–80. https://www.usenix.org/conference/osdi20/presentation/tan",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Transaction Processing Performance Council. 2010. TPC-C Benchmark Revision 5.11.0. https://www.tpc.org/tpcc/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Yuepeng Wang, Isil Dillig, Shuvendu K. Lahiri, and William R. Cook. 2018. Verifying equivalence of database-driven applications. Proc. ACM Program. Lang. 2, POPL (2018), 56:1–56:29.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "ANSI X3.135-1992. November 1992. American National Standard for Information Systems – Database Language – SQL.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Yu Xia, Xiangyao Yu, Matthew Butrovich, Andrew Pavlo, and Srinivas Devadas. 2022. Litmus: Towards a Practical Database Management System with Verifiable ACID Properties and Transaction Correctness. In SIGMOD ’22: International Conference on Management of Data, Philadelphia, PA, USA, June 12 - 17, 2022, Zachary G. Ives, Angela Bonifati, and Amr El Abbadi (Eds.). ACM, 1478–1492. https://doi.org/10.1",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Rachid Zennou, Ranadeep Biswas, Ahmed Bouajjani, Constantin Enea, and Mohammed Erradi. 2022. Checking causal consistency of distributed databases. Computing 104, 10 (2022), 2181–2201. https://doi.org/10.1007/S00607-021-00911-3",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Jian Zhang, Ye Ji, Shuai Mu, and Cheng Tan. 2023. Viper: A Fast Snapshot Isolation Checker. In Proceedings of the Eighteenth European Conference on Computer Systems, EuroSys 2023, Rome, Italy, May 8-12, 2023, Giuseppe Antonio Di Luna, Leonardo Querzoni, Alexandra Fedorova, and Dushyanth Narayanan (Eds.). ACM, 654–671. https://doi.org/10. 1145/3552326.3567492 Proc. ACM Program. Lang., Vol. 9, No. O",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Shao Jie Zhang. 2011. Scalable automatic linearizability checking. In Proceedings of the 33rd International Conference on Software Engineering, ICSE 2011, Waikiki, Honolulu, HI, USA, May 21-28, 2011, Richard N. Taylor, Harald C. Gall, and Nenad Medvidovic (Eds.). ACM, 1185–1187. https://doi.org/10.1145/1985793.1986037",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In CCS ’20: 2020 ACMSIGSAC Conference on Computer and Communications Security, Virtual Event, USA, November 9-13, 2020, Jay Ligatti, Xinming Ou, Jonathan Katz, and Giovanni Vigna (Eds.). ACM, 955–970. https://doi.org/10.1145/",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 22,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In 17th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2023, Boston, MA, USA, July 10-12, 2023, Roxana Geambasu and Ed Nightingale (Eds.). USENIX Association, 397–417. https://www.usenix.org/conference/osdi23/presentation/jiang",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 31,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA (2020), 211:1–211:30. https://doi.org/10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Troubadour can verify that a trace does not demonstrate any of the classes of bugs detected by DBMS fuzzer SQLancer for the fragment of SQL that Troubadour supports as well as detect the presence of such bugs.",
+      "context_before": "t A. Seshia, and Aws Albarghouthi is more variability in solver performance for the correct example. Solver heuristics lead to faster verification for certain values of 𝑘. Summary. Our improved encoding leads to a significant reduction in checking times for most example sizes and results in less variability in the solving times. While for correct examples, the baseline sometimes outperforms the improved encoding, the improved encoding consistently leads to solving times under two seconds, even where solving times exceed 40 minutes for the baseline. 8.2 RQ2: Classes of Bugs Considered Semantic.",
+      "context_after": "We used Troubadour to check correctness of queries by generating a transaction for the query and a correct observation for the transaction. We then ranTroubadour on the transaction and observation. It showed that all 11 of the considered examples were observationally correct in under a second total. We also ran the tool on the query and the original incorrect response observed by SQLancer, and Troubadour reported errors for all the examples in under a second total as well, demonstrating its ability to detect semantic bugs. We considered benchmarks based on MySQL queries 2, 3, 9, 15, 16, 18, a",
+      "section": "8.2 RQ2: Classes of Bugs Considered",
+      "page": 20,
+      "char_offset": 72881,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We also ran the tool on the query and the original incorrect response observed by SQLancer, and Troubadour reported errors for all the examples in under a second total as well, demonstrating its ability to detect semantic bugs.",
+      "context_before": "g times exceed 40 minutes for the baseline. 8.2 RQ2: Classes of Bugs Considered Semantic. Troubadour can verify that a trace does not demonstrate any of the classes of bugs detected by DBMS fuzzer SQLancer for the fragment of SQL that Troubadour supports as well as detect the presence of such bugs. We used Troubadour to check correctness of queries by generating a transaction for the query and a correct observation for the transaction. We then ranTroubadour on the transaction and observation. It showed that all 11 of the considered examples were observationally correct in under a second total.",
+      "context_after": "We considered benchmarks based on MySQL queries 2, 3, 9, 15, 16, 18, and 19 and TiDB queries 1, 3, 10, and 13 generated by SQLancer1, which detected real bugs in MySQL and TiDB DBMS implementations. Other queries used features (e.g., views) not currently supported by Troubadour. Isolation and data anomalies. Troubadour can also be used to ensure the absence of observable isolation level violations and detect anomalies as isolation checking tools can. Many tools are specialized for finding anomalies for specific isolation levels. For example, Cobra supports only anomalies for the serializable",
+      "section": "8.2 RQ2: Classes of Bugs Considered",
+      "page": 20,
+      "char_offset": 73392,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Testing tools like SQLancer and TxCheck can detect certain semantic bugs but clearly cannot perform verification of observational correctness [ 22, 31].",
+      "context_before": "aining a dirty write for isolation level RC), Troubadour reported that the log demonstrated a bug in under half a second for each log. When run on a log containing an anomaly allowed by the provided isolation level (e.g., a log containing a write skew for isolation level SI), it verified observational correctness in under half a second for each log. Observational correctness. While Troubadour can detect semanticsor isolation-related bugs in logs separately, its purpose is primarily to verify the absence of observable semantic or isolation correctness errors with respect to logged transactions.",
+      "context_after": "These tools further cannot catch bugs that require reasoning about isolation levels, such as the bug for the example in §2. Techniques that reason only about isolation levels similarly cannot show the absence of semantic bugs and may also miss errors because they lack information about which transactions write which values. Tools like Elle, Cobra ,Viper, and PolySI can only be applied in settings where transactions’ reads and writes are all known, since they construct dependency graphs from reads. They would 1Found here: https://www.manuelrigger.at/dbms-bugs/ Proc. ACM Program. Lang., Vol. 9,",
+      "section": "8.2 RQ2: Classes of Bugs Considered",
+      "page": 20,
+      "char_offset": 75779,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "technique",
+      "surface": "ternary logic partitioning",
+      "technique": "tlp",
+      "sentence": "There has been much work on DBMS fuzzing for SQL using a variety of techniques [ 3,15,31,42], such as ternary logic partitioning and mutation-based fuzzing.",
+      "context_before": "aker consistency guarantees than considered by automated verifiers for consistency levels; and (2) we operate in a black-box setting without access to the state of the system, meaning that we must reason about semantics to infer whether there exists a sequence of states such that an execution is correct. Testing. The testing approaches for DBMSs that we discuss here generate test cases that expose bugs in the DBMS implementation, and do not test arbitrary transactions and client-side transaction logs for correctness. They therefore solve a much different problem than DBMS correctness auditing.",
+      "context_after": "These tools focus exclusively on semantic correctness of intra-transactional operations as they do not reason about isolation levels. ADUSA [ 23,24] uses constraint solving in Alloy to systematically test DBMSs. The TxCheck fuzzer employs some limited reasoning about isolation levels [ 22]. The MonkeyDB work not only tests for semantic bugs but also for isolation bugs in DBMSs [ 8]. It proposes operational semantics (based on previous work [ 7]) and handles a limited subset of SQL by compiling to key-value store Proc. ACM Program. Lang., Vol. 9, No. OOPSLA1, Article 139. Publication date: Apr",
+      "section": "8.5 Industrial Case Study",
+      "page": 24,
+      "char_offset": 92150,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 22]",
+      "technique": null,
+      "sentence": "The TxCheck fuzzer employs some limited reasoning about isolation levels [ 22].",
+      "context_before": "generate test cases that expose bugs in the DBMS implementation, and do not test arbitrary transactions and client-side transaction logs for correctness. They therefore solve a much different problem than DBMS correctness auditing. There has been much work on DBMS fuzzing for SQL using a variety of techniques [ 3,15,31,42], such as ternary logic partitioning and mutation-based fuzzing. These tools focus exclusively on semantic correctness of intra-transactional operations as they do not reason about isolation levels. ADUSA [ 23,24] uses constraint solving in Alloy to systematically test DBMSs.",
+      "context_after": "The MonkeyDB work not only tests for semantic bugs but also for isolation bugs in DBMSs [ 8]. It proposes operational semantics (based on previous work [ 7]) and handles a limited subset of SQL by compiling to key-value store Proc. ACM Program. Lang., Vol. 9, No. OOPSLA1, Article 139. Publication date: April 2025. Checking Observational Correctness of Database Systems 139:25 operations [ 8]. The semantics is used to test DBMS correctness with respect to a set of transactions for which all read values are observable (i.e., there is no read nondeterminism). Checking isolation levels. Most work",
+      "section": "8.5 Industrial Case Study",
+      "page": 24,
+      "char_offset": 92519,
+      "cited_reference": {
+        "number": 22,
+        "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In 17th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2023, Boston, MA, USA, July 10-12, 2023, Roxana Geambasu and Ed Nightingale",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 22]",
+      "technique": null,
+      "sentence": "While these values may be gotten by instrumenting transactions [ 22], instrumentation implicitly relies on the semantic correctness of the DBMS and may not be possible for certain DBMSs [16].",
+      "context_before": "g problem: given an isolation level 𝐼and set of transactions Twith known reads and writes, does there exist an execution of Tthat meets constraints for 𝐼?This problem is similar to the problem of proving observational correctness with respect to a log, but importantly includes no reasoning about the semantics of the transactions. The assumption that allread and written values are observable either limits the kinds of transactions that can be considered (e.g., the Deposit andTransfer transactions from Fig. 2 could not be used as-is), requires a non-black-box DBMS, or leads to bugs being missed.",
+      "context_after": "Elle deduces dependencies between transactions based on read and written values, and then reasons possible transaction dependency graphs according to Adya’s formalism [ 5,6]. Related techniques do specialized checking of certain isolation levels [ 21,27,34,40], such as serializability and SI. Some of these further make the assumption that each value in the database is unique [ 21,34]. Several of these techniques rely on checking for graph properties, where this checking is encoded as a SAT or SMT problem. While we also reduce DBMS correctness auditing to SMT solving, the queries we pose are m",
+      "section": "8.5 Industrial Case Study",
+      "page": 25,
+      "char_offset": 93852,
+      "cited_reference": {
+        "number": 22,
+        "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In 17th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2023, Boston, MA, USA, July 10-12, 2023, Roxana Geambasu and Ed Nightingale",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:21:29Z",
+    "is_model_written": true,
+    "summary": "This paper checks database systems as a client would, verifying both transaction semantics and isolation guarantees from observations of running transactions against a black-box system. Observational correctness holds if some correct execution under the given isolation level could have produced the observations. The technique rests on symbolic encodings discharged with an SMT solver. The tool, Troubadour, was applied to PostgreSQL and an industrial system under development, finding two new bugs.",
+    "narrative": "SQLancer supplies the evaluation's yardstick: Troubadour is shown to verify that a trace exhibits none of the classes of bug SQLancer detects for the SQL fragment it supports, and was run on the queries and incorrect responses SQLancer had observed, reporting errors for all of them. The paper is careful that testing tools like SQLancer detect bugs but cannot verify observational correctness.",
+    "roles": {
+      "M1": "result_comparison",
+      "M2": "result_comparison",
+      "M3": "background",
+      "M4": "definition",
+      "M5": "background",
+      "M6": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M1",
+          "M2"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M1",
+            "sentence": "Troubadour can verify that a trace does not demonstrate any of the classes of bugs detected by DBMS fuzzer SQLancer for the fragment of SQL that Troubadour supports as well as detect the presence of such bugs.",
+            "section": "8.2 RQ2: Classes of Bugs Considered",
+            "page": 20
+          },
+          {
+            "mention_id": "M2",
+            "sentence": "We also ran the tool on the query and the original incorrect response observed by SQLancer, and Troubadour reported errors for all the examples in under a second total as well, demonstrating its ability to detect semantic bugs.",
+            "section": "8.2 RQ2: Classes of Bugs Considered",
+            "page": 20
+          }
+        ],
+        "reasoning": "M1 and M2 report running Troubadour on the bug classes and on the actual incorrect responses SQLancer found, and comparing what each detects. That is an empirical comparison of coverage of bug classes rather than a bug-count race, but it is a comparison."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

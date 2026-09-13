@@ -1,0 +1,2011 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-10T15:06:47Z",
+  "paper": {
+    "id": "paper:arxiv:2311.06728",
+    "title": "A Comprehensive Survey on Database Management System Fuzzing: Techniques, Taxonomy and Experimental Comparison",
+    "authors": [
+      "Xiyue Gao",
+      "Zhuang Liu",
+      "Jia Cui",
+      "Hui Li",
+      "Hui Zhang",
+      "Kewei Wei",
+      "Kankan Zhao"
+    ],
+    "year": 2023,
+    "venue": "arXiv.org",
+    "doi": null,
+    "arxiv_id": "2311.06728",
+    "s2_paper_id": "5ff9885778f8ec824beaeb6802af5c82e299f702",
+    "url": "https://arxiv.org/abs/2311.06728",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2311.06728",
+      "retrieved_at": "2026-09-10T15:06:47Z",
+      "chars": 101507,
+      "content_sha256": "sha256:3d1d5045fe9645e76b1b42fb32159d8f75d10ffd45a682b1aa149de65137ea09"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 34,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 2214
+      },
+      {
+        "number": "2",
+        "title": "PRELIMINARY",
+        "start": 11112
+      },
+      {
+        "number": "2.1",
+        "title": "Notations",
+        "start": 11261
+      },
+      {
+        "number": "2.2",
+        "title": "Basic Definitions",
+        "start": 12159
+      },
+      {
+        "number": "3",
+        "title": "FUZZING STEP-BASED TAXONOMY",
+        "start": 16991
+      },
+      {
+        "number": "3.1",
+        "title": "Test Case Generator",
+        "start": 18480
+      },
+      {
+        "number": "3.2",
+        "title": "Oracle-based Comparator",
+        "start": 34366
+      },
+      {
+        "number": "3.3",
+        "title": "Execution Feedback",
+        "start": 41371
+      },
+      {
+        "number": "3.4",
+        "title": "Query Reducer",
+        "start": 46489
+      },
+      {
+        "number": "4.1",
+        "title": "Overall Fuzzing",
+        "start": 48818
+      },
+      {
+        "number": "4.2",
+        "title": "Transaction Testing",
+        "start": 55916
+      },
+      {
+        "number": "4.3",
+        "title": "Optimizer Testing",
+        "start": 57682
+      },
+      {
+        "number": "4.4",
+        "title": "Executor Testing",
+        "start": 59942
+      },
+      {
+        "number": "5.1",
+        "title": "Database Instances and Test Cases",
+        "start": 61893
+      },
+      {
+        "number": "5.2",
+        "title": "Open-source Fuzzers",
+        "start": 62435
+      },
+      {
+        "number": "5.3",
+        "title": "Evaluation Metrics",
+        "start": 62712
+      },
+      {
+        "number": "5.4",
+        "title": "Logic Bugs Detection Comparison",
+        "start": 65199
+      },
+      {
+        "number": "5.5",
+        "title": "Crash Detection Comparison",
+        "start": 70161
+      },
+      {
+        "number": "5.6",
+        "title": "Performance Bugs Detection Evaluation",
+        "start": 71330
+      },
+      {
+        "number": "6.1",
+        "title": "Improved Constraint Solving",
+        "start": 73468
+      },
+      {
+        "number": "6.2",
+        "title": "Component-oriented Fuzzing",
+        "start": 74876
+      },
+      {
+        "number": "6.3",
+        "title": "Fuzzing of Modern Database Systems",
+        "start": 76044
+      },
+      {
+        "number": "6.4",
+        "title": "Improved Space Exploration Capabilities",
+        "start": 78124
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "1996. TPC-H. https://www.tpc.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2011. Data science revealed: A data-driven glimpse into the burgeoning new field. https://www.ndm.net/datawarehouse/pdf/EMC-Data_Science_ Study_White_Paper.pdf.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "2015. AFL: American Fuzzy Lop. http://lcamtuf.coredump.cx/afl/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "2015. Jepsen. https://github.com/jepsen-io/jepsen.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "2015. SQLsmith. https://github.com/anse1/sqlsmith.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "2016. Honggfuzz. https://google.github.io/honggfuzz/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "2016. OSS-Fuzz: Continuous Fuzzing for Open Source Software. https://github.com/google/oss-fuzz.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "2017. LibFuzzer-A Library For Coverage-guided Fuzz Testing. http://llvm.org/docs/LibFuzzer.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "2019. American Fuzzy Lop. http://lcamtuf.coredump.cx/afl.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "2019. Documentation of Alloy SAT solver. https://alloytools.org/documentation.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "2019. Technical \"Whitepaper\" For Afl-fuzz. http://lcamtuf.coredump.cx/afl/technical_details.txt.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "2021. CockroachDB Performance Bug Reports. https://github.com/cockroachdb/cockroach/issues?q=performance.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "2021. PostgreSQL Performance Bug Reports. https://www.postgresql.org/search/?m=1&q=performance&l=8&d=-1&s=r.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "2021. SCOTT schema. https://www.orafaq.com/wiki/SCOTT.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "2023. MySQL Bugs Home. https://bugs.mysql.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Shadi Abdul Khalek and Sarfraz Khurshid. 2010. Automated SQL Query Generation for Systematic Testing of Database Engines. In International Conference on Automated Software Engineering. ACM, 329–332.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Arul Ajmani, Aayush Shah, Alexander Shraer, Adam Storm, Rebecca Taft, Oliver Tan, and Nathan VanBenschoten. 2022. A Demonstration of Multi-Region CockroachDB. Very Large Data Bases Endowment 15, 12 (2022), 3610–3613.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In International Conference on Software Engineering. ACM, 2060–2071.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 19,
+      "text": "Hardik Bati, Leo Giakoumakis, Steve Herbert, and Aleksandras Surna. 2007. A Genetic Approach for Random Testing of Database Systems. In International Conference on Very Large Data Bases. VLDB Endowment, 1243–1251.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "B. Beizer. 1992. Software testing techniques. Software Testing Verification and Reliability 2, 4 (1992), 215–216.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Donald A Berry and Bert Fristedt. 1985. Bandit problems: sequential allocation of experiments (Monographs on statistics and applied probability). London: Chapman and Hall 5, 71-87 (1985), 7–7.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Tim Blazytko, Matt Bishop, Cornelius Aschermann, Justin Cappos, Moritz Schlögel, Nadia Korshun, Ali Abbasi, Marco Schweighauser, Sebastian Schinzel, Sergej Schumilo, et al .2019. GRIMOIRE: Synthesizing Structure While Fuzzing. In USENIX Conference on Security Symposium. USENIX Association, 1985–2002.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Nicolas Bruno and Surajit Chaudhuri. 2005. Flexible Database Generators. In International Conference on Very Large Data Bases. VLDB Endowment, 1097–1107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "N. Bruno, S. Chaudhuri, and D. Thomas. 2006. Generating Queries with Cardinality Constraints for DBMS Testing. Transactions on Knowledge and Data Engineering 18, 12 (2006), 1721–1725. Manuscript submitted to ACM 32 AUTHOR et al.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Marcel Böhme, Van-Thuan Pham, Manh-Dung Nguyen, and Abhik Roychoudhury. 2017. Directed Greybox Fuzzing. In Conference on Computer and Communications Security. ACM, 2329–2344.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Marcel Böhme, Van-Thuan Pham, and Abhik Roychoudhury. 2016. Coverage-based Greybox Fuzzing as Markov Chain. In Conference on Computer and Communications Security. ACM, 1032–1043.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Tsong Y Chen, Shing C Cheung, and Shiu Ming Yiu. 1998. Metamorphic Testing: A New Approach for Generating Next Test Cases. arXiv preprint arXiv:2002.12543 (1998).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Xinyue Chen, Chenglong Wang, and Alvin Cheung. 2020. Testing Query Execution Engines with Mutations. In Workshop on Testing Database Systems. ACM, 1–5.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Shumo Chu, Chenglong Wang, Konstantin Weitz, and Alvin Cheung. 2017. Cosette: An Automated Prover for SQL. In Conference on Innovative Data Systems Research.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "James C Corbett, Jeffrey Dean, Michael Epstein, Andrew Fikes, Christopher Frost, Jeffrey John Furman, Sanjay Ghemawat, Andrey Gubarev, Christopher Heiser, Peter Hochschild, et al .2013. Spanner: Google’s Globally Distributed Database. ACM Transactions on Computer Systems 31, 3 (2013), 1–22.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Ziyu Cui, Wensheng Dou, Qianwang Dai, Jiansen Song, Wei Wang, Jun Wei, and Dan Ye. 2022. Differentially Testing Database Transactions for Fun and Profit. In International Conference on Automated Software Engineering. ACM, 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Wensheng Dou, Ziyu Cui, Qianwang Dai, Jiansen Song, Dong Wang, Yu Gao, Wei Wang, Jun Wei, Lei Chen, Hanmo Wang, et al .2023. Detecting Isolation Bugs via Transaction Oracle Construction. In International Conference on Software Engineering. IEEE.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-Free DBMS Fuzzing. In International Conference on Automated Software Engineering. ACM, 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "César A. Galindo-Legaria, Stefano Stefani, and Florian Waas. 2004. Query Processing for SQL Updates. In International Conference on Management of Data. ACM, 844–849.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Leo Giakoumakis and César A Galindo-Legaria. 2008. Testing SQL Server’s Query Optimizer: Challenges, Techniques and Experiences. Data Engineering Bulletin 31, 1 (2008), 36–43.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Patrice Godefroid, Adam Kiezun, and Michael Y. Levin. 2008. Grammar-based whitebox fuzzing. In Conference on Programming Language Design and Implementation. ACM, 206–215.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Eugene Goldberg and Yakov Novikov. 2007. BerkMin: A Fast and Robust SAT-solver. Discrete Applied Mathematics 155, 12 (2007), 1549–1561.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Goetz Graefe. 1993. Query Evaluation Techniques for Large Databases. Computing Surveys 25, 2 (1993), 73–169.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Goetz Graefe. 1995. The Cascades Framework for Query Optimization. Data Engineering Bulletin 18, 3 (1995), 19–29.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Jim Gray, Prakash Sundaresan, Susanne Englert, Ken Baclawski, and Peter J Weinberger. 1994. Quickly Generating Billion-Record Synthetic Databases. In International Conference on Management of Data. ACM, 243–252.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Zhongxian Gu, Mohamed A. Soliman, and Florian M Waas. 2012. Testing the Accuracy of Query Optimizers. In Workshop on Testing Database Systems. ACM, 1–6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Kenneth Houkjær, Kristian Torp, and Rico Wind. 2006. Simple and Realistic Data Generation. In International Conference on Very Large Data Bases. VLDB Endowment, 1243–1246.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "William E Howden. 1978. Theoretical and empirical studies of program testing. Transactions on Software Engineering SE-4, 4 (1978), 293–298.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Dongxu Huang, Qi Liu, Qiu Cui, Zhuhe Fang, Xiaoyu Ma, Fei Xu, Li Shen, Liu Tang, Yuxing Zhou, Menglong Huang, et al .2020. TiDB: A Raft-Based HTAP Database. Very Large Data Bases Endowment 13, 12 (2020), 3072–3084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "T. Hunt. 2020. The 773 Million Record \"Collection 1\" Data Breach. https://www.troyhunt.com/the-773-million-record-collection-1-data-reach/ ,January2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Toshihide Ibaraki and Tiko Kameda. 1984. On the Optimal Nesting Order for Computing N-Relational Joins. Transactions on Database Systems 9, 3 (1984), 482–502.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Daniel Jackson. 2002. Alloy: A Lightweight Object Modelling Notation. Transactions on Software Engineering and Methodology 11, 2 (2002), 256–290.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Kamala Ramasubramani Jayakumar and Alain Abran. 2013. A Survey of Software Test Estimation Techniques. Journal of Software Engineering and Applications 6, 10 (2013), 47–52.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. 2023. DynSQL: Stateful Fuzzing for Database Management Systems with Complex and Valid SQL Query Generation. In USENIX Security Symposium. USENIX Association, 4949–4965.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Matt Jibson. 2019. SQLsmith: Randomized sql testing in cockroachdb. https://www.cockroachlabs.com/blog/sqlsmith-randomized-sql-testing/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2019. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems. Very Large Data Bases Endowment 13, 1 (2019), 57–70.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Sarfraz Khurshid and Darko Marinov. 2004. TestEra: Specification-based testing of Java programs using SAT. Automated Software Engineering 11 (2004), 403–434.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Donghun Lee, Sang K Cha, and Arthur H Lee. 2011. A Performance Anomaly Detection and Analysis Framework for DBMS Development. Transactions on Knowledge and Data Engineering 24, 8 (2011), 1345–1360.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Viktor Leis, Andrey Gubichev, Atanas Mirchev, Peter Boncz, Alfons Kemper, and Thomas Neumann. 2015. How Good Are Query Optimizers, Really? Very Large Data Bases Endowment 9, 3 (2015), 204–215. Manuscript submitted to ACM A Comprehensive Survey on Database Management System Fuzzing: Techniques, Taxonomy and Experimental Comparison 33",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Caroline Lemieux and Koushik Sen. 2018. FairFuzz: A Targeted Mutation Strategy for Increasing Greybox Fuzz Testing Coverage. In International Conference on Automated Software Engineering. ACM, 475–485.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Guoliang Li, Xuanhe Zhou, Shifu Li, and Bo Gao. 2019. QTune: A Query-Aware Database Tuning System with Deep Reinforcement Learning. Very Large Data Bases Endowment 12, 12 (2019), 2118–2130.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Guoliang Li, Xuanhe Zhou, Ji Sun, Xiang Yu, Yue Han, Lianyuan Jin, Wenbo Li, Tianqing Wang, and Shifu Li. 2021. OpenGauss: An Autonomous Database System. Very Large Data Bases Endowment 14, 12 (2021), 3028–3042.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Zhan Li, Olga Papaemmanouil, and Mitch Cherniack. 2016. Optmark: A Toolkit for Benchmarking Query Optimizers. In Information and Knowledge Management. ACM, 2155–2160.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. 2023. Sequence-Oriented DBMS Fuzzing. In International Conference on Data Engineering. IEEE, 668–681.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting Logical Bugs of DBMS with Coverage-based Guidance. In USENIX Security Symposium. USENIX Association, 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Wei Lin, Ziyue Hua, Luyao Ren, Zongyang Li, Lu Zhang, and Tao Xie. 2022. GDsmith: Detecting Bugs in Graph Database Engines. arXiv preprint arXiv:2206.08530 (2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. 2022. Automatic Detection of Performance Bugs in Database Systems Using Equivalent Queries. In International Conference on Software Engineering. ACM, 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Eric Lo, Carsten Binnig, Donald Kossmann, M Tamer Özsu, and Wing-Kai Hon. 2010. A Framework for Testing DBMS Features. Very Large Data Bases Endowment 19 (2010), 203–230.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Jiaheng Lu and Irena Holubová. 2019. Multi-Model Databases: A New Journey to Handle the Variety of Data. Comput. Surveys 52, 3 (2019), 1–38.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Minghua Ma, Zheng Yin, Shenglin Zhang, Sheng Wang, Christopher Zheng, Xinhao Jiang, Hanwen Hu, Cheng Luo, Yilin Li, Nengjun Qiu, Feifei Li, Changcheng Chen, and Dan Pei. 2020. Diagnosing Root Causes of Intermittent Slow Queries in Cloud Databases. Very Large Data Bases Endowment 13, 8 (2020), 1176–1189.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Ryan Marcus, Parimarjan Negi, Hongzi Mao, Nesime Tatbul, Mohammad Alizadeh, and Tim Kraska. 2021. Bao: Making Learned Query Optimization Practical. In International Conference on Management of Data. ACM, 1275–1288.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Darko Marinov. 2010. Session Details: Technical Session 8: Concurrency and Differential Testing. In International Symposium on Software Testing and Analysis. ACM.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "William M McKeeman. 1998. Differential Testing for Software. Digital Technical Journal 10, 1 (1998), 100–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "Phil Mcminn, Chris J. Wright, and Gregory M. Kapfhammer. 2015. The Effectiveness of Test Coverage Criteria for Relational Database Schema Integrity Constraints. Transactions on Software Engineering and Methodology 25, 1 (2015), 1–49.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Ruijie Meng, George Pîrlea, Abhik Roychoudhury, and Ilya Sergey. 2023. Greybox Fuzzing of Distributed Systems. arXiv preprint arXiv:2305.02601 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Kaiming Mi, Chunxi Zhang, Weining Qian, and Rong Zhang. 2021. Artemis: An Automatic Test Suite Generator for Large Scale OLAP Database. In Benchmarking, Measuring, and Optimizing: Third BenchCouncil International Symposium. Springer, 74–89.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Barton P. Miller, Lars Fredriksen, and Bryan So. 1990. An Empirical Study of the Reliability of UNIX Utilities. Commun. ACM 33, 12 (1990), 32–44.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Chaitanya Mishra, Nick Koudas, and Calisto Zuzarte. 2008. Generating targeted queries for database testing. In International Conference on Management of Data. ACM, 499–510.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "Jayashree Mohan, Ashlie Martinez, Soujanya Ponnapalli, Pandian Raju, and Vijay Chidambaram. 2018. Finding Crash-Consistency Bugs with Bounded Black-Box Crash Testing. In USENIX Symposium on Operating Systems Design and Implementations. USENIX Association, 33–50.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "MySQL. 2023. The MySQL Test Framework. https://dev.mysql.com/doc/dev/mysql-server/latest/PAGE_MYSQL_TEST_RUN.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "Andrea Neufeld, Guido Moerkotte, and Peter C Loekemann. 1993. Generating Consistent Test Data: Restricting the Search Space by A Generator Formula. Very Large Data Bases Endowment 2 (1993), 173–213.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "ShaTransactions on Knowledge, Data Engineeringdi Abdul Khalek, Bassem Elkarablieh, Yai O. Laleye, and Sarfraz Khurshid. 2008. Query-Aware Test Generation Using a Relational Constraint Solver. In International Conference on Automated Software Engineering. IEEE, 238–247.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "Rasha Osman and William J. Knottenbelt. 2012. Database System Performance Evaluation Models: A Survey. Performance Evaluation 69, 10 (2012), 471–493.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "Carlos Pacheco, Shuvendu K. Lahiri, Michael D. Ernst, and Thomas Ball. 2007. Feedback-Directed Random Test Generation. In International Conference on Software Engineering. IEEE, 75–84.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "Andrew Pavlo, Gustavo Angulo, Joy Arulraj, Haibin Lin, Jiexi Lin, Lin Ma, Prashanth Menon, Todd C Mowry, Matthew Perron, Ian Quah, et al. 2017. Self-Driving Database Management Systems. In Conference on Innovative Data Systems Research. 1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 81,
+      "text": "PingCap. 2023. go randgen. https://github.com/pingcap/go-randgen.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 82,
+      "text": "Meikel Poess and John M. Stephens. 2004. Generating Thousand Benchmark Queries in Seconds. In International Conference on Very Large Data Bases. VLDB Endowment, 1045–1053.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 83,
+      "text": "PostgreSQL. 2023. Regression Tests. https://www.postgresql.org/docs/current/regress.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 84,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. ACM. Manuscript submitted to ACM 34 AUTHOR et al.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 85,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Programming Languages 4, OOPSLA (2020), 1–30.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 86,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In USENIX Symposium on Operating Systems Design and Implementation. USENIX Association, 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 87,
+      "text": "Manuel Rigger and Zhendong Su. 2022. Intramorphic Testing: A New Approach to the Test Oracle Problem. In International Symposium on New Ideas, New Paradigms, and Reflections on Programming and Software. ACM, 128–136.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 88,
+      "text": "Shetal Shah, S. Sudarshan, Suhas Kajbaje, Sandeep Patidar, Bhanu Pratap Gupta, and Devang Vira. 2011. Generating Test Data for Killing SQL Mutants: A Constraint-Based Approach. In International Conference on Data Engineering. IEEE, 1175–1186.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 89,
+      "text": "Donald R Slutz. 1998. Massive Stochastic Testing of SQL. In International Conference on Very Large Data Bases. VLDB Endowment, 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 90,
+      "text": "Jiansen Song, Wensheng Dou, Ziyu Cui, Qianwang Dai, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2023. Testing Database Systems via Differential Query Execution. In International Conference on Software Engineering. IEEE, 2072–2084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 91,
+      "text": "SQLite. 2023. How SQLite Is Tested. https://sqlite.org/testing.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 92,
+      "text": "Keith Stobie. 2005. Too Darned Big to Test: Testing Large Systems is a Daunting Task, but There Are Steps We Can Take to Ease the Pain. Queue 3, 1 (2005), 30–37.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 93,
+      "text": "Rebecca Taft, Irfan Sharif, Andrei Matei, Nathan VanBenschoten, Jordan Lewis, Tobias Grieger, Kai Niemi, Andy Woods, Anne Birzin, Raphael Poss, et al. 2020. CockroachDB: The Resilient Geo-Distributed SQL Database. In International Conference on Management of Data. ACM, 1493–1509.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 94,
+      "text": "Xiu Tang, Sai Wu, Dongxiang Zhang, Feifei Li, and Gang Chen. 2023. Detecting Logic Bugs of Join Optimizations in DBMS. International Conference on Management of Data 1, 1 (2023), 1–26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 95,
+      "text": "P. Thévenod-Fosse and H. Waeselynck. 1993. STATEMATE Applied to Statistical Software Testing. In International Symposium on Software Testing and Analysis. ACM, 99–109.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 96,
+      "text": "Valter Uotila, Jiaheng Lu, Dieter Gawlick, Zhen Hua Liu, Souripriya Das, and Gregory Pogossiants. 2021. MultiCategory: Multi-Model Query Processing Meets Category Theory and Functional Programming. Very Large Data Bases Endowment 14, 12 (2021), 2663–2666.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 97,
+      "text": "Patrick Valduriez and Scott Danforth. 1992. Functional SQL (FSQL), an SQL Upward-Compatible Database Programming Language. Information Sciences 62, 3 (1992), 183–203.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 98,
+      "text": "Junjie Wang, Bihuan Chen, Lei Wei, and Yang Liu. 2019. Superion: Grammar-Aware Greybox Fuzzing. In International Conference on Software Engineering. IEEE, 724–735.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 99,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. 2021. Industry Practice of Coverage-Guided Enterprise-Level DBMS Fuzzing. In International Conference on Software Engineering: Software Engineering in Practice. IEEE, 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 100,
+      "text": "Yanhao Wang, Xiangkun Jia, Yuwei Liu, Kyle Zeng, Tiffany Bao, Dinghao Wu, and Purui Su. 2020. Not All Coverage Measurements Are Equal: Fuzzing by Coverage Accounting for Input Prioritization. In Network and Distributed System Security Symposium.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 101,
+      "text": "Shihao Wen, Peng Jia, Pin Yang, and Chi Hu. 2023. Squill: Testing DBMS with Correctness Feedback and Accurate Instantiation. Applied Sciences 13, 4 (2023), 2519.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 102,
+      "text": "Zhiyong Wu, Jie Liang, Mingzhe Wang, Chijin Zhou, and Yu Jiang. 2022. Unicorn: Detect Runtime Errors in Time-Series Databases with Hybrid Input Synthesis. In International Symposium on Software Testing and Analysis. ACM, 251–262.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 103,
+      "text": "Jiaqi Yan, Qiuye Jin, Shrainik Jain, Stratis D. Viglas, and Allison Lee. 2018. Snowtrail: Testing with Production Queries on a Cloud Database. In Workshop on Testing Database Systems. ACM, 1–6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 104,
+      "text": "Man Yang, Mingwang Zhang, Tao Leng, Weize Dong, and Yu Yan. 2021. Design and Implementation of Benchmarks for Multimodal Databases. In International Conference on Industrial Application of Artificial Intelligence. IEEE, 490–494.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 105,
+      "text": "Gongsheng Yuan, Jiaheng Lu, Shuxun Zhang, and Zhengtong Yan. 2021. Storing Multi-Model Data in RDBMSs Based on Reinforcement Learning. InInternational Conference on Information & Knowledge Management. ACM, 3608–3611.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 106,
+      "text": "Chao Zhang, Jiaheng Lu, Pengfei Xu, and Yuxing Chen. 2019. UniBench: A Benchmark for Multi-model Database Management Systems. In Performance Evaluation and Benchmarking for the Era of Artificial Intelligence. Springer, 7–23.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 107,
+      "text": "Yushan Zhang, Peisen Yao, Rongxin Wu, and Charles Zhang. 2021. Duplicate-sensitivity Guided Transformation Synthesis for DBMS Correctness Bug Detection. arXiv preprint arXiv:2107.03660 (2021).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 108,
+      "text": "Yingying Zheng, Wensheng Dou, Yicheng Wang, Zheng Qin, Lei Tang, Yu Gao, Dong Wang, Wei Wang, and Jun Wei. 2022. Finding Bugs in Gremlin-Based Graph Database Systems via Randomized Differential Testing. In International Symposium on Software Testing and Analysis. ACM, 302–313.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 109,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Conference on Computer and Communications Security. ACM, 955–970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 110,
+      "text": "Zenghui Zhou, Zheng Zheng, Tsong Yueh Chen, Jinyi Zhou, and Kun Qiu. 2021. Follow-up Test Cases are Better Than Source Test Cases in Metamorphic Testing: A Preliminary Study. In International Workshop on Metamorphic Testing. IEEE, 69–74. Received 20 February 2007; revised 12 March 2009; accepted 5 June 2009 Manuscript submitted to ACM",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 18,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In International Conference on Software Engineering. ACM, 2060–2071.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 84,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. ACM. Manuscript submitted to ACM 34 AUTHOR et al.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 85,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Programming Languages 4, OOPSLA (2020), 1–30.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 86,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In USENIX Symposium on Operating Systems Design and Implementation. USENIX Association, 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 87,
+      "text": "Manuel Rigger and Zhendong Su. 2022. Intramorphic Testing: A New Approach to the Test Oracle Problem. In International Symposium on New Ideas, New Paradigms, and Reflections on Programming and Software. ACM, 128–136.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "proposed several new fuzzing methods, including NoREC [ 84], TLP [ 85] and PQS [ 86].",
+      "context_before": "testing [ 16] was proposed as another way to obtain the test oracle in DBMS fuzzing, which provides the ground truth for the test cases. In 2015, SQLSmith [ 5] was released, which still generates statements based on predefined rules, and can also connect to reference databases to serve as test oracles. Thanks to the open-source factor, compared to the SQL Server fuzzing tool, SQLSmith has rapidly attracted attention from both academic and industrial. In 2020, Squirrel [ 109] first introduced execution feedback to improve code coverage in crash detection fuzzing. In the same year, Rigger et al.",
+      "context_after": "NoREC and TLP apply metamorphic testing to the database domain, enabling fuzzing on a single DBMS. PQS is a constraint-solving testing method, and its oracle only requires that the execution result contain one row of the solving outcome, thereby accelerating the solving process Manuscript submitted to ACM A Comprehensive Survey on Database Management System Fuzzing: Techniques, Taxonomy and Experimental Comparison 3 compared to the former approach, which requires matching all the rows. In 2022, Liang et al. introduced SQLRight [ 60], a metamorphic testing method combined with execution feedba",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 5780,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp",
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC and TLP apply metamorphic testing to the database domain, enabling fuzzing on a single DBMS.",
+      "context_before": "hich provides the ground truth for the test cases. In 2015, SQLSmith [ 5] was released, which still generates statements based on predefined rules, and can also connect to reference databases to serve as test oracles. Thanks to the open-source factor, compared to the SQL Server fuzzing tool, SQLSmith has rapidly attracted attention from both academic and industrial. In 2020, Squirrel [ 109] first introduced execution feedback to improve code coverage in crash detection fuzzing. In the same year, Rigger et al. proposed several new fuzzing methods, including NoREC [ 84], TLP [ 85] and PQS [ 86].",
+      "context_after": "PQS is a constraint-solving testing method, and its oracle only requires that the execution result contain one row of the solving outcome, thereby accelerating the solving process Manuscript submitted to ACM A Comprehensive Survey on Database Management System Fuzzing: Techniques, Taxonomy and Experimental Comparison 3 compared to the former approach, which requires matching all the rows. In 2022, Liang et al. introduced SQLRight [ 60], a metamorphic testing method combined with execution feedback, and is scalable to allow new oracles. In 2023, Tang et al. presented a novel constraint-solving",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 5866,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS is a constraint-solving testing method, and its oracle only requires that the execution result contain one row of the solving outcome, thereby accelerating the solving process Manuscript submitted to ACM A Comprehensive Survey on Database Management System Fuzzing: Techniques, Taxonomy and Experimental Comparison 3 compared to the former approach, which requires matching all the rows.",
+      "context_before": "generates statements based on predefined rules, and can also connect to reference databases to serve as test oracles. Thanks to the open-source factor, compared to the SQL Server fuzzing tool, SQLSmith has rapidly attracted attention from both academic and industrial. In 2020, Squirrel [ 109] first introduced execution feedback to improve code coverage in crash detection fuzzing. In the same year, Rigger et al. proposed several new fuzzing methods, including NoREC [ 84], TLP [ 85] and PQS [ 86]. NoREC and TLP apply metamorphic testing to the database domain, enabling fuzzing on a single DBMS.",
+      "context_after": "In 2022, Liang et al. introduced SQLRight [ 60], a metamorphic testing method combined with execution feedback, and is scalable to allow new oracles. In 2023, Tang et al. presented a novel constraint-solving testing method, TQS [ 94], which incorporated subgraph isomorphism search into DBMS fuzzing, significantly enhancing bug detection efficiency. DBMS fuzzing techniques can be classified from different perspectives. •One classification approach is based on the way expected results are obtained, as shown in Figure 1: differential testing, metamorphic testing, and constraint-solving. Differen",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 5965,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker",
+      "surface": "[ 34,35,38,41,86]",
+      "technique": "pqs",
+      "sentence": "Performance bugs manifest themselves as significant differences in the execution time of the same query in different versions of DBMS, or large performance gaps between a query and its equivalent [ 34,35,38,41,86].",
+      "context_before": "(𝑇𝐶) The execution result of the test case 𝑇𝐶in the DBMS 𝐷 𝐺(𝑇𝐶,𝐷) The ground truth of the execution result for the test case 𝑇𝐶in the DBMS 𝐷 2.2 Basic Definitions Database bugs encompass three main types: crashes, logic bugs, and performance bugs [ 63,72]. Crashes occur when program errors or memory leaks interrupt the database while queries are executed. Compared to other types of bugs, crashes are relatively easier to identify. Logic bugs occur when the execution results deviate from the expected ones or violate common sense in the DBMS. Such bugs are usually hidden and difficult to detect.",
+      "context_after": "However, it is important to note that not all of these differences are considered to be actual bugs. Because determining the optimal execution plan is inherently an NP-hard problem [ 46], some databases practically choose suboptimal plans to speed up the optimization process. We consider performance bugs to have less impact on normal database usage, and therefore have a lower priority than the other two types of bugs. DBMS fuzzing detects crashes, logic bugs, and performance bugs by generating a large number of SQL test statements in the DBMS [ 5,16,73,82,103]. According to the rules of state",
+      "section": "2.2 Basic Definitions",
+      "page": 4,
+      "char_offset": 12617,
+      "cited_reference": {
+        "number": 86,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In USENIX Symposium on Operating Systems Design and Implementation. USENIX Association, 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 87]",
+      "technique": null,
+      "sentence": "For example, intramorphic testing [ 87] works by replacing a specific component in the system to get another version and then testing between the two versions to detect bugs in that component.",
+      "context_before": "DBMS, as shown in Figure 2. Black-box fuzzing treats the DBMS as a black box, where a series of SQL statements or transactions are inputted, and a series of execution results or execution plans are obtained accordingly. The bugs are then determined by validating the results and plans. Grey-box fuzzing collects state information from the DBMS, such as code branch coverage and status, to guide statement generation and improve the efficiency of DBMS testing. By comparison, white-box fuzzing requires testing with an understanding of the internal structure and implementation mechanisms of the DBMS.",
+      "context_after": "However, white-box fuzzing is currently limited to theoretical research on general systems, and there is no white-box fuzzing tool for DBMS, which is also the focus of future research. A testing oracle refers to a mechanism to obtain the expected results of test cases. DBMS fuzzing can also be divided into differential testing, metamorphic testing, and constraint-solving testing according to different oracles. Figure 3 shows the difference between them. Their formal definitions are shown in Definition 2.1, 2.2 and 2.3. Definition 2.1 (Differential Testing). Differential testing detects bugs b",
+      "section": "2.2 Basic Definitions",
+      "page": 5,
+      "char_offset": 14913,
+      "cited_reference": {
+        "number": 87,
+        "text": "Manuel Rigger and Zhendong Su. 2022. Intramorphic Testing: A New Approach to the Test Oracle Problem. In International Symposium on New Ideas, New Paradigms, and Reflections on Programming and Software. ACM, 128–136.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker",
+      "surface": "[ 16,31–\n33,62,71,81,85,86,90,94,101,109]",
+      "technique": "tlp",
+      "sentence": "On the other hand, fuzzers based on random databases [ 16,31– 33,62,71,81,85,86,90,94,101,109] create random database instances from scratch.",
+      "context_before": "fore generating test cases, a database instance must be available. Depending on their sources, they fall into two categories: existing databases and random databases. Existing databases come from benchmark tests such as TPC-H [ 1] or real datasets such as SCOTT [ 14]. Fuzzers based on existing databases [ 5,19,51,89] first acquire the schema of the target database and then generate syntactically correct statements based on that schema. However, as both the schema and the data are fixed, the generated statements cannot effectively explore the entire query space, leading to incomplete detection.",
+      "context_after": "The random generation of databases has been widely explored [ 23,40,42,76]. A common practice is to first create tables, indexes and views randomly and then populate them with data using INSERT, UPDATE, and DELETE statements [ 84]. The advantage of using randomly generated databases is their potential to thoroughly explore the query space. When coupled with execution feedback, these solutions can effectively explore the search space. Manuscript submitted to ACM 8 AUTHOR et al. Table 2. Comparison of Test Case Generators Fuzzer YearGenerator TypeGenerator StrategyFeedbackDatabase Instance RAGS",
+      "section": "3.1 Test Case Generator",
+      "page": 7,
+      "char_offset": 19993,
+      "cited_reference": {
+        "number": 85,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Programming Languages 4, OOPSLA (2020), 1–30.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker",
+      "surface": "[ 84]",
+      "technique": "norec",
+      "sentence": "A common practice is to first create tables, indexes and views randomly and then populate them with data using INSERT, UPDATE, and DELETE statements [ 84].",
+      "context_before": "s TPC-H [ 1] or real datasets such as SCOTT [ 14]. Fuzzers based on existing databases [ 5,19,51,89] first acquire the schema of the target database and then generate syntactically correct statements based on that schema. However, as both the schema and the data are fixed, the generated statements cannot effectively explore the entire query space, leading to incomplete detection. On the other hand, fuzzers based on random databases [ 16,31– 33,62,71,81,85,86,90,94,101,109] create random database instances from scratch. The random generation of databases has been widely explored [ 23,40,42,76].",
+      "context_after": "The advantage of using randomly generated databases is their potential to thoroughly explore the query space. When coupled with execution feedback, these solutions can effectively explore the search space. Manuscript submitted to ACM 8 AUTHOR et al. Table 2. Comparison of Test Case Generators Fuzzer YearGenerator TypeGenerator StrategyFeedbackDatabase Instance RAGS[89] 1998 Generation-based AST Model (Static Configuration) No Feedback (Black-Box)Existing Databases SQLsmith[5] 2015 APOLLO[51] 2019 AST Model (Dynamic Configuration) AMOEBA[62] 2022 Go-Randgen[81] 2019 AST Model (Static Configurat",
+      "section": "3.1 Test Case Generator",
+      "page": 7,
+      "char_offset": 20211,
+      "cited_reference": {
+        "number": 84,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. ACM. Manuscript submitted to ACM 34 AUTHOR et ",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "Comparison of Test Case Generators Fuzzer YearGenerator TypeGenerator StrategyFeedbackDatabase Instance RAGS[89] 1998 Generation-based AST Model (Static Configuration) No Feedback (Black-Box)Existing Databases SQLsmith[5] 2015 APOLLO[51] 2019 AST Model (Dynamic Configuration) AMOEBA[62] 2022 Go-Randgen[81] 2019 AST Model (Static Configuration) Random DatabasesSQLancer[86] 2020 Artemis[71] 2021 DT2[31] 2022 DQE[90] 2023 Troc[32] 2023 TQS[94] 2023AST Model (Dynamic Configuration) ADUSA[16] 2010 Alloy Model GARan[19] 2007 Mutation-based SQL Structure MutationFeedback from internal status (Grey-Box)Existing Databases Squirrel[109] 2020 Random DatabasesSquill[101] 2023 SQLRight[60] 2022 DynSQL[49] 2023 Eqsql[107] 2021 No Feedback (Black-Box) MutaSQL[28] 2020 LEGO[59] 2023SQL Sequence MutationFeedback from internal status (Grey-Box) Griffin[33] 2022No Feedback (Black-Box) QPG[18] 2023DBMS State MutationFeedback from external interface (Black-Box) 3.",
+      "context_before": "on random databases [ 16,31– 33,62,71,81,85,86,90,94,101,109] create random database instances from scratch. The random generation of databases has been widely explored [ 23,40,42,76]. A common practice is to first create tables, indexes and views randomly and then populate them with data using INSERT, UPDATE, and DELETE statements [ 84]. The advantage of using randomly generated databases is their potential to thoroughly explore the query space. When coupled with execution feedback, these solutions can effectively explore the search space. Manuscript submitted to ACM 8 AUTHOR et al. Table 2.",
+      "context_after": "1.2 Generator type and strategy. After acquiring the database instance, we can proceed to generate test cases using either a generation-based or a mutation-based approach. Among them, the generation-based approach consists primarily of two strategies: Abstract Syntax Tree (AST) model and Alloy model [10]. The general process of the AST model is depicted in Figure 5. First, we need an AST model. AST itself is a tree-like data structure, which can represent the various components of SQL query statements (such as SELECT, FROM, WHERE, JOIN, etc.) and their relationships as nodes and branches for s",
+      "section": "3.1 Test Case Generator",
+      "page": 8,
+      "char_offset": 20626,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg",
+        "pqs"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker",
+      "surface": "[31, 32, 84–86, 90]",
+      "technique": "norec",
+      "sentence": "Without this limitation, numerous complex SQL statements would be generated, which may expand the search space but reduce the overall efficiency of bug detection [31, 32, 84–86, 90].",
+      "context_before": "ned Tables: This parameter helps constrain the complexity of join relationships, preventing the generation of large-scale multi-table join statements and enhancing the efficiency of statement generation [81, 89]. •Limiting the Maximum Number of Rows Returned: This parameter restricts the execution time and resource consumption of the test cases by adding a LIMIT clause to the original statement [81, 89]. •Limiting the Maximum Depth of the AST: This parameter is set to limit the generation time of test cases, as the generation time tends to increase exponentially with the increase in AST depth.",
+      "context_after": "However, static configurations require manual adjustments based on specific requirements. This process can be time-consuming, and manually setting parameters may not sufficiently explore the state space in a targeted manner. Dynamic configurations of the AST model adjust generator parameters based on previous execution results, which include: Manuscript submitted to ACM 10 AUTHOR et al. Listing 1. Alloy Syntax Model abstract sig FieldName {} abstract sig TableName {} abstract sig Value {} abstract sig Table { name: one TableName, fields: some FieldName } sig Term { field: one FieldName, agg:",
+      "section": "3.1 Test Case Generator",
+      "page": 9,
+      "char_offset": 24291,
+      "cited_reference": {
+        "number": 84,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. ACM. Manuscript submitted to ACM 34 AUTHOR et ",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "citation_marker",
+      "surface": "[ 18]",
+      "technique": "qpg",
+      "sentence": "Mutation-based generators can be divided into three major categories: SQL structure mutation [ 19,28,49,60,101, 107,109], SQL sequence mutation [ 33,59], and DBMS state mutation [ 18].",
+      "context_before": "Figure 7. An example of AST and its corresponding IR, on the left, the AST contains a series of tree nodes, and on the right, V1-V16 represent a series of IR nodes corresponding to each tree node. V15 does not correspond to any tree node in the AST, its introduction serves the purpose of conveniently representing the SelectStmt. while the former guarantees the semantic accuracy of generated statements by constraining column names in select clause and where clause. Therefore, a generator based on the Alloy model [ 16] can achieve a higher level of semantic correctness compared to the AST model.",
+      "context_after": "Figure 6 illustrates the differences between three mutation strategies. SQL structure mutation generates new test cases by modifying the structure of statement, and it is the most common type of mutation. SQL sequence mutation generates new test cases by reshuffling or deleting queries from the original test cases. Its advantage is that it does not rely on SQL syntax, which reduces the adaptation cost for new DBMSs. DBMS state mutation uses DDL operations to create indexes or modify table definitions to generate new database schemas. In addition, it combines old SQL statements with the newly",
+      "section": "3.1 Test Case Generator",
+      "page": 12,
+      "char_offset": 30191,
+      "cited_reference": {
+        "number": 18,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In International Conference on Software Engineering. ACM, 2060–2071.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Comparison of Oracles Fuzzer Oracle Type Feature Test Scope Squirrel[109] Crash Database Crashes Crash BugsSquill[101] Griffin[33] LEGO[59] DynSQL[49] RAGS[89] DifferentialDifferent Databases Logic BugsSQLsmith[5] Go-Randgen[81] GARan[19] DT2[31] APOLLO[51] Different Versions of A Same DatabasePerformance BugsAMOEBA[62] MetamorphicStatement RewritingMutaSQL[28] Logic BugsEqsql[107] NoREC[84] SQLRight[60] DQE[90] Statement Type Transformation TLP[85] Query Partition Troc[32] Transaction Splitting ADUSA[16] Constraint-solvingForward Solving(SAT Solver)Artemis[71] PQS[86] Backward Solving TQS[94] Forward Solving(Logical Solver) Some generators of black-box fuzzers [ 18] obtain feedback such as the validity of query plans or test cases from the query or query plan interface provided by the DBMS, guiding the subsequent generation process.",
+      "context_before": "a ‘FromClause’. •Replacement: Replacement can be achieved by modifying the type of an IR node, such as replacing column ‘x’ with ‘count(x)’. •Deletion: Deletion means removing at least one child node from an IR node. 3.1.3 Execution feedback. Most generators do not take advantage of feedback information and treat the target DBMS as a black box, which accepts SQL statements or transactions as input and output execution results or execution plans. Manuscript submitted to ACM A Comprehensive Survey on Database Management System Fuzzing: Techniques, Taxonomy and Experimental Comparison 13 Table 3.",
+      "context_after": "This kind of feedback is essentially different from the feedback from gray-box fuzzers. The gray-box fuzzer generators [ 19,49,59,60,101,109] collect the internal status of the DBMS, such as collecting code coverage to guide the generation of test cases that maximize code coverage. In contrast, the feedback of the black-box fuzzers relies only upon the external interface of the DBMS without any knowledge of the source code. Black-box fuzzers are easier to implement and can be used to test any commercial DBMSs. However, it is essentially a random exploration of the entire input space. Gray-box",
+      "section": "3.1 Test Case Generator",
+      "page": 13,
+      "char_offset": 32693,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp",
+        "pqs",
+        "qpg"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "citation_marker",
+      "surface": "[ 28,60,62,84,85,\n90,107]",
+      "technique": "norec",
+      "sentence": "To avoid the drawbacks of the differential oracle, many fuzzing methods [ 28,60,62,84,85, 90,107] use the metamorphic oracle to detect logic bugs or performance bugs.",
+      "context_before": "ased on crash oracle [ 33,49,59,101,109] can only detect crashes. After executing test cases, bugs are determined based on whether the DBMS stops running. 3.2.2 Differential oracle. Differential oracles [ 5,19,31,81,89] detect logic bugs or performance bugs by comparing the execution results of different DBMSs (or different versions of the same DBMS). It tries to get expected results from another DBMS. The advantage of differential oracle testing is that it is relatively simple. Nevertheless, it cannot detect common bugs between the target DBMS and the referenced one. 3.2.3 Metamorphic oracle.",
+      "context_after": "Metamorphic oracle applies equivalent transformations on the original statements to construct equivalent statements, ensuring that the execution results remain consistent. There are several ways to construct metamorphic oracles: •Statement Rewriting: Statement Rewriting refers to the process of modifying a statement without changing its semantics or results. Common methods of rewriting statements include constraint rewriting, structure rewriting, and expression rewriting, as shown in Figure 8. Constraint rewriting refers to modifying the constraints of a table, such as creating an index. Obvi",
+      "section": "3.2 Oracle-based Comparator",
+      "page": 14,
+      "char_offset": 35969,
+      "cited_reference": {
+        "number": 84,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. ACM. Manuscript submitted to ACM 34 AUTHOR et ",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "citation_marker",
+      "surface": "[ 28,62,84,107]",
+      "technique": "norec",
+      "sentence": "Expression Rewriting refers to the process of rewriting logical or arithmetic expressions, such as adding predicates that always hold true to the WHERE clause or changing the string comparison operator from ‘=’ to ‘LIKE’, which will not affect the result of the expression [ 28,62,84,107].",
+      "context_before": "oracles: •Statement Rewriting: Statement Rewriting refers to the process of modifying a statement without changing its semantics or results. Common methods of rewriting statements include constraint rewriting, structure rewriting, and expression rewriting, as shown in Figure 8. Constraint rewriting refers to modifying the constraints of a table, such as creating an index. Obviously, the execution result of the same SELECT statement should remain unchanged after creating the index. Structure rewriting refers to adding new clauses such as JOIN, DISTINCT and LIMIT based on the original statement.",
+      "context_after": "•Statement Type Transformation: Statement type transformation involves constructing UPDATE and DELETE statements that correspond to a given SELECT statement, where the three types of statements should affect the same tuples [ 90]. By adding tagging columns ’rowid’ and ’updated’ to the table, the SELECT statements can return ’rowid’ of the affected rows, as shown in Figure 9. For DELETE statements, the affected rows can be determined by calculating the difference between the set of ’rowid’ before and after deletion. Similarly, for Manuscript submitted to ACM A Comprehensive Survey on Database M",
+      "section": "3.2 Oracle-based Comparator",
+      "page": 14,
+      "char_offset": 36956,
+      "cited_reference": {
+        "number": 84,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. ACM. Manuscript submitted to ACM 34 AUTHOR et ",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "citation_marker",
+      "surface": "[ 85]",
+      "technique": "tlp",
+      "sentence": "•Query Partition: Query partition refers to dividing an original SQL query into multiple partitions, and the merged results of the partitioned queries should be consistent with the results of the original query [ 85].",
+      "context_before": "ns ’rowid’ and ’updated’ to the table, the SELECT statements can return ’rowid’ of the affected rows, as shown in Figure 9. For DELETE statements, the affected rows can be determined by calculating the difference between the set of ’rowid’ before and after deletion. Similarly, for Manuscript submitted to ACM A Comprehensive Survey on Database Management System Fuzzing: Techniques, Taxonomy and Experimental Comparison 15 Figure 9. Example of transformation of statement type UPDATE statements, the affected rows can be obtained by querying the ’rowid’ where the ’updated’ column is marked as true.",
+      "context_after": "For example, a query ‘ SELECT * FROM t1 ’ can be partitioned into three queries: ‘ SELECT * FROM t1 WHERE c1<10 ’, ‘SELECT * FROM t1 WHERE c1>=10 ’, and ‘ SELECT * FROM t1 WHERE c1 IS NULL ’; •Transaction Splitting: Transaction splitting refers to splitting transactions into statements for execution in conjunction with external version concurrency control. In other words, by building a multiple version chain of data outside the database, statements within transactions can run in non-transaction mode but read data visible in transaction mode. By comparing the execution results before and after",
+      "section": "3.2 Oracle-based Comparator",
+      "page": 15,
+      "char_offset": 38100,
+      "cited_reference": {
+        "number": 85,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Programming Languages 4, OOPSLA (2020), 1–30.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "citation_marker",
+      "surface": "[ 16,71,86,94]",
+      "technique": "pqs",
+      "sentence": "Constraint-solving fuzzing methods [ 16,71,86,94] generally relies on forward or backward solving to derive the ground truth of the execution results.",
+      "context_before": "concurrency control. In other words, by building a multiple version chain of data outside the database, statements within transactions can run in non-transaction mode but read data visible in transaction mode. By comparing the execution results before and after transaction splitting, it is possible to determine whether there exist any logic bugs in the transaction management module of the DBMS [32]. 3.2.4 Constraint-solving oracle. Due to the fact that not all test queries can obtain test oracles by constructing equivalent queries, some fuzzers use constraint-solving to obtain expected result.",
+      "context_after": "•Forward Solving: Forward solving involves using an external solver such as an SAT solver to evaluate each tuple against predicate constraints in order to obtain the ground truth for the results of the statement execution [ 37,52]. Manuscript submitted to ACM 16 AUTHOR et al. Table 4. Comparison of Fuzzer Execution Feedbacks Fuzzer Metamorphic Validation Coverage Query Plan Syntax & Semantics Error APOLLO[51] ✗ ✓ ✗ ✗ ✗ Squirrel[109] ✗ ✗ ✓ ✗ ✗ LEGO[59] ✗ ✗ ✓ ✗ ✗ SQLRight[60] ✗ ✗ ✓ ✗ ✗ QPG[18] ✗ ✗ ✗ ✓ ✗ AMOEBA[62] ✓ ✓ ✗ ✗ ✗ GARan[19] ✗ ✗ ✓ ✗ ✗ DynSQL[49] ✗ ✗ ✓ ✗ ✓ Squill[101] ✗ ✓ ✓ ✗ ✓ In this",
+      "section": "3.2 Oracle-based Comparator",
+      "page": 15,
+      "char_offset": 39257,
+      "cited_reference": {
+        "number": 86,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In USENIX Symposium on Operating Systems Design and Implementation. USENIX Association, 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "Comparison of Fuzzer Execution Feedbacks Fuzzer Metamorphic Validation Coverage Query Plan Syntax & Semantics Error APOLLO[51] ✗ ✓ ✗ ✗ ✗ Squirrel[109] ✗ ✗ ✓ ✗ ✗ LEGO[59] ✗ ✗ ✓ ✗ ✗ SQLRight[60] ✗ ✗ ✓ ✗ ✗ QPG[18] ✗ ✗ ✗ ✓ ✗ AMOEBA[62] ✓ ✓ ✗ ✗ ✗ GARan[19] ✗ ✗ ✓ ✗ ✗ DynSQL[49] ✗ ✗ ✓ ✗ ✓ Squill[101] ✗ ✓ ✓ ✗ ✓ In this process, a logical solver can also be used as a substitute for the SAT solver, translating the join predicates into logical operations to accelerate the solving speed of the join predicates [94].",
+      "context_before": "ue to the fact that not all test queries can obtain test oracles by constructing equivalent queries, some fuzzers use constraint-solving to obtain expected result. Constraint-solving fuzzing methods [ 16,71,86,94] generally relies on forward or backward solving to derive the ground truth of the execution results. •Forward Solving: Forward solving involves using an external solver such as an SAT solver to evaluate each tuple against predicate constraints in order to obtain the ground truth for the results of the statement execution [ 37,52]. Manuscript submitted to ACM 16 AUTHOR et al. Table 4.",
+      "context_after": "•Backward Solving: Backward solving entails initially selecting some tuples as ground truth at random and then using an SAT solver to work backward and obtain a statement whose execution results include these tuples [ 86]. In all, each oracle has its own applicable scenarios. Fuzzing based on crash oracles can only detect crash-related issues such as program errors and memory leaks, which limits their application scenarios. Fuzzing based on differential oracles can only detect common functional modules between different databases and cannot identify logic or performance bugs shared by the ref",
+      "section": "3.2 Oracle-based Comparator",
+      "page": 16,
+      "char_offset": 39694,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "citation_marker",
+      "surface": "[ 86]",
+      "technique": "pqs",
+      "sentence": "•Backward Solving: Backward solving entails initially selecting some tuples as ground truth at random and then using an SAT solver to work backward and obtain a statement whose execution results include these tuples [ 86].",
+      "context_before": "of the statement execution [ 37,52]. Manuscript submitted to ACM 16 AUTHOR et al. Table 4. Comparison of Fuzzer Execution Feedbacks Fuzzer Metamorphic Validation Coverage Query Plan Syntax & Semantics Error APOLLO[51] ✗ ✓ ✗ ✗ ✗ Squirrel[109] ✗ ✗ ✓ ✗ ✗ LEGO[59] ✗ ✗ ✓ ✗ ✗ SQLRight[60] ✗ ✗ ✓ ✗ ✗ QPG[18] ✗ ✗ ✗ ✓ ✗ AMOEBA[62] ✓ ✓ ✗ ✗ ✗ GARan[19] ✗ ✗ ✓ ✗ ✗ DynSQL[49] ✗ ✗ ✓ ✗ ✓ Squill[101] ✗ ✓ ✓ ✗ ✓ In this process, a logical solver can also be used as a substitute for the SAT solver, translating the join predicates into logical operations to accelerate the solving speed of the join predicates [94].",
+      "context_after": "In all, each oracle has its own applicable scenarios. Fuzzing based on crash oracles can only detect crash-related issues such as program errors and memory leaks, which limits their application scenarios. Fuzzing based on differential oracles can only detect common functional modules between different databases and cannot identify logic or performance bugs shared by the referenced database and the test one. Fuzzing based on metamorphic oracles does not require a reference database, but suffers from a limited test range. Although constrained solvers are not subject to testing scope limitations",
+      "section": "3.2 Oracle-based Comparator",
+      "page": 16,
+      "char_offset": 40203,
+      "cited_reference": {
+        "number": 86,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In USENIX Symposium on Operating Systems Design and Implementation. USENIX Association, 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "citation_marker",
+      "surface": "[ 18]",
+      "technique": "qpg",
+      "sentence": "Query plan feedback [ 18] uses the emergence of new query plans to guide subsequent query generation.",
+      "context_before": "ion before and after executing each test case. If a mutation query leads to an increase in code coverage, it will be added to the seed queue. Additionally, LEGO [ 59] analyzes the type sequences of statements that increase the coverage of the code, and then the mutation processes will generate test cases containing the target type sequences. 3.3.4 Query plan feedback. The goal of query plan feedback is for the generator to maximize the number of query plans. A query plan represents the execution path of an SQL query in a DBMS, with different query plans corresponding to distinct code branches.",
+      "context_after": "Specifically, it models the objective of maximizing query plan quantity as a Multi-Armed Bandit (MAB) problem [ 21]. The generation of new query plans corresponds to exploitation, while exploring new mutation operations corresponds to exploration. When considering both exploitation and exploration, more unique query plans can be generated, increasing the possibility of discovering logic bugs. 3.3.5 Syntax error and semantics error feedback. Some generators [ 101] consider statements with semantic and syntactic errors to be valuable because they may activate certain unexplored SQL features. Th",
+      "section": "3.3 Execution Feedback",
+      "page": 17,
+      "char_offset": 44411,
+      "cited_reference": {
+        "number": 18,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In International Conference on Software Engineering. ACM, 2060–2071.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "citation_marker",
+      "surface": "[ 19,28,86,89]",
+      "technique": "pqs",
+      "sentence": "Reducing expressions [ 19,28,86,89] and deleting clauses refer to the process of reducing queries by simplifying WHERE clauses, arithmetic expressions, or logical expressions.",
+      "context_before": "n of test cases that are more suitable for oracles. Syntax and semantic error feedback play a minor role because test cases with syntax errors do not help detect the underlying bugs. 3.4 Query Reducer Query reducers are designed to simplify and summarize complex queries, providing developers with minimal humanreadable queries for debugging. Query reduction strategies can be classified into four types: reduce expression, delete clause, delete subquery, and delete IR node. Table 5 shows the query reduction strategies used by each fuzzer and also indicates whether the reducer preserves semantics.",
+      "context_after": "These methods are relatively easy to implement, but Manuscript submitted to ACM 18 AUTHOR et al. Table 5. Comparison of Fuzzer Query Reducers Fuzzer Reduce Expression Delete Clause Delete Subquery Delete IR Node Semantics Preservation RAGS[89] ✓ ✓ ✗ ✗ ✗ SQLancer[86] ✓ ✓ ✗ ✗ ✗ MutaSQL[28] ✓ ✓ ✗ ✗ ✗ GARan[19] ✓ ✓ ✗ ✗ ✗ SQLRight[60] ✗ ✗ ✗ ✓ ✓ APOLLO[51] ✓ ✓ ✓ ✗ ✓ DynSQL[49] ✓ ✓ ✓ ✗ ✓ cannot guarantee semantic correctness after simplification, resulting in a decrease in reduction efficiency. The removal of subquery operations [ 49,51] extends the scope of simplification to subqueries, leading to",
+      "section": "3.4 Query Reducer",
+      "page": 17,
+      "char_offset": 46906,
+      "cited_reference": {
+        "number": 86,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In USENIX Symposium on Operating Systems Design and Implementation. USENIX Association, 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M20",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Comparison of Fuzzer Query Reducers Fuzzer Reduce Expression Delete Clause Delete Subquery Delete IR Node Semantics Preservation RAGS[89] ✓ ✓ ✗ ✗ ✗ SQLancer[86] ✓ ✓ ✗ ✗ ✗ MutaSQL[28] ✓ ✓ ✗ ✗ ✗ GARan[19] ✓ ✓ ✗ ✗ ✗ SQLRight[60] ✗ ✗ ✗ ✓ ✓ APOLLO[51] ✓ ✓ ✓ ✗ ✓ DynSQL[49] ✓ ✓ ✓ ✗ ✓ cannot guarantee semantic correctness after simplification, resulting in a decrease in reduction efficiency.",
+      "context_before": "developers with minimal humanreadable queries for debugging. Query reduction strategies can be classified into four types: reduce expression, delete clause, delete subquery, and delete IR node. Table 5 shows the query reduction strategies used by each fuzzer and also indicates whether the reducer preserves semantics. Reducing expressions [ 19,28,86,89] and deleting clauses refer to the process of reducing queries by simplifying WHERE clauses, arithmetic expressions, or logical expressions. These methods are relatively easy to implement, but Manuscript submitted to ACM 18 AUTHOR et al. Table 5.",
+      "context_after": "The removal of subquery operations [ 49,51] extends the scope of simplification to subqueries, leading to a substantial improvement in the efficiency of simplification. Delete IR node operations are used in mutation-based fuzzers based on IR [ 60] mutation. They treat query simplification as a mutation operation on SQL queries, ensuring semantic correctness by deleting specific IR nodes. When considering the dependency between deleted expressions and remaining expressions, some fuzzers [49, 51, 60] have achieved semantic preservation. 4 DBMSCOMPONENT-BASED TAXONOMY In this section, we review",
+      "section": "3.4 Query Reducer",
+      "page": 18,
+      "char_offset": 47188,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M21",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS [ 86] begins by randomly generating a pivot row as the ground truth and then constructs an SQL query that includes this pivot row in its result.",
+      "context_before": "r performance bugs, conducting component fuzzing alone on a single component is often insufficient for detection, as performance disparities typically result from the cumulative impact of multiple components. For crashes, fuzzers basically run against the entire DBMS. While it is possible to perform performance bug and crash detection targeting specific components, such testing is not only time-consuming but also provides only localized results, failing to capture the overall state of the entire DBMS. Therefore, there is little research effort in this area. 4.1.1 Overall fuzzing on logic bugs.",
+      "context_after": "By checking whether the result of the executed query in the test database contains the pivot row, logic bugs can be detected. Figure 11 illustrates the entire PQS pipeline. The main challenge of PQS is how to generate an SQL query whose execution result contains a known pivot row. The solution to PQS is to first create predicates randomly and then use the AST interpreter to evaluate whether the pivot row satisfies the predicate conditions. The evaluation result can be True, False, or NULL. True indicates that the pivot row can be queried through the predicate, requiring no adjustment. False i",
+      "section": "4.1 Overall Fuzzing",
+      "page": 19,
+      "char_offset": 49795,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M22",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Figure 11 illustrates the entire PQS pipeline.",
+      "context_before": "it is possible to perform performance bug and crash detection targeting specific components, such testing is not only time-consuming but also provides only localized results, failing to capture the overall state of the entire DBMS. Therefore, there is little research effort in this area. 4.1.1 Overall fuzzing on logic bugs. PQS [ 86] begins by randomly generating a pivot row as the ground truth and then constructs an SQL query that includes this pivot row in its result. By checking whether the result of the executed query in the test database contains the pivot row, logic bugs can be detected.",
+      "context_after": "The main challenge of PQS is how to generate an SQL query whose execution result contains a known pivot row. The solution to PQS is to first create predicates randomly and then use the AST interpreter to evaluate whether the pivot row satisfies the predicate conditions. The evaluation result can be True, False, or NULL. True indicates that the pivot row can be queried through the predicate, requiring no adjustment. False indicates that the pivot row cannot be queried, so adding NOT before the predicate rectifies it. NULL indicates that the result of the predicate query is unknown, so adding I",
+      "section": "4.1 Overall Fuzzing",
+      "page": 19,
+      "char_offset": 50070,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M23",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "The main challenge of PQS is how to generate an SQL query whose execution result contains a known pivot row.",
+      "context_before": "rash detection targeting specific components, such testing is not only time-consuming but also provides only localized results, failing to capture the overall state of the entire DBMS. Therefore, there is little research effort in this area. 4.1.1 Overall fuzzing on logic bugs. PQS [ 86] begins by randomly generating a pivot row as the ground truth and then constructs an SQL query that includes this pivot row in its result. By checking whether the result of the executed query in the test database contains the pivot row, logic bugs can be detected. Figure 11 illustrates the entire PQS pipeline.",
+      "context_after": "The solution to PQS is to first create predicates randomly and then use the AST interpreter to evaluate whether the pivot row satisfies the predicate conditions. The evaluation result can be True, False, or NULL. True indicates that the pivot row can be queried through the predicate, requiring no adjustment. False indicates that the pivot row cannot be queried, so adding NOT before the predicate rectifies it. NULL indicates that the result of the predicate query is unknown, so adding IS NULL after the predicate can help. By employing the above method, PQS ensures that any random predicate can",
+      "section": "4.1 Overall Fuzzing",
+      "page": 19,
+      "char_offset": 50117,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M24",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "The solution to PQS is to first create predicates randomly and then use the AST interpreter to evaluate whether the pivot row satisfies the predicate conditions.",
+      "context_before": "localized results, failing to capture the overall state of the entire DBMS. Therefore, there is little research effort in this area. 4.1.1 Overall fuzzing on logic bugs. PQS [ 86] begins by randomly generating a pivot row as the ground truth and then constructs an SQL query that includes this pivot row in its result. By checking whether the result of the executed query in the test database contains the pivot row, logic bugs can be detected. Figure 11 illustrates the entire PQS pipeline. The main challenge of PQS is how to generate an SQL query whose execution result contains a known pivot row.",
+      "context_after": "The evaluation result can be True, False, or NULL. True indicates that the pivot row can be queried through the predicate, requiring no adjustment. False indicates that the pivot row cannot be queried, so adding NOT before the predicate rectifies it. NULL indicates that the result of the predicate query is unknown, so adding IS NULL after the predicate can help. By employing the above method, PQS ensures that any random predicate can produce a satisfactory SQL query after being queried. Figure 11. Pipeline of PQS. The core idea of TLP [ 85] is that the result of the predicate evaluation alway",
+      "section": "4.1 Overall Fuzzing",
+      "page": 19,
+      "char_offset": 50226,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M25",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "By employing the above method, PQS ensures that any random predicate can produce a satisfactory SQL query after being queried.",
+      "context_before": "generate an SQL query whose execution result contains a known pivot row. The solution to PQS is to first create predicates randomly and then use the AST interpreter to evaluate whether the pivot row satisfies the predicate conditions. The evaluation result can be True, False, or NULL. True indicates that the pivot row can be queried through the predicate, requiring no adjustment. False indicates that the pivot row cannot be queried, so adding NOT before the predicate rectifies it. NULL indicates that the result of the predicate query is unknown, so adding IS NULL after the predicate can help.",
+      "context_after": "Figure 11. Pipeline of PQS. The core idea of TLP [ 85] is that the result of the predicate evaluation always falls within the values of True, False and NULL. Therefore, an original query 𝑄can be decomposed into three partitioned queries: 𝑄′ 𝑝,𝑄′ ¬𝑝,𝑄′ 𝑝𝐼𝑆𝑁𝑈𝐿𝐿. The expected result of the original query should be equal to the union of the results of the three partitioned queries. Figure 12 illustrates the main process of TLP. Using a generator similar to PQS, the original query is split into three equivalent partitioned queries, and metamorphic oracles are employed for result verification to de",
+      "section": "4.1 Overall Fuzzing",
+      "page": 19,
+      "char_offset": 50753,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M26",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Pipeline of PQS.",
+      "context_before": "hen use the AST interpreter to evaluate whether the pivot row satisfies the predicate conditions. The evaluation result can be True, False, or NULL. True indicates that the pivot row can be queried through the predicate, requiring no adjustment. False indicates that the pivot row cannot be queried, so adding NOT before the predicate rectifies it. NULL indicates that the result of the predicate query is unknown, so adding IS NULL after the predicate can help. By employing the above method, PQS ensures that any random predicate can produce a satisfactory SQL query after being queried. Figure 11.",
+      "context_after": "The core idea of TLP [ 85] is that the result of the predicate evaluation always falls within the values of True, False and NULL. Therefore, an original query 𝑄can be decomposed into three partitioned queries: 𝑄′ 𝑝,𝑄′ ¬𝑝,𝑄′ 𝑝𝐼𝑆𝑁𝑈𝐿𝐿. The expected result of the original query should be equal to the union of the results of the three partitioned queries. Figure 12 illustrates the main process of TLP. Using a generator similar to PQS, the original query is split into three equivalent partitioned queries, and metamorphic oracles are employed for result verification to detect logic bugs. Neither PQS",
+      "section": "4.1 Overall Fuzzing",
+      "page": 19,
+      "char_offset": 50891,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M27",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "The core idea of TLP [ 85] is that the result of the predicate evaluation always falls within the values of True, False and NULL.",
+      "context_before": "nterpreter to evaluate whether the pivot row satisfies the predicate conditions. The evaluation result can be True, False, or NULL. True indicates that the pivot row can be queried through the predicate, requiring no adjustment. False indicates that the pivot row cannot be queried, so adding NOT before the predicate rectifies it. NULL indicates that the result of the predicate query is unknown, so adding IS NULL after the predicate can help. By employing the above method, PQS ensures that any random predicate can produce a satisfactory SQL query after being queried. Figure 11. Pipeline of PQS.",
+      "context_after": "Therefore, an original query 𝑄can be decomposed into three partitioned queries: 𝑄′ 𝑝,𝑄′ ¬𝑝,𝑄′ 𝑝𝐼𝑆𝑁𝑈𝐿𝐿. The expected result of the original query should be equal to the union of the results of the three partitioned queries. Figure 12 illustrates the main process of TLP. Using a generator similar to PQS, the original query is split into three equivalent partitioned queries, and metamorphic oracles are employed for result verification to detect logic bugs. Neither PQS nor TLP adopts feedback but performs a random search throughout the state space. QPG [ 18] mutates the state of the database to g",
+      "section": "4.1 Overall Fuzzing",
+      "page": 19,
+      "char_offset": 50908,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M28",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Figure 12 illustrates the main process of TLP.",
+      "context_before": "he result of the predicate query is unknown, so adding IS NULL after the predicate can help. By employing the above method, PQS ensures that any random predicate can produce a satisfactory SQL query after being queried. Figure 11. Pipeline of PQS. The core idea of TLP [ 85] is that the result of the predicate evaluation always falls within the values of True, False and NULL. Therefore, an original query 𝑄can be decomposed into three partitioned queries: 𝑄′ 𝑝,𝑄′ ¬𝑝,𝑄′ 𝑝𝐼𝑆𝑁𝑈𝐿𝐿. The expected result of the original query should be equal to the union of the results of the three partitioned queries.",
+      "context_after": "Using a generator similar to PQS, the original query is split into three equivalent partitioned queries, and metamorphic oracles are employed for result verification to detect logic bugs. Neither PQS nor TLP adopts feedback but performs a random search throughout the state space. QPG [ 18] mutates the state of the database to generate more unique query plans, as shown in Figure 13. QPG implements a generation-based generator based on PQS, TLP, and NoREC. QPG also utilizes TLP and NoREC to validate query execution results. DDL and DML statements are used to alter the state of the database and",
+      "section": "4.1 Overall Fuzzing",
+      "page": 19,
+      "char_offset": 51261,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M29",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Using a generator similar to PQS, the original query is split into three equivalent partitioned queries, and metamorphic oracles are employed for result verification to detect logic bugs.",
+      "context_before": "adding IS NULL after the predicate can help. By employing the above method, PQS ensures that any random predicate can produce a satisfactory SQL query after being queried. Figure 11. Pipeline of PQS. The core idea of TLP [ 85] is that the result of the predicate evaluation always falls within the values of True, False and NULL. Therefore, an original query 𝑄can be decomposed into three partitioned queries: 𝑄′ 𝑝,𝑄′ ¬𝑝,𝑄′ 𝑝𝐼𝑆𝑁𝑈𝐿𝐿. The expected result of the original query should be equal to the union of the results of the three partitioned queries. Figure 12 illustrates the main process of TLP.",
+      "context_after": "Neither PQS nor TLP adopts feedback but performs a random search throughout the state space. QPG [ 18] mutates the state of the database to generate more unique query plans, as shown in Figure 13. QPG implements a generation-based generator based on PQS, TLP, and NoREC. QPG also utilizes TLP and NoREC to validate query execution results. DDL and DML statements are used to alter the state of the database and obtain different query Manuscript submitted to ACM 20 AUTHOR et al. Figure 12. Pipeline of TLP. plans for the same statement. Because different mutation operations contribute differently t",
+      "section": "4.1 Overall Fuzzing",
+      "page": 19,
+      "char_offset": 51308,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M30",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Neither PQS nor TLP adopts feedback but performs a random search throughout the state space.",
+      "context_before": "line of PQS. The core idea of TLP [ 85] is that the result of the predicate evaluation always falls within the values of True, False and NULL. Therefore, an original query 𝑄can be decomposed into three partitioned queries: 𝑄′ 𝑝,𝑄′ ¬𝑝,𝑄′ 𝑝𝐼𝑆𝑁𝑈𝐿𝐿. The expected result of the original query should be equal to the union of the results of the three partitioned queries. Figure 12 illustrates the main process of TLP. Using a generator similar to PQS, the original query is split into three equivalent partitioned queries, and metamorphic oracles are employed for result verification to detect logic bugs.",
+      "context_after": "QPG [ 18] mutates the state of the database to generate more unique query plans, as shown in Figure 13. QPG implements a generation-based generator based on PQS, TLP, and NoREC. QPG also utilizes TLP and NoREC to validate query execution results. DDL and DML statements are used to alter the state of the database and obtain different query Manuscript submitted to ACM 20 AUTHOR et al. Figure 12. Pipeline of TLP. plans for the same statement. Because different mutation operations contribute differently to generating new query plans, a decision among all mutation operators is necessary. The decis",
+      "section": "4.1 Overall Fuzzing",
+      "page": 19,
+      "char_offset": 51496,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M31",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "QPG [ 18] mutates the state of the database to generate more unique query plans, as shown in Figure 13.",
+      "context_before": "falls within the values of True, False and NULL. Therefore, an original query 𝑄can be decomposed into three partitioned queries: 𝑄′ 𝑝,𝑄′ ¬𝑝,𝑄′ 𝑝𝐼𝑆𝑁𝑈𝐿𝐿. The expected result of the original query should be equal to the union of the results of the three partitioned queries. Figure 12 illustrates the main process of TLP. Using a generator similar to PQS, the original query is split into three equivalent partitioned queries, and metamorphic oracles are employed for result verification to detect logic bugs. Neither PQS nor TLP adopts feedback but performs a random search throughout the state space.",
+      "context_after": "QPG implements a generation-based generator based on PQS, TLP, and NoREC. QPG also utilizes TLP and NoREC to validate query execution results. DDL and DML statements are used to alter the state of the database and obtain different query Manuscript submitted to ACM 20 AUTHOR et al. Figure 12. Pipeline of TLP. plans for the same statement. Because different mutation operations contribute differently to generating new query plans, a decision among all mutation operators is necessary. The decision-making process for mutation operators is modeled as a Multi-Armed Bandit [ 21] problem. As shown in",
+      "section": "4.1 Overall Fuzzing",
+      "page": 19,
+      "char_offset": 51589,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M32",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "QPG implements a generation-based generator based on PQS, TLP, and NoREC.",
+      "context_before": "hree partitioned queries: 𝑄′ 𝑝,𝑄′ ¬𝑝,𝑄′ 𝑝𝐼𝑆𝑁𝑈𝐿𝐿. The expected result of the original query should be equal to the union of the results of the three partitioned queries. Figure 12 illustrates the main process of TLP. Using a generator similar to PQS, the original query is split into three equivalent partitioned queries, and metamorphic oracles are employed for result verification to detect logic bugs. Neither PQS nor TLP adopts feedback but performs a random search throughout the state space. QPG [ 18] mutates the state of the database to generate more unique query plans, as shown in Figure 13.",
+      "context_after": "QPG also utilizes TLP and NoREC to validate query execution results. DDL and DML statements are used to alter the state of the database and obtain different query Manuscript submitted to ACM 20 AUTHOR et al. Figure 12. Pipeline of TLP. plans for the same statement. Because different mutation operations contribute differently to generating new query plans, a decision among all mutation operators is necessary. The decision-making process for mutation operators is modeled as a Multi-Armed Bandit [ 21] problem. As shown in Equation 1, 𝜇𝑖(𝑡)represents the benefit of the 𝑖-th mutation operator at t",
+      "section": "4.1 Overall Fuzzing",
+      "page": 19,
+      "char_offset": 51693,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "qpg",
+        "pqs",
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M33",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "QPG also utilizes TLP and NoREC to validate query execution results.",
+      "context_before": "e original query should be equal to the union of the results of the three partitioned queries. Figure 12 illustrates the main process of TLP. Using a generator similar to PQS, the original query is split into three equivalent partitioned queries, and metamorphic oracles are employed for result verification to detect logic bugs. Neither PQS nor TLP adopts feedback but performs a random search throughout the state space. QPG [ 18] mutates the state of the database to generate more unique query plans, as shown in Figure 13. QPG implements a generation-based generator based on PQS, TLP, and NoREC.",
+      "context_after": "DDL and DML statements are used to alter the state of the database and obtain different query Manuscript submitted to ACM 20 AUTHOR et al. Figure 12. Pipeline of TLP. plans for the same statement. Because different mutation operations contribute differently to generating new query plans, a decision among all mutation operators is necessary. The decision-making process for mutation operators is modeled as a Multi-Armed Bandit [ 21] problem. As shown in Equation 1, 𝜇𝑖(𝑡)represents the benefit of the 𝑖-th mutation operator at time 𝑡, there is a probability of 𝑝for random selection, and a probabi",
+      "section": "4.1 Overall Fuzzing",
+      "page": 19,
+      "char_offset": 51767,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "qpg",
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M34",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Pipeline of TLP.",
+      "context_before": "valent partitioned queries, and metamorphic oracles are employed for result verification to detect logic bugs. Neither PQS nor TLP adopts feedback but performs a random search throughout the state space. QPG [ 18] mutates the state of the database to generate more unique query plans, as shown in Figure 13. QPG implements a generation-based generator based on PQS, TLP, and NoREC. QPG also utilizes TLP and NoREC to validate query execution results. DDL and DML statements are used to alter the state of the database and obtain different query Manuscript submitted to ACM 20 AUTHOR et al. Figure 12.",
+      "context_after": "plans for the same statement. Because different mutation operations contribute differently to generating new query plans, a decision among all mutation operators is necessary. The decision-making process for mutation operators is modeled as a Multi-Armed Bandit [ 21] problem. As shown in Equation 1, 𝜇𝑖(𝑡)represents the benefit of the 𝑖-th mutation operator at time 𝑡, there is a probability of 𝑝for random selection, and a probability of 1−𝑝to opt for the mutation operator with the highest benefit. Since different query plans represent different execution paths, QPG can enhance the code coverag",
+      "section": "4.1 Overall Fuzzing",
+      "page": 20,
+      "char_offset": 51986,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M35",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "Since different query plans represent different execution paths, QPG can enhance the code coverage of DBMS.",
+      "context_before": "nd obtain different query Manuscript submitted to ACM 20 AUTHOR et al. Figure 12. Pipeline of TLP. plans for the same statement. Because different mutation operations contribute differently to generating new query plans, a decision among all mutation operators is necessary. The decision-making process for mutation operators is modeled as a Multi-Armed Bandit [ 21] problem. As shown in Equation 1, 𝜇𝑖(𝑡)represents the benefit of the 𝑖-th mutation operator at time 𝑡, there is a probability of 𝑝for random selection, and a probability of 1−𝑝to opt for the mutation operator with the highest benefit.",
+      "context_after": "𝑜𝑝𝑒𝑟𝑎𝑡𝑜𝑟(𝑡)=(𝑎𝑟𝑔𝑚𝑎𝑥𝑖=1...𝑘(𝜇𝑖(𝑡)) ( 1−𝑝) 𝑟𝑎𝑛𝑑𝑜𝑚(𝑘) ( 𝑝)(1) Figure 13. Pipeline of QPG. 4.1.2 Overall fuzzing on performance bugs. APOLLO[ 51] uses differential testing to detect performance regression bugs. It employs a generation-based generator with a dynamic probability table to generate many random statements. These statements are executed on different versions of the same database program, and performance bugs are detected using a differential oracle. APOLLO incorporates execution feedback to update the probability table, thereby improving the efficiency of the testing process. Additiona",
+      "section": "4.1 Overall Fuzzing",
+      "page": 20,
+      "char_offset": 52505,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M36",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "Pipeline of QPG.",
+      "context_before": "differently to generating new query plans, a decision among all mutation operators is necessary. The decision-making process for mutation operators is modeled as a Multi-Armed Bandit [ 21] problem. As shown in Equation 1, 𝜇𝑖(𝑡)represents the benefit of the 𝑖-th mutation operator at time 𝑡, there is a probability of 𝑝for random selection, and a probability of 1−𝑝to opt for the mutation operator with the highest benefit. Since different query plans represent different execution paths, QPG can enhance the code coverage of DBMS. 𝑜𝑝𝑒𝑟𝑎𝑡𝑜𝑟(𝑡)=(𝑎𝑟𝑔𝑚𝑎𝑥𝑖=1...𝑘(𝜇𝑖(𝑡)) ( 1−𝑝) 𝑟𝑎𝑛𝑑𝑜𝑚(𝑘) ( 𝑝)(1) Figure 13.",
+      "context_after": "4.1.2 Overall fuzzing on performance bugs. APOLLO[ 51] uses differential testing to detect performance regression bugs. It employs a generation-based generator with a dynamic probability table to generate many random statements. These statements are executed on different versions of the same database program, and performance bugs are detected using a differential oracle. APOLLO incorporates execution feedback to update the probability table, thereby improving the efficiency of the testing process. Additionally, Apollo uses query reduction that preserves semantic correctness to quickly obtain",
+      "section": "4.1 Overall Fuzzing",
+      "page": 20,
+      "char_offset": 52683,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M37",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "The NoREC pipeline [ 84] is illustrated in Figure 17.",
+      "context_before": "s that every statement executed in non-transaction mode can obtain the same visible view as in transaction mode. Transaction bugs can be detected by comparing the execution results in transaction and non-transaction modes. 4.3 Optimizer Testing The optimizer is one of the most complex components of a DBMS. It analyzes different execution plans of a query and selects the best query plan by considering indexes, association conditions, data statistics, and other factors to minimize query time and resource consumption. However, implementation errors in the optimizer can lead to serious logic bugs.",
+      "context_after": "NoREC uses an AST model-based generator to generate queries with WHERE clauses and obtains the unoptimized query by moving the conditions from the WHERE clause to the Manuscript submitted to ACM A Comprehensive Survey on Database Management System Fuzzing: Techniques, Taxonomy and Experimental Comparison 23 Figure 17. Pipeline of NoREC. SELECT clause. The presence of optimizer logic bugs is determined by comparing the number of rows returned by the original query and the number of ‘True’ returned by the unoptimized query. Figure 18. Pipeline of TQS. The pipeline of TQS [94] is illustrated in",
+      "section": "4.3 Optimizer Testing",
+      "page": 22,
+      "char_offset": 58059,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M38",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC uses an AST model-based generator to generate queries with WHERE clauses and obtains the unoptimized query by moving the conditions from the WHERE clause to the Manuscript submitted to ACM A Comprehensive Survey on Database Management System Fuzzing: Techniques, Taxonomy and Experimental Comparison 23 Figure 17.",
+      "context_before": "e can obtain the same visible view as in transaction mode. Transaction bugs can be detected by comparing the execution results in transaction and non-transaction modes. 4.3 Optimizer Testing The optimizer is one of the most complex components of a DBMS. It analyzes different execution plans of a query and selects the best query plan by considering indexes, association conditions, data statistics, and other factors to minimize query time and resource consumption. However, implementation errors in the optimizer can lead to serious logic bugs. The NoREC pipeline [ 84] is illustrated in Figure 17.",
+      "context_after": "Pipeline of NoREC. SELECT clause. The presence of optimizer logic bugs is determined by comparing the number of rows returned by the original query and the number of ‘True’ returned by the unoptimized query. Figure 18. Pipeline of TQS. The pipeline of TQS [94] is illustrated in Figure 18. Firstly, TQS splits a wide table into multiple small ones. On the one hand, it constructs a schema graph based on the foreign key relationship. By performing random walks on the schema graph, table sequences can be obtained. Combining these table sequences with randomly selected join methods, a multi-table S",
+      "section": "4.3 Optimizer Testing",
+      "page": 22,
+      "char_offset": 58113,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M39",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Pipeline of NoREC.",
+      "context_before": "est query plan by considering indexes, association conditions, data statistics, and other factors to minimize query time and resource consumption. However, implementation errors in the optimizer can lead to serious logic bugs. The NoREC pipeline [ 84] is illustrated in Figure 17. NoREC uses an AST model-based generator to generate queries with WHERE clauses and obtains the unoptimized query by moving the conditions from the WHERE clause to the Manuscript submitted to ACM A Comprehensive Survey on Database Management System Fuzzing: Techniques, Taxonomy and Experimental Comparison 23 Figure 17.",
+      "context_after": "SELECT clause. The presence of optimizer logic bugs is determined by comparing the number of rows returned by the original query and the number of ‘True’ returned by the unoptimized query. Figure 18. Pipeline of TQS. The pipeline of TQS [94] is illustrated in Figure 18. Firstly, TQS splits a wide table into multiple small ones. On the one hand, it constructs a schema graph based on the foreign key relationship. By performing random walks on the schema graph, table sequences can be obtained. Combining these table sequences with randomly selected join methods, a multi-table SQL query ‘Q’ can be",
+      "section": "4.3 Optimizer Testing",
+      "page": 23,
+      "char_offset": 58433,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M40",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Source Code of Related Fuzzers Fuzzer Supported DBMS Link SQLancer[86] (PQS[86], NoREC[84], TLP[85], QPG[18])SQLite, MySQL, TiDB MariaDB, CockroachDB, OceanBasehttps://github.",
+      "context_before": "hey support in Table 6. The following comparative experiments will be conducted on these fuzzers. 5.3 Evaluation Metrics We adopt the standard metrics for evaluating fuzzing performance: •Number of bugs: The number of bugs can directly quantify the bug detection capabilities of different fuzzers. Some studies submit the detected bugs to the open-source database community to obtain the number of community 1https://github.com/Reverie4u/OpenDBFuzz. Manuscript submitted to ACM A Comprehensive Survey on Database Management System Fuzzing: Techniques, Taxonomy and Experimental Comparison 25 Table 6.",
+      "context_after": "com/sqlancer/sqlancer DQE[90]SQLite, MySQL, MariaDB TiDB, CockroachDBhttps://github.com/tcse-iscas/dqetool SQLRight[60] SQLite, PostgreSQL, MySQL https: //github.com/psu-security-universe/sqlright SQLsmith[5] SQLite, MonetDB, PostgreSQL https://github.com/anse1/sqlsmith Go-Randgen[81] MySQL, TiDB https://github.com/pingcap/go-randgen Squirrel[109] SQLite, PostgreSQL, MySQL, MariaDB https://github.com/s3team/Squirrel DT2[31] MySQL, MariaDB, TiDB https://github.com/tcse-iscas/Troc Troc[32] MySQL, MariaDB, TiDB https://github.com/tcse-iscas/Troc APOLLO[51] SQLite, PostgreSQL https://github.com/ss",
+      "section": "5.3 Evaluation Metrics",
+      "page": 25,
+      "char_offset": 63214,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp",
+        "qpg"
+      ]
+    },
+    {
+      "id": "M41",
+      "found_by": "name",
+      "surface": "sqlancer",
+      "technique": null,
+      "sentence": "com/sqlancer/sqlancer DQE[90]SQLite, MySQL, MariaDB TiDB, CockroachDBhttps://github.",
+      "context_before": "rformance: •Number of bugs: The number of bugs can directly quantify the bug detection capabilities of different fuzzers. Some studies submit the detected bugs to the open-source database community to obtain the number of community 1https://github.com/Reverie4u/OpenDBFuzz. Manuscript submitted to ACM A Comprehensive Survey on Database Management System Fuzzing: Techniques, Taxonomy and Experimental Comparison 25 Table 6. Source Code of Related Fuzzers Fuzzer Supported DBMS Link SQLancer[86] (PQS[86], NoREC[84], TLP[85], QPG[18])SQLite, MySQL, TiDB MariaDB, CockroachDB, OceanBasehttps://github.",
+      "context_after": "com/tcse-iscas/dqetool SQLRight[60] SQLite, PostgreSQL, MySQL https: //github.com/psu-security-universe/sqlright SQLsmith[5] SQLite, MonetDB, PostgreSQL https://github.com/anse1/sqlsmith Go-Randgen[81] MySQL, TiDB https://github.com/pingcap/go-randgen Squirrel[109] SQLite, PostgreSQL, MySQL, MariaDB https://github.com/s3team/Squirrel DT2[31] MySQL, MariaDB, TiDB https://github.com/tcse-iscas/Troc Troc[32] MySQL, MariaDB, TiDB https://github.com/tcse-iscas/Troc APOLLO[51] SQLite, PostgreSQL https://github.com/sslab-gatech/apollo AMOEBA[62] PostgreSQL, CockroachDB https://bit.ly/3I995jL confirme",
+      "section": "5.3 Evaluation Metrics",
+      "page": 25,
+      "char_offset": 63390,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M42",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "For logic bug detection, we conducted comparative experiments on five fuzzers, including PQS, NoREC, TLP, QPG, and DQE.",
+      "context_before": "nd comparison in a fuzzer. •New Edges: New edges refer to the number of code branches explored during fuzzing, indicating the breadth of the testing scope. •Coverage: Coverage indicates the proportion of code branches that have been explored. It is calculated using 𝑛𝑒𝑤𝑒𝑑𝑔𝑒𝑠/𝑡𝑜𝑡𝑎𝑙𝑒𝑑𝑔𝑒𝑠, where𝑡𝑜𝑡𝑎𝑙𝑒𝑑𝑔𝑒𝑠 represents the number of all code branches in the DBMS. 5.4 Logic Bugs Detection Comparison Since the feedback module is relatively pluggable, we first tested the fuzzers without feedback to eliminate its impact on the evaluation of other modules and then tested the feedback module independently.",
+      "context_after": "Among them, TLP and QPG only differ in feedback, and the other modules are consistent. Experiments were conducted on two popular DBMSs: MySQL 8.0.16 and SQLite 3.28.0. The number of bugs, the validity, and the valid cases per second are used as evaluation metrics. As shown in Figure 19, the experimental results indicate that these methods have detected more bugs in SQLite compared to MySQL, possibly due to the greater maturity of MySQL. Moreover, the validity of these methods on SQLite is relatively low, indicating that the SQL syntax of SQLite is not suitable for these fuzzers’ generators. H",
+      "section": "5.4 Logic Bugs Detection Comparison",
+      "page": 25,
+      "char_offset": 65440,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp",
+        "qpg"
+      ]
+    },
+    {
+      "id": "M43",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Among them, TLP and QPG only differ in feedback, and the other modules are consistent.",
+      "context_before": "g the breadth of the testing scope. •Coverage: Coverage indicates the proportion of code branches that have been explored. It is calculated using 𝑛𝑒𝑤𝑒𝑑𝑔𝑒𝑠/𝑡𝑜𝑡𝑎𝑙𝑒𝑑𝑔𝑒𝑠, where𝑡𝑜𝑡𝑎𝑙𝑒𝑑𝑔𝑒𝑠 represents the number of all code branches in the DBMS. 5.4 Logic Bugs Detection Comparison Since the feedback module is relatively pluggable, we first tested the fuzzers without feedback to eliminate its impact on the evaluation of other modules and then tested the feedback module independently. For logic bug detection, we conducted comparative experiments on five fuzzers, including PQS, NoREC, TLP, QPG, and DQE.",
+      "context_after": "Experiments were conducted on two popular DBMSs: MySQL 8.0.16 and SQLite 3.28.0. The number of bugs, the validity, and the valid cases per second are used as evaluation metrics. As shown in Figure 19, the experimental results indicate that these methods have detected more bugs in SQLite compared to MySQL, possibly due to the greater maturity of MySQL. Moreover, the validity of these methods on SQLite is relatively low, indicating that the SQL syntax of SQLite is not suitable for these fuzzers’ generators. However, the valid cases per second on SQLite are actually higher, which could be attrib",
+      "section": "5.4 Logic Bugs Detection Comparison",
+      "page": 25,
+      "char_offset": 65560,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "qpg"
+      ]
+    },
+    {
+      "id": "M44",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Comparision of oracles for detecting logic bugs As can be seen from Figure 19 (a), (b) and (c), in SQLite, PQS exhibits the lowest semantic validity and valid cases per second, but it demonstrated the highest bug detection efficiency, finding 276 bugs in only 240 minutes.",
+      "context_before": "cted more bugs in SQLite compared to MySQL, possibly due to the greater maturity of MySQL. Moreover, the validity of these methods on SQLite is relatively low, indicating that the SQL syntax of SQLite is not suitable for these fuzzers’ generators. However, the valid cases per second on SQLite are actually higher, which could be attributed to its faster query performance on small data volumes. Manuscript submitted to ACM 26 AUTHOR et al. (a)Number of bugs (SQLite) (b)Validity (SQLite) (c)Valid Cases/s (SQLite) (d)Number of bugs (MySQL) (e)Validity (MySQL) (f)Valid Cases/s (MySQL) Figure 19.",
+      "context_after": "The other fuzzers employ metamorphic testing strategies and have similar bug detection capabilities, stabilizing at around 100 bugs within 240 minutes. While NoREC stands out by using a strategy that transforms one statement into another, as opposed to the other methods that require transforming one statement into multiple ones [ 90]. Consequently, NoRec executes more valid cases per second, resulting in slightly faster bug detection efficiency as well. In summary, constraint solving is not limited by metamorphic applicability. Although the number of test cases per second is smaller, the over",
+      "section": "5.4 Logic Bugs Detection Comparison",
+      "page": 26,
+      "char_offset": 66511,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M45",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "While NoREC stands out by using a strategy that transforms one statement into another, as opposed to the other methods that require transforming one statement into multiple ones [ 90].",
+      "context_before": "6 AUTHOR et al. (a)Number of bugs (SQLite) (b)Validity (SQLite) (c)Valid Cases/s (SQLite) (d)Number of bugs (MySQL) (e)Validity (MySQL) (f)Valid Cases/s (MySQL) Figure 19. Comparision of oracles for detecting logic bugs As can be seen from Figure 19 (a), (b) and (c), in SQLite, PQS exhibits the lowest semantic validity and valid cases per second, but it demonstrated the highest bug detection efficiency, finding 276 bugs in only 240 minutes. The other fuzzers employ metamorphic testing strategies and have similar bug detection capabilities, stabilizing at around 100 bugs within 240 minutes.",
+      "context_after": "Consequently, NoRec executes more valid cases per second, resulting in slightly faster bug detection efficiency as well. In summary, constraint solving is not limited by metamorphic applicability. Although the number of test cases per second is smaller, the overall bug detection efficiency is higher, and ultimately twice the number of bugs can be found compared to metamorphic testing methods. Figure 19 (d), (e) and (f) show the execution results on MySQL. Since NoREC does not support MySQL, we only compared the other tools. It can be observed that TLP and QPG are quite exceptional, as they qu",
+      "section": "5.4 Logic Bugs Detection Comparison",
+      "page": 26,
+      "char_offset": 66936,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M46",
+      "found_by": "technique",
+      "surface": "NoRec",
+      "technique": "norec",
+      "sentence": "Consequently, NoRec executes more valid cases per second, resulting in slightly faster bug detection efficiency as well.",
+      "context_before": "on of oracles for detecting logic bugs As can be seen from Figure 19 (a), (b) and (c), in SQLite, PQS exhibits the lowest semantic validity and valid cases per second, but it demonstrated the highest bug detection efficiency, finding 276 bugs in only 240 minutes. The other fuzzers employ metamorphic testing strategies and have similar bug detection capabilities, stabilizing at around 100 bugs within 240 minutes. While NoREC stands out by using a strategy that transforms one statement into another, as opposed to the other methods that require transforming one statement into multiple ones [ 90].",
+      "context_after": "In summary, constraint solving is not limited by metamorphic applicability. Although the number of test cases per second is smaller, the overall bug detection efficiency is higher, and ultimately twice the number of bugs can be found compared to metamorphic testing methods. Figure 19 (d), (e) and (f) show the execution results on MySQL. Since NoREC does not support MySQL, we only compared the other tools. It can be observed that TLP and QPG are quite exceptional, as they quickly detected bugs in MySQL. They discovered 12 bugs in just 40 minutes, after which the system crashed (crash detected)",
+      "section": "5.4 Logic Bugs Detection Comparison",
+      "page": 26,
+      "char_offset": 67121,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M47",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Since NoREC does not support MySQL, we only compared the other tools.",
+      "context_before": "hat transforms one statement into another, as opposed to the other methods that require transforming one statement into multiple ones [ 90]. Consequently, NoRec executes more valid cases per second, resulting in slightly faster bug detection efficiency as well. In summary, constraint solving is not limited by metamorphic applicability. Although the number of test cases per second is smaller, the overall bug detection efficiency is higher, and ultimately twice the number of bugs can be found compared to metamorphic testing methods. Figure 19 (d), (e) and (f) show the execution results on MySQL.",
+      "context_after": "It can be observed that TLP and QPG are quite exceptional, as they quickly detected bugs in MySQL. They discovered 12 bugs in just 40 minutes, after which the system crashed (crash detected), leading to both validity and valid cases per second becoming zero. In contrast, DQE, which also falls under metamorphic testing, consistently failed to detect any logic bugs, indicating a more limited scope in its oracle. Further investigation revealed that in DQE, statements and their equivalent statements produced the same bug results, leading to missed detections. It is worth noting that PQS does not",
+      "section": "5.4 Logic Bugs Detection Comparison",
+      "page": 26,
+      "char_offset": 67581,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M48",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "It can be observed that TLP and QPG are quite exceptional, as they quickly detected bugs in MySQL.",
+      "context_before": "hods that require transforming one statement into multiple ones [ 90]. Consequently, NoRec executes more valid cases per second, resulting in slightly faster bug detection efficiency as well. In summary, constraint solving is not limited by metamorphic applicability. Although the number of test cases per second is smaller, the overall bug detection efficiency is higher, and ultimately twice the number of bugs can be found compared to metamorphic testing methods. Figure 19 (d), (e) and (f) show the execution results on MySQL. Since NoREC does not support MySQL, we only compared the other tools.",
+      "context_after": "They discovered 12 bugs in just 40 minutes, after which the system crashed (crash detected), leading to both validity and valid cases per second becoming zero. In contrast, DQE, which also falls under metamorphic testing, consistently failed to detect any logic bugs, indicating a more limited scope in its oracle. Further investigation revealed that in DQE, statements and their equivalent statements produced the same bug results, leading to missed detections. It is worth noting that PQS does not perform as well on MySQL as it does on SQLite. There are two main reasons for this. Manuscript subm",
+      "section": "5.4 Logic Bugs Detection Comparison",
+      "page": 26,
+      "char_offset": 67651,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "qpg"
+      ]
+    },
+    {
+      "id": "M49",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "It is worth noting that PQS does not perform as well on MySQL as it does on SQLite.",
+      "context_before": "SQL, we only compared the other tools. It can be observed that TLP and QPG are quite exceptional, as they quickly detected bugs in MySQL. They discovered 12 bugs in just 40 minutes, after which the system crashed (crash detected), leading to both validity and valid cases per second becoming zero. In contrast, DQE, which also falls under metamorphic testing, consistently failed to detect any logic bugs, indicating a more limited scope in its oracle. Further investigation revealed that in DQE, statements and their equivalent statements produced the same bug results, leading to missed detections.",
+      "context_after": "There are two main reasons for this. Manuscript submitted to ACM A Comprehensive Survey on Database Management System Fuzzing: Techniques, Taxonomy and Experimental Comparison 27 Firstly, MySQL has fewer inherent bugs, and our experiments did not run for months to detect these bugs. Secondly, the architecture of PQS speeds up the validation of each test case, but it is not a full comparison, only checking one of its query results. This is, in fact, sacrificing accuracy for speed. This approach may be more effective in environments with more bugs, but in the case of MySQL, i.e., with fewer bug",
+      "section": "5.4 Logic Bugs Detection Comparison",
+      "page": 26,
+      "char_offset": 68213,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M50",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Secondly, the architecture of PQS speeds up the validation of each test case, but it is not a full comparison, only checking one of its query results.",
+      "context_before": "ntly failed to detect any logic bugs, indicating a more limited scope in its oracle. Further investigation revealed that in DQE, statements and their equivalent statements produced the same bug results, leading to missed detections. It is worth noting that PQS does not perform as well on MySQL as it does on SQLite. There are two main reasons for this. Manuscript submitted to ACM A Comprehensive Survey on Database Management System Fuzzing: Techniques, Taxonomy and Experimental Comparison 27 Firstly, MySQL has fewer inherent bugs, and our experiments did not run for months to detect these bugs.",
+      "context_after": "This is, in fact, sacrificing accuracy for speed. This approach may be more effective in environments with more bugs, but in the case of MySQL, i.e., with fewer bugs, the overall efficiency is lower. (a)Number of bugs (SQLite) (b)Validity (SQLite) (c)Valid Cases/s (SQLite) Figure 20. Comparision of feedback ways for detecting logic bugs Feedback currently applied to logic bug detection includes coverage feedback and query plan feedback. We conducted comparative experiments in SQLite using TLP, QPG, and SQLRight. They all use the same oracle, but TLP does not have feedback, QPG uses query pl",
+      "section": "5.4 Logic Bugs Detection Comparison",
+      "page": 27,
+      "char_offset": 68581,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M51",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "We conducted comparative experiments in SQLite using TLP, QPG, and SQLRight.",
+      "context_before": "bugs. Secondly, the architecture of PQS speeds up the validation of each test case, but it is not a full comparison, only checking one of its query results. This is, in fact, sacrificing accuracy for speed. This approach may be more effective in environments with more bugs, but in the case of MySQL, i.e., with fewer bugs, the overall efficiency is lower. (a)Number of bugs (SQLite) (b)Validity (SQLite) (c)Valid Cases/s (SQLite) Figure 20. Comparision of feedback ways for detecting logic bugs Feedback currently applied to logic bug detection includes coverage feedback and query plan feedback.",
+      "context_after": "They all use the same oracle, but TLP does not have feedback, QPG uses query plan feedback, and SQLRight utilizes coverage feedback. Among them, TLP and QPG employ the same generation-based generator. As can be seen in Figure 20, QPG detected bugs more efficiently than TLP within 240 minutes, and the number of bugs gradually equalized in the later period. This indicates that query plan feedback indeed contributes to improving the efficiency of logic bug detection. Furthermore, SQLRight only detected 5 bugs within 240 minutes, but this cannot be entirely attributed to coverage feedback. One im",
+      "section": "5.4 Logic Bugs Detection Comparison",
+      "page": 27,
+      "char_offset": 69175,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "qpg"
+      ]
+    },
+    {
+      "id": "M52",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "They all use the same oracle, but TLP does not have feedback, QPG uses query plan feedback, and SQLRight utilizes coverage feedback.",
+      "context_before": "t case, but it is not a full comparison, only checking one of its query results. This is, in fact, sacrificing accuracy for speed. This approach may be more effective in environments with more bugs, but in the case of MySQL, i.e., with fewer bugs, the overall efficiency is lower. (a)Number of bugs (SQLite) (b)Validity (SQLite) (c)Valid Cases/s (SQLite) Figure 20. Comparision of feedback ways for detecting logic bugs Feedback currently applied to logic bug detection includes coverage feedback and query plan feedback. We conducted comparative experiments in SQLite using TLP, QPG, and SQLRight.",
+      "context_after": "Among them, TLP and QPG employ the same generation-based generator. As can be seen in Figure 20, QPG detected bugs more efficiently than TLP within 240 minutes, and the number of bugs gradually equalized in the later period. This indicates that query plan feedback indeed contributes to improving the efficiency of logic bug detection. Furthermore, SQLRight only detected 5 bugs within 240 minutes, but this cannot be entirely attributed to coverage feedback. One important reason is that the mutation-based generator used by SQLRight is not effective, and its validity is obviously lower. The impac",
+      "section": "5.4 Logic Bugs Detection Comparison",
+      "page": 27,
+      "char_offset": 69252,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "qpg"
+      ]
+    },
+    {
+      "id": "M53",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Among them, TLP and QPG employ the same generation-based generator.",
+      "context_before": "is approach may be more effective in environments with more bugs, but in the case of MySQL, i.e., with fewer bugs, the overall efficiency is lower. (a)Number of bugs (SQLite) (b)Validity (SQLite) (c)Valid Cases/s (SQLite) Figure 20. Comparision of feedback ways for detecting logic bugs Feedback currently applied to logic bug detection includes coverage feedback and query plan feedback. We conducted comparative experiments in SQLite using TLP, QPG, and SQLRight. They all use the same oracle, but TLP does not have feedback, QPG uses query plan feedback, and SQLRight utilizes coverage feedback.",
+      "context_after": "As can be seen in Figure 20, QPG detected bugs more efficiently than TLP within 240 minutes, and the number of bugs gradually equalized in the later period. This indicates that query plan feedback indeed contributes to improving the efficiency of logic bug detection. Furthermore, SQLRight only detected 5 bugs within 240 minutes, but this cannot be entirely attributed to coverage feedback. One important reason is that the mutation-based generator used by SQLRight is not effective, and its validity is obviously lower. The impact of coverage feedback on logic bug detection remains to be studied",
+      "section": "5.4 Logic Bugs Detection Comparison",
+      "page": 27,
+      "char_offset": 69385,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "qpg"
+      ]
+    },
+    {
+      "id": "M54",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "As can be seen in Figure 20, QPG detected bugs more efficiently than TLP within 240 minutes, and the number of bugs gradually equalized in the later period.",
+      "context_before": "t in the case of MySQL, i.e., with fewer bugs, the overall efficiency is lower. (a)Number of bugs (SQLite) (b)Validity (SQLite) (c)Valid Cases/s (SQLite) Figure 20. Comparision of feedback ways for detecting logic bugs Feedback currently applied to logic bug detection includes coverage feedback and query plan feedback. We conducted comparative experiments in SQLite using TLP, QPG, and SQLRight. They all use the same oracle, but TLP does not have feedback, QPG uses query plan feedback, and SQLRight utilizes coverage feedback. Among them, TLP and QPG employ the same generation-based generator.",
+      "context_after": "This indicates that query plan feedback indeed contributes to improving the efficiency of logic bug detection. Furthermore, SQLRight only detected 5 bugs within 240 minutes, but this cannot be entirely attributed to coverage feedback. One important reason is that the mutation-based generator used by SQLRight is not effective, and its validity is obviously lower. The impact of coverage feedback on logic bug detection remains to be studied further. Also, as expected, the number of valid cases per second decreases slightly when feedback is added. 5.5 Crash Detection Comparison We tested the perf",
+      "section": "5.4 Logic Bugs Detection Comparison",
+      "page": 27,
+      "char_offset": 69453,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "qpg",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M55",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 87]",
+      "technique": null,
+      "sentence": "•White-box Component Fuzzing: Recent research [ 87] has introduced white-box fuzzing in software testing.",
+      "context_before": "fficient. Component-oriented fuzzing can make testing more focused and efficient, and research directions include: •Component-specific Fuzzing: Most components in a DBMS can be regarded as standalone objects that take input and produce output. Therefore, we can perform separate fuzzing for these specific components, such as directly generating PUT ,GET and DELETE operations to test bugs in key-value (KV) storage. Although there are some testing methods for the DBMS optimizer [ 35,41,54,58], they are not fuzzing methods and can only evaluate the quality of the query plans, not their correctness.",
+      "context_after": "That method involves replacing components in a predictable manner to evaluate whether there are bugs in them. In theory, this method can be extended to DBMSs for component fuzzing. The primary challenge lies in achieving cost-effective replacement of DBMS components to improve its practicality. 6.3 Fuzzing of Modern Database Systems With the emergence of new computing technologies and application fields, traditional relational databases face new challenges, driving the development of databases in new directions. Emerging databases include distributed databases[ 17, 30,44,93], multi-model data",
+      "section": "6.2 Component-oriented Fuzzing",
+      "page": 29,
+      "char_offset": 75641,
+      "cited_reference": {
+        "number": 87,
+        "text": "Manuel Rigger and Zhendong Su. 2022. Intramorphic Testing: A New Approach to the Test Oracle Problem. In International Symposium on New Ideas, New Paradigms, and Reflections on Programming and Software. ACM, 128–136.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M56",
+      "found_by": "citation_marker",
+      "surface": "[ 18]",
+      "technique": "qpg",
+      "sentence": "Existing work [ 18] uses query plan feedback to maximize exploration of the query space, which is not achievable at the code level alone.",
+      "context_before": "re testing perspective, it is not efficient in discovering DBMS bugs. In practice, a balance should be struck between full branch coverage and branch specific coverage. For example, it might be more efficient to prioritize testing the branches near code boundaries where exceptions or security vulnerabilities are more likely to occur. •Semantic Dimension Space Exploration: Coverage feedback usually focuses on maximizing space exploration at the code level and ignores the semantic level. This means that test cases may trigger code branches but do not necessarily detect semantically related bugs.",
+      "context_after": "Furthermore, maximizing space exploration in other dimensions, such as transaction space, is crucial. 7 CONCLUSION DBMS is the fundamental software for managing and organizing data, and its internal structure is extremely complex. The development of commercial DBMSs often produces a large number of unexpected bugs (more than 10,000 bugs have been discovered and resolved in the MySQL forum [ 15]), which can easily lead to huge economic losses. Fuzzing is a method that detects bugs by automatically generating, mutating, and executing test cases. It has a history of nearly 50 years, but existing",
+      "section": "6.4 Improved Space Exploration Capabilities",
+      "page": 30,
+      "char_offset": 79266,
+      "cited_reference": {
+        "number": 18,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In International Conference on Software Engineering. ACM, 2060–2071.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M54"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-10T15:11:27Z",
+    "is_model_written": true,
+    "summary": "A survey of DBMS fuzzing that builds a taxonomy of the field -- generator type, generation strategy, feedback, and how the database instance is obtained -- and runs an experimental comparison of the tools within it. It covers logic, crash and performance bugs, and traces the line from RAGS in 1998 to the coverage-guided and oracle-based tools that followed.",
+    "narrative": "SQLancer's oracles are a fixed point of the survey's taxonomy. NoREC, TLP and PQS are introduced together as the new fuzzing methods Rigger and Su proposed, and distinguished by kind: NoREC and TLP apply metamorphic testing to the database domain so that a single DBMS can be fuzzed against itself, while PQS is a constraint-solving method whose oracle needs only that the result contain the solved row. They recur throughout as reference points -- in the comparison of test case generators, in the discussion of random database instances, and in the account of why bounding statement complexity matters. Intramorphic testing is cited separately as replacing a component to test between two versions of a system.",
+    "roles": {
+      "M1": "definition",
+      "M2": "definition",
+      "M3": "definition",
+      "M4": "background",
+      "M5": "definition",
+      "M6": "background",
+      "M7": "background",
+      "M8": "result_comparison",
+      "M9": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "A survey describes tools rather than building on them; nothing here reports reusing SQLancer's code, generator or workload."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is proposed or extended; the oracles are classified within the taxonomy."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M8"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M8",
+            "sentence": "Comparison of Test Case Generators Fuzzer YearGenerator TypeGenerator StrategyFeedbackDatabase Instance RAGS[89] 1998 Generation-based AST Model (Static Configuration) No Feedback (Black-Box)Existing Databases SQLsmith[5] 2015 APOLLO[51] 2019 AST Model (Dynamic Configuration) AMOEBA[62] 2022 Go-Randgen[81] 2019 AST Model (Static Configuration) Random DatabasesSQLancer[86] 2020 Artemis[71] 2021 DT2[31] 2022 DQE[90] 2023 Troc[32] 2023 TQS[94] 2023AST Model (Dynamic Configuration) ADUSA[16] 2010 Alloy Model GARan[19] 2007 Mutation-based SQL Structure MutationFeedback from internal status (Grey-Box)Existing Databases Squirrel[109] 2020 Random DatabasesSquill[101] 2023 SQLRight[60] 2022 DynSQL[49] 2023 Eqsql[107] 2021 No Feedback (Black-Box) MutaSQL[28] 2020 LEGO[59] 2023SQL Sequence MutationFeedback from internal status (Grey-Box) Griffin[33] 2022No Feedback (Black-Box) QPG[18] 2023DBMS State MutationFeedback from external interface (Black-Box) 3.",
+            "section": "3.1 Test Case Generator",
+            "page": 8
+          }
+        ],
+        "reasoning": "M8 is the survey's own comparison of test case generators, tabulating generator type, strategy, feedback and database instance across the tools including SQLancer's. This is a comparison the survey conducts rather than one it reports from elsewhere.",
+        "techniques": [
+          "norec",
+          "tlp",
+          "pqs"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The oracles are described by mechanism and placed in a taxonomy; the survey makes no claim that they are the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

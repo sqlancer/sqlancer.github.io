@@ -1,0 +1,204 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sqlancer.github.io/schemas/impact/bugs.schema.json",
+  "title": "Bugs attributed to SQLancer",
+  "description": "One record per bug report attributed to a tool of the SQLancer umbrella under the documented attribution policy. Every record carries the evidence that justifies the attribution.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "policy_version",
+    "bugs"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "$ref": "common.schema.json#/definitions/schema_version"
+    },
+    "policy_version": {
+      "type": "string",
+      "maxLength": 40
+    },
+    "bugs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/bug"
+      }
+    }
+  },
+  "definitions": {
+    "bug": {
+      "type": "object",
+      "required": [
+        "id",
+        "dbms",
+        "title",
+        "status",
+        "finder",
+        "technique",
+        "symptom",
+        "attribution",
+        "provenance"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/definitions/record_id"
+        },
+        "dbms": {
+          "$ref": "common.schema.json#/definitions/slug",
+          "description": "Must reference an id in dbms.json."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "reported_date": {
+          "anyOf": [
+            {
+              "$ref": "common.schema.json#/definitions/date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reported_year": {
+          "anyOf": [
+            {
+              "$ref": "common.schema.json#/definitions/year"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "type": "string",
+          "description": "Normalised upstream resolution state.",
+          "enum": [
+            "fixed",
+            "fixed_in_documentation",
+            "verified",
+            "open",
+            "closed_not_a_bug",
+            "closed_duplicate",
+            "unknown"
+          ]
+        },
+        "status_is_true_positive": {
+          "type": "boolean",
+          "description": "Derived: whether the report was accepted as a genuine bug. Records with false are retained for transparency but excluded from headline bug counts."
+        },
+        "finder": {
+          "$ref": "common.schema.json#/definitions/slug",
+          "description": "Umbrella tool credited with the find; must reference a finder id in techniques.json."
+        },
+        "technique": {
+          "anyOf": [
+            {
+              "$ref": "common.schema.json#/definitions/slug"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "SQLancer-originated technique responsible, when known; must reference a technique id in techniques.json. Null when the specific technique is not recorded."
+        },
+        "symptom": {
+          "type": "string",
+          "enum": [
+            "logic",
+            "error",
+            "crash",
+            "hang",
+            "performance",
+            "unknown"
+          ]
+        },
+        "reporter": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 120
+        },
+        "reporter_affiliation": {
+          "type": "string",
+          "description": "Whether the person who filed the report belongs to the SQLancer project -- its authors, the TEST lab, or its Google Summer of Code contributors -- or found the bug as an outside adopter. 'unknown' when no reporter is recorded.",
+          "enum": [
+            "project",
+            "external",
+            "unknown"
+          ]
+        },
+        "severity": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 80
+        },
+        "cve": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 40
+        },
+        "links": {
+          "type": "object",
+          "description": "Primary sources for the report. At least one link is required by the attribution policy.",
+          "additionalProperties": {
+            "$ref": "common.schema.json#/definitions/url"
+          },
+          "minProperties": 1
+        },
+        "primary_url": {
+          "$ref": "common.schema.json#/definitions/url",
+          "description": "Canonical location of the bug report; used for deduplication."
+        },
+        "attribution": {
+          "type": "object",
+          "required": [
+            "rule",
+            "confidence",
+            "evidence"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "rule": {
+              "type": "string",
+              "description": "Which clause of the bug attribution policy admitted this record.",
+              "enum": [
+                "explicit_tool_statement",
+                "technique_attribution",
+                "campaign_evidence",
+                "curated_primary_source",
+                "campaign_reporter"
+              ]
+            },
+            "confidence": {
+              "type": "string",
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ],
+              "description": "How directly the evidence establishes the attribution. 'low' marks a record admitted because of who reported it rather than anything the report itself says."
+            },
+            "evidence": {
+              "$ref": "common.schema.json#/definitions/evidence_list"
+            },
+            "classifier": {
+              "$ref": "common.schema.json#/definitions/classifier_record"
+            }
+          }
+        },
+        "provenance": {
+          "$ref": "common.schema.json#/definitions/provenance"
+        }
+      }
+    }
+  }
+}

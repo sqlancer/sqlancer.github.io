@@ -1,0 +1,636 @@
+---
+permalink: /impact/
+title: "SQLancer's impact"
+excerpt: "Bugs found, database systems reached, research building on SQLancer -- every number traced back to a primary source."
+author_profile: false
+toc: true
+toc_label: "On this page"
+toc_sticky: true
+---
+
+{%- assign impact = site.data.impact -%}
+{%- assign stats = impact.stats -%}
+{%- assign head = stats.headline -%}
+{%- assign policy = impact.policy -%}
+
+<div class="impact" markdown="0">
+
+<p>
+  SQLancer finds bugs in database systems, and the techniques it introduced have
+  been picked up well beyond the project itself. This page collects what that
+  adds up to, and — more importantly — where each number comes from.
+</p>
+
+<p>
+  Every figure below is computed from structured records kept in this website's
+  repository under
+  <a href="https://github.com/sqlancer/sqlancer.github.io/tree/main/_data/impact"><code>_data/impact/</code></a>.
+  Each record carries the primary source that justifies it, so any statistic can
+  be followed back to a bug report, a paper, a repository, or a published
+  resource. Nothing on this page is typed in by hand.
+</p>
+
+{% include impact/stat-tiles.html %}
+
+<p class="impact-meta">
+  Policy version <code>{{ policy.policy_version }}</code>, in force since
+  {{ policy.effective_date }}.
+  {%- if stats.bugs.total_including_rejected > stats.bugs.total %}
+  {{ stats.bugs.total_including_rejected }} bug reports are on record;
+  {{ stats.bugs.total }} of them were accepted by the developers as genuine bugs
+  and are what the counts above use.
+  {%- endif %}
+</p>
+
+<h2 id="bugs">Bugs found by SQLancer ({{ stats.bugs.total }})</h2>
+
+<p>
+  A bug counts here when the evidence connects it to SQLancer or to a testing
+  technique SQLancer introduced. Bug reports very often name the test oracle
+  rather than the tool, so a report crediting NoREC, TLP, PQS or QPG counts even
+  when it never says “SQLancer”. Reports the developers rejected as invalid or
+  duplicate stay in the dataset for transparency but are excluded from the
+  totals. The full policy is <a href="#methodology">below</a>.
+</p>
+
+{%- comment -%}
+  The undercount, stated where the number is rather than in the methodology
+  nobody scrolls to. The figure is derived, not written: it is the projects
+  whose own evidence shows them running SQLancer and whose bugs never reach
+  this dataset, which is the part of the gap the data can measure about itself.
+{%- endcomment -%}
+<p>
+  This is a floor, not a total, and probably a distant one. A bug arrives here
+  only when something public ties it to SQLancer, and most of the testing
+  leaves no such trace: reports against closed-source systems are usually
+  private, a report is written about the bug rather than about what found it,
+  and a project can run SQLancer for years while quietly fixing what it turns
+  up. The dataset can measure part of its own blind spot &mdash;
+  <strong>{{ head.dbms_using_sqlancer_without_counted_bugs }}</strong> of the
+  {{ head.dbms_projects_using_sqlancer }} projects whose own evidence shows
+  them running SQLancer have no bug counted here at all:
+  {%- assign silent = stats.dbms.using_without_bugs -%}
+  {%- for row in silent %}
+  <a href="{{ '/impact/dbms/' | relative_url }}{{ row.id }}/">{{ row.name }}</a>
+  {%- unless forloop.last %}{% if forloop.rindex == 2 %} and {% else %}, {% endif %}{% endunless -%}
+  {%- endfor %}.
+</p>
+
+<h3 id="bugs-by-dbms">Bugs by database system ({{ stats.dbms.with_bugs }})</h3>
+
+<div class="impact-figure">
+  <p class="impact-figure__caption">
+    Bugs attributed to SQLancer in each database system, each bar split by who
+    found them. Every bar links to that system's own page, which lists the bugs
+    behind the number.
+  </p>
+  {%- comment -%}
+    The segments are drawn from by_dbms_and_affiliation, whose segments come in
+    the order of by_reporter_affiliation, so walking that series in the same
+    order gives each swatch the colour its segment has.
+  {%- endcomment -%}
+  <ul class="impact-legend">
+    {%- assign affiliation_slot = 0 -%}
+    {%- for row in stats.bugs.by_reporter_affiliation -%}
+    {%- if row.count > 0 -%}
+    {%- assign affiliation_slot = affiliation_slot | plus: 1 -%}
+    <li class="impact-legend__item">
+      <span class="impact-legend__swatch" style="background: var(--impact-series-{{ affiliation_slot }})"></span>
+      {{ row.label }} ({{ row.count }})
+    </li>
+    {%- endif -%}
+    {%- endfor -%}
+  </ul>
+  <div class="impact-chart__scroll">
+    {% include impact/plots/bugs-by-dbms.svg %}
+  </div>
+</div>
+
+<details class="impact-details">
+  <summary>Show these figures as a table</summary>
+  {% include impact/counts-table.html series=stats.bugs.by_dbms heading="Database system" label="Bugs" link_base="/impact/dbms/" %}
+</details>
+
+<h3 id="bugs-over-time">Bugs over time</h3>
+
+<div class="impact-figure">
+  <p class="impact-figure__caption">
+    Bugs by the year they were reported. Each column links to that year's own
+    page, which lists every report behind the number.
+  </p>
+  <div class="impact-chart__scroll">
+    {% include impact/plots/bugs-by-year.svg %}
+  </div>
+</div>
+
+<details class="impact-details">
+  <summary>Show these figures as a table</summary>
+  {% include impact/counts-table.html series=stats.bugs.by_year heading="Year reported" label="Bugs" %}
+</details>
+
+{%- comment -%}
+  The narrower breakdowns live on their own page, so this one keeps to the
+  figures a reader comes for. See _pages/impact/bug-statistics.html.
+{%- endcomment -%}
+
+<h3 id="bugs-by-status">What happened to them</h3>
+
+<div class="impact-figure">
+  <p class="impact-figure__caption">
+    Resolution of the {{ stats.bugs.total }} accepted bug reports.
+  </p>
+  <ul class="impact-legend">
+    {%- assign status_slot = 0 -%}
+    {%- for row in stats.bugs.by_status -%}
+    {%- if row.count > 0 and status_slot < 4 -%}
+    {%- assign status_slot = status_slot | plus: 1 -%}
+    <li class="impact-legend__item">
+      <span class="impact-legend__swatch" style="background: var(--impact-series-{{ status_slot }})"></span>
+      {{ row.label }} ({{ row.count }})
+    </li>
+    {%- endif -%}
+    {%- endfor -%}
+  </ul>
+  <div class="impact-chart__scroll">
+    {% include impact/plots/bugs-by-status.svg %}
+  </div>
+</div>
+
+{%- comment -%}
+  How much of the total rests on each clause of the policy -- above all on the
+  weakest, which admits a report because of who filed it rather than because of
+  anything the report says. A reader who wants to discount that share should be
+  able to see its size without going to the data.
+{%- endcomment -%}
+{%- assign rule_rows = stats.bugs.by_attribution_rule -%}
+{%- if rule_rows.size > 0 %}
+{% include impact/counts-table.html series=rule_rows heading="How each bug was attributed" label="Bugs" %}
+{%- endif %}
+
+<p class="impact-meta">
+  Reproducers for the historic reports are kept in the
+  <a href="https://github.com/sqlancer/bugs">SQLancer bug repository</a>; this
+  page links each record to its upstream report rather than duplicating the test
+  cases.
+</p>
+
+<p>
+  <a href="{{ '/impact/bug-statistics/' | relative_url }}">More bug statistics</a>
+  &mdash; which technique found them, which tool, and how each bug manifested.
+</p>
+
+<h2 id="database-systems">Database systems</h2>
+
+<p>
+  Three things are tracked apart from each other and never conflated: the
+  {{ stats.dbms.supported }} systems SQLancer ships a testing implementation
+  for, the {{ stats.dbms.with_bugs }} it has attributed bugs in, and the
+  {{ stats.dbms.with_adoption }} projects whose own developers use it. Only the
+  last is below; the other two, the system-by-system table and the projects
+  that have proposed adopting SQLancer, are on
+  <a href="{{ '/impact/database-systems/' | relative_url }}">the database
+  systems page</a>.
+</p>
+
+{%- assign all_adoption = impact.adoption.adoption -%}
+{%- assign adoption_records = all_adoption | where_exp: "record", "record.relationship != 'planned_adoption'" -%}
+{%- comment -%}
+  Projects that have proposed adopting SQLancer and nothing more. A project
+  with an open proposal alongside evidence that it already runs SQLancer is
+  counted as using it, which is what stats.json has always done.
+{%- endcomment -%}
+{%- assign using_dbms = adoption_records | map: "dbms" | uniq -%}
+{%- assign planned_records = "" | split: "" -%}
+{%- for record in all_adoption -%}
+  {%- if record.relationship == "planned_adoption" -%}
+    {%- unless using_dbms contains record.dbms -%}
+      {%- assign planned_records = planned_records | push: record -%}
+    {%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign adoption_dbms_count = adoption_records | map: "dbms" | uniq | size -%}
+{%- if adoption_records.size > 0 %}
+<h3 id="adoption-evidence">Adoption evidence ({{ adoption_dbms_count }})</h3>
+
+<p>
+  One entry per project. A project can show up in more than one way &mdash; a
+  fork of its own, a job in its CI, a script in its repository &mdash; and each
+  project's page carries every piece of evidence in full: the quoted source,
+  what it shows, and when it was last checked.
+</p>
+
+<div class="impact-table-wrap">
+  <table class="impact-table">
+    <thead>
+      <tr>
+        <th scope="col">Project</th>
+        <th scope="col">How it uses SQLancer</th>
+        <th scope="col" class="impact-num">Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- assign adoption_dbms = adoption_records | map: "dbms" | uniq -%}
+      {%- for dbms_id in adoption_dbms %}
+      {%- assign dbms_entry = impact.dbms.dbms | where: "id", dbms_id | first -%}
+      {%- assign project_records = adoption_records | where: "dbms", dbms_id -%}
+      {%- assign evidence_count = 0 -%}
+      {%- for record in project_records -%}
+        {%- assign evidence_count = evidence_count | plus: record.evidence.size -%}
+      {%- endfor %}
+      <tr>
+        <th scope="row">
+          <a href="{{ '/impact/dbms/' | append: dbms_id | append: '/#adoption' | relative_url }}">{{ dbms_entry.name | default: dbms_id }}</a>
+        </th>
+        <td>
+          {%- for record in project_records -%}
+            <span class="impact-tag">{{ record.relationship | replace: "_", " " }}</span>
+          {%- endfor -%}
+        </td>
+        <td class="impact-num">{{ evidence_count }}</td>
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+</div>
+{%- endif %}
+
+{%- if planned_records.size > 0 %}
+<p>
+  {{ planned_records.size }} further project{% if planned_records.size != 1 %}s have{% else %} has{% endif %}
+  <em>proposed</em> adopting SQLancer without anything yet showing them running
+  it. An intention is not use, so those count towards no figure here; they are
+  listed under
+  <a href="{{ '/impact/database-systems/#planned-adoption' | relative_url }}">planned adoption</a>.
+</p>
+{%- endif %}
+
+<h2 id="papers">Research building on SQLancer ({{ stats.papers.external_total }})</h2>
+
+<p>
+  Papers are found by walking the citation graphs of the foundational SQLancer
+  publications, so the list of citing papers is a fact about the graph rather
+  than a judgement. Each paper is then placed in five relationships: that it
+  cites SQLancer, and then whether it reuses the codebase, extends a technique,
+  compares against SQLancer, or calls it the state of the art. The four
+  judgements overlap on purpose &mdash; a paper can do several at once &mdash;
+  so the totals de-duplicate and such a paper is counted once. Reuse, extension
+  and comparison are what &ldquo;builds on&rdquo; means; calling SQLancer the
+  state of the art is recognition, and is counted on its own.
+</p>
+
+<p>
+  {{ head.papers_citing_sqlancer }} papers cite a SQLancer publication,
+  {{ head.papers_building_on_sqlancer }} of them do more than cite it, and
+  {{ head.papers_calling_sqlancer_state_of_the_art }} describe SQLancer or one
+  of its techniques as the state of the art in their own words.
+</p>
+
+{% include impact/counts-table.html series=stats.papers.by_relationship heading="Relationship" label="Papers" %}
+
+<h3 id="papers-over-time">Papers over time</h3>
+
+<div class="impact-figure">
+  <p class="impact-figure__caption">
+    All papers citing a SQLancer publication, by publication year.
+  </p>
+  <div class="impact-chart__scroll">
+    {% include impact/plots/papers-by-year.svg %}
+  </div>
+</div>
+
+<div class="impact-figure">
+  <p class="impact-figure__caption">
+    Papers that go further than citing, by publication year. The categories
+    overlap, so the bars are not additive. The last series is recognition
+    rather than reuse and is not part of the “builds on” total.
+  </p>
+  {%- comment -%}
+    The swatch order follows the series order in plots.py: reuse or extension,
+    comparison, recognition.
+  {%- endcomment -%}
+  <ul class="impact-legend">
+    <li class="impact-legend__item">
+      <span class="impact-legend__swatch" style="background: var(--impact-series-1)"></span>
+      Uses or extends SQLancer
+    </li>
+    <li class="impact-legend__item">
+      <span class="impact-legend__swatch" style="background: var(--impact-series-2)"></span>
+      Compares against SQLancer
+    </li>
+    <li class="impact-legend__item">
+      <span class="impact-legend__swatch" style="background: var(--impact-series-3)"></span>
+      Describes SQLancer as state of the art
+    </li>
+  </ul>
+  <div class="impact-chart__scroll">
+    {% include impact/plots/papers-relationships-by-year.svg %}
+  </div>
+</div>
+
+<details class="impact-details">
+  <summary>Show these figures as a table</summary>
+  <div class="impact-table-wrap">
+    <table class="impact-table">
+      <thead>
+        <tr>
+          <th scope="col">Year</th>
+          <th scope="col" class="impact-num">Citing</th>
+          <th scope="col" class="impact-num">Uses or extends</th>
+          <th scope="col" class="impact-num">Compares with</th>
+          <th scope="col" class="impact-num">Builds on (distinct)</th>
+          <th scope="col" class="impact-num">Calls state of the art</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%- for entry in stats.papers.by_relationship_year.references %}
+        {%- assign index = forloop.index0 %}
+        <tr>
+          <th scope="row">{{ entry.label }}</th>
+          <td class="impact-num">{{ entry.count }}</td>
+          <td class="impact-num">{{ stats.papers.by_relationship_year.reusing_or_extending[index].count }}</td>
+          <td class="impact-num">{{ stats.papers.by_relationship_year.compares_with[index].count }}</td>
+          <td class="impact-num">{{ stats.papers.by_relationship_year.building_on[index].count }}</td>
+          <td class="impact-num">{{ stats.papers.by_relationship_year.describes_as_state_of_the_art[index].count }}</td>
+        </tr>
+        {%- endfor %}
+      </tbody>
+    </table>
+  </div>
+</details>
+
+{%- comment -%}
+  One list per relationship rather than one combined list: the categories mean
+  different things, and a paper that reuses the codebase is a different kind of
+  evidence from one that merely uses it as a baseline. The categories overlap,
+  so a paper can appear in more than one list; the deduplicated total is stated
+  above.
+{%- endcomment -%}
+{%- assign external_papers = impact.papers.papers | where_exp: "p", "p.is_sqlancer_publication != true" -%}
+
+{%- assign infra_papers = "" | split: "" -%}
+{%- assign extends_papers = "" | split: "" -%}
+{%- assign compares_papers = "" | split: "" -%}
+{%- for paper in external_papers -%}
+  {%- if paper.relationships.uses_infrastructure.value == "yes" -%}
+    {%- assign infra_papers = infra_papers | push: paper -%}
+  {%- endif -%}
+  {%- if paper.relationships.extends_technique.value == "yes" -%}
+    {%- assign extends_papers = extends_papers | push: paper -%}
+  {%- endif -%}
+  {%- if paper.relationships.compares_with.value == "yes" -%}
+    {%- assign compares_papers = compares_papers | push: paper -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if infra_papers.size > 0 or extends_papers.size > 0 or compares_papers.size > 0 %}
+<h3 id="papers-list">Papers that build on SQLancer ({{ head.papers_building_on_sqlancer }})</h3>
+
+<p>
+  Grouped by what each paper actually does with SQLancer. Every entry shows the
+  exact passage the classification rests on, copied verbatim from the source. A
+  paper that holds more than one relationship appears in more than one list, so
+  these lists are not additive &mdash; the
+  {{ head.papers_building_on_sqlancer }} in the summary above counts each paper
+  once.
+</p>
+
+{%- comment -%}
+  Reusing the codebase and developing the technique are recorded separately --
+  a paper can do either without the other, and only two do both -- but they
+  answer one question for a reader: what did this paper build on SQLancer? So
+  they are shown together, with each entry quoting the relationship it holds
+  and naming the other in its "Also" line where it holds both.
+{%- endcomment -%}
+{%- assign builds_papers = infra_papers -%}
+{%- for paper in extends_papers -%}
+  {%- unless paper.relationships.uses_infrastructure.value == "yes" -%}
+    {%- assign builds_papers = builds_papers | push: paper -%}
+  {%- endunless -%}
+{%- endfor -%}
+
+{%- if builds_papers.size > 0 %}
+<h4 id="papers-uses-infrastructure">Uses or extends SQLancer ({{ builds_papers.size }})</h4>
+<p class="impact-meta">
+  The paper's implementation reuses or derives from the SQLancer codebase
+  ({{ infra_papers.size }} papers), or the authors extend, generalise or adapt
+  a technique introduced through SQLancer &mdash; taking TLP to a new data
+  model, say, or building a new method on the PQS idea
+  ({{ extends_papers.size }} papers). The two are recorded separately in the
+  data, and each paper's own page says which of them applies.
+</p>
+{% include impact/paper-list.html papers=builds_papers relationship="uses_infrastructure|extends_technique" %}
+{%- endif %}
+
+{%- if compares_papers.size > 0 %}
+<h4 id="papers-compares-with">Compares against SQLancer ({{ compares_papers.size }})</h4>
+<p class="impact-meta">
+  The paper evaluates its own approach against SQLancer or one of its test
+  oracles as a baseline.
+</p>
+{% include impact/paper-list.html papers=compares_papers relationship="compares_with" %}
+{%- endif %}
+{%- endif %}
+
+{%- assign sota_papers = "" | split: "" -%}
+{%- for paper in external_papers -%}
+  {%- if paper.relationships.describes_as_state_of_the_art.value == "yes" -%}
+    {%- assign sota_papers = sota_papers | push: paper -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- comment -%}
+  Recognition rather than reuse. Most of these papers say it while naming
+  their comparison set, which the section above already shows, so the page
+  quotes the ones whose claim stands on its own -- recorded, with a reason
+  for each, in _data/impact/recognition_highlights.json -- and the full list
+  lives on its own page.
+{%- endcomment -%}
+{%- assign highlights = impact.recognition_highlights.highlights -%}
+{%- if sota_papers.size > 0 %}
+<h3 id="papers-state-of-the-art">Papers calling SQLancer state of the art ({{ sota_papers.size }})</h3>
+
+<p>
+  These papers describe SQLancer or one of its techniques as the state of the
+  art. That is a different claim from building on it, so it is counted
+  separately and is not part of the
+  {{ head.papers_reusing_or_extending_sqlancer }} above. Quoted here are the
+  {{ highlights.size }} that make the claim on their own account rather than
+  while listing the tools they measure against; the
+  <a href="{{ '/impact/recognition/' | relative_url }}">other
+  {{ sota_papers.size | minus: highlights.size }}</a> say it in the same
+  sentence that names their comparison set.
+</p>
+
+<ul>
+  {%- for highlight in highlights -%}
+  {%- assign paper = external_papers | where: "id", highlight.paper_id | first -%}
+  {%- assign record_key = highlight.paper_id | replace: ":", "_" | replace: ".", "_" | replace: "/", "_" -%}
+  {%- assign record = site.data.papers[record_key] -%}
+  {%- assign quoted = record.analysis.relationships.describes_as_state_of_the_art.quotes | where: "mention_id", highlight.mention_id | first -%}
+  {%- if quoted %}
+  <li>
+    <div class="impact-evidence"><q>{{ quoted.sentence | strip_html }}</q></div>
+    <span class="impact-meta">
+      <a href="{{ '/impact/papers/' | append: record_key | append: '/' | relative_url }}">{{ paper.title }}</a>
+      {%- if paper.year %} ({{ paper.year }}){% endif %}
+      {%- if paper.venue %} &middot; {{ paper.venue }}{% endif %}
+      {%- if quoted.section %} &middot; {{ quoted.section }}{% endif %}
+    </span>
+  </li>
+  {%- endif -%}
+  {%- endfor %}
+</ul>
+
+<p>
+  <a href="{{ '/impact/recognition/' | relative_url }}">All {{ sota_papers.size }} papers calling SQLancer state of the art</a>
+</p>
+{%- endif %}
+
+<details class="impact-details">
+  <summary>All {{ stats.papers.external_total }} papers citing SQLancer</summary>
+  <div class="impact-table-wrap">
+    <table class="impact-table">
+      <thead>
+        <tr>
+          <th scope="col">Paper</th>
+          <th scope="col" class="impact-num">Year</th>
+          <th scope="col">Relationships</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%- for paper in impact.papers.papers %}
+        {%- unless paper.is_sqlancer_publication %}
+        <tr>
+          <th scope="row">
+            {%- if paper.url %}<a href="{{ paper.url }}">{{ paper.title }}</a>{% else %}{{ paper.title }}{% endif -%}
+          </th>
+          <td class="impact-num">{{ paper.year }}</td>
+          <td>
+            <span class="impact-tag">cites</span>
+            {%- if paper.relationships.uses_infrastructure.value == "yes" or paper.relationships.extends_technique.value == "yes" %}<span class="impact-tag">uses or extends</span>{% endif -%}
+            {%- if paper.relationships.compares_with.value == "yes" %}<span class="impact-tag">compares</span>{% endif -%}
+            {%- if paper.relationships.describes_as_state_of_the_art.value == "yes" %}<span class="impact-tag">state of the art</span>{% endif -%}
+          </td>
+        </tr>
+        {%- endunless %}
+        {%- endfor %}
+      </tbody>
+    </table>
+  </div>
+</details>
+
+{%- assign resources = impact.resources.resources -%}
+{%- if resources.size > 0 %}
+<h2 id="resources">Resources ({{ resources.size }})</h2>
+
+<p>
+  Material other people have made about SQLancer or one of its techniques.
+  Pages that merely mention it in passing are left out, and so is the project's
+  own material &mdash; this site already links its documentation, papers and
+  blog, and repeating them here would say nothing about reach.
+</p>
+
+{%- assign resource_types = resources | map: "type" | uniq | sort -%}
+{%- for type in resource_types %}
+{%- assign of_type = resources | where: "type", type -%}
+{%- comment -%}
+  Every kind in the vocabulary pluralises by adding an s -- talks, tools, blog
+  posts, documentation notes -- so the heading counts things rather than naming
+  a category in the singular above a list of several.
+
+  "Talks" alone would read as the project's own recorded talks, which are on
+  the site already and deliberately excluded here. Every one of these was given
+  by somebody else, and the heading has to say so where it is read on its own,
+  in the table of contents.
+{%- endcomment -%}
+{%- assign heading = type | replace: "_", " " | append: "s" | capitalize -%}
+{%- if type == "talk" %}{% assign heading = "External talks" %}{% endif -%}
+<h3 id="resources-{{ type }}">{{ heading }} ({{ of_type.size }})</h3>
+<ul>
+  {%- for resource in resources -%}
+  {%- if resource.type == type %}
+  <li>
+    {%- comment -%}
+      Who published it comes first. A post's title says what it is about, not
+      whose it is, and whose it is carries most of the weight here: "Fuzz
+      testing QuestDB" is a fact about a tool until QuestDB's own name is in
+      front of it.
+    {%- endcomment -%}
+    <a href="{{ resource.url }}">
+      {%- if resource.publisher and resource.type == "blog_post" -%}
+      {{ resource.publisher }}: {% endif -%}
+      {{ resource.title }}</a>
+    {%- if resource.year %} <span class="impact-meta">({{ resource.year }})</span>{% endif %}
+    {%- if resource.official %} <span class="impact-tag">official</span>{% endif %}
+    {%- comment -%}
+      A talk has a record of its own saying where in it SQLancer comes up, which
+      is the part a reader actually wants and which no line of prose here can
+      carry.
+    {%- endcomment -%}
+    {%- assign talk = site.data.impact.talks.talks | where: "url", resource.url | first -%}
+    {%- if talk %}
+    {%- assign slug = talk.video_id | default: talk.id | split: ":" | last %}
+    &middot; <a href="/impact/talks/{{ slug }}/">{{ talk.mentions.size }} mention{% if talk.mentions.size != 1 %}s{% endif %}</a>
+    {%- endif %}
+    <br>{{ resource.description }}
+    {%- if talk %}{% include impact/talk-frames.html talk=talk %}{% endif %}
+  </li>
+  {%- endif -%}
+  {%- endfor %}
+</ul>
+{%- endfor %}
+{%- endif %}
+
+<h2 id="methodology">Methodology and attribution policy</h2>
+
+<p>
+  These are the rules the dataset is built to. They are stored as data
+  (<a href="https://github.com/sqlancer/sqlancer.github.io/blob/main/_data/impact/policy.json"><code>policy.json</code></a>)
+  and rendered here, so the policy the collectors enforce and the policy
+  described on this page cannot drift apart.
+</p>
+
+{%- for section in policy.sections %}
+<h3 id="policy-{{ section.id }}">{{ section.title }}</h3>
+{%- for paragraph in section.body %}
+<p>{{ paragraph }}</p>
+{%- endfor %}
+{%- if section.rules %}
+<div>
+  {%- for rule in section.rules %}
+  <p class="impact-policy__rule">
+    <span class="impact-policy__kind">{{ rule.kind | default: "note" }}</span>
+    {{ rule.text }}
+  </p>
+  {%- endfor %}
+</div>
+{%- endif %}
+{%- endfor %}
+
+<h2 id="data">The data itself</h2>
+
+<p>
+  The records are plain JSON, each file validated against a JSON Schema on every
+  change:
+</p>
+
+<ul>
+  <li><a href="https://github.com/sqlancer/sqlancer.github.io/blob/main/_data/impact/bugs.json"><code>bugs.json</code></a> — bug reports attributed to SQLancer, with the evidence for each attribution.</li>
+  <li><a href="https://github.com/sqlancer/sqlancer.github.io/blob/main/_data/impact/papers.json"><code>papers.json</code></a> — papers citing SQLancer and their relationships to it.</li>
+  <li><a href="https://github.com/sqlancer/sqlancer.github.io/blob/main/_data/impact/adoption.json"><code>adoption.json</code></a> — evidence that a database system's developers use SQLancer.</li>
+  <li><a href="https://github.com/sqlancer/sqlancer.github.io/blob/main/_data/impact/resources.json"><code>resources.json</code></a> — talks, tutorials, documentation and other material.</li>
+  <li><a href="https://github.com/sqlancer/sqlancer.github.io/blob/main/_data/impact/talks.json"><code>talks.json</code></a> — recorded talks, with every point where SQLancer comes up, what was read to find it, and how far those words can be trusted.</li>
+  <li><a href="https://github.com/sqlancer/sqlancer.github.io/blob/main/_data/papers"><code>_data/papers/</code></a> — one file per paper that cites SQLancer, holding every sentence in it that mentions the project and the classification each of those sentences supports.</li>
+  <li><a href="https://github.com/sqlancer/sqlancer.github.io/blob/main/_data/impact/dbms.json"><code>dbms.json</code></a> — the database system registry.</li>
+  <li><a href="https://github.com/sqlancer/sqlancer.github.io/blob/main/_data/impact/techniques.json"><code>techniques.json</code></a> — the technique and tool taxonomy.</li>
+  <li><a href="https://github.com/sqlancer/sqlancer.github.io/blob/main/_data/impact/people.json"><code>people.json</code></a> — the people who run SQLancer campaigns, linked to their GitHub profiles. It decides whose reports are worth reading, and attributes nothing by itself.</li>
+  <li><a href="https://github.com/sqlancer/sqlancer.github.io/blob/main/_data/impact/stats.json"><code>stats.json</code></a> — the derived figures this page renders, regenerated from the records above.</li>
+</ul>
+
+<p class="impact-note">
+  Found something wrong, or a bug, paper or tool that is missing?
+  <a href="https://github.com/sqlancer/sqlancer.github.io/issues/new">Open an issue</a>
+  — the dataset is meant to be corrected in public.
+</p>
+
+</div>

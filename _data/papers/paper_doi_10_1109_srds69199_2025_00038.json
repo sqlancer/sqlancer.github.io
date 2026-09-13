@@ -1,0 +1,367 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T14:53:46Z",
+  "paper": {
+    "id": "paper:doi:10.1109/srds69199.2025.00038",
+    "title": "Diverse Database Replication Based on Snapshot Isolation – Performance Implications of Improved Dependability",
+    "authors": [
+      "Peter Popov",
+      "Vladimir Stankovic"
+    ],
+    "year": 2025,
+    "venue": "IEEE International Symposium on Reliable Distributed Systems",
+    "doi": "10.1109/srds69199.2025.00038",
+    "arxiv_id": null,
+    "s2_paper_id": "9c1ceed81b5e20d20819cb033534a5480040eb02",
+    "url": "https://doi.org/10.1109/srds69199.2025.00038",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/srds69199.2025.00038",
+      "retrieved_at": "2026-09-08T14:53:46Z",
+      "chars": 65324,
+      "content_sha256": "sha256:83bd30fd67129df036012349cbdde7851ebade377f41dc3313f6f911ba0a7cdd"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 11,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 1643
+      },
+      {
+        "number": "II",
+        "title": "RELATED WORK",
+        "start": 7977
+      },
+      {
+        "number": "A",
+        "title": "Database Replication",
+        "start": 7994
+      },
+      {
+        "number": "B",
+        "title": "Design Diversity",
+        "start": 11716
+      },
+      {
+        "number": "III",
+        "title": "REPLICATION ANDSYSTEM MODEL",
+        "start": 12807
+      },
+      {
+        "number": "A",
+        "title": "DivRep Architecture",
+        "start": 17518
+      },
+      {
+        "number": "B",
+        "title": "DivRep Optimistic Regime",
+        "start": 32155
+      },
+      {
+        "number": "C",
+        "title": "Correctness and Liveness of DivRep",
+        "start": 33934
+      },
+      {
+        "number": "A",
+        "title": "Test Harness and Implementation",
+        "start": 36033
+      },
+      {
+        "number": "B",
+        "title": "TPC- C Workload – Comparison with Single DBMSs",
+        "start": 42056
+      },
+      {
+        "number": "C",
+        "title": "TPC- C Workload – Compari son with Non-diverse Pairs",
+        "start": 47488
+      },
+      {
+        "number": "D",
+        "title": "Read -only Workload – Comparison with Single DBMSs",
+        "start": 48575
+      },
+      {
+        "number": "A",
+        "title": "Potential DivRep Optimisations",
+        "start": 50154
+      },
+      {
+        "number": "B",
+        "title": "DivSQL Hybrid Approach",
+        "start": 52304
+      },
+      {
+        "number": "H",
+        "title": "Diab and A. Zomaya, Editors. 2005, John Wiley & Sons. p. 213 - 241.",
+        "start": 62078
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Gashi, I., P. Popov, and L. Strigini, Fault tolerance via diversity for off the-shelf products: a study with SQL database servers. IEEE Transactions on Dependable and Secure Computing, 2007. 4(4): p. 280 294",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Vandiver, B., et al., Tolerating byzantine faults in transaction processing systems using commit barrier scheduling, in Proceedings of 21st ACM SIGOPS Symposium on Operating Systems Principles. 2007, ACM: Steve nson, Washington, USA. p. 59 -72.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Bernstein, A., V. Hadzilacos, and N. Goodman, Concurrency Control and Recovery in Database Systems. 1987, Reading, Mass.: Addison Wesley.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Lin, Y., et al. Middleware Based Data Replication Providing Snapshot Isolation. in ACMSIGMOD International Conference on Management of Data. 2005. Baltimore, Maryland: ACM Press.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Elnikety, S., W. Zwaenepoel, and F. Pedone. Database Replication Using Generalized Snapshot Isolation. in Proceedings of the 24th IEEE Symposium on R eliable Distributed Systems (SRDS'05). 2005. IEEE Computer Society.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Berenson, H., et al. A Critique of ANSI SQL Isolation Levels. in SIGMOD International Conference on Management of Data. 1995. San Jose, California, United States: ACM Press New York, N Y, USA.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Gray, J., et al. The Dangers of Replication and a solution. in ACM SIGMOD International Conference on Management of Data. 1996. Montreal, Canada: SIGMOD.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Wiesmann, M., F. Pedone, and A. Schiper. Database Replication Techniques: a Three Parameter Classification. in 19th IEEE Symposium on Reliable Distributed Systems (SRDS'00). 2000. Nurnberg, Germany: IEEE.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Vandiver, B., Detecting and Tolerating Byzantine Faults in Database Systems, in Programming Methodology Group. 2008, Massachusetts Institute of Technology: Boston. p. 176.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Garcia, R., R. Rodrigues, and N. Preguica, Efficient middleware for byzantine fault tolerant database replication, in Proceedings of the sixth conference on Computer systems (EuroSys '11). 2011, ACM: Salzburg, Austria. p. 107 -122.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Pedone, F. and N. Schiper, Byzantine fault -tolerant deferred update replication. Journal of the Brazilian Computer Society, 2012. 18(1): p. 3 18.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Molina, H.G., F. Pittelli, and S. Davidson, Applications of Byzantine agreement in database systems. ACM Trans. Database Syst., 1986. 11(1): p. 27 -47.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Littlewood, B., P. Popov, and L. Strigini, Modelling Software Design Diversity-A Review. ACM Computing Surveys, 2001. 33(2): p. 177 208.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Strigini, L., Fault Tolerance Against Design Faults, in Dependable Computing Systems: Paradigms, Performance Issues, and Applications, H. Diab and A. Zomaya, Editors. 2005, John Wiley & Sons. p. 213 - 241.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Gashi, I. and P. Popov. Rephrasing Rules for Off -the- Shelf SQL Database Servers. in Sixth European Dependable Computing Conference (EDCC '06). 2006.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Wiesmann, M., et al. Understanding replication in databases and distributed systems. in Proceedin gs of 20th International Conference on Distributed Computing Systems (ICDCS'2000). 2000. Taipei, Taiwan: IEEE Computer Society Los Alamitos.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Fekete, A., et al., Making Snapshot Isolation Serializable. ACM Transactions on Database Systems (TODS), 2005. 30(2): p. 492 - 528.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Fekete, A., E. O'Neil, and P. O'Neil, A read -only transaction anomaly under snapshot isolation. ACMSIGMOD Record, 2004. 33(3): p. 12 -14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Rigger, M. and Z. Su, Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang., 2020. 4(OOPSLA): p. Article 211.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 20,
+      "text": "Gray, J. and L. Lamport, Consensus on transaction commit. ACM Trans. Database Syst., 2006. 31(1): p. 133 –160.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Behm, A., S. Rielau, and R. Swagerman. Returning Modified Rows – SELECT Statements with Side Effects. in Proceedings of the Thirtieth International Conference on Very Large Data Bases. 2004. Toronto, Canada: Morgan Kaufmann.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Skeen, D. Nonblocking commit protocols. in Proceedings of ACM SIGMOD International conference on management of data. 1981. Ann Arbor, Michigan: ACM Press, New York, NY, USA.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Budhiraja, N., et al., The primary -backup approach, in Distributed systems (2nd Ed.). 1993, ACM Press/Addison-Wesley Publishing Co. p. 199–216.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Popov, P. and V. Stankovic. Diverse Da tabase Replication Based on Snapshot Isolation – Performance Implications of Improved Dependability (Technical Report). City St George's, University of London, p.14, London, 2025, https://openaccess.city.ac.uk/id/eprint/35660/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Raz, Y., Serializability by commitment ordering. Information Processing Letters, 1994. 51(5): p. 257 -264.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Fischer, M.J., N.A. Lynch, and M.S. Paterson, Impossibility of distributed consensus with one faulty process. J. ACM, 1985. 32(2): p. 374–382.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Kemme, B. and S. Wu. Postgres- R(SI): Combining Replica Control with Concurrency Control based on Snapshot Isolation. in International Conference on Data Engineering. 2005. Tokyo, Japan: IEEE Computer Society.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Patino- Martinez, M., et al., MIDDLE- R: Consistent database repl ication at the middleware level. ACM Transactions on Computer Systems (TOCS), 2005. 23(4): p. 375 -423.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Gorbenko, A., et al., Dependable composite web services with components upgraded online, in Architecting Dependable Systems III. 2005, Springer-Verl ag. p. 92 –121.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Pedone, F., R. Guerraoui, and A. Schiper, The Database State Machine Approach. Distributed and Parallel Databases, 2003. 14(1): p. 71 -98.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Kemme, B. and G. Alonso, A new approach to developing and implementing eager database replica tion protocols. ACM Transactions on Database Systems (TODS) 2000. 25(3): p. 333 - 379.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Harizopoulos, S., et al., OLTP through the looking glass, and what we found there, in Proceedings of the 2008 ACMSIGMOD international conference on Management of d ata. 2008, Association for Computing Machinery: Vancouver, Canada. p. 981 –992. 287",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 19,
+      "text": "Rigger, M. and Z. Su, Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang., 2020. 4(OOPSLA): p. Article 211.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[19]",
+      "technique": "tlp",
+      "sentence": ", erroneous omission of a row ) – referred to by some as “logic bugs” [19], and DELETEs, INSERTs and UPDATEs wrongly changing the database state.",
+      "context_before": "2], [9], [10], [11]) consider ed Byzantine failure model for DBMSs – the most general model in which components of a system fail in arbitrary ways (in addition to crashing they can process requests incorrectly, corrupt their state, produc e inconsistent output s due to malicious intent, etc.). Non-crash failure models must be addressed, and we have contributed to the development of novel protocols that consider those. However, t he IRFM failure model assumed by DivSQL lies between crash and Byzantine failure s model s. In addition to crash failures, it guards against failures of SELECT s (e.g.",
+      "context_after": "It is likely the most suitable failure model for majority of applications based on the compelling evidence that non-crash failures are dominant in DBMSs [1, 2]. Our approach is thus based on a failure model with practical relevance. Further research is needed to establish how likely DB MSs and the clients exhibit more challenging Byzantine behaviour. Client application s access our system using JDBC interface. Our JDBC driver implement s the client side of DivRep protocol. We use different SI -enabled DBMSs, and their JDBC drivers, in DivSQL. We configured our prototype implementation to run",
+      "section": "III REPLICATION ANDSYSTEM MODEL",
+      "page": 3,
+      "char_offset": 16679,
+      "cited_reference": {
+        "number": 19,
+        "text": "Rigger, M. and Z. Su, Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang., 2020. 4(OOPSLA): p. Article 211.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T17:03:26Z",
+    "is_model_written": true,
+    "summary": "This paper measures what diverse database replication costs. Running several different DBMS implementations as replicas under snapshot isolation means a fault in one is masked by the others, improving dependability; the question is how much throughput and latency that redundancy consumes.",
+    "narrative": "The single citation supplies terminology: the paper describes faults where a row is wrongly omitted from a result, or where a DELETE, INSERT or UPDATE wrongly changes the database state, and notes these are referred to by some as logic bugs. Diverse replication masks exactly this class of fault, which is why the term is introduced, but nothing of SQLancer's is used or measured.",
+    "roles": {
+      "M1": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited as related work; no reuse of its code, generator or workload is described."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No SQLancer technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer or one of its oracles is reported."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The text does not describe SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

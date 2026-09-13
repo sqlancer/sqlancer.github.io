@@ -1,0 +1,553 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:27:28Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3372297.3417260",
+    "title": "SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback",
+    "authors": [
+      "Rui Zhong",
+      "Yongheng Chen",
+      "Hong Hu",
+      "Hangfan Zhang",
+      "Wenke Lee",
+      "Dinghao Wu"
+    ],
+    "year": 2020,
+    "venue": "Conference on Computer and Communications Security",
+    "doi": "10.1145/3372297.3417260",
+    "arxiv_id": "2006.02398",
+    "s2_paper_id": "afe18b71fa5b215a554a2da141f677081fac4503",
+    "url": "https://doi.org/10.1145/3372297.3417260",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2006.02398",
+      "retrieved_at": "2026-09-08T15:27:28Z",
+      "chars": 98156,
+      "content_sha256": "sha256:e0702c2a13bf695895b043c65606da7b427b33bf3eb501e7db0d67eb596b2266"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 16,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 1689
+      },
+      {
+        "number": "2",
+        "title": "Problem Definition",
+        "start": 10115
+      },
+      {
+        "number": "2.1",
+        "title": "Query Processing in DBMS",
+        "start": 10393
+      },
+      {
+        "number": "2.2",
+        "title": "Challenges of DBMS Testing",
+        "start": 11903
+      },
+      {
+        "number": "2.3",
+        "title": "Our Approach",
+        "start": 14917
+      },
+      {
+        "number": "5.1",
+        "title": "Structure-Data Separation",
+        "start": 24685
+      },
+      {
+        "number": "5.2",
+        "title": "Type-Based Mutation",
+        "start": 26805
+      },
+      {
+        "number": "6.1",
+        "title": "Data Dependency Inference",
+        "start": 30802
+      },
+      {
+        "number": "6.2",
+        "title": "IR Instantiation",
+        "start": 37327
+      },
+      {
+        "number": "8.1",
+        "title": "DBMS Bugs",
+        "start": 44069
+      },
+      {
+        "number": "8.2",
+        "title": "Comparison with Existing Tools",
+        "start": 54309
+      },
+      {
+        "number": "8.3",
+        "title": "Contributions of Validity and Feedback",
+        "start": 62154
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "MariaDB. https://www.mariadb.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "MySQL. https://www.mysql.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "PostgreSQL. https://www.postgresql.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "SQLite. https://www.sqlite.org/index.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "SQLSmith. https://github.com/anse1/sqlsmith, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Processing a SQL Statement. https://docs.microsoft.com/en-us/sql/odbc/ reference/processing-a-sql-statement?view=sql-server-ver15, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Yahoo Says All Three Billion Accounts Hacked in 2013 Data Theft. https://www.reuters.com/article/us-yahoo-cyber/yahoo-says-all-threebillion-accounts-hacked-in-2013-data-theft-id USKCN1C82O1, October 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Proceedings of the 39th IEEE Symposium on Security and Privacy (Oakland), San Francisco, CA, May 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "MySQL Customers. https://www.mysql.com/customers/, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "PostgreSQL Clients. https://wiki.postgresql.org/wiki/PostgreSQL_Clients, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "SQL Keywords Reference. https://www.w3schools.com/sql/sql_ref_keywords. asp, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "SQL Operators. https://www.w3schools.com/sql/sql_operators.asp, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Well-Known Users of SQLite. https://www.sqlite.org/famous.html, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "SQLsmith Description. https://github.com/anse1/sqlsmith#description, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "S. Abdul Khalek and S. Khurshid. Automated SQL Query Generation for Systematic Testing of Database Engines. In Proceedings of the IEEE/ACM International Conference on Automated Software Engineering, ASE10, 2010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "B. Acohido. Small Banks and Credit Union Attack Set for Tuesday. https://www.usatoday.com/story/cybertruth/2013/05/06/ddos-denial-ofservice-small-business-cybersecurity-privacy/2139349/, May 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Alloy. Alloy-Documentation of Alloy SAT solver, 2019. https://alloytools.org/ documentation.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "C. Aschermann, T. Frassetto, T. Holz, P. Jauernig, A.-R. Sadeghi, and D. Teuchert. Nautilus: Fishing for deep bugs with grammars. In NDSS, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "C. Aschermann, S. Schumilo, T. Blazytko, R. Gawlik, and T. Holz. Redqueen: Fuzzing with input-to-state correspondence. In Symposium on Network and Distributed System Security (NDSS), 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "H. Bati, L. Giakoumakis, S. Herbert, and A. Surna. A Genetic Approach for Random Testing of Database Systems. In Proceedings of the 33rd International Conference on Very Large Data Bases, VLDB07, pages 1243–1251, 2007.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "T. Blazytko, C. Aschermann, M. Schlögel, A. Abbasi, S. Schumilo, S. Wörner, and T. Holz. GRIMOIRE: Synthesizing structure while fuzzing. In USENIX Security Symposium, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "M. Böhme, V.-T. Pham, and A. Roychoudhury. Coverage-based Greybox Fuzzing As Markov Chain. In Proceedings of the 23rd ACM Conference on Computer and Communications Security (CCS), Vienna, Austria, Oct. 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "M. Böhme, V.-T. Pham, M.-D. Nguyen, and A. Roychoudhury. Directed greybox fuzzing. In Proceedings of the 2017 ACMSIGSAC Conference on Computer and Communications Security, pages 2329–2344, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "E. V. Buskirk. Facebook Confirms Denial-of-Service Attack. https://www. wired.com/2009/08/facebook-apparently-attacked-in-addition-to-twitter/, August 2009.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "B. Chandra, B. Chawda, B. Kar, K. V. M. Reddy, S. Shah, and S. Sudarshan. Data generation for testing and grading sql queries. The VLDB Journal, 24(6):731–755, Aug 2015. ISSN 0949-877X. doi: 10.1007/s00778-015-0395-0. URL http://dx.doi. org/10.1007/s00778-015-0395-0.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "P. Chen and H. Chen. Angora: Efficient Fuzzing By Principled Search. In Proceedings of the 39th IEEE Symposium on Security and Privacy (Oakland) SP1 [8] .",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Y. Chen, P. Li, J. Xu, S. Guo, R. Zhou, Y. Zhang, L. Lu, et al. Savior: Towards bug-driven hybrid testing. In Proceedings of the 41th IEEE Symposium on Security and Privacy (Oakland), San Francisco, CA, May 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "C. Cimpanu. Google Chrome Impacted by New Magellan 2.0 Vulnerabilities. https://www.zdnet.com/article/google-chrome-impacted-by-newmagellan-2-0-vulnerabilities/, December 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "U. M. Fayyad. Data Science Revealed: A Data-Driven Glimpse into the Burgeoning New Field. https://fayyad.com/data-science-revealed-a-data-driven-glimpseinto-the-burgeoning-new-field/, 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "L. Franceschi-Bicchierai. Hacker Tries To Sell 427 Milllion Stolen MySpace Passwords For $2,800. https://www.vice.com/en_us/article/pgkk8v/427-millionmyspace-passwords-emails-data-breach, May 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "S. Gan, C. Zhang, X. Qin, X. Tu, K. Li, Z. Pei, and Z. Chen. CollAFL: Path Sensitive Fuzzing. In Proceedings of the 39th IEEE Symposium on Security and Privacy (Oakland) SP1 [8] .",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "S. Gan, C. Zhang, P. Chen, B. Zhao, X. Qin, D. Wu, and Z. Chen. GREYONE: Data Flow Sensitive Fuzzing. In Proceedings of the 29th USENIX Security Symposium (Security), BOSTON, MA, Aug. 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Google. Honggfuzz, 2016. https://google.github.io/honggfuzz/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Google. OSS-Fuzz-Continuous Fuzzing For Open Source Software. https: //github.com/google/oss-fuzz, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "H. Han, D. Oh, and S. K. Cha. Codealchemist: Semantics-aware code generation to find vulnerabilities in javascript engines. In Proceedings of the 2019 Annual Network and Distributed System Security Symposium (NDSS), San Diego, CA, Feb. 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "T. Hunt. The 773 Million Record \"Collection #1\" Data Breach. https://www. troyhunt.com/the-773-million-record-collection-1-data-reach/, January 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "J. Jung, H. Hu, J. Arulraj, T. Kim, and W. Kang. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems (to appear). In Proceedings of the 46th International Conference on Very Large Data Bases (VLDB), Tokyo, Japan, Aug. 2020. 13 ACMCCS 2020, Orlando, USA Rui Zhong†∗, Yongheng Chen§∗, Hong Hu§, Hangfan Zhang†, Wenke Lee§and Dinghao Wu†",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "V. V. Koushik. ALERT: SQLite database Remote Code Execution Vulnerability. https://www.secpod.com/blog/sqlite-database-remote-code-execution/, August 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "D. Laney. 3-D Data Management: Controlling Data Volume, Velocity and Variety. Technical report, Feb. 2001.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "C. Lemieux and K. Sen. Fairfuzz: A targeted mutation strategy for increasing greybox fuzz testing coverage. In Proceedings of the 33rd ACM/IEEE International Conference on Automated Software Engineering, pages 475–485, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "G. Li, X. Zhou, S. Li, and B. Gao. QTune: A Query-Aware Database Tuning System with Deep Reinforcement Learning. Proceedings of the VLDB Endowment, 12(12): 2118–2130, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Y. Li, B. Chen, M. Chandramohan, S.-W. Lin, Y. Liu, and A. Tiu. Steelix: Programstate Based Binary Fuzzing. In Proceedings of the 11th Joint Meeting on Foundations of Software Engineering, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "LLVM. LibFuzzer-A Library For Coverage-guided Fuzz Testing, 2017. http: //llvm.org/docs/LibFuzzer.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "E. Lo, C. Binnig, D. Kossmann, M. Tamer Özsu, and W.-K. Hon. A Framework for Testing DBMS Features. The VLDB Journal, 19(2):203–230, Apr. 2010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "M. Marcozzi, W. Vanhoof, and J.-L. Hainaut. Test Input Generation for Database Programs Using Relational Constraints. In Proceedings of the Fifth International Workshop on Testing Database Systems, DBTest12, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "B. P. Miller, L. Fredriksen, and B. So. An Empirical Study Of The Reliability Of UNIX Utilities. Commun. ACM, 33(12):32–44, Dec. 1990.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "C. Mishra, N. Koudas, and C. Zuzarte. Generating targeted queries for database testing. In Proceedings of the 2008 ACMSIGMOD International Conference on Management of Data, SIGMOD ’08, page 499–510, New York, NY, USA, 2008. Association for Computing Machinery. ISBN 9781605581026. doi: 10.1145/ 1376616.1376668. URL https://doi.org/10.1145/1376616.1376668.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "MozillaSecurity. funfuzz. https://github.com/MozillaSecurity/funfuzz, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "S. Nagy and M. Hicks. Full-speed Fuzzing: Reducing Fuzzing Overhead Through Coverage-guided Tracing. In Proceedings of the 40th IEEE Symposium on Security and Privacy (Oakland), San Francisco, CA, May 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "R. Padhye, C. Lemieux, K. Sen, M. Papadakis, and Y. Le Traon. Semantic fuzzing with zest. In Proceedings of the 28th ACMSIGSOFT International Symposium on Software Testing and Analysis, pages 329–340, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "H. Peng, Y. Shoshitaishvili, and M. Payer. T-Fuzz: Fuzzing By Program Transformation. In Proceedings of the 39th IEEE Symposium on Security and Privacy (Oakland) SP1 [8] .",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "K.-T. Rehmann, C. Seo, D. Hwang, B. Truong, A. Böhm, and D. Lee. Performance Monitoring in SAPHANA’s Continuous Integration Process. ACM SIGMETRICSPerformance Evaluation Review, 43:43–52, 02 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "M. Rigger and Z. Su. Testing Database Engines via Pivoted Query Synthesis. arXiv preprint arXiv:2001.04174, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 54,
+      "text": "S. Schumilo, C. Aschermann, R. Gawlik, S. Schinzel, and T. Holz. kAFL: HardwareAssisted Feedback Fuzzing for OS Kernels. In Proceedings of the 26th USENIX Security Symposium (Security), Vancouver, BC, Canada, Aug. 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "K. Serebryany. Sanitize, Fuzz, And Harden Your C++ Code. San Francisco, CA, 2016. USENIX Association.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "D. Slutz. Massive Stochastic Testing of SQL. Technical Report MSR-TR-9821, August 1998. URL https://www.microsoft.com/en-us/research/publication/ massive-stochastic-testing-of-sql/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "N. Stephens, J. Grosen, C. Salls, A. Dutcher, R. Wang, J. Corbetta, Y. Shoshitaishvili, C. Kruegel, and G. Vigna. Driller: Augmenting fuzzing through selective symbolic execution. In NDSS, volume 16, pages 1–16, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "M. Stonebraker, S. Madden, and P. Dubey. Intel \"Big Data\" Science and Technology Center Vision and Execution Plan. ACMSIGMOD Record, 42(1):44–49, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "J. Wang, P. Zhang, L. Zhang, H. Zhu, and X. Ye. A model-based fuzzing approach for dbms. In 2013 8th International Conference on Communications and Networking in China (CHINACOM), pages 426–431, Aug 2013. doi: 10.1109/ChinaCom.2013. 6694634.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "J. Wang, B. Chen, L. Wei, and Y. Liu. Superion: Grammar-Aware Greybox Fuzzing. InProceedings of the 41st International Conference on Software Engineering (ICSE), Montreal, QC, Canada, May 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "G. Wassermann and Z. Su. Sound and Precise Analysis of Web Applications for Injection Vulnerabilities. In Proceedings of the 28th ACMSIGPLAN Conference on Programming Language Design and Implementation, New York, NY, USA, 2007.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "R. Xu and S. Vegasena. Vasilisk. https://blog.osiris.cyber.nyu.edu/2019/12/22/ vasilisk/, December 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "W. Xu, S. Kashyap, C. Min, and T. Kim. Designing New Operating Primitives to Improve Fuzzing Performance. In Proceedings of the 24th ACM Conference on Computer and Communications Security (CCS), Dallas, TX, Oct.–Nov. 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "J. Yan, Q. Jin, S. Jain, S. D. Viglas, and A. Lee. Snowtrail: Testing with Production Queries on a Cloud Database. In Proceedings of the Workshop on Testing Database Systems, New York, NY, USA, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "I. Yun, S. Lee, M. Xu, Y. Jang, and T. Kim. QSYM: A Practical Concolic Execution Engine Tailored for Hybrid Fuzzing. In 27th USENIX Security Symposium (USENIX Security 18), Baltimore, MD, Aug. 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "M. Zalewski. American Fuzzy Lop (2.52b). http://lcamtuf.coredump.cx/afl, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "M. Zalewski. Technical \"Whitepaper\" For Afl-fuzz. http://lcamtuf.coredump.cx/ afl/technical_details.txt, 2019. 14 Squirrel: Testing Database Management Systems with Language Validity and Coverage Feedback ACMCCS 2020, Orlando, USA Algorithm 3: Dependency Graph Construction. Input: irSet: The set of IRs that needs to be instantiated, relationSet: The set of predefined relations, Output: depencyGrap",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 53,
+      "text": "M. Rigger and Z. Su. Testing Database Engines via Pivoted Query Synthesis. arXiv preprint arXiv:2001.04174, 2020.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "prints the arXiv id of the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 53,56,\n61,64]",
+      "technique": "pqs",
+      "sentence": "DBMSs have been heavily tested for logic and performance defects [ 53,56, 61,64].",
+      "context_before": "at hinders the generation of semantics-correct queries. Especially, at the beginning of testing grammar-incorrect queries trigger many new branches in the fault-handling code. The coverage-based feedback guides Sqirrel to focus on these inputs instead of the original semantics-correct queries. Recent works for fuzzing language compilers and interpreters mention a similar observation [ 35,62]. We plan to investigate this problem and develop solutions to mitigate it, like dropping inputs that trigger new branches in short executions. 10 Related Work Detecting Logic and Performance Bugs in DBMSs.",
+      "context_after": "RAGS detects correctness bugs in DBMS through differential testing [ 56]. It generates and executes queries in multiple DBMSs. Any inconsistency among results indicates at least one DBMS contains bugs. SQLancer constructs queries to fetch a randomly selected row from a table [ 53]. The tested DBMS may contain a bug if it fails to fetch the row. QTune [ 41] is a database tuning system based on a deep reinforcement learning model, which can efficiently tune the database configurations for the best performance. Apollo uses differential testing to find performance bugs [ 37]. It generates and run",
+      "section": "8.3 Contributions of Validity and Feedback",
+      "page": 12,
+      "char_offset": 72409,
+      "cited_reference": {
+        "number": 53,
+        "text": "M. Rigger and Z. Su. Testing Database Engines via Pivoted Query Synthesis. arXiv preprint arXiv:2001.04174, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "prints the arXiv id of the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer constructs queries to fetch a randomly selected row from a table [ 53].",
+      "context_before": "t queries. Recent works for fuzzing language compilers and interpreters mention a similar observation [ 35,62]. We plan to investigate this problem and develop solutions to mitigate it, like dropping inputs that trigger new branches in short executions. 10 Related Work Detecting Logic and Performance Bugs in DBMSs. DBMSs have been heavily tested for logic and performance defects [ 53,56, 61,64]. RAGS detects correctness bugs in DBMS through differential testing [ 56]. It generates and executes queries in multiple DBMSs. Any inconsistency among results indicates at least one DBMS contains bugs.",
+      "context_after": "The tested DBMS may contain a bug if it fails to fetch the row. QTune [ 41] is a database tuning system based on a deep reinforcement learning model, which can efficiently tune the database configurations for the best performance. Apollo uses differential testing to find performance bugs [ 37]. It generates and runs queries in two versions of the same DBMS. If two executions take significantly different times, the query triggers a performance regression bug. BmPad runs predefined test suites in the target DBMS, and reports performance bugs if the execution time exceeds the threshold [ 52].Sqi",
+      "section": "8.3 Contributions of Validity and Feedback",
+      "page": 12,
+      "char_offset": 72693,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:18:50Z",
+    "is_model_written": true,
+    "summary": "Squirrel combines language validity with coverage feedback for DBMS fuzzing. Mutation-based fuzzers fail against DBMSs because inputs are checked strictly for syntax and semantics, while generation-based testing guarantees syntax but ignores coverage feedback. Squirrel keeps SQL in a structural intermediate representation, performs type-based mutations on it, and analyses logical dependencies between arguments to avoid semantic errors. It found 63 bugs across SQLite, MySQL and MariaDB.",
+    "narrative": "SQLancer is cited twice as related work on logic-bug detection, with PQS described as constructing queries to fetch a randomly selected row. Squirrel targets memory errors rather than logic bugs, so the two are complementary rather than compared.",
+    "roles": {
+      "M1": "background",
+      "M2": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

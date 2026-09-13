@@ -1,0 +1,821 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-10T15:24:42Z",
+  "paper": {
+    "id": "paper:doi:10.1109/icsme64153.2025.00030",
+    "title": "TSGuard: Detecting Logic Bugs in Time Series Management Systems Via Time Series Algebra",
+    "authors": [
+      "Lingwei Kuang",
+      "Liang Liu",
+      "Wen-Jing Wang",
+      "Ning Cao",
+      "Shijie Li",
+      "Fan Liu",
+      "Haolong Chen",
+      "WenJian Liao"
+    ],
+    "year": 2025,
+    "venue": "IEEE International Conference on Software Maintenance and Evolution",
+    "doi": "10.1109/icsme64153.2025.00030",
+    "arxiv_id": null,
+    "s2_paper_id": "eac49ea8165340903f91a6b9e90f73ddfdf6e25b",
+    "url": "https://doi.org/10.1109/icsme64153.2025.00030",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/icsme64153.2025.00030",
+      "retrieved_at": "2026-09-10T15:24:42Z",
+      "chars": 64986,
+      "content_sha256": "sha256:ff5e5758f0ed589dbe551f25072a5c0558b4f66056fe34d636662c1cdac89a0a"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 2194
+      },
+      {
+        "number": "II",
+        "title": "BACKGROUND ANDMOTIVATION",
+        "start": 6365
+      },
+      {
+        "number": "A",
+        "title": "TSMSs and Their Time Series Characteristics",
+        "start": 6720
+      },
+      {
+        "number": "B",
+        "title": "Differences Between Traditional SQL and Time Series",
+        "start": 7967
+      },
+      {
+        "number": "C",
+        "title": "Limitations of Metamorphic Testing",
+        "start": 9472
+      },
+      {
+        "number": "D",
+        "title": "An Example of a Logic Bug",
+        "start": 11224
+      },
+      {
+        "number": "III",
+        "title": "APPROACH",
+        "start": 11913
+      },
+      {
+        "number": "A",
+        "title": "The Architecture of TSGuard",
+        "start": 12517
+      },
+      {
+        "number": "B",
+        "title": "Database Generator",
+        "start": 13635
+      },
+      {
+        "number": "C",
+        "title": "Time Series Query Generator",
+        "start": 17885
+      },
+      {
+        "number": "D",
+        "title": "Query Syntax Validator",
+        "start": 20340
+      },
+      {
+        "number": "E",
+        "title": "Time Series Algebra Engine",
+        "start": 21318
+      },
+      {
+        "number": "F",
+        "title": "Query Executor and Query Result Validator",
+        "start": 29007
+      },
+      {
+        "number": "G",
+        "title": "Syntax Node Sequence-D riven Feedback Mechanism",
+        "start": 29860
+      },
+      {
+        "number": "H",
+        "title": "The Execution Process of TSGuard",
+        "start": 32730
+      },
+      {
+        "number": "A",
+        "title": "Evaluation Setup",
+        "start": 33785
+      },
+      {
+        "number": "B",
+        "title": "Logic Bug Detection Capability of TSGuard",
+        "start": 34891
+      },
+      {
+        "number": "C",
+        "title": "The Effectiveness of the Feedback Mechanism and Query",
+        "start": 36825
+      },
+      {
+        "number": "D",
+        "title": "Comparison with Other Techniques",
+        "start": 39464
+      },
+      {
+        "number": "E",
+        "title": "Resource Cost of TSGuard",
+        "start": 41885
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Zhiyong Wu, Jie Liang, Mingzhe Wang, Chijin Zhou, and Yu Jiang. 2022. Unicorn: detect runtime errors in time-series databases with hybrid input synthesis. In Proceedings of the 31st ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA 2022). Association for Computing Machinery, New York, NY, USA, 251–262. https://doi.org/10.1145/3533767.3534364",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "InfluxData. (2014). InfluxDB. GitHub repository. Retrieved from https://github.com/influxdata/influxdb",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Chen Wang, Xiangdong Huang, Jialin Qiao, Tian Jiang, Lei Rui, Jinrui Zhang, Rong Kang, Julian Feinauer, Kevin A. McGrail, Peng Wang, Diaohan Luo, Jun Yuan, Jianmin Wang, and Jiaguang Sun. 2020. Apache IoTDB: time-series database for internet of things. Proc. VLDB Endow. 13, 12 (August 2020), 2901–2904. https://doi.org/10.14778/3415478.3415504",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "TAOS Data. 2019. TDengine: Big Data Platform Designed and Optimized for the Internet of Things (IoT). https://www .taosdata .com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "S. K. Jensen, T. B. Pedersen and C. Thomsen, \"Time Series Management Systems: A Survey,\" in IEEE Transactions on Knowledge and Data Engineering, vol. 29, no. 11, pp. 2581-2600, 1 Nov. 2017, doi: 10.1109/TKDE.2017.2740932.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "T. Y. Chen, S. C. Cheung, and S. M. Yiu, \"Metamorphic testing: A new approach for generating next test cases,\" arXiv preprint arXiv:2002.12543, 2020. [Online]. Available: https://arxiv.org/abs/2002.12543.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Tsong Yueh Chen, Fei-Ching Kuo, Huai Liu, Pak-Lok Poon, Dave Towey, T. H. Tse, and Zhi Quan Zhou. 2018. Metamorphic Testing: A Review of Challenges and Opportunities. ACM Comput. Surv. 51, 1, Article 4 (January 2019), 27 pages. https://doi.org/10.1145/3143561",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "H. Liu, F. -C. Kuo, D. Towey and T. Y. Chen, \"How Effectively Does Metamorphic Testing Alleviate the Oracle Problem?,\" in IEEE Transactions on Software Engineering, vol. 40, no. 1, pp. 4-22, Jan. 2014, doi: 10.1109/TSE.2013.46.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "S. Segura, G. Fraser, A. B. Sanchez and A. Ruiz-Cortés, \"A Survey on Metamorphic Testing,\" in IEEE Transactions on Software Engineering, vol. 42, no. 9, pp. 805-824, 1 Sept. 2016, doi: 10.1109/TSE.2016.2532875.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE 2020). Association for Computing Machinery, New York, NY, USA, 1140–1152. https://doi.org/10.1145/3368089.340",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 11,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (November 2020), 30 pages. https://doi.org/10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 12,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation (OSDI'20). USENIX Association, USA, Article 38, 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 13,
+      "text": "InfluxData, \"Line protocol syntax,\" InfluxDB v2 reference, [Online]. Available: https://docs.influxdata.com/influxdb/v2/reference/syntax/line-protocol. [Accessed: Jan. 20, 2025].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Apache IotDB, \"Data model,\" IotDB v1.3.x reference, [Online]. Available: https://iotdb.apache.org/UserGuide/V1.3.x/Basic-Concept/Data-Model-and-Terminology.html. [Accessed: Dec. 20, 2024].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Agathe Girard, Carl Edward Rasmussen, Joaquin Quiñonero Candela, and Roderick Murray-Smith. 2002. Gaussian Process Priors with uncertain inputs application to Multiple-Step Ahead Time Series Forecasting. In Proceedings of the 16th International Conference on Neural Information Processing Systems (NIPS'02). MIT Press, Cambridge, MA, USA, 545–552.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "A. Alexandrov, K. Benidis, M. Bohlke-Schneider, V. Flunkert, J. Gasthaus, T. Januschowski, D. C. Maddix, S. Rangapuram, D. Salinas, J. Schulz, L. Stella, A. C. Türkmen, and Y. Wang, \"GluonTS: Probabilistic time series models in Python,\" arXiv preprint arXiv:1906.05264, 2019. [Online]. Available: https://arxiv.org/abs/1906.05264.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "A. Bagnall, A. Bostrom, J. Large, and J. Lines, \"Simulated data experiments for time series classification Part 1: Accuracy comparison with default settings,\" arXiv preprint arXiv:1703.09480, 2017. [Online]. Available: https://arxiv.org/abs/1703.09480.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Y. Chen, Y. Jiang, F. Ma, J. Liang, M. Wang, C. Zhou, Z. Su, and X. Jiao, \"EnFuzz: Ensemble fuzzing with seed synchronization among diverse fuzzers,\" arXiv preprint arXiv:1807.00182, 2019. [Online]. Available: https://arxiv.org/abs/1807.00182.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Jie Liang, Yu Jiang, Yuanliang Chen, Mingzhe Wang, Chijin Zhou, and Jiaguang Sun. 2018. PAFL: extend fuzzing optimizations of single mode to industrial parallel mode. In Proceedings of the 2018 26th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE 2018). Association for Computing Machinery, New York, NY, USA, 809–814. ",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "LibFuzzer, \"LibFuzzer,\" [Online]. Available: https://www.llvm.org/docs/LibFuzzer.html. [Accessed: Jan. 18, 2024].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Barton P. Miller, Lars Fredriksen, and Bryan So. 1990. An empirical study of the reliability of UNIX utilities. Commun. ACM 33, 12 (Dec. 1990), 32–44. https://doi.org/10.1145/96267.96279",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Michał Zalewski, \"american fuzzy lop,\" [Online]. Available: http://lcamtuf.coredump.cx/afl. [Accessed: Jan. 18, 2024].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Seltenreich A, Tang B, Mullender S. SQLsmith: A random SQL query generator. 2018. https://github.com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "M. Wang et al., \"Industry Practice of Coverage-Guided Enterprise-Level DBMS Fuzzing,\" Software Engineering: Software Engineering in Practice (ICSE-SEIP), Madrid, ES, 2021, pp. 328-337, doi: 10.1109/ICSE-SEIP52600.2021.00042.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Proceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security (CCS '20). Association for Computing Machinery, New York, NY, USA, 955–970. https://doi.org/10.1145/3372297.3417260",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "J. Liang et al ., \"Sequence-Oriented DBMS Fuzzing,\" 2023 IEEE 39th International Conference on Data Engineering (ICDE), Anaheim, CA, USA, 2023, pp. 668-681, doi: 10.1109/ICDE55515.2023.00057.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2023. Griffin: Grammar-Free DBMS Fuzzing. In Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering (ASE '22). Association for Computing Machinery, New York, NY, USA, Article 49, 1–12. https://doi.org/10.1145/3551349.3560431",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "J. Ba and M. Rigger, \"Testing Database Engines via Query Plan Guidance,\" Engineering (ICSE), Melbourne, Australia, 2023, pp. 2060-2071, doi: 10.1109/ICSE48619.2023.00174.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 29,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. 2023. DynSQL: Stateful fuzzing for database management systems with complex and valid SQL query generation. In Proceedings of the 32nd USENIX Conference on Security Symposium (SEC '23). USENIX Association, USA, Article 277, 4949–4965.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2019. APOLLO: automatic detection and diagnosis of performance regressions in database systems. Proc. VLDB Endow. 13, 1 (September 2019), 57–70. https://doi.org/10.14778/3357377.3357382",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Donald R. Slutz. 1998. Massive Stochastic Testing of SQL. In Proceedings of the 24rd International Conference on Very Large Data Bases (VLDB '98). Morgan Kaufmann Publishers Inc., San Francisco, CA, USA, 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Yingying Zheng, Wensheng Dou, Yicheng Wang, Zheng Qin, Lei Tang, Yu Gao, Dong Wang, Wei Wang, and Jun Wei. 2022. Finding bugs in Gremlin-based graph database systems via Randomized differential 246 testing. In Proceedings of the 31st ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA 2022). Association for Computing Machinery, New York, NY, USA, 302–313. https://doi.org/10.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Hao, Z., Huang, Q., Wang, C., Wang, J., Zhang, Y., Wu, R., and Zhang, C. 2023. Pinolo: Detecting logical bugs in database management systems with approximate query synthesis. In Proceedings of the 2023 USENIX Annual Technical Conference (USENIX ATC 23), 345-358. USENIX Association. https://www.usenix.org/conference/atc23/presentation/hao",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "X. Liu, Q. Zhou, J. Arulrai and A. Orso, \"Automatic Detection of Performance Bugs in Database Systems using Equivalent Queries,\" pp. 225-236, doi: 10.1145/3510003.3510093.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Jiansen Song, Wensheng Dou, Yu Gao, Ziyu Cui, Yingying Zheng, Dong Wang, Wei Wang, Jun Wei, and Tao Huang. 2024. Detecting Metadata-Related Logic Bugs in Database Systems via Raw Database Construction. Proc. VLDB Endow. 17, 8 (April 2024), 1884–1897. https://doi.org/10.14778/3659437.3659445",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Jie Liang, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Chengnian Sun, and Yu Jiang. 2024. Mozi: Discovering DBMS Bugs via Configuration-Based Equivalent Transformation. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering (ICSE '24). Association for Computing Machinery, New York, NY, USA, Article 135, 1–12. https://doi.org/10.1145/3597503.3639112 247",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 10,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE 2020). Association for Computing Machinery, New York, NY, USA, 1140–1152. https://doi.org/10.1145/3368089.3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 11,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (November 2020), 30 pages. https://doi.org/10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 12,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation (OSDI'20). USENIX Association, USA, Article 38, 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 28,
+      "text": "J. Ba and M. Rigger, \"Testing Database Engines via Query Plan Guidance,\" Engineering (ICSE), Melbourne, Australia, 2023, pp. 2060-2071, doi: 10.1109/ICSE48619.2023.00174.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "prints the DOI of the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "For example, NoREC [10] detects logic bugs in database optimizers by mutating the original query into a non-optimized query and comparing their result sets.",
+      "context_before": "fying whether the result sets derived by SQL queries conform to predefined oracle rules. The core of DBMS mutation testing lies in the definition of effective oracles, which establish the relationship between the expected and actual result sets of SQL queries. A logic bug is detected when this relationship is violated. As illustrated in Figure 1, common oracles include equivalence and inclusion relations. Fig. 1. The types of test oracles in metamorphic testing. The equivalence relation asserts that, for any database D, the result sets of query Qand its mutated query Q'must satisfy D(Q)=D(Q').",
+      "context_after": "Similarly, TLP[11] mutates the original query into multiple partitioned queries, reassembles their result sets, an d verifies consistency with the original result set to detect logic bugs. The inclusion relation requires that the actual result set be either a superset or a subset of the expected result set. For instance, PQS [12] synthesizes a query Qbased on an expected result set (i.e., the pivot row) and verifies whether the actual result set is a superset of the expected result set to detect logic bugs.Equivalence Inclusion 236 Fig. 2. The architecture of TSGuard. However, traditional",
+      "section": "C Limitations of Metamorphic Testing",
+      "page": 2,
+      "char_offset": 10210,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Similarly, TLP[11] mutates the original query into multiple partitioned queries, reassembles their result sets, an d verifies consistency with the original result set to detect logic bugs.",
+      "context_before": "e oracles, which establish the relationship between the expected and actual result sets of SQL queries. A logic bug is detected when this relationship is violated. As illustrated in Figure 1, common oracles include equivalence and inclusion relations. Fig. 1. The types of test oracles in metamorphic testing. The equivalence relation asserts that, for any database D, the result sets of query Qand its mutated query Q'must satisfy D(Q)=D(Q'). For example, NoREC [10] detects logic bugs in database optimizers by mutating the original query into a non-optimized query and comparing their result sets.",
+      "context_after": "The inclusion relation requires that the actual result set be either a superset or a subset of the expected result set. For instance, PQS [12] synthesizes a query Qbased on an expected result set (i.e., the pivot row) and verifies whether the actual result set is a superset of the expected result set to detect logic bugs.Equivalence Inclusion 236 Fig. 2. The architecture of TSGuard. However, traditional DBMS mutation testing techniques are vulnerable to errors in the target database, therefore cannot guarantee that at least one of the results from the original or mutated SQL is correct. T",
+      "section": "C Limitations of Metamorphic Testing",
+      "page": 2,
+      "char_offset": 10367,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "For instance, PQS [12] synthesizes a query Qbased on an expected result set (i.",
+      "context_before": "The equivalence relation asserts that, for any database D, the result sets of query Qand its mutated query Q'must satisfy D(Q)=D(Q'). For example, NoREC [10] detects logic bugs in database optimizers by mutating the original query into a non-optimized query and comparing their result sets. Similarly, TLP[11] mutates the original query into multiple partitioned queries, reassembles their result sets, an d verifies consistency with the original result set to detect logic bugs. The inclusion relation requires that the actual result set be either a superset or a subset of the expected result set.",
+      "context_after": "e., the pivot row) and verifies whether the actual result set is a superset of the expected result set to detect logic bugs.Equivalence Inclusion 236 Fig. 2. The architecture of TSGuard. However, traditional DBMS mutation testing techniques are vulnerable to errors in the target database, therefore cannot guarantee that at least one of the results from the original or mutated SQL is correct. This limitation may lead to false negatives (as shown in Listing 1). D. An Example of a Logic Bug Listing 1. A logic bug in IoTDB (v1.3.3): Semantically equivalent queries fail to retrieve data, while",
+      "section": "C Limitations of Metamorphic Testing",
+      "page": 2,
+      "char_offset": 10676,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Comparison of the growth trend of syntax node sequences and valid queries during TSGuard and SQLancer runs.",
+      "context_before": "to ensure the correctness of generated SQL queries before execution. Figure 8 presents the number of valid and invalid SQL queries generated by different TSGuard variants. The results show that across all tested TSMSs, TSGuard and TSGuard !S generate an average of 95.44% valid queries, whereas TSGuard !C and TSGuard !SC generate only 21.61% valid queries on average. Although incorporating Query Syntax Validators introduces some computational overhead due to validating SQL, it significantly increases the proportion of valid SQL queries, which improving overall testing efficiency. 242 Fig. 9.",
+      "context_after": "D. Comparison with Other Techniques To evaluate the effectiveness of TSGuard in detecting logic bugs in TSMSs, we adapted the open-source relational database testing tool SQLancer as a baseline for comparison. Comparison Method: We executed each testing tool on each TSMS for 600s, 1200s, 1800s, 3600s, and 7200s, recording various metrics, including the number of bugs triggered, the number of distinct syntax node sequences, the number of valid and invalid SQL queries. TABLE V. Metrics recorded after TSGuard and SQLancer run 7200 seconds. MetricsSQLancer TSGuard InfluxDB IotDB TDengine InfluxDB",
+      "section": "C The Effectiveness of the Feedback Mechanism and Query",
+      "page": 9,
+      "char_offset": 39355,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Comparison with Other Techniques To evaluate the effectiveness of TSGuard in detecting logic bugs in TSMSs, we adapted the open-source relational database testing tool SQLancer as a baseline for comparison.",
+      "context_before": "invalid SQL queries generated by different TSGuard variants. The results show that across all tested TSMSs, TSGuard and TSGuard !S generate an average of 95.44% valid queries, whereas TSGuard !C and TSGuard !SC generate only 21.61% valid queries on average. Although incorporating Query Syntax Validators introduces some computational overhead due to validating SQL, it significantly increases the proportion of valid SQL queries, which improving overall testing efficiency. 242 Fig. 9. Comparison of the growth trend of syntax node sequences and valid queries during TSGuard and SQLancer runs. D.",
+      "context_after": "Comparison Method: We executed each testing tool on each TSMS for 600s, 1200s, 1800s, 3600s, and 7200s, recording various metrics, including the number of bugs triggered, the number of distinct syntax node sequences, the number of valid and invalid SQL queries. TABLE V. Metrics recorded after TSGuard and SQLancer run 7200 seconds. MetricsSQLancer TSGuard InfluxDB IotDB TDengine InfluxDB IotDB TDengine Bugs 2 2 3 12 9 17 Sequences 3805 42653 118889 178232 413218 222726 Valid Queries23243 114024 95007 196583 447972 264704 Invalid Queries376 27401 132957 1905 48253 11502 Table V presents the res",
+      "section": "D Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 39466,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Metrics recorded after TSGuard and SQLancer run 7200 seconds.",
+      "context_before": "2 Fig. 9. Comparison of the growth trend of syntax node sequences and valid queries during TSGuard and SQLancer runs. D. Comparison with Other Techniques To evaluate the effectiveness of TSGuard in detecting logic bugs in TSMSs, we adapted the open-source relational database testing tool SQLancer as a baseline for comparison. Comparison Method: We executed each testing tool on each TSMS for 600s, 1200s, 1800s, 3600s, and 7200s, recording various metrics, including the number of bugs triggered, the number of distinct syntax node sequences, the number of valid and invalid SQL queries. TABLE V.",
+      "context_after": "MetricsSQLancer TSGuard InfluxDB IotDB TDengine InfluxDB IotDB TDengine Bugs 2 2 3 12 9 17 Sequences 3805 42653 118889 178232 413218 222726 Valid Queries23243 114024 95007 196583 447972 264704 Invalid Queries376 27401 132957 1905 48253 11502 Table V presents the results from the 7200-second experiment, comparing TSGuard and SQLancer in terms of bug detection, syntax node sequence generation, and query validity. The results show that TSGuard detected 38 bugs across the three TSMSs, whereas SQLancer detected only 7. Additionally, TSGuard generated 4.92 times more syntax node sequences and 3.91",
+      "section": "D Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 39944,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "MetricsSQLancer TSGuard InfluxDB IotDB TDengine InfluxDB IotDB TDengine Bugs 2 2 3 12 9 17 Sequences 3805 42653 118889 178232 413218 222726 Valid Queries23243 114024 95007 196583 447972 264704 Invalid Queries376 27401 132957 1905 48253 11502 Table V presents the results from the 7200-second experiment, comparing TSGuard and SQLancer in terms of bug detection, syntax node sequence generation, and query validity.",
+      "context_before": "ences and valid queries during TSGuard and SQLancer runs. D. Comparison with Other Techniques To evaluate the effectiveness of TSGuard in detecting logic bugs in TSMSs, we adapted the open-source relational database testing tool SQLancer as a baseline for comparison. Comparison Method: We executed each testing tool on each TSMS for 600s, 1200s, 1800s, 3600s, and 7200s, recording various metrics, including the number of bugs triggered, the number of distinct syntax node sequences, the number of valid and invalid SQL queries. TABLE V. Metrics recorded after TSGuard and SQLancer run 7200 seconds.",
+      "context_after": "The results show that TSGuard detected 38 bugs across the three TSMSs, whereas SQLancer detected only 7. Additionally, TSGuard generated 4.92 times more syntax node sequences and 3.91 times more valid queries than SQLancer, while generating only 38.36% as many invalid queries. Figure 9 illustrates the growth trends of syntax node sequences and valid queries for TSGuard and SQLancer over 7200 seconds. The comparison shows that TSGuard consistently outperformed SQLancer in both metrics across all target TSMSs. Specifically: In TDengine, TSGuard generated an average of 1.89 times more syntax nod",
+      "section": "D Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 40006,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The results show that TSGuard detected 38 bugs across the three TSMSs, whereas SQLancer detected only 7.",
+      "context_before": "mber of bugs triggered, the number of distinct syntax node sequences, the number of valid and invalid SQL queries. TABLE V. Metrics recorded after TSGuard and SQLancer run 7200 seconds. MetricsSQLancer TSGuard InfluxDB IotDB TDengine InfluxDB IotDB TDengine Bugs 2 2 3 12 9 17 Sequences 3805 42653 118889 178232 413218 222726 Valid Queries23243 114024 95007 196583 447972 264704 Invalid Queries376 27401 132957 1905 48253 11502 Table V presents the results from the 7200-second experiment, comparing TSGuard and SQLancer in terms of bug detection, syntax node sequence generation, and query validity.",
+      "context_after": "Additionally, TSGuard generated 4.92 times more syntax node sequences and 3.91 times more valid queries than SQLancer, while generating only 38.36% as many invalid queries. Figure 9 illustrates the growth trends of syntax node sequences and valid queries for TSGuard and SQLancer over 7200 seconds. The comparison shows that TSGuard consistently outperformed SQLancer in both metrics across all target TSMSs. Specifically: In TDengine, TSGuard generated an average of 1.89 times more syntax node sequences and 2.95 times more valid queries than SQLancer. In IoTDB, TSGuard produced an average of 8.9",
+      "section": "D Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 40421,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "91 times more valid queries than SQLancer, while generating only 38.",
+      "context_before": "ds. MetricsSQLancer TSGuard InfluxDB IotDB TDengine InfluxDB IotDB TDengine Bugs 2 2 3 12 9 17 Sequences 3805 42653 118889 178232 413218 222726 Valid Queries23243 114024 95007 196583 447972 264704 Invalid Queries376 27401 132957 1905 48253 11502 Table V presents the results from the 7200-second experiment, comparing TSGuard and SQLancer in terms of bug detection, syntax node sequence generation, and query validity. The results show that TSGuard detected 38 bugs across the three TSMSs, whereas SQLancer detected only 7. Additionally, TSGuard generated 4.92 times more syntax node sequences and 3.",
+      "context_after": "36% as many invalid queries. Figure 9 illustrates the growth trends of syntax node sequences and valid queries for TSGuard and SQLancer over 7200 seconds. The comparison shows that TSGuard consistently outperformed SQLancer in both metrics across all target TSMSs. Specifically: In TDengine, TSGuard generated an average of 1.89 times more syntax node sequences and 2.95 times more valid queries than SQLancer. In IoTDB, TSGuard produced an average of 8.92 times more syntax node sequences and 3.83 times more valid queries than SQLancer. In InfluxDB, TSGuard generated an average of 47.99 times more",
+      "section": "D Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 40603,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Figure 9 illustrates the growth trends of syntax node sequences and valid queries for TSGuard and SQLancer over 7200 seconds.",
+      "context_before": "equences 3805 42653 118889 178232 413218 222726 Valid Queries23243 114024 95007 196583 447972 264704 Invalid Queries376 27401 132957 1905 48253 11502 Table V presents the results from the 7200-second experiment, comparing TSGuard and SQLancer in terms of bug detection, syntax node sequence generation, and query validity. The results show that TSGuard detected 38 bugs across the three TSMSs, whereas SQLancer detected only 7. Additionally, TSGuard generated 4.92 times more syntax node sequences and 3.91 times more valid queries than SQLancer, while generating only 38.36% as many invalid queries.",
+      "context_after": "The comparison shows that TSGuard consistently outperformed SQLancer in both metrics across all target TSMSs. Specifically: In TDengine, TSGuard generated an average of 1.89 times more syntax node sequences and 2.95 times more valid queries than SQLancer. In IoTDB, TSGuard produced an average of 8.92 times more syntax node sequences and 3.83 times more valid queries than SQLancer. In InfluxDB, TSGuard generated an average of 47.99 times more syntax node sequences and 9.47 times more valid queries than SQLancer. The improvements in bug detection, syntax node sequence generation, and query vali",
+      "section": "D Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 40699,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The comparison shows that TSGuard consistently outperformed SQLancer in both metrics across all target TSMSs.",
+      "context_before": "132957 1905 48253 11502 Table V presents the results from the 7200-second experiment, comparing TSGuard and SQLancer in terms of bug detection, syntax node sequence generation, and query validity. The results show that TSGuard detected 38 bugs across the three TSMSs, whereas SQLancer detected only 7. Additionally, TSGuard generated 4.92 times more syntax node sequences and 3.91 times more valid queries than SQLancer, while generating only 38.36% as many invalid queries. Figure 9 illustrates the growth trends of syntax node sequences and valid queries for TSGuard and SQLancer over 7200 seconds.",
+      "context_after": "Specifically: In TDengine, TSGuard generated an average of 1.89 times more syntax node sequences and 2.95 times more valid queries than SQLancer. In IoTDB, TSGuard produced an average of 8.92 times more syntax node sequences and 3.83 times more valid queries than SQLancer. In InfluxDB, TSGuard generated an average of 47.99 times more syntax node sequences and 9.47 times more valid queries than SQLancer. The improvements in bug detection, syntax node sequence generation, and query validity achieved by TSGuard can be attributed to two key factors. First, TSGuard incorporates the Syntax Node Seq",
+      "section": "D Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 40825,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "95 times more valid queries than SQLancer.",
+      "context_before": "that TSGuard detected 38 bugs across the three TSMSs, whereas SQLancer detected only 7. Additionally, TSGuard generated 4.92 times more syntax node sequences and 3.91 times more valid queries than SQLancer, while generating only 38.36% as many invalid queries. Figure 9 illustrates the growth trends of syntax node sequences and valid queries for TSGuard and SQLancer over 7200 seconds. The comparison shows that TSGuard consistently outperformed SQLancer in both metrics across all target TSMSs. Specifically: In TDengine, TSGuard generated an average of 1.89 times more syntax node sequences and 2.",
+      "context_after": "In IoTDB, TSGuard produced an average of 8.92 times more syntax node sequences and 3.83 times more valid queries than SQLancer. In InfluxDB, TSGuard generated an average of 47.99 times more syntax node sequences and 9.47 times more valid queries than SQLancer. The improvements in bug detection, syntax node sequence generation, and query validity achieved by TSGuard can be attributed to two key factors. First, TSGuard incorporates the Syntax Node Sequence-Driven Feedback Mechanism and Query Syntax Validators, which guide query generation and facilitate broader and more efficient test space exp",
+      "section": "D Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 41039,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "83 times more valid queries than SQLancer.",
+      "context_before": "es more syntax node sequences and 3.91 times more valid queries than SQLancer, while generating only 38.36% as many invalid queries. Figure 9 illustrates the growth trends of syntax node sequences and valid queries for TSGuard and SQLancer over 7200 seconds. The comparison shows that TSGuard consistently outperformed SQLancer in both metrics across all target TSMSs. Specifically: In TDengine, TSGuard generated an average of 1.89 times more syntax node sequences and 2.95 times more valid queries than SQLancer. In IoTDB, TSGuard produced an average of 8.92 times more syntax node sequences and 3.",
+      "context_after": "In InfluxDB, TSGuard generated an average of 47.99 times more syntax node sequences and 9.47 times more valid queries than SQLancer. The improvements in bug detection, syntax node sequence generation, and query validity achieved by TSGuard can be attributed to two key factors. First, TSGuard incorporates the Syntax Node Sequence-Driven Feedback Mechanism and Query Syntax Validators, which guide query generation and facilitate broader and more efficient test space exploration. Second, TSGuard detects logic bugs in TSMSs using time seriesalgebra, overcoming the common false-negative issues in D",
+      "section": "D Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 41167,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "47 times more valid queries than SQLancer.",
+      "context_before": "Figure 9 illustrates the growth trends of syntax node sequences and valid queries for TSGuard and SQLancer over 7200 seconds. The comparison shows that TSGuard consistently outperformed SQLancer in both metrics across all target TSMSs. Specifically: In TDengine, TSGuard generated an average of 1.89 times more syntax node sequences and 2.95 times more valid queries than SQLancer. In IoTDB, TSGuard produced an average of 8.92 times more syntax node sequences and 3.83 times more valid queries than SQLancer. In InfluxDB, TSGuard generated an average of 47.99 times more syntax node sequences and 9.",
+      "context_after": "The improvements in bug detection, syntax node sequence generation, and query validity achieved by TSGuard can be attributed to two key factors. First, TSGuard incorporates the Syntax Node Sequence-Driven Feedback Mechanism and Query Syntax Validators, which guide query generation and facilitate broader and more efficient test space exploration. Second, TSGuard detects logic bugs in TSMSs using time seriesalgebra, overcoming the common false-negative issues in DBMS metamorphic testing techniques and detecting more potential logic bugs. E. Resource Cost of TSGuard TSGuard’s cost is evaluated a",
+      "section": "D Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 41300,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M15",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS [12] randomly selects specific rows from the database and synthesizes test cases, verifying that the results of these test cases contain the selected rows to detect logic bugs.",
+      "context_before": "example, the Time Series Alge bra Engine transforms queries into equivalent time series al gebra expressions and calculates expected result sets. Compared to DBMS differential testing, TSGuard imposes fewer constraints when deriving expected result sets, allowing for broader exploration of the TSMS test space. DBMS Metamorphic Testing. DBMS metamorphic testing generates test cases by transforming SQL queries based on predefined rules and validating their execution results against test oracles to detect logic or performance bugs. This technique has been widely applied to both RDBMSs and GDBMSs.",
+      "context_after": "TLP [11] partitions a query into multiple partitioned queries, verifying that the combined results of these partitioned queries remain consistent with the results of original query. NOREC [10] transforms an original query into a non-optimized but semantically equivalent SQL query, detecting logic bugs by comparing their execution results. QPG [28] guides database state mutation using query plans and applies logic bug oracles to identify logic bugs across various database states. Pinolo [33] employs approximate query synthesis techniques to mutate original queries and asserts that the result s",
+      "section": "E Resource Cost of TSGuard",
+      "page": 11,
+      "char_offset": 52237,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP [11] partitions a query into multiple partitioned queries, verifying that the combined results of these partitioned queries remain consistent with the results of original query.",
+      "context_before": "ng, TSGuard imposes fewer constraints when deriving expected result sets, allowing for broader exploration of the TSMS test space. DBMS Metamorphic Testing. DBMS metamorphic testing generates test cases by transforming SQL queries based on predefined rules and validating their execution results against test oracles to detect logic or performance bugs. This technique has been widely applied to both RDBMSs and GDBMSs. PQS [12] randomly selects specific rows from the database and synthesizes test cases, verifying that the results of these test cases contain the selected rows to detect logic bugs.",
+      "context_after": "NOREC [10] transforms an original query into a non-optimized but semantically equivalent SQL query, detecting logic bugs by comparing their execution results. QPG [28] guides database state mutation using query plans and applies logic bug oracles to identify logic bugs across various database states. Pinolo [33] employs approximate query synthesis techniques to mutate original queries and asserts that the result sets of mutated queries should be either supersets or subsets of the original results to detect logic bugs. AMOEBA [34] utilizes a mutator and a mutation feedback mechanism to transfo",
+      "section": "E Resource Cost of TSGuard",
+      "page": 11,
+      "char_offset": 52418,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "technique",
+      "surface": "NOREC",
+      "technique": "norec",
+      "sentence": "NOREC [10] transforms an original query into a non-optimized but semantically equivalent SQL query, detecting logic bugs by comparing their execution results.",
+      "context_before": "generates test cases by transforming SQL queries based on predefined rules and validating their execution results against test oracles to detect logic or performance bugs. This technique has been widely applied to both RDBMSs and GDBMSs. PQS [12] randomly selects specific rows from the database and synthesizes test cases, verifying that the results of these test cases contain the selected rows to detect logic bugs. TLP [11] partitions a query into multiple partitioned queries, verifying that the combined results of these partitioned queries remain consistent with the results of original query.",
+      "context_after": "QPG [28] guides database state mutation using query plans and applies logic bug oracles to identify logic bugs across various database states. Pinolo [33] employs approximate query synthesis techniques to mutate original queries and asserts that the result sets of mutated queries should be either supersets or subsets of the original results to detect logic bugs. AMOEBA [34] utilizes a mutator and a mutation feedback mechanism to transform original queries into equivalent queries, comparing their execution times to detect performance bugs. Radar [35] constructs an equivalent database instance",
+      "section": "E Resource Cost of TSGuard",
+      "page": 11,
+      "char_offset": 52600,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "QPG [28] guides database state mutation using query plans and applies logic bug oracles to identify logic bugs across various database states.",
+      "context_before": "rmance bugs. This technique has been widely applied to both RDBMSs and GDBMSs. PQS [12] randomly selects specific rows from the database and synthesizes test cases, verifying that the results of these test cases contain the selected rows to detect logic bugs. TLP [11] partitions a query into multiple partitioned queries, verifying that the combined results of these partitioned queries remain consistent with the results of original query. NOREC [10] transforms an original query into a non-optimized but semantically equivalent SQL query, detecting logic bugs by comparing their execution results.",
+      "context_after": "Pinolo [33] employs approximate query synthesis techniques to mutate original queries and asserts that the result sets of mutated queries should be either supersets or subsets of the original results to detect logic bugs. AMOEBA [34] utilizes a mutator and a mutation feedback mechanism to transform original queries into equivalent queries, comparing their execution times to detect performance bugs. Radar [35] constructs an equivalent database instance without metadata from the original instance, executing identical queries on both to identify logic bugs by comparing their results. Mozi [36] b",
+      "section": "E Resource Cost of TSGuard",
+      "page": 11,
+      "char_offset": 52759,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    }
+  ],
+  "artifact": {
+    "url": "https://github.com/LingweiKuang/TSGuard",
+    "markers": [
+      "renamed_sqlancer_package",
+      "sqlancer_source_content_match"
+    ],
+    "evidence": [
+      {
+        "source_url": "https://github.com/LingweiKuang/TSGuard",
+        "source_type": "github_repository",
+        "excerpt": "TSGuard: Detecting Logic Bugs in Time Series Management Systems via Time Series Algebra\n# TSGuard-Detecting-Logic-Bugs-in-Time-Series-Management-Systems-via-Time-Series-Algebra\nTSGuard: Detecting Logic Bugs in Time Series Management Systems via Time Series Algebra",
+        "note": "Repository names this paper.",
+        "retrieved_at": "2026-09-10T15:15:32Z",
+        "first_seen": "2026-09-10T15:15:32Z",
+        "last_verified": "2026-09-10T15:15:32Z",
+        "excerpt_is_verbatim": true
+      },
+      {
+        "source_url": "https://github.com/LingweiKuang/TSGuard/blob/main/TSGuard/tsFuzzy/src/main/java/com/fuzzy/Randomly.java",
+        "source_type": "github_code",
+        "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.SOPHISTICATED;",
+        "excerpt_is_verbatim": true,
+        "note": "TSGuard/tsFuzzy/src/main/java/com/fuzzy/Randomly.java is SQLancer's Randomly.java, with the package renamed to com.fuzzy (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+        "content_sha256": "sha256:66bc91c4144354ceb03896ba19c217e53af2571b6110cb50426983e6c3c27f63",
+        "retrieved_at": "2026-09-10T15:15:32Z",
+        "first_seen": "2026-09-10T15:15:32Z",
+        "last_verified": "2026-09-10T15:15:32Z"
+      }
+    ]
+  },
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M5",
+        "M9",
+        "M12",
+        "M13",
+        "M14"
+      ]
+    },
+    "suppressed": [
+      {
+        "mention_id": "M5",
+        "pattern": "extends_technique",
+        "suppressed_because": "the sentence says the tool was taken up as a baseline, which is comparison rather than reuse or extension"
+      }
+    ]
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:49:48Z",
+    "is_model_written": true,
+    "summary": "TSGuard detects logic bugs in time series management systems using a time series algebra: queries are rewritten into algebraically equivalent forms whose results must agree, with the rewriting rules defined over time-series operations rather than relational ones. Its motivation is that relational metamorphic oracles do not carry over, since time-series query languages have constructs those oracles cannot express. On InfluxDB, IoTDB and TDengine it found 38 bugs.",
+    "narrative": "SQLancer is TSGuard's baseline, and the paper is explicit about the form that takes: it adapted SQLancer, an open-source relational database testing tool, as a baseline for comparison. The two were run for 7200 seconds against the same three systems, with TSGuard finding 38 bugs to SQLancer's 7 and generating several times more valid queries. NoREC, TLP, PQS and QPG are each described in the discussion of metamorphic testing's limits, which is where the paper argues that oracles built for relational queries do not transfer to time-series ones. The adaptation is what made a relational tool runnable on these systems for the comparison, not a contribution TSGuard claims.",
+    "roles": {
+      "M1": "definition",
+      "M2": "definition",
+      "M3": "definition",
+      "M4": "result_comparison",
+      "M5": "baseline",
+      "M6": "result_comparison",
+      "M7": "result_comparison",
+      "M8": "result_comparison",
+      "M9": "result_comparison",
+      "M10": "result_comparison",
+      "M11": "result_comparison",
+      "M12": "result_comparison",
+      "M13": "result_comparison",
+      "M14": "result_comparison",
+      "M15": "definition",
+      "M16": "definition",
+      "M17": "definition",
+      "M18": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "M5 describes adapting SQLancer so it could be run as a baseline. That is work done to make the comparison possible, not TSGuard's own implementation being built on SQLancer -- its algebra and generator are its own."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Adapting the tool in order to run it as a baseline is comparison, not extension. TSGuard's contribution is a time series algebra, and the paper presents NoREC, TLP and PQS as relational oracles whose assumptions do not carry to time-series systems rather than as techniques it generalises."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M5",
+          "M7",
+          "M8"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M5",
+            "sentence": "Comparison with Other Techniques To evaluate the effectiveness of TSGuard in detecting logic bugs in TSMSs, we adapted the open-source relational database testing tool SQLancer as a baseline for comparison.",
+            "section": "D Comparison with Other Techniques",
+            "page": 9
+          },
+          {
+            "mention_id": "M7",
+            "sentence": "MetricsSQLancer TSGuard InfluxDB IotDB TDengine InfluxDB IotDB TDengine Bugs 2 2 3 12 9 17 Sequences 3805 42653 118889 178232 413218 222726 Valid Queries23243 114024 95007 196583 447972 264704 Invalid Queries376 27401 132957 1905 48253 11502 Table V presents the results from the 7200-second experiment, comparing TSGuard and SQLancer in terms of bug detection, syntax node sequence generation, and query validity.",
+            "section": "D Comparison with Other Techniques",
+            "page": 9
+          },
+          {
+            "mention_id": "M8",
+            "sentence": "The results show that TSGuard detected 38 bugs across the three TSMSs, whereas SQLancer detected only 7.",
+            "section": "D Comparison with Other Techniques",
+            "page": 9
+          }
+        ],
+        "reasoning": "M5 states SQLancer was adapted as a baseline for comparison, M7 gives the per-system table of bugs and query counts for both tools, and M8 reports 38 bugs against SQLancer's 7."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is described as an open-source relational database testing tool; the paper makes no claim about it being the state of the art."
+      }
+    },
+    "disagreements": [
+      {
+        "check": "extends_technique matched on adapted SQLancer",
+        "why": "The regex sees an adaptation verb next to the tool name. The sentence continues 'as a baseline for comparison', which makes it the opposite: the tool was modified so it could be measured against, not built upon."
+      }
+    ],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,684 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-10T15:27:00Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3551349.3556924",
+    "title": "Differentially Testing Database Transactions for Fun and Profit",
+    "authors": [
+      "Ziyu Cui",
+      "Wensheng Dou",
+      "Qianwang Dai",
+      "Jiansen Song",
+      "Wei Wang",
+      "Jun Wei",
+      "Dan Ye"
+    ],
+    "year": 2022,
+    "venue": "International Conference on Automated Software Engineering",
+    "doi": "10.1145/3551349.3556924",
+    "arxiv_id": null,
+    "s2_paper_id": "b3135c616d6267fe1d2b4ca9d27c8792c0acf3e5",
+    "url": "https://doi.org/10.1145/3551349.3556924",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3551349.3556924",
+      "retrieved_at": "2026-09-10T15:27:00Z",
+      "chars": 70159,
+      "content_sha256": "sha256:b7cc595ceb705de3154cf4e1e66c1f99cbf5cd894c82065e60d24247b4746e3b"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 3272
+      },
+      {
+        "number": "2",
+        "title": "PRELIMINARIES",
+        "start": 11336
+      },
+      {
+        "number": "2.1",
+        "title": "Relational DBMSs and SQL",
+        "start": 11352
+      },
+      {
+        "number": "2.2",
+        "title": "Tested DBMSs",
+        "start": 12832
+      },
+      {
+        "number": "3",
+        "title": "MOTIVATING EXAMPLES",
+        "start": 16079
+      },
+      {
+        "number": "4",
+        "title": "APPROACH",
+        "start": 21922
+      },
+      {
+        "number": "4.1",
+        "title": "Transaction Test Case Generation",
+        "start": 23386
+      },
+      {
+        "number": "4.2",
+        "title": "Deterministic Transaction Execution",
+        "start": 27026
+      },
+      {
+        "number": "4.3",
+        "title": "Comparing Transaction Execution Results",
+        "start": 31988
+      },
+      {
+        "number": "5",
+        "title": "EVALUATION",
+        "start": 33891
+      },
+      {
+        "number": "5.1",
+        "title": "Experimental Methodology",
+        "start": 34251
+      },
+      {
+        "number": "5.2",
+        "title": "Bug Results",
+        "start": 36594
+      },
+      {
+        "number": "5.3",
+        "title": "Interesting Bugs",
+        "start": 38558
+      },
+      {
+        "number": "5.4",
+        "title": "False Positives",
+        "start": 43763
+      },
+      {
+        "number": "6",
+        "title": "COMPATIBILITY ISSUE STUDY",
+        "start": 45243
+      },
+      {
+        "number": "6.1",
+        "title": "RQ1. Root Cause",
+        "start": 46613
+      },
+      {
+        "number": "6.2",
+        "title": "RQ2. Consequence",
+        "start": 51228
+      },
+      {
+        "number": "6.3",
+        "title": "Lessons Learned",
+        "start": 52149
+      },
+      {
+        "number": "7.1",
+        "title": "Threats to Validity",
+        "start": 53510
+      },
+      {
+        "number": "7.2",
+        "title": "Limitations",
+        "start": 54376
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2022. The ANSI isolation levels. http://www.adp-gmbh.ch/ora/misc/isolation_ level.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2022. CockroachDB. https://www.cockroachlabs.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "2022. Data Types in MariaDB. https://mariadb.com/kb/en/data-types.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "2022. Data Types in MySQL. https://dev.mysql.com/doc/refman/8.0/en/datatypes.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "2022. Data Types in TiDB. https://docs.pingcap.com/tidb/stable/data-typeoverview.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "2022. DB-Engines. https://db-engines.com/en/ranking.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "2022. DELETE fails to delete record after blocking is released. https://jira.mariadb. org/browse/MDEV-27992.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "2022. DELETE fails to delete record after blocking is released. https://bugs.mysql. com/106629.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "2022. GitHub. https://github.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "2022. InnoDB Transaction Model. https://dev.mysql.com/doc/refman/8.0/en/ innodb-transaction-model.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "2022. INSERT fails to return an error after transaction abort. https://jira.mariadb. org/browse/MDEV-27922.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "2022. MariaDB. https://mariadb.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "2022. MySQL. https://www.mysql.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "2022. PostgreSQL. https://www.postgresql.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "2022. Set Transaction in MariaDB. https://mariadb.com/kb/en/set-transaction.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "2022. SQLancer. https://www.manuelrigger.at/dbms-bugs.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 17,
+      "text": "2022. SQLite. https://www.sqlite.org/index.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "2022. SQLsmith. https://jepsen.io.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "2022. TiDB Optimistic Transaction Model. https://docs.pingcap.com/tidb/stable/ optimistic-transaction.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "2022. TiDB Pessimistic Transaction Mode. https://docs.pingcap.com/tidb/stable/ pessimistic-transaction.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "2022. TiDB, PingCAP. https://pingcap.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "2022. Transaction Isolation Levels in MySQL. https://dev.mysql.com/doc/refman/ 8.0/en/innodb-transaction-isolation-levels.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "2022. Transactions in TiDB. https://docs.pingcap.com/tidb/stable/transactionoverview.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "2022. Unexpected Deadlock Happened When Two transaction Execute Concurrently. https://bugs.mysql.com/106655.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "2022. Unexpected error when UPDATE a NULL. https://jira.mariadb.org/browse/ MDEV-28140.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "2022. Weird SELECT when table has the primary key. https://github.com/pingcap/ tidb/issues/33315.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "2022. Weird statement with IS NULL and with IS NOT NULL. https://bugs.mysql. com/107125.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Atul Adya. 1999. Weak Consistency: A Generalized Theory and Optimistic Implementations for Distributed Transactions. Ph.D. Dissertation. Massachusetts Institute of Technology.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Atul Adya, Barbara Liskov, and Patrick O’Neil. 2000. Generalized Isolation Level Definitions. In Proceedings of International Conference on Data Engineering (ICDE). 67–78.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Peter Bailis, Aaron Davidson, Alan Fekete, Ali Ghodsi, Joseph M. Hellerstein, and Ion Stoica. 2013. Highly Available Transactions: Virtues and Limitations. Proceedings of the VLDB Endowment 7, 3 (2013), 181–192.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Peter Bailis, Alan Fekete, Ali Ghodsi, Joseph M. Hellerstein, and Ion Stoica. 2016. Scalable Atomic Visibility with RAMP Transactions. ACM Transactions on Database Systems 41, 3 (2016).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Gerg\"o Barany. 2018. Finding Missed Compiler Optimizations by Differential Testing. In Proceedings of International Conference on Compiler Construction. 82– 92.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Hardik Bati, Leo Giakoumakis, Steve Herbert, and Aleksandras Surna. 2007. A Genetic Approach for Random Testing of Database Systems. In Proceedings of International Conference on Very Large Data Bases (VLDB). 1243–1251.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Hal Berenson, Phil Bernstein, Jim Gray, Jim Melton, Elizabeth O’Neil, and Patrick O’Neil. 1995. A Critique of ANSI SQL Isolation Levels. In Proceedings of ACMSIGMOD International Conference on Management of Data (SIGMOD), Vol. 24. 1–10.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Philip A. Bernstein and Nathan Goodman. 1983. Multiversion concurrency control—theory and algorithms. ACM Transactions on Database Systems (TODS) 8, 4 (1983), 465–483.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Carsten Binnig, Donald Kossmann, Eric Lo, and M. Tamer Özsu. 2007. QAGen: Generating Query-Aware Test Databases. In Proceedings of ACMSIGMOD International Conference on Management of Data (SIGMOD). 341–352. ASE ’22, October 10–14, 2022, Rochester, MI, USA Ziyu Cui, Wensheng Dou, Qianwang Dai, Jiansen Song, Wei Wang, Jun Wei, and Dan Ye",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Ranadeep Biswas and Constantin Enea. 2019. On the Complexity of Checking Transactional Consistency. In Proceedings of ACMSIGPLAN Conference on ObjectOriented Programming Systems, Languages, and Applications (OOPSLA). 165:1– 165:28.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Ranadeep Biswas, Diptanshu Kakwani, Jyothi Vedurada, Constantin Enea, and Akash Lal. 2021. MonkeyDB: Effectively Testing Correctness under Weak Isolation Levels. In Proceedings of ACMSIGPLAN Conference on Object-Oriented Programming Systems, Languages, and Applications (OOPSLA). 132:1–132:27.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Nicolas Bruno and Surajit Chaudhuri. 2005. Flexible Database Generators. In Proceedings of the VLDB Endowment. 1097–1107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Nicolas Bruno, Surajit Chaudhuri, and Dilys Thomas. 2006. Generating Queries with Cardinality Constraints for DBMS Testing. In IEEE Transactions on Knowledge and Data Engineering, Vol. 18. 1721–1725.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Lucas Brutschy, Dimitar Dimitrov, Peter Müller, and Martin Vechev. 2017. Serializability for Eventual Consistency: Criterion, Analysis, and Applications. In Proceedings of ACMSIGPLAN Symposium on Principles of Programming Languages (POPL), Vol. 52. 458–472.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Andrea Cerone, Giovanni Bernardi, and Alexey Gotsman. 2015. A Framework for Transactional Consistency Models with Atomic Visibility. In Proceedings of International Conference on Concurrency Theory (CONCUR). 58–71.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Donald D. Chamberlin and Raymond F. Boyce. 1974. SEQUEL: A Structured English Query Language. In Proceedings of ACMSIGFIDET Workshop on Data Description, Access and Control. 249–264.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Yuting Chen, Ting Su, and Zhendong Su. 2019. Deep Differential Testing of JVM Implementations. In Proceedings of International Conference on Software Engineering (ICSE). 1257–1268.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Yuting Chen, Ting Su, Chengnian Sun, Zhendong Su, and Jianjun Zhao. 2016. Coverage-Directed Differential Testing of JVM Implementations. In Proceedings of ACMSIGPLAN Conference on Programming Language Design and Implementation (PLDI). 85–99.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Yuting Chen and Zhendong Su. 2015. Guided Differential Testing of Certificate Validation in SSL/TLS Implementations. In Proceedings of Joint Meeting of the European Software Engineering Conference and the ACMSIGSOFT Symposium on the Foundations of Software Engineering (ESEC/FSE). 793–804.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Edgar F. Codd. 1970. A Relational Model of Data for Large Shared Data Banks. Commun. ACM 13, 6 (1970), 377–387.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Yuetang Deng, Phyllis Frankl, and David Chays. 2005. Testing Database Transactions with AGENDA. In Proceedings of International Conference on Software Engineering (ICSE). 78–87.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Yifan Gan, Xueyuan Ren, Drew Ripberger, Spyros Blanas, and Yang Wang. 2020. IsoDiff: Debugging Anomalies Caused by Weak Isolation. Proceedings of the VLDB Endowment (PVLDB) 13, 12 (2020), 2773–2786.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2019. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems. Proceedings of the VLDB Endowment (VLDB) 13, 1 (2019), 57–70.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Timotej Kapus and Cristian Cadar. 2017. Automatic Testing of Symbolic Execution Engines via Program Generation and Differential Testing. In Proceedings of IEEE/ACM International Conference on Automated Software Engineering (ASE). 590–600.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Shadi Abdul Khalek, Bassem Elkarablieh, Yai O Laleye, and Sarfraz Khurshid. 2008. Query-Aware Test Generation Using a Relational Constraint Solver. In Proceedings of IEEE/ACM International Conference on Automated Software Engineering (ASE). 238–247.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Kyle Kingsbury and Peter Alvaro. 2020. Elle: Inferring Isolation Anomalies from Experimental Observations. In Proceedings of the VLDB Endowment, Vol. 14. 268–280.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Hsiang-Tsung Kung and John T Robinson. 1981. On optimistic methods for concurrency control. ACM Transactions on Database Systems (TODS) 6, 2 (1981), 213–226.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "William M. McKeeman. 1998. Differential Testing for Software. Digital Technical Journal 10, 1 (1998), 100–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Kia Rahmani, Kartik Nagar, Benjamin Delaware, and Suresh Jagannathan. 2019. CLOTHO: Directed Test Generation for Weakly Consistent Database Systems. InProceedings of ACMSIGPLAN Conference on Object-Oriented Programming Systems, Languages, and Applications (OOPSLA). 117:1–117:28.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "David Patrick Reed. 1978. Naming and synchronization in a decentralized computer system. Technical Report.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 59,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. In Proceedings of ACMSIGPLAN Conference on Object-Oriented Programming Systems, Languages, and Applications (OOPSLA). 211:1–211:30.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 60,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 61,
+      "text": "Donald R. Slutz. 1998. Massive Stochastic Testing of SQL. In Proceedings of the VLDB Endowment. 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Xiaohui Song and Jane W-S Liu. 1990. Performance of multiversion concurrency control algorithms in maintaining temporal consistency. In Proceedings of Annual International Computer Software and Applications Conference. 132–139.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Thodoris Sotiropoulos, Stefanos Chaliasos, Vaggelis Atlidakis, Dimitris Mitropoulos, and Diomidis Spinellis. 2021. Data-Oriented Differential Testing of ObjectRelational Mapping Systems. In Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE). 1535–1547.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Cheng Tan, Changgeng Zhao, Shuai Mu, and Michael Walfish. 2020. Cobra: Making Transactional Key-Value Stores Verifiably Serializable. In Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI). 63–80.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. 2011. Finding and Understanding Bugs in C Compilers. In Proceedings of ACMSIGPLAN Conference on Programming Language Design and Implementation (PLDI). 283–294.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Xiangyao Yu, Andrew Pavlo, Daniel Sanchez, and Srinivas Devadas. 2016. TicToc: Time Traveling Optimistic Concurrency Control. In Proceedings of International Conference on Management of Data (SIGMOD). 1629–1642.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Yingying Zheng, Wensheng Dou, Yicheng Wang, Zheng Qin, Lei Tang, Yu Gao, Dong Wang, Wei Wang, and Jun Wei. 2022. Finding Bugs in Gremlin-Based Graph Database Systems via Randomized Differential Testing. In Proceedings of ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA). 302–313.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 16,
+      "text": "2022. SQLancer. https://www.manuelrigger.at/dbms-bugs.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 58,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 59,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. In Proceedings of ACMSIGPLAN Conference on Object-Oriented Programming Systems, Languages, and Applications (OOPSLA). 211:1–211:30.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 60,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": ", PQS [ 60], NoREC [ 58], TLP [ 59] and RAGS [61], can detect DBMS bugs that involve these complex features in single SELECT statements.",
+      "context_before": "mainly focus on verifying whether DBMSs provide the transaction isolation guarantees that they claim [ 37,41,42,53, 64]. These approaches utilize simplified database structure (e.g., key−value model in Elle [ 53] and Cobra [ 64]), and analyze the read / write history of one row indexed by a keyto find transaction bugs. However, relational DBMSs usually support many complex features, e.g., data structures (e.g., data types and indexes), and SQL statements (e.g., cross-table queries). Therefore, existing approaches cannot detect transaction bugs that utilize these features. Some approaches, e.g.",
+      "context_after": "However, they cannot detect transaction bugs that involve multiple SQL statements and isolation levels. To effectively detect transaction bugs and compatibility issues in DBMSs, we propose a general transaction testing approach, Differentially Testing Database Transactions (DT2). We leverage differential testing to build a test oracle for transaction implementations in DBMSs. Specially, we first generate a random database, and then generate a group of concurrent transactions that interact with the database. We then execute these transactions on DBMSs under test, and compare the transaction ex",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 6034,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We generate them mainly based on SQLancer [ 16], and slightly revise the approach for our target.",
+      "context_before": "t case is classified as a compatibility issue ( 6○). 4.1 Transaction Test Case Generation A test case consists of a database, a group of concurrent transactions, a submitted order and a tested isolation level. Three steps (i.e., 1○, 2○, and 3○in Figure 2) are required in randomly test case generation. Since SQL statements are the basis for generating test cases, we will describe SQL statement generation and the first two steps of our approach in details as follows. Note that, there have been a lot of approaches about random generation of databases [ 36,39,52] and SQL statements [ 18,40,50,61].",
+      "context_after": "We briefly describe random database and SQL statement generation for completeness. Database Generation. As we focus on transactions, we create initial database using only the simplest table creating statements, i.e., CREATE and INSERT, of which CREATE statement includes CREATE TABLE and CREATE INDEX. We observe that discrepancies can usually be triggered on simple databases, so we build at most maxTable (3 by default) tables containing at most maxColumn (4 by default) for each table. To find the largest common subset of data types covered by DBMSs, we investigate and support all their data type",
+      "section": "4.1 Transaction Test Case Generation",
+      "page": 5,
+      "char_offset": 23933,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[ 58–60]",
+      "technique": "norec",
+      "sentence": "[ 58–60] has proposed a series of works to find logical bugs by generating single SQL queries.",
+      "context_before": "MS. Sotiropoulos et al. [ 63] applies differential testing on Object-Relational Mapping systems to find ORM-specific bugs. Zheng et al. [ 67] proposes a differential testing approach, Grand, for detecting logic bugs in Gremlin-based graph database systems. Inspired by these works, we utilize differential testing to detect transaction bugs and transaction-related compatibility issues. Database testing. Many approaches that automatically generate SQL queries and databases to test DBMSs have been proposed. SQLsmith [ 18] generates random SQL queries to find DBMS bugs. More recently, Rigger et al.",
+      "context_after": "Bati et al. [33] presents the technique of randomly generating test cases and using the execution feedback obtained from the tested DBMS to generate queries. These existing approaches are designed to find DBMS-specific bugs and cannot detect transactions bugs. Transaction testing and verification. To improve the correctness of transaction implementations, many works verify whether DBMSs violate their claimed transactional consistency and isolation. Brutschy et al. [ 41] proposes an effective serializability criterion to extend the serializability of conflicts to eventually consistency semanti",
+      "section": "7.2 Limitations",
+      "page": 11,
+      "char_offset": 56583,
+      "cited_reference": {
+        "number": 58,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    }
+  ],
+  "artifact": {
+    "url": "https://github.com/criszy/DT2",
+    "markers": [
+      "renamed_sqlancer_package",
+      "sqlancer_source_content_match"
+    ],
+    "evidence": [
+      {
+        "source_url": "https://github.com/criszy/DT2",
+        "source_type": "github_repository",
+        "excerpt": "# DT2",
+        "note": "Repository is named after DT2, the tool this paper says it built, and is about database testing.",
+        "retrieved_at": "2026-09-10T15:15:32Z",
+        "first_seen": "2026-09-10T15:15:32Z",
+        "last_verified": "2026-09-10T15:15:32Z",
+        "excerpt_is_verbatim": true
+      },
+      {
+        "source_url": "https://github.com/criszy/DT2/blob/main/src/DT2/Randomly.java",
+        "source_type": "github_code",
+        "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.SOPHISTICATED;",
+        "excerpt_is_verbatim": true,
+        "note": "src/DT2/Randomly.java is SQLancer's Randomly.java, with the package renamed to DT2 (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+        "content_sha256": "sha256:8d9b80c0a6b314d469a165162169da03d400d3d493bc550bcdf4c5fec2a8c289",
+        "retrieved_at": "2026-09-10T15:15:32Z",
+        "first_seen": "2026-09-10T15:15:32Z",
+        "last_verified": "2026-09-10T15:15:32Z"
+      }
+    ]
+  },
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "uses_infrastructure": [
+        "M2"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:19:46Z",
+    "is_model_written": true,
+    "summary": "DT2 tests transaction implementations by differential testing across DBMSs. It randomly generates a database and a group of concurrent transactions over it, supporting complex features such as varied schemas and cross-table queries, then compares execution results on several systems to find discrepancies. Because concurrency makes results non-deterministic, the authors add a transaction test protocol that forces deterministic execution. Across MySQL, MariaDB and TiDB it found 10 unique transaction bugs and 88 compatibility issues.",
+    "narrative": "DT2 generates its databases and transactions mainly on the basis of SQLancer, revised for the transaction setting, and its artifact carries SQLancer's source under a renamed package. PQS, NoREC and TLP are cited as the approaches confined to single SELECT statements -- the limitation DT2 sets out to pass.",
+    "roles": {
+      "M1": "motivation",
+      "M2": "reuse_component",
+      "M3": "motivation"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M2"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M2",
+            "sentence": "We generate them mainly based on SQLancer [ 16], and slightly revise the approach for our target.",
+            "section": "4.1 Transaction Test Case Generation",
+            "page": 5
+          }
+        ],
+        "reasoning": "M2 states the transactions are generated mainly based on SQLancer with slight revision for the target. The artifact carrying SQLancer source under a renamed package agrees.",
+        "reuse_kind": "generator"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

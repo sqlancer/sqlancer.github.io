@@ -1,0 +1,976 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:29:43Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3779212.3790244",
+    "title": "Understanding Query Optimization Bugs in Graph Database Systems",
+    "authors": [
+      "Yuyu Chen",
+      "Zhongxing Yu"
+    ],
+    "year": 2026,
+    "venue": "International Conference on Architectural Support for Programming Languages and Operating Systems",
+    "doi": "10.1145/3779212.3790244",
+    "arxiv_id": null,
+    "s2_paper_id": "fd1257a7345b8ddc8fe8ed0344f300577679daab",
+    "url": "https://doi.org/10.1145/3779212.3790244",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3779212.3790244",
+      "retrieved_at": "2026-09-09T01:29:43Z",
+      "chars": 101347,
+      "content_sha256": "sha256:819d7e1c5dbe69250327015322c1b9311cd99e14dd13132f1c9a0b95f258c927"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 18,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 1669
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 6864
+      },
+      {
+        "number": "2.1",
+        "title": "Labeled Property Graph",
+        "start": 6877
+      },
+      {
+        "number": "2.2",
+        "title": "Cypher Graph Query Language",
+        "start": 8436
+      },
+      {
+        "number": "2.3",
+        "title": "Cypher Query Optimization",
+        "start": 11828
+      },
+      {
+        "number": "3",
+        "title": "Study Methodology",
+        "start": 15208
+      },
+      {
+        "number": "4",
+        "title": "Bug Cause Study",
+        "start": 19706
+      },
+      {
+        "number": "4.1",
+        "title": "Buggy query optimization and normalization",
+        "start": 20108
+      },
+      {
+        "number": "4.1.1",
+        "title": "Ignore specific legal query formats.",
+        "start": 20470
+      },
+      {
+        "number": "4.1.2",
+        "title": "Limited semantic analysis.",
+        "start": 22030
+      },
+      {
+        "number": "4.2",
+        "title": "Buggy query plan generation and selection",
+        "start": 23967
+      },
+      {
+        "number": "4.2.1",
+        "title": "Incomplete or incorrect query plan space.",
+        "start": 24155
+      },
+      {
+        "number": "4.2.2",
+        "title": "Inaccurate cost estimation.",
+        "start": 29957
+      },
+      {
+        "number": "4.2.3",
+        "title": "Defective plan space exploration algorithm.",
+        "start": 32139
+      },
+      {
+        "number": "4.3",
+        "title": "Buggy rule-based query plan transformation",
+        "start": 33848
+      },
+      {
+        "number": "4.3.1",
+        "title": "Incomplete precondition checking.",
+        "start": 34012
+      },
+      {
+        "number": "4.3.2",
+        "title": "Incorrect plan operator relation assumption.",
+        "start": 35020
+      },
+      {
+        "number": "4.4",
+        "title": "Discussion: Query optimization bugs in GDBMS",
+        "start": 37254
+      },
+      {
+        "number": "5.1",
+        "title": "Attributes of Bug-exposing LPGs",
+        "start": 39795
+      },
+      {
+        "number": "5.2",
+        "title": "Attributes of Bug-exposing Cypher Query",
+        "start": 41295
+      },
+      {
+        "number": "5.2.1",
+        "title": "Clause skeleton.",
+        "start": 42029
+      },
+      {
+        "number": "5.2.2",
+        "title": "Expression.",
+        "start": 44990
+      },
+      {
+        "number": "5.3",
+        "title": "Symptoms of Query Optimization Bugs",
+        "start": 47848
+      },
+      {
+        "number": "6.1",
+        "title": "Mistakes during bug fixing",
+        "start": 51517
+      },
+      {
+        "number": "6.2",
+        "title": "Fix Strategies",
+        "start": 53791
+      },
+      {
+        "number": "7.1",
+        "title": "Implementation",
+        "start": 56388
+      },
+      {
+        "number": "7.2",
+        "title": "Evaluation Setup",
+        "start": 60851
+      },
+      {
+        "number": "7.3",
+        "title": "Evaluation Results",
+        "start": 62820
+      },
+      {
+        "number": "7.4",
+        "title": "Comparison with State of the Art",
+        "start": 68902
+      },
+      {
+        "number": "7.4.1",
+        "title": "Study of Missed Bugs. We first show that our tool",
+        "start": 69122
+      },
+      {
+        "number": "7.5",
+        "title": "Discussion",
+        "start": 74852
+      },
+      {
+        "number": "7.5.1",
+        "title": "False Negative Study. To see how our tool performs",
+        "start": 74867
+      },
+      {
+        "number": "7.5.2",
+        "title": "Future Work.",
+        "start": 76213
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2025. cypher-for-gremlin. https://github.com/opencypher/cypher-forgremlin",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2025. DB-Engines Ranking of Graph DBMS. https://db-engines.com/ en/ranking/graph+ dbms",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "2025. Graph Database Market-Forecast(2025 - 2031). https://www.industryarc.com/Research/Graph-Database-MarketResearch-500973",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "2025.HugeGraph. https://hugegraph.apache.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "2025.Kuzu. https://kuzudb.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "2025.MemGraph. https://memgraph.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "2025.Neo4j. https://neo4j.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "2025. Neo4j Offical Documents: Clauses in the Cypher Query Language. https://neo4j.com/docs/cypher-manual/current/clauses/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "2025. Neo4j Offical Documents: Operators in detail. https: //neo4j.com/docs/cypher-manual/current/planning-andtuning/operators/operators-detail/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "2025.RedisGraph. https://dbdb.io/db/redisgraph",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In on Software Engineering (ICSE). 2060–2071. doi:10.1109/ICSE48619. 2023.00174",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 12,
+      "text": "Earl T. Barr, Mark Harman, Phil McMinn, Muzammil Shahbaz, and Shin Yoo. 2015. The Oracle Problem in Software Testing: A Survey. IEEE Transactions on Software Engineering 41, 05 (May 2015), 507–525. doi:10.1109/TSE.2014.2372785",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Milind Chabbi and Murali Krishna Ramanathan. 2022. A study of real-world data races in Golang. In Proceedings of the 43rd ACMSIGPLAN International Conference on Programming Language Design and Implementation (San Diego, CA, USA) (PLDI 2022). Association for Computing Machinery, New York, NY, USA, 474–489. doi:10.1145/3519939.3523720",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Surajit Chaudhuri. 1998. An overview of query optimization in relational systems. In Proceedings of the Seventeenth ACMSIGACTSIGMOD-SIGART Symposium on Principles of Database Systems (Seattle, Washington, USA) (PODS ’98). Association for Computing Machinery, New York, NY, USA, 34–43. doi:10.1145/275487.275492",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Weidong Cui, Marcus Peinado, Sang Kil Cha, Yanick Fratantonio, and Vasileios P Kemerlis. 2016. Retracer: Triaging crashes by reverse execution from partial memory dumps. In Proceedings of the 38th International Conference on Software Engineering. 820–831.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Nurit Dor, Tal Lev-Ami, Shay Litvak, Mooly Sagiv, and Dror Weiss. 2008. Customization change impact analysis for erp professionals via program slicing. In Proceedings of the 2008 International Symposium on Software Testing and Analysis (Seattle, WA, USA) (ISSTA ’08). Association for Computing Machinery, New York, NY, USA, 97–108. doi:10.1145/1390630.1390644",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Nadime Francis, Alastair Green, Paolo Guagliardo, Leonid Libkin, Tobias Lindaaker, Victor Marsault, Stefan Plantikow, Mats Rydberg, Petra Selmer, and Andrés Taylor. 2018. Cypher: An Evolving Query Language for Property Graphs. In Proceedings of the 2018 International Conference on Management of Data (Houston, TX, USA) (SIGMOD ’18). Association for Computing Machinery, New York, NY, USA, 1433–1445.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Ziyue Hua, Wei Lin, Luyao Ren, Zongyang Li, Lu Zhang, Wenpin Jiao, and Tao Xie. 2023. GDsmith: Detecting Bugs in Cypher Graph Database Engines. In Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis (Seattle, WA, USA) (ISSTA 2023). Association for Computing Machinery, New York, NY, USA, 163–174. doi:10.1145/3597926.3598046",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Yannis E. Ioannidis. 1996. Query optimization. ACM Comput. Surv. 28, 1 (March 1996), 121–123. doi:10.1145/234313.234367",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland H. C. Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering (Lisbon, Portugal) (ICSE ’24). Association for Computing Machinery, New York, NY, USA, Article 46, 1",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 21,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23). USENIX Association, Boston, MA, 397– 417. https://www.usenix.org/conference/osdi23/presentation/jiang",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 22,
+      "text": "Zu-Ming Jiang and Zhendong Su. 2024. Detecting Logic Bugs in Database Engines via Equivalent Expression Transformation. In 18th USENIX Symposium on Operating Systems Design and Implementation (OSDI 24). USENIX Association, Santa Clara, CA, 821–835. https: //www.usenix.org/conference/osdi24/presentation/jiang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Guoliang Jin, Linhai Song, Xiaoming Shi, Joel Scherpelz, and Shan Lu. 2012. Understanding and detecting real-world performance bugs. SIGPLAN Not.47, 6 (June 2012), 77–88. doi:10.1145/2345156.2254075",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Siva Kesava Reddy Kakarla, Ryan Beckett, Todd Millstein, and George Varghese. 2022. SCALE: Automatically Finding RFC Compliance Bugs in DNS Nameservers. In 19th USENIX Symposium on Networked Systems Design and Implementation (NSDI 22). USENIX Association, Renton, WA, 307–323. https://www.usenix.org/conference/nsdi22/ presentation/kakarla",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "James C. King. 1976. Symbolic execution and program testing. Commun. ACM 19, 7 (July 1976), 385–394. doi:10.1145/360248.360252",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Takahiro Konno, Runhe Huang, Tao Ban, and Chuanhe Huang. 2017. Goods recommendation based on retail knowledge in a Neo4j graph database combined with an inference mechanism implemented in jess. In 2017 IEEE SmartWorld, Ubiquitous Intelligence & Computing, Advanced & Trusted Computed, Scalable Computing & Communications, Cloud & Big Data Computing, Internet of People and Smart City Innovation (Smar",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Claire Le Goues, Michael Pradel, and Abhik Roychoudhury. 2019. Automated program repair. Commun. ACM 62, 12 (Nov. 2019), 56–65. doi:10.1145/3318162",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Lantian Li, Yuyu Chen, Jingwen Wu, Yue Pan, and Zhongxing Yu. 2025. Understanding Inconsistent State Update Vulnerabilities in Smart Contracts. arXiv:2508.06192 [cs.SE] https://arxiv.org/abs/2508.06192",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Lantian Li, Yejian Liang, Zhihao Liu, and Zhongxing Yu. 2023. Understanding Solidity Event Logging Practices in the Wild. In Proceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (San Francisco, CA, USA) (ESEC/FSE 2023). Association for Computing Machinery, New York, NY, USA, 300–312. doi:10.1145/3611643.3616342",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Jie Liang, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Chengnian Sun, and Yu Jiang. 2024. Mozi: Discovering dbms bugs via configurationbased equivalent transformation. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting logical bugs of {DBMS}with coverage-based guidance. In 31st USENIX Security Symposium (USENIX Security 22). 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Shuang Liu, Junhao Lan, Xiaoning Du, Jiyuan Li, Wei Lu, Jiajun Jiang, and Xiaoyong Du. 2024. Testing Graph Database Systems with GraphState Persistence Oracle. In Proceedings of the 33rd ACMSIGSOFT International Symposium on Software Testing and Analysis (Vienna, Austria) (ISSTA 2024). Association for Computing Machinery, New York, NY, USA, 666–677. doi:10.1145/3650212.3680311",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Shan Lu, Soyeon Park, Eunsoo Seo, and Yuanyuan Zhou. 2008. Learning from mistakes: a comprehensive study on real world concurrency bug characteristics. SIGARCH Comput. Archit. News 36, 1 (March 2008), 329–339. doi:10.1145/1353534.1346323 2174 Understanding Query Optimization Bugs in Graph Database Systems ASPLOS ’26, March 22–26, 2026, Pittsburgh, PA, USA",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Bingqing Lyu, Xiaoli Zhou, Longbin Lai, Yufan Yang, Yunkai Lou, Wenyuan Yu, Ying Zhang, and Jingren Zhou. 2025. A Modular GraphNative Query Optimization Framework. In Companion of the 2025 International Conference on Management of Data (Berlin, Germany) (SIGMOD/PODS ’25). Association for Computing Machinery, New York, NY, USA, 566–579. doi:10.1145/3722212.3724425",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Qiuyang Mang, Jinsheng Ba, Pinjia He, and Manuel Rigger. 2025. Finding Logic Bugs in Graph-processing Systems via Graph-cutting. doi:10.1145/3725300",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 36,
+      "text": "Qiuyang Mang, Aoyang Fang, Boxi Yu, Hanfei Chen, and Pinjia He. 2024. Testing Graph Database Systems via Equivalent Query Rewriting. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering (Lisbon, Portugal) (ICSE ’24). Association for Computing Machinery, New York, NY, USA, Article 143, 12 pages. doi:10.1145/3597503.3639200",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Christopher Manning, Mihai Surdeanu, John Bauer, Jenny Finkel, Steven Bethard, and David McClosky. 2014. The Stanford CoreNLP Natural Language Processing Toolkit. In Proceedings of 52nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations, Kalina Bontcheva and Jingbo Zhu (Eds.). Association for Computational Linguistics, Baltimore, Maryland, 55–60. doi:10.3115/v1/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Ryan Marcus, Parimarjan Negi, Hongzi Mao, Nesime Tatbul, Mohammad Alizadeh, and Tim Kraska. 2021. Bao: Making Learned Query Optimization Practical. In Proceedings of the 2021 International Conference on Management of Data (Virtual Event, China) (SIGMOD ’21). Association for Computing Machinery, New York, NY, USA, 1275–1288. doi:10.1145/3448016.3452838",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Ryan Marcus, Parimarjan Negi, Hongzi Mao, Chi Zhang, Mohammad Alizadeh, Tim Kraska, Olga Papaemmanouil, and Nesime Tatbul. 2019. Neo: a learned query optimizer. Proc. VLDB Endow. 12, 11 (July 2019), 1705–1718. doi:10.14778/3342263.3342644",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Manasij Mukherjee and John Regehr. 2024. Hydra: Generalizing Peephole Optimizations with Program Synthesis. Proc. ACM Program. Lang. 8, OOPSLA1, Article 120 (April 2024), 29 pages. doi:10.1145/3649837",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Phitchaya Mangpo Phothilimthana, Aditya Thakur, Rastislav Bodik, and Dinakar Dhurjati. 2016. Scaling up Superoptimization. In Proceedings of the Twenty-First International Conference on Architectural Support for Programming Languages and Operating Systems (Atlanta, Georgia, USA) (ASPLOS ’16). Association for Computing Machinery, New York, NY, USA, 297–310. doi:10.1145/2872362.2872387",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Andy Podgurski, David Leon, Patrick Francis, Wes Masri, Melinda Minch, Jiayang Sun, and Bin Wang. 2003. Automated support for classifying software failure reports. In Proceedings of the 25th International Conference on Software Engineering (Portland, Oregon) (ICSE ’03). IEEE Computer Society, USA, 465–475.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Boqin Qin, Yilun Chen, Zeming Yu, Linhai Song, and Yiying Zhang. 2020. Understanding memory and thread safety practices and issues in real-world Rust programs. In Proceedings of the 41st ACMSIGPLAN Conference on Programming Language Design and Implementation (London, UK) (PLDI 2020). Association for Computing Machinery, New York, NY, USA, 763–779. doi:10.1145/3385412.3386036",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Yuxiang Ren, Hao Zhu, Jiawei Zhang, Peng Dai, and Liefeng Bo. 2021. EnsemFDet: An Ensemble Approach to Fraud Detection based on Bipartite Graph. In Engineering (ICDE). 2039–2044. doi:10.1109/ICDE51399.2021.00197",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (Virtual Event, USA) (ESEC/FSE 2020). Association for Computing Machinery, New York, NY, USA, 1140–1152. doi:10.1145/ 33",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 46,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation (OSDI’20). USENIX Association, USA, Article 38, 16 pages.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 47,
+      "text": "Marko A. Rodriguez. 2015. The Gremlin graph traversal machine and language (invited talk). In Proceedings of the 15th Symposium on Database Programming Languages (Pittsburgh, PA, USA) (DBPL 2015). Association for Computing Machinery, New York, NY, USA, 1–10. doi:10.1145/2815072.2815073",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Sudipta Sen, Akash Mehta, Runa Ganguli, and Soumya Sen. 2021. Recommendation of Influenced Products Using Association Rule Mining: Neo4j as a Case Study. SN Comput. Sci. 2, 2 (Feb. 2021), 17 pages. doi:10.1007/s42979-021-00460-8",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Utsav Sethi, Haochen Pan, Shan Lu, Madanlal Musuvathi, and Suman Nath. 2022. Cancellation in Systems: An Empirical Study of Task Cancellation Patterns and Failures. In 16th USENIX Symposium on Operating Systems Design and Implementation (OSDI 22). USENIX Association, Carlsbad, CA, 127–141. https://www.usenix.org/conference/osdi22/ presentation/sethi",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Chandan Sharma, Pierre Genevès, Nils Gesbert, and Nabil Layaïda. 2025. Schema-Based Query Optimisation for Graph Databases. 2025), 29 pages. doi:10.1145/ 3709722",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Lin Tan, Ding Yuan, Gopal Krishna, and Yuanyuan Zhou. 2007. /*icomment: bugs or bad comments?*/. In Proceedings of Twenty-First ACMSIGOPS Symposium on Operating Systems Principles (Stevenson, Washington, USA) (SOSP ’07). Association for Computing Machinery, New York, NY, USA, 145–158. doi:10.1145/1294261.1294276",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Xiu Tang, Sai Wu, Dongxiang Zhang, Feifei Li, and Gang Chen. 2023. Detecting logic bugs of join optimizations in dbms. Proceedings of the ACM on Management of Data 1, 1 (2023), 1–26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Tengfei Tu, Xiaoyu Liu, Linhai Song, and Yiying Zhang. 2019. Understanding Real-World Concurrency Bugs in Go. In Proceedings of the Twenty-Fourth International Conference on Architectural Support for Programming Languages and Operating Systems (Providence, RI, USA) (ASPLOS ’19). Association for Computing Machinery, New York, NY, USA, 865–878. doi:10.1145/3297858.3304069",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Joseph Tucek, Shan Lu, Chengdu Huang, Spiros Xanthos, and Yuanyuan Zhou. 2007. Triage: diagnosing production run failures at the user’s site. In Proceedings of Twenty-First ACMSIGOPS Symposium on Operating Systems Principles (Stevenson, Washington, USA) (SOSP ’07). Association for Computing Machinery, New York, NY, USA, 131–144. doi:10.1145/1294261.1294275",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Simon Urli, Zhongxing Yu, Lionel Seinturier, and Martin Monperrus. 2018. How to design a program repair bot? insights from the repairnator project. In Proceedings of the 40th International Conference on Software Engineering: Software Engineering in Practice (Gothenburg, Sweden) (ICSE-SEIP ’18). Association for Computing Machinery, New York, NY, USA, 95–104. doi:10.1145/3183519.3183540",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "M. Utting and B. Legeard. 2010. Practical Model-Based Testing: A Tools Approach. Morgan Kaufmann. https://books.google.com.hk/books? id=8hAGtY4-oOoC",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Jiayi Wang, Chengliang Chai, Jiabin Liu, and Guoliang Li. 2021. FACE: a normalizing flow based cardinality estimator. Proc. VLDB Endow. 15, 1 (Sept. 2021), 72–84. doi:10.14778/3485450.3485458",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Chunqiu Steven Xia, Matteo Paltenghi, Jia Le Tian, Michael Pradel, and Lingming Zhang. 2024. Fuzz4ALL: Universal Fuzzing with Large Language Models. In on Software Engineering (ICSE). IEEE Computer Society, Los Alamitos, CA, USA, 1547–1559. https://doi.ieeecomputersociety.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Fabian Yamaguchi, Nico Golde, Daniel Arp, and Konrad Rieck. 2014. Modeling and Discovering Vulnerabilities with Code Property Graphs. In. 590–604. doi:10.1109/ SP.2014.44 2175 ASPLOS ’26, March 22–26, 2026, Pittsburgh, PA, USA Yuyu Chen and Zhongxing Yu",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. 2011. Finding and understanding bugs in C compilers. In Proceedings of the 32nd ACMSIGPLAN Conference on Programming Language Design and Implementation (San Jose, California, USA) (PLDI ’11). Association for Computing Machinery, New York, NY, USA, 283–294. doi:10.1145/1993498.1993532",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Zongheng Yang, Eric Liang, Amog Kamsetty, Chenggang Wu, Yan Duan, Xi Chen, Pieter Abbeel, Joseph M. Hellerstein, Sanjay Krishnan, and Ion Stoica. 2019. Deep unsupervised cardinality estimation. Proc. VLDB Endow. 13, 3 (Nov. 2019), 279–292. doi:10.14778/3368289.3368294",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Zijing Yin, Si Liu, and David Basin. 2025. Testing Graph Databases with Synthesized Queries. 2025), 26 pages. doi:10.1145/3749186",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Zuoning Yin, Xiao Ma, Jing Zheng, Yuanyuan Zhou, Lakshmi N. Bairavasundaram, and Shankar Pasupathy. 2011. An empirical study on configuration errors in commercial and open source systems. In Proceedings of the Twenty-Third ACM Symposium on Operating Systems Principles (Cascais, Portugal) (SOSP ’11). Association for Computing Machinery, New York, NY, USA, 159–172. doi:10.1145/2043556.2043572",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Zuoning Yin, Ding Yuan, Yuanyuan Zhou, Shankar Pasupathy, and Lakshmi Bairavasundaram. 2011. How do fixes become bugs?. In Proceedings of the 19th ACMSIGSOFT Symposium and the 13th European Conference on Foundations of Software Engineering (Szeged, Hungary) (ESEC/FSE ’11). Association for Computing Machinery, New York, NY, USA, 26–36. doi:10.1145/2025113.2025121",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Xiang Yu, Chengliang Chai, Guoliang Li, and Jiabin Liu. 2022. CostBased or Learning-Based? A Hybrid Query Optimizer for Query Plan Selection. Proc. VLDB Endow. 15, 13 (Sept. 2022), 3924–3936. doi:10. 14778/3565838.3565846",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Zhongxing Yu, Chenggang Bai, Lionel Seinturier, and Martin Monperrus. 2021. Characterizing the Usage, Evolution and Impact of Java Annotations in Practice. IEEE Transactions on Software Engineering 47, 5 (2021), 969–986. doi:10.1109/TSE.2019.2910516",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Zhongxing Yu, Matias Martinez, Zimin Chen, Tegawendé F. Bissyandé, and Martin Monperrus. 2023. Learning the Relation Between Code Features and Code Transforms With Structured Prediction. IEEE Transactions on Software Engineering 49, 7 (2023), 3872–3900. doi:10.1109/TSE.2023.3275380",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "Ding Yuan, Yu Luo, Xin Zhuang, Guilherme Renna Rodrigues, Xu Zhao, Yongle Zhang, Pranay U. Jain, and Michael Stumm. 2014. Simple testing can prevent most critical failures: an analysis of production failures in distributed data-intensive systems. In Proceedings of the 11th USENIX Conference on Operating Systems Design and Implementation (Broomfield, CO) (OSDI’14). USENIX Association, USA, 249–265.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "Ding Yuan, Soyeon Park, and Yuanyuan Zhou. 2012. Characterizing logging practices in open-source software. In 2012 34th International Conference on Software Engineering (ICSE). 102–112. doi:10.1109/ICSE. 2012.6227202",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Andreas Zeller and Ralf Hildebrandt. 2002. Simplifying and Isolating Failure-Inducing Input. IEEE Trans. Softw. Eng. 28, 2 (Feb. 2002), 183–200. doi:10.1109/32.988498",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Yongle Zhang, Junwen Yang, Zhuqi Jin, Utsav Sethi, Kirk Rodrigues, Shan Lu, and Ding Yuan. 2021. Understanding and Detecting Software Upgrade Failures in Distributed Systems. In Proceedings of the ACMSIGOPS 28th Symposium on Operating Systems Principles (Virtual Event, Germany) (SOSP ’21). Association for Computing Machinery, New York, NY, USA, 116–131. doi:10.1145/3477132.3483577",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Yingying Zheng, Wensheng Dou, Yicheng Wang, Zheng Qin, Lei Tang, Yu Gao, Dong Wang, Wei Wang, and Jun Wei. 2022. Finding bugs in Gremlin-based graph database systems via Randomized differential testing. In Proceedings of the 31st ACMSIGSOFT International Symposium on Software Testing and Analysis (Virtual, South Korea) (ISSTA 2022). Association for Computing Machinery, New York, NY, USA, 302–313. ",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. Squirrel: Testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security. 955–970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "Xiaogang Zhu, Sheng Wen, Seyit Camtepe, and Yang Xiang. 2022. Fuzzing: A Survey for Roadmap. ACM Comput. Surv. 54, 11s, Article 230 (Sept. 2022), 36 pages. doi:10.1145/3512345",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "Zeyang Zhuang, Penghui Li, Pingchuan Ma, Wei Meng, and Shuai Wang. 2023. Testing Graph Database Systems via Graph-Aware Metamorphic Relations. Proc. VLDB Endow. 17, 4 (Dec. 2023), 836–848. doi:10.14778/3636218.3636236 2176",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 11,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In on Software Engineering (ICSE). 2060–2071. doi:10.1109/ICSE48619. 2023.00174",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "prints the DOI of the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 20,
+      "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland H. C. Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering (Lisbon, Portugal) (ICSE ’24). Association for Computing Machinery, New York, NY, USA, Article 46, 12 pages. doi:10.1145/3597503.3623307",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 21,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23). USENIX Association, Boston, MA, 397– 417. https://www.usenix.org/conference/osdi23/presentation/jiang",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 35,
+      "text": "Qiuyang Mang, Jinsheng Ba, Pinjia He, and Manuel Rigger. 2025. Finding Logic Bugs in Graph-processing Systems via Graph-cutting. doi:10.1145/3725300",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 45,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (Virtual Event, USA) (ESEC/FSE 2020). Association for Computing Machinery, New York, NY, USA, 1140–1152. doi:10.1145/ 3368089.3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 46,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation (OSDI’20). USENIX Association, USA, Article 38, 16 pages.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[18,32,35,36]",
+      "technique": null,
+      "sentence": "Indeed, recent years have witnessed a surge of research efforts for testing GDBMSs [18,32,35,36].",
+      "context_before": "ate efficient storing and querying graph data that consists of vertices and edges. Hence, recent years have witnessed an ever-growing usage of GDBMSs in various datadriven applications, such as recommendation systems [ 26, 48], fraud detection [ 44], and program analysis [ 59]. As stated by the industry report [ 3], the market of graph database is forecast to reach USD 88.9 billion by 2030. For instance, Neo4j [7], the most popular and widely adopted GDBMSs, has been adopted by over 1,000 enterprise customers. GDBMSs are complex software systems like compilers, and thus are not immune to bugs.",
+      "context_after": "and numerous bugs in industrial GDBMSs have been reported. Existing techniques focus on integrating test oracles to identify bugs, and can be divided into two main strands: differential testing (DT) and metamorphic testing (MT). For multiple implementations of a single specification, DT provides the same valid input to these implementations and observes differences in their executions to detect bugs. GDSmith [ 18] and Grand [ 72] are the earliest GDBMS testing techniques that are built on top of DT. MT detects bugs by first identifying relationships between multiple inputs and their correspon",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 2684,
+      "cited_reference": {
+        "number": 35,
+        "text": "Qiuyang Mang, Jinsheng Ba, Pinjia He, and Manuel Rigger. 2025. Finding Logic Bugs in Graph-processing Systems via Graph-cutting. doi:10.1145/3725300",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 35]",
+      "technique": null,
+      "sentence": "GRev [36], GraspDB [ 32], and Gslicer [ 35] are the representative GDBMS testing techniques that are built on top of MT.",
+      "context_before": "ting test oracles to identify bugs, and can be divided into two main strands: differential testing (DT) and metamorphic testing (MT). For multiple implementations of a single specification, DT provides the same valid input to these implementations and observes differences in their executions to detect bugs. GDSmith [ 18] and Grand [ 72] are the earliest GDBMS testing techniques that are built on top of DT. MT detects bugs by first identifying relationships between multiple inputs and their corresponding outputs, and then checking whether the relationships are preserved for software executions.",
+      "context_after": "These existing techniques target all different kinds of bugs that arise in all stages of the GDBMS workflow. Although offering the potential advantage of comprehensive bug detection, they may lose coverage for detecting a specific kind of bug. Various recent studies have shown that dedicated techniques for specific types of bugs are surprisingly effective, e.g., techniques for detecting task cancellation-related bugs [ 49], update bugs [ 71], performance bugs [ 23], configuration bugs [ 63], and Go data races [ 13]. These dedicated techniques make use of the specific characteristics of the bu",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 3478,
+      "cited_reference": {
+        "number": 35,
+        "text": "Qiuyang Mang, Jinsheng Ba, Pinjia He, and Manuel Rigger. 2025. Finding Logic Bugs in Graph-processing Systems via Graph-cutting. doi:10.1145/3725300",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[ 11,21,45,46]",
+      "technique": "qpg",
+      "sentence": "For optimization bugs due to inaccurate cost estimations or defective plan space exploration algorithms, previous works on DBMS testing [ 11,21,45,46] also frequently report them.",
+      "context_before": "le flow control (e.g., Cypher requires explicit declaration of variables imported from the outer scope into the subquery). While this again offers strong expressive power, it also introduces more complex scope semantics and execution models compared to SQL. Due to the significant differences in data storage formats and query languages for DBMSs and GDBMSs, the optimization bugs should have certain differences. Indeed, our findings 2 and 3 show that between one third and one half of the query optimization bugs for GDBMSs arise due to the complexities of graph representation and Cypher language.",
+      "context_after": "Thus, the query optimization bugs in GDBMSs and DBMSs also share similarities.5 Bug Manifestation Study This section discusses the findings about how the optimization bugs can be manifested, and these findings can guide the design of testing techniques. Indeed, our optimization bug exposing tool in Section 7is guided by the findings here. 5.1 Attributes of Bug-exposing LPGs A unique challenge faced by testing GDBMSs is that the test input consists of two parts: the LPG for storing the data and the queries for querying the graph. Thus, the input space is extremely large, particularly given tha",
+      "section": "4.4 Discussion: Query optimization bugs in GDBMS",
+      "page": 8,
+      "char_offset": 39273,
+      "cited_reference": {
+        "number": 11,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In on Software Engineering (ICSE). 2060–2071. doi:10.1109/ICSE48619. 2023.00174",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "prints the DOI of the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[35]",
+      "technique": null,
+      "sentence": "However, most existing GDBMS testing techniques do not support the subquery clause kind at all, including GDSmith [ 18], GAMERA [ 75], GraspDB [ 32], GRev [ 36], Gslicer [35], and GQS [ 62]).",
+      "context_before": "clause is used by 32% of bug-exposing queries. More specifically, among those queries that use the subquery clause kind, some of them use subquery clauses in a nested way. For instance, Figure 9agives the bug-exposing query for the issue Neo4j-12760 and the query uses the CALL{} subquery in a nested way. For subqueries, the optimizer must balance both the efficiency of graph pattern matching and subquery dependencies, thus it is no surprising that issues arise easily. In particular, note that Cypher employs explicit scope partitioning and variable flow control, further exacerbating the issue.",
+      "context_after": "Although GraphGenie [ 20] supports the kind of subquery clause, it only supports the CALL{} clause. Thus, in principle, these techniques cannot generate queries with diverse subquery clauses, making them ineffective for exposing query optimization bugs. Finding 7: Around 32% of the bug-exposing queries for query optimization bugs use subquery clauses, and some of them use subquery clauses in a nested way. As existing GDBMS testing techniques offer no or limited capability for generating subquery clauses (particularly nested subquery clauses), future testing tools for exposing query optimizati",
+      "section": "5.2.1 Clause skeleton.",
+      "page": 9,
+      "char_offset": 44147,
+      "cited_reference": {
+        "number": 35,
+        "text": "Qiuyang Mang, Jinsheng Ba, Pinjia He, and Manuel Rigger. 2025. Finding Logic Bugs in Graph-processing Systems via Graph-cutting. doi:10.1145/3725300",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 20]",
+      "technique": null,
+      "sentence": "Although GraphGenie [ 20] supports the kind of subquery clause, it only supports the CALL{} clause.",
+      "context_before": "e 9agives the bug-exposing query for the issue Neo4j-12760 and the query uses the CALL{} subquery in a nested way. For subqueries, the optimizer must balance both the efficiency of graph pattern matching and subquery dependencies, thus it is no surprising that issues arise easily. In particular, note that Cypher employs explicit scope partitioning and variable flow control, further exacerbating the issue. However, most existing GDBMS testing techniques do not support the subquery clause kind at all, including GDSmith [ 18], GAMERA [ 75], GraspDB [ 32], GRev [ 36], Gslicer [35], and GQS [ 62]).",
+      "context_after": "Thus, in principle, these techniques cannot generate queries with diverse subquery clauses, making them ineffective for exposing query optimization bugs. Finding 7: Around 32% of the bug-exposing queries for query optimization bugs use subquery clauses, and some of them use subquery clauses in a nested way. As existing GDBMS testing techniques offer no or limited capability for generating subquery clauses (particularly nested subquery clauses), future testing tools for exposing query optimization bugs should be customized with this capability. 5.2.2 Expression. For the studied 102 optimizatio",
+      "section": "5.2.1 Clause skeleton.",
+      "page": 9,
+      "char_offset": 44339,
+      "cited_reference": {
+        "number": 20,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland H. C. Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering ",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker",
+      "surface": "[ 21,45,46]",
+      "technique": "norec",
+      "sentence": "Like the typical methodology used to evaluate the effectiveness of database testing methods [ 21,45,46], the testing process is intermittent and we continuously improved the tool during the process.",
+      "context_before": "uzu is not evaluated as it has rarely been tested by existing tools. We evaluated the tool on the two GDBMSs with the latest available release versions. During our testing period, if a new version of the two tested GDBMSs is released, we set up the tool to test the updated versions. More specifically, we test Neo4j starting from version 5.25.1 and Memgraph starting from versionTable 5. Numbers of bugs found by the tool and their status (the column “Opt bugs” denotes the optimization bugs). GDBMS # Found # Confirmed # Fixed # Opt bugs Ne o4j 12 12 10 6 Memgraph 8 8 1 4 T otal 20 20 11 10 3.0.0.",
+      "context_after": "The evaluation was conducted on Ubuntu 22.04 with a 64-core Intel Xeon Gold 6226R processor running at 2.09GHz and 256GB of RAM. Overall, we generate 456.3k and 986.5k test inputs for Neo4j and Memgraph respectively, and the average test execution time is 513.3ms and 28.5ms for Neo4j and Memgraph respectively. For the Cypher query part of the test input, the average number of clauses per query is 23.1 and 22.6 for Neo4j and Memgraph respectively. For the LPG part of the test input, the average number of relationships per graph is 334.2 and 302.6 for Neo4j and Memgraph respectively. After dete",
+      "section": "7.2 Evaluation Setup",
+      "page": 12,
+      "char_offset": 61732,
+      "cited_reference": {
+        "number": 45,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (Virtual Event, USA)",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 20]",
+      "technique": null,
+      "sentence": "4 Comparison with State of the Art We compare our tool with 7 state-of-the-art GDBMS testing techniques, including GDSmith [ 18], GAMERA [ 75], GraspDB [ 32], GRev [ 36], GraphGenie [ 20], GSlicer [ 35], and GQS [62].",
+      "context_before": "ed attribute to remain logically bound to the original variable n1. Afterward, the aggregation operation triggers a rebuild of the runtime variable layout. At this point, the planner attempts to access the cached attribute using the original variable name n1, but n1has become invalid in this context due to being renamed to alias0. The fix modifies the optimization logic of property caching, so that the planner can correctly associate cached properties with valid variables in the current scope when the scope changes, avoiding the generation of query operators that reference unusable symbols. 7.",
+      "context_after": "7.4.1 Study of Missed Bugs. We first show that our tool can find bugs missed by existing techniques. To achieve this, for each of the 20 detected bugs, we check whether the bug exists in the version(s) tested by existing techniques. If so, we deem that the existing techniques have missed the bug. This method is reasonable as all the 20 confirmed bugs are not marked as duplicates by developers and all existing techniques have conducted an extensive evaluation. Table 6shows the results. It can be seen that all existing techniques miss some bugs detected by our tool, and most of the missed bugs",
+      "section": "7.4 Comparison with State of the Art",
+      "page": 13,
+      "char_offset": 68904,
+      "cited_reference": {
+        "number": 20,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland H. C. Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering ",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker",
+      "surface": "[ 35,46,62]",
+      "technique": "pqs",
+      "sentence": "Note that 24-Hour empirical testing is widely used by existing works to compare the effectiveness of different testing techniques [ 35,46,62].",
+      "context_before": "4.12 2.4.0 0 (0) 2 (2) 2 (2) GraphGenie 4.1.12–5.9.0 – 5 (2) – 5 (2) GAMERA 5.4.0 – 1 (1) – 1 (1) GRev 5.6.0 2.8.0 5 (2) 4 (4) 9 (6) GraspDB 5.6.0–5.12.0 2.7.0–2.11.0 5 (2) 4 (4) 9 (6) GSlicer 5.10 – 5 (2) – 5 (2) GQS5.18, 5.20, 5.21.22.13, 2.14.1, 2.15, 2.177 (4) 5 (4) 12 (8) 7.4.2 24-Hour Empirical Testing. To empirically compare our tool with other techniques, we run our tool and existing techniques against Neo4j 5.25.1 and Memgraph 3.0.0, which are their latest versions at the start of the tool evaluation. Each evaluation lasts for 24 hours, and the results are shown in Table 7and Table 8.",
+      "context_after": "For the differential testing technique GDSmith, we compare the results between Neo4j and Memgraph, and also use crashes and internal errors as oracles. Table 7. The results of 24-hour empirical testing on Neo4j. The number in the parentheses denotes the number of false reports. Compar ed Coverage Bug Detection T echniques Line Branch # Bug Reports # Unique Bugs GDSmith 18% 10% 465 (453) 1 GraphGenie 19% 10% 3 (3) 0 GAMERA 17% 9% 947 (837) 1 GRev 19% 11% 12 (12) 0 GraspDB 22% 13% 370 (370) 0 GSlicer 18% 10% 4 (4) 0 GQS 19% 11% 48 (46) 1 Our Tool 21% 13% 79 (2) 5 Table 8. The results of 24-hour",
+      "section": "7.4.1 Study of Missed Bugs. We first show that our tool",
+      "page": 14,
+      "char_offset": 71273,
+      "cited_reference": {
+        "number": 46,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation (OSDI’20). USENIX Association, USA, Article 38, 16 pages.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[32,35]",
+      "technique": null,
+      "sentence": "For the other metamorphic testing techniques, the false alarms are mainly due to the inaccurate transformation rules as also reported by previous studies [32,35], particularly due to the ignorance of constraints on graph entities and the inadequate consideration of special error cases (e.",
+      "context_before": "rage, 43 bug reports need to be analyzed in order to identify a unique bug for our tool. This number is lower than that of other techniques except GQS (whose number is 39), suggesting that our tool can detect bugs with low duplication rate and thus requires few manual efforts for bug report analysis. Third, all compared techniques (including our tool) suffer from false alarms, but our tool has the lowest false alarm rate. For the differential testing technique GDSmith, the main reason for false alarms is that Neo4j and Memgraph have different implementation choices for certain Cypher features.",
+      "context_after": "g., division-by-zero, exceeding the type’s value range, and incompatible type conversion. ). The observed false alarms for our tool are due to the violation of constraint dependencies for certain queries that involve the DELETE clause. Overall, our tool has a lower false alarm rate than other techniques and thus save time in manual checking of the bug reports. Finally, besides one bug detected by both our tool and GraspDB, the other 7 bugs detected by our tool are distinct from that detected by other techniques. This suggests that our tool and the compared techniques are complementary in impro",
+      "section": "7.4.1 Study of Missed Bugs. We first show that our tool",
+      "page": 14,
+      "char_offset": 73935,
+      "cited_reference": {
+        "number": 35,
+        "text": "Qiuyang Mang, Jinsheng Ba, Pinjia He, and Manuel Rigger. 2025. Finding Logic Bugs in Graph-processing Systems via Graph-cutting. doi:10.1145/3725300",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 18,35,36,75]",
+      "technique": null,
+      "sentence": "In particular, significant recent efforts have been devoted to testing GDBMSs [ 18,35,36,75].",
+      "context_before": "suffer from various issues issues such as long training time and high integration cost [ 38]. As for GDBMSs, Sharma et al. [50] propose a schema-based query optimization technique which leverages structural information defined in a graph schema to enhance query execution efficiency. Lyu et al. [34] design a modular graph-native query optimization framework, which addresses the challenges of optimizing complex graph pattern queries that combine pattern matching with relational operations. GDBMS Testing. Recent years have witnessed a surge of research efforts for testing DBMSs [ 22,30,31,52,73].",
+      "context_after": "Overall, existing testing efforts for GDBMSs focus on addressing the oracle issue and can bedivided into two main strands: differential testing (DT) and metamorphic testing (MT). GDsmith [ 18] and Grand [ 72] are techniques for Cypher-based and Gremlin-based GDBMSs respectively, and they both are based on DT. GRev [ 36], Gamera [ 75], GraspDB [ 32], and Gslicer [ 35] are representative techniques built on top of MT. The test input generation problem has been rarely touched by existing GDBMS testing efforts, and two representative techniques GDsmith [ 18] and GQS [ 62] involve using predefined",
+      "section": "7.5.2 Future Work.",
+      "page": 15,
+      "char_offset": 78395,
+      "cited_reference": {
+        "number": 35,
+        "text": "Qiuyang Mang, Jinsheng Ba, Pinjia He, and Manuel Rigger. 2025. Finding Logic Bugs in Graph-processing Systems via Graph-cutting. doi:10.1145/3725300",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 35]",
+      "technique": null,
+      "sentence": "GRev [ 36], Gamera [ 75], GraspDB [ 32], and Gslicer [ 35] are representative techniques built on top of MT.",
+      "context_before": "complex graph pattern queries that combine pattern matching with relational operations. GDBMS Testing. Recent years have witnessed a surge of research efforts for testing DBMSs [ 22,30,31,52,73]. In particular, significant recent efforts have been devoted to testing GDBMSs [ 18,35,36,75]. Overall, existing testing efforts for GDBMSs focus on addressing the oracle issue and can bedivided into two main strands: differential testing (DT) and metamorphic testing (MT). GDsmith [ 18] and Grand [ 72] are techniques for Cypher-based and Gremlin-based GDBMSs respectively, and they both are based on DT.",
+      "context_after": "The test input generation problem has been rarely touched by existing GDBMS testing efforts, and two representative techniques GDsmith [ 18] and GQS [ 62] involve using predefined rules and program synthesis to generate test inputs respectively. There exist numerous test input generation mechanisms in the literature, including fuzzing [ 74], symbolic execution [ 25], and model-based generation [ 56]. To improve the effectiveness, different mechanisms can further be combined. For instance, to find implementation errors in network protocol, SCALE builds an executable model of the protocol and t",
+      "section": "7.5.2 Future Work.",
+      "page": 15,
+      "char_offset": 78800,
+      "cited_reference": {
+        "number": 35,
+        "text": "Qiuyang Mang, Jinsheng Ba, Pinjia He, and Manuel Rigger. 2025. Finding Logic Bugs in Graph-processing Systems via Graph-cutting. doi:10.1145/3725300",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T14:26:20Z",
+    "is_model_written": true,
+    "summary": "A characteristic study of query optimization bugs in graph database systems, covering root causes, how the bugs manifest and how they are fixed, from which the authors draw ten findings. Building on the study they developed a testing tool aimed specifically at graph query optimization, which found 20 unique bugs, 10 of them optimization bugs.",
+    "narrative": "The comparison here is against the graph-database descendants of SQLancer's techniques rather than SQLancer itself: GDsmith, GAMERA, GRev, GraspDB, GraphGenie and Gslicer are the seven state-of-the-art techniques the tool is measured against, several of them built on metamorphic testing and several co-authored by SQLancer's authors. SQLancer's own work is cited for the cost-estimation class of optimization bug and for the 24-hour evaluation methodology.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "background",
+      "M4": "background",
+      "M5": "background",
+      "M6": "background",
+      "M7": "baseline",
+      "M8": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "uncertain",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The seven tools compared against are graph-database testing techniques, some derived from SQLancer's oracles, but no mention read shows SQLancer itself being run."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

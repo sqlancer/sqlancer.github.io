@@ -1,0 +1,40 @@
+name: CI
+
+# Runs on every push and pull request: validates the impact dataset against its
+# schemas, checks the derived statistics and charts are in sync with the
+# records, and builds the site.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  impact-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install jsonschema
+      - name: Validate the impact dataset
+        run: python -m tools.impact.run validate
+      - name: Check statistics and charts match the records
+        # The tests fail if stats.json or any chart is stale, so a data change
+        # cannot be merged without its derived outputs.
+        run: python -m unittest discover -s tools/impact/tests -t . -v
+
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+      - name: Build the site
+        run: bundle exec jekyll build --trace

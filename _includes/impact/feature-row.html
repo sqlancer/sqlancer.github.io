@@ -1,0 +1,80 @@
+{%- comment -%}
+The homepage feature cards.
+
+This mirrors the theme's own `feature_row` markup and CSS classes, so the cards
+look exactly as before. It exists as a separate include only because Jekyll does
+not evaluate Liquid inside front matter, and the card text now has to quote
+numbers derived from the impact data rather than a hand-written claim.
+{%- endcomment -%}
+{%- assign head = site.data.impact.stats.headline -%}
+
+<div class="feature__wrapper">
+
+  <div class="feature__item">
+    <div class="archive__item">
+      <div class="archive__item-teaser">
+        <img src="{{ '/assets/images/sqlancer_logo_pos.svg' | relative_url }}"
+             alt="The SQLancer logo">
+      </div>
+      <div class="archive__item-body">
+        <h2 class="archive__item-title">100% free</h2>
+        <div class="archive__item-excerpt">
+          <p>Free to use however you want under the MIT License. Clone it, fork
+          it, customize it&hellip; whatever!</p>
+        </div>
+        <p><a href="https://github.com/sqlancer/sqlancer/blob/main/LICENSE"
+              class="btn btn--primary">Learn more</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="feature__item">
+    <div class="archive__item">
+      <div class="archive__item-teaser">
+        <img src="{{ '/assets/images/supported_systems.png' | relative_url }}"
+             alt="Logos of the supported database systems">
+      </div>
+      <div class="archive__item-body">
+        <h2 class="archive__item-title">
+          {{ head.dbms_supported }} database systems
+        </h2>
+        <div class="archive__item-excerpt">
+          {%- comment -%}
+            Not "of them": the two numbers count different sets. The first is
+            the systems SQLancer ships a provider for; the second is every
+            system a bug has been attributed to, which is larger and only
+            partly overlaps -- 25 of them have no current provider, reached
+            instead through vendor forks and tools built on SQLancer.
+          {%- endcomment -%}
+          <p>SQLancer generates test cases for {{ head.dbms_supported }} database
+          systems. Bugs have been found in {{ head.dbms_with_bugs }} systems in
+          all, counting those reached by forks and by tools built on it.</p>
+        </div>
+        <p><a href="{{ '/supported-databases/' | relative_url }}"
+              class="btn btn--primary">Learn more</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="feature__item">
+    <div class="archive__item">
+      <div class="archive__item-teaser">
+        <img src="{{ '/assets/images/bugs.png' | relative_url }}"
+             alt="An illustration of a software bug">
+      </div>
+      <div class="archive__item-body">
+        <h2 class="archive__item-title">
+          {{ head.bugs_total_rounded }} bugs found
+        </h2>
+        <div class="archive__item-excerpt">
+          <p>Every bug is recorded with the evidence linking it to SQLancer, as
+          are the {{ head.papers_citing_sqlancer }} papers that cite the
+          project.</p>
+        </div>
+        <p><a href="{{ '/impact/' | relative_url }}"
+              class="btn btn--primary">See the impact</a></p>
+      </div>
+    </div>
+  </div>
+
+</div>

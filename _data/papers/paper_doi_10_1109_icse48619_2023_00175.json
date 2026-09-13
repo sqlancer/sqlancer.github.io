@@ -1,0 +1,1124 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-10T15:26:49Z",
+  "paper": {
+    "id": "paper:doi:10.1109/icse48619.2023.00175",
+    "title": "Testing Database Systems via Differential Query Execution",
+    "authors": [
+      "Jiansen Song",
+      "Wensheng Dou",
+      "Ziyu Cui",
+      "Qianwang Dai",
+      "Wei Wang",
+      "Jun Wei",
+      "Hua Zhong",
+      "Tao Huang"
+    ],
+    "year": 2023,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1109/icse48619.2023.00175",
+    "arxiv_id": null,
+    "s2_paper_id": "5724e138fc08329e0baa08d2090d9424df1cb945",
+    "url": "https://doi.org/10.1109/icse48619.2023.00175",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/icse48619.2023.00175",
+      "retrieved_at": "2026-09-10T15:26:49Z",
+      "chars": 64906,
+      "content_sha256": "sha256:f3421bc3c73cfe97749e2af6679eb6f80bf2ee0c44a6c9c46611c34a8ce6962b"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 1885
+      },
+      {
+        "number": "II",
+        "title": "PRELIMINARIES",
+        "start": 9207
+      },
+      {
+        "number": "A",
+        "title": "Database Management Systems and SQL",
+        "start": 9392
+      },
+      {
+        "number": "B",
+        "title": "Target DBMSs",
+        "start": 10567
+      },
+      {
+        "number": "C",
+        "title": "Query Execution Strategy",
+        "start": 11546
+      },
+      {
+        "number": "III",
+        "title": "APPROACH",
+        "start": 14626
+      },
+      {
+        "number": "A",
+        "title": "DQE Overview",
+        "start": 14975
+      },
+      {
+        "number": "B",
+        "title": "Database Generation",
+        "start": 17028
+      },
+      {
+        "number": "C",
+        "title": "Query Triple Generation",
+        "start": 19422
+      },
+      {
+        "number": "D",
+        "title": "Obtaining Execution Results",
+        "start": 22300
+      },
+      {
+        "number": "E",
+        "title": "Comparing Execution Results",
+        "start": 27425
+      },
+      {
+        "number": "IV",
+        "title": "EVALUATION",
+        "start": 30420
+      },
+      {
+        "number": "A",
+        "title": "Experimental Methodology",
+        "start": 31311
+      },
+      {
+        "number": "B",
+        "title": "Overall Detection Results",
+        "start": 33467
+      },
+      {
+        "number": "C",
+        "title": "Comparing with Existing Approaches",
+        "start": 36779
+      },
+      {
+        "number": "D",
+        "title": "Other Experimental Statistics",
+        "start": 38210
+      },
+      {
+        "number": "E",
+        "title": "Selected Bugs",
+        "start": 41652
+      },
+      {
+        "number": "F",
+        "title": "Not A Bug",
+        "start": 48924
+      },
+      {
+        "number": "V",
+        "title": "DISCUSSION",
+        "start": 50741
+      },
+      {
+        "number": "VI",
+        "title": "RELATED WORK",
+        "start": 52015
+      },
+      {
+        "number": "VII",
+        "title": "CONCLUSION",
+        "start": 54664
+      },
+      {
+        "number": "Y",
+        "title": "Zhou, M. Huang, W. Wei, C. Liu, J. Zhang, J. Li, X. Wu, L. Song,",
+        "start": 55717
+      },
+      {
+        "number": "R",
+        "title": "Sun, S. Yu, L. Zhao, N. Cameron, L. Pei, and X. Tang, “TiDB:",
+        "start": 55785
+      },
+      {
+        "number": "O",
+        "title": "Papaemmanouil, and N. Tatbul, “Neo: A learned query optimizer,”",
+        "start": 58213
+      },
+      {
+        "number": "W",
+        "title": "Wang, and J. Wei, “Finding bugs in Gremlin-based graph database",
+        "start": 61844
+      },
+      {
+        "number": "L",
+        "title": "Chen, H. Wang, H. Zhong, and T. Huang, “Detecting isolation bugs",
+        "start": 64713
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "“MySQL homepage,” https://www.mysql.com, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "“MariaDB homepage,” https://mariadb.org/, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "D. Huang, Q. Liu, Q. Cui, Z. Fang, X. Ma, F. Xu, L. Shen, L. Tang, Y. Zhou, M. Huang, W. Wei, C. Liu, J. Zhang, J. Li, X. Wu, L. Song, R. Sun, S. Yu, L. Zhao, N. Cameron, L. Pei, and X. Tang, “TiDB: A Raft-based HTAP database,” Proceedings of the VLDB Endowment (VLDB), vol. 13, no. 12, pp. 3072–3084, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "R. Taft, I. Sharif, A. Matei, N. VanBenschoten, J. Lewis, T. Grieger, K. Niemi, A. Woods, A. Birzin, R. Poss, P. Bardea, A. Ranade, B. Darnell, B. Gruneir, J. Jaffray, L. Zhang, and P. Mattis, “CockroachDB: The resilient Geo-distributed SQL database,” in Proceedings of ACMSIGMOD International Conference on Management of Data (SIGMOD), 2020, pp. 1493–1509.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "“SQLite homepage,” https://www.sqlite.org/index.html, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "D. D. Chamberlin and R. F. Boyce, “SEQUEL: A structured english query language,” in Proceedings of ACMSIGFIDET Workshop on Data Description, Access and Control, 1974, pp. 249–264.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "“MySQL customers by industry,” https://www.mysql.com, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "D. R. Slutz, “Massive stochastic testing of SQL,” in Proceedings of International Conference on V ery Large Data Bases (VLDB), 1998, pp. 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI), 2020, pp. 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 10,
+      "text": "——, “Detecting optimization bugs in database engines via nonoptimizing reference engine construction,” in Proceedings of ACM Joint European Software Engineering Conference and Symposium on the F oundations of Software Engineering (ESEC/FSE), 2020, pp. 1140– 1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 11,
+      "text": "——, “Finding bugs in database systems via query partitioning,” in Proceedings of ACMSIGPLAN Conference on Object-Oriented Programming Systems, Languages, and Applications (OOPSLA), vol. 4, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 12,
+      "text": "E. F. Codd, “A relational model of data for large shared data banks,” Communications of the ACM, vol. 13, no. 6, pp. 377–387, 1970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "B. Ding, S. Das, W. Wu, S. Chaudhuri, and V. Narasayya, “Plan Stitch: Harnessing the best of many plans,” Proceedings of the VLDB Endowment (VLDB), vol. 11, no. 10, pp. 1123–1136, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "T. Neumann and B. Radke, “Adaptive optimization of very large join queries,” in Proceedings of International Conference on Management of Data (SIGMOD), 2018, pp. 677–692.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "C. Wu, A. Jindal, S. Amizadeh, H. Patel, W. Le, S. Qiao, and S. Rao, “Towards a learning optimizer for shared clouds,” Proceedings of the VLDB Endowment (VLDB), vol. 12, no. 3, pp. 210–222, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "R. Marcus, P. Negi, H. Mao, C. Zhang, M. Alizadeh, T. Kraska, O. Papaemmanouil, and N. Tatbul, “Neo: A learned query optimizer,” Proceedings of the VLDB Endowment (VLDB), vol. 12, no. 11, pp. 1705– 1718, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "“DB-Engines ranking,” https://db-engines.com/en/ranking, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "“Most widely deployed and used database engine,” https://www.sqlite. org/mostdeployed.html, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "“Database topic in GitHub,” https://github.com/topics/database, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "“Unexpected delete when data truncation,” https://jira.mariadb.org/ browse/MDEV-27885, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "A. Neufeld, G. Moerkotte, and P. C. Lockemann, “Generating consistent test data: Restricting the search space by a generator formula,” Proceedings of the VLDB Endowment (VLDB), vol. 2, no. 2, pp. 173–214, 1993.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "J. Gray, P. Sundaresan, S. Englert, K. Baclawski, and P. J. Weinberger, “Quickly generating billion-record synthetic databases,” in Proceedings of ACMSIGMOD International Conference on Management of Data (SIGMOD), 1994, pp. 243–252.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "N. Bruno and S. Chaudhuri, “Flexible database generators,” in Proceedings of International Conference on V ery Large Data Bases (VLDB), 2005, pp. 1097–1107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "K. Houkjær, K. Torp, and R. Wind, “Simple and realistic data generation,” in Proceedings of International Conference on V ery Large Data Bases (VLDB), 2006, pp. 1243–1246.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "C. Binnig, D. Kossmann, E. Lo, and M. T. ¨Ozsu, “QAGen: Generating query-aware test databases,” in Proceedings of ACMSIGMOD International Conference on Management of Data (SIGMOD), 2007, pp. 341– 352.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "S. Abdul Khalek, B. Elkarablieh, Y. O. Laleye, and S. Khurshid, “Queryaware test generation using a relational constraint solver,” in Proceedings of IEEE/ACM International Conference on Automated Software Engineering (ASE), 2008, pp. 238–247.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "“SQLancer homepage,” https://github.com/sqlancer/sqlancer, 2022.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 28,
+      "text": "“SHOWWARNINGS statement,” https://dev.mysql.com/doc/refman/8. 0/en/show-warnings.html., 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "“SQLsmith,” https://github.com/anse1/sqlsmith, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "J. Jung, H. Hu, J. Arulraj, T. Kim, and W. Kang, “APOLLO: Automatic detection and diagnosis of performance regressions in database systems,” Proceedings of the VLDB Endowment (VLDB), vol. 13, no. 1, pp. 57–70, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "X. Liu, Q. Zhou, J. Arulrai, and A. Orso, “Automatic detection of performance bugs in database systems using equivalent queries,” in Proceedings of International Conference on Software Engineering (ICSE), 2022, pp. 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "B. Ghit, N. Poggi, J. Rosen, R. Xin, and P. Boncz, “SparkFuzz: Searching correctness regressions in modern query engines,” in Proceedings of the Workshop on Testing Database Systems (DBTest), 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "A. Andoni, D. Daniliuc, S. Khurshid, and D. Marinov, “Evaluating the “small scope hypothesis”,” in Proceedings of ACM Symposium on the Principles of Programming Languages (POPL), vol. 2, 2003.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "“Type conversion in expression evaluation,” https://dev.mysql.com/doc/ refman/5.7/en/type-conversion.html, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "“Neo4j homepage,” https://neo4j.com/, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "“Azure cosmos DB,” https://azure.microsoft.com/en-us/products/ cosmos-db/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "“TigerGraph,” https://www.tigergraph.com/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "“Redis homepage,” https://redis.io/, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "“Amazon DynamoDB,” https://aws.amazon.com/cn/dynamodb/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "“Hazelcast,” https://hazelcast.com/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "“MongoDB,” https://www.mongodb.com/, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "“Apache CouchDB,” https://couchdb.apache.org/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "“Datastore,” https://cloud.google.com/datastore, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "W. M. McKeeman, “Differential testing for software,” DIGITAL TECHNICAL JOURNAL, vol. 10, pp. 100–107, 1998.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Y. Zheng, W. Dou, Y. Wang, Z. Qin, L. Tang, Y. Gao, D. Wang, W. Wang, and J. Wei, “Finding bugs in Gremlin-based graph database systems via randomized differential testing,” in Proceedings of ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA), 2022, pp. 302–313.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Z. Cui, W. Dou, Q. Dai, J. Song, W. Wang, J. Wei, and D. Ye, “Differentially testing database transactions for fun and proﬁt,” in Proceedings of IEEE/ACM International Conference on Automated Software Engineering (ASE), 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "J. Fu, J. Liang, Z. Wu, M. Wang, and Y. Jiang, “Grifﬁn: Grammar-free DBMS fuzzing,” in Proceedings of IEEE/ACM International Conference on Automated Software Engineering (ASE), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "W. Lin, Z. Hua, L. Zhang, and T. Xie, “GDiff: Automated differential performance testing for graph database systems,” in Proceedings of International Conference on Software Engineering (ICSE), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "R. Yang, Y. Zheng, L. Tang, W. Dou, W. Wang, and J. Wei, “Randomized differential testing of RDF stores,” in Proceedings of International Conference on Software Engineering (ICSE Demo), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "J. Ba and M. Rigger, “Testing database engines via query plan guidance,” inProceedings of International Conference on Software Engineering (ICSE), 2023.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 51,
+      "text": "Z. Jiang, J. Bai, and Z. Su, “DynSQL: Stateful fuzzing for database management systems with complex and valid SQL query generation,” in Proceedings of USENIX Security Symposium (USENIX Security), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Z. Hua, W. Lin, L. Ren, Z. Li, L. Zhang, W. Jiao, and T. Xie, “GDsmith: Detecting bugs in Cypher graph database engines,” 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "M. Kamm, M. Rigger, C. Zhang, and Z. Su, “Testing graph database engines via query partitioning,” in Proceedings of ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA), 2023.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 54,
+      "text": "“go-randgen,” https://github.com/pingcap/go-randgen, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Y. Liang, S. Liu, and H. Hu, “Detecting logical bugs of DBMS with Coverage-based guidance,” in Proceedings of USENIX Security Symposium (USENIX Security), 2022, pp. 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "R. Zhong, Y. Chen, H. Hu, H. Zhang, W. Lee, and D. Wu, “SQUIRREL: Testing database management systems with language validity and coverage feedback,” in Proceedings of ACMSIGSAC Conference on Computer and Communications Security (CCS), 2020, pp. 58–71. 2083",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "M. Wang, Z. Wu, X. Xu, J. Liang, C. Zhou, H. Zhang, and Y. Jiang, “Industry practice of Coverage-guided enterprise-level DBMS fuzzing,” inProceedings of IEEE/ACM International Conference on Software Engineering: Software Engineering in Practice (ICSE-SEIP), 2021, pp. 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "X. Yang, Y. Chen, E. Eide, and J. Regehr, “Finding and understanding bugs in C compilers,” in Proceedings of ACMSIGPLAN Conference onProgramming Language Design and Implementation (PLDI), 2011, pp. 283–294.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "“Alloy,” https://alloytools.org/, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "W. Dou, Z. Cui, Q. Dai, J. Song, D. Wang, Y. Gao, W. Wang, J. Wei, L. Chen, H. Wang, H. Zhong, and T. Huang, “Detecting isolation bugs via transaction oracle construction,” in Proceedings of International Conference on Software Engineering (ICSE), 2023. 2084",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 9,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI), 2020, pp. 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 10,
+      "text": "——, “Detecting optimization bugs in database engines via nonoptimizing reference engine construction,” in Proceedings of ACM Joint European Software Engineering Conference and Symposium on the F oundations of Software Engineering (ESEC/FSE), 2020, pp. 1140– 1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 11,
+      "text": "——, “Finding bugs in database systems via query partitioning,” in Proceedings of ACMSIGPLAN Conference on Object-Oriented Programming Systems, Languages, and Applications (OOPSLA), vol. 4, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 27,
+      "text": "“SQLancer homepage,” https://github.com/sqlancer/sqlancer, 2022.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 50,
+      "text": "J. Ba and M. Rigger, “Testing database engines via query plan guidance,” inProceedings of International Conference on Software Engineering (ICSE), 2023.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 53,
+      "text": "M. Kamm, M. Rigger, C. Zhang, and Z. Su, “Testing graph database engines via query partitioning,” in Proceedings of ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA), 2023.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[8]–[11]",
+      "technique": "pqs",
+      "sentence": "Recently, researchers have proposed some approaches to detect logic bugs in DBMSs [8]–[11].",
+      "context_before": "lational DBMSs, e.g., MySQL [1], MariaDB [2], TiDB [3],CockroachDB [4] and SQLite [5], adopt Structured QueryLanguage (SQL) [6] as their standard query language, andhave become an indispensable component in many business-critical applications [7]. DBMSs suffer from various bugs, e.g., crashes and logic bugs. Specially, logic bugs can cause a DBMS to returnincorrect results for SELECT queries, or generate incorrect database states for UPDATE and DELETE queries. Such logic bugs do not crash the DBMS, and can easily go unnoticed bydevelopers. In this work, we focus on detecting logic bugs in DBMSs.",
+      "context_after": "RAGS [8] feeds a SELECT query into multiple DBMSs and observes discrepancies in theirquery results. PQS [9] generates SELECT queries that fetch Wensheng Dou and Hua Zhong are the corresponding authors.a pivot row, and checks whether the target DBMS fails tofetch the pivot row. NoREC [10] rewrites a SELECT query as another equivalent one that cannot be optimized by the DBMS, and then detects difference in their query results.TLP [11] decomposes a SELECT query into three partitioning queries, and merges these partitioning queries’ results into acombined result, which is expected to be the same a",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 2609,
+      "cited_reference": {
+        "number": 9,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS [9] generates SELECT queries that fetch Wensheng Dou and Hua Zhong are the corresponding authors.",
+      "context_before": "e component in many business-critical applications [7]. DBMSs suffer from various bugs, e.g., crashes and logic bugs. Specially, logic bugs can cause a DBMS to returnincorrect results for SELECT queries, or generate incorrect database states for UPDATE and DELETE queries. Such logic bugs do not crash the DBMS, and can easily go unnoticed bydevelopers. In this work, we focus on detecting logic bugs in DBMSs. Recently, researchers have proposed some approaches to detect logic bugs in DBMSs [8]–[11]. RAGS [8] feeds a SELECT query into multiple DBMSs and observes discrepancies in theirquery results.",
+      "context_after": "a pivot row, and checks whether the target DBMS fails tofetch the pivot row. NoREC [10] rewrites a SELECT query as another equivalent one that cannot be optimized by the DBMS, and then detects difference in their query results.TLP [11] decomposes a SELECT query into three partitioning queries, and merges these partitioning queries’ results into acombined result, which is expected to be the same as theoriginal query’s result. However, all these approaches mainlyfocus on detecting logic bugs in SELECT queries. While the logic bugs in UPDATE and DELETE queries have not been tackled yet, even though",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 2801,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC [10] rewrites a SELECT query as another equivalent one that cannot be optimized by the DBMS, and then detects difference in their query results.",
+      "context_before": "sults for SELECT queries, or generate incorrect database states for UPDATE and DELETE queries. Such logic bugs do not crash the DBMS, and can easily go unnoticed bydevelopers. In this work, we focus on detecting logic bugs in DBMSs. Recently, researchers have proposed some approaches to detect logic bugs in DBMSs [8]–[11]. RAGS [8] feeds a SELECT query into multiple DBMSs and observes discrepancies in theirquery results. PQS [9] generates SELECT queries that fetch Wensheng Dou and Hua Zhong are the corresponding authors.a pivot row, and checks whether the target DBMS fails tofetch the pivot row.",
+      "context_after": "TLP [11] decomposes a SELECT query into three partitioning queries, and merges these partitioning queries’ results into acombined result, which is expected to be the same as theoriginal query’s result. However, all these approaches mainlyfocus on detecting logic bugs in SELECT queries. While the logic bugs in UPDATE and DELETE queries have not been tackled yet, even though they can cause severer consequences,e.g., incorrect database states. Logic bugs in DBMSs, especially those in UPDATE and DELETE queries, are difﬁcult to detect automatically. A key challenge to detect logic bugs is to constru",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 2979,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP [11] decomposes a SELECT query into three partitioning queries, and merges these partitioning queries’ results into acombined result, which is expected to be the same as theoriginal query’s result.",
+      "context_before": "unnoticed bydevelopers. In this work, we focus on detecting logic bugs in DBMSs. Recently, researchers have proposed some approaches to detect logic bugs in DBMSs [8]–[11]. RAGS [8] feeds a SELECT query into multiple DBMSs and observes discrepancies in theirquery results. PQS [9] generates SELECT queries that fetch Wensheng Dou and Hua Zhong are the corresponding authors.a pivot row, and checks whether the target DBMS fails tofetch the pivot row. NoREC [10] rewrites a SELECT query as another equivalent one that cannot be optimized by the DBMS, and then detects difference in their query results.",
+      "context_after": "However, all these approaches mainlyfocus on detecting logic bugs in SELECT queries. While the logic bugs in UPDATE and DELETE queries have not been tackled yet, even though they can cause severer consequences,e.g., incorrect database states. Logic bugs in DBMSs, especially those in UPDATE and DELETE queries, are difﬁcult to detect automatically. A key challenge to detect logic bugs is to construct an effective testoracle to determine whether a DBMS behaves correctly fora given query. Existing approaches to construct oracles for SELECT queries, e.g., PQS [9], NoREC [10] and TLP [11], cannot be",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 3129,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": ", PQS [9], NoREC [10] and TLP [11], cannot be adopted on UPDATE and DELETE queries.",
+      "context_before": "to be the same as theoriginal query’s result. However, all these approaches mainlyfocus on detecting logic bugs in SELECT queries. While the logic bugs in UPDATE and DELETE queries have not been tackled yet, even though they can cause severer consequences,e.g., incorrect database states. Logic bugs in DBMSs, especially those in UPDATE and DELETE queries, are difﬁcult to detect automatically. A key challenge to detect logic bugs is to construct an effective testoracle to determine whether a DBMS behaves correctly fora given query. Existing approaches to construct oracles for SELECT queries, e.g.",
+      "context_after": "In DBMSs, SELECT, UPDATE and DELETE queries utilize predicates (i.e., WHERE clauses) to specify which rows to retrieve, update or delete, respectively. If they use the samepredicate ϕ, they should access the same rows in a database. Ideally, DBMSs can adopt the same implementations for pred-icate evaluation in SELECT, UPDATE and DELETE queries. However, a DBMS usually adopts different implementationsfor predicate evaluation in SELECT, UPDATE and DELETE queries due to various optimization choices 1. Inconsistent implementations for predicate evaluation among these queriescan cause SELECT, UPDATE",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 3884,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": ", PQS [9], NoREC [10] and TLP [11].",
+      "context_before": "med and ﬁxed it. Existing approaches cannot detect this bug, because this bug occurs in the UPDATE and DELETE queries. To evaluate DQE’s effectiveness and generality, we implement DQE and perform experiments on ﬁve widely-used and production-level DBMSs, i.e., MySQL [1], MariaDB [2], TiDB [3], CockroachDB [4] and SQLite [5]. In total, we have detected 50 unique bugs among these DBMSs, 41 of which have been conﬁrmed as new bugs, and 11 bugs have been ﬁxed. Among the 41 conﬁrmed bugs, 20 bugs occur in UPDATE and DELETE queries. None of our detected bugs can be detected by existing approaches, e.g.",
+      "context_after": "Our experimental results indicate that DQE is effective in detecting logic bugs in SELECT ,UPDATE and DELETE queries in DBMSs. We have made DQE publicly available at https://github.com/tcse-iscas/dqetool. Although we have detected many bugs in SELECT, UPDATE and DELETE queries in our target DBMSs, DQE still has some limitations. First, DQE suffers from the same issue as differential testing, in which DQE fails to detect the same bug occurring in all the three SELECT ,UPDATE and DELETE queries. Second, DQE only supports common operations and functions in SELECT ,UPDATE and DELETE queries, e.g., J",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 7302,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Our database generation is mainly adopted from SQLancer [27].",
+      "context_before": "l,tudenotes t1’s new table state after executing Qup, and tddenotes t1’s new table state after executing Qdel. The rest of this section is organized as follows. Section III-B describes our database generation. Section III-C describes our strategies to generate SQL queries. Section III-D shows how we obtain a query triple’s execution results. Section III-E shows how we detect logic bugs by comparing the execution results of the three queries in a query triple. B. Database Generation Database generation has been widely explored by existing works [21]–[26], and is not a contribution of this work.",
+      "context_after": "We present our database generation only for completeness. We ﬁrst use the CREATE TABLE command to create at mostmaxTable tables. Each table contains at most maxCol columns. We assign each column with a random column type, e.g., INT or TEXT, and some column constraints, e.g., PRIMARY KEY and UNIQUE. We then populate random data into each table by executing the INSERT command. Each table contains at most maxInsert rows of data. We further execute at most maxAlter ALTER TABLE and CREATE INDEX commands to modify each initial table, e.g., adding new columns or building indexes on existing columns. Mo",
+      "section": "B Database Generation",
+      "page": 4,
+      "char_offset": 17164,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "EVALUATION We implement DQE based on SQLancer [27], which is implemented in Java.",
+      "context_before": "rror, QupandQdelshould raise the same error. In this case, row upandrow delshould be empty. However, row selmay not be empty, as discussed in Section II-C. 2077 TABLE IIIBUGS REPORTED BYDQE Bug Status Triggering Query DBMS Submitted Conﬁrmed Fixed Duplicate Not a bug SELECT UPDATE DELETE MySQL 7 1 1 0 6 0 1 1 MariaDB 4 2 0 0 0 0 0 2 TiDB 37 37 10 0 0 20 17 17 CockroachDB 1 0 0 1 0 0 0 0 SQLite 1 1 0 0 0 1 0 0 Total 50 41 11 1 6 21 18 20 •IfQseldoes not raise a warning or an error, Qupand Qdelshould not raise a warning or an error. In this case, row sel,row upandrow delshould be the same. IV.",
+      "context_after": "We make the following improvements to apply DQE. First, we add UPDATE and DELETE query generation in our target DBMSs, e.g., MySQL, TiDB and SQLite. Second, DQE requires to execute the three queries in a query triple on the same database state. In MySQL, MariaDB and TiDB, we use ROLLBACK transactions to roll back all changes made by UPDATE and DELETE queries. In CockroachDB and SQLite, we record the table content before query execution and reﬁll the table with the same content after query execution. In total, we write about 2,600 lines of code to implement DQE on ﬁve target DBMSs. We evaluate t",
+      "section": "IV EVALUATION",
+      "page": 7,
+      "char_offset": 30423,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": ", PQS [9], NoREC [10] and TLP [11]) that aim to detect logic bugs in DBMSs.",
+      "context_before": "rrect database states, 34 queries occur in TiDB and 2 queries occur in MySQL. All 5 queries that lead to duplicate warnings occur in TiDB. Among the 8 queries that lead to unexpected warnings, 6 queries occur in TiDB and 2 queries occur in MariaDB. One query that leads to unexpected errors occurs in SQLite. All 6 queries that lead to incorrect warning messages occur in TiDB. The remaining 3 queries that lead to the execution failures of the SHOWWARNINGS command occur in TiDB. C. Comparing with Existing Approaches To answer RQ2, we perform a qualitative comparison with existing approaches (i.e.",
+      "context_after": "These three approaches construct oracles to detect logic bugs in single SELECT queries. Thus, they cannot detect the 20 logic bugs in UPDATE and DELETE queries. Moreover, these three approaches do not consider the normal errors that can be unexpectedly raised by SELECT queries as logic bugs, e.g., the warnings in Listing 3. Unlike crashes caught by these approaches, these normal errors do not crash the DBMS and need a test oracle to validate their correctness. Thus, they cannot detect 18 logic bugs related to this kind of errors TABLE VCOVERAGE INFORMATION Tool MySQL MariaDB PQS 19 NoREC-18 TLP",
+      "section": "C Comparing with Existing Approaches",
+      "page": 8,
+      "char_offset": 36898,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Thus, they cannot detect 18 logic bugs related to this kind of errors TABLE VCOVERAGE INFORMATION Tool MySQL MariaDB PQS 19 NoREC-18 TLP 18 DQE 15 21 in SELECT queries.",
+      "context_before": "erform a qualitative comparison with existing approaches (i.e., PQS [9], NoREC [10] and TLP [11]) that aim to detect logic bugs in DBMSs. These three approaches construct oracles to detect logic bugs in single SELECT queries. Thus, they cannot detect the 20 logic bugs in UPDATE and DELETE queries. Moreover, these three approaches do not consider the normal errors that can be unexpectedly raised by SELECT queries as logic bugs, e.g., the warnings in Listing 3. Unlike crashes caught by these approaches, these normal errors do not crash the DBMS and need a test oracle to validate their correctness.",
+      "context_after": "We further analyze the triggering test cases and bug consequences of the remaining 3 logic bugs in SELECT queries. We ﬁnd that, none of these 3 bugs can be triggered or captured by the oracles in these approaches. Therefore, all our reported bugs cannot be detected by these approaches theoretically. Other DBMS testing approaches, e.g., SQLsmith [29], APOLLO [30], AMOEBA [31], RAGS [8] and SparkFuzz [32], cannot construct oracles to detect logic bugs, or cannot detect logic bugs in a single DBMS because differential testing needs multiple DBMSs. Therefore, we do not compare DQE with these appro",
+      "section": "C Comparing with Existing Approaches",
+      "page": 8,
+      "char_offset": 37436,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "citation_marker",
+      "surface": "[9]–[11]",
+      "technique": "pqs",
+      "sentence": "Existing works [9]–[11] also face the same problem.",
+      "context_before": "ing approaches, e.g., SQLsmith [29], APOLLO [30], AMOEBA [31], RAGS [8] and SparkFuzz [32], cannot construct oracles to detect logic bugs, or cannot detect logic bugs in a single DBMS because differential testing needs multiple DBMSs. Therefore, we do not compare DQE with these approaches. D. Other Experimental Statistics Test efﬁciency. During testing, before a bug we detect is ﬁxed by the DBMS developers, DQE will generate many test cases that trigger the same bug. In total, DQE reports 122 bugs. After ﬁltering out duplicate bugs, we obtain 50 unique bugs. The duplicate rate is 41% (50/122).",
+      "context_after": "There is currently no practical way to automatically ﬁlter out duplicate test cases for DBMSs. For discovering these 50 unique bugs, we generate 1,776,124,512 query triples. Query generation efﬁciency. We measure the query generation efﬁciency in DQE during testing. In this experiment, we count every queries generated including those that create the database and query triples. In DQE, we generate syntactically valid queries based on Abstract Syntax Trees (ASTs) of SQL. However, SQL in different DBMSs should obey many semantic constraints, which can cause DQE to generate semantically invalid q",
+      "section": "D Other Experimental Statistics",
+      "page": 8,
+      "char_offset": 38519,
+      "cited_reference": {
+        "number": 9,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": ", PQS [9], NoREC [10] and TLP [11].",
+      "context_before": "cate value into a UNIQUE column. Such semantic errors can lower our success rate of query generation. In MySQL, DQE generates 2,885 queries per second with a success rate of 88%. In MariaDB, DQE generates 3,344 queries per second with a success rate of 87%. In TiDB, DQE generates 1,566 queries per second with a success rate of 89%. In CockroachDB, DQE generates 243 queries per second with a success rate of 72%. In SQLite, DQE generates 12,313 queries per second with a success rate of 97%. Coverage. To demonstrate the sufﬁciency of our testing, we compare code coverage with existing works, i.e.",
+      "context_after": "We run each tool with the same experimental setting for 24 hours on MySQL and MariaDB4. 4We have not found a suitable way to perform code coverage measurements in TiDB, SQLite and CockroachDB. 2079 Table V shows our experiment results. PQS achieves 19% line coverage in MySQL. NoREC achieves 18% line coverage in MariaDB. TLP achieves 18% line coverage in MySQL. DQE achieves 15% line coverage in MySQL and 21% line coverage in MariaDB. We can see that DQE obtains similar coverage with other works. This is reasonable, since DQE, PQS, NoREC and TLP are all built on SQLancer, which share the simi",
+      "section": "D Other Experimental Statistics",
+      "page": 8,
+      "char_offset": 39846,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS achieves 19% line coverage in MySQL.",
+      "context_before": "nerates 1,566 queries per second with a success rate of 89%. In CockroachDB, DQE generates 243 queries per second with a success rate of 72%. In SQLite, DQE generates 12,313 queries per second with a success rate of 97%. Coverage. To demonstrate the sufﬁciency of our testing, we compare code coverage with existing works, i.e., PQS [9], NoREC [10] and TLP [11]. We run each tool with the same experimental setting for 24 hours on MySQL and MariaDB4. 4We have not found a suitable way to perform code coverage measurements in TiDB, SQLite and CockroachDB. 2079 Table V shows our experiment results.",
+      "context_after": "NoREC achieves 18% line coverage in MariaDB. TLP achieves 18% line coverage in MySQL. DQE achieves 15% line coverage in MySQL and 21% line coverage in MariaDB. We can see that DQE obtains similar coverage with other works. This is reasonable, since DQE, PQS, NoREC and TLP are all built on SQLancer, which share the similar query generation. Note that, in SQLancer, NoREC does not support testing MySQL, PQS and TLP do not support testing MariaDB. Thus, we do not measure their code coverage. Although DQE can generate thousands of queries per second in MySQL and MariaDB, the coverage is low. This",
+      "section": "D Other Experimental Statistics",
+      "page": 9,
+      "char_offset": 40119,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC achieves 18% line coverage in MariaDB.",
+      "context_before": "uccess rate of 89%. In CockroachDB, DQE generates 243 queries per second with a success rate of 72%. In SQLite, DQE generates 12,313 queries per second with a success rate of 97%. Coverage. To demonstrate the sufﬁciency of our testing, we compare code coverage with existing works, i.e., PQS [9], NoREC [10] and TLP [11]. We run each tool with the same experimental setting for 24 hours on MySQL and MariaDB4. 4We have not found a suitable way to perform code coverage measurements in TiDB, SQLite and CockroachDB. 2079 Table V shows our experiment results. PQS achieves 19% line coverage in MySQL.",
+      "context_after": "TLP achieves 18% line coverage in MySQL. DQE achieves 15% line coverage in MySQL and 21% line coverage in MariaDB. We can see that DQE obtains similar coverage with other works. This is reasonable, since DQE, PQS, NoREC and TLP are all built on SQLancer, which share the similar query generation. Note that, in SQLancer, NoREC does not support testing MySQL, PQS and TLP do not support testing MariaDB. Thus, we do not measure their code coverage. Although DQE can generate thousands of queries per second in MySQL and MariaDB, the coverage is low. This is expected, because DQE only focuses on quer",
+      "section": "D Other Experimental Statistics",
+      "page": 9,
+      "char_offset": 40160,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP achieves 18% line coverage in MySQL.",
+      "context_before": "ates 243 queries per second with a success rate of 72%. In SQLite, DQE generates 12,313 queries per second with a success rate of 97%. Coverage. To demonstrate the sufﬁciency of our testing, we compare code coverage with existing works, i.e., PQS [9], NoREC [10] and TLP [11]. We run each tool with the same experimental setting for 24 hours on MySQL and MariaDB4. 4We have not found a suitable way to perform code coverage measurements in TiDB, SQLite and CockroachDB. 2079 Table V shows our experiment results. PQS achieves 19% line coverage in MySQL. NoREC achieves 18% line coverage in MariaDB.",
+      "context_after": "DQE achieves 15% line coverage in MySQL and 21% line coverage in MariaDB. We can see that DQE obtains similar coverage with other works. This is reasonable, since DQE, PQS, NoREC and TLP are all built on SQLancer, which share the similar query generation. Note that, in SQLancer, NoREC does not support testing MySQL, PQS and TLP do not support testing MariaDB. Thus, we do not measure their code coverage. Although DQE can generate thousands of queries per second in MySQL and MariaDB, the coverage is low. This is expected, because DQE only focuses on query processing in DBMSs. DBMSs also provide",
+      "section": "D Other Experimental Statistics",
+      "page": 9,
+      "char_offset": 40205,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "This is reasonable, since DQE, PQS, NoREC and TLP are all built on SQLancer, which share the similar query generation.",
+      "context_before": "our testing, we compare code coverage with existing works, i.e., PQS [9], NoREC [10] and TLP [11]. We run each tool with the same experimental setting for 24 hours on MySQL and MariaDB4. 4We have not found a suitable way to perform code coverage measurements in TiDB, SQLite and CockroachDB. 2079 Table V shows our experiment results. PQS achieves 19% line coverage in MySQL. NoREC achieves 18% line coverage in MariaDB. TLP achieves 18% line coverage in MySQL. DQE achieves 15% line coverage in MySQL and 21% line coverage in MariaDB. We can see that DQE obtains similar coverage with other works.",
+      "context_after": "Note that, in SQLancer, NoREC does not support testing MySQL, PQS and TLP do not support testing MariaDB. Thus, we do not measure their code coverage. Although DQE can generate thousands of queries per second in MySQL and MariaDB, the coverage is low. This is expected, because DQE only focuses on query processing in DBMSs. DBMSs also provide many features that we do not test, e.g., user management, conﬁguration, and fault tolerance. Parameter selection. We use some default parameters, e.g., maxTable =5,maxCol =10, and maxDept =3, to generate databases and queries. These parameters may affect",
+      "section": "D Other Experimental Statistics",
+      "page": 9,
+      "char_offset": 40383,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Note that, in SQLancer, NoREC does not support testing MySQL, PQS and TLP do not support testing MariaDB.",
+      "context_before": "h the same experimental setting for 24 hours on MySQL and MariaDB4. 4We have not found a suitable way to perform code coverage measurements in TiDB, SQLite and CockroachDB. 2079 Table V shows our experiment results. PQS achieves 19% line coverage in MySQL. NoREC achieves 18% line coverage in MariaDB. TLP achieves 18% line coverage in MySQL. DQE achieves 15% line coverage in MySQL and 21% line coverage in MariaDB. We can see that DQE obtains similar coverage with other works. This is reasonable, since DQE, PQS, NoREC and TLP are all built on SQLancer, which share the similar query generation.",
+      "context_after": "Thus, we do not measure their code coverage. Although DQE can generate thousands of queries per second in MySQL and MariaDB, the coverage is low. This is expected, because DQE only focuses on query processing in DBMSs. DBMSs also provide many features that we do not test, e.g., user management, conﬁguration, and fault tolerance. Parameter selection. We use some default parameters, e.g., maxTable =5,maxCol =10, and maxDept =3, to generate databases and queries. These parameters may affect our bug detection effectiveness. However, the impact of these parameters could be low. The reasons are as",
+      "section": "D Other Experimental Statistics",
+      "page": 9,
+      "char_offset": 40502,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "pqs",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "citation_marker",
+      "surface": "[50]–[57]",
+      "technique": "qpg",
+      "sentence": "Database and SQL query generation have been widely explored by existing works [21]–[26], [29], [50]–[57].",
+      "context_before": "] and RD2 [49] apply differential testing on graph database systems. APOLLO [30] 12https://bugs.mysql.com/bug.php?id=106407feeds the same SELECT query into two different versions of the same DBMS to detect performance bugs. SparkFuzz [32] validates a query result with a reference DBMS (e.g., PostgreSQL) or with a different Spark version. We develop a novel differential testing approach, which executes SELECT, UPDATE and DELETE queries with the same predicate in a DBMS to detect logic bugs. Database and SQL query generation. One key component of automatic testing is an automatic input generator.",
+      "context_after": "SQLsmith [29] is an open source random SQL query generator, which is inspired by Csmith [58]. Go-randgen [54] can generate various SQL queries based on input SQL grammar. SQLRight [55] is a mutation-based SQL query generator, in which an intermediate representation is designed to perform mutations guided by coverage feedback. A better database and SQL query generation might improve the efﬁciency of our work in detecting logic bugs. Test oracles of DBMSs. Test oracles are the key to reveal DBMS bugs. ADUSA [26] uses Alloy [59], an open source language and analyzer, to analyze the expected quer",
+      "section": "VI RELATED WORK",
+      "page": 11,
+      "char_offset": 53213,
+      "cited_reference": {
+        "number": 50,
+        "text": "J. Ba and M. Rigger, “Testing database engines via query plan guidance,” inProceedings of International Conference on Software Engineering (ICSE), 2023.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS [9] synthesizes a SELECT query, which is computed to fetch a randomly-selected pivot row, and checks whether the pivot row is contained in its query result.",
+      "context_before": "random SQL query generator, which is inspired by Csmith [58]. Go-randgen [54] can generate various SQL queries based on input SQL grammar. SQLRight [55] is a mutation-based SQL query generator, in which an intermediate representation is designed to perform mutations guided by coverage feedback. A better database and SQL query generation might improve the efﬁciency of our work in detecting logic bugs. Test oracles of DBMSs. Test oracles are the key to reveal DBMS bugs. ADUSA [26] uses Alloy [59], an open source language and analyzer, to analyze the expected query result of a given SELECT query.",
+      "context_after": "NoREC [10] rewrites a SELECT query as an equivalent one that the DBMS cannot optimize, and compares their results. TLP [11] leverages the ternary property of predicate evaluation, where the evaluation result is one of TRUE ,FALSE and NULL, to partition a SELECT query into three partitioning queries, whose combined query results are equal to the original query’s query result. Troc [60] proposes how to build a test oracle for a pair of transactions. Our work proposes a new test oracle for DBMS testing, and is complementary to existing approaches. VII. CONCLUSION Logic bugs in UPDATE and DELETE qu",
+      "section": "VI RELATED WORK",
+      "page": 11,
+      "char_offset": 53952,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M20",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC [10] rewrites a SELECT query as an equivalent one that the DBMS cannot optimize, and compares their results.",
+      "context_before": "ation-based SQL query generator, in which an intermediate representation is designed to perform mutations guided by coverage feedback. A better database and SQL query generation might improve the efﬁciency of our work in detecting logic bugs. Test oracles of DBMSs. Test oracles are the key to reveal DBMS bugs. ADUSA [26] uses Alloy [59], an open source language and analyzer, to analyze the expected query result of a given SELECT query. PQS [9] synthesizes a SELECT query, which is computed to fetch a randomly-selected pivot row, and checks whether the pivot row is contained in its query result.",
+      "context_after": "TLP [11] leverages the ternary property of predicate evaluation, where the evaluation result is one of TRUE ,FALSE and NULL, to partition a SELECT query into three partitioning queries, whose combined query results are equal to the original query’s query result. Troc [60] proposes how to build a test oracle for a pair of transactions. Our work proposes a new test oracle for DBMS testing, and is complementary to existing approaches. VII. CONCLUSION Logic bugs in UPDATE and DELETE queries can cause severer consequences, e.g., incorrect database states, and have not been tackled by existing approa",
+      "section": "VI RELATED WORK",
+      "page": 11,
+      "char_offset": 54113,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M21",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP [11] leverages the ternary property of predicate evaluation, where the evaluation result is one of TRUE ,FALSE and NULL, to partition a SELECT query into three partitioning queries, whose combined query results are equal to the original query’s query result.",
+      "context_before": "coverage feedback. A better database and SQL query generation might improve the efﬁciency of our work in detecting logic bugs. Test oracles of DBMSs. Test oracles are the key to reveal DBMS bugs. ADUSA [26] uses Alloy [59], an open source language and analyzer, to analyze the expected query result of a given SELECT query. PQS [9] synthesizes a SELECT query, which is computed to fetch a randomly-selected pivot row, and checks whether the pivot row is contained in its query result. NoREC [10] rewrites a SELECT query as an equivalent one that the DBMS cannot optimize, and compares their results.",
+      "context_after": "Troc [60] proposes how to build a test oracle for a pair of transactions. Our work proposes a new test oracle for DBMS testing, and is complementary to existing approaches. VII. CONCLUSION Logic bugs in UPDATE and DELETE queries can cause severer consequences, e.g., incorrect database states, and have not been tackled by existing approaches. In this paper, we propose a novel and general approach DQE to effectively detect logic bugs in SELECT ,UPDATE and DELETE queries. We evaluate DQE on ﬁve widely-used DBMSs, i.e., MySQL, MariaDB, TiDB, CockroachDB and SQLite. In total, we have detected 41 pre",
+      "section": "VI RELATED WORK",
+      "page": 11,
+      "char_offset": 54228,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": {
+    "url": "https://github.com/JensonSung/dqetool",
+    "markers": [
+      "renamed_sqlancer_package",
+      "sqlancer_source_content_match"
+    ],
+    "evidence": [
+      {
+        "source_url": "https://github.com/JensonSung/dqetool",
+        "source_type": "github_repository",
+        "excerpt": "Replication package for \"Testing Database Systems via Differential Query Execution\", accepted at ICSE 2023\n\n# DQETool\n\nDQETool is the implementation of differential query execution in paper.\n\n# Getting Started\n\nRequirements:\n* Java 11 or above",
+        "note": "Repository names this paper.",
+        "retrieved_at": "2026-09-10T15:15:32Z",
+        "first_seen": "2026-09-10T15:15:32Z",
+        "last_verified": "2026-09-10T15:15:32Z",
+        "excerpt_is_verbatim": true
+      },
+      {
+        "source_url": "https://github.com/JensonSung/dqetool/blob/main/src/dqetool/Randomly.java",
+        "source_type": "github_code",
+        "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.SOPHISTICATED;",
+        "excerpt_is_verbatim": true,
+        "note": "src/dqetool/Randomly.java is SQLancer's Randomly.java, with the package renamed to dqetool (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+        "content_sha256": "sha256:c4aa77016b32eb0b4a0e071764bf41adfdc03763a40486ebcb64e9c0a82df6ab",
+        "retrieved_at": "2026-09-10T15:15:32Z",
+        "first_seen": "2026-09-10T15:15:32Z",
+        "last_verified": "2026-09-10T15:15:32Z"
+      }
+    ]
+  },
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "uses_infrastructure": [
+        "M7",
+        "M8"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:36:46Z",
+    "is_model_written": true,
+    "summary": "DQE tests DBMSs by checking that the rows a SELECT identifies are the same rows an UPDATE or DELETE with the same predicate acts on. The gap it addresses is that existing logic-bug oracles only examine SELECT: a predicate evaluated correctly in a query can still be evaluated wrongly when it drives a data-modifying statement, and no oracle looked there. Applied to MySQL, MariaDB and TiDB it found 32 bugs, 30 confirmed and 21 fixed.",
+    "narrative": "DQE is built on SQLancer. The paper states that its implementation is based on SQLancer and that its database generation is mainly adopted from it, and it notes that DQE, PQS, NoREC and TLP are all built on SQLancer and so share similar query generation -- offered as the explanation for their comparable code coverage. PQS, NoREC and TLP are also its baselines: it reports coverage and bug counts against all three, and its motivation is that none of them can be applied to UPDATE and DELETE statements, which is the gap DQE fills.",
+    "roles": {
+      "M1": "background",
+      "M2": "definition",
+      "M3": "definition",
+      "M4": "definition",
+      "M5": "motivation",
+      "M6": "motivation",
+      "M7": "reuse_component",
+      "M8": "reuse_implementation",
+      "M9": "baseline",
+      "M10": "result_comparison",
+      "M11": "background",
+      "M12": "result_comparison",
+      "M13": "result_comparison",
+      "M14": "result_comparison",
+      "M15": "result_comparison",
+      "M16": "reuse_implementation",
+      "M17": "incidental",
+      "M18": "background",
+      "M19": "definition",
+      "M20": "definition",
+      "M21": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M7",
+          "M8",
+          "M16"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M7",
+            "sentence": "Our database generation is mainly adopted from SQLancer [27].",
+            "section": "B Database Generation",
+            "page": 4
+          },
+          {
+            "mention_id": "M8",
+            "sentence": "EVALUATION We implement DQE based on SQLancer [27], which is implemented in Java.",
+            "section": "IV EVALUATION",
+            "page": 7
+          },
+          {
+            "mention_id": "M16",
+            "sentence": "This is reasonable, since DQE, PQS, NoREC and TLP are all built on SQLancer, which share the similar query generation.",
+            "section": "D Other Experimental Statistics",
+            "page": 9
+          }
+        ],
+        "reasoning": "M8 states DQE is implemented based on SQLancer, M7 that its database generation is mainly adopted from it, and M16 that DQE is built on SQLancer alongside PQS, NoREC and TLP. This is the codebase, not a workload.",
+        "reuse_kind": "implementation"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "DQE is a new oracle rather than an extension of one. M5 and M6 give the relationship: PQS, NoREC and TLP cannot be adopted on UPDATE and DELETE queries, and DQE addresses that by comparing a SELECT against a data-modifying statement -- a different oracle, not a generalisation of theirs."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M9",
+          "M10",
+          "M12"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M9",
+            "sentence": ", PQS [9], NoREC [10] and TLP [11]) that aim to detect logic bugs in DBMSs.",
+            "section": "C Comparing with Existing Approaches",
+            "page": 8
+          },
+          {
+            "mention_id": "M10",
+            "sentence": "Thus, they cannot detect 18 logic bugs related to this kind of errors TABLE VCOVERAGE INFORMATION Tool MySQL MariaDB PQS 19 NoREC-18 TLP 18 DQE 15 21 in SELECT queries.",
+            "section": "C Comparing with Existing Approaches",
+            "page": 8
+          },
+          {
+            "mention_id": "M12",
+            "sentence": ", PQS [9], NoREC [10] and TLP [11].",
+            "section": "D Other Experimental Statistics",
+            "page": 8
+          }
+        ],
+        "reasoning": "M9 names PQS, NoREC and TLP as the existing approaches DQE is compared with, and M10 and M12 report the outcome in bugs found and line coverage.",
+        "techniques": [
+          "pqs",
+          "norec",
+          "tlp"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The techniques are described by what they do and by their limits, not as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

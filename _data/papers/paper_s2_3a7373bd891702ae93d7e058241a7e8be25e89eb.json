@@ -1,0 +1,1065 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:33:05Z",
+  "paper": {
+    "id": "paper:s2:3a7373bd891702ae93d7e058241a7e8be25e89eb",
+    "title": "DynSQL: Stateful Fuzzing for Database Management Systems with Complex and Valid SQL Query Generation",
+    "authors": [
+      "Zu-Ming Jiang",
+      "Jia-Ju Bai",
+      "Zhendong Su"
+    ],
+    "year": 2023,
+    "venue": "USENIX Security Symposium",
+    "doi": null,
+    "arxiv_id": null,
+    "s2_paper_id": "3a7373bd891702ae93d7e058241a7e8be25e89eb",
+    "url": "https://www.semanticscholar.org/paper/3a7373bd891702ae93d7e058241a7e8be25e89eb",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "usenix",
+      "url": "https://www.usenix.org/system/files/usenixsecurity23-jiang-zu-ming.pdf",
+      "retrieved_at": "2026-09-09T01:33:05Z",
+      "chars": 79652,
+      "content_sha256": "sha256:19e7312a28d4011ce248dabb79990df074a027421ef2547fa06d1e8c6c90590c"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 18,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2208
+      },
+      {
+        "number": "2",
+        "title": "Background and Motivation",
+        "start": 8988
+      },
+      {
+        "number": "3",
+        "title": "Stateful DBMS Fuzzing",
+        "start": 15154
+      },
+      {
+        "number": "3.1",
+        "title": "Dynamic Query Interaction",
+        "start": 16807
+      },
+      {
+        "number": "3.2",
+        "title": "Error Feedback",
+        "start": 25888
+      },
+      {
+        "number": "4",
+        "title": "Framework and Implementation",
+        "start": 27924
+      },
+      {
+        "number": "5",
+        "title": "Evaluation",
+        "start": 31705
+      },
+      {
+        "number": "5.1",
+        "title": "Experimental Setup",
+        "start": 32238
+      },
+      {
+        "number": "5.2",
+        "title": "Runtime Testing",
+        "start": 32837
+      },
+      {
+        "number": "5.3",
+        "title": "Security Impact",
+        "start": 39571
+      },
+      {
+        "number": "5.4",
+        "title": "Sensitivity Analysis",
+        "start": 44203
+      },
+      {
+        "number": "5.5",
+        "title": "Comparison to Existing DBMS Fuzzers",
+        "start": 50999
+      },
+      {
+        "number": "6",
+        "title": "Limitations and Future Work",
+        "start": 57509
+      },
+      {
+        "number": "7",
+        "title": "Related Work",
+        "start": 60869
+      },
+      {
+        "number": "7.1",
+        "title": "DBMS Testing",
+        "start": 60884
+      },
+      {
+        "number": "8",
+        "title": "Conclusion",
+        "start": 65502
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "B. Acohido. Small banks and credit union attack set for tuesday, 2013. https://www.usatoday.com/story /cybertruth/2013/05/06/ddos-denial-of-ser vice-small-business-cybersecurity-privacy /2139349/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "American fuzzy lop. https://github.com/google/ AFL.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "ASan: address sanitizer. https://github.com/goo gle/sanitizers/wiki/AddressSanitizer.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Marcel Böhme, Van-Thuan Pham, and Abhik Roychoudhury. Coverage-based greybox fuzzing as markov chain. InProceedings of the 23rd International Conference on Computer and Communications Security (CCS), pages 1032–1043, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "E. V. Buskirk. Facebook conﬁrms denial-of-service attack, 2009. https://www.wired.com/2009/08/ facebook-apparently-attacked-in-addition-t o-twitter/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Peng Chen and Hao Chen. Angora: efﬁcient fuzzing by principled search. In Proceedings of the 2018 Symposium on Security and Privacy (S&P), pages 711–725, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "C. Cimpanu. Google chrome impacted by new magellan 2.0 vulnerabilities, 2019. https://www.zdnet.com/ article/google-chrome-impacted-by-new-mag ellan-2-0-vulnerabilities/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Clang: a llvm-based compiler for C/C++ programs. https://clang.llvm.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "ClickHouse. https://clickhouse.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "CLOC: count lines of code. https://cloc.sourcef orge.net/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Chris Cummins, Pavlos Petoumenos, Alastair Murray, and Hugh Leather. Compiler fuzzing through deep learning. In Proceedings of the 27th International Symposium on Software Testing and Analysis (ISSTA), pages 95–105, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "DB-Engines Ranking. https://db-engines.com/e n/ranking.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "UM Fayyad. Data science revealed: A data-driven glimpse into the burgeoning new ﬁeld, 2011. https: //embed.cs.utah.edu/creduce/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "L. Franceschi-Bicchierai. Hacker tries to sell 427 milllion stolen myspace passwords for $2,800, 2016. https://www.vice.com/en/article/pgkk8v /427-million-myspace-passwords-emails-dat a-breach.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Shuitao Gan, Chao Zhang, Peng Chen, Bodong Zhao, Xiaojun Qin, Dong Wu, and Zuoning Chen. GREYONE: data ﬂow sensitive fuzzing. In Proceedings of the 29th USENIX Security Symposium, pages 2577–2594, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Patrice Godefroid, Hila Peleg, and Rishabh Singh. Learn&Fuzz: machine learning for input fuzzing. In Proceedings of the 32nd International Conference on Automated Software Engineering (ASE), pages 50–59, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, Kangjie Lu, and Shi-Min Hu. Fuzzing error handling code using context-sensitive software fault injection. In Proceedings of the 29th USENIX Security Symposium, pages 2595–2612, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. APOLLO: automatic detection and diagnosis of performance regressions in database systems. InProceedings of the 46th International Conference on Very Large Data Bases (VLDB), 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Shadi Abdul Khalek, Bassem Elkarablieh, Yai O. Laleye, and Sarfraz Khurshid. Query-aware test generation using a relational constraint solver. In Proceedings of the 23rd International Conference on Automated Software Engineering (ASE), pages 238–247, 2008.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Shadi Abdul Khalek and Sarfraz Khurshid. Automated SQL query generation for systematic testing of database engines. In Proceedings of the 2010 International Conference on Automated Software Engineering (ASE), pages 329–332, 2010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "George Klees, Andrew Ruef, Benji Cooper, Shiyi Wei, and Michael Hicks. Evaluating fuzz testing. In Proceedings of the 2018 International Conference on Computer and Communications Security (CCS), pages 2123–2138, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Doug Laney et al. 3d data management: Controlling data volume, velocity and variety. META group research note, 6(70):1, 2001. 4962 32nd USENIX Security Symposium USENIX Association",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Guoliang Li, Xuanhe Zhou, Shifu Li, and Bo Gao. QTune: a query-aware database tuning system with deep reinforcement learning. Proceedings of the VLDB Endowment, 12(12):2118–2130, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "libFuzzera library for coverage-guided fuzz testing. https://llvm.org/docs/LibFuzzer.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. Automated performance bug detection in database systems. arXiv preprint arXiv:2105.10016, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Chenyang Lyu, Shouling Ji, Chao Zhang, Yuwei Li, WeiHan Lee, Yu Song, and Raheem Beyah. MOPT: optimized mutation scheduling for fuzzers. In Proceedings of the 28th USENIX Security Symposium, pages 1949– 1966, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "MariaDB. https://www.mariadb.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "MonetDB. https://www.monetdb.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "MySQL. https://www.mysql.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Rohan Padhye, Caroline Lemieux, Koushik Sen, Mike Papadakis, and Yves Le Traon. Semantic fuzzing with zest. In Proceedings of the 28th International Symposium on Software Testing and Analysis (ISSTA), pages 329–340, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "PostgreSQL. https://www.postgresql.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Sameer Reddy, Caroline Lemieux, Rohan Padhye, and Koushik Sen. Quickly generating diverse valid test inputs with reinforcement learning. In Proceedings of the 42nd International Conference on Software Engineering (ICSE), pages 1410–1421, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "John Regehr, Yang Chen, Pascal Cuoq, Eric Eide, Chucky Ellison, and Xuejun Yang. Test-case reduction for C compiler bugs. In Proceedings of the 2012 International Conference on Programming Language Design and Implementation, pages 335–346, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Kim-Thomas Rehmann, Changyun Seo, Dongwon Hwang, Binh Than Truong, Alexander Boehm, and Dong Hun Lee. Performance monitoring in sap hana’s continuous integration process. ACMSIGMETRICS Performance Evaluation Review, 43(4):43–52, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESE/FSE), pages 1140–1152, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 36,
+      "text": "Manuel Rigger and Zhendong Su. Finding bugs in database systems via query partitioning. Proceedings of the ACM on Programming Languages, 4(OOPSLA):1– 30, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 37,
+      "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI), pages 667–682, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 38,
+      "text": "Avi Silberschatz, Henry F. Korth, and S. Sudarshan. Database System Concepts, Seventh Edition. McGrawHill Book Company, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Donald R. Slutz. Massive stochastic testing of SQL. In Proceedings of 24rd International Conference on Very Large Data Bases (VLDB), pages 618–622, 1998.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Database Language SQL, 1992. http://www.contri b.andrew.cmu.edu/~shadow/sql/sql1992.txt.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "SQLancer. https://github.com/sqlancer/sqla ncer.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 42,
+      "text": "SQLite. https://www.sqlite.org/index.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "SQLsmith. https://github.com/anse1/sqlsmi th.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Michael Stonebraker, Sam Madden, and Pradeep Dubey. Intel\" big data\" science and technology center vision and execution plan. ACMSIGMOD Record, 42(1):44–49, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. Industry practice of coverage-guided enterprise-level DBMS fuzzing. InProceedings of the 43rd International Conference on Software Engineering: Software Engineering in Practice (ICSESEIP), pages 328–337, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Yahoo says all three billion accounts hacked in 2013 data theft, 2017. https://www.reuters.com/arti cle/us-yahoo-cyber/yahoo-says-all-three-b illion-accounts-hacked-in-2013-data-theft -id USKCN1C82O1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Insu Yun, Sangho Lee, Meng Xu, Yeongjin Jang, and Taesoo Kim. QSYM: a practical concolic execution engine tailored for hybrid fuzzing. In Proceedings of the 27th USENIX Security Symposium, pages 745–761, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 International Conference on Computer and Communications Security (CCS), pages 955–970, 2020. USENIX Association 32nd USENIX Security Symposium 4963 A Examples of Bug-Triggering Queries Listing 1-6 show 6 ",
+      "is_sqlancer_publication": true
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 35,
+      "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESE/FSE), pages 1140–1152, 2020.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 36,
+      "text": "Manuel Rigger and Zhendong Su. Finding bugs in database systems via query partitioning. Proceedings of the ACM on Programming Languages, 4(OOPSLA):1– 30, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 37,
+      "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI), pages 667–682, 2020.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 41,
+      "text": "SQLancer. https://github.com/sqlancer/sqla ncer.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 48,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 International Conference on Computer and Communications Security (CCS), pages 955–970, 2020. USENIX Association 32nd USENIX Security Symposium 4963 A Examples of Bug-Triggering Queries Listing 1-6 show 6 generated queries that trigger 6 bugs, respectively. Note that many bugs found by DynSQL have not been ﬁxed yet, and related developers (e.g. developers in MySQL) hope that we do not publish the malicious queries triggering unﬁxed bugs, in order to protect their customers. Considering their concerns, we choose only the ﬁxed bugs and show their corresponding queries. These 6 selected bugs are missed by both SQUIRREL and SQLsmith, and the queries have been simpliﬁed by us and related developers. 1CREATE TABLE t1 (i1 INT); 2INSERT INTO t1 VALUES (1),(2),(3); 3CREATE VIEW v1 AS 4 SELECT t1.i1 5 FROM ( 6 t1 a JOIN t1 ON ( 7 t1.i1 = ( 8 SELECT t1.i1 9 FROM t1 b))); 10SELECT 1 11FROM ( 12 SELECT count (SELECT i1 FROM v1) 13 FROM v1 14 ) dt1; Listing 1: Generated query that crashes MariaDB 5.5-10.5 1CREATE TABLE t1 (i1 INTPRIMARY KEY); 2INSERT INTO t1 VALUES (62),(66); 3CREATE TABLE t2 (i1 INT); 4SELECT 1 5FROM t1 6WHERE t1.i1 = ( 7 SELECT t1.i1 8 FROM t2 9 UNION 10 SELECT dt1.i1 11 FROM (t1 AS dt1) 12 WINDOW w1 AS (PARTITION BY t1.i1) 13 LIMIT 1 14 ); Listing 2: Generated query that crashes MariaDB 10.2-10.5 1CREATE TABLE t1 (a INT NOT NULLPRIMARY KEY); 2INSERT INTO t1 VALUES (0),(4),(31); 3CREATE TABLE t2 (i INT); 4DELETE FROM t1 5WHERE t1.a = ( 6 SELECT t1.a 7 FROM t2 8 UNION 9 SELECT DISTINCT 52 10 FROM t2 r 11 WHERE t1.a = t1.a 12 ); Listing 3: Generated query that crashes MariaDB 10.2-10.5 1CREATE TABLE t1 (id int); 2CREATE VIEW v1 AS 3 SELECT 4 b AS a, 5 b AS b 6 FROM (7 SELECT id AS b 8 FROM t1 9 ) AS dt 10 ORDER BY a,b; 11WITH cte AS ( 12 SELECT dt.b 13 FROM ( 14 (SELECT 11 AS b FROM v1) dt 15 JOIN v1 16 ON 1) 17 ) 18SELECT 5; Listing 4: Generated query that crashes MariaDB 10.2-10.5 1CREATE TABLE t1 (a1 TEXT) engine=myisam; 2SELECT c1 FROM ( 3 SELECT DISTINCT 4 t1.a1 AS c1, 5 t1.a1 AS c2, 6 t1.a1 AS c3, 7 ... 8 t1.a1 AS c2591, 9 t1.a1 AS c2592 10 FROM t1 11 ) dt; Listing 5: Generated query that crashes MariaDB 10.2-10.5 1CREATE TABLE t1 ( 2 t1_c0 INTEGER, 3 t1_c1 TEXT, 4 t1_c2 INTEGER, 5 PRIMARY KEY (t1_c0)); 6ALTER TABLE t1 RENAME COLUMN t1_c2 TO t1_c3; 7WITH cte_0 AS ( 8 SELECT 9 ref_0.t1_c1 AS c0 10 FROM 11 t1 AS ref_0 12 GROUP BY ref_0.t1_c1) 13SELECT 14 ref_2.c0 AS c0 15FROM ( 16 (t1 AS ref_1 INNER JOIN cte_0 AS ref_2 17 ON (( 18 SELECT c0 19 FROM cte_0 20 ORDER BY c0 21 LIMIT 1 OFFSET 5 22 ) IS NULL)) 23 INNER JOIN ( 24 SELECT 25 ref_3.c0 AS c0 26 FROM 27 cte_0 AS ref_3 28 WHERE EXISTS ( 29 SELECT 30 (SELECT max(t1_c0) FROM t1) AS c0 31 FROM 32 cte_0 AS ref_4 33 ) AND 0<>0 34 ORDER BY c0 ASCLIMIT 86 35 ) AS subq_0 36 ON ((ref_1.t1_c3 >= ref_1.t1_c3) 37 AND (ref_1.t1_c3 <= ref_1.t1_c0))); Listing 6: Generated query that crashes MySQL 8.0 4964 32nd USENIX Security Symposium USENIX Association BCVE details We applied for CVE IDs of the bugs found by DynSQL, and 19 were assigned, including 7 for MySQL bugs and 12 for MariaDB bugs. Among them, CVE-2021-46667 and CVE-2021-46669 are considered to have high security impact. Table 8 shows the details of the 19 assigned CVEs. The column \"File location\" shows the ﬁle name and line number where the bug is triggered, and the column \"Exploitation\" shows the possible attack by exploiting the bug. Table 8: The details of 19 assgined CVEs DBMS Bug type File location Exploitation CVEID MySQL Null-pointer dereference MySQL/sql/item_subselect.cc:799 Denial-of-service CVE-2021-2357 MySQL Null-pointer dereference MySQL/sql/sql_optimizer.cc:8881 Denial-of-service CVE-2021-2425 MySQL Null-pointer dereference MySQL/storage/innobase/dict/dict0dd.cc:4184 Denial-of-service CVE-2021-2426 MySQL Null-pointer dereference MySQL/strings/ctype-utf8.cc:5603 Denial-of-service CVE-2021-2427 MySQL Null-pointer dereference MySQL/sql/item_subselect.cc:660 Denial-of-service CVE-2021-35628 MySQL Null-pointer dereference MySQL/sql/sql_derived.cc:182 Denial-of-service CVE-2021-35635 MySQL Heap-buffer overﬂow MySQL/sql/sql_optimizer.cc:4231 Data leakage CVE-2022-21438 MariaDB Null-pointer dereference MariaDB/sql/sql_select.cc:25122 Denial-of-service CVE-2021-46657 MariaDB Null-pointer dereference MariaDB/sql/ﬁeld_conv.cc:204 Denial-of-service CVE-2021-46658 MariaDB Null-pointer dereference MariaDB/sql/sql_lex.cc:2502 Denial-of-service CVE-2021-46659 MariaDB Null-pointer dereference MariaDB/sql/sql_base.cc:6013 Denial-of-service CVE-2021-46661 MariaDB Use-after-free MariaDB/sql/item.cc:7956 Data leakage CVE-2021-46662 MariaDB Null-pointer dereference MariaDB/storage/maria/ha_maria.cc:2656 Denial-of-service CVE-2021-46663 MariaDB Assertion failure MariaDB/sql/sql_select.cc:18576 Denial-of-service CVE-2021-46664 MariaDB Null-pointer dereference MariaDB/sql/sql_select.cc:18647 Denial-of-service CVE-2021-46665 MariaDB Null-pointer dereference MariaDB/sql/item.cc:3333 Denial-of-service CVE-2021-46666 MariaDB Integer overﬂow MariaDB/sql/sql_lex.cc:3521 Remote code execution CVE-2021-46667 MariaDB Null-pointer dereference MariaDB/storage/maria/ha_maria.cc:2782 Denial-of-service CVE-2021-46668 MariaDB Use-after-free MariaDB/sql/sql_class.cc: 2914 Privilege escalation CVE-2021-46669 USENIX Association 32nd USENIX Security Symposium 4965",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[18, 43, 45,\n48]",
+      "technique": null,
+      "sentence": "Fuzzing is a promising technique for bug detection [2,4,15, 17, 26, 30, 47], and it is applied to testing DBMSs [18, 43, 45, 48] by generating SQL (Structured Query Language) queries that contain a series of SQL statements [48].",
+      "context_before": "uation, DynSQL outperforms other state-of-the-art DBMS fuzzers, achieving 41% higher code coverage and ﬁnding many bugs missed by other fuzzers. 1 Introduction Database management systems (DBMSs) play essential roles in modern data-intensive applications [13, 22, 44], providing fundamental functionalities of data storage and management. Due to the large code size and complex logic of DBMSs, bugs are inevitably introduced during development and maintenance. By exploiting DBMS bugs, attackers can introduce malicious threats of paralyzing the system [1, 5, 7] or even hacking secret data [14, 46].",
+      "context_after": "Speciﬁcally, some fuzzers [18, 43] utilize well-deﬁned rules to randomly generate SQL queries, feed these queries to target DBMSs, and check whether bugs are triggered. To improve bug detection in DBMSs, several approaches [45, 48] further involve feedback mechanisms. After the execution of each test case, they collect the runtime information (e.g. code coverage) of target DBMSs and check whether interesting behavior (e.g. covering new branches) occurs. If so, the test case will be stored as a seed for later test-case generation. However, existing DBMS fuzzers are still limited in generating",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 2663,
+      "cited_reference": {
+        "number": 48,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 International Conference on Computer and Communications Security (CCS), pages 955–970, 2020. USENIX Asso",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[45, 48]",
+      "technique": null,
+      "sentence": "To improve bug detection in DBMSs, several approaches [45, 48] further involve feedback mechanisms.",
+      "context_before": "s are inevitably introduced during development and maintenance. By exploiting DBMS bugs, attackers can introduce malicious threats of paralyzing the system [1, 5, 7] or even hacking secret data [14, 46].Fuzzing is a promising technique for bug detection [2,4,15, 17, 26, 30, 47], and it is applied to testing DBMSs [18, 43, 45, 48] by generating SQL (Structured Query Language) queries that contain a series of SQL statements [48]. Speciﬁcally, some fuzzers [18, 43] utilize well-deﬁned rules to randomly generate SQL queries, feed these queries to target DBMSs, and check whether bugs are triggered.",
+      "context_after": "After the execution of each test case, they collect the runtime information (e.g. code coverage) of target DBMSs and check whether interesting behavior (e.g. covering new branches) occurs. If so, the test case will be stored as a seed for later test-case generation. However, existing DBMS fuzzers are still limited in generating complex and valid queries to ﬁnd deep bugs in DBMSs. In general, a complex query contains multiple SQL statements that involve various SQL features (e.g. multi-level nested subqueries), while a valid query satisﬁes the dependencies among its statements (e.g., a subsequ",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 3060,
+      "cited_reference": {
+        "number": 48,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 International Conference on Computer and Communications Security (CCS), pages 955–970, 2020. USENIX Asso",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[48]",
+      "technique": null,
+      "sentence": "For example, SQLsmith [43] generates only one statement in each query, avoiding the analysis of dependencies among statements, which sacriﬁces complexity for validity; SQUIRREL [48] uses an intermediate representation (IR) model to infer dependencies and generate queries that contain multiple statements, but it produces over 50% invalid queries and tends to generate simple statements.",
+      "context_before": "as a seed for later test-case generation. However, existing DBMS fuzzers are still limited in generating complex and valid queries to ﬁnd deep bugs in DBMSs. In general, a complex query contains multiple SQL statements that involve various SQL features (e.g. multi-level nested subqueries), while a valid query satisﬁes the dependencies among its statements (e.g., a subsequent statement references the elements deﬁned in an earlier statement) and guarantees both syntactic and semantic correctness. Existing DBMS fuzzers always make a trade-off between complexity and validity of generated queries.",
+      "context_after": "The contradiction between query complexity and query validity occurs because existing DBMS fuzzers heavily rely on their predeﬁned grammar models and ﬁxed knowledge about DBMSs, but do not capture runtime state information. They either neglect state changes (e.g. SQLsmith [43]), or statically infer the corresponding states (e.g. SQUIRREL [48]) but suffer from soundness and completeness issues. Without accurate state information, these fuzzers tend to build incorrect dependencies among statements or misuse SQL features, causing many invalid queries to be generated. To generate valid test USENI",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 3985,
+      "cited_reference": {
+        "number": 48,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 International Conference on Computer and Communications Security (CCS), pages 955–970, 2020. USENIX Asso",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[48]",
+      "technique": null,
+      "sentence": "SQUIRREL [48]) but suffer from soundness and completeness issues.",
+      "context_before": "tements, which sacriﬁces complexity for validity; SQUIRREL [48] uses an intermediate representation (IR) model to infer dependencies and generate queries that contain multiple statements, but it produces over 50% invalid queries and tends to generate simple statements. The contradiction between query complexity and query validity occurs because existing DBMS fuzzers heavily rely on their predeﬁned grammar models and ﬁxed knowledge about DBMSs, but do not capture runtime state information. They either neglect state changes (e.g. SQLsmith [43]), or statically infer the corresponding states (e.g.",
+      "context_after": "Without accurate state information, these fuzzers tend to build incorrect dependencies among statements or misuse SQL features, causing many invalid queries to be generated. To generate valid test USENIX Association 32nd USENIX Security Symposium 4949 Table 1: Conceptual comparison of DBMS fuzzers Features SQLsmith SQUIRREL DynSQL Stateful Fuzzing None Partial Full Query Generation Static Static Dynamic Program Feedback None Code Cov Code Cov+Error Query Validity High Middle High Statement Number One Multiple Multiple Statement Complexity High Low High cases, these fuzzers have to limit the c",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 4704,
+      "cited_reference": {
+        "number": 48,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 International Conference on Computer and Communications Security (CCS), pages 955–970, 2020. USENIX Asso",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[48]",
+      "technique": null,
+      "sentence": "Instead, they either generate only one complex statement in each query to avoid the analysis of state changes [18, 43], or combine multiple relatively simple statements where the state changes can be easily inferred [48].",
+      "context_before": "hat cause DBMS state changes. Fuzzers need to capture such changes so that the subsequent statements can correctly reference the elements built by the earlier statements. Second, these statements utilize various SQL features, such as sub SELECT statement, CTE,CROSS JOIN, etc, which make it hard for fuzzers to accurately infer possible state changes.Limitations of existing DBMS fuzzers. Existing DBMS fuzzers are limited in generating complex and valid SQL queries (e.g. the malicious query in Figure 1), because they cannot accurately capture the DBMS state changes caused by generated statements.",
+      "context_after": "SQLsmith [43], a popular grammar-based DBMS fuzzer, can generate complex SQL statements using its well-deﬁned abstract syntax tree (AST) rules; but it is stateless without considering state changes caused by its generated statements, as a result of which it cannot build the dependencies among multiple statements and thus generates only one statement in each query. Using an intermediate representation (IR) to maintain query structures, SQUIRREL [48] is aware of state changes caused by its generated statements. It considers various SQL features and maintains the scopes and lives of multiple var",
+      "section": "2 Background and Motivation",
+      "page": 4,
+      "char_offset": 13753,
+      "cited_reference": {
+        "number": 48,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 International Conference on Computer and Communications Security (CCS), pages 955–970, 2020. USENIX Asso",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[48]",
+      "technique": null,
+      "sentence": "Using an intermediate representation (IR) to maintain query structures, SQUIRREL [48] is aware of state changes caused by its generated statements.",
+      "context_before": "statements. Instead, they either generate only one complex statement in each query to avoid the analysis of state changes [18, 43], or combine multiple relatively simple statements where the state changes can be easily inferred [48]. SQLsmith [43], a popular grammar-based DBMS fuzzer, can generate complex SQL statements using its well-deﬁned abstract syntax tree (AST) rules; but it is stateless without considering state changes caused by its generated statements, as a result of which it cannot build the dependencies among multiple statements and thus generates only one statement in each query.",
+      "context_after": "It considers various SQL features and maintains the scopes and lives of multiple variables in statements, causing its IR mechanism to be complicated and error-prone when inferring state changes caused by complex statements. To mitigate this impact, SQUIRREL tends to generate simple statements in queries. Even so, SQUIRREL still generates over 50% invalid queries [48]. Without accurate DBMS state information, existing fuzzers are limited in generating complex and valid queries to extensively test DBMSs, causing many deep bugs to still exist. Therefore, proposing a practical solution to address",
+      "section": "2 Background and Motivation",
+      "page": 4,
+      "char_offset": 14342,
+      "cited_reference": {
+        "number": 48,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 International Conference on Computer and Communications Security (CCS), pages 955–970, 2020. USENIX Asso",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[48]",
+      "technique": null,
+      "sentence": "Even so, SQUIRREL still generates over 50% invalid queries [48].",
+      "context_before": "d statements, as a result of which it cannot build the dependencies among multiple statements and thus generates only one statement in each query. Using an intermediate representation (IR) to maintain query structures, SQUIRREL [48] is aware of state changes caused by its generated statements. It considers various SQL features and maintains the scopes and lives of multiple variables in statements, causing its IR mechanism to be complicated and error-prone when inferring state changes caused by complex statements. To mitigate this impact, SQUIRREL tends to generate simple statements in queries.",
+      "context_after": "Without accurate DBMS state information, existing fuzzers are limited in generating complex and valid queries to extensively test DBMSs, causing many deep bugs to still exist. Therefore, proposing a practical solution to address these limitations is necessary and important for DBMS fuzzing. 3 Stateful DBMS Fuzzing DBMSs process each statement of queries in sequence. After each statement is executed, the content of manipulated databases and the status of DBMSs are dynamically changed. In the interval between two statement execution, DBMSs record their latest state information, which accurately",
+      "section": "2 Background and Motivation",
+      "page": 4,
+      "char_offset": 14796,
+      "cited_reference": {
+        "number": 48,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 International Conference on Computer and Communications Security (CCS), pages 955–970, 2020. USENIX Asso",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker",
+      "surface": "[39, 41, 43]",
+      "technique": null,
+      "sentence": "Typically, AST-based tools [39, 41, 43] generate random SQL statements according to their random seed (e.",
+      "context_before": "ler returns the generated query, the code coverage covof the DBMS execution, and the ﬁnal status of the query processing. Translator. Receiving the parameters from Scheduler, Translator ﬁrst extracts the fresh part of ﬁle, which has not been read yet, into tmp_ﬁle .Translator uses an internal SQL statement generator StmtGenerator to generate a statement according to the provided schema andtmp_ﬁle. Finally, Translator returns the generated statement stmtand updates the number of bytes that have been read by StmtGenerator. The internal StmtGenerator deploys AST models to generate SQL statements.",
+      "context_after": "g. system clock), which makes the generation inefﬁcient and difﬁcult to guide [30, 32]. In contrast to these tools, StmtGenerator uses tmp_ﬁle as its random seed, which means that when StmtGenerator traverses its AST tree to generate SQL statements, it decides which paths should be chosen according to the value read from tmp_ﬁle. Speciﬁcally, it makes a decision by calculating the result of vmod n, where vis the value read from the input ﬁle and nis the number of available choices. In this way, StmtGenerator deterministically generates SQL statements according to the provided input ﬁle ﬁleand",
+      "section": "3.1 Dynamic Query Interaction",
+      "page": 5,
+      "char_offset": 20466,
+      "cited_reference": {
+        "number": 41,
+        "text": "SQLancer. https://github.com/sqlancer/sqla ncer.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Similar to SQLancer [37], Scheduler also checks whether the target DBMS reports any error.",
+      "context_before": "able candidates (i.e. table t1and view v1),StmtGenerator reads the ﬁle and gets value 9. According to the calculated result of 9 mod 2, it uses the second candidate (i.e. view v1). The subsequent generation process follows a similar procedure. Status checking .Scheduler checks the execution status after each statement is fed to the target DBMS. Speciﬁcally, Scheduler checks whether any crash of the DBMS or its manipulated databases is triggered. If so, it reports the crash with the query, including the crash-triggering statement and the earlier statements generated in the previous interaction.",
+      "context_after": "If so, it performs a further check and reports an abnormal error if the error is not a syntactic or semantic error. For example, \"Subquery result missing\" in MonetDB is an abnormal error that indicates the DBMS has lost the data of calculated results. These checks enable our dynamic query interaction to report suspicious bugs that make the target DBMS alert but do not cause it to crash directly. Note that if any crash or any error is triggered, Scheduler will terminate the interaction loop because the target DBMS has entered a problematic state. Example. Figure 4 illustrates how our dynamic q",
+      "section": "3.1 Dynamic Query Interaction",
+      "page": 6,
+      "char_offset": 23015,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "citation_marker",
+      "surface": "[37, 39]",
+      "technique": "pqs",
+      "sentence": "Because many DBMSs use their own SQL dialects and the common core of their SQL features is small [37, 39], it is difﬁcult to use one grammar template to test all DBMSs effectively.",
+      "context_before": "up the testing process. Speciﬁcally, DynSQL needs interfaces to start the DBMS, connect to the DBMS, stop the DBMS, send SQL statements, get results of statement processing, and query database schema. DBMSs often have well-deﬁned interfaces for these operations, so it is convenient for users to adopt DynSQL in different DBMSs. In our experience, it took one of our authors less than one hour to make DynSQL support a DBMS. SQL statement generation. We implement our AST-based statement generator referring to SQLsmith [43], and additionally support some SQL features, such as GROUP BY ,UNION, etc.",
+      "context_after": "To address this problem, we ﬁx the general parts of the supported SQL features according to SQL standard [40] and make other parts optional. When testing a speciﬁc DBMS, we enable the optional SQL features supported by this DBMS according to its ofﬁcial documents. Bug detection .DynSQL uses ASan [3] as its default checker to detect critical memory bugs. In addition, DynSQL analyzes the abnormal errors collected in dynamic query interaction (Section 3.1) to detect bugs that lead DBMSs to report strange error messages. Query minimization. To reproduce and locate DBMS bugs more conveniently, we",
+      "section": "4 Framework and Implementation",
+      "page": 7,
+      "char_offset": 30327,
+      "cited_reference": {
+        "number": 37,
+        "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI), pages 667–682, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "citation_marker",
+      "surface": "[18, 24, 41, 43, 48]",
+      "technique": null,
+      "sentence": "We choose these DBMSs because they are widely used according to DB-Engines Ranking [12] and extensively tested [18, 24, 41, 43, 48].",
+      "context_before": "e following questions: Q1CanDynSQL ﬁnd bugs in real-world DBMSs by generating complex and valid queries? (Section 5.2) Q2How about the security impact of the bugs found by DynSQL? (Section 5.3) Q3How do dynamic query interaction and error feedback contribute to DynSQL in DBMS fuzzing? (Section 5.4) Q4Can DynSQL outperform other state-of-the-art DBMS fuzzers? (Section 5.5) 5.1 Experimental Setup We evaluate DynSQL on 6 open-source and widely-used DBMSs of the latest versions as of our evaluation, including SQLite [42], MySQL [29], MariaDB [27], PostgreSQL [31], MonetDB [28], and ClickHouse [9].",
+      "context_after": "The basic information of these DBMSs is listed in Table 2 (The lines of the source code are counted by CLOC [10]). We run the evaluation on a regular PC with eight Intel processors and 16GB physical memory, and the OS used is Ubuntu 18.04. 5.2 Runtime Testing Following the evaluation setup of SQUIRREL [48] and the recommendations of Klees et al. [21], we use DynSQL to fuzz each target DBMS ﬁve times and calculate the average to get sound results. We use 24 hours as the fuzzing timeout because we observe that the branch coverage and the found bugs of 6 target DBMSs converge and hardly change a",
+      "section": "5.1 Experimental Setup",
+      "page": 8,
+      "char_offset": 32463,
+      "cited_reference": {
+        "number": 41,
+        "text": "SQLancer. https://github.com/sqlancer/sqla ncer.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[48]",
+      "technique": null,
+      "sentence": "2 Runtime Testing Following the evaluation setup of SQUIRREL [48] and the recommendations of Klees et al.",
+      "context_before": ".1 Experimental Setup We evaluate DynSQL on 6 open-source and widely-used DBMSs of the latest versions as of our evaluation, including SQLite [42], MySQL [29], MariaDB [27], PostgreSQL [31], MonetDB [28], and ClickHouse [9]. We choose these DBMSs because they are widely used according to DB-Engines Ranking [12] and extensively tested [18, 24, 41, 43, 48]. The basic information of these DBMSs is listed in Table 2 (The lines of the source code are counted by CLOC [10]). We run the evaluation on a regular PC with eight Intel processors and 16GB physical memory, and the OS used is Ubuntu 18.04. 5.",
+      "context_after": "[21], we use DynSQL to fuzz each target DBMS ﬁve times and calculate the average to get sound results. We use 24 hours as the fuzzing timeout because we observe that the branch coverage and the found bugs of 6 target DBMSs converge and hardly change after 24 hours, which is consistent with SQUIRREL. Table 3 shows the results of runtime testing. The columns \"Found\", \"Conﬁrmed\" and \"Fixed\" show the number of bugs that are found by DynSQL, conﬁrmed and ﬁxed by developers, respectively. The columns \"Statement\" and \"Query\" show the numbers of SQL statements and queries, respectively, which are val",
+      "section": "5.2 Runtime Testing",
+      "page": 8,
+      "char_offset": 32839,
+      "cited_reference": {
+        "number": 48,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 International Conference on Computer and Communications Security (CCS), pages 955–970, 2020. USENIX Asso",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[48]",
+      "technique": null,
+      "sentence": "5 Comparison to Existing DBMS Fuzzers We compare DynSQL to two state-of-the-art DBMS fuzzers, SQLsmith [43] and SQUIRREL [48].",
+      "context_before": "g error feedback. Indeed, error feedback can help the fuzzer generate more valid queries to detect more bugs. However, error feedback cannot improve query complexity, so DynSQL !DQIandDynSQL!DQI !EF ﬁnd only the bugs triggering within two statements and miss the bugs triggering by over two statements (e.g. the bug in Figure 1). In comparison, dynamic query interaction leverages DBMS state information to improve both query complexity and query validity, and thus DynSQL !EFﬁnds 20 bugs missed by DynSQL!DQI !EF. By further enabling error feedback in DynSQL !EF, DynSQL additionally ﬁnds 7 bugs. 5.",
+      "context_after": "SQLancer [35 –37] is also a well-known DBMS testing tool, but it mainly focuses on test oracles, which require test cases with speciﬁc patterns to 4958 32nd USENIX Security Symposium USENIX Association Table 7: Results of comparison DBMSSQLsmith SQUIRREL DynSQL Statement Query Bug Statement Query Bug Statement Query Bug SQLite 265K/267K 265K/267K 1 31M/45M 2.4M/9.8M 1 279K/286K 24K/30K 4 MySQL 100K/102K 100K/102K 3 506K/854K 17K/171K 3 91K/96K 9.4K/13K 12 MariaDB 148K/152K 148K/152K 3 245K/392K 425/78K 2 170K/175K 17K/21K 13 PostgreSQL 192K/197K 192K/197K 0 8M/10M 35K/560K 0 154K/160K 14K/18K",
+      "section": "5.5 Comparison to Existing DBMS Fuzzers",
+      "page": 11,
+      "char_offset": 51001,
+      "cited_reference": {
+        "number": 48,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 International Conference on Computer and Communications Security (CCS), pages 955–970, 2020. USENIX Asso",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [35 –37] is also a well-known DBMS testing tool, but it mainly focuses on test oracles, which require test cases with speciﬁc patterns to 4958 32nd USENIX Security Symposium USENIX Association Table 7: Results of comparison DBMSSQLsmith SQUIRREL DynSQL Statement Query Bug Statement Query Bug Statement Query Bug SQLite 265K/267K 265K/267K 1 31M/45M 2.",
+      "context_before": "eedback cannot improve query complexity, so DynSQL !DQIandDynSQL!DQI !EF ﬁnd only the bugs triggering within two statements and miss the bugs triggering by over two statements (e.g. the bug in Figure 1). In comparison, dynamic query interaction leverages DBMS state information to improve both query complexity and query validity, and thus DynSQL !EFﬁnds 20 bugs missed by DynSQL!DQI !EF. By further enabling error feedback in DynSQL !EF, DynSQL additionally ﬁnds 7 bugs. 5.5 Comparison to Existing DBMS Fuzzers We compare DynSQL to two state-of-the-art DBMS fuzzers, SQLsmith [43] and SQUIRREL [48].",
+      "context_after": "4M/9.8M 1 279K/286K 24K/30K 4 MySQL 100K/102K 100K/102K 3 506K/854K 17K/171K 3 91K/96K 9.4K/13K 12 MariaDB 148K/152K 148K/152K 3 245K/392K 425/78K 2 170K/175K 17K/21K 13 PostgreSQL 192K/197K 192K/197K 0 8M/10M 35K/560K 0 154K/160K 14K/18K 0 Total 705K/718K 705K/718K 7 40M/56M 2.5M/11M 6 695K/716K 64K/82K 29 015K30K45K60K 0h 4h 8h 12h 16h 20h 24hCovered branches TimeSQLite 0150K300K450K600K 0h 4h 8h 12h 16h 20h 24hCovered branches TimeMySQL 090K180K270K360K 0h 4h 8h 12h 16h 20h 24hCovered branches TimeMariaDB 040K80K120K160K 0h 4h 8h 12h 16h 20h 24hCovered branches TimePostgreSQL 𝐒𝐒𝐒𝐒𝐒𝐒𝐒𝐒𝐒𝐒𝐒𝐒𝐒𝐒",
+      "section": "5.5 Comparison to Existing DBMS Fuzzers",
+      "page": 11,
+      "char_offset": 51127,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Considering DynSQL and SQLancer are designed for different research problems, we do not conduct the comparison experiment to SQLancer.",
+      "context_before": "/160K 14K/18K 0 Total 705K/718K 705K/718K 7 40M/56M 2.5M/11M 6 695K/716K 64K/82K 29 015K30K45K60K 0h 4h 8h 12h 16h 20h 24hCovered branches TimeSQLite 0150K300K450K600K 0h 4h 8h 12h 16h 20h 24hCovered branches TimeMySQL 090K180K270K360K 0h 4h 8h 12h 16h 20h 24hCovered branches TimeMariaDB 040K80K120K160K 0h 4h 8h 12h 16h 20h 24hCovered branches TimePostgreSQL 𝐒𝐒𝐒𝐒𝐒𝐒𝐒𝐒𝐒𝐒𝐒𝐒𝐒𝐒𝐒𝐒 𝐒𝐒𝐒𝐒𝐒𝐒𝐬𝐬𝐬𝐬𝐬𝐬𝐬𝐬𝐬𝐬 𝐃𝐃𝐃𝐃𝐃𝐃𝐒𝐒𝐒𝐒𝐒𝐒 Figure 13: Code coverage of DynSQL and the other DBMS fuzzers. ﬁnd logic bugs in DBMSs, while DynSQL aims at generating complex and valid queries to detect common bugs, especially memory bugs.",
+      "context_after": "We exploit DynSQL, SQUIRREL, and SQLsmith to test SQLite, MySQL, MariaDB, and PostgreSQL, because SQUIRREL supports only these DBMSs and applying it to other DBMSs requires signiﬁcant modiﬁcation of the SQUIRREL implementation [45]. Besides, SQLsmith supports only SQLite, PostgreSQL, and MonetDB originally. To perform better comparisons, we extend SQLsmith to support MySQL and MariaDB via little modiﬁcation of its code. For each test case, we randomly generate a database with tables for SQLsmith because it requires an available database to begin its test. We use each fuzzer to test each DBMS",
+      "section": "5.5 Comparison to Existing DBMS Fuzzers",
+      "page": 12,
+      "char_offset": 52314,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M16",
+      "found_by": "citation_marker",
+      "surface": "[35 –37]",
+      "technique": "norec",
+      "sentence": "Several existing DBMS testing works [35 –37] use special oracles to detect such bugs.",
+      "context_before": "s. Other kinds of bugs. DynSQL mainly detects memory bugs with existing sanitizers like ASan, and it can additionally ﬁnd semantic bugs leading to strange error messages. However, many semantic bugs silently affect the execution of DBMSs, and cause no obvious problems. For example, logic bugs do not cause any memory problem or strange error message, but make DBMSs return incorrect results. Performance bugs do not crash DBMSs directly, but often slow down its execution. Detecting these bugs is challenging because there is no general test oracle for checking whether the bugs have been triggered.",
+      "context_after": "But these oracles require ﬁxed patterns of test cases, which limits their scalability. In the future, we will improve the detection of semantic bugs in DynSQL by referring to these approaches. AST rules construction. DynSQL uses an AST-based generator to produce SQL statements in each query. At present, we construct the AST rules based on our domain knowledge. Speciﬁcally, we construct general AST rules according to SQL-92 standard [40] and additionally write speciﬁc rules 4960 32nd USENIX Security Symposium USENIX Association for each supported DBMS according to its ofﬁcial documents. Users",
+      "section": "6 Limitations and Future Work",
+      "page": 13,
+      "char_offset": 59814,
+      "cited_reference": {
+        "number": 35,
+        "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESE/FSE), pages 1140–115",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "citation_marker",
+      "surface": "[18,23,25,34 –37]",
+      "technique": "norec",
+      "sentence": "They either discover speciﬁc kinds of bugs [18,23,25,34 –37], or detect common bugs using general techniques [19, 20, 39].",
+      "context_before": "s 4960 32nd USENIX Security Symposium USENIX Association for each supported DBMS according to its ofﬁcial documents. Users can enable just our general AST rules to test a new DBMS. However, to thoroughly test the code about DBMSspeciﬁc usages, users may need to write additional AST rules to enable their unique SQL features. To reduce such manual effort, inspired by existing work [11, 16], we plan to adopt machine learning techniques to automatically extract AST rules from valid queries. 7 Related Work 7.1 DBMS Testing Some approaches are proposed to check the reliability and security of DBMSs.",
+      "context_after": "DBMS testing for speciﬁc bugs. SQLancer [41] is designed to detect logic bugs in DBMSs, and it integrates several novel approaches [35 –37]. PQS [37] can generate queries that require the target DBMS to return a result set where a speciﬁc row should be included. If the DBMS fails to fetch the row, it indicates a logic bug has been triggered. NoREC [35] is a metamorphic testing approach. It translates a query that can be optimized by the target DBMS to a query that cannot be optimized effectively. NoREC identiﬁes a bug when these two queries make the DBMS return different results. To detect pe",
+      "section": "7.1 DBMS Testing",
+      "page": 14,
+      "char_offset": 60977,
+      "cited_reference": {
+        "number": 35,
+        "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESE/FSE), pages 1140–115",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [41] is designed to detect logic bugs in DBMSs, and it integrates several novel approaches [35 –37].",
+      "context_before": "rules to test a new DBMS. However, to thoroughly test the code about DBMSspeciﬁc usages, users may need to write additional AST rules to enable their unique SQL features. To reduce such manual effort, inspired by existing work [11, 16], we plan to adopt machine learning techniques to automatically extract AST rules from valid queries. 7 Related Work 7.1 DBMS Testing Some approaches are proposed to check the reliability and security of DBMSs. They either discover speciﬁc kinds of bugs [18,23,25,34 –37], or detect common bugs using general techniques [19, 20, 39]. DBMS testing for speciﬁc bugs.",
+      "context_after": "PQS [37] can generate queries that require the target DBMS to return a result set where a speciﬁc row should be included. If the DBMS fails to fetch the row, it indicates a logic bug has been triggered. NoREC [35] is a metamorphic testing approach. It translates a query that can be optimized by the target DBMS to a query that cannot be optimized effectively. NoREC identiﬁes a bug when these two queries make the DBMS return different results. To detect performance bugs, AMOEBA [25] transfers the given queries to semantically equivalent queries and then checks whether these queries result in pe",
+      "section": "7.1 DBMS Testing",
+      "page": 14,
+      "char_offset": 61131,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS [37] can generate queries that require the target DBMS to return a result set where a speciﬁc row should be included.",
+      "context_before": "ite additional AST rules to enable their unique SQL features. To reduce such manual effort, inspired by existing work [11, 16], we plan to adopt machine learning techniques to automatically extract AST rules from valid queries. 7 Related Work 7.1 DBMS Testing Some approaches are proposed to check the reliability and security of DBMSs. They either discover speciﬁc kinds of bugs [18,23,25,34 –37], or detect common bugs using general techniques [19, 20, 39]. DBMS testing for speciﬁc bugs. SQLancer [41] is designed to detect logic bugs in DBMSs, and it integrates several novel approaches [35 –37].",
+      "context_after": "If the DBMS fails to fetch the row, it indicates a logic bug has been triggered. NoREC [35] is a metamorphic testing approach. It translates a query that can be optimized by the target DBMS to a query that cannot be optimized effectively. NoREC identiﬁes a bug when these two queries make the DBMS return different results. To detect performance bugs, AMOEBA [25] transfers the given queries to semantically equivalent queries and then checks whether these queries result in performance differences. To trigger speciﬁc kinds of DBMS bugs, these approaches generate test cases with speciﬁc patterns,",
+      "section": "7.1 DBMS Testing",
+      "page": 14,
+      "char_offset": 61241,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M20",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC [35] is a metamorphic testing approach.",
+      "context_before": "ules from valid queries. 7 Related Work 7.1 DBMS Testing Some approaches are proposed to check the reliability and security of DBMSs. They either discover speciﬁc kinds of bugs [18,23,25,34 –37], or detect common bugs using general techniques [19, 20, 39]. DBMS testing for speciﬁc bugs. SQLancer [41] is designed to detect logic bugs in DBMSs, and it integrates several novel approaches [35 –37]. PQS [37] can generate queries that require the target DBMS to return a result set where a speciﬁc row should be included. If the DBMS fails to fetch the row, it indicates a logic bug has been triggered.",
+      "context_after": "It translates a query that can be optimized by the target DBMS to a query that cannot be optimized effectively. NoREC identiﬁes a bug when these two queries make the DBMS return different results. To detect performance bugs, AMOEBA [25] transfers the given queries to semantically equivalent queries and then checks whether these queries result in performance differences. To trigger speciﬁc kinds of DBMS bugs, these approaches generate test cases with speciﬁc patterns, limiting their extensibility to detect other kinds of bugs. In contrast to these approaches, DynSQL is designed to detect commo",
+      "section": "7.1 DBMS Testing",
+      "page": 14,
+      "char_offset": 61444,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M21",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC identiﬁes a bug when these two queries make the DBMS return different results.",
+      "context_before": "ciﬁc kinds of bugs [18,23,25,34 –37], or detect common bugs using general techniques [19, 20, 39]. DBMS testing for speciﬁc bugs. SQLancer [41] is designed to detect logic bugs in DBMSs, and it integrates several novel approaches [35 –37]. PQS [37] can generate queries that require the target DBMS to return a result set where a speciﬁc row should be included. If the DBMS fails to fetch the row, it indicates a logic bug has been triggered. NoREC [35] is a metamorphic testing approach. It translates a query that can be optimized by the target DBMS to a query that cannot be optimized effectively.",
+      "context_after": "To detect performance bugs, AMOEBA [25] transfers the given queries to semantically equivalent queries and then checks whether these queries result in performance differences. To trigger speciﬁc kinds of DBMS bugs, these approaches generate test cases with speciﬁc patterns, limiting their extensibility to detect other kinds of bugs. In contrast to these approaches, DynSQL is designed to detect common bugs in DBMSs and does not limit the patterns of test cases. DBMS testing for common bugs. RAGS [39] uses differential testing to detect bugs in DBMSs. It randomly generates SQL statements and th",
+      "section": "7.1 DBMS Testing",
+      "page": 14,
+      "char_offset": 61602,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M22",
+      "found_by": "citation_marker",
+      "surface": "[37, 39]",
+      "technique": "pqs",
+      "sentence": "However, this approach is limited because the common part of supported SQL features in different DBMSs is small [37, 39].",
+      "context_before": "performance differences. To trigger speciﬁc kinds of DBMS bugs, these approaches generate test cases with speciﬁc patterns, limiting their extensibility to detect other kinds of bugs. In contrast to these approaches, DynSQL is designed to detect common bugs in DBMSs and does not limit the patterns of test cases. DBMS testing for common bugs. RAGS [39] uses differential testing to detect bugs in DBMSs. It randomly generates SQL statements and then feeds them to several DBMSs whose databases are the same. RAGS reports bugs if the execution status or returned results of these DBMSs are different.",
+      "context_after": "Some approaches [19, 20] convert SQL statement generation into SAT problems and generate valid statements to test DBMSs by solving syntactic and semantic constraints of the SQL language. However, these approaches cannot infer state changes caused by generated statements and thus can generate only one statement in each query. In contrast, DynSQL can generate queries with multiple statements by capturing the latest DBMS states before each statement generation. In addition, these approaches perform random test-case generation, or exhaustively enumerate all possible test cases. Comparatively, Dyn",
+      "section": "7.1 DBMS Testing",
+      "page": 14,
+      "char_offset": 62439,
+      "cited_reference": {
+        "number": 37,
+        "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI), pages 667–682, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M23",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[48]",
+      "technique": null,
+      "sentence": "However, existing work [48] proves that general fuzzers cannot effectively test DBMSs.",
+      "context_before": "test-case generation and integrates various mutation strategies and engineering techniques to improve its efﬁciency. To cover more branches, Angora [6] ﬁrst uses taint analysis to track speciﬁc input bytes that inﬂuence the control ﬂows, and then it leverages gradient descent to quickly search for the suitable values of these bytes that satisfy the path constraints. To ﬁnd more bugs, QSYM [47] adopts symbolic execution in fuzzing, and further uses dynamic binary translation to integrate symbolic emulation into the native execution, which dramatically reduces the overhead of symbolic execution.",
+      "context_after": "These fuzzers fail to involve any SQL knowledge and AST rules, and thus generate many invalid queries violating syntactic or semantic checks. DBMS fuzzing. To test DBMSs more effectively, several approaches [18, 43, 45, 48] combine fuzzing with grammarbased generation techniques. SQLsmith [43], a state-of-the-art DBMS fuzzer, uses its embedded AST rules to randomly generate SQL queries. However, each query generated by SQLsmith contains only one statement, because it is not aware of the state changes caused by generated statements. To generate queries with multiple statements, SQUIRREL [48] u",
+      "section": "7.1 DBMS Testing",
+      "page": 14,
+      "char_offset": 64102,
+      "cited_reference": {
+        "number": 48,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 International Conference on Computer and Communications Security (CCS), pages 955–970, 2020. USENIX Asso",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M24",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[18, 43, 45, 48]",
+      "technique": null,
+      "sentence": "To test DBMSs more effectively, several approaches [18, 43, 45, 48] combine fuzzing with grammarbased generation techniques.",
+      "context_before": "hen it leverages gradient descent to quickly search for the suitable values of these bytes that satisfy the path constraints. To ﬁnd more bugs, QSYM [47] adopts symbolic execution in fuzzing, and further uses dynamic binary translation to integrate symbolic emulation into the native execution, which dramatically reduces the overhead of symbolic execution. However, existing work [48] proves that general fuzzers cannot effectively test DBMSs. These fuzzers fail to involve any SQL knowledge and AST rules, and thus generate many invalid queries violating syntactic or semantic checks. DBMS fuzzing.",
+      "context_after": "SQLsmith [43], a state-of-the-art DBMS fuzzer, uses its embedded AST rules to randomly generate SQL queries. However, each query generated by SQLsmith contains only one statement, because it is not aware of the state changes caused by generated statements. To generate queries with multiple statements, SQUIRREL [48] uses a new intermediate representation (IR) to model SQL queries and statically infers DBMS state changes caused by the generated statements. However, its static inference is inaccurate without runtime information, as a result of which it still generates over 50% invalid queries in",
+      "section": "7.1 DBMS Testing",
+      "page": 14,
+      "char_offset": 64345,
+      "cited_reference": {
+        "number": 48,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 International Conference on Computer and Communications Security (CCS), pages 955–970, 2020. USENIX Asso",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M25",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[48]",
+      "technique": null,
+      "sentence": "To generate queries with multiple statements, SQUIRREL [48] uses a new intermediate representation (IR) to model SQL queries and statically infers DBMS state changes caused by the generated statements.",
+      "context_before": "48] proves that general fuzzers cannot effectively test DBMSs. These fuzzers fail to involve any SQL knowledge and AST rules, and thus generate many invalid queries violating syntactic or semantic checks. DBMS fuzzing. To test DBMSs more effectively, several approaches [18, 43, 45, 48] combine fuzzing with grammarbased generation techniques. SQLsmith [43], a state-of-the-art DBMS fuzzer, uses its embedded AST rules to randomly generate SQL queries. However, each query generated by SQLsmith contains only one statement, because it is not aware of the state changes caused by generated statements.",
+      "context_after": "However, its static inference is inaccurate without runtime information, as a result of which it still generates over 50% invalid queries in the evaluation. These fuzzers are limited in generating complex and valid queries, as they fail to consider state changes or infer accurate state information. In contrast, DynSQL performs dynamic query interaction to capture accurate state information, including the latest database schema and the status of statement processing. In this way, DynSQL can effectively generate complex and valid queries to detect deep bugs in DBMSs. 8 Conclusion In this paper,",
+      "section": "7.1 DBMS Testing",
+      "page": 14,
+      "char_offset": 64727,
+      "cited_reference": {
+        "number": 48,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 International Conference on Computer and Communications Security (CCS), pages 955–970, 2020. USENIX Asso",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M15"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:16:44Z",
+    "is_model_written": true,
+    "summary": "DynSQL fuzzes DBMSs with multi-statement SQL queries, targeting the trade-off that earlier generators face between query complexity and validity: single-statement tools sidestep inter-statement dependencies, while SQUIRREL's static intermediate representation still yields over 50% invalid queries. DynSQL instead builds a query one statement at a time, querying the live DBMS state after each, so dependencies are resolved dynamically. It found 40 bugs in six DBMSs, 38 confirmed and 21 fixed.",
+    "narrative": "SQLancer appears as related work rather than as a baseline, and the paper is explicit about why: it states that DynSQL and SQLancer are designed for different research problems and that no comparison experiment against SQLancer was run. Its baselines are SQLsmith and SQUIRREL. SQLancer is described as a well-known logic-bug detector integrating PQS, NoREC and TLP, each summarised in the related-work section, and one design point is credited to it -- DynSQL's scheduler checks whether the DBMS reports an error in the way SQLancer does. The paper also cites SQLancer's own observation that the common core of SQL features across dialects is small, using it to justify not relying on a single grammar template.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "background",
+      "M4": "background",
+      "M5": "background",
+      "M6": "background",
+      "M7": "background",
+      "M8": "background",
+      "M9": "definition",
+      "M10": "motivation",
+      "M11": "background",
+      "M12": "background",
+      "M13": "background",
+      "M14": "definition",
+      "M15": "incidental",
+      "M16": "background",
+      "M17": "background",
+      "M18": "definition",
+      "M19": "definition",
+      "M20": "definition",
+      "M21": "definition",
+      "M22": "motivation",
+      "M23": "background",
+      "M24": "background",
+      "M25": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited and compared against, not reused; nothing describes building on its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No SQLancer technique is extended; the work takes a different approach."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "M15 states outright that the authors do not conduct a comparison experiment against SQLancer, on the grounds that the two address different research problems. The evaluated baselines are SQLsmith and SQUIRREL."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is called a well-known DBMS testing tool in M14, which is recognition but not a claim that it is the state of the art; the paper reserves that description for the tools it measures against."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

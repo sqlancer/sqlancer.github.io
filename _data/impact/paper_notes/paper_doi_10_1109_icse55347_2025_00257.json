@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "paper": {
+    "id": "paper:doi:10.1109/icse55347.2025.00257",
+    "title": "Thanos: DBMS Bug Detection via Storage Engine Rotation Based Differential Testing",
+    "authors": [
+      "Ying Fu",
+      "Zhiyong Wu",
+      "Yuanliang Zhang",
+      "Jie Liang",
+      "Jingzhou Fu",
+      "Yu Jiang",
+      "Shanshan Li",
+      "Xiangke Liao"
+    ],
+    "year": 2025,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1109/icse55347.2025.00257",
+    "url": "https://doi.org/10.1109/icse55347.2025.00257"
+  },
+  "summary": {
+    "text": "Thanos builds differential test oracles without needing two separate DBMSs. The authors note that finding equivalent systems with different implementations and compatible syntax takes considerable manual effort. Their insight is that one DBMS running different storage engines must still provide consistent basic storage functionality, so rotating the storage engine produces equivalent systems that should return the same results for the same SQL. The framework selects engines, extracts their equivalence information, synthesises feature-oriented test cases and compares results. Vendors confirmed 32 previously unknown bugs, 29 rated critical.",
+    "relationship_to_sqlancer": "Evaluated directly against SQLancer among the state-of-the-art fuzzers, reporting 24-116% higher branch coverage and bugs those tools missed.",
+    "is_model_generated": true,
+    "grounded_in_source": true,
+    "written_from": "abstract",
+    "written_from_url": "https://doi.org/10.1109/icse55347.2025.00257",
+    "source_sha256": "sha256:a70c58b0e5df4d60e9b12f16078af0f55355c26f096696d3d4c6cce2fa6b6479",
+    "supporting_excerpts": [
+      "However, meticulously selecting equivalent DBMSs with diverse implementations and compatible input syntax requires huge manual efforts.",
+      "Our key insight is that a DBMS with different storage engines must provide consistent basic storage functionalities.",
+      "We evaluate Thanos on three widely used and extensively tested DBMSs, namely MySQL, MariaDB, and Percona against state-of-the-art fuzzers SQLancer, SQLsmith, and SQUIRREL."
+    ],
+    "model": "claude-opus-5",
+    "generated_by": "claude_code_session",
+    "classifier_version": null,
+    "generated_at": "2026-09-07T02:32:20Z"
+  },
+  "evidence": [
+    {
+      "relationship": "references",
+      "title": "Cites SQLancer",
+      "value": "yes",
+      "method": "citation_graph",
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://doi.org/10.1109/icse55347.2025.00257",
+          "source_type": "paper_citation_context",
+          "excerpt": "These outcomes align with our expectations, as the test case synthesis algorithm was specifically designed to trigger a broader range of storage engine features and behaviors within the DBMS.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Ternary Logic Partitioning (TLP), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/icse55347.2025.00257",
+          "source_type": "paper_citation_context",
+          "excerpt": "To improve the effectiveness of one specific storage engine, one could also gather other supported features from the DBMS’s official documentation and add them to the feature list.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Ternary Logic Partitioning (TLP), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/icse55347.2025.00257",
+          "source_type": "paper_citation_context",
+          "excerpt": "Metamorphic testing in DBMS involves transforming SQL queries and verifying if the resulting output changes align with expected behavior [28, 29, 30, 31].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Non-optimizing Reference Engine Construction (NoREC), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/icse55347.2025.00257",
+          "source_type": "paper_citation_context",
+          "excerpt": "DBMS fuzzers [22, 25, 33, 36, 37, 38, 39, 40, 41, 42], automate this process, focusing on creating complex SQL queries to uncover memory safety issues.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/icse55347.2025.00257",
+          "source_type": "paper_citation_context",
+          "excerpt": "SQLancer proposes constructing functionally equivalent queries to test one DBMS [30, 31, 33].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    }
+  ]
+}

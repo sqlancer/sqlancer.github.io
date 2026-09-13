@@ -1,0 +1,856 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:23:39Z",
+  "paper": {
+    "id": "paper:arxiv:2605.20473",
+    "title": "Code Generation by Differential Test Time Scaling",
+    "authors": [
+      "Yifeng He",
+      "Ethan Wang",
+      "Jicheng Wang",
+      "Xuanxin Ouyang",
+      "Hao Chen"
+    ],
+    "year": 2026,
+    "venue": "arXiv.org",
+    "doi": null,
+    "arxiv_id": "2605.20473",
+    "s2_paper_id": "bea732652ae1cab45f2ba3678e48cfc22cf4b72a",
+    "url": "https://arxiv.org/abs/2605.20473",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2605.20473",
+      "retrieved_at": "2026-09-08T15:23:39Z",
+      "chars": 91724,
+      "content_sha256": "sha256:2a23d43217ba1bafbf070cd87a2d5a5f94f36fd4a3a7a409254efc062eafe6e8"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 21,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 1980
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 7860
+      },
+      {
+        "number": "2.1",
+        "title": "Coverage-guided differential testing",
+        "start": 7873
+      },
+      {
+        "number": "2.1.1",
+        "title": "Differential testing",
+        "start": 7914
+      },
+      {
+        "number": "2.1.2",
+        "title": "Coverage-guided fuzzing",
+        "start": 9948
+      },
+      {
+        "number": "2.2",
+        "title": "Probabilistic sampling",
+        "start": 12309
+      },
+      {
+        "number": "2.2.1",
+        "title": "Temperature",
+        "start": 13132
+      },
+      {
+        "number": "2.2.2",
+        "title": "Beam search",
+        "start": 14068
+      },
+      {
+        "number": "2.3",
+        "title": "On the effects of prompting",
+        "start": 15325
+      },
+      {
+        "number": "3",
+        "title": "Design of DIFFCODEGEN",
+        "start": 16105
+      },
+      {
+        "number": "3.1",
+        "title": "Overview",
+        "start": 16129
+      },
+      {
+        "number": "3.2",
+        "title": "Differential generation",
+        "start": 17455
+      },
+      {
+        "number": "3.2.1",
+        "title": "Differential sampling",
+        "start": 18014
+      },
+      {
+        "number": "3.2.2",
+        "title": "Differential decoding",
+        "start": 18771
+      },
+      {
+        "number": "3.2.3",
+        "title": "Differential prompting",
+        "start": 19247
+      },
+      {
+        "number": "3.3.1",
+        "title": "Coverage-guided fuzzing",
+        "start": 21640
+      },
+      {
+        "number": "3.3.2",
+        "title": "Differential analysis",
+        "start": 25230
+      },
+      {
+        "number": "3.4",
+        "title": "Response selection by clustering",
+        "start": 26037
+      },
+      {
+        "number": "3.4.1",
+        "title": "Normalization of dynamic behavior",
+        "start": 26616
+      },
+      {
+        "number": "3.4.2",
+        "title": "Distance metric",
+        "start": 27850
+      },
+      {
+        "number": "3.4.3",
+        "title": "Clustering algorithm",
+        "start": 29042
+      },
+      {
+        "number": "3.4.4",
+        "title": "Selection strategy",
+        "start": 29786
+      },
+      {
+        "number": "4",
+        "title": "Evaluation",
+        "start": 30606
+      },
+      {
+        "number": "4.1",
+        "title": "Performance gain from different differential methods",
+        "start": 33263
+      },
+      {
+        "number": "4.1.1",
+        "title": "Multi-round evaluation",
+        "start": 34548
+      },
+      {
+        "number": "4.2",
+        "title": "Comparing with test-time scaling methods",
+        "start": 36086
+      },
+      {
+        "number": "4.2.1",
+        "title": "Baselines",
+        "start": 36131
+      },
+      {
+        "number": "4.2.2",
+        "title": "Comparison results",
+        "start": 37041
+      },
+      {
+        "number": "4.3",
+        "title": "Token cost and overhead analysis",
+        "start": 37911
+      },
+      {
+        "number": "4.3.1",
+        "title": "Execution time analysis",
+        "start": 38463
+      },
+      {
+        "number": "4.3.2",
+        "title": "Token usage analysis",
+        "start": 40658
+      },
+      {
+        "number": "4.4",
+        "title": "Ablation studies",
+        "start": 42980
+      },
+      {
+        "number": "4.4.1",
+        "title": "Choosing the number of samples",
+        "start": 43281
+      },
+      {
+        "number": "4.4.2",
+        "title": "Choosing the number of clusters",
+        "start": 44784
+      },
+      {
+        "number": "4.4.3",
+        "title": "Model-based selectors over the differential signal",
+        "start": 49411
+      },
+      {
+        "number": "4.4.4",
+        "title": "Analysis on fuzz driver generation",
+        "start": 51983
+      },
+      {
+        "number": "5",
+        "title": "Discussions",
+        "start": 53264
+      },
+      {
+        "number": "5.1",
+        "title": "Threats to validity",
+        "start": 53278
+      },
+      {
+        "number": "5.2",
+        "title": "Limitations and future work",
+        "start": 55355
+      },
+      {
+        "number": "6",
+        "title": "Related work",
+        "start": 58081
+      },
+      {
+        "number": "6.1",
+        "title": "Code generation models",
+        "start": 58096
+      },
+      {
+        "number": "7",
+        "title": "Conclusion",
+        "start": 61947
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Inbal Shani and GitHub Staff.Survey reveals AI’s impact on the developer experience. 2024.URL:https://github. blog/news-insights/research/survey-reveals-ais-impact-on-the-developer-experience/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Kyle Daigle and GitHub Staff.Survey: The AI wave continues to grow on software development teams. 2024.URL:https: //github.blog/news-insights/research/survey-ai-wave-grows/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Mark Chen et al.Evaluating Large Language Models Trained on Code. 2021. arXiv:2107.03374 [cs.LG].URL:https: //arxiv.org/abs/2107.03374. 16 Code Generation by Differential Test Time Scaling",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Xueying Du et al. “Evaluating Large Language Models in Class-Level Code Generation”. In:Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. ICSE ’24. Lisbon, Portugal: Association for Computing Machinery, 2024.ISBN: 9798400702174.DOI:10. 1145 / 3597503. 3639219.URL:https: / / doi. org / 10. 1145 / 3597503. 3639219.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "DeepSeek-AI et al.DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning. 2025. arXiv: 2501.12948 [cs.CL].URL:https://arxiv.org/abs/2501.12948.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Niklas Muennighoff et al. “s1: Simple test-time scaling”. In:Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing. Suzhou, China: Association for Computational Linguistics, Nov. 2025, pp. 20275–20321. ISBN: 979-8-89176-332-6.DOI:10.18653/v1/2025.emnlp-main.1025.URL:https://aclanthology.org/2025. emnlp-main.1025/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Charlie Victor Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar. “Scaling LLM Test-Time Compute Optimally Can be More Effective than Scaling Parameters for Reasoning”. In:The Thirteenth International Conference on Learning Representations. 2025.URL:https://openreview.net/forum?id=4FWAwZtd2n.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Huaye Zeng et al. “ACECODER: Acing Coder RL via Automated Test-Case Synthesis”. In:Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). Vienna, Austria: Association for Computational Linguistics, July 2025, pp. 12023–12040.ISBN: 979-8-89176-251-0.DOI:10.18653/v1/2025.acl-long.587. URL:https://aclanthology.org/2025.acl-long.587/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Dacheng Li et al. “S*: Test Time Scaling for Code Generation”. In:Findings of the Association for Computational Linguistics: EMNLP 2025. Suzhou, China: Association for Computational Linguistics, Nov. 2025, pp. 15964–15978.ISBN: 979-8-89176-335-7.DOI:10.18653/v1/2025.findings-emnlp.865.URL:https://aclanthology.org/2025. findings-emnlp.865/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Xiancai Chen et al. “Revisit Self-Debugging with Self-Generated Tests for Code Generation”. In:Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). Vienna, Austria: Association for Computational Linguistics, July 2025, pp. 18003–18023.ISBN: 979-8-89176-251-0.DOI:10.18653/v1/2025.acllong.881.URL:https://aclanthology.org/2025.acl-long.881/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "William M. McKeeman. “Differential Testing for Software”. In:Digit. Tech. J.10 (1998), pp. 100–107.URL:https: //api.semanticscholar.org/CorpusID:14018070.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Robert B. Evans and Alberto Savoia. “Differential testing: a new approach to change detection”. In:The 6th Joint Meeting on European Software Engineering Conference and the ACMSIGSOFT Symposium on the Foundations of Software Engineering: Companion Papers. ESEC-FSE companion ’07. Dubrovnik, Croatia: Association for Computing Machinery, 2007, pp. 549–552.ISBN: 9781595938121.DOI:10.1145/1295014.12950",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Yibiao Yang et al. “Hunting for bugs in code coverage tools via randomized differential testing”. In:Proceedings of the 41st International Conference on Software Engineering. ICSE ’19. Montreal, Quebec, Canada: IEEE Press, 2019, pp. 488–499. DOI:10.1109/ICSE.2019.00061.URL:https://doi.org/10.1109/ICSE.2019.00061.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Shaohua Li and Zhendong Su. “Finding Unstable Code via Compiler-Driven Differential Testing”. In:Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 3. ASPLOS 2023. Vancouver, BC, Canada: Association for Computing Machinery, 2023, pp. 238–251.ISBN: 9781450399180.DOI:10.1145/3582016.3582053.URL:https://doi.org/10.1145",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Naman Jain et al. “LiveCodeBench: Holistic and Contamination Free Evaluation of Large Language Models for Code”. In: The Thirteenth International Conference on Learning Representations. 2025.URL:https://openreview.net/forum? id=chf JJYC3iL.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. “Finding and understanding bugs in C compilers”. In:SIGPLAN Not.46.6 (June 2011), pp. 283–294.ISSN: 0362-1340.DOI:10.1145/1993316.1993532.URL:https://doi.org/10. 1145/1993316.1993532.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. “Compiler validation via equivalence modulo inputs”. In:SIGPLAN Not.49.6 (June 2014), pp. 216–226.ISSN: 0362-1340.DOI:10.1145/2666356.2594334.URL:https://doi.org/10.1145/ 2666356.2594334.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Chengnian Sun, Vu Le, and Zhendong Su. “Finding compiler bugs via live code mutation”. In:SIGPLAN Not.51.10 (Oct. 2016), pp. 849–863.ISSN: 0362-1340.DOI:10.1145/3022671.2984038.URL:https://doi.org/10.1145/3022671. 2984038.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Manuel Rigger and Zhendong Su. “Testing Database Engines via Pivoted Query Synthesis”. In:Proc. ACM Program. Lang. 4.OOPSLA (Nov. 2020).DOI:10.1145/3428279.URL:https://doi.org/10.1145/3428279.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 20,
+      "text": "Yifeng He, Luning Yang, Christopher Castro Gaw Gonzalo, and Hao Chen. “Evaluating Program Semantics Reasoning with Type Inference in System $F$”. In:The Thirty-ninth Annual Conference on Neural Information Processing Systems Datasets and Benchmarks Track. 2025.URL:https://openreview.net/forum?id=IA9RmaP0aw.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Marcel B ¨ohme, Van-Thuan Pham, and Abhik Roychoudhury. “Coverage-based Greybox Fuzzing as Markov Chain”. In: Proceedings of the 2016 ACMSIGSAC Conference on Computer and Communications Security. CCS ’16. Vienna, Austria: Association for Computing Machinery, 2016, pp. 1032–1043.ISBN: 9781450341394.DOI:10.1145/2976749.2978428. URL:https://doi.org/10.1145/2976749.2978428. 17 Code Generation by Diffe",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Andrea Fioraldi, Dominik Maier, Heiko Eißfeldt, and Marc Heuse. “AFL++: Combining Incremental Steps of Fuzzing Research”. In:14th USENIX Workshop on Offensive Technologies (WOOT 20). USENIX Association, Aug. 2020.URL: https://www.usenix.org/conference/woot20/presentation/fioraldi.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Andreas Zeller, Rahul Gopinath, Marcel B ¨ohme, Gordon Fraser, and Christian Holler. “The Fuzzing Book”. In: (Jan. 2019). DOI:10.60882/cispa.24614928.v1.URL:https://publications.cispa.de/articles/book/The_Fuzzing_ Book/24614928.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Peng Chen, Jianzhong Liu, and Hao Chen. “Matryoshka: Fuzzing Deeply Nested Branches”. In:Proceedings of the 2019 ACMSIGSAC Conference on Computer and Communications Security. CCS ’19. London, United Kingdom: Association for Computing Machinery, 2019, pp. 499–513.ISBN: 9781450367479.DOI:10.1145/3319535.3363225.URL:https: //doi.org/10.1145/3319535.3363225.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Yuting Chen, Ting Su, Chengnian Sun, Zhendong Su, and Jianjun Zhao. “Coverage-directed differential testing of JVM implementations”. In:SIGPLAN Not.51.6 (June 2016), pp. 85–99.ISSN: 0362-1340.URL:https://doi.org/10.1145/ 2980983.2908095.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Theofilos Petsios, Adrian Tang, Salvatore Stolfo, Angelos D. Keromytis, and Suman Jana. “NEZHA: Efficient DomainIndependent Differential Testing”. In:Proceedings of the. SP ’17. San Jose, CA, USA: IEEE Press, 2017, pp. 615–632.ISBN: 9781509049318.DOI:10.1109/SP.2017.27.URL:https: //doi.org/10.1109/SP.2017.27.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Shirin Nilizadeh, Yannic Noller, and Corina S. P ˘as˘areanu. “DifFuzz: differential fuzzing for side-channel analysis”. In: Proceedings of the 41st International Conference on Software Engineering. ICSE ’19. Montreal, Quebec, Canada: IEEE Press, 2019, pp. 176–187.ISBN: 9781728108698.DOI:10.1109/ICSE.2019.00122.URL:https://doi.org/10. 1109/ICSE.2019.00122.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Junjie Chen et al. “An empirical comparison of compiler testing techniques”. In:Proceedings of the 38th International Conference on Software Engineering. ICSE ’16. Austin, Texas: Association for Computing Machinery, 2016, pp. 180–190. ISBN: 9781450342056.DOI:10.1145/2884781.2884878.URL:https://doi.org/10.1145/2884781.2884878.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Bei Chen et al. “CodeT: Code Generation with Generated Tests”. In:The Eleventh International Conference on Learning Representations. 2023.URL:https://openreview.net/forum?id=ktrw68Cmu9c.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Yifeng He, Jicheng Wang, Yuyang Rong, and Hao Chen. “FuzzAug: Data Augmentation by Coverage-guided Fuzzing for Neural Test Generation”. In:Findings of the Association for Computational Linguistics: EMNLP 2025. Suzhou, China: Association for Computational Linguistics, Nov. 2025, pp. 15642–15655.ISBN: 979-8-89176-335-7.DOI:10.18653/v1/ 2025.findings-emnlp.847.URL:https://aclanthology.org/2025.findin",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Ari Holtzman et al. “Learning to Write with Cooperative Discriminators”. In:Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). Melbourne, Australia: Association for Computational Linguistics, July 2018, pp. 1638–1649.DOI:10.18653/v1/P18-1152.URL:https://aclanthology.org/P18-1152/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Ari Holtzman, Jan Buys, Li Du, Maxwell Forbes, and Yejin Choi. “The Curious Case of Neural Text Degeneration”. In: International Conference on Learning Representations. 2020.URL:https://openreview.net/forum?id=ryg GQyrFvH.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Angela Fan, Mike Lewis, and Yann Dauphin. “Hierarchical Neural Story Generation”. In:Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). Melbourne, Australia: Association for Computational Linguistics, July 2018, pp. 889–898.DOI:10.18653/v1/P18- 1082.URL:https://aclanthology. org/P18-1082/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Alec Radford et al. “Language models are unsupervised multitask learners”. In:OpenAI blog1.8 (2019), p. 9.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Hongxiang Zhang, Hao Chen, Muhao Chen, and Tianyi Zhang. “Active Layer-Contrastive Decoding Reduces Hallucination in Large Language Model Generation”. In:Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing. Suzhou, China: Association for Computational Linguistics, Nov. 2025, pp. 3028–3046.ISBN: 979-8-89176-3326.DOI:10.18653/v1/2025.emnlp-main.150.URL:https://acla",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "David H Ackley, Geoffrey E Hinton, and Terrence J Sejnowski. “A learning algorithm for Boltzmann machines”. In:Cognitive science9.1 (1985), pp. 147–169.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Geoffrey Hinton, Oriol Vinyals, and Jeff Dean.Distilling the Knowledge in a Neural Network. 2015. arXiv:1503.02531 [stat.ML].URL:https://arxiv.org/abs/1503.02531.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Jessica Ficler and Yoav Goldberg. “Controlling Linguistic Style Aspects in Neural Language Generation”. In:Proceedings of the Workshop on Stylistic Variation. Copenhagen, Denmark: Association for Computational Linguistics, Sept. 2017, pp. 94–104.DOI:10.18653/v1/W17-4912.URL:https://aclanthology.org/W17-4912/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Matthew Renze. “The Effect of Sampling Temperature on Problem Solving in Large Language Models”. In:Findings of the Association for Computational Linguistics: EMNLP 2024. Miami, Florida, USA: Association for Computational Linguistics, Nov. 2024, pp. 7346–7356.DOI:10.18653/v1/2024.findings-emnlp.432.URL:https://aclanthology.org/ 2024.findings-emnlp.432/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Chunqiu Steven Xia, Yinlin Deng, Soren Dunn, and Lingming Zhang. “Demystifying LLM-Based Software Engineering Agents”. In:Proc. ACM Softw. Eng.2.FSE (June 2025).DOI:10.1145/3715754.URL:https://doi.org/10.1145/ 3715754.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Aston Zhang, Zachary C. Lipton, Mu Li, and Alexander J. Smola.Dive into Deep Learning.https://D2L.ai. Cambridge University Press, 2023. 18 Code Generation by Differential Test Time Scaling",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Percy Liang et al. “Holistic Evaluation of Language Models”. In:Transactions on Machine Learning Research(2023). Featured Certification, Expert Certification, Outstanding Certification.ISSN: 2835-8856.URL:https://openreview. net/forum?id=iO4LZibEqW.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Melanie Sclar, Yejin Choi, Yulia Tsvetkov, and Alane Suhr. “Quantifying Language Models’Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting”. In:International Conference on Representation Learning. V ol. 2024. 2024, pp. 25055–25083.URL:https://proceedings.iclr.cc/paper_files/ paper/2024/file/6c0e99d736da621403018ca7b32b1a4d-Paper-Conference",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Jingming Zhuo et al. “ProSA: Assessing and Understanding the Prompt Sensitivity of LLMs”. In:Findings of the Association for Computational Linguistics: EMNLP 2024. Miami, Florida, USA: Association for Computational Linguistics, Nov. 2024, pp. 1950–1976.DOI:10. 18653 / v1 / 2024. findingsemnlp. 108.URL:https: / / aclanthology. org / 2024. findings-emnlp.108/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "“What Did I Do Wrong? Quantifying LLMs’ Sensitivity and Consistency to Prompt Engineering”. In:Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers). Albuquerque, New Mexico: Association for Computational Linguistics, Apr. 2025, pp. 1543–1558.ISBN: 979-8-89176-189-6.DOI:10. 186",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Catherine Tony, Nicol ´as E. D ´ıaz Ferreyra, Markus Mutas, Salem Dhif, and Riccardo Scandariato. “Prompting Techniques for Secure Code Generation: A Systematic Investigation”. In:ACM Trans. Softw. Eng. Methodol.34.8 (Oct. 2025).ISSN: 1049-331X.DOI:10.1145/3722108.URL:https://doi.org/10.1145/3722108.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Sydney Nguyen et al. “How Beginning Programmers and Code LLMs (Mis)read Each Other”. In:Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems. CHI ’24. Honolulu, HI, USA: Association for Computing Machinery, 2024.ISBN: 9798400703300.DOI:10.1145/3613904.3642706.URL:https://doi.org/10.1145/3613904. 3642706.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Shuhan Liu et al. “CREME: Robustness Enhancement of Code LLMs via Layer-Aware Model Editing”. In:Proceedings of the IEEE/ACM 48th International Conference on Software Engineering. ICSE ’26. Rio de Janeiro, Brazil: Association for Computing Machinery, 2026.DOI:3744916.3773111.URL:https://arxiv.org/abs/2507.16407v3.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Ben Shi, Michael Tang, Karthik R Narasimhan, and Shunyu Yao. “Can Language Models Solve Olympiad Programming?” In:First Conference on Language Modeling. 2024.URL:https://openreview.net/forum?id=kGa4fMtP9l.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Markus Freitag and Yaser Al-Onaizan. “Beam Search Strategies for Neural Machine Translation”. In:Proceedings of the First Workshop on Neural Machine Translation. Vancouver: Association for Computational Linguistics, Aug. 2017, pp. 56– 60.DOI:10.18653/v1/W17-3207.URL:https://aclanthology.org/W17-3207/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Kaustubh Dhole et al. “NL-Augmenter: A Framework for Task-Sensitive Natural Language Augmentation”. In:Northern European Journal of Language Technology9 (2023).DOI:10.3384/nejlt.2000- 1533.2023.4725.URL:https: //aclanthology.org/2023.nejlt-1.5/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Yao Qiang et al. “Prompt Perturbation Consistency Learning for Robust Language Models”. In:Findings of the Association for Computational Linguistics: EACL 2024. St. Julian’s, Malta: Association for Computational Linguistics, Mar. 2024, pp. 1357–1370.URL:https://aclanthology.org/2024.findings-eacl.91/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Zhanke Zhou et al. “Can Language Models Perform Robust Reasoning in Chain-of-thought Prompting with Noisy Rationales?” In:The Thirty-eighth Annual Conference on Neural Information Processing Systems. 2024.URL:https:// openreview.net/forum?id=FbuODM02ra.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Lalchand Pandia and Allyson Ettinger. “Sorting through the noise: Testing robustness of information processing in pretrained language models”. In:Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing. Online and Punta Cana, Dominican Republic: Association for Computational Linguistics, Nov. 2021, pp. 1583–1596.DOI: 10.18653/v1/2021.emnlp-main.119.URL:https://aclant",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Feiteng Fang et al. “Enhancing Noise Robustness of Retrieval-Augmented Language Models with Adaptive Adversarial Training”. In:Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). Bangkok, Thailand: Association for Computational Linguistics, Aug. 2024, pp. 10028–10039.DOI:10.18653/ v1/2024.acl-long.540.URL:https://aclanthology.org/2024.ac",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Barbara Rychalska, Dominika Basaj, Alicja Gosiewska, and Przemysław Biecek. “Models in the Wild: On Corruption Robustness of Neural NLP Systems”. In:Neural Information Processing. Ed. by Tom Gedeon, Kok Wai Wong, and Minho Lee. Cham: Springer International Publishing, 2019, pp. 235–247.ISBN: 978-3-030-36718-3.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Jianyu Zhao, Yuyang Rong, Yiwen Guo, Yifeng He, and Hao Chen. “Understanding Programs by Exploiting (Fuzzing) Test Cases”. In:Findings of the Association for Computational Linguistics: ACL 2023. Toronto, Canada: Association for Computational Linguistics, July 2023, pp. 10667–10679.DOI:10.18653/v1/2023.findings-acl.678.URL:https: //aclanthology.org/2023.findings-acl.678/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Kosta Serebryany. “Continuous Fuzzing with libFuzzer and AddressSanitizer”. In:2016 IEEE Cybersecurity Development (SecDev). 2016, pp. 157–157.URL:https://doi.org/10.1109/SecDev.2016.043.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Yunlong Lyu, Yuxuan Xie, Peng Chen, and Hao Chen. “Prompt Fuzzing for Fuzz Driver Generation”. In:Proceedings of the 2024 on ACMSIGSAC Conference on Computer and Communications Security. CCS ’24. Salt Lake City, UT, USA: Association for Computing Machinery, 2024, pp. 3793–3807.ISBN: 9798400706363.DOI:10.1145/3658644.3670396. URL:https://doi.org/10.1145/3658644.3670396. 19 Code Generation by Differ",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Yujia Li et al. “Competition-level code generation with AlphaCode”. In:Science378.6624 (2022), pp. 1092–1097.DOI: 10.1126/science.abq1158. eprint:https://www.science.org/doi/pdf/10.1126/science.abq1158.URL: https://www.science.org/doi/abs/10.1126/science.abq1158.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Xuezhi Wang et al. “Self-Consistency Improves Chain of Thought Reasoning in Language Models”. In:The Eleventh International Conference on Learning Representations. 2023.URL:https://openreview.net/forum?id=1PL1NIMMrw.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Vincent Cohen-addad, Varun Kanade, Frederik Mallmann-trenn, and Claire Mathieu. “Hierarchical Clustering: Objective Functions and Algorithms”. In:J. ACM66.4 (June 2019).ISSN: 0004-5411.DOI:10. 1145 / 3321386.URL:https: //doi.org/10.1145/3321386.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Eric K. Tokuda, Cesar H. Comin, and Luciano da F. Costa. “Revisiting agglomerative clustering”. In:Physica A: Statistical Mechanics and its Applications585 (2022), p. 126433.ISSN: 0378-4371.DOI:https://doi.org/10.1016/j.physa. 2021.126433.URL:https://www.sciencedirect.com/science/article/pii/S0378437121007068.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Binyuan Hui et al.Qwen2.5Coder Technical Report. 2024. arXiv:2409.12186 [cs.CL].URL:https://arxiv.org/ abs/2409.12186.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Woosuk Kwon et al. “Efficient Memory Management for Large Language Model Serving with PagedAttention”. In:Proceedings of the 29th Symposium on Operating Systems Principles. SOSP ’23. Koblenz, Germany: Association for Computing Machinery, 2023, pp. 611–626.ISBN: 9798400702297.DOI:10.1145/3600006.3613165.URL:https://doi.org/ 10.1145/3600006.3613165.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Jiabo Huang et al. “Code Representation Pre-training with Complements from Program Executions”. In:Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: Industry Track (EMNLP). Miami, Florida, US: Association for Computational Linguistics, Nov. 2024, pp. 267–278.DOI:10.18653/v1/2024.emnlp-industry.21. URL:https://aclanthology.org/2024.emnlp-industry.21/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Dacheng Li et al.S*: Test Time Scaling for Code Generation (Source code). 2025.URL:https://github.com/NovaSkyAI/SkyThought/tree/0d190f11fd8e885bbe113aeccacba5ccde5b1102/skythought/test-time-scaling.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "Google.Gemini 2.5 Flash-Lite.URL:https://docs.cloud.google.com/vertexai/generativeai/docs/ models/gemini/2-5-flash-lite.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "Peter Rousseeuw. “Silhouettes: a graphical aid to the interpretation and validation of cluster analysis”. In:J. Comput. Appl. Math.20.1 (Nov. 1987), pp. 53–65.ISSN: 0377-0427.DOI:10.1016/0377- 0427(87)90125- 7.URL:https: //doi.org/10.1016/0377-0427(87)90125-7.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Chris Yuhao Liu et al.Skywork-Reward-V2: Scaling Preference Data Curation via Human-AI Synergy. 2026. arXiv:2507. 01352 [cs.CL].URL:https://arxiv.org/abs/2507.01352.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Koen Claessen and John Hughes. “QuickCheck: A Lightweight Tool for Random Testing of Haskell Programs”. In:Proceedings of the Fifth ACMSIGPLAN International Conference on Functional Programming. ICFP ’00. New York, NY, USA: Association for Computing Machinery, 2000, pp. 268–279.ISBN: 1581132026.URL:https://doi.org/10.1145/ 351240.351266.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Harrison Goldstein, Joseph W. Cutler, Daniel Dickstein, Benjamin C. Pierce, and Andrew Head. “Property-Based Testing in Practice”. In:Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. ICSE ’24. Lisbon, Portugal: Association for Computing Machinery, 2024.ISBN: 9798400702174.URL:https://doi.org/10.1145/ 3597503.3639581.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Zhiyu Fan, Haifeng Ruan, Sergey Mechtaev, and Abhik Roychoudhury. “Oracle-Guided Program Selection from Large Language Models”. In:Proceedings of the 33rd ACMSIGSOFT International Symposium on Software Testing and Analysis. ISSTA 2024. Vienna, Austria: Association for Computing Machinery, 2024, pp. 628–640.ISBN: 9798400706127.DOI: 10.1145/3650212.3680308.URL:https://doi.org/10.1145/3650212.3680308",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "Juyong Jiang, Fan Wang, Jiasi Shen, Sungju Kim, and Sunghun Kim. “A Survey on Large Language Models for Code Generation”. In:ACM Trans. Softw. Eng. Methodol.35.2 (Jan. 2026).ISSN: 1049-331X.DOI:10.1145/3747588.URL: https://doi.org/10.1145/3747588.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "An Yang et al.Qwen3 Technical Report. 2025. arXiv:2505.09388 [cs.CL].URL:https://arxiv.org/abs/2505. 09388.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "Daya Guo et al. “DeepSeekR1 incentivizes reasoning in LLMs through reinforcement learning”. In:Nature645.8081 (Sept. 2025), pp. 633–638.ISSN: 1476-4687.DOI:10.1038/s41586-025-09422-z.URL:http://dx.doi.org/10.1038/ s41586-025-09422-z.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "Carlos E Jimenez et al. “SWE-bench: Can Language Models Resolve Real-world Github Issues?” In:The Twelfth International Conference on Learning Representations. 2024.URL:https://openreview.net/forum?id=VTF8yNQM66.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "Qi Guo et al. “Exploring the Potential of ChatGPT in Automated Code Refinement: An Empirical Study”. In:Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. ICSE ’24. Lisbon, Portugal: Association for Computing Machinery, 2024.ISBN: 9798400702174.DOI:10.1145/3597503.3623306.URL:https://doi.org/10. 1145/3597503.3623306.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "Chunqiu Steven Xia, Yuxiang Wei, and Lingming Zhang. “Automated Program Repair in the Era of Large Pre-trained Language Models”. In:. 2023, pp. 1482– 1494.DOI:10.1109/ICSE48619.2023.00129. 20 Code Generation by Differential Test Time Scaling",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "Yifeng He et al. “UniTSyn: A Large-Scale Dataset Capable of Enhancing the Prowess of Large Language Models for Program Testing”. In:Proceedings of the 33rd ACMSIGSOFT International Symposium on Software Testing and Analysis. ISSTA 2024. Vienna, Austria: Association for Computing Machinery, 2024, pp. 1061–1072.ISBN: 9798400706127.DOI: 10.1145/3650212.3680342.URL:https://doi.org/10.1145/3650212.3680",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 81,
+      "text": "Weimin Xiong, Yiwen Guo, and Hao Chen. “The Program Testing Ability of Large Language Models for Code”. In:Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: Industry Track. Miami, Florida, US: Association for Computational Linguistics, Nov. 2024, pp. 23–34.DOI:10.18653/v1/2024.emnlp-industry.3. URL:https://aclanthology.org/2024.emnlp-industry.3/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 82,
+      "text": "Hongxiang Zhang, Yuyang Rong, Yifeng He, and Hao Chen. “LLAMAFUZZ: Large Language Model Enhanced Greybox Fuzzing”. In:ACM/IEEE International Conference on Automation of Software Test (AST). 2026.URL:https://arxiv. org/abs/2406.07714.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 83,
+      "text": "Jon Saad-Falcon et al. “An Architecture Search Framework for Inference-Time Techniques”. In:Forty-second International Conference on Machine Learning. 2025.URL:https://openreview.net/forum?id=EGrSMMj37o.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 84,
+      "text": "Jason Wei et al. “Chain-of-thought prompting elicits reasoning in large language models”. In:Proceedings of the 36th International Conference on Neural Information Processing Systems. NIPS ’22. New Orleans, LA, USA: Curran Associates Inc., 2022.ISBN: 9781713871088.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 85,
+      "text": "Hongxiang Zhang, Yuan Tian, and Tianyi Zhang.Self-Anchor: Large Language Model Reasoning via Step-by-step Attention Alignment. 2025. arXiv:2510.03223 [cs.CL].URL:https://arxiv.org/abs/2510.03223.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 86,
+      "text": "Dacheng Li et al. “Language Models Can Easily Learn to Reason from Demonstrations”. In:Findings of the Association for Computational Linguistics: EMNLP 2025. Suzhou, China: Association for Computational Linguistics, Nov. 2025, pp. 15979–15997.ISBN: 979-8-89176-335-7.DOI:10. 18653 / v1 / 2025. findingsemnlp. 866.URL:https: / / aclanthology.org/2025.findings-emnlp.866/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 87,
+      "text": "Aman Madaan et al. “Self-Refine: Iterative Refinement with Self-Feedback”. In:Advances in Neural Information Processing Systems. Ed. by A. Oh et al. V ol. 36. Curran Associates, Inc., 2023, pp. 46534–46594.URL:https://proceedings. neurips.cc/paper_files/paper/2023/file/91edff07232fb1b55a505a9e9f6c0ff3-Paper-Conference.pdf.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 88,
+      "text": "Shunyu Yao et al. “ReAct: Synergizing Reasoning and Acting in Language Models”. In:The Eleventh International Conference on Learning Representations. 2023.URL:https://openreview.net/forum?id=WE_vluYUL-X.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 89,
+      "text": "Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik R Narasimhan, and Shunyu Yao. “Reflexion: language agents with verbal reinforcement learning”. In:Thirty-seventh Conference on Neural Information Processing Systems. 2023.URL: https://openreview.net/forum?id=vAElhFcKW6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 90,
+      "text": "Jiaxin Huang et al. “Large Language Models Can Self-Improve”. In:Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing. Ed. by Houda Bouamor, Juan Pino, and Kalika Bali. Singapore: Association for Computational Linguistics, Dec. 2023, pp. 1051–1068.DOI:10.18653/v1/2023.emnlpmain.67.URL:https: //aclanthology.org/2023.emnlp-main.67/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 91,
+      "text": "Yifei Wang, Yuyang Wu, Zeming Wei, Stefanie Jegelka, and Yisen Wang. “A Theoretical Understanding of Self-Correction through In-context Alignment”. In:The Thirty-eighth Annual Conference on Neural Information Processing Systems. 2024. URL:https://openreview.net/forum?id=OtvNLTWYww.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 92,
+      "text": "Tal Ridnik, Dedy Kredo, and Itamar Friedman.Code Generation with AlphaCodium: From Prompt Engineering to Flow Engineering. 2024. arXiv:2401.08500 [cs.LG].URL:https://arxiv.org/abs/2401.08500.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 93,
+      "text": "Baizhou Huang, Shuai Lu, Xiaojun Wan, and Nan Duan. “Enhancing Large Language Models in Coding Through MultiPerspective Self-Consistency”. In:Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). Bangkok, Thailand: Association for Computational Linguistics, Aug. 2024, pp. 1429–1450.DOI: 10.18653/v1/2024.acl-long.78.URL:https://aclanthology",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 94,
+      "text": "Jicheng Wang, Yifeng He, and Hao Chen.RepoGenReflex: Enhancing Repository-Level Code Completion with Verbal Reinforcement and Retrieval-Augmented Generation. 2024. arXiv:2409.13122 [cs.SE].URL:https://arxiv.org/abs/ 2409.13122.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 95,
+      "text": "Qingyao Li et al. “RethinkMCTS: Refining Erroneous Thoughts in Monte Carlo Tree Search for Code Generation”. In:Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing. Ed. by Christos Christodoulopoulos, Tanmoy Chakraborty, Carolyn Rose, and Violet Peng. Suzhou, China: Association for Computational Linguistics, Nov. 2025, pp. 8092–8110.ISBN: 979-8-89176-332-6.DOI:10",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 96,
+      "text": "Anonymous.Artifacts for “Code Generation by Differential Test Time Scaling”.DOI:10.5281/zenodo.18426367.URL: https://doi.org/10.5281/zenodo.18426367. 21",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 19,
+      "text": "Manuel Rigger and Zhendong Su. “Testing Database Engines via Pivoted Query Synthesis”. In:Proc. ACM Program. Lang. 4.OOPSLA (Nov. 2020).DOI:10.1145/3428279.URL:https://doi.org/10.1145/3428279.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[19]",
+      "technique": "pqs",
+      "sentence": "This technique has proven highly effective for testing compilers [16–18], database systems [19], and other systems where formal specifications or programmer-provided test oracles are either unavailable or impractical to use.",
+      "context_before": "er a program’s output is correct when no ground truth specification exists [11]. Instead of relying on expert-provided oracles (i.e., expected outputs), differential testing compares the behaviors of multiple implementations that should conform to the same specification. When these implementations produce different outputs on the same input, at least one of them must contain a bug. Cross-referencing multiple implementations of the same specification provides a pseudo-oracle, where discrepancies in outputs indicate potential faults, and agreement suggests the likelihood of correctness [11, 12].",
+      "context_after": "LLM-based code generation naturally fits the differential testing paradigm. When sampling multiple code candidates from a language model given the same natural language specification, each candidate represents an independent attempt to implement the described functionality. Although these candidates may differ in implementation details, variable names, control flow structures, or algorithmic choices, they share the same intended cognitive semantics as defined by the prompt [20]. This setting mirrors the classical differential testing scenario: multiple implementations of the same specificatio",
+      "section": "2.1.1 Differential testing",
+      "page": 3,
+      "char_offset": 8693,
+      "cited_reference": {
+        "number": 19,
+        "text": "Manuel Rigger and Zhendong Su. “Testing Database Engines via Pivoted Query Synthesis”. In:Proc. ACM Program. Lang. 4.OOPSLA (Nov. 2020).DOI:10.1145/3428279.URL:https://doi.org/10.1145/3428279.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "prints the DOI of the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[13, 16, 19, 25]",
+      "technique": "pqs",
+      "sentence": "Much research has applied differential testing with such assumptions to complex software systems like compilers and databases [13, 16, 19, 25], 6 Related work 6.",
+      "context_before": "y to help, whereas embedding-based techniques with dynamic behaviors [57, 66] may provide a viable alternative. Failure of the majority assumption.DIFFCODEGENrelies on the hypothesis that the largest behavioral cluster contains correct solutions. This assumption may fail when: 1. most candidates share a common misconception; 2. the natural language specification is ambiguous, leading to multiple valid interpretations. In such cases, DIFFCODEGEN may confidently select an incorrect solution. However, we have shown empirically that this assumption holds for the vast majority of programming tasks.",
+      "context_after": "1 Code generation models Large language models have demonstrated remarkable capabilities in writing programs. The text-to-code generation task involves LLMs producing code snippets based on natural language descriptions or specifications [74]. Early work such as Codex [3] and AlphaCode [60] demonstrated that LLMs fine-tuned on code can solve programming problems described in natural language. Subsequent models have continued to advance the state of the art, including openweight models such as Qwen-Coder [64, 75] and reasoning-augmented models like DeepSeek-R1 [76]. Generative code models have",
+      "section": "5.2 Limitations and future work",
+      "page": 15,
+      "char_offset": 57936,
+      "cited_reference": {
+        "number": 19,
+        "text": "Manuel Rigger and Zhendong Su. “Testing Database Engines via Pivoted Query Synthesis”. In:Proc. ACM Program. Lang. 4.OOPSLA (Nov. 2020).DOI:10.1145/3428279.URL:https://doi.org/10.1145/3428279.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "prints the DOI of the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:19:46Z",
+    "is_model_written": true,
+    "summary": "DiffCodeGen is a test-time scaling method for code generation that selects among candidate programs without extra model calls. It samples diverse candidates, uses coverage-guided fuzzing to synthesise inputs without needing existing tests, executes every candidate on those inputs, clusters them by behavioural similarity, and returns the medoid of the largest cluster. Across four models it reports competitive or better results than other test-time scaling methods at a fraction of the cost.",
+    "narrative": "Two citations, listing database systems among the domains where differential testing has proven effective where formal specifications are unavailable.",
+    "roles": {
+      "M1": "background",
+      "M2": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

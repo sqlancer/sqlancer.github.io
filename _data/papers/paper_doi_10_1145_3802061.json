@@ -1,0 +1,857 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:29:15Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3802061",
+    "title": "Finding Missed Optimizations in DBMSs through Unbalanced Short-circuit Query Construction",
+    "authors": [
+      "Jinhui Lai",
+      "Chi Zhang",
+      "Jie Liang",
+      "Zihao Zeng",
+      "Zhiyong Wu",
+      "Jingzhou Fu",
+      "Chijin Zhou",
+      "Shuai Ma",
+      "Yu Jiang",
+      "Zichen Xu"
+    ],
+    "year": 2026,
+    "venue": "Proceedings of the ACM on Management of Data",
+    "doi": "10.1145/3802061",
+    "arxiv_id": null,
+    "s2_paper_id": "96bb90109a01a144448d9bf9b7b58f3e4c440eff",
+    "url": "https://doi.org/10.1145/3802061",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3802061",
+      "retrieved_at": "2026-09-09T01:29:15Z",
+      "chars": 90549,
+      "content_sha256": "sha256:325cd5949963bc3e702fc0d2d85d8f0362afc33fc090aa8f68cb717e53c1a4b2"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 24,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 3788
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 11755
+      },
+      {
+        "number": "3",
+        "title": "Design of SCor",
+        "start": 15158
+      },
+      {
+        "number": "3.1",
+        "title": "Representative Short-Circuit Patterns",
+        "start": 17421
+      },
+      {
+        "number": "3.2",
+        "title": "Skeleton Construction and Transformation",
+        "start": 26911
+      },
+      {
+        "number": "3.3",
+        "title": "Query Generation and Mutation",
+        "start": 32607
+      },
+      {
+        "number": "3.4",
+        "title": "Performance Checking",
+        "start": 37390
+      },
+      {
+        "number": "4",
+        "title": "Implementation",
+        "start": 41641
+      },
+      {
+        "number": "5",
+        "title": "Evaluation",
+        "start": 44038
+      },
+      {
+        "number": "5.1",
+        "title": "Testing Setup",
+        "start": 44581
+      },
+      {
+        "number": "5.2",
+        "title": "Detection Capability",
+        "start": 47749
+      },
+      {
+        "number": "5.3",
+        "title": "Pattern Analysis",
+        "start": 55630
+      },
+      {
+        "number": "5.4",
+        "title": "Comparative Evaluation",
+        "start": 66556
+      },
+      {
+        "number": "6",
+        "title": "Discussion",
+        "start": 71077
+      },
+      {
+        "number": "7",
+        "title": "Related Work",
+        "start": 74124
+      },
+      {
+        "number": "8",
+        "title": "Conclusion",
+        "start": 78214
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering (Lisbon, Portugal)(ICSE ’24). Association for Computing Machinery, New York, NY, USA, Article 133, 13 pages. doi:10.1145/3597503.3639076",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 2,
+      "text": "Stefan Brass and Christian Goldberg. 2006. Semantic errors in SQL queries: A quite complete list.Journal of Systems and Software79, 5 (2006), 630–644. doi:10.1016/j.jss.2005.06.028 Quality Software.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Nicolas Bruno, Surajit Chaudhuri, and Luis Gravano. 2002. Top-k selection queries over relational databases: Mapping strategies and performance evaluation.ACM Transactions on Database Systems (TODS)27, 2 (2002), 153–187.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "S. Ceri and G. Gottlob. 1985. Translating SQL Into Relational Algebra: Optimization, Semantics, and Equivalence of SQL Queries.IEEE Transactions on Software EngineeringSE-11, 4 (1985), 324–345. doi:10.1109/TSE.1985.232223",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Stefano Ceri and Georg Gottlob. 2006. Translating SQL into relational algebra: Optimization, semantics, and equivalence of SQL queries.IEEE Transactions on software engineering4 (2006), 324–345.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "ClickHouse. 2026. https://clickhouse.com/ Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "CockroachDB. 2026. https://www.cockroachlabs.com/ Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "CockroachDB. 2026. Short-circuit Evaluation in COALESCE() Function. https://www .cockroachlabs .com/docs/stable/ functions-and-operators Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "CockroachDB. 2026. Short-Circuit in Cross Join with Limit 1. https://github .com/cockroachdb/cockroach/issues/148145 Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "DB-Engines. 2026. The DB-Engines Ranking ranks database management systems according to their popularity. https://db-engines.com/en/ranking Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Weimin Du, Ravi Krishnamurthy, and Ming-Chien Shan. 1992. Query Optimization in a Heterogeneous DBMS. In Proceedings of the 18th International Conference on Very Large Data Bases (VLDB ’92). Morgan Kaufmann Publishers Inc., San Francisco, CA, USA, 277–291.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "DuckDB. 2026. https://duckdb.org/ Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Andrew Eisenberg and Jim Melton. 1999. SQL: 1999, formerly known as SQL3.SIGMOD Rec.28, 1 (March 1999), 131–138. doi:10.1145/309844.310075",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Grant Fritchey. 2012. Execution Plan Cache Analysis. InSQL Server 2012 Query Performance Tuning. Springer, 241–279.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2023. Griffin: Grammar-Free DBMS Fuzzing. In Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering(Rochester, MI, USA)(ASE ’22). Association for Computing Machinery, New York, NY, USA, Article 49, 12 pages. doi:10.1145/3551349.3560431",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Piyush Goel and Bala Iyer. 1996. SQL query optimization: reordering for a general class of queries(SIGMOD ’96). Association for Computing Machinery, New York, NY, USA, 47–56. doi:10.1145/233269.233318",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Zuming Jiang, Jiaju Bai, and et al. 2023. DynSQL: Stateful Fuzzing for Database Management Systems with Complex and Valid SQL Query Generation. In32nd USENIX Security Symposium (USENIX Security 23). USENIX Association, Anaheim, CA, 4949–4965. https://www.usenix.org/conference/usenixsecurity23/presentation/jiang-zu-ming",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2019. APOLLO: automatic detection and diagnosis of performance regressions in database systems.Proc. VLDB Endow.13, 1 (sep 2019), 57–70. doi:10 .14778/3357377 .3357382",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Jinhui Lai, Chi Zhang, Bingyan Li, Chenglin Liang, Jie Liang, Zhiyong Wu, Jingzhou Fu, Yu Jiang, and Zichen Xu. 2025. SRS: Detecting Logic Bugs of Join Implementation in DBMSs via Set Relation Synthesis. 2025), 24 pages. doi:10.1145/3769828",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Hai Lan, Zhifeng Bao, and Yuwei Peng. 2021. A survey on advancing the dbms query optimizer: Cardinality estimation, cost model, and plan enumeration.Data Science and Engineering6, 1 (2021), 86–101.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Viktor Leis, Andrey Gubichev, Atanas Mirchev, Peter Boncz, Alfons Kemper, and Thomas Neumann. 2015. How good are query optimizers, really?Proceedings of the VLDB Endowment9, 3 (2015), 204–215.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. 2023. Sequence-Oriented DBMS Fuzzing. In Engineering (ICDE). 668–681. doi:10.1109/ICDE55515.2023.00057",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Jie Liang, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Chengnian Sun, and Yu Jiang. 2024. Mozi: Discovering DBMS Bugs via Configuration-Based Equivalent Transformation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering(Lisbon, Portugal)(ICSE ’24). Association for Computing Machinery, New York, NY, USA, Article 135, 12 pages. doi:10.1145/3597503.3639112",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. 2022. Automatic detection of performance bugs in database systems using equivalent queries. InProceedings of the 44th International Conference on Software Engineering. 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "MariaDB. 2026. https://mariadb.org/ Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "MariaDB. 2026. FirstMatch Strategy. https://mariadb .com/docs/server/ha-and-performance/optimization-andtuning/query-optimizations/optimization-strategies/firstmatch-strategy Accessed: March 25, 2026. 4, No. 3 (SIGMOD), Article 184. Publication date: June 2026. 184:24 Jinhui Lai et al.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Songsong Mo, Yile Chen, Hao Wang, Gao Cong, and Zhifeng Bao. 2023. Lemo: A Cache-Enhanced Learned Optimizer for Concurrent Queries. 1, 4, Article 247 (Dec. 2023), 26 pages. doi:10.1145/3626734",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "MySQL. 2026. https://www.mysql.com/ Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "MySQL. 2026. Limit Optimization in MySQL. https://dev .mysql.com/doc/refman/8 .4/en/limit-optimization .html Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Neo4j. 2026. https://neo4j.com/ Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "OceanBase. 2026. https://www.oceanbase.com/ Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "The openCypher Implementers Group. 2026. Cypher Query Language Reference. https://s3 .amazonaws.com/ artifacts.opencypher.org/openCypher9.pdf Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "OpenGauss. 2026. https://opengauss.org/ Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Oracle. 2026. https://www.oracle.com/database/ Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Oracle. 2026. The CASE Expression in Oracle. https://docs .oracle.com/en/database/oracle/oracle-database/19/sqlrf/ CASE-Expressions.html Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Oracle. 2026. Short-circuit Evaluation in Logical Operators. https://docs .oracle.com/cd/E19253-01/817-6223/chptypeopexpr-6/index.html Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "PingCAP. 2026. The EXPLAIN statement in TiDB. https://docs .pingcap.com/tidb/stable/sql-statement-explain/ Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Alban Ponse and Daan JC Staudt. 2018. An independent axiomatisation for free short-circuit logic.Journal of Applied Non-Classical Logics28, 1 (2018), 35–71.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "PostgreSQL. 2026. https://www.postgresql.org/ Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "PostgreSQL. 2026. CREATE TABLE AS SELECT (CTAS) Statements in PostgreSQL. https://www .postgresql.org/docs/ current/sql-createtableas.html Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "PostgreSQL. 2026. Set Returning Functions. https://www.postgresql.org/docs/current/functions-srf.html Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Virtual Event, USA)(ESEC/FSE 2020). Association for Computing Machinery, New York, NY, USA, 1140–1152. doi:10.1145/33680",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 43,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proc. ACM Program. Lang.4, OOPSLA, Article 211 (nov 2020), 30 pages. doi:10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 44,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). USENIX Association, 667–682. https:// www.usenix.org/conference/osdi20/presentation/rigger",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 45,
+      "text": "Tobias Schmidt, Viktor Leis, Peter Boncz, and Thomas Neumann. 2025. SQLStorm: Taking Database Benchmarking into the LLM Era.Proceedings of the VLDB Endowment18, 11 (2025), 4144–4157.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Andreas Seltenreich, Bo Tang, and et al. 2015. https://github.com/anse1/sqlsmith.git Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "SQLite. 2026. https://sqlite.org/ Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "SQLite. 2026. IF() Function in SQLite. https://sqlite.org/lang_corefunc.html Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "SQLite. 2026. SQLite Fix Example. https://sqlite.org/src/info/e33da6d5dc964db8 Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "TiDB. 2026. https://www.pingcap.com/ Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "TPC. 2026. TPC-DS Benchmark. https://www.tpc.org/tpcds/ Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "TPC. 2026. TPC-H Benchmark. https://www.tpc.org/tpch/ Accessed: March 25, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. 2021. Industry Practice of Coverage-Guided Enterprise-Level DBMS Fuzzing. In Engineering: Software Engineering in Practice (ICSE-SEIP). 328–337. doi:10.1109/ICSE-SEIP52600.2021.00042",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Zhiyong Wu, Jie Liang, Jingzhou Fu, Mingzhe Wang, and Yu Jiang. 2024. PUPPY: Finding Performance Degradation Bugs in DBMSs via Limited-Optimization Plan Construction. In Software Engineering (ICSE). IEEE Computer Society, 560–571.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Zhiyong Wu, Jie Liang, Jingzhou Fu, Mingzhe Wang, and Yu Jiang. 2025. Hulk: Exploring Data-Sensitive Performance Anomalies in DBMSs via Data-Driven Analysis.Proceedings of the ACM on Software Engineering2, ISSTA (2025), 2181–2202.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. InProceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security(Virtual Event, USA)(CCS ’20). Association for Computing Machinery, New York, NY, USA, 955–970. Received October 2025; revised January 2026",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 1,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering (Lisbon, Portugal)(ICSE ’24). Association for Computing Machinery, New York, NY, USA, Article 133, 13 pages. doi:10.1145/3597503.3639076",
+      "technique": "cert",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing cert",
+        "prints the DOI of the paper introducing cert"
+      ]
+    },
+    {
+      "number": 42,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Virtual Event, USA)(ESEC/FSE 2020). Association for Computing Machinery, New York, NY, USA, 1140–1152. doi:10.1145/3368089.3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 43,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proc. ACM Program. Lang.4, OOPSLA, Article 211 (nov 2020), 30 pages. doi:10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 44,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). USENIX Association, 667–682. https:// www.usenix.org/conference/osdi20/presentation/rigger",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 1,18,23,24,54,55]",
+      "technique": "cert",
+      "sentence": "Some automated testing approaches have been widely adopted to detect performance issues for DBMSs [ 1,18,23,24,54,55].",
+      "context_before": "isms.The internal optimization strategies adopted by commercial DBMSs (e.g., Oracle [ 34]) are typically undisclosed. As a result, it is difficult to determine which optimizations are actually applied during query execution or whether certain optimization opportunities were intentionally omitted. (3)The Absence of a Reliable Performance Oracle.DBMS performance testing lacks a reliable oracle that specifies the reasonable execution time for a given query 𝑄and database 𝐷. Without such ground truth, it is challenging to distinguish a genuine missed optimization from an inherently expensive query.",
+      "context_after": "HULK [ 55] and APOLLO [ 18] detect performance regressions by comparing query execution across different systems or versions. MOZI [ 23] and PUPPY [ 54] vary optimizer configurations to trigger different execution plans and reveal performance degradation. CERT [ 1] focuses on cardinality estimation by deriving restrictive queries to identify estimation errors that may affect optimization. While effective in uncovering issues in implemented optimizations, none of these approaches explicitly targets missed optimization opportunities, where the optimizer fails to choose an execution strategy tha",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 6796,
+      "cited_reference": {
+        "number": 1,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering (Lisbon, Portugal)(ICSE ’24). Association for Computing Machinery, New York, NY, U",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing cert",
+          "prints the DOI of the paper introducing cert"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "CERT [ 1] focuses on cardinality estimation by deriving restrictive queries to identify estimation errors that may affect optimization.",
+      "context_before": "s a reliable oracle that specifies the reasonable execution time for a given query 𝑄and database 𝐷. Without such ground truth, it is challenging to distinguish a genuine missed optimization from an inherently expensive query. Some automated testing approaches have been widely adopted to detect performance issues for DBMSs [ 1,18,23,24,54,55]. HULK [ 55] and APOLLO [ 18] detect performance regressions by comparing query execution across different systems or versions. MOZI [ 23] and PUPPY [ 54] vary optimizer configurations to trigger different execution plans and reveal performance degradation.",
+      "context_after": "While effective in uncovering issues in implemented optimizations, none of these approaches explicitly targets missed optimization opportunities, where the optimizer fails to choose an execution strategy that would yield more efficient query evaluation. 4, No. 3 (SIGMOD), Article 184. Publication date: June 2026. Finding Missed Optimizations in DBMSs through Unbalanced Short-Circuit Query Construction 184:3 CREATE TABLE t1(c1 NUMBER(10)); INSERT INTO t1 SELECT LEVEL FROM dual CONNECT BYLEVEL <= 1000000000; 1. Generate table t1 and insert t1 with one billion rows 2. Generate two queries and e",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 7171,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[ 1,18,23,24,54,55]",
+      "technique": "cert",
+      "sentence": "Detecting these missed optimizations remains challenging, as existing approaches [ 1,18,23,24,54,55] typically observe performance anomalies without revealing where the optimizer fails.",
+      "context_before": "ften reorder operations to minimize estimated costs. For instance, a predicate written as 𝑒𝑥𝑝𝑟 1OR𝑒𝑥𝑝𝑟 2may be executed as 𝑒𝑥𝑝𝑟 2 OR𝑒𝑥𝑝𝑟 1depending on cost estimates, illustrating how optimization decisions dictate the actual execution steps of a query. Despite these sophisticated optimization techniques, DBMSs can still fail to select the most efficient execution plan for certain queries. Such missed optimizations occur when the optimizer does not apply the most cost-effective execution strategy, resulting in unnecessary computation, degraded performance, and inefficient resource utilization.",
+      "context_after": "Short-Circuit Evaluation.Short-circuit evaluation in DBMSs halts query execution once the final result is determined. For example, in 𝑒𝑥𝑝𝑟 1OR𝑒𝑥𝑝𝑟 2, if𝑒𝑥𝑝𝑟 1evaluates to TRUE,𝑒𝑥𝑝𝑟 2’s execution becomes unnecessary. DBMSs primarily implement three types of short-circuiting: (1) Compile-time short-circuit, where syntactic constructs (e.g., WHERE FALSE [36] or LIMIT 0 [29]) in a query enable the optimizer to infer a constant result or prune entire execution branches during query compilation. (2) Runtime short-circuit, where execution operators (e.g., semi-join [ 26] or LIMIT n) can stop processin",
+      "section": "2 Background",
+      "page": 4,
+      "char_offset": 12812,
+      "cited_reference": {
+        "number": 1,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering (Lisbon, Portugal)(ICSE ’24). Association for Computing Machinery, New York, NY, U",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing cert",
+          "prints the DOI of the paper introducing cert"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker",
+      "surface": "[ 1]",
+      "technique": "cert",
+      "sentence": "Metamorphic testing [ 1] addresses this by constructing oracles through relations between inputs and outputs.",
+      "context_before": "n stop processing once a termination condition is met, with the decision made dynamically during execution. (3) Statistics-aware short-circuit, where the optimizer leverages metadata such as table emptiness, selectivity estimates, or design choices like plan cache [ 27] to choose plans that are expected to exploit short-circuiting opportunities at runtime. Metamorphic testing.A reliable test oracle is essential for identifying missed optimizations in DBMSs, as it defines the expected performance of a query and allows distinguishing genuine optimization misses from inherently expensive queries.",
+      "context_after": "For a given input 𝐼producing output𝑂, the method derives a transformed input 𝐼′(with output 𝑂′) and verifies whether a predefined relation holds between 𝑂and𝑂′. SCor adapts this approach with the key insight thatif a query’s result can be determined from partial execution, yet the DBMS executes the query entirely, this indicates a missed optimization.We leverage short-circuit evaluation principles to construct such metamorphic relations. For example, given 𝑄1:SELECT (SELECT MIN(t1.c1) FROM t1) > 0 OR TRUE wheret1is a large table, we create 𝑄2by replacing t1with a small table or empty table t0",
+      "section": "2 Background",
+      "page": 4,
+      "char_offset": 14182,
+      "cited_reference": {
+        "number": 1,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering (Lisbon, Portugal)(ICSE ’24). Association for Computing Machinery, New York, NY, U",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing cert",
+          "prints the DOI of the paper introducing cert"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Finding Missed Optimizations in DBMSs through Unbalanced Short-Circuit Query Construction 184:13 Given the wide array of existing data generation methods—such as testing benchmarks, TPCH [52], automated testing tools like SQLancer [ 42–44], and built-in DBMS functions [ 41]—SCor does not reimplement data generation.",
+      "context_before": "construct unbalanced short-circuit queries, SCor creates tables with varying data sizes, including several empty tables ($ 𝑒𝑚𝑝𝑡𝑦𝑇𝑎𝑏𝑙𝑒 ), small tables ($ 𝑠𝑚𝑎𝑙𝑙𝑇𝑎𝑏𝑙𝑒 ) containing a limited number of records (e.g., 1-100 rows), and large tables ($ 𝑙𝑎𝑟𝑔𝑒𝑇𝑎𝑏𝑙𝑒 ) with a substantial volume of data (e.g., millions or billions of rows). This enables the generation of both high-cost expressions ($ ℎ𝑖𝑔ℎ𝐶𝑜𝑠𝑡𝐸𝑥𝑝𝑟 ), such as queries executed on large tables, and low-cost expressions ($𝑙𝑜𝑤𝐶𝑜𝑠𝑡𝐸𝑥𝑝𝑟), such as those applied to small or empty tables. 4, No. 3 (SIGMOD), Article 184. Publication date: June 2026.",
+      "context_after": "Instead, it leverages these established approaches. For instance, in PostgreSQL, the generate_series() function can be invoked to produce sequences of varying sizes, facilitating the creation of tables with diverse data volumes. Query Generation. SCor instantiates the query skeletons in Table 1 by generating concrete SQL expressions and statements based on the initial database state. To ensure syntactic correctness, we employ a grammar-based approach that encodes SQL-99 [ 13] grammar into production rules. Through random walks over the resulting grammar tree, the system generates diverse vali",
+      "section": "4 Implementation",
+      "page": 12,
+      "char_offset": 42453,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "We compared SCor with five state-of-the-art DBMS performance bug detection tools, including: APOLLO [ 18], AMOEBA [ 24], and CERT [ 1], Puppy [ 54], and HULK [ 55].",
+      "context_before": "1(c1 INT8); -- Insert into t1 with 10 million rows -- Pattern 5.1: emptyTable JOIN anyTable SELECT*FROMt1RIGHT JOIN(SELECT*FROMt1 WHERE FALSE)ASeONe.c1 = t1.c1; -- 0.001s SELECT*FROM(SELECT*FROMt1 WHERE FALSE)ASeLEFT JOINt1ONe.c1 = t1.c1; -- 3.975s -- Pattern 5.2: emptySet INTERSECT anySet SELECT*FROMt1 WHERE FALSEINTERSECT SELECT*FROMt1; -- 0.001s SELECT*FROMt1INTERSECT SELECT*FROMt1 WHERE FALSE; -- 18.764s 5.4 Comparative Evaluation To illustrate the effectiveness and efficiency of our tools, we conducted a comparative evaluation against existing DBMS performance bug testing tools. Baseline.",
+      "context_after": "APOLLO detects performance regression bugs by comparing the execution time of the same query across different DBMS versions. AMOEBA detects performance bugs by comparing execution times of semantically equivalent queries. CERT tackles performance bugs through cardinality estimation analysis. Puppy detects the performance bug by changing the optimization configurations. HULK detects the data-sensitive performance anomalies by changing the data volume. Effectiveness of SCor Comparison to Baseline.In this experiment, we run each tool on the latest version of each supported DBMS for a duration of",
+      "section": "5.4 Comparative Evaluation",
+      "page": 19,
+      "char_offset": 66744,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "CERT tackles performance bugs through cardinality estimation analysis.",
+      "context_before": "1 WHERE FALSE; -- 18.764s 5.4 Comparative Evaluation To illustrate the effectiveness and efficiency of our tools, we conducted a comparative evaluation against existing DBMS performance bug testing tools. Baseline.We compared SCor with five state-of-the-art DBMS performance bug detection tools, including: APOLLO [ 18], AMOEBA [ 24], and CERT [ 1], Puppy [ 54], and HULK [ 55]. APOLLO detects performance regression bugs by comparing the execution time of the same query across different DBMS versions. AMOEBA detects performance bugs by comparing execution times of semantically equivalent queries.",
+      "context_after": "Puppy detects the performance bug by changing the optimization configurations. HULK detects the data-sensitive performance anomalies by changing the data volume. Effectiveness of SCor Comparison to Baseline.In this experiment, we run each tool on the latest version of each supported DBMS for a duration of 24 hours. Since the baseline approaches do not support all the DBMSs that SCor does, our comparison focuses on the DBMSs commonly supported by both SCor and each baseline. Table 4 presents the number of unique performance bugs identified by each approach on each DBMS. The results show that S",
+      "section": "5.4 Comparative Evaluation",
+      "page": 19,
+      "char_offset": 67130,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "The results show that SCor found 24, 8, 36, 8, and 4 more bugs than APOLLO, AMOEBA, CERT, Puppy, and HULK, respectively.",
+      "context_before": "ity estimation analysis. Puppy detects the performance bug by changing the optimization configurations. HULK detects the data-sensitive performance anomalies by changing the data volume. Effectiveness of SCor Comparison to Baseline.In this experiment, we run each tool on the latest version of each supported DBMS for a duration of 24 hours. Since the baseline approaches do not support all the DBMSs that SCor does, our comparison focuses on the DBMSs commonly supported by both SCor and each baseline. Table 4 presents the number of unique performance bugs identified by each approach on each DBMS.",
+      "context_after": "Note that the increments are calculated based only on the DBMSs commonly supported by both approaches. The other approaches were less effective in our experiments because we tested the latest versions of the DBMSs, where previously known bug patterns have largely been addressed. This reduced effectiveness suggests that discovering additional bugs has become more challenging for the baseline, and the bugs detected by our approach are likely beyond the reach of existing approaches. Furthermore, our analysis reveals that the missed optimizations identified by SCor show limited overlap with only",
+      "section": "5.4 Comparative Evaluation",
+      "page": 19,
+      "char_offset": 67777,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "DBMSAPOLLO AMOEBA CERT Puppy HULK SCor PostgreSQL 0 0 - 2 2 3 MySQL - - 3 6 10 13 CockroachDB-1 2 - - 6 TiDB - - 4 - - 26 SQLite 0 - - - - 21 Total 0 1 9 8 12 69 Increment 24↑8↑36↑8↑4↑data-sensitive performance anomalies through data changes, while SCor employs unbalanced shortcircuit queries.",
+      "context_before": "verlap) in common with HULK and no overlap with other baseline tools. This partial alignment with HULK is expected, as both approaches leverage data volume variation. However, their testing strategies differ: HULK detects 4, No. 3 (SIGMOD), Article 184. Publication date: June 2026. 184:20 Jinhui Lai et al. Table 4. Number of unique performance bugs detected by each testing tool in 24 hours. This comparison focuses on the DBMSs commonly supported by both SCor and each baseline. “-” indicates that the tool does not support the DBMS. “Increments” are calculated only for commonly supported DBMSs.",
+      "context_after": "The limited overlap with HULK confirms that SCor’s pattern-based generation strategy uncovers different optimization opportunities, systematically constructing queries with short-circuit patterns that HULK does not target. The non-overlap with other tools, except HULK, stems from fundamental differences in both target and methodology. (1) Target: Existing baselines primarily target performance degradation in implemented optimizations, whereas SCor specifically detects missed optimization. Specifically, APOLLO targets performance regression bugs, AMOEBA focuses on performance differences among",
+      "section": "5.4 Comparative Evaluation",
+      "page": 20,
+      "char_offset": 69141,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "Specifically, APOLLO targets performance regression bugs, AMOEBA focuses on performance differences among semantically equivalent queries, CERT addresses cardinality estimation issues, PUPPY identifies configuration-related problems, and HULK detects data-sensitive anomalies.",
+      "context_before": "-sensitive performance anomalies through data changes, while SCor employs unbalanced shortcircuit queries. The limited overlap with HULK confirms that SCor’s pattern-based generation strategy uncovers different optimization opportunities, systematically constructing queries with short-circuit patterns that HULK does not target. The non-overlap with other tools, except HULK, stems from fundamental differences in both target and methodology. (1) Target: Existing baselines primarily target performance degradation in implemented optimizations, whereas SCor specifically detects missed optimization.",
+      "context_after": "(2) Methodology: As shown in Table 3, 147 missed optimizations found by SCor trace back to initial releases, indicating their long-standing nature. This makes them undetectable by APOLLO, which relies on cross-version comparison of identical queries. Similarly, AMOEBA may fail when semantically equivalent queries exhibit similarly severe performance degradation. CERT cannot detect opportunities that persist despite correct cardinality estimates. For example, in Listing 2, both queries have accurate cardinality estimates, yet the absence of short-circuit evaluation represents a distinct optimi",
+      "section": "5.4 Comparative Evaluation",
+      "page": 20,
+      "char_offset": 69930,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "CERT cannot detect opportunities that persist despite correct cardinality estimates.",
+      "context_before": "regression bugs, AMOEBA focuses on performance differences among semantically equivalent queries, CERT addresses cardinality estimation issues, PUPPY identifies configuration-related problems, and HULK detects data-sensitive anomalies. (2) Methodology: As shown in Table 3, 147 missed optimizations found by SCor trace back to initial releases, indicating their long-standing nature. This makes them undetectable by APOLLO, which relies on cross-version comparison of identical queries. Similarly, AMOEBA may fail when semantically equivalent queries exhibit similarly severe performance degradation.",
+      "context_after": "For example, in Listing 2, both queries have accurate cardinality estimates, yet the absence of short-circuit evaluation represents a distinct optimization gap beyond cardinality concerns. PUPPY identifies performance issues by modifying DBMS optimization configurations, which primarily reveals scenarios where existing optimizations perform poorly, but cannot detect missed optimizations that were never implemented. 6 Discussion SCor Scope.SCor systematically uncovers missed optimizations through unbalanced short-circuit query construction. By leveraging the prevalence of short-circuit pattern",
+      "section": "5.4 Comparative Evaluation",
+      "page": 20,
+      "char_offset": 70572,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "CERT [ 1] tackles performance bugs through cardinality estimation analysis.",
+      "context_before": "s. Third, the methodology of constructing unbalanced short-circuit queries could be systematically generalized to other DBMS paradigms, such as graph DBMSs, to further validate and broaden the applicability of SCor. 7 Related Work DBMS Performance Bug Testing.The most related strand of research is on automatic detection of performance issues in DBMSs. APOLLO [ 18] detects performance regression bugs by comparing the execution time of the same query across different DBMS versions. AMOEBA [ 24] identifies unexpected slowdowns by contrasting the execution times of semantically equivalent queries.",
+      "context_after": "MOZI [ 23] detects performance bugs by leveraging variations in configuration-related configurations. PUPPY [ 54] detects performance degradation bugs through limited optimization plan construction. HULK [ 55] detects data-sensitive performance anomalies via data-driven analysis. As we mentioned in Section 5.4, SCor differs from these testing works in both target and methodology. Overall, existing approaches primarily focus on identifying performance degradations caused by faulty or suboptimal implementations of optimization, whereas SCor is designed to expose optimization opportunities that",
+      "section": "7 Related Work",
+      "page": 21,
+      "char_offset": 74508,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "citation_marker",
+      "surface": "[ 19,22,42–44,46,56]",
+      "technique": "norec",
+      "sentence": "The recent application of fuzzing to DBMSs has successfully uncovered hundreds of bugs [ 19,22,42–44,46,56].",
+      "context_before": "QL workloads automatically. SCor complements these benchmarks by addressing an orthogonal problem. While traditional benchmarks primarily detect performance regression bugs using user-relevant workloads, SCor 4, No. 3 (SIGMOD), Article 184. Publication date: June 2026. 184:22 Jinhui Lai et al. exposes missed optimization opportunities that standard benchmarks rarely reveal, by constructing unbalanced short-circuit queries, even on previously less-seen workloads. DBMS Fuzzing.Besides testing DBMS performance, automated testing approaches have also been developed to uncover other types of bugs.",
+      "context_after": "A typical DBMS fuzzer operates by continuously generating SQL test cases, executing them on the target system, and monitoring for incorrect behavior. These approaches are broadly categorized as either generation-based or mutation-based fuzzing. Generation-based fuzzers construct SQL queries from scratch using predefined syntax or grammar models. For example, SQLSmith [ 46] generates queries with built-in AST generation rules to expose memory errors. Similarly, SQLancer uses a generation-based approach guided by its test oracles (PQS [ 44], NoREC [ 42], TLP [ 43], and SRS [ 19]) to detect logi",
+      "section": "7 Related Work",
+      "page": 22,
+      "char_offset": 76809,
+      "cited_reference": {
+        "number": 42,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Virtual Event, USA)(",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Similarly, SQLancer uses a generation-based approach guided by its test oracles (PQS [ 44], NoREC [ 42], TLP [ 43], and SRS [ 19]) to detect logic bugs.",
+      "context_before": "loped to uncover other types of bugs. The recent application of fuzzing to DBMSs has successfully uncovered hundreds of bugs [ 19,22,42–44,46,56]. A typical DBMS fuzzer operates by continuously generating SQL test cases, executing them on the target system, and monitoring for incorrect behavior. These approaches are broadly categorized as either generation-based or mutation-based fuzzing. Generation-based fuzzers construct SQL queries from scratch using predefined syntax or grammar models. For example, SQLSmith [ 46] generates queries with built-in AST generation rules to expose memory errors.",
+      "context_after": "In contrast, mutation-based fuzzers generate new queries by mutating existing ones. SQUIRREL [ 56], LEGO [ 22], and Ratel [ 53] perform mutations based on a query’s AST structure. DynSQL [ 17] incrementally constructs complex queries by leveraging state information. GRIFFIN [ 15] adopts a grammar-free approach that reshuffles statements from different queries and restores semantic correctness by tracking the database schema. SCor could be regarded as a generation-based fuzzer. Different from other generation-based fuzzers, SCor generates SQL queries that incorporate a diverse range of short-c",
+      "section": "7 Related Work",
+      "page": 22,
+      "char_offset": 77372,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M6"
+      ],
+      "describes_as_state_of_the_art": [
+        "M6"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:58:40Z",
+    "is_model_written": true,
+    "summary": "SCor finds missed optimizations by constructing unbalanced short-circuit queries: a predicate is written so that one branch could be short-circuited away, and if the optimizer fails to exploit that the query does measurably more work than it needs to. Unlike approaches that observe a performance anomaly and leave its cause open, this points at the specific optimization the optimizer missed. It found 69 issues across five DBMSs.",
+    "narrative": "CERT is SCor's most direct comparison, one of five performance-bug detection tools it is measured against and described as tackling performance bugs through cardinality estimation analysis. SCor found 36 more bugs than CERT, and the paper gives a precise account of the difference in reach: CERT cannot detect optimization opportunities that persist despite correct cardinality estimates, which is exactly the class short-circuit construction targets. SQLancer also appears as a data-generation source the paper declines to reimplement, listing it among the existing methods available for producing test data.",
+    "roles": {
+      "M1": "background",
+      "M2": "definition",
+      "M3": "motivation",
+      "M4": "background",
+      "M5": "incidental",
+      "M6": "state_of_the_art",
+      "M7": "definition",
+      "M8": "result_comparison",
+      "M9": "result_comparison",
+      "M10": "definition",
+      "M11": "motivation",
+      "M12": "definition",
+      "M13": "background",
+      "M14": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "M5 lists SQLancer among existing data generation methods as the reason SCor does not reimplement data generation, but does not say SCor uses it. Which generator supplies its data is left open, so this falls short of a statement of reuse."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Unbalanced short-circuit construction is a different mechanism from cardinality-estimation restriction, and M11 sets out the class of issues CERT cannot reach as the motivation."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M6",
+          "M8",
+          "M9"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M6",
+            "sentence": "We compared SCor with five state-of-the-art DBMS performance bug detection tools, including: APOLLO [ 18], AMOEBA [ 24], and CERT [ 1], Puppy [ 54], and HULK [ 55].",
+            "section": "5.4 Comparative Evaluation",
+            "page": 19
+          },
+          {
+            "mention_id": "M8",
+            "sentence": "The results show that SCor found 24, 8, 36, 8, and 4 more bugs than APOLLO, AMOEBA, CERT, Puppy, and HULK, respectively.",
+            "section": "5.4 Comparative Evaluation",
+            "page": 19
+          },
+          {
+            "mention_id": "M9",
+            "sentence": "DBMSAPOLLO AMOEBA CERT Puppy HULK SCor PostgreSQL 0 0 - 2 2 3 MySQL - - 3 6 10 13 CockroachDB-1 2 - - 6 TiDB - - 4 - - 26 SQLite 0 - - - - 21 Total 0 1 9 8 12 69 Increment 24↑8↑36↑8↑4↑data-sensitive performance anomalies through data changes, while SCor employs unbalanced shortcircuit queries.",
+            "section": "5.4 Comparative Evaluation",
+            "page": 20
+          }
+        ],
+        "reasoning": "M6 names CERT among the five tools SCor is compared with, M8 reports SCor finding 36 more bugs than CERT, and M9 gives the per-DBMS table.",
+        "techniques": [
+          "cert"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M6"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M6",
+            "sentence": "We compared SCor with five state-of-the-art DBMS performance bug detection tools, including: APOLLO [ 18], AMOEBA [ 24], and CERT [ 1], Puppy [ 54], and HULK [ 55].",
+            "section": "5.4 Comparative Evaluation",
+            "page": 19
+          }
+        ],
+        "reasoning": "M6 describes the five comparison tools, CERT among them, as state-of-the-art DBMS performance bug detection tools."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

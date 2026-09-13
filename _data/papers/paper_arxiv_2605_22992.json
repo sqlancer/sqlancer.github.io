@@ -1,0 +1,832 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:29:15Z",
+  "paper": {
+    "id": "paper:arxiv:2605.22992",
+    "title": "Finding Performance Issues in Database Systems by Exploiting Dormant Code Paths",
+    "authors": [
+      "Jinsheng Ba",
+      "Zhendong Su"
+    ],
+    "year": 2026,
+    "venue": "arXiv.org",
+    "doi": null,
+    "arxiv_id": "2605.22992",
+    "s2_paper_id": "652ecd8215728ede7bbecba4ac5049ac96af9e91",
+    "url": "https://arxiv.org/abs/2605.22992",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2605.22992",
+      "retrieved_at": "2026-09-09T01:29:15Z",
+      "chars": 69522,
+      "content_sha256": "sha256:4da7e401568af79e91706f0d29d5b2e6147d94d589f5150b819e5ec64143a08d"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 15,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 1547
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 10841
+      },
+      {
+        "number": "3",
+        "title": "Motivating Study",
+        "start": 11931
+      },
+      {
+        "number": "4",
+        "title": "Approach",
+        "start": 16877
+      },
+      {
+        "number": "5",
+        "title": "Implementation",
+        "start": 25143
+      },
+      {
+        "number": "6",
+        "title": "Evaluation",
+        "start": 29737
+      },
+      {
+        "number": "7",
+        "title": "Discussion",
+        "start": 50116
+      },
+      {
+        "number": "8",
+        "title": "Related Work",
+        "start": 53759
+      },
+      {
+        "number": "9",
+        "title": "Conclusion",
+        "start": 57592
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Jinsheng Ba and Manuel Rigger. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering, pages 1–13, 2024.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. Keep it simple: Testing databases via differential query plans.Proceedings of the ACM on Management of Data, 2(3):1–26, 2024.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 3,
+      "text": "Laurent Bindschaedler, Ashvin Goel, and Willy Zwaenepoel. Hailstorm: Disaggregated compute and storage for distributed lsm-based databases. InASPLOS ’20: Architectural Support for Programming Languages and Operating Systems, Lausanne, Switzerland, March 16-20, 2020, pages 301–316, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Peter A. Boncz, Thomas Neumann, and Orri Erling. TPC-H analyzed: Hidden messages and lessons learned 12 from an influential benchmark. In Raghunath Nambiar and Meikel Poess, editors,Performance Characterization and Benchmarking-5th TPC Technology Conference, TPCTC 2013, Trento, Italy, August 26, 2013, Revised Selected Papers, volume 8391 ofLecture Notes in Computer Science, pages 61–76. Springer, ",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Surajit Chaudhuri. An overview of query optimization in relational systems. In Alberto O. Mendelzon and Jan Paredaens, editors,Proceedings of the Seventeenth ACMSIGACT-SIGMOD-SIGART Symposium on Principles of Database Systems, June 1-3, 1998, Seattle, Washington, USA, pages 34–43. ACM Press, 1998.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Pit Fender and Guido Moerkotte. Counter strike: Generic top-down join enumeration for hypergraphs. Proc. VLDB Endow., 6(14):1822–1833, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Pit Fender, Guido Moerkotte, Thomas Neumann, and Viktor Leis. Effective and robust pruning for top-down join enumeration algorithms. In Anastasios Kementsietsidis and Marcos Antonio Vaz Salles, editors,IEEE 28th International Conference on Data Engineering (ICDE 2012), Washington, DC, USA (Arlington, Virginia), 1-5 April, 2012, pages 414–425. IEEE Computer Society, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. Griffin: Grammar-free DBMS fuzzing. In 37th IEEE/ACM International Conference on Automated Software Engineering, ASE 2022, Rochester, MI, USA, October 10-14, 2022, pages 49:1–49:12. ACM, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Jana Giceva, Gustavo Alonso, Timothy Roscoe, and Tim Harris. Deployment of query plans on multicores.Proc. VLDB Endow., 8(3):233–244, 2014.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Yigong Hu, Gongqi Huang, and Peng Huang. Automated reasoning and detection of specious configuration in large systems with symbolic execution. In14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020, Virtual Event, November 4-6, 2020, pages 719–734, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Yannis E Ioannidis. Query optimization.ACM Computing Surveys (CSUR), 28(1):121–123, 1996.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Oleg Ivanov and Sergey Bartunov. Adaptive cardinality estimation.arXiv preprint arXiv:1711.08330, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Matthias Jarke and Jurgen Koch. Query optimization in database systems.ACM Computing surveys (CsUR), 16(2):111–152, 1984.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. Dynsql: Stateful fuzzing for database management systems with complex and valid sql query generation. In32st USENIX Security Symposium (USENIX Security 23), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Guoliang Jin, Linhai Song, Xiaoming Shi, Joel Scherpelz, and Shan Lu. Understanding and detecting realworld performance bugs. In Jan Vitek, Haibo Lin, and Frank Tip, editors,ACMSIGPLAN Conference on Programming Language Design and Implementation, PLDI ’12, Beijing, China-June 11 - 16, 2012, pages 77–88. ACM, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woon-Hak Kang. APOLLO: automatic detection and diagnosis of performance regressions in database systems. Proc. VLDB Endow., 13(1):57–70, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Viktor Leis, Andrey Gubichev, Atanas Mirchev, Peter A. Boncz, Alfons Kemper, and Thomas Neumann. How good are query optimizers, really?Proc. VLDB Endow., 9(3):204–215, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Caroline Lemieux, Rohan Padhye, Koushik Sen, and Dawn Song. Perffuzz: Automatically generating pathological inputs. InProceedings of the 27th ACMSIGSOFT international symposium on software testing and analysis, pages 254–265, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Chi Li, Shu Wang, Henry Hoffmann, and Shan Lu. Statically inferring performance properties of software configurations. InProceedings of the Fifteenth European Conference on Computer Systems, pages 1–16, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Jie Liang, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Chengnian Sun, and Yu Jiang. Mozi: Discovering dbms bugs via configuration-based equivalent transformation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering, pages 1–12, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. Automatic detection of performance bugs in database systems using equivalent queries. In44th IEEE/ACM 44th International Conference on Software Engineering, ICSE 2022, Pittsburgh, PA, USA, May 25-27, 2022, pages 225–236. ACM, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Zihan Liu, Wentao Ni, Jingwen Leng, Yu Feng, Cong Guo, Quan Chen, Chao Li, Minyi Guo, and Yuhao Zhu. JUNO: optimizing high-dimensional approximate nearest neighbour search with sparsity-aware algorithm and ray-tracing core mapping. In Rajiv Gupta, Nael B. AbuGhazaleh, Madan Musuvathi, and Dan Tsafrir, editors, Proceedings of the 29th ACM International Conference on Architectural Support for Progra",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Raghunath Othayoth Nambiar, Meikel Poess, Andrew Masland, H. Reza Taheri, Matthew Emmerton, Forrest Carman, and Michael Majdalany. TPC benchmark 13 roadmap 2012. In Raghunath Othayoth Nambiar and Meikel Poess, editors,Selected Topics in Performance Evaluation and Benchmarking-4th TPC Technology Conference, TPCTC 2012, Istanbul, Turkey, August 27, 2012, Revised Selected Papers, volume 7755 ofLectur",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Thomas Neumann. Query simplification: graceful degradation for join-order optimization. In Ugur Çetintemel, Stanley B. Zdonik, Donald Kossmann, and Nesime Tatbul, editors,Proceedings of the ACMSIGMOD International Conference on Management of Data, SIGMOD 2009, Providence, Rhode Island, USA, June 29 - July 2, 2009, pages 403–414. ACM, 2009.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Johns Paul, Jiong He, and Bingsheng He. GPL: A gpubased pipelined query processing engine. In Fatma Özcan, Georgia Koutrika, and Sam Madden, editors, Proceedings of the 2016 International Conference on Management oData, SIGMOD Conference 2016, San Francisco, CA, USA, June 26 - July 01, 2016, pages 1935–1950. ACM, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Theofilos Petsios, Jason Zhao, Angelos D Keromytis, and Suman Jana. Slowfuzz: Automated domainindependent detection of algorithmic complexity vulnerabilities. InProceedings of the 2017 ACMSIGSAC conference on computer and communications security, pages 2155–2168, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Prem Devanbu, Myra B. Cohen, and Thomas Zimmermann, editors,ESEC/FSE ’20: 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, Virtual Event, USA, November 8-13, 2020, pages 1140–1152. ACM, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 28,
+      "text": "Manuel Rigger and Zhendong Su. Finding bugs in database systems via query partitioning.Proc. ACM Program. Lang., 4(OOPSLA):211:1–211:30, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 29,
+      "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020, Virtual Event, November 4-6, 2020, pages 667–682. USENIX Association, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 30,
+      "text": "Chaoyi Ruan, Yingqiang Zhang, Chao Bi, Xiaosong Ma, Hao Chen, Feifei Li, Xinjun Yang, Cheng Li, Ashraf Aboulnaga, and Yinlong Xu. Persistent memory disaggregation for cloud-native relational databases. In Tor M. Aamodt, Natalie D. Enright Jerger, and Michael M. Swift, editors,Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Syste",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Jiansen Song, Wensheng Dou, Ziyu Cui, Qianwang Dai, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. Testing database systems via differential query execution. In Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Emil Tsalapatis, Ryan Hancock, Rakeeb Hossain, and Ali José Mashtizadeh. Memsnap µcheckpoints: A data single level store for fearless persistence. In Rajiv Gupta, Nael B. Abu-Ghazaleh, Madan Musuvathi, and Dan Tsafrir, editors,Proceedings of the 29th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 3, ASPLOS 2024, La Jolla, CA, USA, 27 A",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Website. Tpc-ds benchmark. https://www.tpc.org/ tpcds/, 1988. Accessed: 2022-11-15.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Website. American fuzzy lop (afl) fuzzer. http://lcamtuf.coredump.cx/afl/technical_ details.txt, 2013. Accessed: 2022-11-15.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Website. Sqlsmith. https://github.com/anse1/ sqlsmith, 2015. Accessed: 2022-11-15.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Website. Cockroachdb code coverage measurement. https://cockroachlabs.atlassian.net/wiki/ spaces/CRDB/pages/73171260/Code+ coverage, 2022. Accessed: 2025-05-15.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Website. Database systems ranking. https: //db-engines.com/en/ranking, 2022. Accessed: 2025-05-15.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Website. Performance on widely used workloads. https://www.postgresql.org/ message-id/CAMkU%3D1xoU06eW4CrEZyDDn% 2BfnJaCe3b04rE3mdVu4Gsxmj9KFA%40mail.gmail. com, 2025. Accessed: 2025-11-15.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Lisa Wu, Andrea Lottarini, Timothy K. Paine, Martha A. Kim, and Kenneth A. Ross. Q100: the architecture and design of a database processing unit. In Rajeev Balasubramonian, Al Davis, and Sarita V. Adve, editors, Architectural Support for Programming Languages and Operating Systems, ASPLOS 2014, Salt Lake City, UT, USA, March 1-5, 2014, pages 255–268. ACM, 2014.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Zhiyong Wu, Jie Liang, Jingzhou Fu, Mingzhe Wang, and Yu Jiang. Puppy: Finding performance degradation bugs in dbmss via limited-optimization plan construction. In on Software Engineering (ICSE), pages 560–571. IEEE Computer Society, 2024. 14",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: testing database management systems with language validity and coverage feedback. In Jay Ligatti, Xinming Ou, Jonathan Katz, and Giovanni Vigna, editors,CCS ’20: 2020 ACMSIGSAC Conference on Computer and Communications Security, Virtual Event, USA, November 9-13, 2020, pages 955–970. ACM, 2020. 15",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 1,
+      "text": "Jinsheng Ba and Manuel Rigger. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering, pages 1–13, 2024.",
+      "technique": "cert",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing cert"
+      ]
+    },
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. Keep it simple: Testing databases via differential query plans.Proceedings of the ACM on Management of Data, 2(3):1–26, 2024.",
+      "technique": "dqp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing dqp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 27,
+      "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Prem Devanbu, Myra B. Cohen, and Thomas Zimmermann, editors,ESEC/FSE ’20: 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, Virtual Event, USA, November 8-13, 2020, pages 1140–1152. ACM, 2020.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 28,
+      "text": "Manuel Rigger and Zhendong Su. Finding bugs in database systems via query partitioning.Proc. ACM Program. Lang., 4(OOPSLA):211:1–211:30, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 29,
+      "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020, Virtual Event, November 4-6, 2020, pages 667–682. USENIX Association, 2020.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "CERT[1] finds performance issues by finding inconsistent cardinality estimation, which is typically deemed as the most critical component for query optimization [17].",
+      "context_before": "ehensively explore the full range of optimization strategies and their interactions. Various black-box methods have been proposed to derive “optimal” performance for finding performance issues, but they focus on a specific category of issues and cannot systematically explore optimization strategies.APOLLO[16] examines whether a DBMS has worse performance than an old version of the same DBMS. However,APOLLOcan only find regression issues.AMOEBA[21] expects that the execution time of pairs of semantically equivalent queries is similar. However, it only finds the issues of rewriting queries [21].",
+      "context_after": "However, CERTcan only find performance issues related to incorrect cardinality estimation.PUPPY[40] assumes that the execution time of queries under the default optimization configuration should be no longer than under alternative configurations. However, this approach is limited to detecting configuration-related performance issues. These methods focus on manipulating input queries, which are inefficient for exploring optimization strategies. In this paper, we proposeBranch Flip Analysis(BFA), a novel, general white-box method to systematically find per1arXiv:2605.22992v1 [cs.SE] 21 May 2026",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 3628,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "To manipulate code, we propose flipping branches, which is motivated by our observation that 8 of 10 historical performance issues from APOLLO,AMOEBA,CERT, and PUPPYcould be found by flipping branches.",
+      "context_before": "all branches except bjexecute their default paths bi,d, while bjexecutes the alternative path bj,o. IfP(B)<<P(B′), a performance issue related to the optimization controlled byb jis found. Thus, in a novel manner,BFAsolves the aforementioned challenges faced by existing work—it derives expected performance by constructing a reference DBMS. Code manipulation also allows us to explore various optimization strategies in a systematic and fine-grained manner. In contrast, existing work is constrained by external inputs or configurations, which often fail to control all the available optimizations.",
+      "context_after": "Branch flipping is straightforward to realize and general, so it can be widely applied to test DBMSs without domain expertise. Additionally, it highlights the code segment relevant to the performance issue, thus facilitating issue analysis. Listing 1 shows a running example of BFA. Lines 1–3 include the query to identify the performance issue, lines 4–12 show the code that BFAmanipulates, and lines 14–19 show the query plans, the concrete execution steps of this query in a tree structure, before and after the code manipulation. To facilitate the presentation, we only show relevant parts. This q",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 6152,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[1, 16, 40]",
+      "technique": "cert",
+      "sentence": "We evaluatedQueryZenon PostgreSQL, MySQL, MariaDB, and CockroachDB, which are widely used in previous performance testing works [1, 16, 40].",
+      "context_before": "eplied that “It was a pretty exciting case” and planned to solve it by enabling PARALLEL for these operations shortly. This issue can not be found by previous methods because PARALLEL cannot be enabled for Hash by any version of PostgreSQL (i.e., regression issues), any configuration, or any estimated cardinality. We designed and implementedQueryZen, a prototype of BFA. Technically, to avoid the heavy overhead of recompilation for each code manipulation, we instrument all code manipulations into the code with a single compilation and enable them one by one via external environmental variables.",
+      "context_after": "In total,QueryZen found 21 unique and previously unknown performance issues with the workloads from standard benchmarks (i.e., TPC-H [23] and TPC-DS [33]). These findings resulted in an average performance improvement of 26.2 ×, and up to 374.9×.QueryZenis necessary to find these issues as most of them cannot be found by APOLLO,CERT,PUPPY, and AMOEBA. Furthermore, these issues already existed before the publication of prior methods. For testing efficiency, we avoid the recompilation time of an average of 5 minutes for each execution. On average of both benchmarks,QueryZen also excludes 75.8% u",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 9291,
+      "cited_reference": {
+        "number": 1,
+        "text": "Jinsheng Ba and Manuel Rigger. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering, pages 1–13, 2024.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing cert"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "QueryZenis necessary to find these issues as most of them cannot be found by APOLLO,CERT,PUPPY, and AMOEBA.",
+      "context_before": "avoid the heavy overhead of recompilation for each code manipulation, we instrument all code manipulations into the code with a single compilation and enable them one by one via external environmental variables. We evaluatedQueryZenon PostgreSQL, MySQL, MariaDB, and CockroachDB, which are widely used in previous performance testing works [1, 16, 40]. In total,QueryZen found 21 unique and previously unknown performance issues with the workloads from standard benchmarks (i.e., TPC-H [23] and TPC-DS [33]). These findings resulted in an average performance improvement of 26.2 ×, and up to 374.9×.",
+      "context_after": "Furthermore, these issues already existed before the publication of prior methods. For testing efficiency, we avoid the recompilation time of an average of 5 minutes for each execution. On average of both benchmarks,QueryZen also excludes 75.8% unnecessary code manipulations and increases branch coverage by 8.6%. Overall, we make the following contributions: •Conceptually, we propose a novel methodology BFAto find performance issues by flipping code branches. •Technically, we designed and implemented a novel ar2 Table 1: Historical performance issues. Method DBMS Issue ID Branch Flipping APOLL",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 9679,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "We considered the performance issues found by the four existing performance-testing methods:APOLLO[16],AMOEBA[21],CERT[1], and PUPPY[40].",
+      "context_before": "necessary incurring degraded performance. Additionally, modern DBMSs employ cost-based optimization, deriving Ptonsemantically equivalent query plans{P1,P2,...,P n}, and estimating the execution cost of each Piby the cost function C(P i)[17]. DBMSs choose and execute the optimal plan Po=argmin Pi∈PC(P i). Incorrect C() brings potential performance issues. 3 Motivating Study To investigate the potential of finding performance issues by code manipulation, we studied whether we can manipulate code to observe the unexpected performance of historical issues found by prior methods. Issue collection.",
+      "context_after": "APOLLOexamines performance regression across different versions of DBMSs;AMOEBAexpects semantic-equivalent queries to have similar performance;CERTchecks specifically incorrect estimated cardinalities, which refers to the estimated number of rows returned by a query plan;PUPPY compares performance under the default configuration and other configurations. In total, we identified and reproduced 10 confirmed or fixed performance issues.APOLLOhas 3 confirmed performance issues. Although it does not publicize the full list of found issues, we found these issues in DBMS bug trackers. However, due t",
+      "section": "3 Motivating Study",
+      "page": 3,
+      "char_offset": 12173,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "Table 1 shows the 10 performance issues from APOLLO,CERT,PUPPY, and AMOEBA.",
+      "context_before": "s 6 confirmed issues. Similar to APOLLO, we reproduced 5 issues.CERThas 11 confirmed issues. Unlike other methods, CERTspecifically detects inconsistent estimated cardinalities, instead of execution time. In Listing 7 of CERTpaper, authors provide two cases to show the execution time gap between pairs of queries due to incorrect cardinalities found, and we evaluated both cases.PUPPYhas 54 confirmed issues, but does not publicize the full list of its found issues. By searching the bug trackers of DBMSs, we found a report, which we believe is similar to the issues described in PUPPY paper. Results.",
+      "context_after": "Overall, we can observe the unexpected performance of 8 issues by the same code manipulation that flips code branches of IFstatements once. Specifically, we changed if (condition) toif (!condition). Both performance issues in APOLLOare due to the redundant initialization of hash tables and incorrect parallel computing. Flipping branches disables both, so we can observe the unexpected performance. Both performance issues in CERT affect the estimated cardinalities incurring an inefficient usage of HASH JOIN. Flipping branches changes the strategies of cardinality estimation to find both issues.PUP",
+      "section": "3 Motivating Study",
+      "page": 3,
+      "char_offset": 13662,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker",
+      "surface": "[27, 28]",
+      "technique": "norec",
+      "sentence": "In this paper, we collected 10 thousand randomly generated small workloads from SQLancer[27, 28], which is a popular DBMS testing tool.",
+      "context_before": "solutions for DBMS users and developers, respectively. As DBMS users lack expert knowledge of the DBMS′s internal code, we adopted a differential testing approach to evaluate functionality in practice. Differential testing involves comparing the results of executing the same inputs across different systems; inconsistencies in the results may indicate potential bugs. Specifically, we validate whether DBMS and DBMS′consistently produce identical results. If they do, we assume that DBMS′is functionally correct. The trustworthiness of this method increases with the number of test cases evaluated.",
+      "context_after": "As shown in our evaluation (Section 6), 96% of the DBMS′s that pass the above validation do not affect program functionalities. For DBMS developers, we can use specification-based validation approaches. Since developers have expert knowledge of the code, we expect developers to provide a specification of the query plans, which can be used for checking validity. For example, in PostgreSQL’s query plans, the operation GroupAggregate aggregates pre-sorted rows for a GROUP BYoperation, so its child operation must be Sort. Such a rule can be used to automatically check whether the query plans prod",
+      "section": "4 Approach",
+      "page": 5,
+      "char_offset": 23134,
+      "cited_reference": {
+        "number": 27,
+        "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Prem Devanbu, Myra B. Cohen, and Thomas Zimmermann, editors,ESEC/FSE ’20: 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of So",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker",
+      "surface": "[1, 16, 20, 21, 40]",
+      "technique": "cert",
+      "sentence": "These DBMSs have been extensively tested by previous works about finding performance issues [1, 16, 20, 21, 40].",
+      "context_before": "ctiveness. CanQueryZenfind previously unknown performance issues? Q.2 Necessity. WhetherQueryZenis necessary to find these performance issues? Q.3 Sensitivity. To what extentQueryZen’s components contribute to the finding of these performance issues? 6 Tested DBMSs.We tested PostgreSQL, MySQL, CockroachDB, and MariaDB. PostgreSQL is one of the most established DBMSs. MySQL is the most popular opensource DBMS [37]. MariaDB is another popular DBMS that was forked from MySQL. CockroachDB is a widely used enterprise-class DBMS, and its open version on GitHub has been starred more than 30.1k times.",
+      "context_after": "Recall thatQueryZenis not specific to any programming language, so we can test both C (PostgreSQL, MySQL, MaraiDB) and Go (CockroachDB) programming languages. We used the latest available development versions of tested DBMSs (PostgreSQL: 17.0, MySQL: 9.0, MariaDB: 11.7, CockroachDB: dcb0d27). We manipulated the code in specific folders (PostgreSQL: /app/postgres/src/backend/optimizer, MySQL:/app/mysqlserver/sql, CockroachDB:/app/cockroach/pkg/sql/opt, MariaDB:/app/mariadb-server/sql). The folders of PostgreSQL and CockroachDB include only the code of query optimizer, and the folders of MySQL",
+      "section": "6 Evaluation",
+      "page": 7,
+      "char_offset": 30474,
+      "cited_reference": {
+        "number": 1,
+        "text": "Jinsheng Ba and Manuel Rigger. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering, pages 1–13, 2024.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing cert"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "We considered the same performancetesting methods in Section 3:APOLLO[16],AMOEBA[21], CERT[1], and PUPPY[40].",
+      "context_before": "only reported issues when the observed performance gap exceeded 10%. In this way, we did not observe any false positives caused by performance fluctuation, as confirmed by DBMS developers. QueryZenfound 21 previously unknown performance issues on widely used benchmarks TPC-H and TPC-DS. Q.2 Necessity We evaluated whetherQueryZenis necessary to find these performance issues. Specifically, we examined 1) whether the performance issues found byQueryZencan be potentially found by previous performance-testing methods, and 2) whether these performance issues existed when prior methods were proposed.",
+      "context_after": "Issue reproducing.We evaluated whether the performance issues found byQueryZencan be potentially found by prior performance-testing methods APOLLO,AMOEBA,CERT, and PUPPY. Since these methods target different aspects of performance, such as cardinality estimation or configuration sensitivity, andQueryZenfocuses on source code manipulation, the sets of bugs they uncover are not directly comparable. 8 Table 3: The reproducibility of previous methods on the issues found byQueryZen. DBMS Issue IDAPOLLO AMOEBA CERTPUPPY PostgreSQL 1 PostgreSQL 2 PostgreSQL 3✓ PostgreSQL 4✓ PostgreSQL 5 MySQL 116456 M",
+      "section": "6 Evaluation",
+      "page": 8,
+      "char_offset": 40235,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "We evaluated whether the performance issues found byQueryZencan be potentially found by prior performance-testing methods APOLLO,AMOEBA,CERT, and PUPPY.",
+      "context_before": "by performance fluctuation, as confirmed by DBMS developers. QueryZenfound 21 previously unknown performance issues on widely used benchmarks TPC-H and TPC-DS. Q.2 Necessity We evaluated whetherQueryZenis necessary to find these performance issues. Specifically, we examined 1) whether the performance issues found byQueryZencan be potentially found by previous performance-testing methods, and 2) whether these performance issues existed when prior methods were proposed. We considered the same performancetesting methods in Section 3:APOLLO[16],AMOEBA[21], CERT[1], and PUPPY[40]. Issue reproducing.",
+      "context_after": "Since these methods target different aspects of performance, such as cardinality estimation or configuration sensitivity, andQueryZenfocuses on source code manipulation, the sets of bugs they uncover are not directly comparable. 8 Table 3: The reproducibility of previous methods on the issues found byQueryZen. DBMS Issue IDAPOLLO AMOEBA CERTPUPPY PostgreSQL 1 PostgreSQL 2 PostgreSQL 3✓ PostgreSQL 4✓ PostgreSQL 5 MySQL 116456 MySQL 116484✓ MySQL 116309✓ MySQL 116534 MySQL 116773 MySQL 116774✓ MySQL 116775 MySQL 116776✓ ✓ MySQL 116777✓ CockorachDB 134803 CockorachDB 135001✓ CockorachDB 136350✓",
+      "section": "6 Evaluation",
+      "page": 8,
+      "char_offset": 40363,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "citation_marker",
+      "surface": "[2, 27, 28]",
+      "technique": "dqp",
+      "sentence": "DBMS Issue IDAPOLLO AMOEBA CERTPUPPY PostgreSQL 1 PostgreSQL 2 PostgreSQL 3✓ PostgreSQL 4✓ PostgreSQL 5 MySQL 116456 MySQL 116484✓ MySQL 116309✓ MySQL 116534 MySQL 116773 MySQL 116774✓ MySQL 116775 MySQL 116776✓ ✓ MySQL 116777✓ CockorachDB 134803 CockorachDB 135001✓ CockorachDB 136350✓ ✓ MariaDB 35280 MariaDB 35332 MariaDB 35331 MariaDB 35333✓ ✓ Sum (✓): 8 0 4 1 To address this, we conducted a qualitative analysis, a common approach in prior work [2, 27, 28].",
+      "context_before": "proposed. We considered the same performancetesting methods in Section 3:APOLLO[16],AMOEBA[21], CERT[1], and PUPPY[40]. Issue reproducing.We evaluated whether the performance issues found byQueryZencan be potentially found by prior performance-testing methods APOLLO,AMOEBA,CERT, and PUPPY. Since these methods target different aspects of performance, such as cardinality estimation or configuration sensitivity, andQueryZenfocuses on source code manipulation, the sets of bugs they uncover are not directly comparable. 8 Table 3: The reproducibility of previous methods on the issues found byQueryZen.",
+      "context_after": "Specifically, given a performance issue and both execution paths of a DBMS before and afterQueryZen’s code manipulation, 1) if the first lines of discrepancy execution paths are lastly updated in different commits, we assumed the issue can be found by APOLLO; 2) if the instrumented IFcondition is directly controlled by a SQL clause, we assumed there exists a pair of semantic-equivalent queries to execute both paths so that the issue can be found by AMOEBA; 3) if the first branches in discrepancy execution paths directly manipulate estimated cardinalities, we assumed the issue can be found by CER",
+      "section": "6 Evaluation",
+      "page": 9,
+      "char_offset": 40825,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba and Manuel Rigger. Keep it simple: Testing databases via differential query plans.Proceedings of the ACM on Management of Data, 2(3):1–26, 2024.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing dqp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "Overall, 8, 0, 4, and 1 issues have the potential to be found by APOLLO,AMOEBA, CERT, and PUPPY, respectively.",
+      "context_before": "ranches in discrepancy execution paths directly manipulate estimated cardinalities, we assumed the issue can be found by CERT; 4) if the instrumented IFcondition is directly controlled by an external configuration, we assumed the issue can be found by PUPPY. These assumptions do not guarantee that prior methods can find these issues. For example, although the first lines of both execution paths are updated in different commits, it is not necessary that both versions of the DBMSs show the performance gap. Results.Table 3 shows whether prior methods can find the performance issues found byQueryZen.",
+      "context_after": "It demonstrates the necessity ofQueryZenfor finding these performance issues, and black-box methods are insufficient to explore optimization strategies for finding performance issues. The number of APOLLOis much higher than others, because developers typically submit a minimal code block in each commit, making it more likely to observe the code update in differentcommits. Issue existence date.Additionally, we evaluated whether these performance issues existed when prior performancetesting methods APOLLO,AMOEBA,CERT, and PUPPY were proposed. If so, it demonstrates that these performance issues w",
+      "section": "6 Evaluation",
+      "page": 9,
+      "char_offset": 42366,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "Additionally, we evaluated whether these performance issues existed when prior performancetesting methods APOLLO,AMOEBA,CERT, and PUPPY were proposed.",
+      "context_before": "Results.Table 3 shows whether prior methods can find the performance issues found byQueryZen. Overall, 8, 0, 4, and 1 issues have the potential to be found by APOLLO,AMOEBA, CERT, and PUPPY, respectively. It demonstrates the necessity ofQueryZenfor finding these performance issues, and black-box methods are insufficient to explore optimization strategies for finding performance issues. The number of APOLLOis much higher than others, because developers typically submit a minimal code block in each commit, making it more likely to observe the code update in differentcommits. Issue existence date.",
+      "context_after": "If so, it demonstrates that these performance issues were not found by prior methods with an extensive testing effort. We retrieved the last commit date of the code manipulatedQueryZen, and we assumed the performance issues existed no later than the date. Results.Figure 2 shows the last commit date associated with the 21 performance issues found byQueryZenand the publication date of the prior methods. Issues #116484, #116309, #116534, and #116773 share the same commit, as do issues #116776 and #116777. It is because both commits focus on tidying up code style, resulting in extensive modificat",
+      "section": "6 Evaluation",
+      "page": 9,
+      "char_offset": 42872,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "In total, 14, 19, 21, and 21 of 21 issues existed before the publication date of APOLLO,AMOEBA,CERT, and PUPPY.",
+      "context_before": "ound by prior methods with an extensive testing effort. We retrieved the last commit date of the code manipulatedQueryZen, and we assumed the performance issues existed no later than the date. Results.Figure 2 shows the last commit date associated with the 21 performance issues found byQueryZenand the publication date of the prior methods. Issues #116484, #116309, #116534, and #116773 share the same commit, as do issues #116776 and #116777. It is because both commits focus on tidying up code style, resulting in extensive modifications, including the manipulation of code across multiple issues.",
+      "context_after": "A large portion of performance issues already existed for a long time, while prior methods have not found them in practice. Most issues found byQueryZencannot be found by APOLLO,AMOEBA,CERT, and PUPPY, and existed before the publication of prior methods. Q.3 Sensitivity The soundness of code manipulations.QueryZenmanipulates all IFbranches and ensures that the flipped branches impact only performance, not functionalities, through differential testing. To evaluate its soundness, we manually examined the branches that passed the functionality testing. Since the total number of branches (e.g., in",
+      "section": "6 Evaluation",
+      "page": 9,
+      "char_offset": 43684,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "Most issues found byQueryZencannot be found by APOLLO,AMOEBA,CERT, and PUPPY, and existed before the publication of prior methods.",
+      "context_before": "te associated with the 21 performance issues found byQueryZenand the publication date of the prior methods. Issues #116484, #116309, #116534, and #116773 share the same commit, as do issues #116776 and #116777. It is because both commits focus on tidying up code style, resulting in extensive modifications, including the manipulation of code across multiple issues. In total, 14, 19, 21, and 21 of 21 issues existed before the publication date of APOLLO,AMOEBA,CERT, and PUPPY. A large portion of performance issues already existed for a long time, while prior methods have not found them in practice.",
+      "context_after": "Q.3 Sensitivity The soundness of code manipulations.QueryZenmanipulates all IFbranches and ensures that the flipped branches impact only performance, not functionalities, through differential testing. To evaluate its soundness, we manually examined the branches that passed the functionality testing. Since the total number of branches (e.g., in MySQL and MariaDB) is too large for exhaustive analysis, we randomly sampled 100 flipped branches and reviewed their associated code and comments, which typically describe the purpose of each branch or function. Our manual inspection showed that none of",
+      "section": "6 Evaluation",
+      "page": 9,
+      "char_offset": 43918,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "citation_marker",
+      "surface": "[1, 21, 40]",
+      "technique": "cert",
+      "sentence": "Unlike existing approaches [1, 21, 40], which focus on manipulating external inputs,BFAoperates on the program code itself.",
+      "context_before": "and 22,922 additional branches in PostgreSQL, MySQL, and MariaDB, accounting for 9.32%, 1.66%, and 4.06% of all measured branches. Note that, during the branch coverage evaluation of MySQL, unexpected behaviors caused by manipulated code occasionally blocked data collection, resulting in incomplete results. The results showQueryZen substantially explores optimization space. Using more diverse workloads and code manipulations may further expand coverage. 7 Discussion Methodology.We propose a white-box testing methodology for identifying performance issues by directly manipulating program code.",
+      "context_after": "This approach offers several advantages. First, it enables systematic and fine-grained testing of program logic, overcoming the limitations of input-based methods that can only trigger behaviors in a constrained manner. As a result, our methodology uncovered 21 unique and previously unknown performance issues. Second, the code manipulated by BFAfacilitates issue debugging and analysis. Prior works compare the performance of executing input pairs, but it often remains unclear which part of the code incurs the performance difference. In contrast, our approach directly highlights the relevant cod",
+      "section": "7 Discussion",
+      "page": 11,
+      "char_offset": 50257,
+      "cited_reference": {
+        "number": 1,
+        "text": "Jinsheng Ba and Manuel Rigger. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering, pages 1–13, 2024.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing cert"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "citation_marker",
+      "surface": "[1]",
+      "technique": "cert",
+      "sentence": "proposed CERT[1] to find performance issues by testing specifically cardinality estimation.",
+      "context_before": "uire manual effort from developers. Second, the effectiveness of BFAdepends on the quality of the underlying workload. While we use TPC-H and TPC-DS to represent common scenarios, other types of workloads might trigger different optimizations. Finally, our evaluation was conducted under a fixed system configuration. Although we observed consistent performance gaps across repeated trials, different hardware or memory settings may affect reproducibility. 8 Related Work Testing performance issues.The most related strand of research is on finding performance issues in DBMSs automatically. Baet al.",
+      "context_after": "Jung et al. proposed APOLLO[16], which compares the execution times of a query on two versions of a database system to find performance regression bugs. Liuet al. proposed AMOEBA[21], which compares the execution time of a semantically-equivalent pair of queries to identify an unexpected slowdown. Wuet al. proposed PUPPY[40], which examines whether performance improves after adjusting default configurations. In addition, several fuzzing-based approaches explore performance issues in general software. 11 SlowFuzz [26] searches for slow executions by maximizing total execution path length, while",
+      "section": "8 Related Work",
+      "page": 11,
+      "char_offset": 53902,
+      "cited_reference": {
+        "number": 1,
+        "text": "Jinsheng Ba and Manuel Rigger. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering, pages 1–13, 2024.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing cert"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Oracles such as PQS [29], NoREC [27],and TLP [28] detect logic bugs in SELECT statement implementations, while DQE [31] targets logic errors in UPDATE and INSERT statements.",
+      "context_before": "Atargets a broader class of performance issues in a more systematic way. DBMS testing.Beyond performance testing, automated methods have been developed to uncover various DBMS bugs. Many fuzzing tools target security-critical issues, such as memory errors. Tools like SQLSmith [35], Griffin [8], DynSQL [14], and ADUSA [21] employ grammar-based techniques to generate test cases aimed at detecting memoryrelated vulnerabilities. Inspired by grey-box fuzzers like AFL [34], Squirrel [41] uses code coverage feedback to identify memory issues. Other approaches focus on discovering logic bugs in DBMSs.",
+      "context_after": "Similar to testing approaches that find bugs, our core contribution is a novel testing methodology that finds performance issues by manipulating program code. 9 Conclusion In this paper, we have proposedBranch Flip Analysis(BFA), a generalwhite-boxmethod to find performance issues by flipping branches of IFstatements in source code. As the default optimization strategies should ideally have optimal performance, we disable or enforce an optimization by flipping code branches to derive a reference DBMS, whose performance is expected to be no better than the original DBMS. BFAprovides a new angle",
+      "section": "8 Related Work",
+      "page": 12,
+      "char_offset": 57258,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M10",
+        "M13"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:49:05Z",
+    "is_model_written": true,
+    "summary": "QueryZen looks for performance issues in code the optimiser rarely reaches. Its starting observation is that 8 of 10 historical performance issues found by APOLLO, AMOEBA, CERT and PUPPY could have been reached by flipping a branch, so instead of manipulating the input it manipulates the program: branches are flipped to force execution down dormant paths, and the resulting slowdowns are examined. On PostgreSQL, MySQL, MariaDB and CockroachDB it found 21 issues, most of which the prior methods cannot reach and which pre-dated their publication.",
+    "narrative": "SQLancer is used two ways. It supplies the workload: the authors collected ten thousand randomly generated small workloads from it, described as a popular DBMS testing tool, and those are the queries QueryZen runs against the flipped branches. Separately, CERT is one of four prior performance-testing methods QueryZen is measured against, and the comparison is reported issue by issue -- of the 21 issues found, 4 could potentially have been found by CERT, and 21 of 21 already existed when CERT was published. Note that SQLancer here generates input for a different technique rather than being the thing QueryZen is built on.",
+    "roles": {
+      "M1": "definition",
+      "M2": "motivation",
+      "M3": "background",
+      "M4": "result_comparison",
+      "M5": "baseline",
+      "M6": "motivation",
+      "M7": "reuse_component",
+      "M8": "background",
+      "M9": "baseline",
+      "M10": "result_comparison",
+      "M11": "result_comparison",
+      "M12": "result_comparison",
+      "M13": "result_comparison",
+      "M14": "result_comparison",
+      "M15": "result_comparison",
+      "M16": "background",
+      "M17": "definition",
+      "M18": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M7"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M7",
+            "sentence": "In this paper, we collected 10 thousand randomly generated small workloads from SQLancer[27, 28], which is a popular DBMS testing tool.",
+            "section": "4 Approach",
+            "page": 5
+          }
+        ],
+        "reasoning": "M7 states that ten thousand randomly generated small workloads were collected from SQLancer. That is reuse, but only as a source of queries for a technique that operates on the DBMS's own code -- QueryZen is not built on SQLancer.",
+        "reuse_kind": "workload"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Flipping branches to reach dormant code is not a development of any SQLancer oracle; the paper positions it against input-manipulating approaches including CERT."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M5",
+          "M9",
+          "M12"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M5",
+            "sentence": "We considered the performance issues found by the four existing performance-testing methods:APOLLO[16],AMOEBA[21],CERT[1], and PUPPY[40].",
+            "section": "3 Motivating Study",
+            "page": 3
+          },
+          {
+            "mention_id": "M9",
+            "sentence": "We considered the same performancetesting methods in Section 3:APOLLO[16],AMOEBA[21], CERT[1], and PUPPY[40].",
+            "section": "6 Evaluation",
+            "page": 8
+          },
+          {
+            "mention_id": "M12",
+            "sentence": "Overall, 8, 0, 4, and 1 issues have the potential to be found by APOLLO,AMOEBA, CERT, and PUPPY, respectively.",
+            "section": "6 Evaluation",
+            "page": 9
+          }
+        ],
+        "reasoning": "M5 and M9 name CERT among the four prior performance-testing methods considered, and M12 reports how many of QueryZen's issues each could potentially have found.",
+        "techniques": [
+          "cert"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is called a popular DBMS testing tool and CERT is described by what it does; neither is presented as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,961 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:32:39Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3597503.3639200",
+    "title": "Testing Graph Database Systems via Equivalent Query Rewriting",
+    "authors": [
+      "Qiuyang Mang",
+      "Aoyang Fang",
+      "Boxi Yu",
+      "Hanfei Chen",
+      "Pinjia He"
+    ],
+    "year": 2024,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1145/3597503.3639200",
+    "arxiv_id": null,
+    "s2_paper_id": "29641e542dc3bcf96e4a8e6902b9e132a9c399da",
+    "url": "https://doi.org/10.1145/3597503.3639200",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3597503.3639200",
+      "retrieved_at": "2026-09-09T01:32:39Z",
+      "chars": 69243,
+      "content_sha256": "sha256:f71d2a4b915e89d0470f903ce0330419092a1cf6ef699618470f07e584106e81"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 3236
+      },
+      {
+        "number": "2",
+        "title": "BACKGROUND",
+        "start": 10918
+      },
+      {
+        "number": "2.1",
+        "title": "Labeled Property Graph in GDBMS",
+        "start": 10931
+      },
+      {
+        "number": "2.2",
+        "title": "Query Languages in GDBMS",
+        "start": 12046
+      },
+      {
+        "number": "2.3",
+        "title": "Query Rewriting",
+        "start": 12970
+      },
+      {
+        "number": "3",
+        "title": "APPROACH",
+        "start": 15482
+      },
+      {
+        "number": "3.2",
+        "title": "ASG Parsing",
+        "start": 19078
+      },
+      {
+        "number": "3.3",
+        "title": "Random Walk Covering",
+        "start": 20186
+      },
+      {
+        "number": "4",
+        "title": "IMPLEMENTATION",
+        "start": 25294
+      },
+      {
+        "number": "4.1",
+        "title": "Implementation Overview",
+        "start": 25311
+      },
+      {
+        "number": "4.2",
+        "title": "Graph Generation",
+        "start": 26680
+      },
+      {
+        "number": "4.3",
+        "title": "Base Query Generator",
+        "start": 27336
+      },
+      {
+        "number": "4.4",
+        "title": "Equivalent Query Rewriter and Validation",
+        "start": 28620
+      },
+      {
+        "number": "5",
+        "title": "EVALUATION",
+        "start": 31043
+      },
+      {
+        "number": "5.1",
+        "title": "Experimental Setting",
+        "start": 31866
+      },
+      {
+        "number": "5.2",
+        "title": "Detecting Previously Unknown Bugs",
+        "start": 33235
+      },
+      {
+        "number": "5.3",
+        "title": "Test Cases Analysis",
+        "start": 40910
+      },
+      {
+        "number": "5.4",
+        "title": "Analytical Comparison with Existing",
+        "start": 45490
+      },
+      {
+        "number": "5.5",
+        "title": "Empirical Comparison with Existing",
+        "start": 49707
+      },
+      {
+        "number": "6",
+        "title": "DISCUSSION",
+        "start": 53821
+      },
+      {
+        "number": "6.1",
+        "title": "Threats to Validity",
+        "start": 53834
+      },
+      {
+        "number": "7",
+        "title": "RELATED WORK",
+        "start": 55982
+      },
+      {
+        "number": "8",
+        "title": "CONCLUSION",
+        "start": 58387
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Muhammad Hilmi Asyrofi, Zhou Yang, and David Lo. 2021. Crossasr++: A modular differential testing framework for automatic speech recognition. In Proceedings of the 29th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1575– 1579.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In (ICSE). 2060–2071. https://doi.org/10.1109/ICSE48619.2023.00174",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 3,
+      "text": "Nathan Bronson, Zach Amsden, George Cabrera, Prasad Chakka, Peter Dimov, Hui Ding, Jack Ferris, Anthony Giardullo, Sachin Kulkarni, Harry Li, Mark 9https://github.com/CUHK-Shenzhen-SE/GRev ICSE 2024, April 2024, Lisbon, Portugal Trovato and Tobin, et al. Marchukov, Dmitri Petrov, Lovro Puzar, Yee Jiun Song, and Venkat Venkataramani. 2013. TAO: Facebook’s Distributed Data Store for the Social Graph",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Yuting Chen, Ting Su, and Zhendong Su. 2019. Deep differential testing of JVM implementations. In Engineering (ICSE). IEEE, 1257–1268.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Yuting Chen, Ting Su, Chengnian Sun, Zhendong Su, and Jianjun Zhao. 2016. Coverage-directed differential testing of JVM implementations. In proceedings of the 37th ACMSIGPLAN Conference on Programming Language Design and Implementation. 85–99.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Dbrank. 2023. DB-Engines Ranking of Graph DBMS. https://db-engines.com/en/ ranking/graph+ dbms",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Yinlin Deng, Chunqiu Steven Xia, Haoran Peng, Chenyuan Yang, and Lingming Zhang. 2022. Fuzzing deep-learning libraries via large language models. arXiv preprint arXiv:2212.14834 (2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Yinlin Deng, Chunqiu Steven Xia, Chenyuan Yang, Shizhuo Dylan Zhang, Shujing Yang, and Lingming Zhang. 2023. Large language models are edge-case fuzzers: Testing deep learning libraries via fuzzgpt. arXiv preprint arXiv:2304.02014 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Yinlin Deng, Chenyuan Yang, Anjiang Wei, and Lingming Zhang. 2022. Fuzzing deep-learning libraries via automated relational api inference. In Proceedings of the 30th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 44–56.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Robert B Evans and Alberto Savoia. 2007. Differential testing: a new approach to change detection. In The 6th Joint Meeting on European software engineering conference and the ACMSIGSOFT Symposium on the Foundations of Software Engineering: Companion Papers. 549–552.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Alex Groce, Gerard Holzmann, and Rajeev Joshi. 2007. Randomized differential testing as a prelude to formal verification. In 29th International Conference on Software Engineering (ICSE’07). IEEE, 621–631.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Pinjia He, Clara Meister, and Zhendong Su. 2020. Structure-invariant testing for machine translation. In Engineering (ICSE). IEEE, 961–973.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Ziyue Hua, Wei Lin, Luyao Ren, Zongyang Li, Lu Zhang, Wenpin Jiao, and Tao Xie. 2023. GDsmith: Detecting bugs in Cypher graph database engines. In Proceedings of ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "JanusGraph. 2023. JanusGraph. https://janusgraph.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhanga, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. In Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 16,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. 2014. Compiler validation via equivalence modulo inputs. ACM Sigplan Notices 49, 6 (2014), 216–226.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Vu Le, Chengnian Sun, and Zhendong Su. 2015. Finding deep compiler bugs via guided stochastic program mutation. ACMSIGPLAN Notices 50, 10 (2015), 386–399.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Daniel Lehmann and Michael Pradel. 2018. Feedback-directed differential testing of interactive debuggers. In Proceedings of the 2018 26th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 610–620.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Mikael Lindvall, Dharmalingam Ganesan, Ragnar Árdal, and Robert E Wiegand. 2015. Metamorphic model-based testing applied on NASADAT–An experience report. In neering, Vol. 2. IEEE, 129–138.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Jiawei Liu, Jinkun Lin, Fabian Ruffy, Cheng Tan, Jinyang Li, Aurojit Panda, and Lingming Zhang. 2023. Nnsmith: Generating diverse and valid test cases for deep learning compilers. In Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2. 530–543.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. 2022. Automatic detection of performance bugs in database systems using equivalent queries. In Proceedings of the 44th International Conference on Software Engineering. 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "William M McKeeman. 1998. Differential testing for software. Digital Technical Journal 10, 1 (1998), 100–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "MemGraph. 2023. MemGraph. https://memgraph.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "NebulaGraph. 2023. NebulaGraph. https://www.nebula-graph.io/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Neo4j. 2023. Cypher Features Implemented by Neo4j. https://neo4j.com/docs/ cypher-manual/current/queries/basic/#find-connected-nodes",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Neo4j. 2023. Neo4J. https://neo4j.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "nGQL. 2023. nGQL. https://docs.nebula-graph.io/1.2.0/manual-EN/1.overview/1. concepts/2.nGQL-overview/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "openCypher. 2023. openCypher. https://opencypher.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Theofilos Petsios, Adrian Tang, Salvatore Stolfo, Angelos D Keromytis, and Suman Jana. 2017. Nezha: Efficient domain-independent differential testing. In. IEEE, 615–632.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Hamid Pirahesh, Joseph M. Hellerstein, and Waqar Hasan. 1992. Extensible/Rule Based Query Rewrite Optimization in Starburst. In Proceedings of the 1992 ACMSIGMOD International Conference on Management of Data (San Diego, California, USA) (SIGMOD ’92). Association for Computing Machinery, New York, NY, USA, 39–48. https://doi.org/10.1145/130283.130294",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Redis. 2023. RedisGraph. https://docs.redis.com/latest/stack/deprecated-features/ graph/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (nov 2020), 30 pages. https://doi.org/10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 33,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis.. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), Vol. 20. 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 34,
+      "text": "Daniel Ritter, Luigi Dell’Aquila, Andrii Lomakin, and Emanuele Tagliaferri. 2021. OrientDB: A NoSQL, Open Source MMDMS. In Proceedings of the The British International Conference on Databases 2021, London, United Kingdom, March 28, 2022 (CEUR Workshop Proceedings, Vol. 3163). CEUR-WS.org, 10–19.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Marko A. Rodriguez. 2015. The Gremlin Graph Traversal Machine and Language. CoRR abs/1508.03843 (2015). arXiv:1508.03843",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Jiansen Song, Wensheng Dou, Ziyu Cui, Qianwang Dai, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2023. Testing Database Systems via Differential Query Execution. In Engineering (ICSE). 2072–2084. https://doi.org/10.1109/ICSE48619.2023.00175",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Thodoris Sotiropoulos, Stefanos Chaliasos, Vaggelis Atlidakis, Dimitris Mitropoulos, and Diomidis Spinellis. 2021. Data-oriented differential testing of objectrelational mapping systems. In Software Engineering (ICSE). IEEE, 1535–1547.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Rainer Storn and Kenneth Price. 1997. Differential evolution–a simple and efficient heuristic for global optimization over continuous spaces. Journal of global optimization 11, 4 (1997), 341–359.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Chengnian Sun, Vu Le, and Zhendong Su. 2016. Finding compiler bugs via live code mutation. In Proceedings of the 2016 ACMSIGPLAN international conference on object-oriented programming, systems, languages, and applications. 849–863.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "TigerGraph. 2023. TigerGraph. https://www.tigergraph.com",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "TinkerGraph. 2023. TinkerGraph. https://github.com/tinkerpop/blueprints/wiki/ tinkergraph",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Boxi Yu, Yiyan Hu, Qiuyang Mang, Wenhan Hu, and Pinjia He. 2023. Automated Testing and Improvement of Named Entity Recognition Systems. In Proceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (, San Francisco, CA, USA,) (ESEC/FSE 2023). Association for Computing Machinery, New York, NY, USA, 883–894. https://doi.org/10.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Boxi Yu, Zhiqing Zhong, Xinran Qin, Jiayi Yao, Yuancheng Wang, and Pinjia He. 2022. Automated testing of image captioning systems. In Proceedings of the 31st ACMSIGSOFT International Symposium on Software Testing and Analysis. 467–479.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Yingying Zheng, Wensheng Dou, Yicheng Wang, Zheng Qin, Lei Tang, Yu Gao, Dong Wang, Wei Wang, and Jun Wei. 2022. Finding Bugs in Gremlin-Based Graph Database Systems via Randomized Differential Testing. In Proceedings of the 31st ACMSIGSOFT International Symposium on Software Testing and Analysis (Virtual, South Korea) (ISSTA 2022). Association for Computing Machinery, New York, NY, USA, 302–313. ",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In (ICSE). 2060–2071. https://doi.org/10.1109/ICSE48619.2023.00174",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "prints the DOI of the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 15,
+      "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhanga, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. In Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 32,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (nov 2020), 30 pages. https://doi.org/10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 33,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis.. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), Vol. 20. 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 2,\n32,33,36]",
+      "technique": "qpg",
+      "sentence": "Second, it is non-trivial to adapt RDBMS testing approaches [ 2, 32,33,36] to GDBMS because it incurs re-implementation under different database models and query languages.",
+      "context_before": "y languages, such as Neo4j’s Cypher [ 28], TinkerGraph’s Gremlin [ 35], and NebulaGraph’s nGQL [ 27]. Thus, existing differential testing tools, like GDsmith [ 13] and Grand [ 44], can only test the shared functionalities of GDBMS that adopt the same query language, such as Neo4j’s feature of label expressions [ 25]. Moreover, the adoption of different query languages can lead to extensive engineering effort when developers try to generalize existing tools to more query languages. We think this is the main reason why existing research focuses on at most two query languages: Cypher and Gremlin.",
+      "context_after": "Moreover, this kind of adaptation can only test the shared functionalities between RDBMS and GDBMS (e.g., expressions and predicates), leaving graph-related bugs underexplored. For example, GDBMeter [ 15], the only existing metamorphic testing approach for GDBMS, utilizes an RDBMS testing approach Ternery Logic Partitioning (TLP) [32], which partitions a query 𝑄into sub-queries 𝑄𝑃,𝑄¬𝑃,𝑄nullbased on three possible outcomes of the predicate 𝑃:true, false, and null. Thus, although GDBMeter found common bugs related to predicates handling, none of their reported bugs are graph-related. Third, per",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 6453,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In (ICSE). 2060–2071. https://doi.org/10.1109/ICSE48619.2023.00174",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "prints the DOI of the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For example, GDBMeter [ 15], the only existing metamorphic testing approach for GDBMS, utilizes an RDBMS testing approach Ternery Logic Partitioning (TLP) [32], which partitions a query 𝑄into sub-queries 𝑄𝑃,𝑄¬𝑃,𝑄nullbased on three possible outcomes of the predicate 𝑃:true, false, and null.",
+      "context_before": "rent query languages can lead to extensive engineering effort when developers try to generalize existing tools to more query languages. We think this is the main reason why existing research focuses on at most two query languages: Cypher and Gremlin. Second, it is non-trivial to adapt RDBMS testing approaches [ 2, 32,33,36] to GDBMS because it incurs re-implementation under different database models and query languages. Moreover, this kind of adaptation can only test the shared functionalities between RDBMS and GDBMS (e.g., expressions and predicates), leaving graph-related bugs underexplored.",
+      "context_after": "Thus, although GDBMeter found common bugs related to predicates handling, none of their reported bugs are graph-related. Third, performance bugs in GDBMS have not been carefully considered by existing approaches. Specifically, differential testing approaches, such as GDsmith [ 13] and Grand [ 44], fall short of detecting performance bugs because the diverse underlying architectures of different GDBMS can easily cause performance differences. The metamorphic testing approach, GDBMeter [ 15], is based on the relationship between the original query and three sub-queries, which do not exhibit cle",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 6803,
+      "found_by_all": [
+        "technique",
+        "citation_marker_project_authored",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 15]",
+      "technique": null,
+      "sentence": "The metamorphic testing approach, GDBMeter [ 15], is based on the relationship between the original query and three sub-queries, which do not exhibit clear performance relationships.",
+      "context_before": "Partitioning (TLP) [32], which partitions a query 𝑄into sub-queries 𝑄𝑃,𝑄¬𝑃,𝑄nullbased on three possible outcomes of the predicate 𝑃:true, false, and null. Thus, although GDBMeter found common bugs related to predicates handling, none of their reported bugs are graph-related. Third, performance bugs in GDBMS have not been carefully considered by existing approaches. Specifically, differential testing approaches, such as GDsmith [ 13] and Grand [ 44], fall short of detecting performance bugs because the diverse underlying architectures of different GDBMS can easily cause performance differences.",
+      "context_after": "Thus, it is difficult for existing approaches to find performance bugs. To tackle these challenges, this paper adapts Equivalent Query Rewriting (EQR) to GDBMS testing. For example, the first query 1https://github.com/RedisGraph/RedisGraph/issues/3093in Listing 1 was re-written to generate the second query as the equivalent query. If the returned results are different or a large difference was observed in the query time, a potential bug is found. To facilitate the realization of EQR in GDBMS, we propose a novel, widely applicable concept called Abstract Syntax Graph (ASG). The key insight is",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 7540,
+      "cited_reference": {
+        "number": 15,
+        "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhanga, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. In Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 13,15]",
+      "technique": null,
+      "sentence": "2 Graph Generation Unlike some testing techniques [ 13,15] that are specific to particular data, our EQR approach can be generally applied to any graph.",
+      "context_before": "the target graph database, potential bugs can be uncovered if they result in inconsistent systems behaviors. Graph Generator Base Query Generator Qbase Equivalent Query RewriterQ1 Q2 Qk.. . Inequivalent Result? Graph Database Equivalent Qu eries Base QuerySending queries to GDBMS and obtaining resultsFigure 4: An overview of GRev, which begins with the Graph Generator and Base Query Generator to produce a graph schema and base query, followed by the Equivalent Query Rewriter to generate several equivalent queries. A bug will be detected if these queries yield inconsistent system behaviors. 4.",
+      "context_after": "We can simply create a random LPG graph schema on the target graph database by executing the following steps. •First, create properties and assign them unique names and data types (e.g., int, float, and string). •Second, create labels for nodes and relationships, with each label corresponding to a set of randomly selected properties. •Third, create nodes and relationships, assigning them random labels and properties, and then assigning random values to their properties based on their data-types. 4.3 Base Query Generator To the best of our knowledge, existing tools for testing GDBMS are often",
+      "section": "4.2 Graph Generation",
+      "page": 5,
+      "char_offset": 26682,
+      "cited_reference": {
+        "number": 15,
+        "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhanga, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. In Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "technique",
+      "surface": "Query Partitioning",
+      "technique": "tlp",
+      "sentence": "Similarly, GDBMeter [ 15], a tool based on Query Partitioning [ 32], requires different validation rules for different queries and may struggle to handle some widely-used clauses such as DISTINCT.",
+      "context_before": "string). •Second, create labels for nodes and relationships, with each label corresponding to a set of randomly selected properties. •Third, create nodes and relationships, assigning them random labels and properties, and then assigning random values to their properties based on their data-types. 4.3 Base Query Generator To the best of our knowledge, existing tools for testing GDBMS are often sensitive to the base query. For instance, differential testing tools like Grand [ 44] and GDsmith [ 13] are limited to using queries that rely on shared functionalities among the tested graph databases.",
+      "context_after": "This is because there can be potential duplicate elements across the sub-queries, and thus aggregating sub-queries with DISTINCT clauses may not produce results matching the original query. However, GRev is designed to be generally applicable to most base queries, with the only exception of the base queries that may produce uncertain results, such as those involving the random LIMIT clauses. Given this, we followed the grammar of GDBMS query languages to generate syntactically correct base queries. Furthermore, GRev can directly utilize any existing query generators, such as the generator of",
+      "section": "4.3 Base Query Generator",
+      "page": 5,
+      "char_offset": 27637,
+      "found_by_all": [
+        "technique",
+        "citation_marker_project_authored",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 15]",
+      "technique": null,
+      "sentence": ", GDsmith [ 13], Grand [ 44], and GDBMeter [ 15]).",
+      "context_before": "6], RedisGraph [ 31], MemGraph [ 23], TinkerGraph [ 40], and NebulaGraph [ 24]). Table 1 shows the basic information of the GDBMS selected, including DB-Engines Ranking [ 6]3, GitHub stars, and their initial release dates. Among these, Neo4j, RedisGraph, and MemGraph are the most popular opensource GDBMS that employ Cypher as their query language. TinkerGraph, developed by the creators of Gremlin [ 35], serves as the foundational library for several Gremlin-based GDBMS such as JanusGraph [ 14] and OrientDB [ 34]. Notably, these four GDBMS have undergone rigorous testing by existing works (e.g.",
+      "context_after": "Therefore, any previously unknown bugs we discovered on these databases highlight the proficiency of GRev. Additionally, we tested NebulaGraph, a widely-used GDBMS integrating its own query language, demonstrating the generalizability of GRev across multiple query languages. We tested the most recent versions of the GDBMS at the time of this work, which were Neo4j 5.6.0, RedisGraph 6.2.6-v7, MemGraph 2.8.0, TinkerGraph 3.6.0, and NebulaGraph 3.5.0. All experiments are conducted on a Linux (Ubuntu 22.04 LTS) workstation, equipped with a 13th Gen Intel(R) Core(TM) i5-13400 and 128 GB of memory.",
+      "section": "5.1 Experimental Setting",
+      "page": 6,
+      "char_offset": 32584,
+      "cited_reference": {
+        "number": 15,
+        "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhanga, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. In Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 15]",
+      "technique": null,
+      "sentence": "Notably, these bugs were rarely detected by the existing techniques, especially for GDBMeter [ 15], which reused the test oracles designed for RDBMS (i.",
+      "context_before": "s, we discovered a total of 22 previously unknown bugs, 15 already confirmed by the developers. Of the 22 reported bugs, 12 are logic bugs, 3 are performance bugs, 4 are missing exceptions, and 3 are unexpected exceptions. GDBMS Query Language Detected Confirmed Logic Bugs Performance Bugs Missing Exceptions Unexpected Exceptions Graph-related Ne o4j Cypher 3 2 0 0 2 1 1 Re disGraph Cypher 6 2 4 1 0 1 4 MemGraph Cypher 4 3 3 0 1 0 3 Tinker Graph Gremlin 3 2 2 0 1 0 2 NebulaGraph nGQL 6 6 3 2 0 1 4 T otal 22 15 12 3 4 3 14 rather than common functionalities shared with RDBMS (e.g., predicates).",
+      "context_after": "e., TLP [32]). Selected Interesting Bugs. To provide an insight into the variety of bugs that GRev is capable of identifying, we present a selection of interesting cases discovered by our approach. For brevity, we present simplified test cases (without showing graph data) for better understanding. Listing 2: MemGraph (logic bug, graph-related bug) - Returning unmatched data when executing MATCH clauses after OPTIONAL MATCH clauses. (1) MATCH (n0:L3)<-[ r0:T1]-(n1) OPTIONAL MATCH (n2:L2) < -[] -( n1:L1), ( n1:L1) -[] - >( n0) WITH *MATCH (n0) < -[] -( n1) -[] - >( n2)WITH *RETURN * --{n0: 1924",
+      "section": "5.2 Detecting Previously Unknown Bugs",
+      "page": 7,
+      "char_offset": 35433,
+      "cited_reference": {
+        "number": 15,
+        "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhanga, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. In Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": ", TLP [32]).",
+      "context_before": "ce bugs, 4 are missing exceptions, and 3 are unexpected exceptions. GDBMS Query Language Detected Confirmed Logic Bugs Performance Bugs Missing Exceptions Unexpected Exceptions Graph-related Ne o4j Cypher 3 2 0 0 2 1 1 Re disGraph Cypher 6 2 4 1 0 1 4 MemGraph Cypher 4 3 3 0 1 0 3 Tinker Graph Gremlin 3 2 2 0 1 0 2 NebulaGraph nGQL 6 6 3 2 0 1 4 T otal 22 15 12 3 4 3 14 rather than common functionalities shared with RDBMS (e.g., predicates). Notably, these bugs were rarely detected by the existing techniques, especially for GDBMeter [ 15], which reused the test oracles designed for RDBMS (i.e.",
+      "context_after": "Selected Interesting Bugs. To provide an insight into the variety of bugs that GRev is capable of identifying, we present a selection of interesting cases discovered by our approach. For brevity, we present simplified test cases (without showing graph data) for better understanding. Listing 2: MemGraph (logic bug, graph-related bug) - Returning unmatched data when executing MATCH clauses after OPTIONAL MATCH clauses. (1) MATCH (n0:L3)<-[ r0:T1]-(n1) OPTIONAL MATCH (n2:L2) < -[] -( n1:L1), ( n1:L1) -[] - >( n0) WITH *MATCH (n0) < -[] -( n1) -[] - >( n2)WITH *RETURN * --{n0: 19244, n1: 19230,",
+      "section": "5.2 Detecting Previously Unknown Bugs",
+      "page": 7,
+      "char_offset": 35588,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 15]",
+      "technique": null,
+      "sentence": "In contrast, existing techniques based on certain query transformations, such as GDBMeter [ 15], can only trigger 1 (from the base query) + 3 (from three sub-queries) = 4 distinct query plans.",
+      "context_before": "query plans for long base queries. The number of distinct query plans obtained for a base query increases as the number of generated equivalent queries increases. If we generate 3,000 equivalent queries for the 10 random base queries (300 each), we can obtain 178 distinct query plans (the rightmost pink bar in Fig. 6), averaging 17.8 distinct plans per base query. Similarly, we can obtain 1253 distinct query plans (the rightmost yellow bar in Fig. 6), averaging 125.3 distinct query plans per base query. Thus, we believe the equivalent queries generated by GRev can trigger distinct query plans.",
+      "context_after": "Moreover, differential testing tools like GDBMeter and Grand are restricted to triggering only one query plan in each target GDBMS for a given base query. Consequently, when executing differential testing on Testing Graph Database Systems via Equivalent Query Rewriting ICSE 2024, April 2024, Lisbon, Portugal Table 3: Comparing GRev with Existing Techniques T ool Approach Supp orted LanguagesAble to detect shared bugsAble to test unique featuresInsensitive to base queryDetected performance bugsDetected graph-related bugs GDsmith Differ ential Testing Cypher # # # # Grand Differential Testing G",
+      "section": "5.3 Test Cases Analysis",
+      "page": 8,
+      "char_offset": 43771,
+      "cited_reference": {
+        "number": 15,
+        "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhanga, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. In Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "Query Partitioning",
+      "technique": "tlp",
+      "sentence": "Consequently, when executing differential testing on Testing Graph Database Systems via Equivalent Query Rewriting ICSE 2024, April 2024, Lisbon, Portugal Table 3: Comparing GRev with Existing Techniques T ool Approach Supp orted LanguagesAble to detect shared bugsAble to test unique featuresInsensitive to base queryDetected performance bugsDetected graph-related bugs GDsmith Differ ential Testing Cypher # # # # Grand Differential Testing Gr emlin # # # # # GDBMeter Query Partitioning Cypher, Gremlin # # # GRe v Quer y Rewriting Cypher, Gremlin, nGQL G # three GDBMS simultaneously, these tools can only activate three distinct query plans for each base query.",
+      "context_before": "ns per base query. Similarly, we can obtain 1253 distinct query plans (the rightmost yellow bar in Fig. 6), averaging 125.3 distinct query plans per base query. Thus, we believe the equivalent queries generated by GRev can trigger distinct query plans. In contrast, existing techniques based on certain query transformations, such as GDBMeter [ 15], can only trigger 1 (from the base query) + 3 (from three sub-queries) = 4 distinct query plans. Moreover, differential testing tools like GDBMeter and Grand are restricted to triggering only one query plan in each target GDBMS for a given base query.",
+      "context_after": "To investigate RQ2 (c), we executed 1,250,000 test cases on RedisGraph [ 31] within a 12-hour window, where each test case includes one base query and one equivalent query. Among these test cases, (945/1,250,000) managed to trigger bugs, of which 936 are logic bugs and 9 are performance bugs. This result indicates that on average, GRev is able to identify one bug-triggering test case executing for every 1,322 test case executions. In our practical testing, it takes an average of one minute to identify a bug-triggering test case. In summary, the analysis of the test cases above demonstrates th",
+      "section": "5.3 Test Cases Analysis",
+      "page": 8,
+      "char_offset": 44119,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 15]",
+      "technique": null,
+      "sentence": ", GDsmith [ 13], Grand [ 44], and GDBMeter [ 15], that can detect bugs other than crashes.",
+      "context_before": "gs, of which 936 are logic bugs and 9 are performance bugs. This result indicates that on average, GRev is able to identify one bug-triggering test case executing for every 1,322 test case executions. In our practical testing, it takes an average of one minute to identify a bug-triggering test case. In summary, the analysis of the test cases above demonstrates the high effectiveness and efficiency of GRev in generating high-quality test cases and triggering bugs. 5.4 Analytical Comparison with Existing Techniques As shown in Table 3, there are three closest-related works in testing GDBMS, i.e.",
+      "context_after": "Specifically, GDsmith and Grand are based on Differential Testing [38] while GDBMeter is based on Query Partitioning [32] (i.e., partitioning query into multiple equivalent sub-queries). Notably, we can not compare GRev with RDBMS testing tools, such as SQLancer [ 33]. Although GRev and these tools both test the bugs in database systems, their target databases have fundamental differences, in terms of data structures (e.g., graph model vs. relational model), query mode (e.g., traversals vs. joins), and languages (e.g., Cypher [ 28], Gremlin [ 35], and nGQL [ 27] vs. SQL). Even for testing the",
+      "section": "5.4 Analytical Comparison with Existing",
+      "page": 9,
+      "char_offset": 45622,
+      "cited_reference": {
+        "number": 15,
+        "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhanga, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. In Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "Query Partitioning",
+      "technique": "tlp",
+      "sentence": "Specifically, GDsmith and Grand are based on Differential Testing [38] while GDBMeter is based on Query Partitioning [32] (i.",
+      "context_before": "average, GRev is able to identify one bug-triggering test case executing for every 1,322 test case executions. In our practical testing, it takes an average of one minute to identify a bug-triggering test case. In summary, the analysis of the test cases above demonstrates the high effectiveness and efficiency of GRev in generating high-quality test cases and triggering bugs. 5.4 Analytical Comparison with Existing Techniques As shown in Table 3, there are three closest-related works in testing GDBMS, i.e., GDsmith [ 13], Grand [ 44], and GDBMeter [ 15], that can detect bugs other than crashes.",
+      "context_after": "e., partitioning query into multiple equivalent sub-queries). Notably, we can not compare GRev with RDBMS testing tools, such as SQLancer [ 33]. Although GRev and these tools both test the bugs in database systems, their target databases have fundamental differences, in terms of data structures (e.g., graph model vs. relational model), query mode (e.g., traversals vs. joins), and languages (e.g., Cypher [ 28], Gremlin [ 35], and nGQL [ 27] vs. SQL). Even for testing the GDBMS that adopt the same query languages, different GDBMS can have their unique design or adopt some shared libraries with o",
+      "section": "5.4 Analytical Comparison with Existing",
+      "page": 9,
+      "char_offset": 45712,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Notably, we can not compare GRev with RDBMS testing tools, such as SQLancer [ 33].",
+      "context_before": "g-triggering test case. In summary, the analysis of the test cases above demonstrates the high effectiveness and efficiency of GRev in generating high-quality test cases and triggering bugs. 5.4 Analytical Comparison with Existing Techniques As shown in Table 3, there are three closest-related works in testing GDBMS, i.e., GDsmith [ 13], Grand [ 44], and GDBMeter [ 15], that can detect bugs other than crashes. Specifically, GDsmith and Grand are based on Differential Testing [38] while GDBMeter is based on Query Partitioning [32] (i.e., partitioning query into multiple equivalent sub-queries).",
+      "context_after": "Although GRev and these tools both test the bugs in database systems, their target databases have fundamental differences, in terms of data structures (e.g., graph model vs. relational model), query mode (e.g., traversals vs. joins), and languages (e.g., Cypher [ 28], Gremlin [ 35], and nGQL [ 27] vs. SQL). Even for testing the GDBMS that adopt the same query languages, different GDBMS can have their unique design or adopt some shared libraries with other GDBMS. In the first case, these differential testing tools are sensitive to queries or are prone to give false positives. For example, MemG",
+      "section": "5.4 Analytical Comparison with Existing",
+      "page": 9,
+      "char_offset": 45899,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "Query Partitioning",
+      "technique": "tlp",
+      "sentence": "Based on Query Partitioning, GDBMeter [ 15] leverages the test oracle called Ternary Logic Partitioning (TLP) to detect bugs in GDBMS.",
+      "context_before": "adopt some shared libraries with other GDBMS. In the first case, these differential testing tools are sensitive to queries or are prone to give false positives. For example, MemGraph [ 23] and Neo4j [ 26] will deliberately return different results for the same query MATCH ()-[r]-(), and thus GDsmith does not test such queries to avoid false alarms. In the second case, these tools are prone to give false negatives. In addition, GDsmith and Grand face challenges in detecting performance bugs by comparing performance discrepancies, as different target GDBMSs have varying underlying architectures.",
+      "context_after": "TLP [ 32] was initially introduced in testing RDBMS. It involves partitioning a query 𝑄into sub-queries 𝑄𝑃,𝑄¬𝑃,𝑄nullbased on three possible outcomes of the predicate 𝑃:true, false, and null. However, this partitioning approach is sensitive to query and query language. For example, where the query includes functionalities such as removing duplicate elements, aggregating the sub-queries may no longer produce an equivalent result to the original query.Listing 5: An example of GDBMeter’s missed bug-triggering test cases of the bug shown in Listing 2, where the aggregation of the results from the",
+      "section": "5.4 Analytical Comparison with Existing",
+      "page": 9,
+      "char_offset": 47004,
+      "found_by_all": [
+        "technique",
+        "citation_marker_project_authored"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP [ 32] was initially introduced in testing RDBMS.",
+      "context_before": "to give false positives. For example, MemGraph [ 23] and Neo4j [ 26] will deliberately return different results for the same query MATCH ()-[r]-(), and thus GDsmith does not test such queries to avoid false alarms. In the second case, these tools are prone to give false negatives. In addition, GDsmith and Grand face challenges in detecting performance bugs by comparing performance discrepancies, as different target GDBMSs have varying underlying architectures. Based on Query Partitioning, GDBMeter [ 15] leverages the test oracle called Ternary Logic Partitioning (TLP) to detect bugs in GDBMS.",
+      "context_after": "It involves partitioning a query 𝑄into sub-queries 𝑄𝑃,𝑄¬𝑃,𝑄nullbased on three possible outcomes of the predicate 𝑃:true, false, and null. However, this partitioning approach is sensitive to query and query language. For example, where the query includes functionalities such as removing duplicate elements, aggregating the sub-queries may no longer produce an equivalent result to the original query.Listing 5: An example of GDBMeter’s missed bug-triggering test cases of the bug shown in Listing 2, where the aggregation of the results from the three sub-queries still produces the same incorrect r",
+      "section": "5.4 Analytical Comparison with Existing",
+      "page": 9,
+      "char_offset": 47139,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "(TLP :𝑄𝑃)MATCH (n0:L3)<-[ r0:T1]-(n1) OPTIONAL MATCH (n0) < -[] -( n1:L1) -[] - >( n2:L2) WITH *MATCH (n0) < -[] -( n1) -[] - >( n2)WITH * WHERE (ID(n2) > ID(n0))RETURN * --{n0: 19244, n1: 19230, n2: 19328, r0: 85207} (TLP :𝑄¬𝑃)MATCH (n0:L3)<-[ r0:T1]-(n1) OPTIONAL MATCH (n0) < -[] -( n1:L1) -[] - >( n2:L2) WITH *MATCH (n0) < -[] -( n1) -[] - >( n2)WITH * WHERE NOT (ID(n2) > ID(n0))RETURN *--{} (TLP :𝑄null)MATCH (n0:L3)<-[ r0:T1]-(n1) OPTIONAL MATCH (n0) < -[] -( n1:L1) -[] - >( n2:L2) WITH *MATCH (n0) < -[] -( n1) -[] - >( n2)WITH * WHERE (ID(n2) > ID(n0))IS NULL RETURN * --{n0: 19317, n1: 19223, n2: null, r0: 85206} As a result, GDBMeter is unable to effectively test queries that involve DISTINCT clauses in Cypher [ 28] and dedup() clauses in Gremlin [ 35].",
+      "context_before": "ed on three possible outcomes of the predicate 𝑃:true, false, and null. However, this partitioning approach is sensitive to query and query language. For example, where the query includes functionalities such as removing duplicate elements, aggregating the sub-queries may no longer produce an equivalent result to the original query.Listing 5: An example of GDBMeter’s missed bug-triggering test cases of the bug shown in Listing 2, where the aggregation of the results from the three sub-queries still produces the same incorrect result as the original query, which leads to the bug being missed.",
+      "context_after": "Similarly to Grand [ 44] and GDsmith [ 13], GDBMeter also lacks general support for multiple query languages in GDBMS. For example, since Gremlin lacks steps to check for null values in expressions, GDBMeter can only test Gremlin-based GDBMS when working with graphs that do not contain null values. In addition, TLP can only be applied to filter clauses (e.g., WHERE ), and is not capable of effectively modifying query plans of the traversal process (e.g., MATCH ), resulting in GDBMeter facing challenges in finding traversal bugs. For example, as shown in Listing 5, the TLP approach fails to ge",
+      "section": "5.4 Analytical Comparison with Existing",
+      "page": 9,
+      "char_offset": 47859,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "In addition, TLP can only be applied to filter clauses (e.",
+      "context_before": "1:L1) -[] - >( n2:L2) WITH *MATCH (n0) < -[] -( n1) -[] - >( n2)WITH * WHERE (ID(n2) > ID(n0))IS NULL RETURN * --{n0: 19317, n1: 19223, n2: null, r0: 85206} As a result, GDBMeter is unable to effectively test queries that involve DISTINCT clauses in Cypher [ 28] and dedup() clauses in Gremlin [ 35]. Similarly to Grand [ 44] and GDsmith [ 13], GDBMeter also lacks general support for multiple query languages in GDBMS. For example, since Gremlin lacks steps to check for null values in expressions, GDBMeter can only test Gremlin-based GDBMS when working with graphs that do not contain null values.",
+      "context_after": "g., WHERE ), and is not capable of effectively modifying query plans of the traversal process (e.g., MATCH ), resulting in GDBMeter facing challenges in finding traversal bugs. For example, as shown in Listing 5, the TLP approach fails to generate bug-triggering test cases for the graphrelated bugs shown in Listing 2. Specifically, after conducting a thorough investigation of GDBMeter’s bug reports, we found that all of the logic bugs were triggered by queries that contain only a simple MATCH (n)clause or return a mathematical expression directly. This implies that the root causes of their det",
+      "section": "5.4 Analytical Comparison with Existing",
+      "page": 9,
+      "char_offset": 48928,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For example, as shown in Listing 5, the TLP approach fails to generate bug-triggering test cases for the graphrelated bugs shown in Listing 2.",
+      "context_before": "NCT clauses in Cypher [ 28] and dedup() clauses in Gremlin [ 35]. Similarly to Grand [ 44] and GDsmith [ 13], GDBMeter also lacks general support for multiple query languages in GDBMS. For example, since Gremlin lacks steps to check for null values in expressions, GDBMeter can only test Gremlin-based GDBMS when working with graphs that do not contain null values. In addition, TLP can only be applied to filter clauses (e.g., WHERE ), and is not capable of effectively modifying query plans of the traversal process (e.g., MATCH ), resulting in GDBMeter facing challenges in finding traversal bugs.",
+      "context_after": "Specifically, after conducting a thorough investigation of GDBMeter’s bug reports, we found that all of the logic bugs were triggered by queries that contain only a simple MATCH (n)clause or return a mathematical expression directly. This implies that the root causes of their detected logic bugs lie solely in the implementations of predicates and expressions, with no relation to the graph itself. 5.5 Empirical Comparison with Existing Techniques To better compare with previous works, we conducted two empirical experiments, each corresponding to code coverage, and bug ICSE 2024, April 2024, Li",
+      "section": "5.4 Analytical Comparison with Existing",
+      "page": 9,
+      "char_offset": 49163,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 15]",
+      "technique": null,
+      "sentence": "Based on metamorphic testing, GDBMeter [ 15] is the SOTA tool for detecting logic bugs in GDBMS.",
+      "context_before": "different query languages, provide test oracles for the single target GDBMS, and detect shared bugs across multiple GDBMS. In this work, our EQR approach addresses these challenges by providing a universal framework ASG and a test oracle based on metamorphic testing. Metamorphic Testing. Metamorphic testing has been successfully applied in various domains [ 12,19,42,43]. For example, Orion [ 16], Athena [ 17], and Hermes [ 39] introduce metamorphic testing techniques in compilers such as equivalent dead code mutation and equivalent live code mutation to identify logic bugs within the compiler.",
+      "context_after": "However, none of the graph-related bugs have been detected by it due to reusing TLP[ 32], a metamorphic relation for RDBMS. In this work, we propose a novel and more effective metamorphic testing method for GDBMS that can detect graph-related bugs and common bugs shared with RDBMS.Equivlanet Rewriting in RDBMS Testing. Both AMOEBA[ 21] and GRev are able to generate equivalent queries to trigger performance bugs in the database. AMOEBA supports 75 mutation rules defined by domain experts, which incurs domain knowledge and extensive effort in rule validation. However, our work does not need ext",
+      "section": "7 RELATED WORK",
+      "page": 11,
+      "char_offset": 57369,
+      "cited_reference": {
+        "number": 15,
+        "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhanga, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. In Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M20",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "However, none of the graph-related bugs have been detected by it due to reusing TLP[ 32], a metamorphic relation for RDBMS.",
+      "context_before": "gs across multiple GDBMS. In this work, our EQR approach addresses these challenges by providing a universal framework ASG and a test oracle based on metamorphic testing. Metamorphic Testing. Metamorphic testing has been successfully applied in various domains [ 12,19,42,43]. For example, Orion [ 16], Athena [ 17], and Hermes [ 39] introduce metamorphic testing techniques in compilers such as equivalent dead code mutation and equivalent live code mutation to identify logic bugs within the compiler. Based on metamorphic testing, GDBMeter [ 15] is the SOTA tool for detecting logic bugs in GDBMS.",
+      "context_after": "In this work, we propose a novel and more effective metamorphic testing method for GDBMS that can detect graph-related bugs and common bugs shared with RDBMS.Equivlanet Rewriting in RDBMS Testing. Both AMOEBA[ 21] and GRev are able to generate equivalent queries to trigger performance bugs in the database. AMOEBA supports 75 mutation rules defined by domain experts, which incurs domain knowledge and extensive effort in rule validation. However, our work does not need extra rules to define the transformation process. Our EQR only depends on the original ASG and uses RWC to automatically genera",
+      "section": "7 RELATED WORK",
+      "page": 11,
+      "char_offset": 57466,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M13"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:48:43Z",
+    "is_model_written": true,
+    "summary": "GRev tests graph database systems by rewriting a Cypher query into a form that must return the same result, then comparing the two. Its argument against the existing metamorphic approach is that partitioning a query into sub-queries yields only a handful of distinct query plans and cannot express graph-specific constructs, so graph-related bugs go undetected. GRev found bugs in Neo4j, RedisGraph and MemGraph that the existing tools had not.",
+    "narrative": "The paper works from Ternary Logic Partitioning throughout, but at one remove: its comparison target is GDBMeter, which carries TLP to graph databases, and the paper is precise that GDBMeter is based on Query Partitioning and reuses a test oracle designed for relational systems. That reuse is its critique -- it reports that none of the graph-related bugs were detected by GDBMeter for exactly that reason, that TLP applies only to filter clauses, and that partitioning yields four distinct query plans against GRev's many. It states outright that GRev cannot be compared with relational tools such as SQLancer, so SQLancer itself is not a baseline; TLP is, through GDBMeter.",
+    "roles": {
+      "M1": "motivation",
+      "M2": "definition",
+      "M3": "background",
+      "M4": "background",
+      "M5": "motivation",
+      "M6": "baseline",
+      "M7": "result_comparison",
+      "M8": "definition",
+      "M9": "result_comparison",
+      "M10": "result_comparison",
+      "M11": "baseline",
+      "M12": "definition",
+      "M13": "incidental",
+      "M14": "definition",
+      "M15": "background",
+      "M16": "incidental",
+      "M17": "motivation",
+      "M18": "result_comparison",
+      "M19": "state_of_the_art",
+      "M20": "result_comparison"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "GRev is compared with GDBMeter rather than built on it, and M13 states that GRev cannot be compared with relational tools such as SQLancer at all."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "GRev rewrites a query into an equivalent one rather than partitioning it, which the paper presents as an alternative to TLP rather than a generalisation. Its treatment of TLP is a critique of carrying a relational oracle to graphs."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M6",
+          "M11",
+          "M18",
+          "M20"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M6",
+            "sentence": ", GDsmith [ 13], Grand [ 44], and GDBMeter [ 15]).",
+            "section": "5.1 Experimental Setting",
+            "page": 6
+          },
+          {
+            "mention_id": "M11",
+            "sentence": ", GDsmith [ 13], Grand [ 44], and GDBMeter [ 15], that can detect bugs other than crashes.",
+            "section": "5.4 Analytical Comparison with Existing",
+            "page": 9
+          },
+          {
+            "mention_id": "M18",
+            "sentence": "For example, as shown in Listing 5, the TLP approach fails to generate bug-triggering test cases for the graphrelated bugs shown in Listing 2.",
+            "section": "5.4 Analytical Comparison with Existing",
+            "page": 9
+          },
+          {
+            "mention_id": "M20",
+            "sentence": "However, none of the graph-related bugs have been detected by it due to reusing TLP[ 32], a metamorphic relation for RDBMS.",
+            "section": "7 RELATED WORK",
+            "page": 11
+          }
+        ],
+        "reasoning": "M6 and M11 name GDBMeter among the tools GRev is evaluated against, and M18 and M20 report the outcome and attribute it to GDBMeter's reuse of TLP. The comparison reaches TLP through GDBMeter, which M12 and M14 identify as a Query Partitioning tool; M13 states SQLancer itself was not compared against.",
+        "techniques": [
+          "tlp"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M19"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M19",
+            "sentence": "Based on metamorphic testing, GDBMeter [ 15] is the SOTA tool for detecting logic bugs in GDBMS.",
+            "section": "7 RELATED WORK",
+            "page": 11
+          }
+        ],
+        "reasoning": "M19 calls GDBMeter the SOTA tool for detecting logic bugs in graph database systems. The recognition attaches to the TLP-based tool rather than to SQLancer directly."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,1045 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-10T15:09:50Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3650212.3680318",
+    "title": "DBStorm: Generating Various Effective Workloads for Testing Isolation Levels",
+    "authors": [
+      "Keqiang Li",
+      "Siyang Weng",
+      "Lyu Ni",
+      "Chengcheng Yang",
+      "Rong Zhang",
+      "Xuan Zhou",
+      "Aoying Zhou"
+    ],
+    "year": 2024,
+    "venue": "International Symposium on Software Testing and Analysis",
+    "doi": "10.1145/3650212.3680318",
+    "arxiv_id": null,
+    "s2_paper_id": "e54a5920715b453038a64e65a8c06fa4ce1199db",
+    "url": "https://doi.org/10.1145/3650212.3680318",
+    "also_indexed_as": [
+      "paper:s2:1b209b2da737fd26c50a2cb9116c73c9d1db904e"
+    ]
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3650212.3680318",
+      "retrieved_at": "2026-09-10T15:09:50Z",
+      "chars": 85543,
+      "content_sha256": "sha256:4ad138e395c55783f24cb10ec52a4146de7fe300a7c23ca996bed393be3211fa"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2918
+      },
+      {
+        "number": "2",
+        "title": "Preliminary",
+        "start": 11852
+      },
+      {
+        "number": "2.1",
+        "title": "Database and Workload",
+        "start": 11866
+      },
+      {
+        "number": "2.2",
+        "title": "General Concurrency Control Algorithm",
+        "start": 13876
+      },
+      {
+        "number": "2.3",
+        "title": "Problem Definition",
+        "start": 15776
+      },
+      {
+        "number": "3",
+        "title": "DBStorm Framework",
+        "start": 20805
+      },
+      {
+        "number": "4",
+        "title": "Operation Generation",
+        "start": 27828
+      },
+      {
+        "number": "4.1",
+        "title": "Mirroring the Data State",
+        "start": 27851
+      },
+      {
+        "number": "4.2",
+        "title": "Instantiating Access Parameters",
+        "start": 34596
+      },
+      {
+        "number": "5",
+        "title": "Transaction Generation",
+        "start": 39223
+      },
+      {
+        "number": "5.1",
+        "title": "Conflict Graph Isomorphism Mapping",
+        "start": 39248
+      },
+      {
+        "number": "5.2",
+        "title": "The Mutually Orthogonal Editing Methods",
+        "start": 42511
+      },
+      {
+        "number": "5.3",
+        "title": "The Hybrid Editing Method",
+        "start": 45225
+      },
+      {
+        "number": "6",
+        "title": "Anomaly Customization",
+        "start": 49521
+      },
+      {
+        "number": "7",
+        "title": "Experiments",
+        "start": 54985
+      },
+      {
+        "number": "7.1",
+        "title": "IL-related Code Coverage",
+        "start": 56226
+      },
+      {
+        "number": "7.2",
+        "title": "Effective Testing",
+        "start": 57967
+      },
+      {
+        "number": "7.3",
+        "title": "Anomaly-Sensitive Testing",
+        "start": 60394
+      },
+      {
+        "number": "7.4",
+        "title": "Bug Result",
+        "start": 63028
+      },
+      {
+        "number": "8",
+        "title": "Discussion",
+        "start": 65350
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2023. Carnegie Mellon Database Application Catalog. https://github.com/cmudb/cmdbac Accessed: 2023-12-1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2023. InnoDB Transaction Isolation Levels. https://dev.mysql.com/doc/refman/ 8.0/en/innodb-transaction-isolation-levels.html Accessed: 2023-12-1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "2023. Jepsen. https://github.com/jepsen-io/jepsen Accessed: 2023-12-1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "2023. NuoDB. https://nuodb.com/ Accessed: 2023-12-1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "2023. Oracle Database. https://www.oracle.com/hk/database/technologies/ Accessed: 2023-12-1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "2023. SingleStore. https://www.singlestore.com/ Accessed: 2023-12-1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "2023. SQLite. https://www.sqlite.org/index.html. Accessed: 2023-12-1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "2023. SQLsmith. https://github.com/anse1/sqlsmith Accessed: 2023-12-1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "2023. TPC-C Benchmark. http://www.tpc.org/tpcc/ Accessed: 2023-12-1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "2023. TPC-E Benchmark. http://www.tpc.org/tpce/ Accessed: 2023-12-1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "2023. yugabyte DB. https://www.yugabyte.com/ Accessed: 2023-12-1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "2024. Technical Report of DBStorm. https://github.com/DBHammer/DBStormmaterial/blob/main/tech-report.pdf Accessed: 2024-7-13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Atul Adya and Barbara H Liskov. 1999. Weak consistency: a generalized theory and optimistic implementations for distributed transactions. Ph. D. Dissertation. Massachusetts Institute of Technology. https://dl.acm.org/doi/10.5555/888672",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Mohammad Alomari, Michael Cahill, Alan Fekete, and Uwe Rohm. 2008. The cost of serializability on platforms that use snapshot isolation. In ICDE. 576–585. https://dl.acm.org/doi/10.1109/ICDE.2008.4497466",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Güneş Aluç, Olaf Hartig, M Tamer Özsu, and Khuzaima Daudjee. 2014. Diversified stress testing of RDF data management systems. In ISWC. 197–212. https: //dl.acm.org/doi/10.1007/978-3-319-11964-9_13",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Peter Alvaro and Kyle Kingsbury. 2020. Elle: Inferring isolation anomalies from experimental observations. In VLDB, Vol. 14. 268–280. https://dl.acm.org/doi/10. 14778/3430915.3430918",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Paul Ammann and Jeff Offutt. 2016. Introduction to software testing. Cambridge University Press. https://dl.acm.org/doi/10.5555/1355340",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Peter Armitage, Geoffrey Berry, and John Nigel Scott Matthews. 2008. Statistical methods in medical research. John Wiley & Sons.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In ICSE. 2060–2071. https://dl.acm.org/doi/10.1109/ICSE48619.2023. 00174",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 20,
+      "text": "Yunsheng Bai, Hao Ding, Ken Gu, Yizhou Sun, and Wei Wang. 2020. Learningbased efficient graph similarity computation via multi-scale convolutional set matching. In AAAI, Vol. 34. 3219–3226. https://doi.org/10.1609/aaai.v34i04.5720",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Hardik Bati, Leo Giakoumakis, Steve Herbert, and Aleksandras Surna. 2007. A genetic approach for random testing of database systems. In VLDB. 1243–1251. https://dl.acm.org/doi/10.5555/1325851.1325993",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Hal Berenson, Phil Bernstein, Jim Gray, Jim Melton, Elizabeth O’Neil, and Patrick O’Neil. 1995. A critique of ANSI SQL isolation levels. In SIGMOD, Vol. 24. 1–10. https://dl.acm.org/doi/10.1145/223784.223785",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Souvik Bhattacherjee, Gang Liao, Michael Hicks, and Daniel J. Abadi. 2021. BullFrog: Online schema evolution via lazy evaluation. In SIGMOD. 194–206. https://dl.acm.org/doi/10.1145/3448016.3452842",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Ranadeep Biswas, Diptanshu Kakwani, Jyothi Vedurada, Constantin Enea, and Akash Lal. 2021. MonkeyDB: effectively testing correctness under weak isolation levels. In PACMPL, Vol. 5. 1–27. https://dl.acm.org/doi/10.1145/3485546",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "David B Blumenthal and Johann Gamper. 2020. On the exact computation of the graph edit distance. In Pattern Recognition Letters, Vol. 134. Elsevier, 46–57. https://dl.acm.org/doi/10.1016/j.patrec.2018.05.002",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Lixiang Chen, Ruihao Chen, Chengcheng Yang, Yuxing Han, Rong Zhang, Xuan Zhou, Peiquan Jin, and Weining Qian. 2023. Workload-aware log-structured merge key-value store for NVM-SSD hybrid storage. In ICDE. 2207–2219. https: //doi.org/10.1109/ICDE55515.2023.00171",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Computer, Business Equipment Manufacturers Association, et al .1986. American National Standard for Information Systems-Database Language SQL. In NY, American National Standards Institute. 27–28.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Brian F Cooper, Adam Silberstein, Erwin Tam, Raghu Ramakrishnan, and Russell Sears. 2010. Benchmarking cloud serving systems with YCSB. In SoCC. 143–154. https://dl.acm.org/doi/10.1145/1807128.1807152",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Irving M Copi, Carl Cohen, and Victor Rodych. 2018. Introduction to logic. Routledge. https://dl.acm.org/doi/book/10.5555/2385432",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "James C Corbett, Jeffrey Dean, Michael Epstein, Andrew Fikes, Christopher Frost, Jeffrey John Furman, Sanjay Ghemawat, Andrey Gubarev, Christopher Heiser, Peter Hochschild, et al .2013. Spanner: Google’s globally distributed database. In TOCS, Vol. 31. 1–22. https://dl.acm.org/doi/pdf/10.1145/2491245",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Natacha Crooks, Youer Pu, Lorenzo Alvisi, and Allen Clement. 2017. Seeing is believing: A client-centric specification of database isolation. In PODC. 73–82. https://dl.acm.org/doi/10.1145/3087801.3087802",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Ziyu Cui, Wensheng Dou, Qianwang Dai, Jiansen Song, Wei Wang, Jun Wei, and Dan Ye. 2022. Differentially testing database transactions for fun and profit. In ASE. 1–12. https://dl.acm.org/doi/abs/10.1145/3551349.3556924",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Yuetang Deng, Phyllis Frankl, and Zhongqiang Chen. 2003. Testing database transaction concurrency. In ASE. 184–193. https://dl.acm.org/doi/10.1109/ASE. 2003.1240306",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Akon Dey, Alan Fekete, Raghunath Nambiar, and Uwe Röhm. 2014. YCSB+ T: Benchmarking web-scale transactional databases. In ICDE Workshop. 223–230. https://doi.org/10.1109/ICDEW.2014.6818330",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Djellel Eddine Difallah, Andrew Pavlo, Carlo Curino, and Philippe CudreMauroux. 2013. OLTP-bench: An extensible testbed for benchmarking relational databases. In VLDB, Vol. 7. 277–288. https://dl.acm.org/doi/10.14778/2732240. 2732246",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "W Dou, Z Cui, Q Dai, J Song, D Wang, Y Gao, W Wang, J Wei, L Chen, H Wang, et al.2023. Detecting isolation bugs via transaction oracle construction. In ICSE. 1123–1135. https://dl.acm.org/doi/10.1109/ICSE48619.2023.00101",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Alan Fekete, Dimitrios Liarokapis, Elizabeth O’Neil, Patrick O’Neil, and Dennis Shasha. 2005. Making snapshot isolation serializable. In TODS, Vol. 30. 492–528. https://dl.acm.org/doi/abs/10.1145/1071610.1071615",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Muon Ha and Yulia Shichkina. 2022. Translating a distributed relational database to a document database. DSE7, 2 (2022), 136–155. https://doi.org/10.1007/s41019022-00181-9",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Ziyue Hua, Wei Lin, Luyao Ren, Zongyang Li, Lu Zhang, Wenpin Jiao, and Tao Xie. 2023. GDsmith: Detecting bugs in cypher graph database engines. In ISSTA. 163–174. https://dl.acm.org/doi/10.1145/3597926.3598046",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Dongxu Huang, Qi Liu, Qiu Cui, Zhuhe Fang, Xiaoyu Ma, Fei Xu, Li Shen, Liu Tang, Yuxing Zhou, Menglong Huang, et al .2020. TiDB: a raft-based HTAP database. In VLDB, Vol. 13. 3072–3084. https://dl.acm.org/doi/10.14778/3415478. 3415535",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting transactional bugs in database engines via graph-based oracle construction. In OSDI. 397–417. https://www.usenix.org/conference/osdi23/presentation/jiang",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 42,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2019. Apollo: Automatic detection and diagnosis of performance regressions in database systems. In VLDB, Vol. 13. 57–70. https://dl.acm.org/doi/10.14778/3357377.3357382",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing graph database engines via query partitioning. In ISSTA. 140–149. https://dl.acm. org/doi/abs/10.1145/3597926.3598044",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 44,
+      "text": "Per-Åke Larson, Adrian Birka, Eric N Hanson, Weiyun Huang, Michal Nowakiewicz, and Vassilis Papadimos. 2015. Real-time analytical processing with SQL server. In VLDB, Vol. 8. 1740–1751. https://dl.acm.org/doi/10.14778/ 2824032.2824071",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Feifei Li. 2019. Cloud-native database systems at Alibaba: Opportunities and challenges. In VLDB, Vol. 12. 2263–2272. https://dl.acm.org/doi/abs/10.14778/ 3352063.3352141",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Guoliang Li, Xuanhe Zhou, Ji Sun, Xiang Yu, Yue Han, Lianyuan Jin, Wenbo Li, Tianqing Wang, and Shifu Li. 2021. Opengauss: An autonomous database system. In VLDB, Vol. 14. 3028–3042. https://dl.acm.org/doi/abs/10.14778/3476311. 3476380",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Keqiang Li, Siyang Weng, Peiyuan Liu, Lyu Ni, Chengcheng Yang, Rong Zhang, Xuan Zhou, Jianghang Lou, Gui Huang, Weining Qian, et al .2023. Leopard: A black-box approach for efficiently verifying various isolation levels. In ICDE. 722–735. https://doi.org/10.1109/ICDE55515.2023.00061",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Yujia Li, Chenjie Gu, Thomas Dullien, Oriol Vinyals, and Pushmeet Kohli. 2019. Graph matching networks for learning the similarity of graph structured objects. InICML. 3835–3845. http://proceedings.mlr.press/v97/li19d.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting logical bugs of DBMS with coverage-based guidance. In USENIX Security 22. 4309–4326. https://www.usenix. org/conference/usenixsecurity22/presentation/liang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Peiyuan Liu, Siyang Weng, Keqiang Li, Lyu Ni, Chengcheng Yang, Rong Zhang, Weining Qian, and Dian Qiao. 2024. Leopard: A general test suite for isolation level verification. In CIDR. https://www.cidrdb.org/cidr2024/papers/p44-liu.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. 2022. Automatic detection of performance bugs in database systems using equivalent queries. In ICSE. 225– 236. https://dl.acm.org/doi/abs/10.1145/3510003.3510093",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Yi Lu, Xiangyao Yu, Lei Cao, and Samuel Madden. 2020. Aria: a fast and practical deterministic OLTP database. In VLDB, Vol. 13. 2047–2060. https://dl.acm.org/ doi/10.14778/3407790.3407808",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Hao Luo, Mehedi Masud, and Hasan Ural. 2012. Detecting offline transaction concurrency problems.. In J. Softw., Vol. 7. 1855–1860. https://doi.org/10.4304/ jsw.7.8.1855-1860",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Dan R. K. Ports and Kevin Grittner. 2012. Serializable Snapshot Isolation in PostgreSQL. In VLDB, Vol. 5. 1850–1861. https://dl.acm.org/doi/10.14778/2367502. 2367523",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Dong Qiu, Bixin Li, and Zhendong Su. 2013. An empirical analysis of the coevolution of schema and code in database applications. In SIGSOFT. 125–135. https://dl.acm.org/doi/abs/10.1145/2491411.2491431",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Luyi Qu, Yuming Li, Rong Zhang, Ting Chen, Ke Shu, Weining Qian, and Aoying Zhou. 2022. Application-oriented workload generation for transactional database performance evaluation. In ICDE. 420–432. https://doi.org/10.1109/ICDE53745. 766 DBStorm: Generating Various Effective Workloads for Testing Isolation Levels ISSTA ’24, September 16–20, 2024, Vienna, Austria 2022.00036",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Kia Rahmani, Kartik Nagar, Benjamin Delaware, and Suresh Jagannathan. 2019. CLOTHO: directed test generation for weakly consistent database systems. In PACMPL, Vol. 3. 1–28. https://dl.acm.org/doi/abs/10.1145/3360543",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Kim-Thomas Rehmann, Changyun Seo, Dongwon Hwang, Binh Than Truong, Alexander Boehm, and Dong Hun Lee. 2016. Performance monitoring in SAPHANA’s continuous integration process. In ACMSIGMETRICS Performance Evaluation Review, Vol. 43. 43–52. https://dl.acm.org/doi/abs/10.1145/2897356.2897362",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Kun Ren, Jose M Faleiro, and Daniel J Abadi. 2016. Design principles for scaling multi-core OLTP under high contention. In SIGMOD. 1583–1598. https://dl.acm. org/doi/abs/10.1145/2882903.2882958",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In OSDI. 667–682. https://dl.acm.org/doi/abs/10.1145/2882903. 2882958",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 61,
+      "text": "Jun Shao. 2003. Mathematical Statistics. In Springer Texts in Statistics.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Vishal Sikka, Franz Färber, Wolfgang Lehner, Sang Kyun Cha, Thomas Peh, and Christof Bornhövd. 2012. Efficient transaction processing in SAPHANA database: the end of a column store myth. In SIGMOD. 731–742. https://dl.acm.org/doi/ abs/10.1145/2213836.2213946",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Donald R. Slutz. 1998. Massive Stochastic Testing of SQL. In VLDB. 618–622. https://dl.acm.org/doi/10.5555/645924.671199",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Adriana Szekeres and Irene Zhang. 2018. Making consistency more consistent: A unified model for coherence, consistency and isolation. In PaPoC. 1–8. https: //dl.acm.org/doi/abs/10.1145/3194261.3194268",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Rebecca Taft, Irfan Sharif, Andrei Matei, Nathan VanBenschoten, Jordan Lewis, Tobias Grieger, Kai Niemi, Andy Woods, Anne Birzin, Raphael Poss, et al .2020. CockroachDB: The resilient geo-distributed SQL database. In SIGMOD. 1493–1509. https://dl.acm.org/doi/abs/10.1145/3318464.3386134",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Cheng Tan, Changgeng Zhao, Shuai Mu, and Michael Walfish. 2020. Cobra: Making transactional key-value stores verifiably serializable. In OSDI. 63–80. https://dl.acm.org/doi/abs/10.5555/3488766.3488770",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Xiu Tang, Sai Wu, Dongxiang Zhang, Feifei Li, and Gang Chen. 2023. Detecting logic bugs of join optimizations in DBMS. In SIGMOD, Vol. 1. 1–26. https: //dl.acm.org/doi/abs/10.1145/3588909",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "Alexandre Verbitski, Anurag Gupta, Debanjan Saha, Murali Brahmadesam, Kamal Gupta, Raman Mittal, Sailesh Krishnamurthy, Sandor Maurice, Tengiz Kharatishvili, and Xiaofeng Bao. 2017. Amazon aurora: Design considerations for high throughput cloud-native relational databases. In SIGMOD. 1041–1052.https://dl.acm.org/doi/abs/10.1145/3035918.3056101",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. 2021. Industry practice of coverage-guided enterprise-level DBMS fuzzing. In ICSE. 328–337. https://dl.acm.org/doi/abs/10.1109/ICSE-SEIP52600. 2021.00042",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Tianzheng Wang and Hideaki Kimura. 2016. Mostly-optimistic concurrency control for highly contended dynamic workloads on a thousand cores. In VLDB, Vol. 10. 49–60. https://dl.acm.org/doi/abs/10.14778/3015274.3015276",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Gerhard Weikum and Gottfried Vossen. 2001. Transactional information systems: theory, algorithms, and the practice of concurrency control and recovery. https: //dl.acm.org/doi/10.1145/604264.604275",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Zhenkun Yang, Chen Qian, Xuwang Teng, Fanyu Kong, Fusheng Han, and Quanqing Xu. 2023. LCL: A lock chain length-based distributed algorithm for deadlock detection and resolution. In ICDE. 151–163. https://doi.org/10.1109/ICDE55515. 2023.00019",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Zhenkun Yang, Chuanhui Yang, Fusheng Han, Mingqiang Zhuang, Bing Yang, Zhifeng Yang, Xiaojun Cheng, Yuzhong Zhao, Wenhui Shi, Huafeng Xi, et al. 2022. OceanBase: a 707 million tpmC distributed relational database system. In VLDB, Vol. 15. 3385–3397. https://dl.acm.org/doi/abs/10.14778/3554821.3554830",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "Xiangyao Yu, Andrew Pavlo, Daniel Sanchez, and Srinivas Devadas. 2016. Tictoc: Time traveling optimistic concurrency control. In SIGMOD. 1629–1642. https: //dl.acm.org/doi/abs/10.1145/2882903.2882935",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "Zhiping Zeng, Anthony KH Tung, Jianyong Wang, Jianhua Feng, and Lizhu Zhou. 2009. Comparing stars: On approximating graph edit distance. In VLDB, Vol. 2. 25–36. https://dl.acm.org/doi/abs/10.14778/1687627.1687631",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "Mai Zheng, Joseph Tucek, Dachuan Huang, Feng Qin, Mark Lillibridge, Elizabeth S. Yang, Bill W. Zhao, and Shashank Singh. 2014. Torturing databases for fun and profit. In OSDI. 449–464. https://dl.acm.org/doi/10.5555/2685048.2685083",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "Yingying Zheng, Wensheng Dou, Yicheng Wang, Zheng Qin, Lei Tang, Yu Gao, Dong Wang, Wei Wang, and Jun Wei. 2022. Finding bugs in Gremlin-based graph database systems via randomized differential testing. In ISSTA. 302–313. https://dl.acm.org/doi/abs/10.1145/3533767.3534409",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. SQUIRREL: Testing database management systems with language validity and coverage feedback. In CCS. 955–970. https://dl.acm.org/doi/abs/10. 1145/3372297.3417260 Received 2024-04-12; accepted 2024-07-03 767",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 19,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In ICSE. 2060–2071. https://dl.acm.org/doi/10.1109/ICSE48619.2023. 00174",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "prints the DOI of the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 41,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting transactional bugs in database engines via graph-based oracle construction. In OSDI. 397–417. https://www.usenix.org/conference/osdi23/presentation/jiang",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 43,
+      "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing graph database engines via query partitioning. In ISSTA. 140–149. https://dl.acm. org/doi/abs/10.1145/3597926.3598044",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 60,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In OSDI. 667–682. https://dl.acm.org/doi/abs/10.1145/2882903. 2882958",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 60,63,67,78]",
+      "technique": "pqs",
+      "sentence": "Specifically, the query-oriented methods [ 60,63,67,78] generate carefully crafted queries to detect the bugs of query engines, thus they only trigger the code of query engine instead of the IL code.",
+      "context_before": "ays been tough work. The core challenges come from the requirements of: Black-box Testing (C1). As the source codes of numerous DBMSs (e.g., cloud DBMSs) are not visible [ 47,66], it imposes the 755 ISSTA ’24, September 16–20, 2024, Vienna, Austria Keqiang Li, Siyang Weng, Lyu Ni, Chengcheng Yang, Rong Zhang, Xuan Zhou, and Aoying Zhou requirement of generating workloads which trigger the IL code of a black-box DBMS. Though there are extensively studied in DBMS testing, none can generate a huge variety of IL relevant workloads. As a result, the IL test space cannot be comprehensively explored.",
+      "context_after": "The transactional-oriented methods [ 32,36,41] generate workloads where a small number of operations are serially executed, constructing sparse and small conflict graphs. Thus, they might miss bugs triggered by large and dense conflict graphs, since stress testing has been proved to be effective in finding some complex bugs [ 15]. Additionally, the widely used benchmarking [ 9,14,28] are designed for a specific scenario but could not cover more various scenarios. Effective Testing (C2). Most of the DBMSs that serve for OLTP applications are relational [ 1,35,38]. In general, the sources of di",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 5562,
+      "cited_reference": {
+        "number": 60,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In OSDI. 667–682. https://dl.acm.org/doi/abs/10.1145/2882903. 2882958",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 32,36,41]",
+      "technique": null,
+      "sentence": "The transactional-oriented methods [ 32,36,41] generate workloads where a small number of operations are serially executed, constructing sparse and small conflict graphs.",
+      "context_before": "SSTA ’24, September 16–20, 2024, Vienna, Austria Keqiang Li, Siyang Weng, Lyu Ni, Chengcheng Yang, Rong Zhang, Xuan Zhou, and Aoying Zhou requirement of generating workloads which trigger the IL code of a black-box DBMS. Though there are extensively studied in DBMS testing, none can generate a huge variety of IL relevant workloads. As a result, the IL test space cannot be comprehensively explored. Specifically, the query-oriented methods [ 60,63,67,78] generate carefully crafted queries to detect the bugs of query engines, thus they only trigger the code of query engine instead of the IL code.",
+      "context_after": "Thus, they might miss bugs triggered by large and dense conflict graphs, since stress testing has been proved to be effective in finding some complex bugs [ 15]. Additionally, the widely used benchmarking [ 9,14,28] are designed for a specific scenario but could not cover more various scenarios. Effective Testing (C2). Most of the DBMSs that serve for OLTP applications are relational [ 1,35,38]. In general, the sources of diversity in relational model include the diversities of both SQL operations and the interleavings among concurrent SQL operations. Moreover, no matter how a SQL operation c",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 5762,
+      "cited_reference": {
+        "number": 41,
+        "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting transactional bugs in database engines via graph-based oracle construction. In OSDI. 397–417. https://www.usenix.org/conference/osdi23/presentation/jiang",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 32,36,41]",
+      "technique": null,
+      "sentence": "Moreover, others [ 32,36,41] support complex SQL operations and predicates but lacks guidance for avoiding redundant or ineffective workloads.",
+      "context_before": "ineffective workloads. The redundant workloads are characterized by repeating a similar partial order of record accesses, while the ineffective workloads appear when the expected conflict cannot be formed due to unreasonable scheduling (e.g., the record expected to be accessed by an operation is deleted by another parallel operation, and then it could not access its expected record or participate in any conflict formation). Some of existing work [ 3,16,66] has been designed to only generate simplified key-value operations, and they might omit some bugs triggered by more complex SQL operations.",
+      "context_after": "Anomaly-sensitive Testing (C3). DBMSs have various ILs, each with a distinctive definition to preclude specific non-serializable anomalies [ 13,22,27,64]. Although the effective testing could provide various scenarios for IL test, it could not help customize some specific non-serializable anomalies. Then, to effectively test various ILs, it imposes the requirement of generating anomaly-sensitive workloads which check whether an IL prohibits the anomalies as defined. However, customizing non-serializable anomalies is still vacant in existing researches [19, 24, 32, 33, 36, 39, 43, 53, 57, 77].",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 7406,
+      "cited_reference": {
+        "number": 41,
+        "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting transactional bugs in database engines via graph-based oracle construction. In OSDI. 397–417. https://www.usenix.org/conference/osdi23/presentation/jiang",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker",
+      "surface": "[19, 24, 32, 33, 36, 39, 43, 53, 57, 77]",
+      "technique": "qpg",
+      "sentence": "However, customizing non-serializable anomalies is still vacant in existing researches [19, 24, 32, 33, 36, 39, 43, 53, 57, 77].",
+      "context_before": "ers [ 32,36,41] support complex SQL operations and predicates but lacks guidance for avoiding redundant or ineffective workloads. Anomaly-sensitive Testing (C3). DBMSs have various ILs, each with a distinctive definition to preclude specific non-serializable anomalies [ 13,22,27,64]. Although the effective testing could provide various scenarios for IL test, it could not help customize some specific non-serializable anomalies. Then, to effectively test various ILs, it imposes the requirement of generating anomaly-sensitive workloads which check whether an IL prohibits the anomalies as defined.",
+      "context_after": "We propose DBStorm to address the challenges described above. After carefully investigating 15popular DBMSs [ 2,4–7,11,30,40, 44–46,54,62,68,73], we discover their IL implementations follow a general framework to manage and resolve the access conflicts. Specifically, it consists of two tasks: 1) build a conflict graph to manage access conflicts; 2) perform a verification policy to prevent the conflict graph from non-serializable anomalies. Then, to effectively explore the IL code logic of a black-box DBMS (i.e., C1), we should generate a workload with a large number of conflict graphs. To add",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 8020,
+      "cited_reference": {
+        "number": 19,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In ICSE. 2060–2071. https://dl.acm.org/doi/10.1109/ICSE48619.2023. 00174",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "prints the DOI of the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ", SQLancer ,DT2).",
+      "context_before": "ccess records, i.e., the access ratio 𝛼=1; and (4) non-serializable anomalies can be customized for any kind of IL. 3 DBStorm Framework The framework in Fig. 2 includes: 1) populating data into a database; 2) generating syntax/semantic correct operations that follow a specific distribution to access the database; 3) organizing these operations as transactions to create workloads with dissimilar conflict graphs; 4) customizing specific anomalies within the workloads. ①Preparing a Database Instance. We prepare a database instance with massive amount of data by following existing approaches (e.g.",
+      "context_after": "Specifically, we regard all database objects, i.e., tables, columns and keys, as the nodes of a topology graph whose edges indicate the dependencies among objects. For example, there is a dependency from a referencing table to the referenced one. Then, we create the referenced table first according to the dependency order. Moreover, we also elaborate some rules for records generation. For example, generate 𝑝𝑘values in an incremental manner, and generate𝑝𝑘values before 𝑓𝑘values. Note, 𝑛𝑘and𝑓𝑘values can be generated by following user-specified data distribution functions. ②Generating SQL Operat",
+      "section": "3 DBStorm Framework",
+      "page": 4,
+      "char_offset": 21289,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker",
+      "surface": "[ 8,32,36,60,63,78]",
+      "technique": "pqs",
+      "sentence": "SQL operation generation has been extensively studied in [ 8,32,36,60,63,78].",
+      "context_before": "ifically, we regard all database objects, i.e., tables, columns and keys, as the nodes of a topology graph whose edges indicate the dependencies among objects. For example, there is a dependency from a referencing table to the referenced one. Then, we create the referenced table first according to the dependency order. Moreover, we also elaborate some rules for records generation. For example, generate 𝑝𝑘values in an incremental manner, and generate𝑝𝑘values before 𝑓𝑘values. Note, 𝑛𝑘and𝑓𝑘values can be generated by following user-specified data distribution functions. ②Generating SQL Operations.",
+      "context_after": "As SQLancer [60] targets for the relational model, we leverage it to generate syntax/semantic correct SQL operations. Since SQLancer mainly generates serially executed operations, we revise it to generate parallel operations. However, due to the various semantic operations in relational model (e.g., delete ,insert ,update and select with complex predicates), the existence of a record is often ambiguous for a given operation when executing concurrent operations. This ambiguity would cause the operation to fail to access any record (e.g., no record satisfies the operation’s predicate). Since th",
+      "section": "3 DBStorm Framework",
+      "page": 4,
+      "char_offset": 21911,
+      "cited_reference": {
+        "number": 60,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In OSDI. 667–682. https://dl.acm.org/doi/abs/10.1145/2882903. 2882958",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "As SQLancer [60] targets for the relational model, we leverage it to generate syntax/semantic correct SQL operations.",
+      "context_before": "he nodes of a topology graph whose edges indicate the dependencies among objects. For example, there is a dependency from a referencing table to the referenced one. Then, we create the referenced table first according to the dependency order. Moreover, we also elaborate some rules for records generation. For example, generate 𝑝𝑘values in an incremental manner, and generate𝑝𝑘values before 𝑓𝑘values. Note, 𝑛𝑘and𝑓𝑘values can be generated by following user-specified data distribution functions. ②Generating SQL Operations. SQL operation generation has been extensively studied in [ 8,32,36,60,63,78].",
+      "context_after": "Since SQLancer mainly generates serially executed operations, we revise it to generate parallel operations. However, due to the various semantic operations in relational model (e.g., delete ,insert ,update and select with complex predicates), the existence of a record is often ambiguous for a given operation when executing concurrent operations. This ambiguity would cause the operation to fail to access any record (e.g., no record satisfies the operation’s predicate). Since the precondition of conflict formation is that two operations actually access the same record, the operation’s failed ac",
+      "section": "3 DBStorm Framework",
+      "page": 4,
+      "char_offset": 21989,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Since SQLancer mainly generates serially executed operations, we revise it to generate parallel operations.",
+      "context_before": "rom a referencing table to the referenced one. Then, we create the referenced table first according to the dependency order. Moreover, we also elaborate some rules for records generation. For example, generate 𝑝𝑘values in an incremental manner, and generate𝑝𝑘values before 𝑓𝑘values. Note, 𝑛𝑘and𝑓𝑘values can be generated by following user-specified data distribution functions. ②Generating SQL Operations. SQL operation generation has been extensively studied in [ 8,32,36,60,63,78]. As SQLancer [60] targets for the relational model, we leverage it to generate syntax/semantic correct SQL operations.",
+      "context_after": "However, due to the various semantic operations in relational model (e.g., delete ,insert ,update and select with complex predicates), the existence of a record is often ambiguous for a given operation when executing concurrent operations. This ambiguity would cause the operation to fail to access any record (e.g., no record satisfies the operation’s predicate). Since the precondition of conflict formation is that two operations actually access the same record, the operation’s failed access cannot participate the conflict formation. Then, the operation is considered as ineffective. Thus, we s",
+      "section": "3 DBStorm Framework",
+      "page": 4,
+      "char_offset": 22107,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 32,36,41]",
+      "technique": null,
+      "sentence": "Previous studies [ 32,36,41] propose to sequentially execute all operations such that the order of execution can be effectively manifested, but they might overlook some parallelism-related bugs.",
+      "context_before": "between transactions and the edge density of the conflict graph. This is because all the three kinds of conflicts (i.e., 𝑟𝑤,𝑤𝑟and𝑤𝑤) are closely related to write operations in each transaction. Thus, two transactions with different read/write ratios cannot be isomorphically mapped. Note, the vertices in the conflict graph are connected by directed edges and the edge direction is determined by the execution order of conflict operations. However, the parallel execution of numerous operations imposes great challenges in specifying the deterministic execution order of conflicting operations [ 52].",
+      "context_after": "Since the undirected conflict graph could well depict the conflict relation between transactions, we consider the case of undirected graph in this paper. 5.2 The Mutually Orthogonal Editing Methods We propose to follow criteria C1andC2to produce a sequence of dissimilar graphs G0,···G𝑛−1. Specifically, we devise a historyindependent approach by editing the graph monotonically. Definition 3. The monotonicity of a graph editing method. Suppose a graph editing method continuously produces a sequence of graphsG0,···,G𝑛−1. It has a monotonicity property if∀𝑖,𝑗∈ [0,𝑛−1]and𝑖<𝑗, there must exist 𝐺𝐸𝐷(",
+      "section": "5.1 Conflict Graph Isomorphism Mapping",
+      "page": 7,
+      "char_offset": 42161,
+      "cited_reference": {
+        "number": 41,
+        "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting transactional bugs in database engines via graph-based oracle construction. In OSDI. 397–417. https://www.usenix.org/conference/osdi23/presentation/jiang",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [60] and TQS [67] randomly generate queries and provide a test oracle to identify logical bugs.",
+      "context_before": "Storm effectively trigger IL codes? (§ 7.1) RQ2) Can DBStorm generate effective workloads? (§ 7.2) RQ3) Can DBStorm customize non-serializable anomalies? (§ 7.3) RQ4) Can DBStorm uniquely identify IL bugs in popular commercial DBMSs? (§ 7.4) Setup. We deploy four servers connected via 1 Gigabit Ethernet. Each server is equipped with 2 Intel Xeon Silver 4110 @ 2.1 GHz CPUs, 120 GB memory, and 4 TBHDD disk. We use the open-source relational DBMS PostgreSQL ( 𝑣12.7) to verify our design. Baselines. SQLsmith [8] and Squirrel [78] randomly generate SQL expressions to find memory-related crash bugs.",
+      "context_after": "We also compare with the commonly used classic benchmarks TPC-C [9],SmallBank [14] and YCSB [28] to show the superiority of DBStorm, although it is not a perfect likefor-like comparison. Jepsen [3],DT2[32] and Troc [36], similar to DBStorm, generate transactional workloads. However, Jepsen is based on a simple key-value model instead of a relational model; DT2andTroc could generate complex SQL operations but execute them serially without parallelism. 7.1 IL-related Code Coverage A higher code coverage implies a higher likelihood of detecting bugs [ 17]. We employ the commonly used line covera",
+      "section": "7 Experiments",
+      "page": 9,
+      "char_offset": 55665,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer ensures queries access at least one record, but it also issues queries in a single-thread way.",
+      "context_before": "ge Comparison 0.05.0K 10.0K 15.0K 20.0K 25.0K 30.0K0.860.880.900.920.940.960.981.00 # of Operations01020304050 (a) Zipfian 0.05.0K 10.0K 15.0K 20.0K 25.0k 30.0K0.860.880.900.920.940.960.981.00 # of Operations0.00.10.20.30.40.5 (b) Uniform Figure 7: Access Ratio 𝜶and Distribution Fitness 𝜷 run all tools for one hour as in Fig. 6. SQLsmith andSquirrel generate single-threaded queries with most of operations access no record. It greatly limits conflict formation having the lowest coverage. Benchmarks only have manually tailored workloads and lack the workload variety, resulting in low coverage.",
+      "context_after": "Jepsen is designed for a key-value model, and cannot trigger the complex IL logic in a relational model. Although DT2and Troc execute transactions in parallel, all operations are executed sequentially without contentions. In contrast, DBStorm guarantees to generate effective workloads, which are concurrently executed on the relational model and achieves the best coverage. Note, we cannot have a full coverage, because there are many codes for debugging purposes, only triggered by debugging tools. 7.2 Effective Testing Access Ratio 𝛼& Distribution Fitness 𝛽.We take𝛼and𝛽to evaluate the ratio of",
+      "section": "7.1 IL-related Code Coverage",
+      "page": 9,
+      "char_offset": 57361,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer ,Squrriel and SQLsmith sequentially execute transactions in a single thread, so it is impossible to exist a cycle in the conflict graph and we do not put them in Fig.",
+      "context_before": "We can generate diverse non-serializable anomalies. If concurrency control algorithms are enabled, it would prevent anomalies and no anomalies would be collected regardless of test tools, unless isolation bugs occur in PostgreSQL. Fortunately, PostgreSQL takes specific prevention actions for each kind of anomaly, the number of which can serve as a good metric to evaluate the effectiveness of customized workloads. We then compare with existing approach in both disabled and enabled concurrency control (CC) algorithms. All tools generate workloads for one hour under default settings. Disable CC.",
+      "context_after": "10. YCSB only contains key-value operations with each operation treated as a transaction. However, it hardly produces dirty-write ,dirtyread and write-skew anomalies. SmallBank aims to create writeskew anomalies to benchmark the serializable snapshot isolation Figure 10: Anomaly Formation Comparison Figure 11: Anomaly Prevention Action Comparison algorithm. However, our results indicate it hardly generates writeskew anomalies with cycle lengths more than 2. In TPC-C, both new-order and payment transactions modify the same record in thedistrict table. Thus, there is a high probability of lost-",
+      "section": "7.3 Anomaly-Sensitive Testing",
+      "page": 10,
+      "char_offset": 61023,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "764 DBStorm: Generating Various Effective Workloads for Testing Isolation Levels ISSTA ’24, September 16–20, 2024, Vienna, Austria Table 2: Bug Comparison Total/Confirmed/Fixed DBStorm TxCheck Jepsen DT2 Isolation 20/12/6 7/6/0 22/21/13 4/2/1 Non-isolation 13/12/10 49/46/18 33/33/20 12/10/0 Total/Confirmed/Fixed Troc SQLsmith SQLancer Squirrel Isolation 5/5/1 0/0/0 0/0/0 0/0/0 Non-isolation 7/7/0 248/236/183 449/445/415 63/63/52 They can be classified into improper lock behavior (7 bugs), read inconsistent version (13 bugs), violated transaction control statements (7 bugs), unexpected concurrency-related error messages(3 bugs), unexpected update results (2 bugs), and transaction performance degradation (1 bug).",
+      "context_before": "er, this result is basically consistent with the result of disabling the concurrency control algorithms. Note, YCSB andJepsen also trigger lots of prevention actions for the read-skew anomaly. This is because both of them involve numerous concurrent write operations and range read operations that cover more data than item-reads, which would increase the likelihood of inconsistent data reads. 7.4 Bug Result Bug Summary. DBStorm has revealed 33 bugs, distributed across several commercial DBMSs, i.e., MySQL (5 bugs), PostgreSQL (2 bugs), TiDB (20 bugs), Oceanbase (3 bugs), and OpenGauss (3 bugs).",
+      "context_after": "We actually reveal 31 dissimilar bugs. Two pairs of similar bugs in MySQL/TiDB are revealed. There are 24 confirmed and 16 fixed bugs. Two reasons for the 8 unfixed bugs: (1) Technical limitations: four bugs are challenging to be resolved due to complex code logic; (2) Priority: four bugs are delayed due to their low impact. There are 9 bugs reported but cannot be reproduced by simple cases due to the nondeterministic transaction interleavings. We will further discuss with the developers. Bug Comparison. In Table 2, we compare our isolation bug findings with others. SQLsmith /SQLancer /Squirr",
+      "section": "7.4 Bug Result",
+      "page": 10,
+      "char_offset": 63233,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLsmith /SQLancer /Squirrel reveal 248/449/63 bugs, but none of them is an isolation bug.",
+      "context_before": "rmance degradation (1 bug). We actually reveal 31 dissimilar bugs. Two pairs of similar bugs in MySQL/TiDB are revealed. There are 24 confirmed and 16 fixed bugs. Two reasons for the 8 unfixed bugs: (1) Technical limitations: four bugs are challenging to be resolved due to complex code logic; (2) Priority: four bugs are delayed due to their low impact. There are 9 bugs reported but cannot be reproduced by simple cases due to the nondeterministic transaction interleavings. We will further discuss with the developers. Bug Comparison. In Table 2, we compare our isolation bug findings with others.",
+      "context_after": "DBStorm /TxCheck /Jepsen / DT2/Troc discover 20/7/22/4/5 isolation bugs. Note, Jepsen began testing in 2013 when DBMSs were less mature than nowadays. Among the 22 isolation bugs discovered by Jepsen ,DBStorm can reproduce 16 ones in DBMSs under different versions. We fail to reproduce the other 6 bugs because they are triggered by injecting faults, e.g., network interruptions, into DBMSs. In addition, DBStorm still finds 20 isolation bugs that have not been found by Jepsen in modern DBMSs; it also finds 13 non-isolation bugs due to collateral effects of testing. To summarize, existing method",
+      "section": "7.4 Bug Result",
+      "page": 11,
+      "char_offset": 64527,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M15",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[41]",
+      "technique": null,
+      "sentence": "TxCheck [41] constructs two semanticallyequivalent transactions with complex SQL queries, and compares their results to find bugs in transaction processing, including those in the query optimizer, query execution engine, and IL implementations.",
+      "context_before": "ving single-table operations with equality predicates but misses SQL semantics-related bugs (e.g., multi-table joins) founded by DBStorm .Elle[16] is proposed as Jepsen ’s test oracle to infer IL bugs, but it only handles simple key-value transactions and fails with complex SQL transactions. Moreover, Jepsen also injects faults to uncover non-isolation bugs regarding consistency and availability, such as those in consensus protocols, disaster recovery, and failover mechanisms. Thus, most bugs found by Jepsen are non-isolation, including system availability bugs, meta-data bugs, and crash bugs.",
+      "context_after": "It uncovers 49 non-isolation bugs and 7 isolation bugs. It generates semantically-equivalent test cases via topological sorting of operation-level conflict graphs but lacks guidance for generating critical cycles in transaction-level conflict graphs, which are essential for adequately testing ILs. DT2[32] randomly generates transactions, deterministically executes the operations one by one on multiple different DBMSs, and compares their results to find discrepancies. It would be more likely to find compatibility issues among different DBMSs, and in fact, 92 compatibility issues have been foun",
+      "section": "8 Discussion",
+      "page": 11,
+      "char_offset": 67395,
+      "cited_reference": {
+        "number": 41,
+        "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting transactional bugs in database engines via graph-based oracle construction. In OSDI. 397–417. https://www.usenix.org/conference/osdi23/presentation/jiang",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M16",
+      "found_by": "citation_marker",
+      "surface": "[ 21,49,60,63]",
+      "technique": "pqs",
+      "sentence": "The bugs that have been discovered can be classified into logical bugs [ 21,49,60,63], performance bugs [ 42,51,58], and crash bugs [ 8,69,78].",
+      "context_before": ", 92 compatibility issues have been found. Troc [36] also executes the operations one by one, but the difference is that it theoretically calculates the ideal execution results of a pair of transactions and compares them with the results returned from the actual DBMS. TxCheck ,DT2andTroc fail to generate multiple parallel operations with high data access contentions, which is critical for trigger the IL-related code. Thus, they omit the IL bugs found by DBStorm, even for the DBMS they have tested. Query-Oriented Testing. Query-oriented testing aims to generate various queries for DBMS testing.",
+      "context_after": "A logical bug makes a query return an incorrect result. SQLancer [60] creates a query that would fetch a target data to detect logical bug. A performance bug adversely affects the query performance of DBMS. Apollo [42] detects performance bugs by comparing a new DBMS with an old one. A crash bug causes a DBMS to abruptly stop running. Squirrel [78] generates abnormal queries to detect crash bugs. 10 Conclusion In this paper, we presented DBStorm, an efficient approach to generate effective workloads for IL tests. We provided theoretical proofs to illustrate DBStorm ’s effectiveness and effici",
+      "section": "8 Discussion",
+      "page": 11,
+      "char_offset": 68800,
+      "cited_reference": {
+        "number": 60,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In OSDI. 667–682. https://dl.acm.org/doi/abs/10.1145/2882903. 2882958",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [60] creates a query that would fetch a target data to detect logical bug.",
+      "context_before": "ns and compares them with the results returned from the actual DBMS. TxCheck ,DT2andTroc fail to generate multiple parallel operations with high data access contentions, which is critical for trigger the IL-related code. Thus, they omit the IL bugs found by DBStorm, even for the DBMS they have tested. Query-Oriented Testing. Query-oriented testing aims to generate various queries for DBMS testing. The bugs that have been discovered can be classified into logical bugs [ 21,49,60,63], performance bugs [ 42,51,58], and crash bugs [ 8,69,78]. A logical bug makes a query return an incorrect result.",
+      "context_after": "A performance bug adversely affects the query performance of DBMS. Apollo [42] detects performance bugs by comparing a new DBMS with an old one. A crash bug causes a DBMS to abruptly stop running. Squirrel [78] generates abnormal queries to detect crash bugs. 10 Conclusion In this paper, we presented DBStorm, an efficient approach to generate effective workloads for IL tests. We provided theoretical proofs to illustrate DBStorm ’s effectiveness and efficiency. The experiments show that DBStorm outperforms the existing work in efficiency and effectiveness, and we have found 33 bugs in popular",
+      "section": "8 Discussion",
+      "page": 11,
+      "char_offset": 69000,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:52:31Z",
+    "is_model_written": true,
+    "summary": "DBStorm generates workloads for testing isolation-level implementations. Its argument is that query-oriented tools only exercise the query engine, while existing transaction-oriented tools execute a few operations serially and so build sparse conflict graphs that never contain a cycle. DBStorm instead constructs workloads targeting chosen non-serializable anomalies, using conflict-graph isomorphism to avoid generating redundant ones. It found 20 isolation bugs and 13 others.",
+    "narrative": "SQLancer supplies DBStorm's SQL. The paper states that because SQLancer targets the relational model it is used to generate syntactically and semantically correct SQL operations, and that since SQLancer mainly produces serially executed operations they revised it to generate parallel ones. It is also one of the tools measured against, and the comparison makes the paper's point precisely: SQLsmith, SQLancer and Squirrel between them reveal 760 bugs of which none is an isolation bug, because they execute transactions sequentially in a single thread and so cannot produce a cycle in the conflict graph at all.",
+    "roles": {
+      "M1": "motivation",
+      "M2": "motivation",
+      "M3": "motivation",
+      "M4": "motivation",
+      "M5": "reuse_component",
+      "M6": "background",
+      "M7": "reuse_component",
+      "M8": "reuse_component",
+      "M9": "background",
+      "M10": "baseline",
+      "M11": "result_comparison",
+      "M12": "result_comparison",
+      "M13": "result_comparison",
+      "M14": "result_comparison",
+      "M15": "background",
+      "M16": "background",
+      "M17": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M7",
+          "M8"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M7",
+            "sentence": "As SQLancer [60] targets for the relational model, we leverage it to generate syntax/semantic correct SQL operations.",
+            "section": "3 DBStorm Framework",
+            "page": 4
+          },
+          {
+            "mention_id": "M8",
+            "sentence": "Since SQLancer mainly generates serially executed operations, we revise it to generate parallel operations.",
+            "section": "3 DBStorm Framework",
+            "page": 4
+          }
+        ],
+        "reasoning": "M7 states DBStorm leverages SQLancer to generate syntactically and semantically correct SQL operations, and M8 that they revised it to emit parallel rather than serial operations. SQLancer is the operation generator inside DBStorm, not the framework it is built on -- the workload construction and conflict-graph analysis are the paper's own.",
+        "reuse_kind": "generator"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The revision described in M8 is to SQLancer's operation generation so it can emit parallel operations, not to any of its test oracles. DBStorm's oracle is isolation-level checking over conflict graphs."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M10",
+          "M12",
+          "M14"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M10",
+            "sentence": "SQLancer [60] and TQS [67] randomly generate queries and provide a test oracle to identify logical bugs.",
+            "section": "7 Experiments",
+            "page": 9
+          },
+          {
+            "mention_id": "M12",
+            "sentence": "SQLancer ,Squrriel and SQLsmith sequentially execute transactions in a single thread, so it is impossible to exist a cycle in the conflict graph and we do not put them in Fig.",
+            "section": "7.3 Anomaly-Sensitive Testing",
+            "page": 10
+          },
+          {
+            "mention_id": "M14",
+            "sentence": "SQLsmith /SQLancer /Squirrel reveal 248/449/63 bugs, but none of them is an isolation bug.",
+            "section": "7.4 Bug Result",
+            "page": 11
+          }
+        ],
+        "reasoning": "M10 introduces SQLancer among the tools evaluated, M12 explains why it cannot produce a conflict-graph cycle, and M14 reports its bug count alongside SQLsmith's and Squirrel's, none of which is an isolation bug."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is described by what it generates and by the limits of single-threaded execution; no state-of-the-art claim is made."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

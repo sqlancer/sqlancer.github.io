@@ -1,0 +1,861 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:24:17Z",
+  "paper": {
+    "id": "paper:doi:10.1109/tse.2025.3625300",
+    "title": "A Comprehensive Study of Bugs in Relational DBMS",
+    "authors": [
+      "Shuang Liu",
+      "Ruifeng Wang",
+      "Yuanfeng Xie",
+      "Junjie Chen",
+      "Wei Lu",
+      "Xiao Zhang",
+      "Quanqing Xu",
+      "Chuanhui Yang",
+      "Xiaoyong Du"
+    ],
+    "year": 2025,
+    "venue": "IEEE Transactions on Software Engineering",
+    "doi": "10.1109/tse.2025.3625300",
+    "arxiv_id": null,
+    "s2_paper_id": "616ddf130a678c2727c4c8bc791d8e3a1eaf3bf7",
+    "url": "https://doi.org/10.1109/tse.2025.3625300",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/tse.2025.3625300",
+      "retrieved_at": "2026-09-08T15:24:17Z",
+      "chars": 76112,
+      "content_sha256": "sha256:1d0456aa15142a34bb57be6f07961b18f42ac7dc4b8b167b181ffa8718b44683"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 15,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 1428
+      },
+      {
+        "number": "II",
+        "title": "METHODOLOGY ANDCLASSIFICATION",
+        "start": 9219
+      },
+      {
+        "number": "A",
+        "title": "Research Questions",
+        "start": 9253
+      },
+      {
+        "number": "B",
+        "title": "Databases to be Studied",
+        "start": 10933
+      },
+      {
+        "number": "C",
+        "title": "Bug Collection",
+        "start": 14606
+      },
+      {
+        "number": "D",
+        "title": "Bug Classiﬁcation Method",
+        "start": 16477
+      },
+      {
+        "number": "III",
+        "title": "RESULTS ANDANALYSIS",
+        "start": 26733
+      },
+      {
+        "number": "A",
+        "title": "RQ1: Root Causes",
+        "start": 26858
+      },
+      {
+        "number": "B",
+        "title": "RQ2: Bug Symptoms",
+        "start": 39748
+      },
+      {
+        "number": "C",
+        "title": "RQ3: Bugs Distribution in Modules",
+        "start": 43020
+      },
+      {
+        "number": "D",
+        "title": "RQ4: Correlations",
+        "start": 47629
+      },
+      {
+        "number": "E",
+        "title": "Bug Distributions Across Studied RDBMSs",
+        "start": 51446
+      },
+      {
+        "number": "F",
+        "title": "Bug-Triggering SQLs",
+        "start": 52927
+      },
+      {
+        "number": "IV",
+        "title": "DISCUSSION",
+        "start": 56688
+      },
+      {
+        "number": "A",
+        "title": "Implications",
+        "start": 56881
+      },
+      {
+        "number": "B",
+        "title": "Threats to Validity",
+        "start": 60027
+      },
+      {
+        "number": "V",
+        "title": "APOOF-OF- CONCEPT TOOLSQLT",
+        "start": 61405
+      },
+      {
+        "number": "B",
+        "title": "Evaluation of SQLT",
+        "start": 64018
+      },
+      {
+        "number": "VI",
+        "title": "RELATED WORK",
+        "start": 65986
+      },
+      {
+        "number": "VII",
+        "title": "CONCLUSION",
+        "start": 68669
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "“MySQL”, MySQL. Accessed: Dec. 2023. [Online]. Available: https:// www.mysql.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "“SQLite,” SQLite. Accessed: Dec. 2023. [Online]. Available: https:// sqlite.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "“PostgreSQL,” PostgreSQL. A ccessed: Dec. 2023. [Online]. Available: https://www.postgresql.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "“OpenGauss,” OpenGauss. Acce ssed: Dec. 2023. [Online]. Available: https://opengauss.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "“WelcomeNext,” WelcomeNext. Accessed: Jun. 2024. [Online]. Available: https://welcomenext.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "“Guard.Me,” Guard.Me. Acce ssed: Jun. 2024. [Online]. Available: https://www.guard.me/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "“eBay,” eBay. Accessed: Jun. 2024. [Online]. Availab le: http://www. ebay.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "“GitHub,” GitHub. Accessed: J un. 2024. [Online]. Available: http:// www.github.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "“YouTube,” YouTube. Accessed: Jun. 2024. [Online]. Available: http:// www.youtube.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "J. M. Hellerstein, M. Stonebraker, J. Hamilton, “Architecture of a database system,” Found. Trends® Databases, vol. 1, no. 2, pp. 141–259, 2007.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "“SQLsmith,” SQLsmith. Accessed: Dec. 2023. [Online]. Available: https://github.com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in Proc. 14th USENIX Symp. Operating Syst. Des. Implementation (OSDI), 2020, pp. 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 13,
+      "text": "R. Zhong, Y. Chen, H. Hu, H. Zhang, W. Lee, and D. Wu, “Squirrel: Testing database management sys tems with language validity and coverage feedback,” in Proc. ACMSIGSAC Conf. Computer Commun. Secur., 2020, pp. 955–970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proc. 28th ACM Joint Meeting Eur. Softw. Eng. Conf. Symp. Found. Softw. Eng., 2020, pp. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 15,
+      "text": "Y. Liang, S. Liu, and H. Hu, “Detecting logical bugs of DBMS with coverage-based guidance,” in Proc. 31st USENIX Secur. Symp. (USENIX Secur.), 2022, pp. 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "J. Fu, J. Liang, Z. Wu, M. Wang, an d Y. Jiang, “Grifﬁn: Grammar-free DBMS fuzzing,” in Proc. 37th IEEE/ACM Int. Conf. Automated Softw. Eng., 2022, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "X. Liu, Q. Zhou, J. Arulraj, and A. Orso, “Automatic detection of performance bugs in database system s using equivalent queries,” in Proc. 44th Int. Conf. Softw. Eng., 2022, pp. 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "J. Jung, H. Hu, J. Arulraj, T. Kim, and W. Kang, “Apollo: Automatic detection and diagnosis of performance regressions in database systems,” inProc. VLDB Endowment, vol. 13, no. 1, pp. 57–70. 2019. 3668 IEEETRANSACTIONS ONSOFTWARE ENGINEERING, VOL. 51, NO. 12, DECEMBER 2025",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proc. ACM Program. Lang., vol. 4, no. OOPSLA, pp. 1– 30. 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 20,
+      "text": "W. Dou et al., “Detecting isolation b ugs via transaction oracle construction,” in Proc. Int. Conf. Softw. Eng. (ICSE), 2023, pp. 1123–1135.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Z.-M. Jiang, S. Liu, M. Rigge r, and Z. Su, “Detecting transactional bugs in database engines via graphbased oracle construction,” in Proc. 17th USENIX Symp. Operating Sys t. Des. Implemen tation (OSDI), 2023, pp. 397–417.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 22,
+      "text": "P. Fonseca, C. Li, V. Singhal, and R. Rodrigues, “A study of the internal and external effects of concurrency bugs,” in Proc. IEEE/IFIP Int. Conf. Dependable Syst. Netw. (DSN), Piscataway, NJ, USA: IEEE Press, 2010, pp. 221–230.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Z. Cui et al., “Understanding tr ansaction bugs in database systems,” in Proc. IEEE/ACM 46th Int. Conf. Softw. Eng. (ICSE), Los Alamitos, CA, USA: IEEE Comput. Soc. Press, 2024, pp. 947–947.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "“DB-engines ranking,” DB-engi nes ranking. Accessed: Aug. 2024. [Online]. Available: https://dbengines.com/en/ranking",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Z. Cui et al., “Differentially tes ting database transactions for fun and proﬁt,” in Proc. 37th IEEE/ACM Int. Conf. Automated Softw. Eng., 2022, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "J. Ba and M. Rigger, “CERT: Finding performance issues in database systems through the lens of cardinality estimation,” in Proc. IEEE/ACM 46th Int. Conf. Softw. Eng., 2024, pp. 1–13.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 27,
+      "text": "A. Bovenzi, D. Cotroneo, R. Pietrantuono, and S. Russo, “On the aging effects due to concurrency bugs: A case study on MySQL,” in Proc. IEEE 23rd Int. Symp. Softw. Reliab. Eng., Piscataway, NJ, USA: IEEE Press, 2012, pp. 211–220.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Q. Shen, H. Ma, J. Chen, Y. Tian, S.-C. Cheung, and X. Chen, “A comprehensive study of deep learning compiler bugs,” in Proc. 29th ACM Joint Meet. Eur. Softw. Eng. Conf. Symp. Found. Softw. Eng., 2021, pp. 968–980.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "J. Chen, Y. Liang, Q. Shen, J. Jiang, and S. Li, “Toward understanding deep learning framework bugs,” ACM Trans. Softw. Eng. Method. ,v o l. 32, no. 6, pp. 1–31, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "J. Garcia et al., “A comprehensive study of autonomous vehicle bugs,” inProc. ACM/IEEE 42nd Int. Conf. Softw. Eng., 2020, pp. 385–396.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "H. Ma, W. Zhang, Q. Shen, Y. Tian, J. Chen, and S.-C. Cheung, “Towards understanding the bugs in solidity compiler,” 2024,arXiv:2407.05981.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "“SQLite Bugs,” SQLite Bugs. Accessed: Dec. 2023. [Online]. Available: https://sqlite.org/ src/rptview/1",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "“MySQL commits,” MySQL commits. Accessed: Dec. 2023. [Online]. Available: https://github.com/m ysql/mysql-server/commits/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "“OpenGauss Bugs,” OpenGauss Bugs. Accessed: Dec. 2023. [Online]. Available: https://gitee.com/openg auss/openGauss-server/issues",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "S. M. Vieira, U. Kaymak, and J. M. Sousa, “Cohen’s kappa coefﬁcient as a performance measure for feature selection,” in Proc. Int. Conf. Fuzzy Syst., Piscataway, NJ, USA: IEEE Press, 2010, pp. 1–8.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "C. Sun, V. Le, Q. Zhang, and Z. Su, “Toward understanding compiler bugs in GCC and LLVM,” in Proc. 25th Int. Symp. Softw. Testing Anal., 2016, pp. 294–305.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Y. Xiong et al., “An empirical study of functional bugs in android apps,” inProc. 32nd ACMSIGSOFT Int. Symp. Softw. Testing Anal., 2023, pp. 1319–1331.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "“MySQL Architecture,” MySQL Architecture. Accessed: Dec. 2023. [Online]. Available: https://dev.mysql.com/doc/refman/8.0/en/pluggable-storage-overview.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "“SQLite Architecture,” SQLite Ar chitecture. Accessed: Dec. 2023. [Online]. Available: https://www .sqlite.org/arch.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "“OpenGauss Architecture,” Open Gauss Architecture. Accessed: Dec. 2023. [Online]. Available: https:// gitee.com/opengauss/openGaussserver",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "S. Amann, S. Nadi, H. A. Nguyen, T. N. Nguyen, and M. Mezini, “Mubench: A benchmark for API-misuse detectors,” in Proc. 13th Int. Conf. Mining Softw. Repositories, 2016, pp. 464–467.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "S. Amann, H. A. Nguyen, S. Nadi, T. N. Nguyen, and M. Mezini, “A systematic evaluation of s tatic API-misuse detectors,” IEEE Trans. Softw. Eng., vol. 45, no. 12, pp. 1170–1188, Dec. 2019, doi: 10.1109/TSE.2018.2827384.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 12,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in Proc. 14th USENIX Symp. Operating Syst. Des. Implementation (OSDI), 2020, pp. 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 14,
+      "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proc. 28th ACM Joint Meeting Eur. Softw. Eng. Conf. Symp. Found. Softw. Eng., 2020, pp. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 19,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proc. ACM Program. Lang., vol. 4, no. OOPSLA, pp. 1– 30. 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 21,
+      "text": "Z.-M. Jiang, S. Liu, M. Rigge r, and Z. Su, “Detecting transactional bugs in database engines via graphbased oracle construction,” in Proc. 17th USENIX Symp. Operating Sys t. Des. Implemen tation (OSDI), 2023, pp. 397–417.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 26,
+      "text": "J. Ba and M. Rigger, “CERT: Finding performance issues in database systems through the lens of cardinality estimation,” in Proc. IEEE/ACM 46th Int. Conf. Softw. Eng., 2024, pp. 1–13.",
+      "technique": "cert",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing cert"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[12]",
+      "technique": "pqs",
+      "sentence": ": ACOMPREHENSIVE STUDY OFBUGS INRELATIONAL DBMS 3655 TABLE ICOMPARISON WITHPRIOR EMPIRICAL STUDIES ONRDBMS BUGS Study Bug Type Duration # Bugs Fonseca [22] concurrency bugs 2003-2009 80 Cui[23] transaction bugs 2018-2022 140 ours general bugs 2021-2023 777 [12],[13],[14],[15],[16],[17],[18],[19],[20],[21] aiming at detecting bugs in RDBMSs, and they successfully detected new bugs in RDBMSs.",
+      "context_before": "s due to its complex feature combinations anddeep levels of nested SQL queries. Given the critical role that RDBMSs play in various systems, it is crucial to effectively detect and address bugs in these databases. There have been various testing approaches [11], 0098-5589 © 2025 IEEE. All rights reserved, includi ng rights for text and data mining, and train ing of artiﬁcial intelligen ce and similar technologi es. Personal use is permitted, but republication/redist ribution requires IEEE permission. See http s://www.ieee.org/publicati ons/right s/index. html for more information. LIU et al.",
+      "context_after": "These approaches generate large numbers of diverse SQL statements through random test case generationor mutation, aiming to expose potential DBMS bugs. However, they typically support only a limited subset of SQL features and do not target speciﬁc components of RDBMSs. As a result, they are unable to detect bugs that arise from complex SQL functionalities, such as database events and triggers, st ored pr ocedures, access control mechanisms, or speciﬁc database parameter conﬁgurations. These bugs count for 33.72% of our studied bugs (See Section III-F for detailed analysis).” Effectively detec",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 5265,
+      "cited_reference": {
+        "number": 12,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in Proc. 14th USENIX Symp. Operating Syst. Des. Implementation (OSDI), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker",
+        "citation_marker_project_authored"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[12]",
+      "technique": "pqs",
+      "sentence": "We ﬁrst consulted the DBEngines Ranking [24] to identify ranked and widely adopted RDBMS, and surveyed existing testing approaches [11],[12], [13],[14],[15],[16],[17],[18],[19],[20],[21],[25],[26] as well as empirical studies on RDBMS bugs [23],[27].",
+      "context_before": "correlations between the measured as-pects? Analyzing the correlations between root causes and symptoms offers valuable insights into preventing similar issues during future development process, and guides more targetedand effective testing and debugging strategies. B. Databases to be Studied In the study, we choose three popular open-source RDBMSs, including MySQL [1], SQLite [2], and openGauss [4],a s 1https://github.com/sqlttest/studydataset 2https://github.com/sqlttest/SQLT 3656 IEEETRANSACTIONS ONSOFTWARE ENGINEERING, VOL. 51, NO. 12, DECEMBER 2025 subjects for bug collection and study.",
+      "context_after": "This led us to identify potential candidates such as MySQL, SQLite,PostgreSQL, TiDB, MariaDB, DuckDB, and openGauss. After further evaluation, we selected three representative RDBMSs— MySQL, SQLite, and openGauss—based on two criteria: de-sign architecture and application scenarios. We categorized the candidate RDBMSs into three groups based on these criteria: (1) MariaDB and TiDB, whichare designed to be highly compatible with MySQL on system architecture and SQL syntax, making them wellsuited for small to medium-sized systems and distributed databases; (2) SQLite and DuckDB, which are embed",
+      "section": "B Databases to be Studied",
+      "page": 3,
+      "char_offset": 11266,
+      "cited_reference": {
+        "number": 12,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in Proc. 14th USENIX Symp. Operating Syst. Des. Implementation (OSDI), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker",
+        "citation_marker_project_authored"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp",
+        "cert"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ", the SQL statements—focusing speciﬁcally on those that are not supported by existing test case generation tools such as SQLancer and SQLSmith.",
+      "context_before": "likelihood of logic-related bugs. openGauss shows a higher incidence of Missing Code Logic, con-sistent with its active developing status and relative immaturity in handling corner cases. For affected modules, SQLite reports the highest number of bugs in the optimizer. As an embedded database, SQLite features relatively lightweight execution and storage engines but a more substantial optimizer component. This architecturalfocus explains why its bugs are concentrated in the optimization module. F. Bug-Triggering SQLs We further analyzed the characteristics of the bug-triggering test cases—i.e.",
+      "context_after": "Across the three studied DBMSs, we identiﬁed 146 such cases that current tools cannot generate, including 46 in MySQL, 79 in OpenGauss, and 21 in SQLite. As we will discuss, extending current tools to supportthese features is non-trivial due to the complexity and speciﬁcity of the required SQL constructs. Partition-related bugs are prevalent across all three DBMSs, with a total of 61 cases identiﬁed. These bugs often stem from incorrect partition pr uning, invalid comparisons involving partition keys, or unsupported opera tions on partiti oned tables. Compared to ﬂat tabl e structures, partiti",
+      "section": "F Bug-Triggering SQLs",
+      "page": 11,
+      "char_offset": 53027,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "However, existing test generation tools such as SQLancer and SQLSmith do not suppor t partition-related syntax at all, making it fundamentally impossible for them to generate test cases involving partition logic.",
+      "context_before": "SQLite. As we will discuss, extending current tools to supportthese features is non-trivial due to the complexity and speciﬁcity of the required SQL constructs. Partition-related bugs are prevalent across all three DBMSs, with a total of 61 cases identiﬁed. These bugs often stem from incorrect partition pr uning, invalid comparisons involving partition keys, or unsupported opera tions on partiti oned tables. Compared to ﬂat tabl e structures, partiti oned tables introduce additional layers of metadata and planning logic, which cansigniﬁcantly affect query behavior and optimization strategies.",
+      "context_after": "This limitation highlights a critical blind spot in current automated testing techniques and underscoresthe need for extending support f or partitioned tabl e constructs in future testing frameworks. There are 19 bug-triggering test cases involving stored procedure/function and PLSQL statements. Constructing relevant test cases involves multi-statement routines, parameter passing, and internal control ﬂow such as IFandWHILE. These are non-trivial to generate due to their nested structure and stateful behavior, making it harder to ensure the semantic correctnessof the generated SQLs. Bug-trigg",
+      "section": "F Bug-Triggering SQLs",
+      "page": 11,
+      "char_offset": 53915,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[21]",
+      "technique": null,
+      "sentence": "Recent works on RDBMS transaction testing [20],[21],[25] offer insights into testing efﬁcacy.",
+      "context_before": "ion, we delve into bugs associated with RDBMSspeciﬁc features, discussing the implications derived fromour ﬁndings. We then discuss threats to validity of our study. A. Implications Transaction Bugs. Transactions are essential in RDBMS for ensuring the safe and reliable processing of data, critical in sectors like banking and online booking systems. However,there are only 33 tr ansaction-related b ugs, constituting 4.25% of all analyzed bugs, with 15 from MySQL, 5 from SQLite, and 13 from openGauss. This ﬁnding aligns with a recent researchreporting that transaction bugs are under-tested [23].",
+      "context_after": "Our examination of 33 transaction bugs against these methodologies showed that only 5 could potentially be detected by existing tools. The majority, 28 bugs,with feature complexities like clustering, replication, group replication, log analysis, custom functions, and control ﬂow, which are not currently covered by these testing efforts. Impor-tantly, extending these testing tools to include more keywords in test case generation is insufﬁcient; the primary challenge lies in developing effective oracles that can detect these complextransaction bugs. Moreover, current methods typically involve i",
+      "section": "A Implications",
+      "page": 12,
+      "char_offset": 57315,
+      "cited_reference": {
+        "number": 21,
+        "text": "Z.-M. Jiang, S. Liu, M. Rigge r, and Z. Su, “Detecting transactional bugs in database engines via graphbased oracle construction,” in Proc. 17th USENIX Symp. Operating Sys t. Des. Implemen tation (OSDI), 2023, pp. 397–417.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "However,extending existing syntax-directed tools like SQLancer to incorporate such functionality is non-trivial, as t hese featur es often require complex semantic correctness checks.",
+      "context_before": "f thetransaction bugs we analyzed could not be detected by existing transaction testing approaches. This ﬁnding underscores the need for more dedicated efforts towardsaddressing RDBMS-speciﬁc features, i.e., transactionrelated bugs. Test Case Generation. Our analysis of bug-triggering test cases reveals that certain features—PL/SQL constructs, user access control, and speci ﬁc database paramet er settings—play a critical role in exposing bugs in RD BMSs, despite often falling outside the standard SQL scope. Consequently, it is essential for test case generation tools to support these features.",
+      "context_after": "This highlightsthe need for a new test case generation method that can inherently address semantic validation in a principled and scalable way. Finding 12: Approximately 33.72% of the studied bugs require complex features—such as database triggers, events, stored procedures, or speciﬁc parameter settings—in their test cases to be triggered. However, existing RDBMS testing tools lack support for these ad-vanced features. Generating such test cases under the current syntax-driven paradigm is challenging, as it often involves intricate semantic correctness checks. This under-scores the need for",
+      "section": "A Implications",
+      "page": 12,
+      "char_offset": 59061,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Design and Motivation of SQLTSQLT is an extension of the widely-used database testing tool, SQLancer [12].",
+      "context_before": "gs, we chose three popular and diverse RDBMSs, representing different architectures and application scenarios. After a meticulous ﬁltering process, we analyzed 777 bugs,balancing the scope of our research with the demands of manual effort. V. APOOF-OF- CONCEPT TOOLSQLT To evaluate the practical utility of our ﬁndings in enhancing RDBMS testing, we focus on SQL-type bugs, which account for approximately 9% of all studied bugs. We developed SQLT,a generation-based tool speciﬁcally designed to address SQLtype issues, enabling targeted testing and validation based on the identiﬁed bug patterns. A.",
+      "context_after": "Based on our observation that many SQLtype bugs are triggered by novel or less-tested data types (e.g., BIT, JSON), while others result from implicit type conversions within functions, we enhanced SQLT by incorporatingsyntax-aware rules. These rules systematically generate SQL statements designed to either introduce new data types or provoke SQL type conversions, both implicit and explicit, therebyincreasing the likelihood of exposing type-related bugs. This makes SQLT particularly adapt at testing RDBMS functionalities related to SQL types. Speciﬁcally, SQLT extends SQLancerin four major asp",
+      "section": "V APOOF-OF- CONCEPT TOOLSQLT",
+      "page": 13,
+      "char_offset": 61765,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLT extends SQLancer by introducing new data types such as BIT and JSON, which were undersupported by SQLancer.",
+      "context_before": "any SQLtype bugs are triggered by novel or less-tested data types (e.g., BIT, JSON), while others result from implicit type conversions within functions, we enhanced SQLT by incorporatingsyntax-aware rules. These rules systematically generate SQL statements designed to either introduce new data types or provoke SQL type conversions, both implicit and explicit, therebyincreasing the likelihood of exposing type-related bugs. This makes SQLT particularly adapt at testing RDBMS functionalities related to SQL types. Speciﬁcally, SQLT extends SQLancerin four major aspects. Supporting new data types.",
+      "context_after": "Moreover, SQLT adds support foropenGauss by implementing a dedicated test case generation module. Encouraging type conversion. SQLT systematically increases the probability of both explicit type conversions (e.g., CAST, CONVERT ) and implicit conversions by injecting heterogeneous data types into expressions, effectively stressing the type conversion logic of DBMSs. SQLT also integrates a large set of TABLE VIIIBUGS DETECTED BYSQLT Bug IDRDBMS Version Status 112912 MySQL 8.0 Conﬁrmed 112914 MySQL 8.0 Conﬁrmed a655ee159e SQLite 3.43.0 Conﬁrmed I8GTTH openGauss 5.0.0 Fixed I8ENSF openGauss 5.0.0",
+      "section": "V APOOF-OF- CONCEPT TOOLSQLT",
+      "page": 13,
+      "char_offset": 62504,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "0 Duplicate TABLE IXCOMPARISON OFSQLT WITH SQLANCER FOR 24H RDBMS SQLT SQLancer MySQL 4 3 SQLite 1 1 database-speciﬁc functions that are prone to type conversion issues, such as STRING_AGG ,UNIXEPOCH, and TIMEDIFF in MySQL/openGauss, and RANDOM ,IIF,OCTET_LENGTH, and UNHEX in SQLite.",
+      "context_before": "tion module. Encouraging type conversion. SQLT systematically increases the probability of both explicit type conversions (e.g., CAST, CONVERT ) and implicit conversions by injecting heterogeneous data types into expressions, effectively stressing the type conversion logic of DBMSs. SQLT also integrates a large set of TABLE VIIIBUGS DETECTED BYSQLT Bug IDRDBMS Version Status 112912 MySQL 8.0 Conﬁrmed 112914 MySQL 8.0 Conﬁrmed a655ee159e SQLite 3.43.0 Conﬁrmed I8GTTH openGauss 5.0.0 Fixed I8ENSF openGauss 5.0.0 Fixed I879H0 openGauss 5.0.0 Fixed I8ENDC openGauss 5.0.0 Fixed I8ENLG openGauss 5.0.",
+      "context_after": "These functions are obtained from our analysis of existing bugs and newly introduced functions inrecent DBMS releases. Given that bugs related to SQL types often result in result inconsistencies—silent bugs without explicit error messages—we incorporated two existing metamorphic testing approaches, NOREC [14] and TLP [19], as oracles within SQLT. SQLT is publicly available and can be accessed at https://github.com/sqlttest/SQLT. B. Evaluation of SQLT Our experiments were conducted on an Ubuntu 16.04 server equipped with 500GB of memory and an Intel(R) Xeon(R)Platinum 8260 CPU @ 2.30GHz. We ap",
+      "section": "V APOOF-OF- CONCEPT TOOLSQLT",
+      "page": 13,
+      "char_offset": 63302,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "NOREC",
+      "technique": "norec",
+      "sentence": "Given that bugs related to SQL types often result in result inconsistencies—silent bugs without explicit error messages—we incorporated two existing metamorphic testing approaches, NOREC [14] and TLP [19], as oracles within SQLT.",
+      "context_before": "d 112914 MySQL 8.0 Conﬁrmed a655ee159e SQLite 3.43.0 Conﬁrmed I8GTTH openGauss 5.0.0 Fixed I8ENSF openGauss 5.0.0 Fixed I879H0 openGauss 5.0.0 Fixed I8ENDC openGauss 5.0.0 Fixed I8ENLG openGauss 5.0.0 Duplicate TABLE IXCOMPARISON OFSQLT WITH SQLANCER FOR 24H RDBMS SQLT SQLancer MySQL 4 3 SQLite 1 1 database-speciﬁc functions that are prone to type conversion issues, such as STRING_AGG ,UNIXEPOCH, and TIMEDIFF in MySQL/openGauss, and RANDOM ,IIF,OCTET_LENGTH, and UNHEX in SQLite. These functions are obtained from our analysis of existing bugs and newly introduced functions inrecent DBMS releases.",
+      "context_after": "SQLT is publicly available and can be accessed at https://github.com/sqlttest/SQLT. B. Evaluation of SQLT Our experiments were conducted on an Ubuntu 16.04 server equipped with 500GB of memory and an Intel(R) Xeon(R)Platinum 8260 CPU @ 2.30GHz. We applied SQLT to SQLite versions 3.43.0, MySQL 8.0.34, and openGauss 5.0.0 over a two-week period. SQLT successfully detected 8 b ugs, all of which were conﬁrmed by developers and 4 have been ﬁxed, as detailed in Table VIII. Notably, 2 bugs in MySQL were related to type conversion, 1 bug in SQLite was associated with JSON5 SQL type support, and in op",
+      "section": "V APOOF-OF- CONCEPT TOOLSQLT",
+      "page": 13,
+      "char_offset": 63703,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We’ve also compared SQLT with SQLancer on the latest version of MySQL and SQLite (MySQL 8.",
+      "context_before": "n ﬁxed, as detailed in Table VIII. Notably, 2 bugs in MySQL were related to type conversion, 1 bug in SQLite was associated with JSON5 SQL type support, and in openGauss, 2 bugs were due to SQL types,with the remaining 3 stemming from incorrect error handling, null pointer errors, and issues with the full join keyword, they were uncovered due to our extended support for openGauss.These ﬁndings, particularly the detection of 5 type-related bugs within a short timeframe, va lidate our initial hypothesis and underscore the need for more focused efforts on SQL type-speciﬁc issues in RDBMS testing.",
+      "context_after": "0.34 and SQLite3.43.0) 3for 24 hours and adopt NoREC [14] as the default 3We did not run openGauss as SQLancer does not support openGauss. LIU et al.: ACOMPREHENSIVE STUDY OFBUGS INRELATIONAL DBMS 3667 oracle to detect bugs. SQLT detects 6 bugs and SQLancer detects 4 bugs. Among these results, SQLT uncovered 1 additional bug in MySQL that were not detected by SQLancer. The bug stems from type-related issues involving implicit conversions and edge-case expressions on the column of BIT type. Notably, SQLancer does not actively avoid type mismatches; rather, itstest generation lacks sufﬁcient b",
+      "section": "B Evaluation of SQLT",
+      "page": 13,
+      "char_offset": 64971,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "0) 3for 24 hours and adopt NoREC [14] as the default 3We did not run openGauss as SQLancer does not support openGauss.",
+      "context_before": "s associated with JSON5 SQL type support, and in openGauss, 2 bugs were due to SQL types,with the remaining 3 stemming from incorrect error handling, null pointer errors, and issues with the full join keyword, they were uncovered due to our extended support for openGauss.These ﬁndings, particularly the detection of 5 type-related bugs within a short timeframe, va lidate our initial hypothesis and underscore the need for more focused efforts on SQL type-speciﬁc issues in RDBMS testing. We’ve also compared SQLT with SQLancer on the latest version of MySQL and SQLite (MySQL 8.0.34 and SQLite3.43.",
+      "context_after": "LIU et al.: ACOMPREHENSIVE STUDY OFBUGS INRELATIONAL DBMS 3667 oracle to detect bugs. SQLT detects 6 bugs and SQLancer detects 4 bugs. Among these results, SQLT uncovered 1 additional bug in MySQL that were not detected by SQLancer. The bug stems from type-related issues involving implicit conversions and edge-case expressions on the column of BIT type. Notably, SQLancer does not actively avoid type mismatches; rather, itstest generation lacks sufﬁcient bias toward diverse data types and fails to synthesize high-risk constructs like nested casts or ambiguous comparisons. SQLT addresses thes",
+      "section": "B Evaluation of SQLT",
+      "page": 13,
+      "char_offset": 65082,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLT detects 6 bugs and SQLancer detects 4 bugs.",
+      "context_before": "rd, they were uncovered due to our extended support for openGauss.These ﬁndings, particularly the detection of 5 type-related bugs within a short timeframe, va lidate our initial hypothesis and underscore the need for more focused efforts on SQL type-speciﬁc issues in RDBMS testing. We’ve also compared SQLT with SQLancer on the latest version of MySQL and SQLite (MySQL 8.0.34 and SQLite3.43.0) 3for 24 hours and adopt NoREC [14] as the default 3We did not run openGauss as SQLancer does not support openGauss. LIU et al.: ACOMPREHENSIVE STUDY OFBUGS INRELATIONAL DBMS 3667 oracle to detect bugs.",
+      "context_after": "Among these results, SQLT uncovered 1 additional bug in MySQL that were not detected by SQLancer. The bug stems from type-related issues involving implicit conversions and edge-case expressions on the column of BIT type. Notably, SQLancer does not actively avoid type mismatches; rather, itstest generation lacks sufﬁcient bias toward diverse data types and fails to synthesize high-risk constructs like nested casts or ambiguous comparisons. SQLT addresses these gaps by in-creasing the likelihood of type coercion chains, introducing under-tested types such as BIT and JSON, and embedding conversi",
+      "section": "B Evaluation of SQLT",
+      "page": 14,
+      "char_offset": 65288,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Among these results, SQLT uncovered 1 additional bug in MySQL that were not detected by SQLancer.",
+      "context_before": "rt for openGauss.These ﬁndings, particularly the detection of 5 type-related bugs within a short timeframe, va lidate our initial hypothesis and underscore the need for more focused efforts on SQL type-speciﬁc issues in RDBMS testing. We’ve also compared SQLT with SQLancer on the latest version of MySQL and SQLite (MySQL 8.0.34 and SQLite3.43.0) 3for 24 hours and adopt NoREC [14] as the default 3We did not run openGauss as SQLancer does not support openGauss. LIU et al.: ACOMPREHENSIVE STUDY OFBUGS INRELATIONAL DBMS 3667 oracle to detect bugs. SQLT detects 6 bugs and SQLancer detects 4 bugs.",
+      "context_after": "The bug stems from type-related issues involving implicit conversions and edge-case expressions on the column of BIT type. Notably, SQLancer does not actively avoid type mismatches; rather, itstest generation lacks sufﬁcient bias toward diverse data types and fails to synthesize high-risk constructs like nested casts or ambiguous comparisons. SQLT addresses these gaps by in-creasing the likelihood of type coercion chains, introducing under-tested types such as BIT and JSON, and embedding conversion-prone expressions in critical control points. VI. RELATED WORK Empirical Study on RDBMS Bugs Th",
+      "section": "B Evaluation of SQLT",
+      "page": 14,
+      "char_offset": 65337,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M15",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Notably, SQLancer does not actively avoid type mismatches; rather, itstest generation lacks sufﬁcient bias toward diverse data types and fails to synthesize high-risk constructs like nested casts or ambiguous comparisons.",
+      "context_before": "DBMS testing. We’ve also compared SQLT with SQLancer on the latest version of MySQL and SQLite (MySQL 8.0.34 and SQLite3.43.0) 3for 24 hours and adopt NoREC [14] as the default 3We did not run openGauss as SQLancer does not support openGauss. LIU et al.: ACOMPREHENSIVE STUDY OFBUGS INRELATIONAL DBMS 3667 oracle to detect bugs. SQLT detects 6 bugs and SQLancer detects 4 bugs. Among these results, SQLT uncovered 1 additional bug in MySQL that were not detected by SQLancer. The bug stems from type-related issues involving implicit conversions and edge-case expressions on the column of BIT type.",
+      "context_after": "SQLT addresses these gaps by in-creasing the likelihood of type coercion chains, introducing under-tested types such as BIT and JSON, and embedding conversion-prone expressions in critical control points. VI. RELATED WORK Empirical Study on RDBMS Bugs There are two RDBMS bug studies [22],[23] in the literature. Fonseca et al. conduct an early study on 80 RDBMS concurrency bugs [22], discussed the impact of the concurrency bugs and the latent concurrency bugs distribution. Cui et al. studied 140 RDBMS transactionbugs [23], including statistical information such as the average amount of data us",
+      "section": "B Evaluation of SQLT",
+      "page": 14,
+      "char_offset": 65558,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M16",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "[12],[14], [19] proposed SQLancer, which is one of the most popular generation-based RDBMS testing approach, and it incorporates three metamorphic methods, namely PQS [12], NoREC [14], and TLP [19], as oracles to detect logical bugs.",
+      "context_before": "average amount of data used in a table, the length of code ﬁxes, etc. They also pointed out that the majority of transaction bugs aresilent, which is consistent with our ﬁndings on RDBMS bugs in general. Both studies focus on a special type of RDBMS bugs, and the number of bugs they studied are small. Our work focuson a broader range of bugs in RDBMS and we studied a total of 777 bugs, making our study general and comprehensive. RDBMS Testing SQLSmith [11] is the ﬁrst generation-based testing approach for RDBMS, and it report bugs by examining explicit error messages and crashes. Rigger et al.",
+      "context_after": "These testing approaches rely on syntax-directed SQL generation, which lacks support for the complex features analyzed in Section III-F and cannot be easily extended to accommodate them. SQUIRREL [13], SQLRight [15] and GRIFFIN [16] are mutation-based testing approaches. SQUIRREL [13] considers both language validity and coverage feedback to test RDBMSs. SQLRight [15]conducts coverage-guided mutation, with semantic validity checkings. GRIFFIN [16] reshufﬂes statements based on dependencies between metadata and statements in the metadata graph. These testing approaches rely on fuzzing techniqu",
+      "section": "VI RELATED WORK",
+      "page": 14,
+      "char_offset": 66955,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[21]",
+      "technique": null,
+      "sentence": "Troc [20] and TxCheck [21] are metamorphic testing approaches focusing on detect transactional bugs in RDBMSs.",
+      "context_before": "statements in the metadata graph. These testing approaches rely on fuzzing techniques, generating test cases by mutating existing seed inputs. As aresult, the quality of the seed test cases plays a crucial role in effectively triggering bugs. While seed cases involving the complex features discussed in Section III-F can be partially sourced from open-source projects, ensuring semantic correctness during the mutation process remains a non-trivial chal-lenge. There is also some work dedicated to detecting less common types of bugs in DBMS. AMOEBA [17]and APOLLO [18] test RDBMS performance bugs.",
+      "context_after": "Most of the testing approaches are general, with no focus on RDBMS speciﬁc features, like SQL types and transactions. The only three transaction testing approaches have limited capab ilities due to the restricted oracles and heavy programming barriers. VII. CONCLUSION In this paper, we present the ﬁrst comprehensive study of bugs in Relational Database Management Systems (RDBMS), with the goal of deepening our understanding of RDBMS bugs and improving the RDBMS development, testing and maintenance. We meticulously analyzed 777 bugs from three opensource RDBMSs—SQLite, MySQL, and openGauss—cove",
+      "section": "VI RELATED WORK",
+      "page": 14,
+      "char_offset": 68305,
+      "cited_reference": {
+        "number": 21,
+        "text": "Z.-M. Jiang, S. Liu, M. Rigge r, and Z. Su, “Detecting transactional bugs in database engines via graphbased oracle construction,” in Proc. 17th USENIX Symp. Operating Sys t. Des. Implemen tation (OSDI), 2023, pp. 397–417.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M11"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:51:41Z",
+    "is_model_written": true,
+    "summary": "An empirical study of 777 general bugs across widely used relational DBMSs reported between 2021 and 2023, larger and broader than the prior studies it tabulates, which covered concurrency and transaction bugs only. It characterises what triggers these bugs and finds a recurring gap: much of the bug-triggering SQL uses syntax that existing generators do not produce at all. To show the gap is actionable the authors build a proof-of-concept tool, SQLT.",
+    "narrative": "SQLancer is both the study's reference generator and the base of its proof-of-concept tool. The study repeatedly measures bug-triggering SQL against what SQLancer can generate -- it does not support partition-related syntax at all, and it lacks bias toward diverse data types or high-risk constructs such as nested casts. SQLT is then built as an extension of SQLancer, adding BIT and JSON support that SQLancer under-supported, and running NoREC and TLP as its oracles. The two are compared directly over 24 hours on MySQL and SQLite, where SQLT found 6 bugs to SQLancer's 4, including one in MySQL that SQLancer did not reach.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "motivation",
+      "M4": "motivation",
+      "M5": "background",
+      "M6": "motivation",
+      "M7": "reuse_implementation",
+      "M8": "reuse_implementation",
+      "M9": "result_comparison",
+      "M10": "reuse_component",
+      "M11": "baseline",
+      "M12": "baseline",
+      "M13": "result_comparison",
+      "M14": "result_comparison",
+      "M15": "result_comparison",
+      "M16": "definition",
+      "M17": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M7",
+          "M8",
+          "M10"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M7",
+            "sentence": "Design and Motivation of SQLTSQLT is an extension of the widely-used database testing tool, SQLancer [12].",
+            "section": "V APOOF-OF- CONCEPT TOOLSQLT",
+            "page": 13
+          },
+          {
+            "mention_id": "M8",
+            "sentence": "SQLT extends SQLancer by introducing new data types such as BIT and JSON, which were undersupported by SQLancer.",
+            "section": "V APOOF-OF- CONCEPT TOOLSQLT",
+            "page": 13
+          },
+          {
+            "mention_id": "M10",
+            "sentence": "Given that bugs related to SQL types often result in result inconsistencies—silent bugs without explicit error messages—we incorporated two existing metamorphic testing approaches, NOREC [14] and TLP [19], as oracles within SQLT.",
+            "section": "V APOOF-OF- CONCEPT TOOLSQLT",
+            "page": 13
+          }
+        ],
+        "reasoning": "M7 states SQLT is an extension of SQLancer, M8 that it extends SQLancer with data types SQLancer under-supported, and M10 that NoREC and TLP were incorporated as oracles within SQLT. The tool is built on the codebase.",
+        "reuse_kind": "implementation"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "What SQLT extends is the tool's type and syntax coverage, not an oracle: M10 records NoREC and TLP being incorporated as they are, to serve as SQLT's oracles."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M11",
+          "M13",
+          "M14"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M11",
+            "sentence": "We’ve also compared SQLT with SQLancer on the latest version of MySQL and SQLite (MySQL 8.",
+            "section": "B Evaluation of SQLT",
+            "page": 13
+          },
+          {
+            "mention_id": "M13",
+            "sentence": "SQLT detects 6 bugs and SQLancer detects 4 bugs.",
+            "section": "B Evaluation of SQLT",
+            "page": 14
+          },
+          {
+            "mention_id": "M14",
+            "sentence": "Among these results, SQLT uncovered 1 additional bug in MySQL that were not detected by SQLancer.",
+            "section": "B Evaluation of SQLT",
+            "page": 14
+          }
+        ],
+        "reasoning": "M11 states SQLT was compared with SQLancer on MySQL and SQLite over 24 hours, M13 gives 6 bugs against 4, and M14 that one MySQL bug was found only by SQLT."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "M16 calls SQLancer one of the most popular generation-based RDBMS testing approaches. Popularity is recognition but not a claim about being the most effective or the state of the art, and the study's own findings argue the opposite about its coverage."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

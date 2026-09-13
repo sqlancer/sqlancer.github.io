@@ -1,0 +1,545 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:30:26Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3729319",
+    "title": "Graphiti: Bridging Graph and Relational Database Queries",
+    "authors": [
+      "Yang He",
+      "Ruijie Fang",
+      "Işıl Dillig",
+      "Yuepeng Wang"
+    ],
+    "year": 2025,
+    "venue": "Proc. ACM Program. Lang.",
+    "doi": "10.1145/3729319",
+    "arxiv_id": "2504.03182",
+    "s2_paper_id": "778b9fb9fe2b30e6071d406d3abbbb82491ad070",
+    "url": "https://doi.org/10.1145/3729319",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2504.03182",
+      "retrieved_at": "2026-09-09T01:30:26Z",
+      "chars": 144426,
+      "content_sha256": "sha256:6547dc3fb05fc14f9864c871f9c8fc3b06c7ad18503080f282b130f3ad069ab4"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 44,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 1876
+      },
+      {
+        "number": "2",
+        "title": "Motivating Example",
+        "start": 13664
+      },
+      {
+        "number": "3",
+        "title": "Preliminaries",
+        "start": 25094
+      },
+      {
+        "number": "3.1",
+        "title": "Background on Graph Databases",
+        "start": 25110
+      },
+      {
+        "number": "3.3",
+        "title": "Relational Databases",
+        "start": 29954
+      },
+      {
+        "number": "4",
+        "title": "Problem Statement",
+        "start": 32732
+      },
+      {
+        "number": "4.2",
+        "title": "Equivalence Checking Problem",
+        "start": 36380
+      },
+      {
+        "number": "5",
+        "title": "Equivalence Checking Algorithm",
+        "start": 39367
+      },
+      {
+        "number": "5.1",
+        "title": "Induced Relational Schema and Standard Transformer Inference",
+        "start": 42121
+      },
+      {
+        "number": "5.2",
+        "title": "Syntax-Directed Transpilation",
+        "start": 45737
+      },
+      {
+        "number": "5.3",
+        "title": "Reduction to SQL Equivalence Checking",
+        "start": 56673
+      },
+      {
+        "number": "6",
+        "title": "Evaluation",
+        "start": 58936
+      },
+      {
+        "number": "6.1",
+        "title": "Evaluation of Graphiti with BMC backend",
+        "start": 62309
+      },
+      {
+        "number": "6.2",
+        "title": "Evaluation of Graphiti with Deductive Verifier",
+        "start": 66757
+      },
+      {
+        "number": "6.3",
+        "title": "Evaluation of Transpilation",
+        "start": 69589
+      },
+      {
+        "number": "7",
+        "title": "Related Work",
+        "start": 72767
+      },
+      {
+        "number": "8",
+        "title": "Limitation",
+        "start": 78076
+      },
+      {
+        "number": "9",
+        "title": "Conclusion and Future Work",
+        "start": 78839
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "AGE. 2024. Apache AGE. https://age.apache.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Alfred V. Aho, Yehoshua Sagiv, and Jeffrey D. Ullman. 1979. Equivalences Among Relational Expressions. SIAM J. Comput. 8, 2 (1979), 218–246. https://doi.org/10.1137/0208017",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Amazon. 2024. What’s the Difference Between a Graph Database and a Relational Database? https://aws.amazon.com/ compare/the-difference-between-graph-and-relational-database/?nc1=h_ls.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Abdelkrim Boudaoud, Houari Mahfoud, and Azeddine Chikh. 2022. Towards a Complete Direct Mapping from Relational Databases to Property Graphs. In Proceedings of the International Conference on Model and Data Engineering (MEDI). 222–235. https://doi.org/10.1007/978-3-031-21595-7_16",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Ashok K. Chandra and Philip M. Merlin. 1977. Optimal Implementation of Conjunctive Queries in Relational Data Bases. InProceedings of the ACM Symposium on Theory of Computing (STOC). 77–90. https://doi.org/10.1145/800105.803397",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Bikash Chandra, Bhupesh Chawda, Biplab Kar, K. V. Maheshwara Reddy, Shetal Shah, and S. Sudarshan. 2015. Data generation for testing and grading SQL queries. VLDB J. 24, 6 (2015), 731–755. https://doi.org/10.1007/S00778-0150395-0",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Tsong Yueh Chen, S. C. Cheung, and Siu-Ming Yiu. 2020. Metamorphic testing: a new approach for generating next test cases. CoRR abs/2002.12543 (2020). arXiv:2002.12543 https://arxiv.org/abs/2002.12543",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Yanju Chen, Yuepeng Wang, Maruth Goyal, James Dong, Yu Feng, and Isil Dillig. 2022. Synthesis-powered optimization of smart contracts via data type refactoring. Proc. ACM Program. Lang. 6, OOPSLA2 (2022), 560–588. https://doi.org/ 10.1145/3563308",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Alvin Cheung, Armando Solar-Lezama, and Samuel Madden. 2013. Optimizing database-backed applications with query synthesis. In ACMSIGPLAN Conference on Programming Language Design and Implementation (PLDI). ACM, 3–14. https://doi.org/10.1145/2491956.2462180",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Shumo Chu, Brendan Murphy, Jared Roesch, Alvin Cheung, and Dan Suciu. 2018. Axiomatic Foundations and Algorithms for Deciding Semantic Equivalences of SQL Queries. Proc. VLDB Endow. 11, 11 (2018), 1482–1495. https: //doi.org/10.14778/3236187.3236200",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Shumo Chu, Chenglong Wang, Konstantin Weitz, and Alvin Cheung. 2017. Cosette: An Automated Prover for SQL. In Proceedings of the Biennial Conference on Innovative Data Systems Research (CIDR). http://cidrdb.org/cidr2017/papers/ p51-chu-cidr17.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Shumo Chu, Konstantin Weitz, Alvin Cheung, and Dan Suciu. 2017. HoTTSQL: proving query rewrites with univalent SQL semantics. In Proceedings of the SIGPLAN Conference on Programming Language Design and Implementation (PLDI). 510–524. https://doi.org/10.1145/3062341.3062348",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Carlo Curino, Hyun Jin Moon, Alin Deutsch, and Carlo Zaniolo. 2013. Automating the database schema evolution process. VLDB J. 22, 1 (2013), 73–98. https://doi.org/10.1007/s00778-012-0302-x",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Carlo Curino, Hyun Jin Moon, and Carlo Zaniolo. 2008. Graceful database schema evolution: the PRISM workbench. Proc. VLDB Endow. 1, 1 (2008), 761–772. https://doi.org/10.14778/1453856.1453939",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Benjamin Delaware, Clément Pit-Claudel, Jason Gross, and Adam Chlipala. 2015. Fiat: Deductive Synthesis of Abstract Data Types in a Proof Assistant. In Proceedings of the ACMSIGPLAN-SIGACT Symposium on Principles of Programming Languages (POPL). 689–700. https://doi.org/10.1145/2676726.2677006",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Alin Deutsch, Nadime Francis, Alastair Green, Keith Hare, Bei Li, Leonid Libkin, Tobias Lindaaker, Victor Marsault, Wim Martens, Jan Michels, Filip Murlak, Stefan Plantikow, Petra Selmer, Oskar van Rest, Hannes Voigt, Domagoj Vrgoc, Mingxi Wu, and Fred Zemke. 2022. Graph Pattern Matching in GQL and SQL/PGQ. In International Conference on Management of Data (SIGMOD). 2246–2258. https://doi.org/10.1",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Ronald Fagin, Laura M. Haas, Mauricio A. Hernández, Renée J. Miller, Lucian Popa, and Yannis Velegrakis. 2009. Clio: Schema Mapping Creation and Data Exchange. In Conceptual Modeling: Foundations and Applications-Essays in Honor of John Mylopoulos (Lecture Notes in Computer Science, Vol. 5600). 198–236. https://doi.org/10.1007/978-3-642-02463-4_12",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Yu Feng, Ruben Martins, Jacob Van Geffen, Isil Dillig, and Swarat Chaudhuri. 2017. Component-based synthesis of table consolidation and transformation tasks from examples. In Proceedings of the ACMSIGPLAN Conference on Programming Language Design and Implementation (PLDI). 422–436. https://doi.org/10.1145/3062341.3062351",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Nadime Francis, Alastair Green, Paolo Guagliardo, Leonid Libkin, Tobias Lindaaker, Victor Marsault, Stefan Plantikow, Mats Rydberg, Petra Selmer, and Andrés Taylor. 2018. Cypher: An Evolving Query Language for Property Graphs. In Proceedings of the 2018 International Conference on Management of Data (SIGMOD). 1433–1445. https://doi.org/10.1145/ 3183713.3190657",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Xi Ge, Quinton L. DuBose, and Emerson R. Murphy-Hill. 2012. Reconciling manual and automatic refactoring. In International Conference on Software Engineering (ICSE). 211–221. https://doi.org/10.1109/ICSE.2012.6227192",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Todd J. Green. 2011. Containment of Conjunctive Queries on Annotated Relations. Theory Comput. Syst. 49, 2 (2011), 429–459. https://doi.org/10.1007/S00224-011-9327-6 Proc. ACM Program. Lang., Vol. 1, No. 1, Article 1. Publication date: January 2025. 1:24 Yang He, Ruijie Fang, Işıl Dillig, and Yuepeng Wang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Harry Halpin and James Cheney. 2011. Dynamic Provenance for SPARQL Updates Using Named Graphs. In Workshop on the Theory and Practice of Provenance (TaPP). https://doi.org/10.1145/2567948.2577357",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Olaf Hartig and Jorge Pérez. 2018. Semantics and Complexity of GraphQL. In Proceedings of the World Wide Web Conference on World Wide Web (WWW). 1155–1164. https://doi.org/10.1145/3178876.3186014",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Yang He, Pinhan Zhao, Xinyu Wang, and Yuepeng Wang. 2024. VeriEQL: Bounded Equivalence Verification for Complex SQL Queries with Integrity Constraints. Proc. ACM Program. Lang. 8, OOPSLA1 (2024), 1071–1099. https: //doi.org/10.1145/3649849",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Ziyue Hua, Wei Lin, Luyao Ren, Zongyang Li, Lu Zhang, Wenpin Jiao, and Tao Xie. 2023. GDsmith: Detecting Bugs in Cypher Graph Database Engines. In Proceedings of the SIGSOFT International Symposium on Software Testing and Analysis (ISSTA). 163–174. https://doi.org/10.1145/3597926.3598046",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland HC Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the International Conference on Software Engineering (ICSE). https://doi.org/10.1145/3597503.3623307",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 27,
+      "text": "Zhongjun Jin, Michael R. Anderson, Michael J. Cafarella, and H. V. Jagadish. 2017. Foofah: Transforming Data By Example. In Proceedings of the ACM International Conference on Management of Data (SIGMOD). 683–698. https: //doi.org/10.1145/3035918.3064034",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Shadaj Laddad, Conor Power, Mae Milano, Alvin Cheung, and Joseph M. Hellerstein. 2022. Katara: synthesizing CRDTs with verified lifting. Proc. ACM Program. Lang. 6, OOPSLA2 (2022), 1349–1377. https://doi.org/10.1145/3563336",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Jerry Liang. 2025. openCypher Transpiler. https://github.com/microsoft/openCypherTranspiler.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Chunbin Lin, Benjamin Mandel, Yannis Papakonstantinou, and Matthias Springer. 2016. Fast In-Memory SQL Analytics on Relationships between Entities. CoRR abs/1602.00033 (2016). arXiv:1602.00033 http://arxiv.org/abs/1602.00033",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Qiuyang Mang, Aoyang Fang, Boxi Yu, Hanfei Chen, and Pinjia He. 2024. Testing Graph Database Systems via Equivalent Query Rewriting. In Proceedings of the International Conference on Software Engineering (ICSE). https: //doi.org/10.1145/3597503.3639200",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Ruben Martins, Jia Chen, Yanju Chen, Yu Feng, and Isil Dillig. 2019. Trinity: An Extensible Synthesis Framework for Data Science. Proc. VLDB Endow. 12, 12 (2019), 1914–1917. https://doi.org/10.14778/3352063.3352098",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "William M. McKeeman. 1998. Differential Testing for Software. Digit. Tech. J. 10, 1 (1998), 100–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Zhengjie Miao, Sudeepa Roy, and Jun Yang. 2019. Explaining Wrong Queries Using Small Examples. In Proceedings of the International Conference on Management of Data (SIGMOD). 503–520. https://doi.org/10.1145/3299869.3319866",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Renée J. Miller, Laura M. Haas, and Mauricio A. Hernández. 2000. Schema Mapping as Query Discovery. In Proceedings of the International Conference on Very Large Data Bases (VLDB). 77–88. http://www.vldb.org/conf/2000/P077.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Neo4j. 2024. Cypher for SQL Users. https://neo4j.com/docs/getting-started/cypher-intro/cypher-sql/ Accessed: 2024-11-07.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Neo4j. 2024. Neo4j Docs. https://neo4j.com/docs/getting-started/cypher-intro/cypher-sql/#_return_customers_ without_existing_orders.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Neo4j. 2024. Transition from Relational to Graph Database. https://neo4j.com/docs/getting-started/appendix/graphdbconcepts/graphdb-vs-rdbms.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "NLM. 2024. SemMedDB Database Details-Version 2.0. https://lhncbc.nlm.nih.gov/ii/tools/SemRep_SemMedDB_SKR/ dbinfo20.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Stack Overflow. 2024. How could i use this SQL on cypher(neo4j). https://stackoverflow.com/questions/43438214/howcould-i-use-this-sql-on-cypherneo4j.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Shankara Pailoor, Yuepeng Wang, and Isil Dillig. 2024. Semantic Code Refactoring for Abstract Data Types. Proc. ACM Program. Lang. 8, POPL (2024), 816–847. https://doi.org/10.1145/3632870",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Shankara Pailoor, Yuepeng Wang, Xinyu Wang, and Isil Dillig. 2021. Synthesizing data structure refinements from integrity constraints. In Proceedings of the International Conference on Programming Language Design and Implementation (PLDI). 574–587. https://doi.org/10.1145/3453483.3454063",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Kia Rahmani, Kartik Nagar, Benjamin Delaware, and Suresh Jagannathan. 2021. Repairing serializability bugs in distributed database programs via automated schema refactoring. In ACMSIGPLAN International Conference on Programming Language Design and Implementation (PLDI). 32–47. https://doi.org/10.1145/3453483.3454028",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA (2020), 211:1–211:30. https://doi.org/10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 45,
+      "text": "George G. Robertson, Mary Czerwinski, and John E. Churchill. 2005. Visualization of mappings between schemas. In Proceedings of the Conference on Human Factors in Computing Systems (CHI). 431–439. https://doi.org/10.1145/1054972. 1055032",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Marko A. Rodriguez. 2015. The Gremlin graph traversal machine and language (invited talk). In Proceedings of the Symposium on Database Programming Languages (DBPL). 1–10. https://doi.org/10.1145/2815072.2815073 Proc. ACM Program. Lang., Vol. 1, No. 1, Article 1. Publication date: January 2025. Graphiti: Bridging Graph and Relational Database Queries 1:25",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "StackOverflow. 2024. Comparison of relational databases and graph databases. https://stackoverflow.com/questions/ 13046442/comparison-of-relational-databases-and-graph-databases.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Kuzu Team. 2025. Kuzu. https://kuzudb.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Boris A Trakhtenbrot. 1950. Impossibility of an algorithm for the decision problem in finite classes. In Doklady Akademii Nauk SSSR 70. 569–572.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Oskar van Rest, Sungpack Hong, Jinha Kim, Xuming Meng, and Hassan Chafi. 2016. PGQL: a property graph query language. In Proceedings of the International Workshop on Graph Data Management Experiences and Systems (GRADES). 7. https://doi.org/10.1145/2960414.2960421",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Margus Veanes, Nikolai Tillmann, and Jonathan de Halleux. 2010. Qex: Symbolic SQL Query Explorer. In International Conference on Logic for Programming, Artificial Intelligence, and Reasoning (LPAR). 425–446. https://doi.org/10.1007/9783-642-17511-4_24",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Chad Vicknair, Michael Macias, Zhendong Zhao, Xiaofei Nan, Yixin Chen, and Dawn Wilkins. 2010. A comparison of a graph database and a relational database: a data provenance perspective. In Proceedings of the Annual Southeast Regional Conference. 42. https://doi.org/10.1145/1900008.1900067",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Chenglong Wang, Alvin Cheung, and Rastislav Bodík. 2017. Synthesizing highly expressive SQL queries from inputoutput examples. In Proceedings of the ACMSIGPLAN Conference on Programming Language Design and Implementation (PLDI). 452–466. https://doi.org/10.1145/3062341.3062365",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Meng Wang, Jeremy Gibbons, Kazutaka Matsuda, and Zhenjiang Hu. 2013. Refactoring pattern matching. Sci. Comput. Program. 78, 11 (2013), 2216–2242. https://doi.org/10.1016/J.SCICO.2012.07.014",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Yuepeng Wang, Isil Dillig, Shuvendu K. Lahiri, and William R. Cook. 2018. Verifying equivalence of database-driven applications. Proc. ACM Program. Lang. 2, POPL (2018), 56:1–56:29. https://doi.org/10.1145/3158144",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Yuepeng Wang, James Dong, Rushi Shah, and Isil Dillig. 2019. Synthesizing database programs for schema refactoring. InProceedings of the ACMSIGPLAN Conference on Programming Language Design and Implementation (PLDI). 286–300. https://doi.org/10.1145/3314221.3314588",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Yuepeng Wang, Rushi Shah, Abby Criswell, Rong Pan, and Isil Dillig. 2020. Data Migration using Datalog Program Synthesis. Proc. VLDB Endow. 13, 7 (2020), 1006–1019. https://doi.org/10.14778/3384345.3384350",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Navid Yaghmazadeh, Christian Klinger, Isil Dillig, and Swarat Chaudhuri. 2016. Synthesizing transformations on hierarchically structured data. In Proceedings of the ACMSIGPLAN Conference on Programming Language Design and Implementation (PLDI). 508–521. https://doi.org/10.1145/2908080.2908088",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Navid Yaghmazadeh, Xinyu Wang, and Isil Dillig. 2018. Automated Migration of Hierarchical Data to Relational Tables using Programming-by-Example. Proc. VLDB Endow. 11, 5 (2018), 580–593. https://doi.org/10.1145/3187009.3177735",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Yingying Zheng, Wensheng Dou, Yicheng Wang, Zheng Qin, Lei Tang, Yu Gao, Dong Wang, Wei Wang, and Jun Wei. 2022. Finding bugs in Gremlin-based graph database systems via Randomized differential testing. In Proceedings of the SIGSOFT International Symposium on Software Testing and Analysis (ISSTA). 302–313. https://doi.org/10.1145/3533767. 3534409",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Qi Zhou, Joy Arulraj, Shamkant B. Navathe, William Harris, and Jinpeng Wu. 2022. SPES: A Symbolic Approach to Proving Query Equivalence Under Bag Semantics. In International Conference on Data Engineering (ICDE). 2735–2748. https://doi.org/10.1109/ICDE53745.2022.00250",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Qi Zhou, Joy Arulraj, Shamkant B. Navathe, William Harris, and Dong Xu. 2019. Automated Verification of Query Equivalence Using Satisfiability Modulo Theories. Proc. VLDB Endow. 12, 11 (2019), 1276–1288. https://doi.org/10. 14778/3342263.3342267 Proc. ACM Program. Lang., Vol. 1, No. 1, Article 1. Publication date: January 2025. 1:26 Yang He, Ruijie Fang, Işıl Dillig, and Yuepeng Wang A Semantics o",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 26,
+      "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland HC Yap, Zhenkai Liang, and Manuel Rigger. 2024. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the International Conference on Software Engineering (ICSE). https://doi.org/10.1145/3597503.3623307",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 44,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA (2020), 211:1–211:30. https://doi.org/10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 7,26,31,44]",
+      "technique": "tlp",
+      "sentence": "Work in this space includes differential testing [ 25,33,60] and metamorphic testing [ 7,26,31,44] to detect bugs in database management systems, mutation-based testing to grade programming assignments involving SQL queries [ 6], and provenance-based techniques for explaining wrong SQL queries [ 34].",
+      "context_before": "ntation of the Entity-Relationship Diagram (ER Diagram) of a relational database schema. In part due to this unifying insight, these graph query languages are both semantically and syntactically similar Proc. ACM Program. Lang., Vol. 1, No. 1, Article 1. Publication date: January 2025. 1:22 Yang He, Ruijie Fang, Işıl Dillig, and Yuepeng Wang to Cypher. Because of this similarity, we believe our proposed methodology can be adapted fairly easily to graph database query languages other than Cypher. Testing database queries. Another related line of related work focuses on testing database queries.",
+      "context_after": "In contrast, Graphiti transpiles graph database queries into equivalent SQL queries and uses existing automated reasoning tools for SQL equivalence checking. Thus, Graphiti is complementary and can benefit from advances in testing SQL queries. Transpiling Cypher queries. There are a few existing tools that can translate Cypher queries to queries in SQL-like languages [ 29,48]. The most relevant to this paper is OpenCypherTranspiler [29], which first transforms a Cypher query into a logical plan and renders it as a relational query. However, it supports only a limited subset of Cypher and lack",
+      "section": "7 Related Work",
+      "page": 22,
+      "char_offset": 76677,
+      "cited_reference": {
+        "number": 44,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA (2020), 211:1–211:30. https://doi.org/10.1145/3428279",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "prints the DOI of the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:17:50Z",
+    "is_model_written": true,
+    "summary": "Graphiti checks whether a Cypher graph query and a SQL relational query are equivalent. To make that question well-posed across two data models the authors introduce database transformers, mapping instances between the graph and relational representations, and define equivalence modulo a transformer. Verification reduces to checking two SQL queries by translating a subset of Cypher into SQL. Graphiti proved useful for verification and refutation, uncovering subtle bugs including some in Cypher tutorials and academic papers.",
+    "narrative": "One citation in related work, listing metamorphic testing for DBMS bug detection alongside differential testing, with work by the SQLancer authors among the references.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

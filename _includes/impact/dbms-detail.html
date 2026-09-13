@@ -1,0 +1,214 @@
+{%- comment -%}
+Everything the dataset records about one database system.
+
+The impact page can only show a bar and a row per system. This answers what
+those raise but cannot fit: which bugs, found by whom, under which rule, and --
+where the project uses SQLancer -- the evidence for saying so.
+
+Counts come from stats.json so they cannot drift from the charts. The bug list
+and the adoption evidence are read from the records themselves, because they are
+the evidence rather than a summary of it.
+
+Parameter: id (a database system id).
+{%- endcomment -%}
+{%- assign impact = site.data.impact -%}
+{%- assign row = impact.stats.dbms.rows | where: "id", include.id | first -%}
+{%- assign entry = impact.dbms.dbms | where: "id", include.id | first -%}
+{%- assign bugs = impact.bugs.bugs | where: "dbms", include.id -%}
+{%- assign adoption = impact.adoption.adoption | where: "dbms", include.id -%}
+{%- assign used = adoption | where_exp: "r", "r.relationship != 'planned_adoption'" -%}
+{%- comment -%}
+  A proposal is superseded by evidence that the project actually runs
+  SQLancer, so a system with both shows only the adoption. Seven do -- Turso's
+  page claimed it both uses SQLancer and has only proposed it -- and the
+  statistics have always counted them this way; the page had not.
+{%- endcomment -%}
+{%- if used.size > 0 -%}
+  {%- assign proposed = "" | split: "" -%}
+{%- else -%}
+  {%- assign proposed = adoption | where: "relationship", "planned_adoption" -%}
+{%- endif -%}
+
+<div class="impact" markdown="0">
+
+<p class="impact-breadcrumb">
+  <a href="{{ '/impact/#database-systems' | relative_url }}">&larr; All database systems</a>
+</p>
+
+<p>
+  {%- if entry.url %}<a href="{{ entry.url }}">{{ row.name }}</a>{% else %}{{ row.name }}{% endif -%}
+  {%- if row.supported %} is supported by SQLancer — the main repository ships a
+  testing implementation for it{% else %} has no testing implementation in the
+  main SQLancer repository{% endif -%}.
+  {%- if row.bugs > 0 %}
+  SQLancer is credited with <strong>{{ row.bugs }}</strong> bugs in it,
+  {%- if row.first_reported %} reported between {{ row.first_reported }} and
+  {{ row.last_reported }}{% endif -%}.
+  {%- else %}
+  No bugs in it are attributed to SQLancer.
+  {%- endif %}
+  {%- if row.repository %}
+  Its source is at <a href="{{ row.repository }}">{{ row.repository | remove: "https://github.com/" }}</a>.
+  {%- endif %}
+</p>
+
+{%- if row.bugs_rejected > 0 %}
+<p class="impact-meta">
+  A further {{ row.bugs_rejected }}
+  {%- if row.bugs_rejected == 1 %} report was{% else %} reports were{% endif %}
+  filed and rejected by the developers as invalid or duplicate. Those are kept
+  in the dataset for transparency and are excluded from every count here.
+</p>
+{%- endif %}
+
+{%- if used.size > 0 %}
+<h2 id="adoption">How the project uses SQLancer</h2>
+{%- elsif proposed.size > 0 %}
+{%- comment -%}
+  A proposal is not use, and a heading saying it is would be the exact
+  overstatement the policy exists to prevent.
+{%- endcomment -%}
+<h2 id="adoption">SQLancer and this project</h2>
+{%- endif %}
+
+{%- if used.size > 0 or proposed.size > 0 %}
+{%- for record in used %}
+<div class="impact-adoption">
+  <h3 class="impact-adoption__heading">
+    {{ record.relationship | replace: "_", " " | capitalize }}
+  </h3>
+  <p>{{ record.summary }}</p>
+  {%- for item in record.evidence %}
+  {%- comment -%}
+    Show the repository path rather than the full permalink: these URLs carry a
+    40-character commit SHA and are unreadable inline.
+  {%- endcomment -%}
+  {%- assign path = item.source_url | split: "/blob/" | last | split: "/" -%}
+  {%- assign label = path | shift | join: "/" -%}
+  <div class="impact-evidence">
+    {%- if item.excerpt %}<q>{{ item.excerpt | strip_html | truncate: 400 }}</q><br>{% endif -%}
+    {%- if item.note %}<span class="impact-meta">{{ item.note }}</span><br>{% endif -%}
+    <a href="{{ item.source_url }}">{{ label | default: item.source_url }}</a>
+    {%- if item.last_verified %}
+    <span class="impact-meta">last verified {{ item.last_verified | date: "%Y-%m-%d" }}</span>
+    {%- endif %}
+  </div>
+  {%- endfor %}
+</div>
+{%- endfor %}
+
+{%- if proposed.size > 0 %}
+<h3 id="proposed">Adoption proposed, not yet shown</h3>
+<p>
+  The project's developers have proposed adopting SQLancer without anything yet
+  showing the project running it. An intention is not use, so this counts
+  towards no figure on the impact page.
+</p>
+{%- for record in proposed %}
+<div class="impact-adoption">
+  <p>{{ record.summary }}</p>
+  {%- for item in record.evidence %}
+  <div class="impact-evidence">
+    {%- if item.excerpt %}<q>{{ item.excerpt | strip_html | truncate: 400 }}</q><br>{% endif -%}
+    {%- if item.note %}<span class="impact-meta">{{ item.note }}</span><br>{% endif -%}
+    <a href="{{ item.source_url }}">{{ item.source_url | remove: "https://github.com/" }}</a>
+  </div>
+  {%- endfor %}
+</div>
+{%- endfor %}
+{%- endif %}
+{%- endif %}
+
+{%- if row.bugs > 0 %}
+<h2 id="breakdown">How the bugs break down</h2>
+
+<div class="impact-columns">
+  <div>
+    <h3>By year reported</h3>
+    {% include impact/bar-list.html series=row.bugs_by_year %}
+  </div>
+  <div>
+    <h3>Who found them</h3>
+    {% include impact/bar-list.html series=row.bugs_by_affiliation %}
+  </div>
+  <div>
+    <h3>By status</h3>
+    {% include impact/bar-list.html series=row.bugs_by_status %}
+  </div>
+  <div>
+    <h3>By symptom</h3>
+    {% include impact/bar-list.html series=row.bugs_by_symptom %}
+  </div>
+  <div>
+    <h3>By technique</h3>
+    {% include impact/bar-list.html series=row.bugs_by_technique %}
+  </div>
+  <div>
+    <h3>Why each bug counts</h3>
+    {% include impact/bar-list.html series=row.bugs_by_attribution_rule %}
+  </div>
+</div>
+
+{%- if row.top_reporters.size > 0 %}
+<h3 id="reporters">Who reported them ({{ row.top_reporters.size }})</h3>
+{% include impact/bar-list.html series=row.top_reporters %}
+{%- endif %}
+
+<h2 id="bugs">Every bug on record ({{ bugs.size }})</h2>
+
+<p>
+  One row per report, newest first, each linking to the report itself. Rejected
+  reports are marked and are not part of any count above.
+</p>
+
+<div class="impact-table-wrap">
+  <table class="impact-table impact-table--bugs">
+    <thead>
+      <tr>
+        <th scope="col">Reported</th>
+        <th scope="col">Report</th>
+        <th scope="col">Status</th>
+        <th scope="col">Technique</th>
+        <th scope="col">Reporter</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- assign ordered = bugs | sort: "reported_date" | reverse %}
+      {%- for bug in ordered %}
+      <tr{% unless bug.status_is_true_positive %} class="impact-row--rejected"{% endunless %}>
+        <td>{{ bug.reported_date | default: "&mdash;" }}</td>
+        <th scope="row">
+          {%- comment -%}
+            Some reports have no public page to link: a bug the project records
+            in its own source but tracks in a private Jira, or one the lab sent
+            by email. The record it came from is then what a reader can check.
+          {%- endcomment -%}
+          {%- assign bug_link = bug.primary_url | default: bug.links.record -%}
+          {%- if bug_link -%}
+          <a href="{{ bug_link }}">{{ bug.title | default: bug.id | truncate: 110 }}</a>
+          {%- else -%}
+          {{ bug.title | default: bug.id | truncate: 110 }}
+          {%- endif -%}
+          {%- if bug.primary_url == nil and bug.links.tracker %}
+          <span class="impact-meta">tracked privately at
+          {{ bug.links.tracker | split: "/browse/" | last }}</span>
+          {%- endif -%}
+        </th>
+        <td>{{ bug.status | replace: "_", " " }}</td>
+        <td>{% if bug.technique %}{{ bug.technique | upcase }}{% else %}&mdash;{% endif %}</td>
+        <td>{{ bug.reporter | default: "&mdash;" }}</td>
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+</div>
+{%- endif %}
+
+<p class="impact-meta">
+  Every figure on this page is computed from
+  <a href="https://github.com/sqlancer/sqlancer.github.io/tree/main/_data/impact"><code>_data/impact/</code></a>.
+  The <a href="{{ '/impact/#methodology' | relative_url }}">attribution policy</a>
+  explains what has to be true for a bug to be counted.
+</p>
+
+</div>

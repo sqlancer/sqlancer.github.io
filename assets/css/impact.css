@@ -1,0 +1,487 @@
+/* Styling for the /impact/ section and the homepage statistics strip.
+ *
+ * Kept in a standalone stylesheet rather than in the theme's Sass pipeline so
+ * that the remote Minimal Mistakes theme stays untouched and upgradable. Only
+ * `.impact-*` classes are defined here; nothing overrides a theme selector.
+ *
+ * The categorical slots are the validated default data-visualisation palette.
+ * Both modes were checked with the palette validator against the surfaces this
+ * page actually renders on (#ffffff light, #1a1a19 dark): lightness band,
+ * chroma floor, colourblind separation, normal-vision separation and contrast
+ * all pass. Two light-mode slots sit below 3:1 against white, so every chart
+ * ships direct value labels and a table beside it, which is the required
+ * relief.
+ */
+
+.impact {
+  --impact-surface: #ffffff;
+  --impact-surface-raised: #f8f8f6;
+  --impact-ink: #0b0b0b;
+  --impact-ink-secondary: #52514e;
+  --impact-ink-muted: #6d6b66;
+  --impact-grid: #e1e0d9;
+  --impact-axis: #c3c2b7;
+  --impact-border: rgba(11, 11, 11, 0.12);
+
+  --impact-sequential: #2a78d6;
+  --impact-series-1: #2a78d6;
+  --impact-series-2: #eb6834;
+  --impact-series-3: #1baf7a;
+  --impact-series-4: #eda100;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .impact {
+    --impact-surface: #1a1a19;
+    --impact-surface-raised: #222220;
+    --impact-ink: #ffffff;
+    --impact-ink-secondary: #c3c2b7;
+    --impact-ink-muted: #898781;
+    --impact-grid: #2c2c2a;
+    --impact-axis: #383835;
+    --impact-border: rgba(255, 255, 255, 0.14);
+
+    --impact-sequential: #3987e5;
+    --impact-series-1: #3987e5;
+    --impact-series-2: #d95926;
+    --impact-series-3: #199e70;
+    --impact-series-4: #c98500;
+  }
+}
+
+:root[data-theme="dark"] .impact {
+  --impact-surface: #1a1a19;
+  --impact-surface-raised: #222220;
+  --impact-ink: #ffffff;
+  --impact-ink-secondary: #c3c2b7;
+  --impact-ink-muted: #898781;
+  --impact-grid: #2c2c2a;
+  --impact-axis: #383835;
+  --impact-border: rgba(255, 255, 255, 0.14);
+
+  --impact-sequential: #3987e5;
+  --impact-series-1: #3987e5;
+  --impact-series-2: #d95926;
+  --impact-series-3: #199e70;
+  --impact-series-4: #c98500;
+}
+
+/* ---------------------------------------------------------------- headline */
+
+.impact-headline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em 2.5em;
+  align-items: baseline;
+  justify-content: center;
+  margin: 1.5em 0 1em;
+  padding: 0;
+  list-style: none;
+}
+
+.impact-headline__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 8em;
+}
+
+.impact-headline__value {
+  font-size: 1.9em;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--impact-ink);
+}
+
+/* Deliberately not uppercased: "DBMSs supported" becomes "DBMSS SUPPORTED",
+ * which reads as a typo. */
+.impact-headline__label {
+  font-size: 0.85em;
+  letter-spacing: 0.01em;
+  color: var(--impact-ink-secondary);
+}
+
+/* On the splash hero the strip sits on the dark overlay. */
+.page__hero--overlay .impact-headline__value,
+.page__hero--overlay .impact-headline__label {
+  color: #fff;
+}
+
+/* ------------------------------------------------------------- stat tiles */
+
+.impact-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11em, 1fr));
+  gap: 1em;
+  margin: 1.5em 0 2em;
+  padding: 0;
+  list-style: none;
+}
+
+.impact-stat {
+  padding: 1em 1.1em;
+  border: 1px solid var(--impact-border);
+  border-radius: 6px;
+  background: var(--impact-surface-raised);
+}
+
+.impact-stat__value {
+  display: block;
+  font-size: 1.8em;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--impact-ink);
+}
+
+.impact-stat__label {
+  display: block;
+  margin-top: 0.2em;
+  font-size: 0.82em;
+  color: var(--impact-ink-secondary);
+}
+
+/* ----------------------------------------------------------------- charts */
+
+.impact-figure {
+  margin: 1.5em 0 2em;
+}
+
+.impact-figure__caption {
+  margin: 0 0 0.6em;
+  font-size: 0.85em;
+  color: var(--impact-ink-secondary);
+}
+
+.impact-chart {
+  display: block;
+  overflow: visible;
+  font-family: inherit;
+}
+
+.impact-chart__scroll {
+  overflow-x: auto;
+  padding-bottom: 0.25em;
+}
+
+.impact-chart__label,
+.impact-chart__tick {
+  font-size: 11px;
+  fill: var(--impact-ink-muted);
+}
+
+.impact-chart__value {
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  fill: var(--impact-ink-secondary);
+}
+
+.impact-chart__value--tiny {
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.impact-chart__grid {
+  stroke: var(--impact-grid);
+  stroke-width: 1;
+}
+
+.impact-chart__axis {
+  stroke: var(--impact-axis);
+  stroke-width: 1;
+}
+
+/* ----------------------------------------------------------------- legend */
+
+.impact-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em 1.2em;
+  margin: 0 0 0.6em;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85em;
+  color: var(--impact-ink-secondary);
+}
+
+.impact-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.impact-legend__swatch {
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: 2px;
+  flex: none;
+}
+
+/* ------------------------------------------------------------ data tables */
+
+.impact-table-wrap {
+  overflow-x: auto;
+}
+
+.impact-table {
+  width: 100%;
+  font-size: 0.82em;
+  border-collapse: collapse;
+}
+
+.impact-table th,
+.impact-table td {
+  padding: 0.35em 0.6em;
+  border-bottom: 1px solid var(--impact-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.impact-table td.impact-num,
+.impact-table th.impact-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.impact-details {
+  margin: 0.5em 0 2em;
+}
+
+.impact-details > summary {
+  cursor: pointer;
+  font-size: 0.88em;
+  color: var(--impact-ink-secondary);
+}
+
+/* ------------------------------------------------------------------ misc */
+
+.impact-tag {
+  display: inline-block;
+  padding: 0.05em 0.5em;
+  margin-right: 0.25em;
+  border: 1px solid var(--impact-border);
+  border-radius: 999px;
+  font-size: 0.85em;
+  white-space: nowrap;
+  color: var(--impact-ink-secondary);
+}
+
+.impact-evidence {
+  margin: 0.3em 0 0;
+  padding-left: 0.8em;
+  border-left: 3px solid var(--impact-grid);
+  font-size: 0.9em;
+  color: var(--impact-ink-secondary);
+}
+
+/* Evidence links are permalinks with 40-character commit SHAs in them. Without
+ * this they are a single unbreakable word and push the whole page sideways. */
+.impact-evidence a,
+.impact-table a,
+.impact a[href*="://"] {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* A model-written summary. Deliberately styled unlike .impact-evidence: that
+ * one quotes a source, this one does not, and a reader must be able to tell
+ * which is which at a glance rather than by reading the caption. */
+.impact-summary {
+  margin: 0.4em 0 0.2em;
+  font-size: 0.95em;
+  color: var(--impact-ink-secondary);
+}
+
+/* What the paper is about, secondary to what it did with SQLancer. */
+.impact-summary .impact-about {
+  display: block;
+  margin-top: 0.35em;
+  font-size: 0.92em;
+  color: var(--impact-ink-muted, var(--impact-ink-secondary));
+}
+
+.impact-summary .impact-meta {
+  display: block;
+  margin-top: 0.2em;
+  font-style: italic;
+}
+
+.impact-note {
+  padding: 0.8em 1em;
+  border-left: 3px solid var(--impact-series-1);
+  background: var(--impact-surface-raised);
+  font-size: 0.9em;
+}
+
+.impact-policy__rule {
+  margin: 0.35em 0;
+}
+
+.impact-policy__kind {
+  display: inline-block;
+  min-width: 5.5em;
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--impact-ink-muted);
+}
+
+.impact-meta {
+  font-size: 0.82em;
+  color: var(--impact-ink-muted);
+}
+
+/* ------------------------------------------------ per-system detail pages */
+
+.impact-breadcrumb {
+  font-size: 0.9em;
+  margin: 0 0 1em;
+}
+
+/* Bars drawn in HTML rather than SVG. The shared page charts are generated
+ * files reviewed in a diff; these are per-system and there are hundreds, so
+ * they are rendered from the data instead. One hue, because the job is
+ * magnitude, and every row carries its number as well as its bar. */
+.impact-bars {
+  margin: 0 0 1.2em;
+}
+
+.impact-bars__row {
+  display: grid;
+  grid-template-columns: minmax(6em, 12em) 1fr;
+  align-items: center;
+  gap: 0 0.7em;
+  margin: 0 0 0.3em;
+}
+
+.impact-bars__label {
+  font-size: 0.85em;
+  color: var(--impact-ink-secondary);
+  overflow-wrap: anywhere;
+}
+
+.impact-bars__value {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin: 0;
+  min-width: 0;
+}
+
+.impact-bars__bar {
+  display: block;
+  height: 14px;
+  min-width: 2px;
+  border-radius: 4px;
+  background: var(--impact-sequential);
+}
+
+.impact-bars__count {
+  font-size: 0.8em;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--impact-ink-secondary);
+  white-space: nowrap;
+}
+
+.impact-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20em), 1fr));
+  gap: 0 2em;
+}
+
+.impact-columns h3 {
+  margin-top: 0.6em;
+}
+
+.impact-adoption {
+  margin: 0 0 1.4em;
+}
+
+.impact-adoption__heading {
+  margin: 0 0 0.3em;
+  font-size: 1em;
+  text-transform: capitalize;
+}
+
+/* A long bug list is the point of a system's page, but it should not be the
+ * whole viewport. It scrolls in place once it is taller than a screenful. */
+.impact-table--bugs {
+  font-size: 0.9em;
+}
+
+.impact-table--bugs tbody {
+  font-variant-numeric: tabular-nums;
+}
+
+.impact-row--rejected {
+  opacity: 0.62;
+}
+
+.impact-row--rejected th::after {
+  content: " (rejected)";
+  color: var(--impact-ink-muted);
+  font-weight: 400;
+}
+
+/* A chart bar that links somewhere. The hover cue has to be visible against
+ * both the bar fill and the page surface, so it is an outline rather than a
+ * colour change, which would collide with the categorical palette. */
+.impact-chart a {
+  cursor: pointer;
+}
+
+.impact-chart a:hover .impact-chart__bar,
+.impact-chart a:focus-visible .impact-chart__bar {
+  stroke: var(--impact-ink);
+  stroke-width: 1.5;
+}
+
+.impact-chart a:hover .impact-chart__label,
+.impact-chart a:focus-visible .impact-chart__label {
+  fill: var(--impact-ink);
+  text-decoration: underline;
+}
+
+/* A frame captured from a talk. It sits between the mention's timestamp and
+ * the note explaining it, so it is bounded rather than full-bleed: a slide is
+ * evidence here, not an illustration, and at page width it would read as one. */
+.impact-frame {
+  margin: 0.5em 0 0.75em;
+  max-width: 34em;
+}
+
+.impact-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--impact-rule, #d8d8d8);
+  border-radius: 3px;
+}
+
+.impact-frame figcaption {
+  margin-top: 0.35em;
+}
+
+/* A slide from someone's talk, shown with the talk it came from. The image
+ * carries it, so the caption stays quiet underneath; and a slide is never
+ * narrowed past the point where its own text can be read -- which is the only
+ * reason to show a slide rather than describe it. */
+.impact-slide {
+  margin: 0.75em 0 1.25em;
+  max-width: 32em;
+}
+
+.impact-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--impact-rule, #d8d8d8);
+  border-radius: 3px;
+}
+
+.impact-slide figcaption {
+  margin-top: 0.4em;
+}

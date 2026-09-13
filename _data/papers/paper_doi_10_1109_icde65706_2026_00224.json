@@ -1,0 +1,1511 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:28:53Z",
+  "paper": {
+    "id": "paper:doi:10.1109/icde65706.2026.00224",
+    "title": "A Set-Theoretic Approach to Detecting Logic Bugs in DBMS Inner Join Optimizations",
+    "authors": [
+      "Ce Lyu",
+      "Changzheng Wei",
+      "Yanhao Wang",
+      "Jie Liang",
+      "Li Lin",
+      "Hanghang Wu",
+      "Minghao Zhao",
+      "Ying Yan",
+      "Aoying Zhou"
+    ],
+    "year": 2026,
+    "venue": "IEEE International Conference on Data Engineering",
+    "doi": "10.1109/icde65706.2026.00224",
+    "arxiv_id": "2606.23294",
+    "s2_paper_id": "f959eadc36d89bdfc3add245defa2b3b50c40954",
+    "url": "https://doi.org/10.1109/icde65706.2026.00224",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2606.23294",
+      "retrieved_at": "2026-09-09T01:28:53Z",
+      "chars": 75797,
+      "content_sha256": "sha256:c5a6bf79ad16e2ae3b478a94a1c2921899df26111e3e46e8a9bc527f804c7ed3"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 14,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 2313
+      },
+      {
+        "number": "II",
+        "title": "BACKGROUND",
+        "start": 11440
+      },
+      {
+        "number": "A",
+        "title": "Set and Multiset Semantics in SQL",
+        "start": 11455
+      },
+      {
+        "number": "B",
+        "title": "Query Optimization and Rewrite Logic",
+        "start": 12265
+      },
+      {
+        "number": "C",
+        "title": "Metamorphic Testing",
+        "start": 13042
+      },
+      {
+        "number": "III",
+        "title": "METHODOLOGY",
+        "start": 14193
+      },
+      {
+        "number": "A",
+        "title": "Framework Overview",
+        "start": 15113
+      },
+      {
+        "number": "B",
+        "title": "Symmetric Join Transformation",
+        "start": 18918
+      },
+      {
+        "number": "C",
+        "title": "Asymmetric Difference Transformation",
+        "start": 21930
+      },
+      {
+        "number": "D",
+        "title": "Symmetric Difference Transformation",
+        "start": 24935
+      },
+      {
+        "number": "E",
+        "title": "Database and Query Generation",
+        "start": 27533
+      },
+      {
+        "number": "IV",
+        "title": "THEORETICALANALYSIS OFTRANSFORMATION",
+        "start": 29228
+      },
+      {
+        "number": "A",
+        "title": "Preliminaries",
+        "start": 29671
+      },
+      {
+        "number": "B",
+        "title": "Proofs of Equivalence under Set Semantics",
+        "start": 31105
+      },
+      {
+        "number": "C",
+        "title": "Proofs of Equivalence under Multiset Semantics",
+        "start": 33433
+      },
+      {
+        "number": "V",
+        "title": "EXPERIMENTALEVALUATION",
+        "start": 35175
+      },
+      {
+        "number": "A",
+        "title": "Evaluation Setup",
+        "start": 35643
+      },
+      {
+        "number": "C",
+        "title": "Diversity of Detected Logic Bugs",
+        "start": 38922
+      },
+      {
+        "number": "E",
+        "title": "Comparison to Existing DBMS Testing Approaches",
+        "start": 45587
+      },
+      {
+        "number": "VI",
+        "title": "DISCUSSION",
+        "start": 54102
+      },
+      {
+        "number": "VII",
+        "title": "RELATEDWORK",
+        "start": 58879
+      },
+      {
+        "number": "VIII",
+        "title": "CONCLUSION",
+        "start": 62881
+      },
+      {
+        "number": "O",
+        "title": "Papaemmanouil, and N. Tatbul, “Neo: A learned query optimizer,”",
+        "start": 65336
+      },
+      {
+        "number": "T",
+        "title": "G. Price, “Access path selection in a relational database management",
+        "start": 68732
+      },
+      {
+        "number": "J",
+        "title": "Sun, “PATA: Fuzzing with path aware taint analysis,” in2022 IEEE",
+        "start": 74357
+      },
+      {
+        "number": "J",
+        "title": "Wang, and J. Li, “Sequence-oriented DBMS fuzzing,” in2023 IEEE",
+        "start": 75448
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "D. D. Chamberlin, “Relational data-base management systems,”ACM Comput. Surv., vol. 8, no. 1, pp. 43–66, 1976.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "M. Stonebraker, S. Madden, and P. Dubey, “Intel “big data” science and technology center vision and execution plan,”SIGMOD Rec., vol. 42, no. 1, pp. 44–49, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "M. Stonebraker and A. Pavlo, “What goes around comes around... and around...”SIGMOD Rec., vol. 53, no. 2, pp. 21–37, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "R. Hai, S.-H. Hung, T. Coopmans, T. Littau, and F. Geerts, “Quantum data management in the NISQ era,”Proc. VLDB Endow., vol. 18, no. 6, pp. 1720–1729, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "B. Ding, S. Das, W. Wu, S. Chaudhuri, and V. Narasayya, “Plan stitch: Harnessing the best of many plans,”Proc. VLDB Endow., vol. 11, no. 10, pp. 1123–1136, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "R. Marcus, P. Negi, H. Mao, C. Zhang, M. Alizadeh, T. Kraska, O. Papaemmanouil, and N. Tatbul, “Neo: A learned query optimizer,” Proc. VLDB Endow., vol. 12, no. 11, pp. 1705–1718, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Y. Zhang, Y. Chronis, J. M. Patel, and T. Rekatsinas, “Simple adaptive query processing vs. learned query optimizers: Observations and analysis,”Proc. VLDB Endow., vol. 16, no. 11, pp. 2962–2975, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "T. Neumann and B. Radke, “Adaptive optimization of very large join queries,” inProceedings of the 2018 International Conference on Management of Data, 2018, pp. 677–692.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "X. Zhang and A. Eldawy, “Spatial query optimization with learning,” Proc. VLDB Endow., vol. 17, no. 12, pp. 4245–4248, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "J. Zhao, K. Su, Y. Yang, X. Yu, P. Koutris, and H. Zhang, “Debunking the myth of join ordering: Toward robust SQL analytics,” 3, no. 3, pp. 146:1–146:28, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "A. Birler, A. Kemper, and T. Neumann, “Robust join processing with diamond hardened joins,”Proc. VLDB Endow., vol. 17, no. 11, pp. 3215– 3228, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "X. Hu, “Output-optimal algorithms for join-aggregate queries,” 3, no. 2, pp. 104:1–104:27, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "H. Kalumin and A. Deshpande, “Optimizing queries with many-to-many joins,” in (ICDE), 2025, pp. 3668–3681.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Wikipedia, “Test oracle,” https://en.wikipedia.org/wiki/Test oracle, 2025, accessed: 2025-10-27.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "W. E. Howden, “Theoretical and empirical studies of program testing,” IEEE Trans. Softw. Eng., no. 4, pp. 293–298, 2006.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "A. Seltenreich, “SQLSmith,” https://github.com/anse1/sqlsmith, 2025, accessed: 2025-10-27.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "M. Zalewski, “American fuzzy lop,” https://github.com/google/AFL, 2025, accessed: 2025-10-27.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "D. R. Slutz, “Massive stochastic testing of SQL,” inProceedings of 24rd International Conference on Very Large Data Bases, 1998, pp. 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 20,
+      "text": "——, “Finding bugs in database systems via query partitioning,”Proc. ACM Program. Lang., vol. 4, no. OOPSLA, pp. 211:1–211:30, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 21,
+      "text": "Y. Fu, Z. Wu, Y. Zhang, J. Liang, J. Fu, Y. Jiang, S. Li, and X. Liao, “THANOS: DBMS bug detection via storage engine rotation based differential testing,” in on Software Engineering (ICSE), 2024, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” inProceedings of the 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 23,
+      "text": "J. Song, W. Dou, Y. Zheng, Y. Gao, Z. Cui, W. Wang, and J. Wei, “Detecting schema-related logic bugs in relational DBMSs via equivalent database construction,”Proc. VLDB Endow., vol. 18, no. 7, pp. 2281–2294, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "X. Tang, S. Wu, D. Zhang, F. Li, and G. Chen, “Detecting logic bugs of join optimizations in DBMS,” 1, no. 1, pp. 55:1–55:26, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "J. Ba and M. Rigger, “Keep it simple: Testing databases via differential query plans,” 2, no. 3, pp. 188:1–188:26, 2024.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 26,
+      "text": "PingCAP, “TiDB,” https://pingcap.com/tidb, 2025, accessed: 2025-1027.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "M. Rigger, “SQLancer,” https://github.com/sqlancer/sqlancer, 2025, accessed: 2025-10-27.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 28,
+      "text": "E. F. Codd, “A relational model of data for large shared data banks,” Commun. ACM, vol. 13, no. 6, pp. 377–387, 1970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "P. G. Selinger, M. M. Astrahan, D. D. Chamberlin, R. A. Lorie, and T. G. Price, “Access path selection in a relational database management system,” inProceedings of the 1979 ACMSIGMOD International Conference on Management of Data, 1979, pp. 23–34.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "G. Graefe and W. J. McKenna, “The volcano optimizer generator: Extensibility and efficient search,” inProceedings of the Ninth International Conference on Data Engineering, 1993, pp. 209–218.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "S. Chaudhuri, “An overview of query optimization in relational systems,” inProceedings of the Seventeenth ACMSIGACT-SIGMOD-SIGART Symposium on Principles of Database Systems, 1998, pp. 34–43.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "V. Leis, B. Radke, A. Gubichev, A. Mirchev, P. A. Boncz, A. Kemper, and T. Neumann, “Query optimization through the looking glass, and what we found running the join order benchmark,”VLDB J., vol. 27, no. 5, pp. 643–668, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "T. Y. Chen, S.-C. Cheung, and S.-M. Yiu, “Metamorphic testing: A new approach for generating next test cases,”arXiv:2002.12543, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "T. Y. Chen, F.-C. Kuo, H. Liu, P.-L. Poon, D. Towey, T. H. Tse, and Z. Q. Zhou, “Metamorphic testing: A review of challenges and opportunities,” ACM Comput. Surv., vol. 51, no. 1, pp. 4:1–4:27, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "S. Segura, G. Fraser, A. B. S ´anchez, and A. R. Cort ´es, “A survey on metamorphic testing,”IEEE Trans. Softw. Eng., vol. 42, no. 9, pp. 805– 824, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "M. Winslett and V. Braganholo, “Richard Hipp speaks out on SQLite,” SIGMOD Rec., vol. 48, no. 2, pp. 39–46, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "J. Ba and M. Rigger, “CERT: Finding performance issues in database systems through the lens of cardinality estimation,” inProceedings of the 46th IEEE/ACM International Conference on Software Engineering, 2024, pp. 133:1–133:13.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 38,
+      "text": "C. Binnig, D. Kossmann, E. Lo, and M. T. ¨Ozsu, “QAGen: generating query-aware test databases,” inProceedings of the 2007 ACMSIGMOD International Conference on Management of Data, 2007, pp. 341–352.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "N. Bruno and S. Chaudhuri, “Flexible database generators,” inProceedings of the 31st International Conference on Very Large Data Bases, 2005, pp. 1097–1107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "J. Gray, P. Sundaresan, S. Englert, K. Baclawski, and P. J. Weinberger, “Quickly generating billion-record synthetic databases,” inProceedings of the 1994 ACMSIGMOD International Conference on Management of Data, 1994, pp. 243–252.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "K. Houkjær, K. Torp, and R. Wind, “Simple and realistic data generation,” inProceedings of the 32nd International Conference on Very Large Data Bases, 2006, pp. 1243–1246.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "S. A. Khalek, B. Elkarablieh, Y. O. Laleye, and S. Khurshid, “Queryaware test generation using a relational constraint solver,” in2008 23rd IEEE/ACM International Conference on Automated Software Engineering, 2008, pp. 238–247.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "H. Bati, L. Giakoumakis, S. Herbert, and A. Surna, “A genetic approach for random testing of database systems,” inProceedings of the 33rd International Conference on Very Large Data Bases, 2007, pp. 1243– 1251.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "N. Bruno, S. Chaudhuri, and D. Thomas, “Generating queries with cardinality constraints for DBMS testing,”IEEE Trans. Knowl. Data Eng., vol. 18, no. 12, pp. 1721–1725, 2006.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "J. Jung, H. Hu, J. Arulraj, T. Kim, and W. Kang, “Apollo: Automatic detection and diagnosis of performance regressions in database systems,” Proc. VLDB Endow., vol. 13, no. 1, pp. 57–70, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "C. Mishra, N. Koudas, and C. Zuzarte, “Generating targeted queries for database testing,” inProceedings of the 2008 ACMSIGMOD International Conference on Management of Data, 2008, pp. 499–510.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "M. Poess and J. M. Stephens Jr, “Generating thousand benchmark queries in seconds,” inProceedings of the 30th International Conference on Very Large Data Bases, 2004, pp. 1045–1053.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "M. Vartak, V. Raghavan, and E. A. Rundensteiner, “QRelX: generating meaningful queries that provide cardinality assurance,” inProceedings of the 2010 ACMSIGMOD International Conference on Management of data, 2010, pp. 1215–1218.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Z. Gu, M. A. Soliman, and F. M. Waas, “Testing the accuracy of query optimizers,” inProceedings of the Fifth International Workshop on Testing Database Systems, 2012, pp. 1–6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "S. Abdul Khalek and S. Khurshid, “Automated SQL query generation for systematic testing of database engines,” inProceedings of the 25th IEEE/ACM International Conference on Automated Software Engineering, 2010, pp. 329–332.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "E. Lo, C. Binnig, D. Kossmann, M. Tamer ¨Ozsu, and W.-K. Hon, “A framework for testing DBMS features,”VLDB J., vol. 19, no. 2, pp. 203–230, 2010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "J. Yan, Q. Jin, S. Jain, S. D. Viglas, and A. Lee, “Snowtrail: Testing with production queries on a cloud database,” inProceedings of the Workshop on Testing Database Systems, 2018, pp. 1–6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "R. Zhong, Y. Chen, H. Hu, H. Zhang, W. Lee, and D. Wu, “SQUIRREL: Testing database management systems with language validity and coverage feedback,” inProceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security, 2020, pp. 955–970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "C. Aschermann, S. Schumilo, T. Blazytko, R. Gawlik, and T. Holz, “REDQUEEN: Fuzzing with input-to-state correspondence,” in26th Annual Network and Distributed System Security Symposium (NDSS), 2019, pp. 1–15.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Y. Chen, Y. Jiang, F. Ma, J. Liang, M. Wang, C. Zhou, X. Jiao, and Z. Su, “EnFuzz: Ensemble fuzzing with seed synchronization among diverse fuzzers,” in28th USENIX Security Symposium (USENIX Security 19), 2019, pp. 1967–1983.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "J. Liang, Y. Jiang, M. Wang, X. Jiao, Y. Chen, H. Song, and K.-K. R. Choo, “DeepFuzzer: Accelerated deep greybox fuzzing,”IEEE Trans. Dependable Secur. Comput., vol. 18, no. 6, pp. 2675–2688, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "J. Liang, M. Wang, C. Zhou, Z. Wu, Y. Jiang, J. Liu, Z. Liu, and J. Sun, “PATA: Fuzzing with path aware taint analysis,” in2022 IEEE Symposium on Security and Privacy (SP), 2022, pp. 1–17.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "M. Wang, J. Liang, C. Zhou, Y. Jiang, R. Wang, C. Sun, and J. Sun, “RIFF: Reduced instruction footprint for Coverage-Guided fuzzing,” in 2021 USENIX Annual Technical Conference (USENIX ATC 21), 2021, pp. 147–159.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "M. Wang, Z. Wu, X. Xu, J. Liang, C. Zhou, H. Zhang, and Y. Jiang, “Industry practice of coverage-guided enterprise-level DBMS fuzzing,” in neering: Software Engineering in Practice (ICSE-SEIP), 2021, pp. 328– 337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Z. Wu, J. Liang, M. Wang, C. Zhou, and Y. Jiang, “Unicorn: detect runtime errors in time-series databases with hybrid input synthesis,” in Proceedings of the 31st ACMSIGSOFT International Symposium on Software Testing and Analysis, 2022, pp. 251–262.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "I. Yun, S. Lee, M. Xu, Y. Jang, and T. Kim, “QSYM: A practical concolic execution engine tailored for hybrid fuzzing,” in27th USENIX Security Symposium (USENIX Security 18), 2018, pp. 745–761.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "J. Liang, Y. Chen, Z. Wu, J. Fu, M. Wang, Y. Jiang, X. Huang, T. Chen, J. Wang, and J. Li, “Sequence-oriented DBMS fuzzing,” in2023 IEEE 39th International Conference on Data Engineering (ICDE), 2023, pp. 668–681.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "J. Fu, J. Liang, Z. Wu, M. Wang, and Y. Jiang, “Griffin: Grammar-free DBMS fuzzing,” inProceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering, 2022, pp. 49:1–49:12.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 19,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 20,
+      "text": "——, “Finding bugs in database systems via query partitioning,”Proc. ACM Program. Lang., vol. 4, no. OOPSLA, pp. 211:1–211:30, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 22,
+      "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” inProceedings of the 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 25,
+      "text": "J. Ba and M. Rigger, “Keep it simple: Testing databases via differential query plans,” 2, no. 3, pp. 188:1–188:26, 2024.",
+      "technique": "dqp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing dqp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 27,
+      "text": "M. Rigger, “SQLancer,” https://github.com/sqlancer/sqlancer, 2025, accessed: 2025-10-27.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 37,
+      "text": "J. Ba and M. Rigger, “CERT: Finding performance issues in database systems through the lens of cardinality estimation,” inProceedings of the 46th IEEE/ACM International Conference on Software Engineering, 2024, pp. 133:1–133:13.",
+      "technique": "cert",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing cert"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Another approach is pivoted query synthesis (PQS) [19], which validates query results by constructing auxiliary queries centered on a specific pivot row.",
+      "context_before": "uncover crash and performance defects, they generally lack the ability to detect logic bugs. To address the challenge of detecting logic bugs, several approaches have been proposed. Differential testing, for example, identifies potential bugs by comparing the results of the same query across different DBMSs or versions of the same DBMS. While effective at detecting inconsistencies between implementations, its applicability is often limited to the common core of SQL functionalities [18], as different DBMSs vary in their support for the SQL standard and frequently provide proprietary extensions.",
+      "context_after": "Although PQS can be effective in certain scenarios, it requires substantial engineering effort and is less capable of capturing set-level inconsistencies, such as duplicates or missing tuples. Recently, metamorphic tests have been increasingly used for DBMS testing [20]–[23]. Representative frameworks include ternary logic partitioning (TLP) [20] and non-optimizing reference engine construction (NoREC) [22]. These approaches transform a query into semantically equivalent variants, either through predicate partitioning or by bypassing the optimizer’s execution path, to check for inconsistencie",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 4696,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Although PQS can be effective in certain scenarios, it requires substantial engineering effort and is less capable of capturing set-level inconsistencies, such as duplicates or missing tuples.",
+      "context_before": "roaches have been proposed. Differential testing, for example, identifies potential bugs by comparing the results of the same query across different DBMSs or versions of the same DBMS. While effective at detecting inconsistencies between implementations, its applicability is often limited to the common core of SQL functionalities [18], as different DBMSs vary in their support for the SQL standard and frequently provide proprietary extensions. Another approach is pivoted query synthesis (PQS) [19], which validates query results by constructing auxiliary queries centered on a specific pivot row.",
+      "context_after": "Recently, metamorphic tests have been increasingly used for DBMS testing [20]–[23]. Representative frameworks include ternary logic partitioning (TLP) [20] and non-optimizing reference engine construction (NoREC) [22]. These approaches transform a query into semantically equivalent variants, either through predicate partitioning or by bypassing the optimizer’s execution path, to check for inconsistencies. Transformed query synthesis (TQS) [24] utilizes optimization hints to verify query results against a ground truth. Recently, differential query planning (DQP) [25] adopts a similar hint-base",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 4850,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[20]–[23]",
+      "technique": "tlp",
+      "sentence": "Recently, metamorphic tests have been increasingly used for DBMS testing [20]–[23].",
+      "context_before": "fective at detecting inconsistencies between implementations, its applicability is often limited to the common core of SQL functionalities [18], as different DBMSs vary in their support for the SQL standard and frequently provide proprietary extensions. Another approach is pivoted query synthesis (PQS) [19], which validates query results by constructing auxiliary queries centered on a specific pivot row. Although PQS can be effective in certain scenarios, it requires substantial engineering effort and is less capable of capturing set-level inconsistencies, such as duplicates or missing tuples.",
+      "context_after": "Representative frameworks include ternary logic partitioning (TLP) [20] and non-optimizing reference engine construction (NoREC) [22]. These approaches transform a query into semantically equivalent variants, either through predicate partitioning or by bypassing the optimizer’s execution path, to check for inconsistencies. Transformed query synthesis (TQS) [24] utilizes optimization hints to verify query results against a ground truth. Recently, differential query planning (DQP) [25] adopts a similar hint-based strategy but focuses on detecting inconsistencies between different physical plans",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 5043,
+      "cited_reference": {
+        "number": 20,
+        "text": "——, “Finding bugs in database systems via query partitioning,”Proc. ACM Program. Lang., vol. 4, no. OOPSLA, pp. 211:1–211:30, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "technique",
+      "surface": "ternary logic partitioning",
+      "technique": "tlp",
+      "sentence": "Representative frameworks include ternary logic partitioning (TLP) [20] and non-optimizing reference engine construction (NoREC) [22].",
+      "context_before": "ften limited to the common core of SQL functionalities [18], as different DBMSs vary in their support for the SQL standard and frequently provide proprietary extensions. Another approach is pivoted query synthesis (PQS) [19], which validates query results by constructing auxiliary queries centered on a specific pivot row. Although PQS can be effective in certain scenarios, it requires substantial engineering effort and is less capable of capturing set-level inconsistencies, such as duplicates or missing tuples. Recently, metamorphic tests have been increasingly used for DBMS testing [20]–[23].",
+      "context_after": "These approaches transform a query into semantically equivalent variants, either through predicate partitioning or by bypassing the optimizer’s execution path, to check for inconsistencies. Transformed query synthesis (TQS) [24] utilizes optimization hints to verify query results against a ground truth. Recently, differential query planning (DQP) [25] adopts a similar hint-based strategy but focuses on detecting inconsistencies between different physical plans for the same query. We aim to present a meta-arXiv:2606.23294v2 [cs.DB] 25 Jun 2026 morphic testing scheme that efficiently and effect",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 5127,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "Recently, differential query planning (DQP) [25] adopts a similar hint-based strategy but focuses on detecting inconsistencies between different physical plans for the same query.",
+      "context_before": "f capturing set-level inconsistencies, such as duplicates or missing tuples. Recently, metamorphic tests have been increasingly used for DBMS testing [20]–[23]. Representative frameworks include ternary logic partitioning (TLP) [20] and non-optimizing reference engine construction (NoREC) [22]. These approaches transform a query into semantically equivalent variants, either through predicate partitioning or by bypassing the optimizer’s execution path, to check for inconsistencies. Transformed query synthesis (TQS) [24] utilizes optimization hints to verify query results against a ground truth.",
+      "context_after": "We aim to present a meta-arXiv:2606.23294v2 [cs.DB] 25 Jun 2026 morphic testing scheme that efficiently and effectively detects logic bugs in DBMS join optimization. Our key insight is that an INNER/NATURAL JOIN) can be semantically expressed as a combination of multiple set intersection operations.Such a theoretical equivalence should be strictly upheld by any standards-compliant DBMS. However, we discovered that this is often not the case. A highly illustrative motivating example is shown in Listing 1, which depicts a bug we discovered in TiDB [26]. We crafted a simple INNER JOINquery whose ON",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 5567,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "As shown in Table I, PQS, NoREC, DQP, and TQS do not support EXCEPT,INTERSECT, or UNION operations, while TLP supports only UNION(including ALL).",
+      "context_before": ">HashJoin...CARTESIAN inner join... (rows=1) The above example reveals that such optimizer-level logic bugs often stem from incorrect handling of algebraic equivalences during query rewriting. Although existing studies have achieved significant results in logic bug detection, our systematic investigation reveals that these methods still exhibit notable deficiencies in supporting equivalent transformations at the relational algebra level. Table I compares the feature coverage of typical testing approaches with respect to SQL set operations, including EXCEPT,INTERSECT,UNION, and their ALLvariants.",
+      "context_after": "These results reveal that existing approaches focus primarily on predicate partitioning or optimizer path validation, resulting in limited testing capability.TABLE ICOMPARISON OFSQLFEATURE COVERAGE OFDIFFERENT TESTING APPROACHES. HERE, “⃝”AND“×”INDICATE WHETHER AN APPROACH SUPPORTS THEFEATURE. ApproachEXCEPT (ALL)INTERSECT (ALL)UNION (ALL) PQS× × × NoREC× × × TLP× × ⃝ DQP× × × TQS× × × JoinEquiv (*)⃝ ⃝ ⃝ To address this issue, we perform an in-depth exploration of set-theoretic equivalences in join queries for test case generation. Leveraging the property that an INNER JOIN(or NATURAL JOIN) is",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 8470,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "dqp",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "ApproachEXCEPT (ALL)INTERSECT (ALL)UNION (ALL) PQS× × × NoREC× × × TLP× × ⃝ DQP× × × TQS× × × JoinEquiv (*)⃝ ⃝ ⃝ To address this issue, we perform an in-depth exploration of set-theoretic equivalences in join queries for test case generation.",
+      "context_before": "vel. Table I compares the feature coverage of typical testing approaches with respect to SQL set operations, including EXCEPT,INTERSECT,UNION, and their ALLvariants. As shown in Table I, PQS, NoREC, DQP, and TQS do not support EXCEPT,INTERSECT, or UNION operations, while TLP supports only UNION(including ALL). These results reveal that existing approaches focus primarily on predicate partitioning or optimizer path validation, resulting in limited testing capability.TABLE ICOMPARISON OFSQLFEATURE COVERAGE OFDIFFERENT TESTING APPROACHES. HERE, “⃝”AND“×”INDICATE WHETHER AN APPROACH SUPPORTS THEFEATURE.",
+      "context_after": "Leveraging the property that an INNER JOIN(or NATURAL JOIN) is semantically equivalent to a combination of set intersection operations, we design three transformation rules (§III-B, §III-C, and §III-D). These rules enable the construction of semantically equivalent query pairs, whose result sets can be compared to uncover deep logical inconsistencies in query rewriting or execution semantics. Based on this equivalence-driven query generation method, we develop a metamorphic testing framework, JoinEquiv, implemented on top of SQLancer[27] and made publicly available.1Compared with existing appro",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 8907,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker",
+      "surface": "[27]",
+      "technique": null,
+      "sentence": "Based on this equivalence-driven query generation method, we develop a metamorphic testing framework, JoinEquiv, implemented on top of SQLancer[27] and made publicly available.",
+      "context_before": "ION (ALL) PQS× × × NoREC× × × TLP× × ⃝ DQP× × × TQS× × × JoinEquiv (*)⃝ ⃝ ⃝ To address this issue, we perform an in-depth exploration of set-theoretic equivalences in join queries for test case generation. Leveraging the property that an INNER JOIN(or NATURAL JOIN) is semantically equivalent to a combination of set intersection operations, we design three transformation rules (§III-B, §III-C, and §III-D). These rules enable the construction of semantically equivalent query pairs, whose result sets can be compared to uncover deep logical inconsistencies in query rewriting or execution semantics.",
+      "context_after": "1Compared with existing approaches (see Table I), JoinEquiv achieves full support for all three set operations and their ALLvariants. To evaluate the effectiveness of our JoinEquiv framework, we conduct extensive tests on four production-grade DBMSs: MySQL, TiDB, DuckDB, and Percona. JoinEquiv reported 29 previously unknown logical inconsistencies. Among these, 27 have already been confirmed by developers, 14 of which involve critical bugs in query optimizer rewrite logic or executor semantic handling. Cross-oracular validation shows that the vast majority of the remaining bugs can only be dete",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 9545,
+      "cited_reference": {
+        "number": 27,
+        "text": "M. Rigger, “SQLancer,” https://github.com/sqlancer/sqlancer, 2025, accessed: 2025-10-27.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": ", they cannot be detected by existing metamorphic testing approaches such as TLP and DQP, thus highlighting the unique and complementary value of JoinEquiv.",
+      "context_before": "v achieves full support for all three set operations and their ALLvariants. To evaluate the effectiveness of our JoinEquiv framework, we conduct extensive tests on four production-grade DBMSs: MySQL, TiDB, DuckDB, and Percona. JoinEquiv reported 29 previously unknown logical inconsistencies. Among these, 27 have already been confirmed by developers, 14 of which involve critical bugs in query optimizer rewrite logic or executor semantic handling. Cross-oracular validation shows that the vast majority of the remaining bugs can only be detected by our intersection-equivalence transformations; i.e.",
+      "context_after": "We believe that the principled methodology, low implementation effort, and broad applicability of JoinEquiv will lead to its widespread adoption to improve the robustness of DBMSs. In summary, our main contributions in this paper include: •We propose a new metamorphic testing paradigm that bridges relational algebra and set theory, mapping INNER JOINto set-theoretic intersection to build principled logic-level oracles. •We design a structurally complete set of minimal transformation rules (SJT, ADT, and SDT) that collectively encompass all core SQL set operators. They serve as normal forms for",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 10379,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The test case generation builds upon the SQLancer framework, which provides a grammar-aware SQL query generation engine.",
+      "context_before": "ce(A\\B)∪(B\\A)(lines 12– 13). Finally, another EXCEPTnode subtracts this symmetric difference from the full union of the left and right join ASTs (line 14), producing the transformed AST that preserves the intersection semantics. E. Database and Query Generation Generating high-quality databases and queries for testing has been extensively studied and is not the primary concern of this work. JoinEquiv is compatible with any database and query generator capable of producing valid SQL queries containing INNER/NATURAL JOINoperators. Here, we provide details of our implementation for reproducibility.",
+      "context_after": "We extend SQLancer to satisfy an additional precondition that all columns are NOT NULL. Specifically, Step 1of Fig. 1 randomly generates tables and rows using CREATE TABLEand INSERTstatements under NOT NULLconstraints. Step 2 then constructs theoriginal queries, where JoinEquiv randomly selects a subset of tables from the generated schema to participate in the join. The order of table references is also randomized. Across test iterations, the roles of participating tables (e.g.,t0andt1) are permuted by a randomized generation engine. Although the transformation templates use a fixed LEFT/RIGHT JO",
+      "section": "E Database and Query Generation",
+      "page": 6,
+      "char_offset": 27905,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We extend SQLancer to satisfy an additional precondition that all columns are NOT NULL.",
+      "context_before": "ft and right join ASTs (line 14), producing the transformed AST that preserves the intersection semantics. E. Database and Query Generation Generating high-quality databases and queries for testing has been extensively studied and is not the primary concern of this work. JoinEquiv is compatible with any database and query generator capable of producing valid SQL queries containing INNER/NATURAL JOINoperators. Here, we provide details of our implementation for reproducibility. The test case generation builds upon the SQLancer framework, which provides a grammar-aware SQL query generation engine.",
+      "context_after": "Specifically, Step 1of Fig. 1 randomly generates tables and rows using CREATE TABLEand INSERTstatements under NOT NULLconstraints. Step 2 then constructs theoriginal queries, where JoinEquiv randomly selects a subset of tables from the generated schema to participate in the join. The order of table references is also randomized. Across test iterations, the roles of participating tables (e.g.,t0andt1) are permuted by a randomized generation engine. Although the transformation templates use a fixed LEFT/RIGHT JOINstructure, symmetric variants are implicitly instantiated through this randomized tab",
+      "section": "E Database and Query Generation",
+      "page": 6,
+      "char_offset": 28026,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Such a table permutation, combined with SQLancer’s randomized population of ONpredicates,WHEREclauses, and SELECT list expressions, ensures that the framework explores a diverse range of symmetric and asymmetric execution plans.",
+      "context_before": "er of table references is also randomized. Across test iterations, the roles of participating tables (e.g.,t0andt1) are permuted by a randomized generation engine. Although the transformation templates use a fixed LEFT/RIGHT JOINstructure, symmetric variants are implicitly instantiated through this randomized table binding. For instance, expressions such ast1 LEFT JOIN t0naturally arise, which are algebraically equivalent tot0 RIGHT JOIN t1. As a result, symmetric forms of SJT, ADT, and SDT are repeatedly exercised over long-running testing without explicitly enumerating all symmetric variants.",
+      "context_after": "IV. THEORETICALANALYSIS OFTRANSFORMATION EQUIVALENCE The correctness of our fuzzing methodology relies on the semantic equivalence of the query transformations we employ. This section provides a theoretical analysis of the equivalence of the three transformation rules: SJT, ADT, and SDT. We rigorously examine their validity under both set semantics (corresponding to SELECT DISTINCT) and multiset semantics (corresponding to standard SELECT). A. Preliminaries To ensure the clarity of our proofs, we operate under the assumption that all columns in the involved tables are defined as NOT NULL. This a",
+      "section": "E Database and Query Generation",
+      "page": 6,
+      "char_offset": 29000,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Within each thread, for every INNER JOINquery, JoinEquiv, TLP, and DQP are applied sequentially under the same system TABLE IISUMMARY OFLOGICBUGREPORTS ANDVERIFICATIONSTATUS INDIFFERENTRDBMSS RDBMS Reported Verified Fixed Intended Component Severity Identifier MySQL 10 8 1 2 Optimizer (8) Critical (8)Bug#118544, Bug#118684, Bug#118710, Bug#118857, Bug#118858, Bug#118949, Bug#119032, Bug#119059 TiDB 13 13 4 0Planner (11) Execution (2)Critical (3)#62380, #62444, #62456, #62459, #62460, #62644, #62645, #62689, #63596, #63601, #63635, #63636, #63736 Percona 3 3 0 0 Optimizer (3) Critical (3)PS-10124, PS-10127, DISMYSQL-535 DuckDB 3 3 3 0 – –#20483, #20486, #20608 Total29 27 8 2 – Critical (14) – Note:For DuckDB, component and severity were not provided, so they are marked as “–”.",
+      "context_before": "experiments were conducted on a server running 64-bit Ubuntu 20.04.6 LTS. The machine is equipped with two Intel®Xeon®Gold 5218R CPUs (@ 2.10 GHz), each providing 20 physical cores (40 threads per socket), for a total of 80 hardware threads. Implementation.To ensure the robustness of results and mitigate the impact of randomness, we adopted amulti-instance parallel testing strategy. For each DBMS, we leverage the testing framework’s multi-threading capability by launching multiple concurrent testing threads. Each thread operates with an independent random state and query generation trajectory.",
+      "context_after": "Verifieddenotes that the bugs have been officially confirmed and accepted by the developers as valid logic defects. configurations and runtime environments. The testing process ran continuously for 12 hours, effectively simulating repeated experiments across diverse random seeds. B. Overall Results for Logic Bug Detection We test all the target DBMSs with JoinEquiv. The testing process adheres to a conventional software defect detection pipeline, including fuzzing-based test generation, test case reduction, manual deduplication, cross-DBMS verification, and issue reporting to developers. As a",
+      "section": "A Evaluation Setup",
+      "page": 7,
+      "char_offset": 36611,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Comparison to Existing DBMS Testing Approaches In order to evaluate JoinEquiv’s unique ability to detect logical bugs related to INNER JOIN, we compare it with two representative metamorphic testing approaches: Ternary Logic Partitioning (TLP) and Differential Query Plans (DQP).",
+      "context_before": "’}, showing a typical case ofdata corruption, where the single-byte representation of ’7’was erroneously padded with zero bytes. This phenomenon clearly exposes a severe implementation inconsistency within TiDB when handling CHAR-typed data across different execution paths. By further decomposing the SDT-transformed query, we localized the corruption to the first UNIONoperation, suggesting that the defect was triggered during the merging of two intermediate result sets from outer joins. This indicates a deep-seated bug in TiDB’stype metadata propagationor memory layout management mechanisms. E.",
+      "context_after": "TLP shares a conceptual foundation withJoinEquiv, as both leverage set-theoretic principles to construct semantically equivalent query variants, whereas DQP evaluates the robustness of query optimizers by executing the same query under different physical plans, a strategy that has proven highly effective in uncovering join-related logical bugs. Listing 7. A data representation inconsistency under complex set operations in TiDB. CREATE TABLEt0(c0CHAR NOT NULL); CREATE TABLEt1LIKEt0; INSERT INTOt0(c0)VALUES(’-’); INSERT INTOt1(c0)VALUES(’7’); Original query (SELECT DISTINCTt1.c0, t0.c0FROMt1INN",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 9,
+      "char_offset": 45589,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP shares a conceptual foundation withJoinEquiv, as both leverage set-theoretic principles to construct semantically equivalent query variants, whereas DQP evaluates the robustness of query optimizers by executing the same query under different physical plans, a strategy that has proven highly effective in uncovering join-related logical bugs.",
+      "context_before": "rther decomposing the SDT-transformed query, we localized the corruption to the first UNIONoperation, suggesting that the defect was triggered during the merging of two intermediate result sets from outer joins. This indicates a deep-seated bug in TiDB’stype metadata propagationor memory layout management mechanisms. E. Comparison to Existing DBMS Testing Approaches In order to evaluate JoinEquiv’s unique ability to detect logical bugs related to INNER JOIN, we compare it with two representative metamorphic testing approaches: Ternary Logic Partitioning (TLP) and Differential Query Plans (DQP).",
+      "context_after": "Listing 7. A data representation inconsistency under complex set operations in TiDB. CREATE TABLEt0(c0CHAR NOT NULL); CREATE TABLEt1LIKEt0; INSERT INTOt0(c0)VALUES(’-’); INSERT INTOt1(c0)VALUES(’7’); Original query (SELECT DISTINCTt1.c0, t0.c0FROMt1INNER JOINt0ONϕ); -- {0x37|’-’}ὁB Transformed query(ADT rule) (SELECT DISTINCTt1.c0, t0.c0FROMt1LEFT JOINt0ONϕ) INTERSECT (SELECT DISTINCTt1.c0, t0.c0FROMt1RIGHT JOINt0ONϕ); -- {’7’|’-’}✓ Transformed query(SDT rule) ((SELECT DISTINCTt1.c0FROMt1LEFT JOINt0ONϕ) 2The full join condition: https://github.com/pingcap/tidb/issues/63736 UNION (SELECT DISTI",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 9,
+      "char_offset": 45868,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For each reported bug, we reconstruct equivalent test cases following TLP and DQP formulations to examine whether these approaches can reproduce the same erroneous behavior.",
+      "context_before": "ed query(SDT rule) ((SELECT DISTINCTt1.c0FROMt1LEFT JOINt0ONϕ) 2The full join condition: https://github.com/pingcap/tidb/issues/63736 UNION (SELECT DISTINCTt1.c0FROMt1RIGHT JOINt0ONϕ)) EXCEPT( ((SELECT DISTINCTt1.c0FROMt1LEFT JOINt0ONϕ) EXCEPT (SELECT DISTINCTt1.c0FROMt1RIGHT JOINt0ONϕ)) UNION ((SELECT DISTINCTt1.c0FROMt1RIGHT JOINt0ONϕ) EXCEPT (SELECT DISTINCTt1.c0FROMt1LEFT JOINt0ONϕ))); -- {0x37000000|’-’}ὁB To ensure a fair and systematic comparison, we conduct two complementary experiments. First, we perform acrossoracular validationbased on previously confirmed bugs detected byJoinEquiv.",
+      "context_after": "This validation allows us to assess the orthogonality and uniqueness ofJoinEquiv’s detection scope. Second, we carry out aunified cross-oracular evaluation, in which all approaches are executed side by side for 12 hours under identical query generation and database states, to quantitatively compare their bug-finding capabilities. Crucially, for every generated original INNER JOINquery that can be correctly executed, we apply all three transformation strategies (TLP, DQP, and JoinEquiv) within the same iteration, ensuring a fair comparison under an identical execution context. To evaluate the e",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 47262,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Crucially, for every generated original INNER JOINquery that can be correctly executed, we apply all three transformation strategies (TLP, DQP, and JoinEquiv) within the same iteration, ensuring a fair comparison under an identical execution context.",
+      "context_before": ", we perform acrossoracular validationbased on previously confirmed bugs detected byJoinEquiv. For each reported bug, we reconstruct equivalent test cases following TLP and DQP formulations to examine whether these approaches can reproduce the same erroneous behavior. This validation allows us to assess the orthogonality and uniqueness ofJoinEquiv’s detection scope. Second, we carry out aunified cross-oracular evaluation, in which all approaches are executed side by side for 12 hours under identical query generation and database states, to quantitatively compare their bug-finding capabilities.",
+      "context_after": "To evaluate the effectiveness of JoinEquiv, we implemented two representative metamorphic testing approaches as baselines. Ternary Logic Partitioning (TLP) (specifically, the TLPWHEREvariant) [20] relies on the set-theoretic principle of UNION. As illustrated in Listing 8, TLP partitions an original query into three sub-queries by injecting predicates into the WHEREclause based on SQL’s ternary logic (TRUE,FALSE, NULL) and validates that their combined result matches the original. Differential Query Plans (DQP) [25], in contrast, targets join optimizer robustness. It forces the DBMS to genera",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 47768,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "Ternary Logic Partitioning",
+      "technique": "tlp",
+      "sentence": "Ternary Logic Partitioning (TLP) (specifically, the TLPWHEREvariant) [20] relies on the set-theoretic principle of UNION.",
+      "context_before": "nd, we carry out aunified cross-oracular evaluation, in which all approaches are executed side by side for 12 hours under identical query generation and database states, to quantitatively compare their bug-finding capabilities. Crucially, for every generated original INNER JOINquery that can be correctly executed, we apply all three transformation strategies (TLP, DQP, and JoinEquiv) within the same iteration, ensuring a fair comparison under an identical execution context. To evaluate the effectiveness of JoinEquiv, we implemented two representative metamorphic testing approaches as baselines.",
+      "context_after": "As illustrated in Listing 8, TLP partitions an original query into three sub-queries by injecting predicates into the WHEREclause based on SQL’s ternary logic (TRUE,FALSE, NULL) and validates that their combined result matches the original. Differential Query Plans (DQP) [25], in contrast, targets join optimizer robustness. It forces the DBMS to generate diverse physical plans for the same query (via hints, see Listing 8) and checks for discrepancies (R i̸=R j) among the result sets. Cross-Oracular Validation of Reported Bugs.To assess the orthogonality of JoinEquiv’s detection scope, we firs",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 48141,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "As illustrated in Listing 8, TLP partitions an original query into three sub-queries by injecting predicates into the WHEREclause based on SQL’s ternary logic (TRUE,FALSE, NULL) and validates that their combined result matches the original.",
+      "context_before": "identical query generation and database states, to quantitatively compare their bug-finding capabilities. Crucially, for every generated original INNER JOINquery that can be correctly executed, we apply all three transformation strategies (TLP, DQP, and JoinEquiv) within the same iteration, ensuring a fair comparison under an identical execution context. To evaluate the effectiveness of JoinEquiv, we implemented two representative metamorphic testing approaches as baselines. Ternary Logic Partitioning (TLP) (specifically, the TLPWHEREvariant) [20] relies on the set-theoretic principle of UNION.",
+      "context_after": "Differential Query Plans (DQP) [25], in contrast, targets join optimizer robustness. It forces the DBMS to generate diverse physical plans for the same query (via hints, see Listing 8) and checks for discrepancies (R i̸=R j) among the result sets. Cross-Oracular Validation of Reported Bugs.To assess the orthogonality of JoinEquiv’s detection scope, we first perform across-oracular validationon previously reported bugs. For each bug exposed by JoinEquiv, we manually rewrite the corresponding query into its TLPand DQP-equivalent forms and execute them on the same database. Listing 8. Example of",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 48263,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M20",
+      "found_by": "technique",
+      "surface": "Differential Query Plans",
+      "technique": "dqp",
+      "sentence": "Differential Query Plans (DQP) [25], in contrast, targets join optimizer robustness.",
+      "context_before": "P, DQP, and JoinEquiv) within the same iteration, ensuring a fair comparison under an identical execution context. To evaluate the effectiveness of JoinEquiv, we implemented two representative metamorphic testing approaches as baselines. Ternary Logic Partitioning (TLP) (specifically, the TLPWHEREvariant) [20] relies on the set-theoretic principle of UNION. As illustrated in Listing 8, TLP partitions an original query into three sub-queries by injecting predicates into the WHEREclause based on SQL’s ternary logic (TRUE,FALSE, NULL) and validates that their combined result matches the original.",
+      "context_after": "It forces the DBMS to generate diverse physical plans for the same query (via hints, see Listing 8) and checks for discrepancies (R i̸=R j) among the result sets. Cross-Oracular Validation of Reported Bugs.To assess the orthogonality of JoinEquiv’s detection scope, we first perform across-oracular validationon previously reported bugs. For each bug exposed by JoinEquiv, we manually rewrite the corresponding query into its TLPand DQP-equivalent forms and execute them on the same database. Listing 8. Example of ternary logic partitioning (TLP) and differential query plans (DQP). Original query",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 48504,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M21",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "For each bug exposed by JoinEquiv, we manually rewrite the corresponding query into its TLPand DQP-equivalent forms and execute them on the same database.",
+      "context_before": "nto three sub-queries by injecting predicates into the WHEREclause based on SQL’s ternary logic (TRUE,FALSE, NULL) and validates that their combined result matches the original. Differential Query Plans (DQP) [25], in contrast, targets join optimizer robustness. It forces the DBMS to generate diverse physical plans for the same query (via hints, see Listing 8) and checks for discrepancies (R i̸=R j) among the result sets. Cross-Oracular Validation of Reported Bugs.To assess the orthogonality of JoinEquiv’s detection scope, we first perform across-oracular validationon previously reported bugs.",
+      "context_after": "Listing 8. Example of ternary logic partitioning (TLP) and differential query plans (DQP). Original query SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0; TLP (Where) transformed query SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0WHERE TRUEUNION ALL SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0WHERE FALSE UNION ALL SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0WHERE TRUEISNULL; DQP transformed query Plan variant 1 (hash join) hint SELECT/ *+ HASH_JOIN(t0, t1) */*FROMt0INNER JOINt1ON t0.c0 = t1.c0; Plan variant 2 (nested-loop join) hint SELECT/ *+ NESTED_LOOP_JOIN(t0, t1) */*FROMt0INNER JOINt1ONt0.c0 = t1.c0; For",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 48927,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M22",
+      "found_by": "technique",
+      "surface": "ternary logic partitioning",
+      "technique": "tlp",
+      "sentence": "Example of ternary logic partitioning (TLP) and differential query plans (DQP).",
+      "context_before": "e original. Differential Query Plans (DQP) [25], in contrast, targets join optimizer robustness. It forces the DBMS to generate diverse physical plans for the same query (via hints, see Listing 8) and checks for discrepancies (R i̸=R j) among the result sets. Cross-Oracular Validation of Reported Bugs.To assess the orthogonality of JoinEquiv’s detection scope, we first perform across-oracular validationon previously reported bugs. For each bug exposed by JoinEquiv, we manually rewrite the corresponding query into its TLPand DQP-equivalent forms and execute them on the same database. Listing 8.",
+      "context_after": "Original query SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0; TLP (Where) transformed query SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0WHERE TRUEUNION ALL SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0WHERE FALSE UNION ALL SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0WHERE TRUEISNULL; DQP transformed query Plan variant 1 (hash join) hint SELECT/ *+ HASH_JOIN(t0, t1) */*FROMt0INNER JOINt1ON t0.c0 = t1.c0; Plan variant 2 (nested-loop join) hint SELECT/ *+ NESTED_LOOP_JOIN(t0, t1) */*FROMt0INNER JOINt1ONt0.c0 = t1.c0; Formally, given an INNER JOINqueryQ origwhose result differs from one or more of its algebraica",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 49093,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M23",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "c0; TLP (Where) transformed query SELECT *FROMt0INNER JOINt1ONt0.",
+      "context_before": "physical plans for the same query (via hints, see Listing 8) and checks for discrepancies (R i̸=R j) among the result sets. Cross-Oracular Validation of Reported Bugs.To assess the orthogonality of JoinEquiv’s detection scope, we first perform across-oracular validationon previously reported bugs. For each bug exposed by JoinEquiv, we manually rewrite the corresponding query into its TLPand DQP-equivalent forms and execute them on the same database. Listing 8. Example of ternary logic partitioning (TLP) and differential query plans (DQP). Original query SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.",
+      "context_after": "c0 = t1.c0WHERE TRUEUNION ALL SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0WHERE FALSE UNION ALL SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0WHERE TRUEISNULL; DQP transformed query Plan variant 1 (hash join) hint SELECT/ *+ HASH_JOIN(t0, t1) */*FROMt0INNER JOINt1ON t0.c0 = t1.c0; Plan variant 2 (nested-loop join) hint SELECT/ *+ NESTED_LOOP_JOIN(t0, t1) */*FROMt0INNER JOINt1ONt0.c0 = t1.c0; Formally, given an INNER JOINqueryQ origwhose result differs from one or more of its algebraically equivalent transformed queries, we attempt to construct three predicate-partitioned queries according to TLP’s formu",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 49228,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M24",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "c0WHERE TRUEISNULL; DQP transformed query Plan variant 1 (hash join) hint SELECT/ *+ HASH_JOIN(t0, t1) */*FROMt0INNER JOINt1ON t0.",
+      "context_before": "f JoinEquiv’s detection scope, we first perform across-oracular validationon previously reported bugs. For each bug exposed by JoinEquiv, we manually rewrite the corresponding query into its TLPand DQP-equivalent forms and execute them on the same database. Listing 8. Example of ternary logic partitioning (TLP) and differential query plans (DQP). Original query SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0; TLP (Where) transformed query SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0WHERE TRUEUNION ALL SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0WHERE FALSE UNION ALL SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.",
+      "context_after": "c0 = t1.c0; Plan variant 2 (nested-loop join) hint SELECT/ *+ NESTED_LOOP_JOIN(t0, t1) */*FROMt0INNER JOINt1ONt0.c0 = t1.c0; Formally, given an INNER JOINqueryQ origwhose result differs from one or more of its algebraically equivalent transformed queries, we attempt to construct three predicate-partitioned queries according to TLP’s formulation, and generate multiple physically equivalent variants of queries QDQPusing optimizer hints. We leverage 32 optimizer hints for MySQL and Percona, and 22 for TiDB (sourced from SQLancer-DQP); DQP does not support DuckDB. If the same inconsistency appears,",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 49425,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M25",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "c0; Formally, given an INNER JOINqueryQ origwhose result differs from one or more of its algebraically equivalent transformed queries, we attempt to construct three predicate-partitioned queries according to TLP’s formulation, and generate multiple physically equivalent variants of queries QDQPusing optimizer hints.",
+      "context_before": "tabase. Listing 8. Example of ternary logic partitioning (TLP) and differential query plans (DQP). Original query SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0; TLP (Where) transformed query SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0WHERE TRUEUNION ALL SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0WHERE FALSE UNION ALL SELECT *FROMt0INNER JOINt1ONt0.c0 = t1.c0WHERE TRUEISNULL; DQP transformed query Plan variant 1 (hash join) hint SELECT/ *+ HASH_JOIN(t0, t1) */*FROMt0INNER JOINt1ON t0.c0 = t1.c0; Plan variant 2 (nested-loop join) hint SELECT/ *+ NESTED_LOOP_JOIN(t0, t1) */*FROMt0INNER JOINt1ONt0.c0 = t1.",
+      "context_after": "We leverage 32 optimizer hints for MySQL and Percona, and 22 for TiDB (sourced from SQLancer-DQP); DQP does not support DuckDB. If the same inconsistency appears, the bug is considered reproducible by TLP or DQP; Otherwise, it is classified as aJoin-specific bug. Among the 27 bugs originally detected by JoinEquiv, none were reproduced by either baseline, demonstrating that JoinEquiv possesses a fundamental and irreplaceable advantage over existing approaches in the specific domain of INNER JOINlogic bugs. Listing 9. TLP transformed query for Listing 3 and Listing 6 --TLP Transformed query for",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 49675,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M26",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We leverage 32 optimizer hints for MySQL and Percona, and 22 for TiDB (sourced from SQLancer-DQP); DQP does not support DuckDB.",
+      "context_before": "T *FROMt0INNER JOINt1ONt0.c0 = t1.c0WHERE TRUEISNULL; DQP transformed query Plan variant 1 (hash join) hint SELECT/ *+ HASH_JOIN(t0, t1) */*FROMt0INNER JOINt1ON t0.c0 = t1.c0; Plan variant 2 (nested-loop join) hint SELECT/ *+ NESTED_LOOP_JOIN(t0, t1) */*FROMt0INNER JOINt1ONt0.c0 = t1.c0; Formally, given an INNER JOINqueryQ origwhose result differs from one or more of its algebraically equivalent transformed queries, we attempt to construct three predicate-partitioned queries according to TLP’s formulation, and generate multiple physically equivalent variants of queries QDQPusing optimizer hints.",
+      "context_after": "If the same inconsistency appears, the bug is considered reproducible by TLP or DQP; Otherwise, it is classified as aJoin-specific bug. Among the 27 bugs originally detected by JoinEquiv, none were reproduced by either baseline, demonstrating that JoinEquiv possesses a fundamental and irreplaceable advantage over existing approaches in the specific domain of INNER JOINlogic bugs. Listing 9. TLP transformed query for Listing 3 and Listing 6 --TLP Transformed query for Listing 3 SELECT DISTINCTt0.c0FROMt1NATURAL JOINt0WHERE TRUEUNION SELECT DISTINCTt0.c0FROMt1NATURAL JOINt0WHERE FALSE UNION SELE",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 49991,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M27",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "If the same inconsistency appears, the bug is considered reproducible by TLP or DQP; Otherwise, it is classified as aJoin-specific bug.",
+      "context_before": "(t0, t1) */*FROMt0INNER JOINt1ON t0.c0 = t1.c0; Plan variant 2 (nested-loop join) hint SELECT/ *+ NESTED_LOOP_JOIN(t0, t1) */*FROMt0INNER JOINt1ONt0.c0 = t1.c0; Formally, given an INNER JOINqueryQ origwhose result differs from one or more of its algebraically equivalent transformed queries, we attempt to construct three predicate-partitioned queries according to TLP’s formulation, and generate multiple physically equivalent variants of queries QDQPusing optimizer hints. We leverage 32 optimizer hints for MySQL and Percona, and 22 for TiDB (sourced from SQLancer-DQP); DQP does not support DuckDB.",
+      "context_after": "Among the 27 bugs originally detected by JoinEquiv, none were reproduced by either baseline, demonstrating that JoinEquiv possesses a fundamental and irreplaceable advantage over existing approaches in the specific domain of INNER JOINlogic bugs. Listing 9. TLP transformed query for Listing 3 and Listing 6 --TLP Transformed query for Listing 3 SELECT DISTINCTt0.c0FROMt1NATURAL JOINt0WHERE TRUEUNION SELECT DISTINCTt0.c0FROMt1NATURAL JOINt0WHERE FALSE UNION SELECT DISTINCTt0.c0FROMt1NATURAL JOINt0WHERE TRUEISNULL; -- empty set✓ --TLP Transformed query for Listing 6 SELECTt0.c0, t1.c0FROMt0INNER",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 50119,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M28",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP transformed query for Listing 3 and Listing 6 --TLP Transformed query for Listing 3 SELECT DISTINCTt0.",
+      "context_before": "e multiple physically equivalent variants of queries QDQPusing optimizer hints. We leverage 32 optimizer hints for MySQL and Percona, and 22 for TiDB (sourced from SQLancer-DQP); DQP does not support DuckDB. If the same inconsistency appears, the bug is considered reproducible by TLP or DQP; Otherwise, it is classified as aJoin-specific bug. Among the 27 bugs originally detected by JoinEquiv, none were reproduced by either baseline, demonstrating that JoinEquiv possesses a fundamental and irreplaceable advantage over existing approaches in the specific domain of INNER JOINlogic bugs. Listing 9.",
+      "context_after": "c0FROMt1NATURAL JOINt0WHERE TRUEUNION SELECT DISTINCTt0.c0FROMt1NATURAL JOINt0WHERE FALSE UNION SELECT DISTINCTt0.c0FROMt1NATURAL JOINt0WHERE TRUEISNULL; -- empty set✓ --TLP Transformed query for Listing 6 SELECTt0.c0, t1.c0FROMt0INNER JOINt1ONt0.c0<-0.1 WHERE TRUEUNION ALL SELECTt0.c0, t1.c0FROMt0INNER JOINt1ONt0.c0<-0.1 WHERE FALSE UNION ALL SELECTt0.c0, t1.c0FROMt0INNER JOINt1ONt0.c0<-0.1 WHERE TRUEISNULL; -- {0|1}ὁB During this validation, we observed an interesting phenomenon when applying the TLP strategy. As shown in Listing 3, the original NATURAL JOINquery correctly returns an empty se",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 50512,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M29",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "c0FROMt1NATURAL JOINt0WHERE TRUEISNULL; -- empty set✓ --TLP Transformed query for Listing 6 SELECTt0.",
+      "context_before": "nconsistency appears, the bug is considered reproducible by TLP or DQP; Otherwise, it is classified as aJoin-specific bug. Among the 27 bugs originally detected by JoinEquiv, none were reproduced by either baseline, demonstrating that JoinEquiv possesses a fundamental and irreplaceable advantage over existing approaches in the specific domain of INNER JOINlogic bugs. Listing 9. TLP transformed query for Listing 3 and Listing 6 --TLP Transformed query for Listing 3 SELECT DISTINCTt0.c0FROMt1NATURAL JOINt0WHERE TRUEUNION SELECT DISTINCTt0.c0FROMt1NATURAL JOINt0WHERE FALSE UNION SELECT DISTINCTt0.",
+      "context_after": "c0, t1.c0FROMt0INNER JOINt1ONt0.c0<-0.1 WHERE TRUEUNION ALL SELECTt0.c0, t1.c0FROMt0INNER JOINt1ONt0.c0<-0.1 WHERE FALSE UNION ALL SELECTt0.c0, t1.c0FROMt0INNER JOINt1ONt0.c0<-0.1 WHERE TRUEISNULL; -- {0|1}ὁB During this validation, we observed an interesting phenomenon when applying the TLP strategy. As shown in Listing 3, the original NATURAL JOINquery correctly returns an empty set, whereas its SJT-transformed counterpart incorrectly produces{0}. We then rewrote the original query following the TLP’s form, partitioning it into its corresponding subqueries (as shown in Listing 9). Interesting",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 50733,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M30",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "1 WHERE TRUEISNULL; -- {0|1}ὁB During this validation, we observed an interesting phenomenon when applying the TLP strategy.",
+      "context_before": "aceable advantage over existing approaches in the specific domain of INNER JOINlogic bugs. Listing 9. TLP transformed query for Listing 3 and Listing 6 --TLP Transformed query for Listing 3 SELECT DISTINCTt0.c0FROMt1NATURAL JOINt0WHERE TRUEUNION SELECT DISTINCTt0.c0FROMt1NATURAL JOINt0WHERE FALSE UNION SELECT DISTINCTt0.c0FROMt1NATURAL JOINt0WHERE TRUEISNULL; -- empty set✓ --TLP Transformed query for Listing 6 SELECTt0.c0, t1.c0FROMt0INNER JOINt1ONt0.c0<-0.1 WHERE TRUEUNION ALL SELECTt0.c0, t1.c0FROMt0INNER JOINt1ONt0.c0<-0.1 WHERE FALSE UNION ALL SELECTt0.c0, t1.c0FROMt0INNER JOINt1ONt0.c0<-0.",
+      "context_after": "As shown in Listing 3, the original NATURAL JOINquery correctly returns an empty set, whereas its SJT-transformed counterpart incorrectly produces{0}. We then rewrote the original query following the TLP’s form, partitioning it into its corresponding subqueries (as shown in Listing 9). Interestingly, all partitions also correctly return empty sets, and their union remains consistent with the original query result. In contrast, as shown in Listing 5, the original query incorrectly returns{0|1}. When rewritten using the TLP approach, the partitioned queries yield the same erroneous result{0|1},",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 51012,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M31",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "We then rewrote the original query following the TLP’s form, partitioning it into its corresponding subqueries (as shown in Listing 9).",
+      "context_before": "URAL JOINt0WHERE FALSE UNION SELECT DISTINCTt0.c0FROMt1NATURAL JOINt0WHERE TRUEISNULL; -- empty set✓ --TLP Transformed query for Listing 6 SELECTt0.c0, t1.c0FROMt0INNER JOINt1ONt0.c0<-0.1 WHERE TRUEUNION ALL SELECTt0.c0, t1.c0FROMt0INNER JOINt1ONt0.c0<-0.1 WHERE FALSE UNION ALL SELECTt0.c0, t1.c0FROMt0INNER JOINt1ONt0.c0<-0.1 WHERE TRUEISNULL; -- {0|1}ὁB During this validation, we observed an interesting phenomenon when applying the TLP strategy. As shown in Listing 3, the original NATURAL JOINquery correctly returns an empty set, whereas its SJT-transformed counterpart incorrectly produces{0}.",
+      "context_after": "Interestingly, all partitions also correctly return empty sets, and their union remains consistent with the original query result. In contrast, as shown in Listing 5, the original query incorrectly returns{0|1}. When rewritten using the TLP approach, the partitioned queries yield the same erroneous result{0|1}, whereas the ADT-transformed query correctly produces an empty set. TLP cannot address the optimizer’s semantic bias due to structural transformations during join rewriting. Unified Cross-Oracular Evaluation.To ensure a fair and quantitative comparison between metamorphic testing approa",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 51286,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M32",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "When rewritten using the TLP approach, the partitioned queries yield the same erroneous result{0|1}, whereas the ADT-transformed query correctly produces an empty set.",
+      "context_before": "{0|1}ὁB During this validation, we observed an interesting phenomenon when applying the TLP strategy. As shown in Listing 3, the original NATURAL JOINquery correctly returns an empty set, whereas its SJT-transformed counterpart incorrectly produces{0}. We then rewrote the original query following the TLP’s form, partitioning it into its corresponding subqueries (as shown in Listing 9). Interestingly, all partitions also correctly return empty sets, and their union remains consistent with the original query result. In contrast, as shown in Listing 5, the original query incorrectly returns{0|1}.",
+      "context_after": "TLP cannot address the optimizer’s semantic bias due to structural transformations during join rewriting. Unified Cross-Oracular Evaluation.To ensure a fair and quantitative comparison between metamorphic testing approaches, we implemented a unified framework that executes JoinEquiv, TLP, and DQP side by side with identical query generation and database states. All three approaches share the same query generator, database state, random seeds, and execution environment, guaranteeing identical experimental conditions. For each original query, all three transformations are applied sequentially,",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 51634,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M33",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP cannot address the optimizer’s semantic bias due to structural transformations during join rewriting.",
+      "context_before": "turns an empty set, whereas its SJT-transformed counterpart incorrectly produces{0}. We then rewrote the original query following the TLP’s form, partitioning it into its corresponding subqueries (as shown in Listing 9). Interestingly, all partitions also correctly return empty sets, and their union remains consistent with the original query result. In contrast, as shown in Listing 5, the original query incorrectly returns{0|1}. When rewritten using the TLP approach, the partitioned queries yield the same erroneous result{0|1}, whereas the ADT-transformed query correctly produces an empty set.",
+      "context_after": "Unified Cross-Oracular Evaluation.To ensure a fair and quantitative comparison between metamorphic testing approaches, we implemented a unified framework that executes JoinEquiv, TLP, and DQP side by side with identical query generation and database states. All three approaches share the same query generator, database state, random seeds, and execution environment, guaranteeing identical experimental conditions. For each original query, all three transformations are applied sequentially, and the results are compared across TABLE IIINUMBER OFBUGS REPORTED IN A12H UNIFIED RUN(DQPRESULTS EXCLUDE",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 51802,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M34",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "To ensure a fair and quantitative comparison between metamorphic testing approaches, we implemented a unified framework that executes JoinEquiv, TLP, and DQP side by side with identical query generation and database states.",
+      "context_before": "orm, partitioning it into its corresponding subqueries (as shown in Listing 9). Interestingly, all partitions also correctly return empty sets, and their union remains consistent with the original query result. In contrast, as shown in Listing 5, the original query incorrectly returns{0|1}. When rewritten using the TLP approach, the partitioned queries yield the same erroneous result{0|1}, whereas the ADT-transformed query correctly produces an empty set. TLP cannot address the optimizer’s semantic bias due to structural transformations during join rewriting. Unified Cross-Oracular Evaluation.",
+      "context_after": "All three approaches share the same query generator, database state, random seeds, and execution environment, guaranteeing identical experimental conditions. For each original query, all three transformations are applied sequentially, and the results are compared across TABLE IIINUMBER OFBUGS REPORTED IN A12H UNIFIED RUN(DQPRESULTS EXCLUDEDUCKDB) DBMSTLP DQP JoinEquiv TiDB 0 0 7 MySQL 0 1 13 Percona 0 2 3 DuckDB 0 – 13 Total0 3 36 Increment36↑20↑– the same DBMS instance. This setup ensures a fair and controlled environment for large-scale evaluation. Table III summarizes the number of bugs fo",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 51943,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M35",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "For each original query, all three transformations are applied sequentially, and the results are compared across TABLE IIINUMBER OFBUGS REPORTED IN A12H UNIFIED RUN(DQPRESULTS EXCLUDEDUCKDB) DBMSTLP DQP JoinEquiv TiDB 0 0 7 MySQL 0 1 13 Percona 0 2 3 DuckDB 0 – 13 Total0 3 36 Increment36↑20↑– the same DBMS instance.",
+      "context_before": "esult{0|1}, whereas the ADT-transformed query correctly produces an empty set. TLP cannot address the optimizer’s semantic bias due to structural transformations during join rewriting. Unified Cross-Oracular Evaluation.To ensure a fair and quantitative comparison between metamorphic testing approaches, we implemented a unified framework that executes JoinEquiv, TLP, and DQP side by side with identical query generation and database states. All three approaches share the same query generator, database state, random seeds, and execution environment, guaranteeing identical experimental conditions.",
+      "context_after": "This setup ensures a fair and controlled environment for large-scale evaluation. Table III summarizes the number of bugs found in the 12hour run on MySQL, TiDB, Percona, and DuckDB. It shows that JoinEquiv found 36 more join-related inconsistencies than TLP and 20 more than DQP (without DuckDB). TLP and DQP focus on predicate-level or plan-level consistency. In contrast, JoinEquiv operates at the algebraic level of join semantics, leveraging simple yet powerful set-theoretic identities. JoinEquiv systematically verifies the semantic correctness of join rewrites and set-operator interactions,",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 10,
+      "char_offset": 52324,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M36",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "It shows that JoinEquiv found 36 more join-related inconsistencies than TLP and 20 more than DQP (without DuckDB).",
+      "context_before": "base state, random seeds, and execution environment, guaranteeing identical experimental conditions. For each original query, all three transformations are applied sequentially, and the results are compared across TABLE IIINUMBER OFBUGS REPORTED IN A12H UNIFIED RUN(DQPRESULTS EXCLUDEDUCKDB) DBMSTLP DQP JoinEquiv TiDB 0 0 7 MySQL 0 1 13 Percona 0 2 3 DuckDB 0 – 13 Total0 3 36 Increment36↑20↑– the same DBMS instance. This setup ensures a fair and controlled environment for large-scale evaluation. Table III summarizes the number of bugs found in the 12hour run on MySQL, TiDB, Percona, and DuckDB.",
+      "context_after": "TLP and DQP focus on predicate-level or plan-level consistency. In contrast, JoinEquiv operates at the algebraic level of join semantics, leveraging simple yet powerful set-theoretic identities. JoinEquiv systematically verifies the semantic correctness of join rewrites and set-operator interactions, which predicate partitioning or plan variation cannot cover. As a result, JoinEquiv can expose deep semantic inconsistencies arising from incorrect join rewriting, NULL propagation, and set operator evaluation. In summary, JoinEquiv effectively uncovers logic bugs that advanced state-of-the-art a",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 11,
+      "char_offset": 52824,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M37",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP and DQP focus on predicate-level or plan-level consistency.",
+      "context_before": "nal query, all three transformations are applied sequentially, and the results are compared across TABLE IIINUMBER OFBUGS REPORTED IN A12H UNIFIED RUN(DQPRESULTS EXCLUDEDUCKDB) DBMSTLP DQP JoinEquiv TiDB 0 0 7 MySQL 0 1 13 Percona 0 2 3 DuckDB 0 – 13 Total0 3 36 Increment36↑20↑– the same DBMS instance. This setup ensures a fair and controlled environment for large-scale evaluation. Table III summarizes the number of bugs found in the 12hour run on MySQL, TiDB, Percona, and DuckDB. It shows that JoinEquiv found 36 more join-related inconsistencies than TLP and 20 more than DQP (without DuckDB).",
+      "context_after": "In contrast, JoinEquiv operates at the algebraic level of join semantics, leveraging simple yet powerful set-theoretic identities. JoinEquiv systematically verifies the semantic correctness of join rewrites and set-operator interactions, which predicate partitioning or plan variation cannot cover. As a result, JoinEquiv can expose deep semantic inconsistencies arising from incorrect join rewriting, NULL propagation, and set operator evaluation. In summary, JoinEquiv effectively uncovers logic bugs that advanced state-of-the-art approaches fail to detect, thereby answering RQ3. Code Coverage.We",
+      "section": "E Comparison to Existing DBMS Testing Approaches",
+      "page": 11,
+      "char_offset": 52939,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M38",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Among existing DBMS testing studies, the SQLancer family [27] is the most representative for discovering logic bugs and is the closest to our work.",
+      "context_before": "bugs have been fixed so far, the fix rate alone does not directly reflect their severity. Among the reported bugs, the low fix rate stems mainly from the complexity of fixing logic bugs in join optimizers, which often requires modifying core rewrite rules and extensive regression testing to avoid performance regressions. Another important factor is the timing of bug disclosure. As most bugs were reported recently, subsequent releases were developed without awareness of them, making it unlikely that fixes can be incorporated in the short term. VII. RELATEDWORK Logic Bug Identification for DBMS.",
+      "context_after": "Its key contribution lies in providing a framework for systematically uncovering deep errors inside DBMSs. SQLancer targets logic bugs that lead to incorrect query results in DBMSs. Other representative approaches include PQS [19], NoREC [22], TLP [20], DQP [25], and CERT [37]. PQS and NoREC have been discussed in §I, while TLP and DQP were analyzed in §V-E. CERT [37] aims to identify performance issues caused by unexpected cardinality estimations, that is, the cases where the estimated number of result tuples significantly deviates from the actual number. In contrast, our approach specifical",
+      "section": "VII RELATEDWORK",
+      "page": 12,
+      "char_offset": 58930,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M39",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer targets logic bugs that lead to incorrect query results in DBMSs.",
+      "context_before": "s and extensive regression testing to avoid performance regressions. Another important factor is the timing of bug disclosure. As most bugs were reported recently, subsequent releases were developed without awareness of them, making it unlikely that fixes can be incorporated in the short term. VII. RELATEDWORK Logic Bug Identification for DBMS.Among existing DBMS testing studies, the SQLancer family [27] is the most representative for discovering logic bugs and is the closest to our work. Its key contribution lies in providing a framework for systematically uncovering deep errors inside DBMSs.",
+      "context_after": "Other representative approaches include PQS [19], NoREC [22], TLP [20], DQP [25], and CERT [37]. PQS and NoREC have been discussed in §I, while TLP and DQP were analyzed in §V-E. CERT [37] aims to identify performance issues caused by unexpected cardinality estimations, that is, the cases where the estimated number of result tuples significantly deviates from the actual number. In contrast, our approach specifically targets the detection of logic bugs in join optimizations, an area that none of the existing SQLancerbased techniques are designed to explore. Generator-based Testing for DBMS.A v",
+      "section": "VII RELATEDWORK",
+      "page": 12,
+      "char_offset": 59184,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M40",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Other representative approaches include PQS [19], NoREC [22], TLP [20], DQP [25], and CERT [37].",
+      "context_before": "r important factor is the timing of bug disclosure. As most bugs were reported recently, subsequent releases were developed without awareness of them, making it unlikely that fixes can be incorporated in the short term. VII. RELATEDWORK Logic Bug Identification for DBMS.Among existing DBMS testing studies, the SQLancer family [27] is the most representative for discovering logic bugs and is the closest to our work. Its key contribution lies in providing a framework for systematically uncovering deep errors inside DBMSs. SQLancer targets logic bugs that lead to incorrect query results in DBMSs.",
+      "context_after": "PQS and NoREC have been discussed in §I, while TLP and DQP were analyzed in §V-E. CERT [37] aims to identify performance issues caused by unexpected cardinality estimations, that is, the cases where the estimated number of result tuples significantly deviates from the actual number. In contrast, our approach specifically targets the detection of logic bugs in join optimizations, an area that none of the existing SQLancerbased techniques are designed to explore. Generator-based Testing for DBMS.A variety of tools have been developed for generating database data [38]–[42] and SQL queries [16],",
+      "section": "VII RELATEDWORK",
+      "page": 12,
+      "char_offset": 59259,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp",
+        "dqp",
+        "cert"
+      ]
+    },
+    {
+      "id": "M41",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS and NoREC have been discussed in §I, while TLP and DQP were analyzed in §V-E.",
+      "context_before": "nt releases were developed without awareness of them, making it unlikely that fixes can be incorporated in the short term. VII. RELATEDWORK Logic Bug Identification for DBMS.Among existing DBMS testing studies, the SQLancer family [27] is the most representative for discovering logic bugs and is the closest to our work. Its key contribution lies in providing a framework for systematically uncovering deep errors inside DBMSs. SQLancer targets logic bugs that lead to incorrect query results in DBMSs. Other representative approaches include PQS [19], NoREC [22], TLP [20], DQP [25], and CERT [37].",
+      "context_after": "CERT [37] aims to identify performance issues caused by unexpected cardinality estimations, that is, the cases where the estimated number of result tuples significantly deviates from the actual number. In contrast, our approach specifically targets the detection of logic bugs in join optimizations, an area that none of the existing SQLancerbased techniques are designed to explore. Generator-based Testing for DBMS.A variety of tools have been developed for generating database data [38]–[42] and SQL queries [16], [43]–[48] to automatically construct test cases for DBMS evaluation. However, rela",
+      "section": "VII RELATEDWORK",
+      "page": 12,
+      "char_offset": 59356,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M42",
+      "found_by": "technique",
+      "surface": "CERT",
+      "technique": "cert",
+      "sentence": "CERT [37] aims to identify performance issues caused by unexpected cardinality estimations, that is, the cases where the estimated number of result tuples significantly deviates from the actual number.",
+      "context_before": "s can be incorporated in the short term. VII. RELATEDWORK Logic Bug Identification for DBMS.Among existing DBMS testing studies, the SQLancer family [27] is the most representative for discovering logic bugs and is the closest to our work. Its key contribution lies in providing a framework for systematically uncovering deep errors inside DBMSs. SQLancer targets logic bugs that lead to incorrect query results in DBMSs. Other representative approaches include PQS [19], NoREC [22], TLP [20], DQP [25], and CERT [37]. PQS and NoREC have been discussed in §I, while TLP and DQP were analyzed in §V-E.",
+      "context_after": "In contrast, our approach specifically targets the detection of logic bugs in join optimizations, an area that none of the existing SQLancerbased techniques are designed to explore. Generator-based Testing for DBMS.A variety of tools have been developed for generating database data [38]–[42] and SQL queries [16], [43]–[48] to automatically construct test cases for DBMS evaluation. However, relatively little attention has been paid to the design of test oracles, which are essential for determining the correctness of query results. Generationbased testing approaches [46], [49]–[53] have been wi",
+      "section": "VII RELATEDWORK",
+      "page": 12,
+      "char_offset": 59438,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M43",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "By viewing the join operator as a generalized intersection under set and multiset semantics, we systematically derived three provably equivalent rewriting rules (SJT, ADT, and SDT) and applied them to uncover inconsistencies overlooked by existing state-of-the-art testing approaches such as TLP and DQP.",
+      "context_before": "or assertion failures. They are not well-suited for detecting logic bugs, where the DBMS returns incorrect results without crashing. In contrast, our work focuses on the semantic correctness of query results. By systematically applying algebraic equivalence rules, we generate test oracles that can identify logical inconsistencies in join optimizations that coverage-guided fuzzers would likely miss. VIII. CONCLUSION Building on the basic principles of set theory, this paper introduced JoinEquiv, a novel framework for detecting logic bugs in DBMSs through equivalence-based query transformation.",
+      "context_after": "Extensive experiments on four DBMSs detected 27 previously unknown bugs and 14 verified ascriticalbugs, demonstrating that even simple algebraic equivalences can serve as powerful metamorphic relations for testing complex database systems. Future work will explore the application of equivalence-based testing beyond join operations. ACKNOWLEDGEMENTS We thank anonymous reviewers for their constructive comments and suggestions, which helped improve this paper. This work was supported in part by Ant Digital Technologies, Ant Group Research Fund. This work was also supported in part by the Shangha",
+      "section": "VIII CONCLUSION",
+      "page": 12,
+      "char_offset": 63078,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "dqp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M14",
+        "M36"
+      ],
+      "extends_technique": [
+        "M11"
+      ],
+      "describes_as_state_of_the_art": [
+        "M43"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:11:45Z",
+    "is_model_written": true,
+    "summary": "JoinEquiv detects logic bugs in INNER JOIN optimisation through set theory. For each test case it generates equivalent queries from the intersection operation together with three semantics-preserving rewrite rules -- symmetric join, asymmetric difference and symmetric difference transformations -- which turn a simple join query into a more complex but equivalent form, and compares the results. Across MySQL, TiDB, DuckDB and Percona it uncovered 29 previously unknown issues, 27 officially confirmed.",
+    "narrative": "The test case generation is built on SQLancer, which the authors extend so that all generated columns are NOT NULL, and it relies on SQLancer's randomised population of predicates and clauses. TLP is both its closest conceptual relative -- the paper says both rest on set-theoretic principles -- and one of the two approaches it is measured against, with each JoinEquiv bug rewritten into TLP and DQP form to see whether they reproduce it.",
+    "roles": {
+      "M1": "definition",
+      "M10": "reuse_implementation",
+      "M11": "extension",
+      "M12": "reuse_component",
+      "M13": "baseline",
+      "M14": "baseline",
+      "M15": "background",
+      "M16": "baseline",
+      "M17": "baseline",
+      "M18": "definition",
+      "M19": "definition",
+      "M20": "definition",
+      "M21": "baseline",
+      "M22": "definition",
+      "M23": "definition",
+      "M24": "definition",
+      "M25": "definition",
+      "M26": "reuse_component",
+      "M27": "baseline",
+      "M28": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M10",
+          "M11",
+          "M12"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M10",
+            "sentence": "The test case generation builds upon the SQLancer framework, which provides a grammar-aware SQL query generation engine.",
+            "section": "E Database and Query Generation",
+            "page": 6
+          },
+          {
+            "mention_id": "M11",
+            "sentence": "We extend SQLancer to satisfy an additional precondition that all columns are NOT NULL.",
+            "section": "E Database and Query Generation",
+            "page": 6
+          },
+          {
+            "mention_id": "M12",
+            "sentence": "Such a table permutation, combined with SQLancer’s randomized population of ONpredicates,WHEREclauses, and SELECT list expressions, ensures that the framework explores a diverse range of symmetric and asymmetric execution plans.",
+            "section": "E Database and Query Generation",
+            "page": 6
+          }
+        ],
+        "reasoning": "M10 states the test case generation builds on the SQLancer framework for grammar-aware query generation, M11 that they extended it with a NOT NULL precondition, and M12 that they rely on its randomised population of ON predicates, WHERE clauses and SELECT expressions. M26 also takes optimizer hints from SQLancer-DQP.",
+        "reuse_kind": "implementation"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "M11 extends the SQLancer tool with a generation precondition, which is reuse of the codebase rather than extension of a technique. The oracle itself, built from intersection and three difference transformations, is presented as new; TLP is described as sharing a conceptual foundation, not as being generalised."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M13",
+          "M14",
+          "M16",
+          "M17"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M13",
+            "sentence": "Within each thread, for every INNER JOINquery, JoinEquiv, TLP, and DQP are applied sequentially under the same system TABLE IISUMMARY OFLOGICBUGREPORTS ANDVERIFICATIONSTATUS INDIFFERENTRDBMSS RDBMS Reported Verified Fixed Intended Component Severity Identifier MySQL 10 8 1 2 Optimizer (8) Critical (8)Bug#118544, Bug#118684, Bug#118710, Bug#118857, Bug#118858, Bug#118949, Bug#119032, Bug#119059 TiDB 13 13 4 0Planner (11) Execution (2)Critical (3)#62380, #62444, #62456, #62459, #62460, #62644, #62645, #62689, #63596, #63601, #63635, #63636, #63736 Percona 3 3 0 0 Optimizer (3) Critical (3)PS-10124, PS-10127, DISMYSQL-535 DuckDB 3 3 3 0 – –#20483, #20486, #20608 Total29 27 8 2 – Critical (14) – Note:For DuckDB, component and severity were not provided, so they are marked as “–”.",
+            "section": "A Evaluation Setup",
+            "page": 7
+          },
+          {
+            "mention_id": "M14",
+            "sentence": "Comparison to Existing DBMS Testing Approaches In order to evaluate JoinEquiv’s unique ability to detect logical bugs related to INNER JOIN, we compare it with two representative metamorphic testing approaches: Ternary Logic Partitioning (TLP) and Differential Query Plans (DQP).",
+            "section": "E Comparison to Existing DBMS Testing Approaches",
+            "page": 9
+          },
+          {
+            "mention_id": "M16",
+            "sentence": "For each reported bug, we reconstruct equivalent test cases following TLP and DQP formulations to examine whether these approaches can reproduce the same erroneous behavior.",
+            "section": "E Comparison to Existing DBMS Testing Approaches",
+            "page": 10
+          },
+          {
+            "mention_id": "M17",
+            "sentence": "Crucially, for every generated original INNER JOINquery that can be correctly executed, we apply all three transformation strategies (TLP, DQP, and JoinEquiv) within the same iteration, ensuring a fair comparison under an identical execution context.",
+            "section": "E Comparison to Existing DBMS Testing Approaches",
+            "page": 10
+          }
+        ],
+        "reasoning": "TLP and DQP are the two approaches JoinEquiv is compared against: all three transformations are applied to every generated query in the same session, and each reported bug is rewritten into TLP and DQP form to test reproducibility.",
+        "techniques": [
+          "tlp",
+          "dqp"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "uncertain",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "A pattern fired on M43, which was not among the mentions read here. M14 calls TLP and DQP representative approaches rather than the state of the art in those words."
+      }
+    },
+    "disagreements": [
+      "A pattern read M11 as extending a technique. It extends the SQLancer tool -- adding a NOT NULL precondition to generation -- which is reuse of the codebase, and is recorded there instead."
+    ],
+    "unresolved": [
+      "Whether the paper calls SQLancer or its techniques state of the art: the mention a pattern fired on, M43, was outside the set read."
+    ]
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

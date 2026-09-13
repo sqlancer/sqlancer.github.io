@@ -1,0 +1,885 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:31:24Z",
+  "paper": {
+    "id": "paper:doi:10.14778/3797919.3797928",
+    "title": "Dinkel: State-Aware and Granular Framework for Validating Graph Databases",
+    "authors": [
+      "C. Wüst",
+      "Zu-Ming Jiang",
+      "Zhendong Su"
+    ],
+    "year": 2024,
+    "venue": "Proceedings of the VLDB Endowment",
+    "doi": "10.14778/3797919.3797928",
+    "arxiv_id": "2408.07525",
+    "s2_paper_id": "10be4636a8900a45571f1744ee50430a4e125485",
+    "url": "https://doi.org/10.14778/3797919.3797928",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2408.07525",
+      "retrieved_at": "2026-09-09T01:31:24Z",
+      "chars": 75747,
+      "content_sha256": "sha256:b3097640feec05ec2ca8efb7aba4bbc4f811e1eb948f942c6f4cd2e7a8b28607"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 1792
+      },
+      {
+        "number": "2",
+        "title": "BACKGROUND",
+        "start": 14675
+      },
+      {
+        "number": "3",
+        "title": "APPROACH",
+        "start": 19031
+      },
+      {
+        "number": "3.1",
+        "title": "State-Aware Query Generation",
+        "start": 19212
+      },
+      {
+        "number": "3.1.2",
+        "title": "Query Generation.Our generation is based on a key insight",
+        "start": 21905
+      },
+      {
+        "number": "3.2",
+        "title": "Fine-Grained Query Transformation",
+        "start": 27024
+      },
+      {
+        "number": "4",
+        "title": "IMPLEMENTATION",
+        "start": 33020
+      },
+      {
+        "number": "5",
+        "title": "EVALUATION",
+        "start": 36569
+      },
+      {
+        "number": "5.1",
+        "title": "Experimental Setup",
+        "start": 36966
+      },
+      {
+        "number": "5.2",
+        "title": "Bug Detection",
+        "start": 38092
+      },
+      {
+        "number": "5.3",
+        "title": "Query Generation",
+        "start": 45810
+      },
+      {
+        "number": "5.4",
+        "title": "Importance of Key Techniques",
+        "start": 49485
+      },
+      {
+        "number": "5.5",
+        "title": "Comparison",
+        "start": 54649
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Address Sanitizer. 2019. https://clang.llvm.org/docs/AddressSanitizer.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "American Fuzzy Lop. 2021. https://github.com/google/AFL.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Vaggelis Atlidakis, Patrice Godefroid, and Marina Polishchuk. 2019. RESTler: Stateful REST API Fuzzing. InProceedings of the 41st International Conference on Software Engineering (ICSE). 748–758.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Jingji Chen and Xuehai Qian. 2023. DecoMine: A Compilation-Based Graph Pattern Mining System with Pattern Decomposition. InProceedings of the 28th International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS). 47–61.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Peng Chen and Hao Chen. 2018. Angora: Efficient Fuzzing by Principled Search. InProceedings of the 2018 Symposium on Security and Privacy (S&P). 711–725.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Tsong Y Chen, Shing C Cheung, and Shiu Ming Yiu. 1998.Metamorphic testing: a new approach for generating next test cases. Technical Report. HKUST-CS98-01. Department of Computer Science, HKUST.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Creating a Modern Solution to Finding What’s Lost with Neo4j. 2024. https: //neo4j.com/case-studies/notlost.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Cypher Query Language Reference. 2022. https://s3.amazonaws.com/artifacts. opencypher.org/openCypher9.pdf.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "DB-Engines Ranking. 2024. https://db-engines.com/en/ranking.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "FalkorDB. A super fast Graph Database uses GraphBLAS under the hood for its sparse adjacency matrix graph representation. 2024. https://github.com/Falko rDB/FalkorDB/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-Free DBMS Fuzzing. InProceedings of the 37th International Conference on Automated Software Engineering (ASE). 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Zongyin Hao, Quanfeng Huang, Chengpeng Wang, Jianfeng Wang, Yushan Zhang, Rongxin Wu, and Charles Zhang. 2023. Pinolo: Detecting Logical Bugs in Database Management Systems with Approximate Query Synthesis. InProceedings of the 2023 USENIX Annual Technical Conference (ATC). 345–358.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Ziyue Hua, Wei Lin, Luyao Ren, Zongyang Li, Lu Zhang, Wenpin Jiao, and Tao Xie. 2023. GDsmith: Detecting Bugs in Cypher Graph Database Engines. In Proceedings of the 2023 International Symposium on Software Testing and Analysis (ISSTA). 163–174.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang, and Manuel Rigger. 2023. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the 46th International Conference on Software Engineering (ICSE). 531–542.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 15,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, Kangjie Lu, and Shi-Min Hu. 2020. Fuzzing Error Handling Code using Context-Sensitive Software Fault Injection. InProceedings of the 29th USENIX Security Symposium. 2595–2612.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. 2023. DynSQL: Stateful Fuzzing for Database Management Systems with Complex and Valid SQL Query Generation. InProceedings of the 32nd USENIX Security Symposium. 4949–4965.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In Proceedings of the 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI). 397–417.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 18,
+      "text": "Zu-Ming Jiang and Zhendong Su. 2024. Detecting Logic Bugs in Database Engines via Equivalent Expression Transformation. InProceedings of the 18th USENIX Symposium on Operating Systems Design and Implementation (OSDI). 821–835.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, Kangjie Lu, and Shi-Min Hu. 2022. Context-Sensitive and Directional Concurrency Fuzzing for Data-Race Detection. InProceedings of the 29th Network and Distributed System Security Symposium (NDSS).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. InProceedings of the 2023 International Symposium on Software Testing and Analysis (ISSTA). 140–149.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 21,
+      "text": "Kyungtae Kim, Taegyu Kim, Ertza Warraich, Byoungyoung Lee, Kevin RB Butler, Antonio Bianchi, and Dave Jing Tian. 2022. FuzzUSB: Hybrid Stateful Fuzzing of USB Gadget Stacks. InProceedings of the 2022 International Symposium on Security and Privacy (S&P). 2212–2229.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. 2023. SequenceOriented DBMS Fuzzing. InProceedings of the 2023 International Conference on Data Engineering (ICDE). 668–681.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Chenyang Lyu, Shouling Ji, Chao Zhang, Yuwei Li, Wei-Han Lee, Yu Song, and Raheem Beyah. 2019. MOPT: Optimized Mutation Scheduling for Fuzzers. In Proceedings of the 28th USENIX Security Symposium. 1949–1966.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Fuchen Ma, Yuanliang Chen, Meng Ren, Yuanhang Zhou, Yu Jiang, Ting Chen, Huizhong Li, and Jiaguang Sun. 2023. LOKI: State-Aware Fuzzing Framework for the Implementation of Blockchain Consensus Protocols. InProceedings of the 30th Network and Distributed System Security Symposium (NDSS).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "David Maciver and Alastair F. Donaldson. 2020. Test-Case Reduction via TestCase Generation: Insights from the Hypothesis Reducer. InProceedings of the 34th European Conference on Object-Oriented Programming (ECOOP). 13:1–13:27.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Qiuyang Mang, Aoyang Fang, Boxi Yu, Hanfei Chen, and Pinjia He. 2024. Testing Graph Database Systems via Equivalent Query Rewriting. InProceedings of the 46th International Conference on Software Engineering (ICSE). 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Qiuyang Mang, Aoyang Fang, Boxi Yu, Hanfei Chen, and Pinjia He. 2024. Testing Graph Database Systems via Equivalent Query Rewriting. InProceedings of the 46th International Conference on Software Engineering (ICSE). 143:1–143:12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "William M McKeeman. 1998. Differential testing for software.Digital Technical Journal10, 1 (1998), 100–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Memgraph. Open-source graph database, tuned for dynamic analytics environments. Easy to adopt, scale and own. 2024. https://github.com/memgraph/me mgraph.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "NBC News Analyzes Hundreds of Thousands of Russian Troll Tweets Using Neo4j. 2021. https://go.neo4j.com/rs/710-RRC-335/images/Neo4j-case-study NBC-News-EN-US.pdf.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Neo4j and Generative AI 2023. https://neo4j.com/generativeai/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Neo4j. Graphs for Everyone. 2024. https://github.com/neo4j/neo4j.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Novartis Captures the Latest Biological Knowledge for Drug Discovery. 2021. https://go.neo4j.com/rs/710-RRC-335/images/Neo4j-case-study-Novartis-ENUS.pdf.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "openCypher. 2024. https://opencypher.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "RedisGraph. A graph database as a Redis module. 2023. https://github.com/Red isGraph/RedisGraph.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "John Regehr, Yang Chen, Pascal Cuoq, Eric Eide, Chucky Ellison, and Xuejun Yang. 2012. Test-Case Reduction for C Compiler Bugs. InProceedings of the 2012 International Conference on Programming Language Design and Implementation (PLDI). 335–346.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-optimizing Reference Engine Construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESE/FSE). 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 38,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. InProceedings of the 2020 International Conference on Object Oriented Programming Systems Languages and Applications (OOPSLA). 1–30.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 39,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. InProceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 40,
+      "text": "Jiansen Song, Wensheng Dou, Ziyu Cui, Qianwang Dai, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2023. Testing Database Systems via Differential Query Execution. InProceedings of the 45th International Conference on Software Engineering (ICSE). 2072–2084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "SQL standard. 1992. https://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992. txt.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "SQLsmith: A random SQL query generator. 2023. https://github.com/anse1/sqls mith.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Xiu Tang, Sai Wu, Dongxiang Zhang, Feifei Li, and Gang Chen. 2023. Detecting Logic Bugs of Join Optimizations in DBMS. InProceedings of the 2023 International Conference on Management of Data (SIGMOD). 1–26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Who Uses Neo4j. 2024. https://neo4j.com/who-uses-neo4j.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Chengshuo Xu, Keval Vora, and Rajiv Gupta. 2019. Pnp: Pruning and prediction for point-to-point iterative graph analytics. InProceedings of the 24th International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS). 587–600.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Xizhe Yin, Zhijia Zhao, and Rajiv Gupta. 2023. Glign: Taming misaligned graph traversals in concurrent graph processing. InProceedings of the 28th International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS). 78–92.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Insu Yun, Sangho Lee, Meng Xu, Yeongjin Jang, and Taesoo Kim. 2018. QSYM: A Practical Concolic Execution Engine Tailored for Hybrid Fuzzing. InProceedings of the 27th USENIX Security Symposium. 745–761.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Bodong Zhao, Zheming Li, Shisong Qin, Zheyu Ma, Ming Yuan, Wenyu Zhu, Zhihong Tian, and Chao Zhang. 2022. StateFuzz: System Call-Based State-Aware Linux Driver Fuzzing. InProceedings of the 31st USENIX Security Symposium. 3273–3289.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Yingying Zheng, Wensheng Dou, Yicheng Wang, Zheng Qin, Lei Tang, Yu Gao, Dong Wang, Wei Wang, and Jun Wei. 2022. Finding Bugs in Gremlin-Based Graph Database Systems via Randomized Differential Testing. InProceedings of the 2022 International Symposium on Software Testing and Analysis (ISSTA). 302–313.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. InProceedings of the 2020 International Conference on Computer and Communications Security (CCS). 955–970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Zeyang Zhuang, Penghui Li, Pingchuan Ma, Wei Meng, and Shuai Wang. 2023. Testing Graph Database Systems via Graph-Aware Metamorphic Relations.Proceedings of the 50th International Conference on Very Large Databases (VLDB) (2023), 836–848.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 14,
+      "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang, and Manuel Rigger. 2023. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the 46th International Conference on Software Engineering (ICSE). 531–542.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 17,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In Proceedings of the 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI). 397–417.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 20,
+      "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. InProceedings of the 2023 International Symposium on Software Testing and Analysis (ISSTA). 140–149.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 37,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-optimizing Reference Engine Construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESE/FSE). 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 38,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. InProceedings of the 2020 International Conference on Object Oriented Programming Systems Languages and Applications (OOPSLA). 1–30.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 39,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. InProceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 13,14,20,51]",
+      "technique": null,
+      "sentence": "To improve GDBMS reliability, testing approaches [ 13,14,20,51] have been proposed to find bugs by generating queries in Cypher, the most widely-adopted graph query language [ 34].",
+      "context_before": "ems (GDBMSs) are crucial for modern interconnected, data-driven computer software [ 4,7,30, 31,33,45,46]. Notably, 75% of the Fortune 100 and all of North America’s top 20 banks have adopted the currently most popular GDBMS, Neo4j [ 9,44]. While rapidly evolving and becoming more complex (e.g., Neo4j has 1.2M LOC), GDBMSs inevitably suffer from bugs introduced during their development. These bugs are critical as they can corrupt the GDBMSs and lead to serious consequences. One of the most critical types of bugs are logic bugs, which can silently cause GDBMSs to produce incorrect query results.",
+      "context_after": "As large-scale, complex systems, GDBMSs are difficult to test effectively due to two key challenges:query generationandtest-oracle construction. To cover a broad spectrum of functionalities and deep system logic, approaches need to generate complex queries involving various Cypher language features and complicated data dependencies. To ∗Both authors contributed equally to this research.identify bugs, especially logic bugs that cause GDBMSs to silently produce incorrect results for queries, testing approaches require test oracles that can be generally applied to validate arbitrary queries. How",
+      "section": "1 INTRODUCTION",
+      "page": 1,
+      "char_offset": 2437,
+      "cited_reference": {
+        "number": 14,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang, and Manuel Rigger. 2023. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the 46th International Conference on Software Engineering (ICS",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 16–18]",
+      "technique": null,
+      "sentence": "In DBMSs, many bugs can only be triggered by complex queries [ 16–18].",
+      "context_before": "llenges remain unsolved. All existing approaches focus on proposing new test oracles, but struggle to systematically generate complex and valid queries, leaving much GDBMS logic and code inadequately tested or completely unexercised. Although existing approaches focus on test oracles to identify logic bugs, none of the proposed oracles can generally be applied to validate arbitrary queries. As a result, many logic bugs in GDBMSs get missed, even though they can be triggered by existing queries. The following discusses the details of these two challenges. Challenge 1:Generating Complex Queries.",
+      "context_after": "A complex Cypher query can involve various clause combinations and complicated data dependencies. Generating such complex queries is challenging because the clauses invoked by Cypher queries can change the graph states of the manipulated graph database during their execution. Such state changes are visible in subsequent clauses. Moreover, the data and variables used by Cypher queries have different scopes, depending on the clauses they are involved in. Due to the lack of systematic modeling of these Cypher language features, existing approaches cannot effectively generate complex queries, and",
+      "section": "1 INTRODUCTION",
+      "page": 1,
+      "char_offset": 3841,
+      "cited_reference": {
+        "number": 17,
+        "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In Proceedings of the 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI). 397–417.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 14]",
+      "technique": null,
+      "sentence": "For example, GraphGenie [ 14] requires the predicate in MATCH clauses to satisfy the preconditions of their transformation rules (e.",
+      "context_before": "H (n0 IN[]| FOREACH (xIN[]| SET x={})) RETURN 0ASn1 UNION CALL{ FOREACH(n2IN[] | FOREACH(n3IN[] | MERGE(:A {u:0}))) }MATCH(y) RETURNyASn1 UNION CREATE() RETURN0ASn1 Figure 2: Queries exposing a logic bug in Neo4j. 26,51]. Given a generated Cypher query, they transform it into another query and check whether the results of the transformed query and the original query follow specified relationships. However, these approaches cannot be generally applied to arbitrary queries because they require their generated queries to follow specific query patterns so that their transformations can be applied.",
+      "context_after": "g., one rule requires the predicates to involve a cyclic graph). Moreover, GraphGenie can transform and validate only queries that contain a single MATCH clause followed by a RETURN. GRev [ 26] integrates an abstract syntax graph (ASG) for interpreting the predicate in MATCH statements and can thus transform the predicate in more diverse ways and with fewer restrictions. However, the predicate modeling in GRev can only be applied to MATCH statements, while queries involving other common clauses like MERGE ,UNWIND, and FOREACH remain unsupported and thus untested. Such inapplicabilities arise f",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 7107,
+      "cited_reference": {
+        "number": 14,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang, and Manuel Rigger. 2023. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the 46th International Conference on Software Engineering (ICS",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 14]",
+      "technique": null,
+      "sentence": "The most widely used graph model is thelabeled property graph model[ 14], which stores interconnected data using nodes connected via relationships (i.",
+      "context_before": "queries by manipulating their clauses and expressions. •Practical realization:We realize a fully automatic testing framework, Dinkel, to find bugs in GDBMSs by generating and validating complex Cypher queries. •Promising results:We evaluated Dinkel on three popular opensource GDBMSs, namely Neo4j, RedisGraph and Memgraph. Dinkel found 127 unique and new bugs, among which 33 are logic bugs. So far, 113 unique bugs have been confirmed, and 84 fixed. These results demonstrate the effectiveness ofDinkel. 2 BACKGROUND Graph Database Management Systems. GDBMSs utilize graph models to represent data.",
+      "context_after": "e., directed edges between nodes) [ 34]. Nodes and relationships, generally referred to asgraph entities, can be associated with labels and properties. Labels are used to group and classify elements, whereas properties are made up of key-value pairs, providing attribute information. Cypher Language.Cypher is the most widely adopted query language for property graph databases [ 34] and was proposed by Neo4j. It is designed as a declarative query language, which allows users to specify the required data without realizing the detailed procedures. The general way to specify data in Cypher is to co",
+      "section": "2 BACKGROUND",
+      "page": 3,
+      "char_offset": 14769,
+      "cited_reference": {
+        "number": 14,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang, and Manuel Rigger. 2023. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the 46th International Conference on Software Engineering (ICS",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 13,14,20,27,51]",
+      "technique": null,
+      "sentence": "As shown in Table 4, Dinkel supports more Cypher clauses than existing approaches [ 13,14,20,27,51].",
+      "context_before": "pported Clauses in Query Generation. Dinkel supports all non-administrative clauses in the tested GDBMSs. For example, in Neo4j, 21 out of the total 25 clauses are non-administrative and thereby supported. Administrative clauses, such as SHOWFUNCTIONS and USE, are not supported because they are not related to query processing logic. For example, SHOWFUNCTIONS is designed to list all available functions and cannot be combined with other clauses. USE is used to switch the manipulated databases, which is not necessary as all databases are empty on initialization and they function in the same way.",
+      "context_after": "None of the existing approaches support FOREACH clauses, because this clause complicates control flow and can significantly modify graph states during query execution. UNION ,EXISTS, and COUNT are not supported either, as these clauses invoke subqueries that can inherit and change the graph states of the main query. Lacking a systematic model for handling graph state changes, existing approaches are limited in generating complex queries using these clauses. Moreover, existing approaches support validation for only queries following specific patterns, while many clauses complicate the semantic",
+      "section": "4 IMPLEMENTATION",
+      "page": 7,
+      "char_offset": 34250,
+      "cited_reference": {
+        "number": 14,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang, and Manuel Rigger. 2023. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the 46th International Conference on Software Engineering (ICS",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 13,14,20,27,51]",
+      "technique": null,
+      "sentence": "1 Experimental Setup We evaluated Dinkel on Neo4j [ 32], RedisGraph [ 35], and Memgraph [ 29], which are popular and extensively tested by existing approaches [ 13,14,20,27,51].",
+      "context_before": "f some clauses are successfully deleted or replaced in one try, Dinkel will restart the reduction process for the reduced queries. The process stops when no clause in the query can be further reduced. 5 EVALUATION Our evaluation aims to answer the following questions: Q1CanDinkel find real bugs in widely used and extensively tested GDBMSs? (Section 5.2) Q2How complex and valid are the queries generated by Dinkel? (Section 5.3) Q3How do different techniques contribute to the effectiveness of Dinkel? (Section 5.4) Q4CanDinkel outperform state-of-the-art GDBMS testing approaches? (Section 5.5) 5.",
+      "context_after": "We evaluate Dinkel on the latest GDBMS versions. During testing, if the tested GDBMSs are updated (e.g., a new version is released), we set up new Dinkel instances to test the updated versions. Specifically, we test Neo4j from version 5.6.0, RedisGraph from 2.12.0, and Memgraph from 2.7.0. RedisGraph is no longer maintained after 2.12.10, and thus we move to test its successor, FalkorDB [ 10], from its first release version 4.0.0. We count the bugs of RedisGraph and FalkorDB together as they share the majority of their code base. To show its effectiveness for black-box testing GDBMSs, we eval",
+      "section": "5.1 Experimental Setup",
+      "page": 7,
+      "char_offset": 36968,
+      "cited_reference": {
+        "number": 14,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang, and Manuel Rigger. 2023. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the 46th International Conference on Software Engineering (ICS",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[17, 25, 36]",
+      "technique": null,
+      "sentence": "2, because all the bugtriggering queries are reduced, while the generated queries inevitably contain many redundant parts [17, 25, 36].",
+      "context_before": "se Dep. Size Neo4j 318k 89.90% 40.97 26.77 1394.69 RedisGraph 1’078k 93.90% 32.71 30.59 1071.58 Memgraph 570k 83.27% 29.95 21.71 993.63 Average655k 89.02% 34.54 26.36 1153.3 dependencies is 26.36. Because of the large number of clauses and dependencies, the queries generated by Dinkel are typically large. The average query size is 1153.3 bytes. These results demonstrate thatDinkel can effectively generate complex queries, which are large and contain multiple clauses with complicated data dependencies. The generated queries are more complex than the bugtriggering queries discussed in Section 5.",
+      "context_after": "Query Validity. Among the 655k queries generated by Dinkel, 583k are valid. The percentage of valid queries is 89.02%. The result demonstrates that Dinkel can keep a high validity rate even when generating complex queries. We investigated the invalid queries generated by Dinkel and found that they were mainly caused by illegal arithmetic operations. Some arithmetic operations require the operands to satisfy some constraints (e.g., the divisor in a division must be non-zero). However, Dinkel cannot track the value of each operator in queries because the value may depend on complex expressions,",
+      "section": "5.3 Query Generation",
+      "page": 9,
+      "char_offset": 47276,
+      "cited_reference": {
+        "number": 17,
+        "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting Transactional Bugs in Database Engines via Graph-Based Oracle Construction. In Proceedings of the 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI). 397–417.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 14,20]",
+      "technique": null,
+      "sentence": "We believe the current throughput is practical considering (1) GDBMS testing typically lasts for several months [ 14,20], and thus a sufficient number of test cases can be executed; and (2) setting up multiple Dinkel instances can significantly improve the test efficiency.",
+      "context_before": "ong Su Table 9: Bug-triggering queries related to QC: only query context; GS: only graph schema; Both: both graph states. The number in the parentheses is for the logic bugs Version Found QCGS Both Neo4j 51 (13) 23 (3) 3 (0) 5 (2) RedisGraph 62 (18) 34 (7) 1 (1) 4 (0) Memgraph 14 (2) 5 (0) 1 (0) 0 (0) Total127 (33) 72 (10) 5 (1) 9 (2) transformation, and execution. We found that for Neo4j, 74.75% of CPU time was used to execute the generated queries, which are complex and can be time-consuming. This result indicates that the test throughput is dominated by the performance of the tested GDBMSs.",
+      "context_after": "5.4 Importance of Key Techniques To show the importance of our techniques, we analyze how they contribute to the 127 bugs found by Dinkel. The analysis consists of two parts. The first focuses on the query context and graph schema in query generation, while the second assesses the transformation strategies (4 clause-level ones and 2 expression-level ones) used in test-oracle construction. We analyzed the 127 bug-triggering queries and checked whether their generations depend on specific graph states. Specifically, we extracted the data dependencies contained by each query and check whether at",
+      "section": "5.3 Query Generation",
+      "page": 10,
+      "char_offset": 49210,
+      "cited_reference": {
+        "number": 14,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang, and Manuel Rigger. 2023. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the 46th International Conference on Software Engineering (ICS",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 13,14,20,27,51]",
+      "technique": null,
+      "sentence": "This comparison is reasonable and objective because: (1) none of the bugs found by Dinkel are marked as duplicated by developers, meaning that no approach found these bugs until Dinkel found them; and (2) all existing approaches have extensively tested Neo4j and RedisGraph [ 13,14,20,27,51], meaning that in these two GDBMSs, no approach found the long-latent bugs found by Dinkel during their evaluation.",
+      "context_before": "bugs DBMS FoundBug-involved year Longest latency < 2024 < 2023 Neo4j 51 (13) 40 (9) 27 (7) 2016 RedisGraph 62 (18) 52 (15) 20 (3) 2020 Memgraph 14 (2) 9 (2) 4 (0) 2021 Total127 (33) 101 (26) 51 (10) 2016 5.5 Comparison Bug Latency Study.To demonstrate that Dinkel can find bugs missed by existing approaches, we investigate the latencies of bugs found by Dinkel. For each bug, we check whether its bug-inducing commit was created before the years when existing approaches were published. If Dinkel finds some long-latent bugs, we can conclude that Dinkel can find bugs missed by existing approaches.",
+      "context_after": "Some existing approaches do not test Memgraph, but we still include it to show the effectiveness ofDinkel. GDsmith [ 13], GDBMeter [ 20], GraphGenie [ 14], and GAMERA [ 51] were published in 2023, and GRev [ 27] was published in 2024. Therefore, for each bug, we checked whether its bug-inducing commit was created before 2024 (i.e., in 2023 or earlier) and 2023. As shown in Table 11, among the 113 bugs in Neo4j and RedisGraph, 47 already existed before 2023, among which 10 are logic bugs. It indicates that all existing approaches failed to find these 47 bugs in their extensive evaluation. In a",
+      "section": "5.5 Comparison",
+      "page": 11,
+      "char_offset": 55044,
+      "cited_reference": {
+        "number": 14,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang, and Manuel Rigger. 2023. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the 46th International Conference on Software Engineering (ICS",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 20]",
+      "technique": null,
+      "sentence": "GDsmith [ 13], GDBMeter [ 20], GraphGenie [ 14], and GAMERA [ 51] were published in 2023, and GRev [ 27] was published in 2024.",
+      "context_before": "-latent bugs, we can conclude that Dinkel can find bugs missed by existing approaches. This comparison is reasonable and objective because: (1) none of the bugs found by Dinkel are marked as duplicated by developers, meaning that no approach found these bugs until Dinkel found them; and (2) all existing approaches have extensively tested Neo4j and RedisGraph [ 13,14,20,27,51], meaning that in these two GDBMSs, no approach found the long-latent bugs found by Dinkel during their evaluation. Some existing approaches do not test Memgraph, but we still include it to show the effectiveness ofDinkel.",
+      "context_after": "Therefore, for each bug, we checked whether its bug-inducing commit was created before 2024 (i.e., in 2023 or earlier) and 2023. As shown in Table 11, among the 113 bugs in Neo4j and RedisGraph, 47 already existed before 2023, among which 10 are logic bugs. It indicates that all existing approaches failed to find these 47 bugs in their extensive evaluation. In addition, 45 bugs (24 logic bugs) were introduced to Neo4j and RedisGraph between 2023 and 2024, while GRev, which was proposed after 2024, cannot find these bugs. In addition, GDsmith and GRev support Memgraph, but neither can find the",
+      "section": "5.5 Comparison",
+      "page": 11,
+      "char_offset": 55558,
+      "cited_reference": {
+        "number": 20,
+        "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. 2023. Testing Graph Database Engines via Query Partitioning. InProceedings of the 2023 International Symposium on Software Testing and Analysis (ISSTA). 140–149.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 13,14,20,27,49,51]",
+      "technique": null,
+      "sentence": "GDBMS testing is an emerging research field, where several approaches [ 13,14,20,27,49,51] have been proposed.",
+      "context_before": "ound in Neo4j and 7 in RedisGraph. In Neo4j, GDBMeter, GRev, and GAMERA found 1 bug. In RedisGraph, GRev and GDBMeter found 1 bug. Both of these bugs were also identified by Dinkel. For the 43 bugs missed by existing approaches, their bug-triggering queries contain either complicated data dependencies or advanced Cypher features that are not supported by existing approaches. The bugs shown in Figure 10 and Figure 11 are two of the 43 bugs. These results demonstrate that Dinkel can find more bugs than existing approaches by generating and validating complex queries. 6 RELATED WORKGDBMS Testing.",
+      "context_after": "All these approaches aim to construct test oracles to identify logic bugs. Grand [ 49] targets GDBMSs using the Gremlin query language and detects logic bugs using differential testing [ 28]. Several approaches [ 13,14,20,27,51] support GDBMSs using Cypher. Similar to Grand, GDsmith [ 13] also uses differential testing to find logic bugs. GDBMeter [ 20] leverages query partitioning [ 38], which decomposes the predicate of a query and checks if the queries with the decomposed predicates produce consistent results with the original query. GraphGenie [ 14] modifies the graph patterns used in a q",
+      "section": "5.5 Comparison",
+      "page": 12,
+      "char_offset": 60474,
+      "cited_reference": {
+        "number": 14,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang, and Manuel Rigger. 2023. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the 46th International Conference on Software Engineering (ICS",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 13,14,20,27,51]",
+      "technique": null,
+      "sentence": "Several approaches [ 13,14,20,27,51] support GDBMSs using Cypher.",
+      "context_before": "or advanced Cypher features that are not supported by existing approaches. The bugs shown in Figure 10 and Figure 11 are two of the 43 bugs. These results demonstrate that Dinkel can find more bugs than existing approaches by generating and validating complex queries. 6 RELATED WORKGDBMS Testing.GDBMS testing is an emerging research field, where several approaches [ 13,14,20,27,49,51] have been proposed. All these approaches aim to construct test oracles to identify logic bugs. Grand [ 49] targets GDBMSs using the Gremlin query language and detects logic bugs using differential testing [ 28].",
+      "context_after": "Similar to Grand, GDsmith [ 13] also uses differential testing to find logic bugs. GDBMeter [ 20] leverages query partitioning [ 38], which decomposes the predicate of a query and checks if the queries with the decomposed predicates produce consistent results with the original query. GraphGenie [ 14] modifies the graph patterns used in a query and checks if the query with modified graph patterns satisfies the expected relationship (i.e., equivalence, subset, or superset) with the original queries. GAMERA [ 51] extracts metamorphic relations [ 6] from the manipulated graph data and checks whet",
+      "section": "5.5 Comparison",
+      "page": 12,
+      "char_offset": 60776,
+      "cited_reference": {
+        "number": 14,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang, and Manuel Rigger. 2023. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the 46th International Conference on Software Engineering (ICS",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "query partitioning",
+      "technique": "tlp",
+      "sentence": "GDBMeter [ 20] leverages query partitioning [ 38], which decomposes the predicate of a query and checks if the queries with the decomposed predicates produce consistent results with the original query.",
+      "context_before": "esults demonstrate that Dinkel can find more bugs than existing approaches by generating and validating complex queries. 6 RELATED WORKGDBMS Testing.GDBMS testing is an emerging research field, where several approaches [ 13,14,20,27,49,51] have been proposed. All these approaches aim to construct test oracles to identify logic bugs. Grand [ 49] targets GDBMSs using the Gremlin query language and detects logic bugs using differential testing [ 28]. Several approaches [ 13,14,20,27,51] support GDBMSs using Cypher. Similar to Grand, GDsmith [ 13] also uses differential testing to find logic bugs.",
+      "context_after": "GraphGenie [ 14] modifies the graph patterns used in a query and checks if the query with modified graph patterns satisfies the expected relationship (i.e., equivalence, subset, or superset) with the original queries. GAMERA [ 51] extracts metamorphic relations [ 6] from the manipulated graph data and checks whether the outputs of generated queries satisfy these relations. Dinkel is different from all existing approaches in two key aspects. First, Dinkel significantly improves query generation, the core foundation of GDBMS testing. Second, while existing approaches support correctness testing",
+      "section": "5.5 Comparison",
+      "page": 12,
+      "char_offset": 60925,
+      "found_by_all": [
+        "technique",
+        "citation_marker_project_authored",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 14]",
+      "technique": null,
+      "sentence": "GraphGenie [ 14] modifies the graph patterns used in a query and checks if the query with modified graph patterns satisfies the expected relationship (i.",
+      "context_before": "veral approaches [ 13,14,20,27,49,51] have been proposed. All these approaches aim to construct test oracles to identify logic bugs. Grand [ 49] targets GDBMSs using the Gremlin query language and detects logic bugs using differential testing [ 28]. Several approaches [ 13,14,20,27,51] support GDBMSs using Cypher. Similar to Grand, GDsmith [ 13] also uses differential testing to find logic bugs. GDBMeter [ 20] leverages query partitioning [ 38], which decomposes the predicate of a query and checks if the queries with the decomposed predicates produce consistent results with the original query.",
+      "context_after": "e., equivalence, subset, or superset) with the original queries. GAMERA [ 51] extracts metamorphic relations [ 6] from the manipulated graph data and checks whether the outputs of generated queries satisfy these relations. Dinkel is different from all existing approaches in two key aspects. First, Dinkel significantly improves query generation, the core foundation of GDBMS testing. Second, while existing approaches support correctness testing for only queries following specific patterns, Dinkel generally tackles the problems of testoracle construction, enabling validation for arbitrary queries",
+      "section": "5.5 Comparison",
+      "page": 12,
+      "char_offset": 61127,
+      "cited_reference": {
+        "number": 14,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang, and Manuel Rigger. 2023. Detecting Logic Bugs in Graph Database Management Systems via Injective and Surjective Graph Query Transformation. In Proceedings of the 46th International Conference on Software Engineering (ICS",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M15",
+      "found_by": "citation_marker",
+      "surface": "[ 12,18,37–40,43]",
+      "technique": "norec",
+      "sentence": "Compared to GDBMS testing, testing relational database management systems (RDBMSs) is more mature, where both query generation [ 11,16,22,42,50] and test-oracle construction [ 12,18,37–40,43] are well-researched.",
+      "context_before": "subset, or superset) with the original queries. GAMERA [ 51] extracts metamorphic relations [ 6] from the manipulated graph data and checks whether the outputs of generated queries satisfy these relations. Dinkel is different from all existing approaches in two key aspects. First, Dinkel significantly improves query generation, the core foundation of GDBMS testing. Second, while existing approaches support correctness testing for only queries following specific patterns, Dinkel generally tackles the problems of testoracle construction, enabling validation for arbitrary queries. RDBMS Testing.",
+      "context_after": "SQLsmith [ 42] embeds the SQL grammar [ 41] and can generate complex SQL statements.DynSQL [ 16] incrementally generates SQL statements for a query by querying the latest DBMS schema, which enables DynSQL to decouple the generation of each statement and helps it generate queries containing multiple complex statements. To find logic bugs in RDBMSs, PQS [ 39] synthesizes customized queries that fetch specific rows of tables. If the tested RDBMS fails to fetch the rows, a logic bug is identified. Pinolo [ 12] modifies the predicate of a query, where the modified query should produce the subset/s",
+      "section": "5.5 Comparison",
+      "page": 12,
+      "char_offset": 61897,
+      "cited_reference": {
+        "number": 37,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-optimizing Reference Engine Construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESE/FSE). 1140–1152",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "To find logic bugs in RDBMSs, PQS [ 39] synthesizes customized queries that fetch specific rows of tables.",
+      "context_before": "struction, enabling validation for arbitrary queries. RDBMS Testing.Compared to GDBMS testing, testing relational database management systems (RDBMSs) is more mature, where both query generation [ 11,16,22,42,50] and test-oracle construction [ 12,18,37–40,43] are well-researched. SQLsmith [ 42] embeds the SQL grammar [ 41] and can generate complex SQL statements.DynSQL [ 16] incrementally generates SQL statements for a query by querying the latest DBMS schema, which enables DynSQL to decouple the generation of each statement and helps it generate queries containing multiple complex statements.",
+      "context_after": "If the tested RDBMS fails to fetch the rows, a logic bug is identified. Pinolo [ 12] modifies the predicate of a query, where the modified query should produce the subset/superset of the results of the original query. Otherwise, Pinolo identifies a logic bug. EET [ 18] transforms the expressions of queries in a semantic-preserving manner and checks whether the queries with the transformed expressions produce the same results as the original queries. EET identifies a bug if their results are not the same. Due to the separation of querying and data manipulation in the SQL language, EET cannot p",
+      "section": "5.5 Comparison",
+      "page": 12,
+      "char_offset": 62429,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:55:50Z",
+    "is_model_written": true,
+    "summary": "Dinkel generates Cypher queries for graph database systems while tracking the state a query builds up, so that later clauses can refer correctly to variables bound earlier. That state-awareness lets it emit far more of the Cypher language than the existing generators, which restrict themselves to shapes their transformation rules can handle. On Neo4j, RedisGraph and Memgraph it found bugs none of the existing approaches had reported.",
+    "narrative": "SQLancer's techniques appear as the relational background against which graph testing is measured. GDBMeter is one of the existing approaches Dinkel is compared with, and the paper identifies its oracle as query partitioning -- decomposing a query's predicate and checking the decomposed queries agree with the original. PQS is cited as the relational counterpart that synthesises queries fetching specific rows. The paper's own contribution is generation rather than an oracle, and it observes that relational testing is the more mature field, with both query generation and test-oracle construction well researched there.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "background",
+      "M4": "background",
+      "M5": "result_comparison",
+      "M6": "background",
+      "M7": "background",
+      "M8": "background",
+      "M9": "result_comparison",
+      "M10": "background",
+      "M11": "background",
+      "M12": "background",
+      "M13": "definition",
+      "M14": "definition",
+      "M15": "background",
+      "M16": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Dinkel implements its own state-aware Cypher generator; nothing describes reuse of SQLancer's code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Dinkel contributes query generation rather than an oracle, and no SQLancer technique is carried forward or generalised."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M5",
+          "M9"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M5",
+            "sentence": "As shown in Table 4, Dinkel supports more Cypher clauses than existing approaches [ 13,14,20,27,51].",
+            "section": "4 IMPLEMENTATION",
+            "page": 7
+          },
+          {
+            "mention_id": "M9",
+            "sentence": "This comparison is reasonable and objective because: (1) none of the bugs found by Dinkel are marked as duplicated by developers, meaning that no approach found these bugs until Dinkel found them; and (2) all existing approaches have extensively tested Neo4j and RedisGraph [ 13,14,20,27,51], meaning that in these two GDBMSs, no approach found the long-latent bugs found by Dinkel during their evaluation.",
+            "section": "5.5 Comparison",
+            "page": 11
+          }
+        ],
+        "reasoning": "M5 compares Dinkel's Cypher clause coverage against the existing approaches including GDBMeter, and M9 argues the bug comparison is fair because all of them have extensively tested the same systems. M13 identifies GDBMeter's oracle as query partitioning. The comparison is with the tool rather than a direct run of TLP.",
+        "techniques": [
+          "tlp"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Relational testing is called the more mature field, which is not a claim that any particular technique is the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

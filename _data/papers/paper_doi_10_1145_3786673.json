@@ -1,0 +1,1085 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:29:28Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3786673",
+    "title": "One DBMS, Two Modes, and a Bunch of Bugs: Catching Logic Bugs in Distributed DBMSs via Differential Testing",
+    "authors": [
+      "Zikun Fu",
+      "Jiaju Bai",
+      "Hong-Bo Feng",
+      "Kang Chen"
+    ],
+    "year": 2026,
+    "venue": "Proceedings of the ACM on Management of Data",
+    "doi": "10.1145/3786673",
+    "arxiv_id": null,
+    "s2_paper_id": "dc60906c576d85944e5ba7612dd4ce32d34de9af",
+    "url": "https://doi.org/10.1145/3786673",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3786673",
+      "retrieved_at": "2026-09-09T01:29:28Z",
+      "chars": 91748,
+      "content_sha256": "sha256:debb87726b9adbc4f0454b44000cbbb25fce20a5756bc6def0b1ef6639c521b3"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 24,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2190
+      },
+      {
+        "number": "2",
+        "title": "Background and Motivation",
+        "start": 14387
+      },
+      {
+        "number": "2.1",
+        "title": "Logic Bugs in Distributed DBMSs",
+        "start": 14415
+      },
+      {
+        "number": "2.2",
+        "title": "Limitations of Existing Approaches",
+        "start": 16285
+      },
+      {
+        "number": "2.3",
+        "title": "Motivation and Challenges",
+        "start": 21121
+      },
+      {
+        "number": "3",
+        "title": "DistSQL Design",
+        "start": 25884
+      },
+      {
+        "number": "3.1",
+        "title": "Architecture",
+        "start": 25901
+      },
+      {
+        "number": "3.2",
+        "title": "Testing Workflow",
+        "start": 26472
+      },
+      {
+        "number": "4",
+        "title": "Distributed Database State Mutation",
+        "start": 30006
+      },
+      {
+        "number": "5.1",
+        "title": "Overview",
+        "start": 34909
+      },
+      {
+        "number": "5.2",
+        "title": "Feedback Workflow",
+        "start": 36442
+      },
+      {
+        "number": "5.3",
+        "title": "Plan Patterns based on Operator Interactions",
+        "start": 38393
+      },
+      {
+        "number": "5.4",
+        "title": "Distributed Execution Score",
+        "start": 43785
+      },
+      {
+        "number": "5.5",
+        "title": "Query Plan Feature Extract Algorithm",
+        "start": 45214
+      },
+      {
+        "number": "5.6",
+        "title": "Feature Pool",
+        "start": 46963
+      },
+      {
+        "number": "7.1",
+        "title": "Experimental Setup",
+        "start": 51418
+      },
+      {
+        "number": "7.2",
+        "title": "Open-Source Distributed DBMS Testing",
+        "start": 53379
+      },
+      {
+        "number": "7.3",
+        "title": "Sensitivity Analysis",
+        "start": 58619
+      },
+      {
+        "number": "7.4",
+        "title": "Comparison",
+        "start": 61217
+      },
+      {
+        "number": "7.5",
+        "title": "Case Studies of the Found Bugs",
+        "start": 63649
+      },
+      {
+        "number": "7.6",
+        "title": "Production Study",
+        "start": 69306
+      },
+      {
+        "number": "7.7",
+        "title": "Other System Bugs",
+        "start": 69970
+      },
+      {
+        "number": "9.1",
+        "title": "Coverage-Guided Fuzzing",
+        "start": 71949
+      },
+      {
+        "number": "9.2",
+        "title": "DBMS Fuzzing",
+        "start": 72681
+      },
+      {
+        "number": "9.3",
+        "title": "Distributed System Fuzzing",
+        "start": 74463
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "anse1. 2015. sqlsmith: A random SQL query generator. https://github.com/anse1/sqlsmith.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In 2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071. 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026. 59:22 Zi-Xuan Fu, Jia-Ju Bai, Hong-Bo Feng, and Kang Chen",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 3,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. Proceedings of the ACM on Management of Data 2, 3 (2024), 1–26.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 4,
+      "text": "Jia-Ju Bai, Yu-Ping Wang, Jie Yin, and Shi-Min Hu. 2016. Testing error handling code in device drivers using characteristic fault injection. In Proceedings of the 2016 USENIX Annual Technical Conference. 635–647.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Tim Blazytko, Cornelius Aschermann, Moritz Schlögel, Ali Abbasi, Sergej Schumilo, Simon Wörner, and Thorsten Holz. 2019. GRIMOIRE: synthesizing structure while fuzzing. In Proceedings of the 28th USENIX Security Symposium, Vol. 19.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Mohamed-Slim Bouguerra, Thierry Gautier, Denis Trystram, and Jean-Marc Vincent. 2010. A flexible checkpoint/restart model in distributed systems. In Proceedings of the 8th International Conference on Parallel Processing and Applied Mathematics (PPAM). 206–215.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Anton Burtsev, Prashanth Radhakrishnan, Mike Hibler, and Jay Lepreau. 2009. Transparent checkpoints of closed distributed systems in emulab. In Proceedings of the 4th European Conference on Computer Systems (EuroSys). 173–186.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Yuanliang Chen, Fuchen Ma, Yuanhang Zhou, Ming Gu, Qing Liao, and Yu Jiang. 2024. Chronos: Finding Timeout Bugs in Practical Distributed Systems by Deep-Priority Fuzzing with Transient Delay. In Security and Privacy (SP). 1939–1955. https://doi.org/10.1109/SP54263.2024.00109",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "ClickHouse. 2025. ClickHouse ®is a real-time analytics DBMS. https://github.com/ClickHouse/ClickHouse.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "clickhouse-use 2025. ClickHouse use cases. https://clickhouse.com/use-cases.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "cockroachdb. 2025. CockroachDB — the cloud native, distributed SQL database designed for high availability, effortless scale, and control over data placement. https://github.com/cockroachdb/cockroach.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Kai Cong, Li Lei, Zhenkun Yang, and Fei Xie. 2015. Automatic fault injection for driver robustness testing. In Proceedings of the 2015 International Symposium on Software Testing and Analysis (ISSTA). 361–372.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-free DBMS fuzzing. In Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Shuitao Gan, Chao Zhang, Xiaojun Qin, Xuwen Tu, Kang Li, Zhongyu Pei, and Zuoning Chen. 2018. CollAFL: path sensitive fuzzing. In Proceedings of the 39th IEEE Symposium on Security and Privacy. 679–696.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Yu Gao, Wensheng Dou, Dong Wang, Wenhan Feng, Jun Wei, Hua Zhong, and Tao Huang. 2023. Coverage guided fault injection for cloud systems. In. IEEE, 2211–2223.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Jiawei Tyler Gu, Xudong Sun, Wentao Zhang, Yuxuan Jiang, Chen Wang, Mandana Vaziri, Owolabi Legunsen, and Tianyin Xu. 2023. Acto: Automatic end-to-end testing for operation correctness of cloud system management. In Proceedings of the 29th Symposium on Operating Systems Principles. 96–112.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Diwaker Gupta, Kashi Venkatesh Vishwanath, Marvin McNett, Amin Vahdat, Ken Yocum, Alex Snoeren, and Geoffrey M Voelker. 2011. DieCast: Testing distributed systems with an accurate scale model. ACM Transactions on Computer Systems (TOCS) 29, 2 (2011), 1–48.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Zongyin Hao, Quanfeng Huang, Chengpeng Wang, Jianfeng Wang, Yushan Zhang, Rongxin Wu, and Charles Zhang. 2023. Pinolo: Detecting Logical Bugs in Database Management Systems with Approximate Query Synthesis. In 2023 USENIX Annual Technical Conference (USENIX ATC 23). 345–358.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Adrian Herrera, Hendra Gunadi, Shane Magrath, Michael Norrish, Mathias Payer, and Antony L Hosking. 2021. Seed selection for successful fuzzing. In Proceedings of the 2021 International Symposium on Software Testing and Analysis (ISSTA). 230–243.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "jepsen io. 2018. Jepsen: A framework for distributed systems verification, with fault injection. https://github.com/jepsenio/jepsen.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, Kangjie Lu, and Shi-Min Hu. 2020. Fuzzing error handling code using context-sensitive software fault injection. In Proceedings of the 29th USENIX Security Symposium. 2595–2612.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. 2023. DynSQL: Stateful Fuzzing for Database Management Systems with Complex and Valid SQL Query Generation. In 32nd USENIX Security Symposium (USENIX Security 23). 4949–4965.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting transactional bugs in database engines via {graph-based}oracle construction. In 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23). 397–417.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 24,
+      "text": "Zu-Ming Jiang and Zhendong Su. 2024. Detecting Logic Bugs in Database Engines via Equivalent Expression Transformation. In 18th USENIX Symposium on Operating Systems Design and Implementation (OSDI 24). 821–835.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Ahmed Khoumsi. 2002. A temporal approach for testing distributed systems. IEEE Transactions on Software Engineering 28, 11 (2002), 1085–1103.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Tanakorn Leesatapornwongsa, Mingzhe Hao, Pallavi Joshi, Jeffrey F Lukman, and Haryadi S Gunawi. 2014. {SAMC}:{Semantic-Aware}model checking for fast discovery of deep bugs in cloud systems. In 11th USENIX Symposium on Operating Systems Design and Implementation (OSDI 14). 399–414.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Junqiang Li, Senyi Li, Keyao Li, Falin Luo, Hongfang Yu, Shanshan Li, and Xiang Li. 2024. ECFuzz: Effective Configuration Fuzzing for Large-Scale Systems. In Proceedings of the 46th IEEE/ACM International Conference on Software 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026. One DBMS, Two Modes, and a Bunch of Bugs: Catching Logic Bugs in Distributed DBMSs via Differential Testing ",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. 2023. Sequence-oriented DBMS fuzzing. In Engineering (ICDE). IEEE, 668–681.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Jie Liang, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Chengnian Sun, and Yu Jiang. 2024. Mozi: Discovering DBMS bugs via configuration-based equivalent transformation. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting Logical Bugs of {DBMS}with Coverage-based Guidance. In 31st USENIX Security Symposium (USENIX Security 22). 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Shuang Liu, Chenglin Tian, Jun Sun, Ruifeng Wang, Wei Lu, Yongxin Zhao, Yinxing Xue, Junjie Wang, and Xiaoyong Du. 2024. Semantic Conformance Testing of Relational DBMS. Proceedings of the VLDB Endowment 18, 3 (2024), 850–862.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. 2022. Automatic detection of performance bugs in database systems using equivalent queries. In Proceedings of the 44th International Conference on Software Engineering. 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Chang Lou, Yuzhuo Jing, and Peng Huang. 2022. Demystifying and checking silent semantic violations in large distributed systems. In 16th USENIX Symposium on Operating Systems Design and Implementation (OSDI 22). 91–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Jeffrey F Lukman, Huan Ke, Cesar A Stuardo, Riza O Suminto, Daniar H Kurniawan, Dikaimin Simon, Satria Priambada, Chen Tian, Feng Ye, Tanakorn Leesatapornwongsa, et al .2019. Flymc: Highly scalable testing of complex interleavings in distributed systems. In Proceedings of the Fourteenth EuroSys Conference 2019. 1–16.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Tao Lyu, Liyi Zhang, Zhiyao Feng, Yueyang Pan, Yujie Ren, Meng Xu, Mathias Payer, and Sanidhya Kashyap. 2024. Monarch: A Fuzzing Framework for Distributed File Systems. In 2024 USENIX Annual Technical Conference (USENIX ATC 24). 529–543.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Ruijie Meng, George Pîrlea, Abhik Roychoudhury, and Ilya Sergey. 2023. Greybox Fuzzing of Distributed Systems. In Proceedings of the 2023 ACMSIGSAC Conference on Computer and Communications Security. 1615–1629.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "oceanbase. 2025. OceanBase is an enterprise distributed relational database with high availability, high performance, horizontal scalability, and compatibility with SQL standards. https://github.com/Oceanbase/oceanbase.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Rohan Padhye, Caroline Lemieux, Koushik Sen, Mike Papadakis, and Yves Le Traon. 2019. Semantic fuzzing with Zest. InProceedings of the 2019 International Symposium on Software Testing and Analysis (ISSTA). 329–340.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Shankara Pailoor, Andrew Aday, and Suman Jana. 2018. MoonShine: optimizing OS fuzzer seed selection with trace distillation. In Proceedings of the 27th USENIX Security Symposium. 729–743.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Van-Thuan Pham, Marcel Böhme, Andrew E Santosa, Alexandru Răzvan Căciulescu, and Abhik Roychoudhury. 2019. Smart greybox fuzzing. IEEE Transactions on Software Engineering (TSE) 47, 9 (2019), 1980–1997.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "pingcap. 2025. TiDBthe open-source, cloud-native, distributed SQL database designed for modern applications. https://github.com/pingcap/tidb.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Alexandre Rebert, Sang Kil Cha, Thanassis Avgerinos, Jonathan Foote, David Warren, Gustavo Grieco, and David Brumley. 2014. Optimizing seed selection for fuzzing. In Proceedings of the 23rd USENIX Security Symposium. 861–875.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 44,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 1–30.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 45,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 46,
+      "text": "Upamanyu Sharma, Ralf Jung, Joseph Tassarotti, Frans Kaashoek, and Nickolai Zeldovich. 2023. Grove: A separationlogic library for verifying distributed systems. In Proceedings of the 29th Symposium on Operating Systems Principles. 113–129.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Donald R Slutz. 1998. Massive stochastic testing of SQL. In VLDB, Vol. 98. Citeseer, 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Jiansen Song, Wensheng Dou, Ziyu Cui, Qianwang Dai, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2023. Testing database systems via differential query execution. In Engineering (ICSE). IEEE, 2072–2084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Jiansen Song, Wensheng Dou, Yu Gao, Ziyu Cui, Yingying Zheng, Dong Wang, Wei Wang, Jun Wei, and Tao Huang. 2024. Detecting Metadata-Related Logic Bugs in Database Systems via Raw Database Construction. Proceedings of the VLDB Endowment 17, 8 (2024), 1884–1897.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "sqlancer. 2020. Automated testing to find logic and performance bugs in database systems. https://github.com/ sqlancer/sqlancer.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 51,
+      "text": "Prashast Srivastava and Mathias Payer. 2021. Gramatron: effective grammar-aware fuzzing. In Proceedings of the 2021 International Symposium on Software Testing and Analysis (ISSTA). 244–256. 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026. 59:24 Zi-Xuan Fu, Jia-Ju Bai, Hong-Bo Feng, and Kang Chen",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Xudong Sun, Wenqing Luo, Jiawei Tyler Gu, Aishwarya Ganesan, Ramnatthan Alagappan, Michael Gasch, Lalith Suresh, and Tianyin Xu. 2022. Automatic reliability testing for cluster management controllers. In 16th USENIX Symposium on Operating Systems Design and Implementation (OSDI 22). 143–159.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Xiu Tang, Sai Wu, Dongxiang Zhang, Feifei Li, and Gang Chen. 2023. Detecting logic bugs of join optimizations in dbms. Proceedings of the ACM on Management of Data 1, 1 (2023), 1–26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Dong Wang, Wensheng Dou, Yu Gao, Chenao Wu, Jun Wei, and Tao Huang. 2023. Model checking guided testing for distributed systems. In Proceedings of the Eighteenth European Conference on Computer Systems. 127–143.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Haoze Wu, Jia Pan, and Peng Huang. 2024. Efficient exposure of partial failure bugs in distributed systems with inferred abstract states. In 21st USENIX Symposium on Networked Systems Design and Implementation (NSDI 24). 1267–1283.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Jianan Yao, Runzhou Tao, Ronghui Gu, Jason Nieh, Suman Jana, and Gabriel Ryan. 2021. {DistAI}:{Data-Driven} automated invariant learning for distributed protocols. In 15th USENIX symposium on operating systems design and implementation (OSDI 21). 405–421.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Ding Yuan, Yu Luo, Xin Zhuang, Guilherme Renna Rodrigues, Xu Zhao, Yongle Zhang, Pranay U Jain, and Michael Stumm. 2014. Simple testing can prevent most critical failures: An analysis of production failures in distributed {Data-Intensive}systems. In 11th USENIX Symposium on Operating Systems Design and Implementation (OSDI 14). 249–265.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Xinhao Yuan and Junfeng Yang. 2020. Effective concurrency testing for distributed systems. In Proceedings of the Twenty-Fifth International Conference on Architectural Support for Programming Languages and Operating Systems. 1141–1156.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "yugabyte. 2025. YugabyteDBthe cloud native distributed SQL database for mission-critical applications. https: //github.com/yugabyte/yugabyte-db.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "yugabyte-use 2025. What YugabyteDB Users Have to Say. https://www.yugabyte.com/about/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Chi Zhang and Manuel Rigger. 2025. Constant Optimization Driven Database System Testing. Proceedings of the ACM on Management of Data 3, 1 (2025), 1–24.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 62,
+      "text": "Tony Nuda Zhang, Travis Hance, Manos Kapritsos, Tej Chajed, and Bryan Parno. 2024. Inductive invariants that spark joy: using invariant taxonomies to streamline distributed protocol proofs. In 18th USENIX Symposium on Operating Systems Design and Implementation (OSDI 24). 837–853.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Yongle Zhang, Junwen Yang, Zhuqi Jin, Utsav Sethi, Kirk Rodrigues, Shan Lu, and Ding Yuan. 2021. Understanding and detecting software upgrade failures in distributed systems. In Proceedings of the ACMSIGOPS 28th Symposium on Operating Systems Principles. 116–131.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Zenong Zhang, George Klees, Eric Wang, Michael Hicks, and Shiyi Wei. 2023. Fuzzing configurations of program options. ACM Transactions on Software Engineering and Methodology 32, 2 (2023), 1–21.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. Squirrel: Testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security. 955–970. Received July 2025; revised October 2025; accepted November 2025 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In 2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071. 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026. 59:22 Zi-Xuan Fu, Jia-Ju Bai, Hong-Bo Feng, and Kang Chen",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 3,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. Proceedings of the ACM on Management of Data 2, 3 (2024), 1–26.",
+      "technique": "dqp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing dqp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 23,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. 2023. Detecting transactional bugs in database engines via {graph-based}oracle construction. In 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23). 397–417.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 43,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 44,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 1–30.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 45,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 50,
+      "text": "sqlancer. 2020. Automated testing to find logic and performance bugs in database systems. https://github.com/ sqlancer/sqlancer.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 61,
+      "text": "Chi Zhang and Manuel Rigger. 2025. Constant Optimization Driven Database System Testing. Proceedings of the ACM on Management of Data 3, 1 (2025), 1–24.",
+      "technique": "coddtest",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing coddtest",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 2,18,24,44,45,48,61]",
+      "technique": "qpg",
+      "sentence": "Some approaches check the consistency of semantically equivalent predicates or expressions across multiple statements [ 2,18,24,44,45,48,61].",
+      "context_before": "ferent execution interleavings. Other approaches detect error handling bugs by injecting faults [ 15,26,35,52]. A few general purpose bug detection approaches [ 20,36] can find logic bugs in distributed DBMSs, but they rely on fixed SQL workloads. Because these tools are designed primarily to expose system level issues, they are less effective at identifying logic bugs that involve richer SQL semantics. (2) Bug detection for general DBMSs: Numerous approaches detect logic bugs in DBMSs by validating against predefined test oracles and can be applied to both centralized and distributed systems.",
+      "context_after": "Others verify the correctness of query optimization [ 43,53] or specific features such as indexes and transactions [ 3,23,30,49]. However, these approaches do not target distributed execution and are therefore less effective at identifying distributed logic bugs. To this end, we design and implement the DistSQL framework to detect logic bugs in distributed DBMSs. DistSQL rests on two observations. (1) Many distributed DBMSs support both centralized and distributed execution modes. (2) If the same query produces different results across modes, this indicates at least one bug in the database. B",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 5480,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In 2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071. 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026. 59:22 Zi-Xuan Fu, Jia-Ju Bai, Hong-Bo Feng, and Kang ",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[ 43,53]",
+      "technique": "norec",
+      "sentence": "Others verify the correctness of query optimization [ 43,53] or specific features such as indexes and transactions [ 3,23,30,49].",
+      "context_before": "ction approaches [ 20,36] can find logic bugs in distributed DBMSs, but they rely on fixed SQL workloads. Because these tools are designed primarily to expose system level issues, they are less effective at identifying logic bugs that involve richer SQL semantics. (2) Bug detection for general DBMSs: Numerous approaches detect logic bugs in DBMSs by validating against predefined test oracles and can be applied to both centralized and distributed systems. Some approaches check the consistency of semantically equivalent predicates or expressions across multiple statements [ 2,18,24,44,45,48,61].",
+      "context_after": "However, these approaches do not target distributed execution and are therefore less effective at identifying distributed logic bugs. To this end, we design and implement the DistSQL framework to detect logic bugs in distributed DBMSs. DistSQL rests on two observations. (1) Many distributed DBMSs support both centralized and distributed execution modes. (2) If the same query produces different results across modes, this indicates at least one bug in the database. Because the centralized mode is easier to deploy and is often used for testing and debugging, it is generally better tested and mor",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 5622,
+      "cited_reference": {
+        "number": 43,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "technique",
+      "surface": "CODDTest",
+      "technique": "coddtest",
+      "sentence": "Approach Main Target Bug Type Feedback Black-Box Logic Checker Database State Mutation Morpheus [58] Distributed System Concurrency Conflict Analysis No-Oathkeeper [33] Distributed System Semantic None No-Chronos [8] Distributed System Timeout None No-Generic Jepsen [20] Distributed System Logic None Yes Fixed Rules Fixed Input Mallory [36] Distributed System Logic Timeline Summary No Fixed Rules Fixed Input RAGS [47] DBMS Logic None Yes Differential Generic Squirrel [65] DBMS Memory Branch Coverage No-Generic Lego [28] DBMS Memory Type-Affinity No-Generic CODDTest [61] DBMS Logic None Yes Metamorphic Generic EET [24] DBMS Logic None Yes Metamorphic Generic DQP [3] DBMS Logic None Yes Metamorphic Generic Mozi [29] DBMS Logic None Yes Differential Generic Radar [49] DBMS Logic None Yes Differential Generic SemConT [31] DBMS Logic Keyword and Rule Yes Verification Generic TQS [53] DBMS Logic Graph Similarity Yes Ground Truth Generic QPG [2] DBMS Logic Query Plan Text Yes Metamorphic Generic DistSQL (this work) Distributed DBMS Logic Query Plan Feature Yes Differential Favor Distributed Logic centralized execution as a reference, our approach finds distributed logic bugs often missed by existing techniques.",
+      "context_before": "n Table 1. Reported issue types across four distributed DBMSs. DBMS logic consistency memory assert settings status perf. funcmiss resource stats enhance others Total ClickHouse [9] 365 78 186 257 168 58 59 400 32 37 6 40 1686 CockroachDB [11] 89 138 70 63 128 46 82 133 39 96 42 71 997 TiDB [41] 409 136 186 61 96 66 83 198 41 166 14 77 1533 YugaByteDB [59] 131 306 198 104 99 94 105 139 60 102 68 87 1493 Total 994 658 640 485 491 264 329 870 172 401 130 275 5709 Ratio 17.4% 11.5% 11.2% 8.5% 8.6% 4.6% 5.8% 15.2% 3.0% 7.0% 2.3% 4.8% 100% Table 2. Comparison of state-of-the-art testing approaches.",
+      "context_after": "•We develop DistSQL, which integrates two techniques: (1) distributed diversity oriented database state mutation, and (2) distributed interaction guided execution space exploration. These techniques address two core challenges in testing distributed DBMSs by effectively triggering diverse distributed executions which can efficiently explore the explosive execution space. •We evaluate DistSQL on five widely used open source distributed DBMSs, TiDB [ 41], CockroachDB [ 11], YugabyteDB [ 59], ClickHouse [ 9], and OceanBase [ 37], as well as a widely deployed commercial DBMS. In total, DistSQL fi",
+      "section": "1 Introduction",
+      "page": 4,
+      "char_offset": 12173,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "coddtest",
+        "dqp",
+        "qpg"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "technique",
+      "surface": "CODDTest",
+      "technique": "coddtest",
+      "sentence": "EET [ 24], and CODDTest [ 61] find logic bugs by rewriting queries into another forms that are expected to produce the same results.",
+      "context_before": "ted logic tend to focus on specific distributed constraints and pay less attention to diverse SQL semantics, which in turn narrows the scope of distributed logic testing for distributed DBMSs. DBMS testing. RAGS [ 47] performs differential testing across DBMS implementations to find logic bugs. However, it is constrained by the limited set of features shared among DBMSs, which narrows the scope of its testing. Squirrel [ 65] and Lego [ 28] targets memory-related bugs, which are out of scope for this work. Several approaches aim to find logic bugs in DBMSs through unguided test case generation.",
+      "context_after": "However, the test cases are limited by the scope of these transformation rules. Mozi [ 29] and Radar [ 49] find logic bugs by executing the same statements under different internal options or table constraints and comparing results. DQP [ 3] compares executions with different query hints applied, where query plans act as local heuristics rather than guiding test case generation. These three methods tend to find bugs tied to specific features but does not test other aspects of database processing logic. 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026. 59:6 Zi-Xuan Fu, Jia-Ju Ba",
+      "section": "2.2 Limitations of Existing Approaches",
+      "page": 5,
+      "char_offset": 18579,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "coddtest"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "DQP [ 3] compares executions with different query hints applied, where query plans act as local heuristics rather than guiding test case generation.",
+      "context_before": "DBMSs, which narrows the scope of its testing. Squirrel [ 65] and Lego [ 28] targets memory-related bugs, which are out of scope for this work. Several approaches aim to find logic bugs in DBMSs through unguided test case generation. EET [ 24], and CODDTest [ 61] find logic bugs by rewriting queries into another forms that are expected to produce the same results. However, the test cases are limited by the scope of these transformation rules. Mozi [ 29] and Radar [ 49] find logic bugs by executing the same statements under different internal options or table constraints and comparing results.",
+      "context_after": "These three methods tend to find bugs tied to specific features but does not test other aspects of database processing logic. 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026. 59:6 Zi-Xuan Fu, Jia-Ju Bai, Hong-Bo Feng, and Kang Chen Some approaches leverage specific scenario feedback to guide test case generation. SemConT [ 31] formalizes SQL semantics and verifies results against a formal model, using rule coverage to guide generation. However, its formal model struggles with features such as correlated subqueries and diverse expressions. TQS [ 53] splits a wide table into mul",
+      "section": "2.2 Limitations of Existing Approaches",
+      "page": 5,
+      "char_offset": 18945,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "QPG [ 2] improves SQLancer [ 50] by using query plan text as feedback to mutate the database state when no new plans are found, which focuses only on centralized database states and ignores distributed ones.",
+      "context_before": "Hong-Bo Feng, and Kang Chen Some approaches leverage specific scenario feedback to guide test case generation. SemConT [ 31] formalizes SQL semantics and verifies results against a formal model, using rule coverage to guide generation. However, its formal model struggles with features such as correlated subqueries and diverse expressions. TQS [ 53] splits a wide table into multiple smaller tables and joins them to test the correctness of join operations, guiding generation by test case similarity. Similarly, it cannot generate statements with subqueries as join operands or non-equality joins.",
+      "context_after": "Although this approach is effective under low-diversity workloads, its discriminative power decreases as SQL diversity increases. In our evaluation on TiDB, 5 million queries produced over 2.3 million unique plans (47.93%), revealing low feedback granularity. Consequently, QPG is less effective on distributed DBMSs, as its feedback signal becomes noisy and less informative. Overall, while these approaches have shown effectiveness in finding certain classes of logic bugs, their testing scope is inherently limited by their methodology. In addition, their database mutation strategies do not acco",
+      "section": "2.2 Limitations of Existing Approaches",
+      "page": 6,
+      "char_offset": 19914,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "Consequently, QPG is less effective on distributed DBMSs, as its feedback signal becomes noisy and less informative.",
+      "context_before": "generation by test case similarity. Similarly, it cannot generate statements with subqueries as join operands or non-equality joins. QPG [ 2] improves SQLancer [ 50] by using query plan text as feedback to mutate the database state when no new plans are found, which focuses only on centralized database states and ignores distributed ones. Although this approach is effective under low-diversity workloads, its discriminative power decreases as SQL diversity increases. In our evaluation on TiDB, 5 million queries produced over 2.3 million unique plans (47.93%), revealing low feedback granularity.",
+      "context_after": "Overall, while these approaches have shown effectiveness in finding certain classes of logic bugs, their testing scope is inherently limited by their methodology. In addition, their database mutation strategies do not account for distributed database states, such as data distribution across nodes. Moreover, even when applied to distributed DBMSs, their focus on a single execution mode prevents them from capturing inconsistencies specifically introduced by distributed execution, and it also prevents them from developing specialized runtime feedback and mutation strategies, leading to missed di",
+      "section": "2.2 Limitations of Existing Approaches",
+      "page": 6,
+      "char_offset": 20382,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker",
+      "surface": "[ 1,22,45,47]",
+      "technique": "pqs",
+      "sentence": "We implement an abstract syntax tree (AST) based SQL generator [ 1,22,45,47] that constructs queries in a top down manner by first selecting the SQL statement type (e.",
+      "context_before": "DBMSs, we address the above challenges and develop DistSQL, a differential testing framework tailored for this purpose, as shown in Figure 2. DistSQL first randomly initializes two database instances with the same data, one in centralized mode and one in distributed mode. It then continuously generates queries and executes them under both modes for differential testing. If feedback indicates no new distributed interaction after several consecutive executions, DistSQL performs database state mutation. 3.2 Testing Workflow The testing workflow continuously generates and executes SQL statements.",
+      "context_after": "g., SELECT ,CREATE TABLE ) and then recursively generating its components (e.g., ORDER BY clauses, expressions). Generation is guided by seeds, where each seed is an integer sequence [ 22]. During generation, when there are 𝑛feasible choices, the next value 𝑠in the seed selects an option via 𝑐=𝑠mod𝑛. For example, when a function needs to be chosen from several options (e.g., sum,avg,min,max), we have𝑛=4. If𝑠=9, then𝑐=1, and thus theavgfunction (counting from 0) is selected. This enables reproducible and controllable mutation of test cases. Additionally, we reduce the likelihood of generating o",
+      "section": "3.2 Testing Workflow",
+      "page": 7,
+      "char_offset": 26565,
+      "cited_reference": {
+        "number": 45,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker",
+      "surface": "[ 2]",
+      "technique": "qpg",
+      "sentence": "One approach is to treat the entire query plan as a pattern [ 2].",
+      "context_before": "and promote the discovery of new execution paths. (§ 4). (S1) Seed mutation: To continue testing, a seed is selected from the seed pool and randomly mutated to generate a new SQL query. This enables the exploration of meaningful variations of previously successful queries, progressively driving the system into various distributed states. 5.3 Plan Patterns based on Operator Interactions A key problem here is to determine which subgraphs (patterns) of a query plan, or whether the entire query plan, should be used as the pattern in a query plan feature for feedback. Entire query plan as pattern.",
+      "context_after": "However, it is obviously overly sensitive, particularly under diverse SQL inputs (§ 2.2), where nearly half of the queries result in unique plans. In practice, many query plans appear different but are actually repetitive in nature. They share similar core structure and semantics, with only minor variations (e.g., a few operators replaced or reordered). This motivates the need for a more fine-grained and semantics-aware representation of execution logic. Basic operators as pattern. An alternative is to track which operators appear in the query plan. However, focusing on individual operators d",
+      "section": "5.3 Plan Patterns based on Operator Interactions",
+      "page": 10,
+      "char_offset": 38652,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In 2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071. 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026. 59:22 Zi-Xuan Fu, Jia-Ju Bai, Hong-Bo Feng, and Kang ",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "We compare DistSQL against SOTA database and distributed system testing tools, including Squirrel [ 65], QPG [ 2], and EET [ 24], as well as distributed system testing tools, including Jepsen [20] and Mallory [36].",
+      "context_before": "e components (such as data storage and parallel execution), and allocate an additional node to each remaining component (such as coordinators or auxiliary workers). The use of three nodes captures a critical transition from centralized to distributed execution, where the differences in behavior become significant. Beyond three nodes, the marginal increase in execution diversity tends to be smaller [ 57]. To simulate a distributed environment, each node is deployed in a separate Docker container. All containers are connected via a virtual subnet and run on the same physical machine. Comparison.",
+      "context_after": "(§ 7.4) Machine configuration. All experiments are conducted on a machine with an AMDEPYC 7J13 64-Core Processor (2.45 GHz), 512 GB of RAM, running Ubuntu 22.04. All systems are tested with their latest versions at evaluation time. 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026. One DBMS, Two Modes, and a Bunch of Bugs: Catching Logic Bugs in Distributed DBMSs via Differential Testing 59:15 7.2 Open-Source Distributed DBMS Testing Each DBMS is tested three times, with each test lasting one week. We manually analyze root causes using query plans and developer feedback. After i",
+      "section": "7.1 Experimental Setup",
+      "page": 14,
+      "char_offset": 52752,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "3 Sensitivity Analysis To evaluate the effectiveness of our feedback mechanism based on query plan feature, we implement three variants of DistSQL: (1) DistSQL Random, which generates random SQL queries without feedback, (2) DistSQL Text, which uses the query plan text-guided feedback identical to that of QPG [ 2], with its paper and code referenced, and (3) DistSQL JoinAware, identical to DistSQL except that it does not sort the children of join operators, as their order may affect the underlying logic.",
+      "context_before": "Z QMBOGFBUVSFT DistSQL EETQPG Mallory JepsenDistSQL Text Rand JoinAware Testing time (h) Testing time (h) Testing time (h) Testing time (h) Testing time (h) Fig. 4. Coverage growth. (a)–(b): Sensitivity experiments; (c): Comparison with existing approaches. bugs are rarely triggered in centralized mode with relatively lower concurrency but occur more frequently in distributed mode with higher concurrency. ❹Float: 7 of these bugs involve floatingpoint operations, showing that our approach effectively handles floating-point non-determinism, enabling diverse test cases without false positives. 7.",
+      "context_after": "We run a 24-hour experiment with these tools and DistSQL. Table 6 summarizes the number of query plan texts, features (Feat.) extracted by DistSQL, and two bug metrics: LBug (total logic bugs) and DLBug (logic bugs unique to the distributed mode). 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026. One DBMS, Two Modes, and a Bunch of Bugs: Catching Logic Bugs in Distributed DBMSs via Differential Testing 59:17 Testing coverage. DistSQL achieves substantially broader testing coverage than DistSQL Random and DistSQL Text, discovering 83% and 49% more query plan texts, and extractin",
+      "section": "7.3 Sensitivity Analysis",
+      "page": 16,
+      "char_offset": 58621,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "4 Comparison We evaluate five open-source distributed DBMSs (Table 3) using four existing tools: Jepsen [ 20], Mallory [36], QPG [2], and EET [24], and compare their performance with DistSQL.",
+      "context_before": "Random andDistSQL Textdetect 15 and 10 fewer logic bugs, and 10 and 6 fewer DLBugs, respectively. These results demonstrate the effectiveness of query plan feature for capturing execution behavior, reducing redundancy, and enhancing both bug detection and testing coverage. The additional variant DistSQL JoinAware reports the same set of bugs as DistSQL. Although it may explore more join combinations, this does not necessarily reveal new bugs. Its uneven coverage across DBMSs indicates that it may sometimes overemphasize fine-grained differences and slightly reduce coverage in other aspects. 7.",
+      "context_after": "These tools are selected from existing open-source approaches to ensure a representative and meaningful comparison. Among distributed system testing approaches, Jepsen and Mallory are the most closely related to DBMS testing. Among recent DBMS testing tools, QPG employs feedback mechanism related to query plan, while EET achieves higher SQL diversity than many prior approaches [ 24]. Since none of the tools support all DBMSs, we extend them for compatibility. Each system is tested for 24 hours, with results summarized in Table 7. Testing coverage. Our system achieves significantly higher cove",
+      "section": "7.4 Comparison",
+      "page": 17,
+      "char_offset": 61219,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "Among recent DBMS testing tools, QPG employs feedback mechanism related to query plan, while EET achieves higher SQL diversity than many prior approaches [ 24].",
+      "context_before": "necessarily reveal new bugs. Its uneven coverage across DBMSs indicates that it may sometimes overemphasize fine-grained differences and slightly reduce coverage in other aspects. 7.4 Comparison We evaluate five open-source distributed DBMSs (Table 3) using four existing tools: Jepsen [ 20], Mallory [36], QPG [2], and EET [24], and compare their performance with DistSQL. These tools are selected from existing open-source approaches to ensure a representative and meaningful comparison. Among distributed system testing approaches, Jepsen and Mallory are the most closely related to DBMS testing.",
+      "context_after": "Since none of the tools support all DBMSs, we extend them for compatibility. Each system is tested for 24 hours, with results summarized in Table 7. Testing coverage. Our system achieves significantly higher coverage, with query plan text coverage 197 times that of EET and query plan feature coverage 3.5 times that of EET. It also surpasses Jepsen, Mallory, and QPG by orders of magnitude in both metrics. These results underscore DistSQL ’s effectiveness in thoroughly exploring a wide range of execution paths within the vast execution space of distributed DBMSs. DistSQL ’s higher testing cover",
+      "section": "7.4 Comparison",
+      "page": 17,
+      "char_offset": 61636,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "It also surpasses Jepsen, Mallory, and QPG by orders of magnitude in both metrics.",
+      "context_before": "son. Among distributed system testing approaches, Jepsen and Mallory are the most closely related to DBMS testing. Among recent DBMS testing tools, QPG employs feedback mechanism related to query plan, while EET achieves higher SQL diversity than many prior approaches [ 24]. Since none of the tools support all DBMSs, we extend them for compatibility. Each system is tested for 24 hours, with results summarized in Table 7. Testing coverage. Our system achieves significantly higher coverage, with query plan text coverage 197 times that of EET and query plan feature coverage 3.5 times that of EET.",
+      "context_after": "These results underscore DistSQL ’s effectiveness in thoroughly exploring a wide range of execution paths within the vast execution space of distributed DBMSs. DistSQL ’s higher testing coverage comes from two primary factors. First, its distributed diversity oriented database state mutation actively mutates database states to trigger more execution paths. Second, its distributed interaction guided execution space exploration mechanism effectively identifies unique distributed logic, avoiding redundant test cases and enabling efficient exploration of the explosive execution space. Figure 4(c)",
+      "section": "7.4 Comparison",
+      "page": 17,
+      "char_offset": 62122,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "DistSQL identifies 28 more bugs than QPG and 31 more than EET.",
+      "context_before": "its distributed diversity oriented database state mutation actively mutates database states to trigger more execution paths. Second, its distributed interaction guided execution space exploration mechanism effectively identifies unique distributed logic, avoiding redundant test cases and enabling efficient exploration of the explosive execution space. Figure 4(c) illustrates the rapid growth of covered query plan features in early testing phases, stabilizing later. Across all stages, DistSQL maintains superior feature coverage. Bug detection. Jepsen and Mallory fail to find any new logic bugs.",
+      "context_after": "Notably, 16 of these bugs are specific to distributed logic and do not manifest in centralized mode, highlighting the importance of targeting distributed execution paths. While Jepsen and Mallory are effective at finding certain types of bugs, many of the bugs they found have already been fixed in current versions. In contrast, DistSQL is able to find additional logic bugs beyond those detected by existing approaches. 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026. 59:18 Zi-Xuan Fu, Jia-Ju Bai, Hong-Bo Feng, and Kang Chen 7.5 Case Studies of the Found Bugs This section highli",
+      "section": "7.4 Comparison",
+      "page": 17,
+      "char_offset": 63040,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "citation_marker",
+      "surface": "[ 2,18,\n23,24,30,43–45,48,53,61]",
+      "technique": "qpg",
+      "sentence": "Other approaches [ 2,18, 23,24,30,43–45,48,53,61] aim to find logic bugs by validating the query processing logic in local DBMSs through test oracles, which typically compare the execution results of two logically equivalent or related SQL queries.",
+      "context_before": "strategies guided by memory accesses and unexplored branches. Zest [ 38] enhances input generation by transforming random-input generators into deterministic parametric generators, effectively mapping low-level mutations to high-level structural changes. However, these approaches struggle to cope with the complex semantics and execution behaviors of distributed DBMSs, and their feedback is often insufficient. 9.2 DBMS Fuzzing Fuzzing has shown strong potential in finding various types of bugs in DBMSs. Several approaches [ 1, 13,22,28,65] focus primarily on memory bugs and assertion failures.",
+      "context_after": "In addition, SemConT [ 31] introduces a formal model of the database to provide a ground truth for validation. Other approaches [ 3,29,49] adopt differential testing strategies, executing the same SQL statements under different runtime configurations or query hints to identify inconsistencies. Most of these approaches rely heavily on random testing, providing limited guidance during SQL generation and database state mutation. Some approaches incorporate testing-scenario-specific 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026. One DBMS, Two Modes, and a Bunch of Bugs: Catching",
+      "section": "9.2 DBMS Fuzzing",
+      "page": 20,
+      "char_offset": 72867,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In 2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071. 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026. 59:22 Zi-Xuan Fu, Jia-Ju Bai, Hong-Bo Feng, and Kang ",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "citation_marker",
+      "surface": "[ 3,29,49]",
+      "technique": "dqp",
+      "sentence": "Other approaches [ 3,29,49] adopt differential testing strategies, executing the same SQL statements under different runtime configurations or query hints to identify inconsistencies.",
+      "context_before": "uted DBMSs, and their feedback is often insufficient. 9.2 DBMS Fuzzing Fuzzing has shown strong potential in finding various types of bugs in DBMSs. Several approaches [ 1, 13,22,28,65] focus primarily on memory bugs and assertion failures. Other approaches [ 2,18, 23,24,30,43–45,48,53,61] aim to find logic bugs by validating the query processing logic in local DBMSs through test oracles, which typically compare the execution results of two logically equivalent or related SQL queries. In addition, SemConT [ 31] introduces a formal model of the database to provide a ground truth for validation.",
+      "context_after": "Most of these approaches rely heavily on random testing, providing limited guidance during SQL generation and database state mutation. Some approaches incorporate testing-scenario-specific 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026. One DBMS, Two Modes, and a Bunch of Bugs: Catching Logic Bugs in Distributed DBMSs via Differential Testing 59:21 feedback signals, such as formal rule coverage in SemConT [ 31] and graph similarity of test cases in TQS [ 53], while others adopt more generic runtime feedback, such as branch coverage [ 30] or query plan text [ 2]. However, thes",
+      "section": "9.2 DBMS Fuzzing",
+      "page": 20,
+      "char_offset": 73227,
+      "cited_reference": {
+        "number": 3,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. Proceedings of the ACM on Management of Data 2, 3 (2024), 1–26.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing dqp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "citation_marker",
+      "surface": "[ 2]",
+      "technique": "qpg",
+      "sentence": "One DBMS, Two Modes, and a Bunch of Bugs: Catching Logic Bugs in Distributed DBMSs via Differential Testing 59:21 feedback signals, such as formal rule coverage in SemConT [ 31] and graph similarity of test cases in TQS [ 53], while others adopt more generic runtime feedback, such as branch coverage [ 30] or query plan text [ 2].",
+      "context_before": "of two logically equivalent or related SQL queries. In addition, SemConT [ 31] introduces a formal model of the database to provide a ground truth for validation. Other approaches [ 3,29,49] adopt differential testing strategies, executing the same SQL statements under different runtime configurations or query hints to identify inconsistencies. Most of these approaches rely heavily on random testing, providing limited guidance during SQL generation and database state mutation. Some approaches incorporate testing-scenario-specific 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026.",
+      "context_after": "However, these feedback signals are often insufficient for thoroughly exercising the complex behaviors of distributed DBMSs. Consequently, existing approaches fall short when applied to distributed DBMSs, as they largely overlook the unique characteristics of distributed execution. To address these challenges, DistSQL is specifically designed to more effectively explore distributed behaviors and find logic bugs that manifest in distributed execution scenarios. 9.3 Distributed System Fuzzing Many approaches have been proposed to test generic distributed systems. Some adopt formal verification",
+      "section": "9.2 DBMS Fuzzing",
+      "page": 20,
+      "char_offset": 73665,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In 2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071. 4, No. 1 (SIGMOD), Article 59. Publication date: February 2026. 59:22 Zi-Xuan Fu, Jia-Ju Bai, Hong-Bo Feng, and Kang ",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M10",
+        "M15"
+      ]
+    },
+    "suppressed": [
+      {
+        "mention_id": "M12",
+        "pattern": "compares_with",
+        "suppressed_because": "the sentence is framed as related work, so it describes somebody else's approach"
+      }
+    ]
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:50:48Z",
+    "is_model_written": true,
+    "summary": "DistSQL tests distributed DBMSs by running the same query in the system's distributed and single-node modes and comparing the results, so a difference between the two modes is a bug without needing to know the right answer. Its feedback signal is drawn from query plan features rather than plan text, which the paper argues is necessary because a distributed plan's text is noisy. Across five open-source distributed DBMSs it found substantially more bugs than the existing tools.",
+    "narrative": "QPG is DistSQL's closest comparison and its point of departure. The paper describes QPG as improving SQLancer by using query plan text as feedback to mutate the database state when no new plans appear, and argues this focuses on centralized database state and so becomes noisy and less informative on distributed systems. That claim is tested directly: one of DistSQL's own ablation variants uses query-plan-text feedback identical to QPG's, and QPG is also run as an external baseline alongside Jepsen, Mallory and EET, with DistSQL finding 28 more bugs. NoREC, TLP, PQS and CODDTest appear as the local-DBMS oracles the distributed setting is contrasted with.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "baseline",
+      "M4": "definition",
+      "M5": "definition",
+      "M6": "definition",
+      "M7": "motivation",
+      "M8": "background",
+      "M9": "definition",
+      "M10": "state_of_the_art",
+      "M11": "baseline",
+      "M12": "baseline",
+      "M13": "definition",
+      "M14": "result_comparison",
+      "M15": "result_comparison",
+      "M16": "background",
+      "M17": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "M8 records an AST-based SQL generator of the authors' own. QPG is run as a baseline and reimplemented as an ablation variant, neither of which makes DistSQL built on SQLancer."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "DistSQL replaces plan-text feedback with plan-feature feedback, which M7 presents as a correction of QPG's behaviour on distributed systems rather than a generalisation of it, and its oracle is differential execution across two modes."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M10",
+          "M12",
+          "M15"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M10",
+            "sentence": "We compare DistSQL against SOTA database and distributed system testing tools, including Squirrel [ 65], QPG [ 2], and EET [ 24], as well as distributed system testing tools, including Jepsen [20] and Mallory [36].",
+            "section": "7.1 Experimental Setup",
+            "page": 14
+          },
+          {
+            "mention_id": "M12",
+            "sentence": "4 Comparison We evaluate five open-source distributed DBMSs (Table 3) using four existing tools: Jepsen [ 20], Mallory [36], QPG [2], and EET [24], and compare their performance with DistSQL.",
+            "section": "7.4 Comparison",
+            "page": 17
+          },
+          {
+            "mention_id": "M15",
+            "sentence": "DistSQL identifies 28 more bugs than QPG and 31 more than EET.",
+            "section": "7.4 Comparison",
+            "page": 17
+          }
+        ],
+        "reasoning": "M10 lists QPG among the state-of-the-art tools DistSQL is compared against, M12 records it as one of four tools run on five distributed DBMSs, and M15 gives the result: 28 more bugs than QPG.",
+        "techniques": [
+          "qpg"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M10"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M10",
+            "sentence": "We compare DistSQL against SOTA database and distributed system testing tools, including Squirrel [ 65], QPG [ 2], and EET [ 24], as well as distributed system testing tools, including Jepsen [20] and Mallory [36].",
+            "section": "7.1 Experimental Setup",
+            "page": 14
+          }
+        ],
+        "reasoning": "M10 describes QPG as one of the SOTA database and distributed system testing tools DistSQL is measured against."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

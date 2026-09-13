@@ -1,0 +1,622 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:33:15Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3611643.3616286",
+    "title": "Property-Based Fuzzing for Finding Data Manipulation Errors in Android Apps",
+    "authors": [
+      "Jingling Sun",
+      "Ting Su",
+      "Jiayi Jiang",
+      "Jue Wang",
+      "G. Pu",
+      "Zhendong Su"
+    ],
+    "year": 2023,
+    "venue": "ESEC/SIGSOFT FSE",
+    "doi": "10.1145/3611643.3616286",
+    "arxiv_id": null,
+    "s2_paper_id": "8ea47327053957637ce8782a8b22aad19878dea1",
+    "url": "https://doi.org/10.1145/3611643.3616286",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3611643.3616286",
+      "retrieved_at": "2026-09-09T01:33:15Z",
+      "chars": 85782,
+      "content_sha256": "sha256:df2236c971be2c7c3174ddf2d5b9020cbb076b17ffb1a8c11a546cd4756a70ee"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 3719
+      },
+      {
+        "number": "2",
+        "title": "APPROACH",
+        "start": 13537
+      },
+      {
+        "number": "2.1",
+        "title": "High-Level Idea",
+        "start": 13651
+      },
+      {
+        "number": "2.2",
+        "title": "Challenges and Observations",
+        "start": 17411
+      },
+      {
+        "number": "2.3",
+        "title": "Instantiation of the High-Level Idea",
+        "start": 21028
+      },
+      {
+        "number": "3",
+        "title": "IMPLEMENTATION",
+        "start": 25188
+      },
+      {
+        "number": "3.1",
+        "title": "Input Generator",
+        "start": 25914
+      },
+      {
+        "number": "3.2",
+        "title": "Data Recorder",
+        "start": 29790
+      },
+      {
+        "number": "3.3",
+        "title": "Property Checker",
+        "start": 30243
+      },
+      {
+        "number": "3.4",
+        "title": "DMF Instantiator",
+        "start": 30717
+      },
+      {
+        "number": "4",
+        "title": "EVALUATION",
+        "start": 35371
+      },
+      {
+        "number": "4.1",
+        "title": "Evaluation Setup",
+        "start": 37112
+      },
+      {
+        "number": "5",
+        "title": "DISCUSSION",
+        "start": 57720
+      },
+      {
+        "number": "6",
+        "title": "RELATED WORK",
+        "start": 59737
+      },
+      {
+        "number": "7",
+        "title": "CONCLUSION",
+        "start": 65291
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Christoffer Quist Adamsen, Gianluca Mezzetti, and Anders Møller. 2015. Systematic execution of android test suites in adverse conditions. In Proceedings of the 2015 International Symposium on Software Testing and Analysis (ISSTA). 83–93. https://doi.org/10.1145/2771783.2771786",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Domenico Amalfitano, Anna Rita Fasolino, Porfirio Tramontana, Bryan Dzung Ta, and Atif M. Memon. 2015. MobiGUITAR: Automated Model-Based Testing of Mobile Apps. IEEE Software (2015), 53–59. https://doi.org/10.1109/MS.2014.55",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "AnkiDroid Team. 2022. AnkiDroid. Retrieved 2023-1 from https://github.com/ ankidroid/Anki-Android.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "AnyMemo Team. 2022. AnyMemo. Retrieved 2023-1 from https://github.com/ helloworld1/AnyMemo.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Young-Min Baek and Doo-Hwan Bae. 2016. Automated model-based Android GUI testing using multi-level GUI comparison criteria. In 2016 31st IEEE/ACM International Conference on Automated Software Engineering (ASE). 238–249. https: //doi.org/10.1145/2970276.2970313",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Earl T Barr, Mark Harman, Phil McMinn, Muzammil Shahbaz, and Shin Yoo. 2014. The oracle problem in software testing: A survey. IEEE transactions on software engineering (TSE) (2014), 507–525. https://doi.org/10.1109/TSE.2014.2372785",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Farnaz Behrang and Alessandro Orso. 2019. Test migration between mobile apps with similar functionality. In 2019 34th IEEE/ACM International Conference on Automated Software Engineering (ASE). IEEE, 54–65.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Benoît Joossen. 2018. Voice Memos “Epidemic Failure” and How to Avoid it. Retrieved 2023-1 from https://aeroquartet.com/wordpress/2019/03/05/voice-memosepidemic-failure-and-how-to-avoid-it/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Manfred Broy, Bengt Jonsson, Joost-Pieter Katoen, Martin Leucker, and Alexander Pretschner. 2005. Model-based testing of reactive systems: advanced lectures. Springer Science & Business Media.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Business of Apps. 2022. Android Statistics (2022). Retrieved 2023-1 from https: //www.businessofapps.com/data/android-statistics/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "CapCut Team. 2021. CapCut. Retrieved 2023-1 from https://lv.faceueditor.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Chunyang Chen, Ting Su, Guozhu Meng, Zhenchang Xing, and Yang Liu. 2018. From ui design image to gui skeleton: a neural machine translator to bootstrap mobile gui implementation. In Proceedings of the 40th International Conference on Software Engineering (ICSE). 665–676. https://doi.org/10.1145/3180155.3180240",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Tsong Y. Chen, Shing C. Cheung, and Shiu Ming Yiu. 2020. Metamorphic testing: a new approach for generating next test cases. Technical Report. HKUST-CS98-01, Hong Kong University of Science and Technology. https://doi.org/10.48550/ arXiv.2002.12543",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Shauvik Roy Choudhary, Alessandra Gorla, and Alessandro Orso. 2015. Automated Test Input Generation for Android: Are We There Yet? (E). In 30th IEEE/ACM International Conference on Automated Software Engineering (ASE). 429–440. https://doi.org/10.1109/ASE.2015.89",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Koen Claessen and John Hughes. 2000. QuickCheck: a lightweight tool for random testing of Haskell programs. In Proceedings of the Fifth ACMSIGPLAN International Conference on Functional Programming (ICFP). 268–279. https: //doi.org/10.1145/351240.351266",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Koen Claessen and John Hughes. 2000. QuickCheck: a lightweight tool for random testing of Haskell programs. In Proceedings of the fifth ACMSIGPLAN international conference on Functional programming (ICFP). 268–279. https: //doi.org/10.1145/357766.351266",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Pedro Costa, Ana CR Paiva, and Miguel Nabuco. 2014. Pattern based GUI testing for mobile applications. In Proceedings of the 9th International Conference on the Quality of Information and Communications Technology (QUATIC). 66–74. https://doi.org/10.1109/QUATIC.2014.16",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Guilherme de Cleva Farto and Andre Takeshi Endo. 2015. Evaluating the modelbased testing approach in the context of mobile applications. Electronic notes in Theoretical computer science (2015), 3–21. https://doi.org/10.1016/j.entcs.2015.05. 002",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Zhen Dong, Marcel Böhme, Lucia Cojocaru, and Abhik Roychoudhury. 2020. Time-travel testing of Android apps. In Proceedings of the 42nd International Conference on Software Engineering (ICSE). 1–12. https://doi.org/10.1145/3377811. 3380402",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Dawson R. Engler, David Yu Chen, and Andy Chou. 2001. Bugs as Deviant Behavior: A General Approach to Inferring Errors in Systems Code. In Proceedings of the 18th ACM Symposium on Operating System Principles (SOSP 2001). 57–72. https://doi.org/10.1145/502034.502041",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Lingling Fan, Ting Su, Sen Chen, Guozhu Meng, Yang Liu, Lihua Xu, Geguang Pu, and Zhendong Su. 2018. Large-scale analysis of framework-specific exceptions in Android apps. In Proceedings of the 40th International Conference on SoftwareEngineering (ICSE), Michel Chaudron, Ivica Crnkovic, Marsha Chechik, and Mark Harman (Eds.). 408–419. https://doi.org/10.1145/3180155.3180222",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Mattia Fazzini and Alessandro Orso. 2017. Automated cross-platform inconsistency detection for mobile apps. In 2017 32nd IEEE/ACM International Conference on Automated Software Engineering (ASE). 308–318. https://doi.org/10.1109/ASE. 2017.8115644",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "FeiShu Team. 2021. FeiShu. Retrieved 2023-1 from https://www.feishu.cn/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "GeeksforGeeks. 2020. MVC (Model View Controller) Architecture Pattern in Android. Retrieved 2023-1 from https://www.geeksforgeeks.org/mvc-model-viewcontroller-architecture-pattern-in-android-with-example/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Google. 2021. Google Play. Retrieved 2023-1 from https://play.google.com/store.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Tianxiao Gu, Chengnian Sun, Xiaoxing Ma, Chun Cao, Chang Xu, Yuan Yao, Qirun Zhang, Jian Lu, and Zhendong Su. 2019. Practical GUI testing of Android applications via model abstraction and refinement. In 2019 IEEE/ACM 41st International Conference on Software Engineering (ICSE). 269–280. https: //doi.org/10.1109/ICSE.2019.00042",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Wunan Guo, Zhen Dong, Liwei Shen, Wei Tian, Ting Su, and Xin Peng. 2022. Detecting and fixing data loss issues in Android apps. In ISSTA ’22: 31st ACMSIGSOFT International Symposium on Software Testing and Analysis, Virtual Event, South Korea, July 18 - 22, 2022. 605–616.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Wunan Guo, Zhen Dong, Liwei Shen, Wei Tian, Ting Su, and Xin Peng. 2022. Detecting and fixing data loss issues in Android apps. In Proceedings of the 31st ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA). 605–616. https://doi.org/10.1145/3533767.3534402",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Hacker News. 2013. Tell Facebook: There’s a severe bug when changing profile pics on the iOS app. Retrieved 2023-1 from https://news.ycombinator.com/item?id= 6456285.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Gang Hu, Linjie Zhu, and Junfeng Yang. 2018. AppFlow: using machine learning to synthesize robust, reusable UI tests. In Proceedings of the 2018 26th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 269–282. https://doi.org/10. 1145/3236024.3236055",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "John Hughes. 2020. How to Specify It!. In Trends in Functional Programming. Springer International Publishing, 58–83.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "k-9 Team. 2022. k-9. Retrieved 2023-1 from https://github.com/thundernest/k-9.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Stefan Karlsson, Adnan Causevic, Daniel Sundmark, and Mårten Larsson. 2021. Model-based Automated Testing of Mobile Applications: An Industrial Case Study. In 14th IEEE International Conference on Software Testing, Verification and Validation Workshops (ICSTW 2021. 130–137.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Stefan Karlsson, Adnan Čaušević, and Daniel Sundmark. 2020. QuickREST: Property-based Test Generation of OpenAPI-Described RESTful APIs. In (ICST). 131–141. https://doi.org/10.1109/ICST46399.2020.00023",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Pingfan Kong, Li Li, Jun Gao, Kui Liu, Tegawendé F. Bissyandé, and Jacques Klein. 2019. Automated Testing of Android Apps: A Systematic Literature Review. IEEE Trans. Reliability 68, 1 (2019), 45–66. https://doi.org/10.1109/TR.2018.2865733",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Edmund SL Lam, Peilun Zhang, and Bor-Yuh Evan Chang. 2017. ChimpCheck: property-based randomized test generation for interactive apps. In Proceedings of the 2017 ACMSIGPLAN International Symposium on New Ideas, New Paradigms, and Reflections on Programming and Software (Onward!). 58–77. https://doi.org/ 10.1145/3133850.3133853",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Leonidas Lampropoulos, Michael Hicks, and Benjamin C. Pierce. 2019. Coverage guided, property based testing. Proc. ACM Program. Lang. OOPSLA (2019), 181:1– 181:29. https://doi.org/10.1145/3360607",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Yuanchun Li, Ziyue Yang, Yao Guo, and Xiangqun Chen. 2017. Droidbot: a lightweight ui-guided test input generator for android. In Proceedings of the (ICSE-C). 23–26. https://doi.org/10.1109/ICSE-C.2017.8",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Jun-Wei Lin, Reyhaneh Jabbarvand, and Sam Malek. 2019. Test transfer across mobile apps through semantic mapping. In 2019 34th IEEE/ACM International Conference on Automated Software Engineering (ASE). IEEE, 42–53. https://doi. org/10.1109/ASE.2019.00015",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Ying-Dar Lin, José F. Rojas, Edward T.-H. Chu, and Yuan-Cheng Lai. 2014. On the Accuracy, Efficiency, and Reusability of Automated Test Oracles for Android Devices. IEEE Trans. Software Eng. (2014), 957–970. https://doi.org/10.1109/TSE. 2014.2331982",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Zhengwei Lv, Chao Peng, Zhao Zhang, Ting Su, Kai Liu, and Ping Yang. 2022. Fastbot2: Reusable Automated Model-based GUI Testing for Android Enhanced by Reinforcement Learning. In 37th IEEE/ACM International Conference on Automated Software Engineering (ASE). 135:1–135:5. https://doi.org/10.1145/3551349.3559505 1099 Property-Based Fuzzing for Finding Data Manipulation Errors in Android Apps ESEC/FS",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Ke Mao, Mark Harman, and Yue Jia. 2016. Sapienz: multi-objective automated testing for Android applications. In Proceedings of the 25th International Symposium on Software Testing and Analysis (ISSTA). 94–105. https://doi.org/10.1145/ 2931037.2931054",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Leonardo Mariani, Mauro Pezzè, and Daniele Zuddas. 2018. Augusto: Exploiting Popular Functionalities for the Generation of Semantic GUI Tests with Oracles. InProceedings of the 40th International Conference on Software Engineering (ICSE). 280–290. https://doi.org/10.1145/3180155.3180162",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Monkey Team. 2022. Android Monkey. Retrieved 2023-1 from https://developer. android.com/studio/test/monkey.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Liam O’Connor and Oskar Wickström. 2022. Quickstrom: property-based acceptance testing with LTL specifications. In Proceedings of the 43rd ACMSIGPLAN International Conference on Programming Language Design and Implementation (PLDI). 1025–1038. https://doi.org/10.1145/3519939.3523728",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Carlos Pacheco, Shuvendu K Lahiri, Michael D Ernst, and Thomas Ball. 2007. Feedback-directed random test generation. In 29th International Conference on Software Engineering (ICSE). 75–84. https://doi.org/10.1109/ICSE.2007.37",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Sumit Padhiyar and KC Sivaramakrishnan. 2021. ConFuzz: Coverage-guided property fuzzing for event-driven programs. In Practical Aspects of Declarative Languages: 23rd International Symposium, PADL 2021, Copenhagen, Denmark, January 18-19, 2021, Proceedings 23. 127–144. https://doi.org/10.1007/978-3-03067438-0_8",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Rohan Padhye, Caroline Lemieux, and Koushik Sen. 2019. JQF: coverageguided property-based testing in Java. In Proceedings of the 28th ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA). 398–401. https://doi.org/10.1145/3293882.3339002",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Minxue Pan, An Huang, Guoxin Wang, Tian Zhang, and Xuandong Li. 2020. Reinforcement Learning Based Curiosity-Driven Testing of Android Applications. InProceedings of the 29th ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA). 153–164. https://doi.org/10.1145/3395363.3397354",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Oliviero Riganelli, Simone Paolo Mottadelli, Claudio Rota, Daniela Micucci, and Leonardo Mariani. 2020. Data loss detector: automatically revealing data loss bugs in Android apps. In Proceedings of the 29th ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA). 141–152. https://doi.org/10. 1145/3395363.3397379",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. OOPSLA (2020), 211:1–211:30. https://doi.org/10.5281/zenodo.4032401",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 52,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI). USENIX Association, 667–682. https://doi.org/10.48550/ arXiv.2001.04174",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 53,
+      "text": "Ariel Rosenfeld, Odaya Kardashov, and Orel Zang. 2018. Automation of android applications functional testing using machine learning activities classification. InProceedings of the 5th International Conference on Mobile Software Engineering and Systems (MOBILESoft). 122–132. https://doi.org/10.1145/3197231.3197241",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Iflaah Salman, Ayse Tosun Misirli, and Natalia Juristo. 2015. Are students representatives of professionals in software engineering experiments?. In Proceedings of the (ICSE). 666–676. https://doi.org/10.5555/2818754.2818836",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "André Santos, Alcino Cunha, and Nuno Macedo. 2018. Property-based testing for the robot operating system. In Proceedings of the 9th ACMSIGSOFT International Workshop on Automating TEST Case Design, Selection, and Evaluation. 56–62.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "SimpleTask Team. 2022. SimpleTask. Retrieved 2023-1 from https://github.com/ mpcjanssen/simpletask-android.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Sixth Tone. 2019. E-Commerce App Loses ‘Tens of Millions’ From Coupon Glitches. Retrieved 2023-1 from https://www.sixthtone.com/news/1003483/e-commerceapp-loses-tens-of-millions-from-coupon-glitches.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "SkyTube Team. 2022. SkyTube. Retrieved 2023-1 from https://github.com/ SkyTubeTeam/SkyTube.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Ting Su, Lingling Fan, Sen Chen, Yang Liu, Lihua Xu, Geguang Pu, and Zhendong Su. 2022. Why My App Crashes? Understanding and Benchmarking FrameworkSpecific Exceptions of Android Apps. IEEE Trans. Software Eng. 48, 4 (2022), 1115–1137. https://doi.org/10.1109/TSE.2020.3013438",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Ting Su, Guozhu Meng, Yuting Chen, Ke Wu, Weiming Yang, Yao Yao, Geguang Pu, Yang Liu, and Zhendong Su. 2017. Guided, stochastic model-based GUI testing of Android apps. In Proceedings of the 2017 11th Joint Meeting on Foundations of Software Engineering (ESEC/FSE). 245–256. https://doi.org/10.1145/3106237. 3106298",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Ting Su, Jue Wang, and Zhendong Su. 2021. Benchmarking automated GUI testing for Android against real-world bugs. In 29th ACM Joint European SoftwareEngineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 119–130. https://doi.org/10.1145/3468264.3468620",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Ting Su, Yichen Yan, Jue Wang, Jingling Sun, Yiheng Xiong, Geguang Pu, Ke Wang, and Zhendong Su. 2021. Fully automated functional fuzzing of Android apps for detecting non-crashing logic bugs. Proceedings of the ACM on Programming Languages (OOPSLA) (2021), 1–31. https://doi.org/10.1145/3485533",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Jingling Sun, Ting Su, Junxin Li, Zhen Dong, Geguang Pu, Tao Xie, and Zhendong Su. 2021. Understanding and finding system setting-related defects in Android apps. In Proceedings of the 30th ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA). 204–215. https://doi.org/10.1145/3460319. 3464806",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Jingling Sun, Ting Su, Kai Liu, Chao Peng, Zhao Zhang, Geguang Pu, Tao Xie, and Zhendong Su. 2023. Characterizing and Finding System Setting-Related Defects in Android Apps. IEEE Trans. Software Eng. 49, 4 (2023), 2941–2963. https://doi.org/10.1109/TSE.2023.3236449",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Amaze Team. 2022. AmazeFileManager. Retrieved 2023-1 from https://github. com/TeamAmaze/AmazeFileManager.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Tiktok Team. 2021. Tiktok. Retrieved 2023-1 from https://www.tiktok.com.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Porfirio Tramontana, Domenico Amalfitano, Nicola Amatucci, and Anna Rita Fasolino. 2019. Automated functional testing of mobile applications: a systematic mapping study. Software Quality Journal 27, 1 (2019), 149–201. https://doi.org/ 10.1007/s11219-018-9418-6",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "David Travis. 2020. What user researchers ought to know about informed consent. Retrieved 2023-1 from https://userfocus.co.uk/articles/what_user_researchers_ ought_to_know_about_informed_consent.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "uiautomator2 Team. 2022. uiautomator2. Retrieved 2023-1 from https://github. com/openatx/uiautomator2.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Jue Wang, Yanyan Jiang, Ting Su, Shaohua Li, Chang Xu, Jian Lu, and Zhendong Su. 2022. Detecting non-crashing functional bugs in Android apps via deepstate differential analysis. In Proceedings of the 30th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 434–446. https://doi.org/10.1145/3540250.3549170",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Jue Wang, Yanyan Jiang, Chang Xu, Chun Cao, Xiaoxing Ma, and Jian Lu. 2020. ComboDroid: Generating High-Quality Test Inputs for Android Apps via Use Case Combinations. In Proceedings of the ACM/IEEE 42nd International Conference on Software Engineering (ICSE). 469–480. https://doi.org/10.1145/3377811.3380382",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Wenyu Wang, Dengfeng Li, Wei Yang, Yurui Cao, Zhenwen Zhang, Yuetang Deng, and Tao Xie. 2018. An empirical study of Android test generation tools in industrial cases. In Proceedings of the 33rd ACM/IEEE International Conference on Automated Software Engineering (ASE). 738–748. https://doi.org/10.1145/3238147. 3240465",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "weditor Team. 2022. weditor. Retrieved 2023-1 from https://pypi.org/project/ weditor/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "Wikipedia. 2022. Create, read, update and delete. Retrieved 2023-1 from https: //en.wikipedia.org/wiki/Create,_read,_update_and_delete.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "Wikipedia Team. 2022. Wikipedia. Retrieved 2023-1 from https://github.com/ wikimedia/apps-android-wikipedia.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "WordPress Team. 2022. WordPress. Retrieved 2023-1 from https://github.com/ wordpress-mobile/WordPress-Android.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "Yiheng Xiong, Mengqian Xu, Ting Su, Jingling Sun, Jue Wang, He Wen, Geguang Pu, Jifeng He, and Zhendong Su. 2023. An Empirical Study of Functional Bugs in Android Apps. In Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA). 1319–1331. https://doi.org/10.1145/ 3597926.3598138",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "Razieh Nokhbeh Zaeem, Mukul R. Prasad, and Sarfraz Khurshid. 2014. Automated Generation of Oracles for Testing User-Interaction Features of Mobile Apps. In Proceedings of the International Conference on Software Testing, Verification and Validation (ICST). 183–192. https://doi.org/10.1109/ICST.2014.31",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "Yixue Zhao, Justin Chen, Adriana Sejfia, Marcelo Schmitt Laser, Jie Zhang, Federica Sarro, Mark Harman, and Nenad Medvidovic. 2020. FrUITeR: a framework for evaluating UI test reuse. In Proceedings of the 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE). 1190–1201. https://doi.org/10.1145/3368089.3409708",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "Yu Zhao, Tingting Yu, Ting Su, Yang Liu, Wei Zheng, Jingzhi Zhang, and William GJ Halfond. 2019. Recdroid: automatically reproducing android application crashes from bug reports. In Software Engineering (ICSE). 128–139. https://doi.org/10.1109/ICSE.2019.00030 Received 2023-02-02; accepted 2023-07-27 1100",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 51,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. OOPSLA (2020), 211:1–211:30. https://doi.org/10.5281/zenodo.4032401",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 52,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI). USENIX Association, 667–682. https://doi.org/10.48550/ arXiv.2001.04174",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "prints the arXiv id of the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 51,52]",
+      "technique": "tlp",
+      "sentence": "Some work [ 51,52] uses metamorphic testing to find the CRUD errors in database management systems.",
+      "context_before": "as one UI test pattern to check its correctness. Mariani et al. [43] specify the CRUD operations of Web apps in Alloy specification language and build a tool Augusto to generate semantic tests with oracles. However, Augusto only tests one CRUD operation independently, and does not consider their combinations. Since a direct comparison is infeasible (as Augusto targets Web apps), Baseline A in our evaluation (see Section 4.4) can be viewed as a similar implementation of Augusto. Our approach which interleaves different DMFs of CRUD operations is shown to be much more effective than Baseline A.",
+      "context_after": "7 CONCLUSION We introduce a property-based fuzzing approach to effectively finding DMEs, which combines the idea of property-based testing and model-based properties. Given some type of app data, we interleave different DMFs and other possible events to generate diverse app states for validation. The realization of our idea, PBFDroid, has successfully discovered 30previously unknown bugs from 20popular Android apps. Among these bugs, 22are non-crashing DMEs, which cannot be found by the state-of-the-arts. So far, 19have been confirmed and 9fixed by the developers. The majority (20 out of 25) c",
+      "section": "6 RELATED WORK",
+      "page": 11,
+      "char_offset": 65190,
+      "cited_reference": {
+        "number": 51,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. OOPSLA (2020), 211:1–211:30. https://doi.org/10.5281/zenodo.4032401",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:16:45Z",
+    "is_model_written": true,
+    "summary": "PBFDroid applies property-based fuzzing to data manipulation errors in Android apps -- bugs in the create, read, update and delete operations that handle app-specific data, especially non-crashing logic ones. Given a type of app data it randomly interleaves the relevant operations with other events to explore diverse app states, characterising those functions as data-model-based properties and checking them against the UI. Across 20 real apps it found 30 previously unknown bugs.",
+    "narrative": "One citation in related work, noting that SQLancer's line of work uses metamorphic testing to find CRUD errors in database management systems -- the same class of error, in engines rather than apps.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

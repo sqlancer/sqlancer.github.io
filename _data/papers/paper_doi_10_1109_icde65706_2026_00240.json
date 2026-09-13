@@ -1,0 +1,933 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:23:56Z",
+  "paper": {
+    "id": "paper:doi:10.1109/icde65706.2026.00240",
+    "title": "LLMSQLMUTATOR: LLM-Powered Test Case Generation for Database Using Bug Reports",
+    "authors": [
+      "Chenglin Tian",
+      "Chaofan Li",
+      "Yawen Li",
+      "Yingxia Shao"
+    ],
+    "year": 2026,
+    "venue": "IEEE International Conference on Data Engineering",
+    "doi": "10.1109/icde65706.2026.00240",
+    "arxiv_id": null,
+    "s2_paper_id": "76ce4c5143cca31617dc53fe0c37b77ad8d5150b",
+    "url": "https://doi.org/10.1109/icde65706.2026.00240",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/icde65706.2026.00240",
+      "retrieved_at": "2026-09-08T15:23:56Z",
+      "chars": 82849,
+      "content_sha256": "sha256:c63fab566c1f5bc10dea2ecdbea08fa5409a7cfd1dcff24312d2760660ab9a5d"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 14,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 1695
+      },
+      {
+        "number": "II",
+        "title": "BACKGROUNDS",
+        "start": 11494
+      },
+      {
+        "number": "A",
+        "title": "Basics of Bug Reports",
+        "start": 11510
+      },
+      {
+        "number": "B",
+        "title": "Mutation-based Software Testing",
+        "start": 12686
+      },
+      {
+        "number": "III",
+        "title": "LLMSQLM UTATOR",
+        "start": 14003
+      },
+      {
+        "number": "A",
+        "title": "Bug Knowledge Extraction",
+        "start": 16271
+      },
+      {
+        "number": "B",
+        "title": "Bug-Driven SQL Mutation",
+        "start": 23023
+      },
+      {
+        "number": "C",
+        "title": "LLM-Based Semantic Validation",
+        "start": 33240
+      },
+      {
+        "number": "D",
+        "title": "DBMS Testing",
+        "start": 40414
+      },
+      {
+        "number": "E",
+        "title": "Discussion of the Hybrid Design of LLMSQLM UTATOR",
+        "start": 41855
+      },
+      {
+        "number": "IV",
+        "title": "EVALUATION",
+        "start": 42498
+      },
+      {
+        "number": "B",
+        "title": "Experiment results",
+        "start": 46146
+      },
+      {
+        "number": "V",
+        "title": "RELATED WORK",
+        "start": 65012
+      },
+      {
+        "number": "VI",
+        "title": "CONCLUSION",
+        "start": 68671
+      },
+      {
+        "number": "VII",
+        "title": "ACKNOWLEDGEMENT",
+        "start": 69963
+      },
+      {
+        "number": "VIII",
+        "title": "AI-GENERATED CONTENT ACKNOWLEDGEMENT",
+        "start": 70250
+      },
+      {
+        "number": "H",
+        "title": "Liu et al., “A survey on llm-as-a-judge,” CoRR, 2024.",
+        "start": 78236
+      },
+      {
+        "number": "Z",
+        "title": "Li, D. Li, E. Xing et al., “Judging llm-as-a-judge with mt-bench",
+        "start": 78769
+      },
+      {
+        "number": "C",
+        "title": "Zhang, C. Ruan et al., “Deepseek-v3 technical report,” CoRR, 2024.",
+        "start": 79317
+      },
+      {
+        "number": "J",
+        "title": "Wei, “Simple testing can expose most critical transaction bugs:",
+        "start": 80106
+      },
+      {
+        "number": "D",
+        "title": "Poshyvanyk, “Enhancing mobile app bug reporting via real-time",
+        "start": 82354
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "“Mysql,” https://www.mysql.com, 1995, accessed on July, 7, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "“Tidb,” https://www.pingcap.com/tidb/, 2016, accessed on July, 7, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "“Sqlite,” https://www.sqlite.org/index.html, 2000, accessed on July, 7, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "“Clickhouse,” https://clickhouse.com/, 1996, accessed on July 7, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "“Duckdb,” https://duckdb.org, 2019, accessed on July, 7, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "A. Seltenreich, B. Tang, and S. Mullender, “Sqlsmith,” 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Q. Wu, Q. Xiang, Y. Shao, Q. Luo, and Q. Xu, “Dbpecker: A graphbased compound anomaly diagnosis system for distributed rdbmss,” Proceedings of the VLDB Endowment, vol. 18, no. 12, pp. 5383–5386, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "X. Zhu, S. Wen, S. Camtepe, and Y. Xiang, “Fuzzing: a survey for roadmap,” ACM Computing Surveys (CSUR), vol. 54, no. 11s, pp. 1–36, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "J. Jung, H. Hu, J. Arulraj, T. Kim, and W. Kang, “Apollo: Automatic detection and diagnosis of performance regressions in database systems,” Proceedings of the VLDB Endowment, vol. 13, no. 1, pp. 57–70, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Q. Xiang, Y. Shao, Q. Xu, and C. Yang, “Distributed database diagnosis method for compound anomalies.” International Journal of Software & Informatics, vol. 15, no. 1, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "“Sqlancer,” https://github.com/sqlancer/sqlancer, 2019, accessed on July, 7, 2025.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 12,
+      "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 13,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 1–30, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 14,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 15,
+      "text": "Y. Liang, S. Liu, and H. Hu, “Detecting logical bugs of {DBMS} with coverage-based guidance,” in 31st USENIX Security Symposium (USENIX Security 22), 2022, pp. 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "R. Zhong, Y. Chen, H. Hu, H. Zhang, W. Lee, and D. Wu, “Squirrel: Testing database management systems with language validity and coverage feedback,” in Proceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security, 2020, pp. 955–970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "S. Feng and C. Chen, “Prompting is all you need: Automated android bug replay with large language models,” in Proceedings of the 46th IEEE/ACM International Conference on Software Engineering, 2024, pp. 1–13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "A. Koyuncu, K. Liu, T. F. Bissyand ´e, D. Kim, M. Monperrus, J. Klein, and Y. Le Traon, “ifixr: Bug report driven program repair,” in Proceedings of the 2019 27th ACM joint meeting on european software engineering conference and symposium on the foundations of software engineering, 2019, pp. 314–325.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "L. Plein, W. C. Ou ´edraogo, J. Klein, and T. F. Bissyand ´e, “Automatic generation of test cases based on bug reports: a feasibility study with large language models,” in Proceedings of the 2024 IEEE/ACM 46th International Conference on Software Engineering: Companion Proceedings, 2024, pp. 360–361.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Q. Gu, “Llm-based code generation method for golang compiler testing,” inProceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2023, pp. 2201–2203.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "F. Lin, D. J. Kim, and T.-H. Chen, “When llm-based code generation meets the software development process,” CoRR, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "W. Xu, C. Huang, S. Gao, and S. Shang, “Llm-based agents for tool learning: A survey: W. xu et al.” Data Science and Engineering, pp. 1–31, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "I. Neamtiu, J. S. Foster, and M. Hicks, “Understanding source code evolution using abstract syntax tree matching,” in Proceedings of the 2005 international workshop on Mining software repositories, 2005, pp. 1–5.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "S. Tang, S. Liu, J. Wang, and X. Zhang, “An empirical study on ast-level mutation-based fuzzing techniques for javascript engines,” in Proceedings of the 14th Asia-Pacific Symposium on Internetware, 2023, pp. 216–226.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "H. Han, D. Oh, and S. K. Cha, “Codealchemist: Semantics-aware code generation to find vulnerabilities in javascript engines.” in Network and Distributed System Security Symposium (NDSS), 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Y. Chen, R. Zhong, H. Hu, H. Zhang, Y. Yang, D. Wu, and W. Lee, “One engine to fuzz’em all: Generic language processor testing with semantic validation,” in (SP). IEEE, 2021, pp. 642–658.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "S. Park, W. Xu, I. Yun, D. Jang, and T. Kim, “Fuzzing javascript engines with aspect-preserving mutation,” in and Privacy (SP). IEEE, 2020, pp. 1629–1642.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "W. Xu, H. Moon, S. Kashyap, P.-N. Tseng, and T. Kim, “Fuzzing file systems via two-dimensional input space exploration,” in 2019 IEEE Symposium on Security and Privacy (SP). IEEE, 2019, pp. 818–834.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "M. Xu, S. Kashyap, H. Zhao, and T. Kim, “Krace: Data race fuzzing for kernel file systems,” in (SP). IEEE, 2020, pp. 1643–1660.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "S. Pailoor, A. Aday, and S. Jana, “{MoonShine}: Optimizing {OS} fuzzer seed selection with trace distillation,” in 27th USENIX Security Symposium (USENIX Security 18), 2018, pp. 729–743.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "K. Kim, D. R. Jeong, C. H. Kim, Y. Jang, I. Shin, and B. Lee, “Hfl: Hybrid fuzzing on the linux kernel.” in Network and Distributed System Security Symposium (NDSS), 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "J. Choi, K. Kim, D. Lee, and S. K. Cha, “Ntfuzz: Enabling type-aware kernel fuzzing on windows with static binary analysis,” in 2021 IEEE Symposium on Security and Privacy (SP). IEEE, 2021, pp. 677–693.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "M. Wang, Z. Wu, X. Xu, J. Liang, C. Zhou, H. Zhang, and Y. Jiang, “Industry practice of coverage-guided enterprise-level dbms fuzzing,” in ing: Software Engineering in Practice (ICSE-SEIP). IEEE, 2021, pp. 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "H. Liu, M. Shen, J. Jin, and Y. Jiang, “Automated classification of actions in bug reports of mobile apps,” in Proceedings of the 29th ACMSIGSOFT International Symposium on Software Testing and Analysis, 2020, pp. 128–140.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "“Llmsqlmutator: Llm-powered test case generation for database using bug reports (tecnical report),” https://github.com/DBMSTesting/ LLMSQLMutator-Technical-Report, 2026, accessed on January 26, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "T. J. Parr and R. W. Quong, “Antlr: A predicated-ll (k) parser generator,” Software: Practice and Experience, vol. 25, no. 7, pp. 789–810, 1995.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "X. Zhou, Z. Sun, and G. Li, “Db-gpt: Large language model meets database,” Data Science and Engineering, vol. 9, no. 1, pp. 102–111, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "F. Cuconasu, G. Trappolini, F. Siciliano, S. Filice, C. Campagnano, Y. Maarek, N. Tonellotto, and F. Silvestri, “The power of noise: Redefining retrieval for rag systems,” in Proceedings of the 47th International ACMSIGIR Conference on Research and Development in Information Retrieval, 2024, pp. 719–729.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "B. Jin, J. Yoon, J. Han, and S. O. Arik, “Long-context llms meet rag: Overcoming challenges for long inputs in rag,” in The Thirteenth International Conference on Learning Representations.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "J. Gu, X. Jiang, Z. Shi, H. Tan, X. Zhai, C. Xu, W. Li, Y. Shen, S. Ma, H. Liu et al., “A survey on llm-as-a-judge,” CoRR, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "C. Whitehouse, T. Wang, P. Yu, X. Li, J. Weston, I. Kulikov, and S. Saha, “J1: Incentivizing thinking in llm-as-a-judge via reinforcement learning,” arXiv preprint arXiv:2505.10320, 2025. 3263",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "S. Saha, X. Li, M. Ghazvininejad, J. E. Weston, and T. Wang, “Learning to plan & reason for evaluation with thinking-llm-as-a-judge,” in Fortysecond International Conference on Machine Learning.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "L. Zheng, W.-L. Chiang, Y. Sheng, S. Zhuang, Z. Wu, Y. Zhuang, Z. Lin, Z. Li, D. Li, E. Xing et al., “Judging llm-as-a-judge with mt-bench and chatbot arena,” Advances in neural information processing systems, vol. 36, pp. 46 595–46 623, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "J. Ba and M. Rigger, “Cert: Finding performance issues in database systems through the lens of cardinality estimation,” in Proceedings of the IEEE/ACM 46th International Conference on Software Engineering, 2024, pp. 1–13.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 45,
+      "text": "“Oceanbase,” https://en.oceanbase.com/, 2016, accessed on July 7, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "A. Liu, B. Feng, B. Xue, B. Wang, B. Wu, C. Lu, C. Zhao, C. Deng, C. Zhang, C. Ruan et al., “Deepseek-v3 technical report,” CoRR, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "“Codellama-34b,” https://huggingface.co/codellama/CodeLlama-34b-hf, 2023, accessed on July 7, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "“Gpt-3.5-turbo,” https://platform.openai.com/docs/models/gpt-3.5-turbo, 2022, accessed on July 7, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "“Gpt-4o-mini,” https://openai.com/index/ gpt-4o-mini-advancing-cost-efficient-intelligence/, 2024, accessed on July 7, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "D. R. Slutz, “Massive stochastic testing of sql,” in VLDB, vol. 98. Citeseer, 1998, pp. 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "B. Ghit, N. Poggi, J. Rosen, R. Xin, and P. Boncz, “Sparkfuzz: Searching correctness regressions in modern query engines,” in Proceedings of the workshop on Testing Database Systems, 2020, pp. 1–6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Z. Cui, W. Dou, Y. Gao, R. Yang, Y. Zheng, J. Song, Y. Feng, and J. Wei, “Simple testing can expose most critical transaction bugs: Understanding and detecting write-specific serializability violations in database systems,” Proceedings of the VLDB Endowment (VLDB), 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "C. Zhang, G. Li, L. Liu, T. Lv, and J. Fan, “Cloudybench: A testbed for a comprehensive evaluation of cloud-native databases,” in 2025 IEEE 41st International Conference on Data Engineering (ICDE). IEEE Computer Society, 2025, pp. 2535–2547.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "X. Chen, C. Wang, and A. Cheung, “Testing query execution engines with mutations,” in Proceedings of the workshop on Testing Database Systems, 2020, pp. 1–5.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Z. Zhuang, P. Li, P. Ma, W. Meng, and S. Wang, “Testing graph database systems via graph-aware metamorphic relations,” Proceedings of the VLDB Endowment, vol. 17, no. 4, pp. 836–848, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "F. Panse and F. Naumann, “Evaluation of duplicate detection algorithms: From quality measures to test data generation,” in 2021 IEEE 37th International Conference on Data Engineering (ICDE). IEEE, 2021, pp. 2373–2376.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "J. Castelein, M. Aniche, M. Soltani, A. Panichella, and A. van Deursen, “Search-based test data generation for sql queries,” in Proceedings of the 40th international conference on software engineering, 2018, pp. 1220–1230.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "J. Fu, J. Liang, Z. Wu, M. Wang, and Y. Jiang, “Griffin: Grammarfree dbms fuzzing,” in Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering, 2022, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "M. Fazzini, M. Prammer, M. d’Amorim, and A. Orso, “Automatically translating bug reports into test cases for mobile apps,” in Proceedings of the 27th ACMSIGSOFT International Symposium on Software Testing and Analysis, 2018, pp. 141–152.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Y. Zhao, T. Yu, T. Su, Y. Liu, W. Zheng, J. Zhang, and W. G. Halfond, “Recdroid: automatically reproducing android application crashes from bug reports,” in Software Engineering (ICSE). IEEE, 2019, pp. 128–139.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "O. Chaparro, J. Lu, F. Zampetti, L. Moreno, M. Di Penta, A. Marcus, G. Bavota, and V. Ng, “Detecting missing information in bug descriptions,” in Proceedings of the 2017 11th joint meeting on foundations of software engineering, 2017, pp. 396–407.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "M. Fazzini, K. Moran, C. Bernal-Cardenas, T. Wendland, A. Orso, and D. Poshyvanyk, “Enhancing mobile app bug reporting via real-time understanding of reproduction steps,” IEEE Transactions on Software Engineering, vol. 49, no. 3, pp. 1246–1272, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Y. Song, J. Mahmud, Y. Zhou, O. Chaparro, K. Moran, A. Marcus, and D. Poshyvanyk, “Toward interactive bug reporting for (android app) end-users,” in Proceedings of the 30th ACM joint european software engineering conference and symposium on the foundations of software engineering, 2022, pp. 344–356. 3264",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 11,
+      "text": "“Sqlancer,” https://github.com/sqlancer/sqlancer, 2019, accessed on July, 7, 2025.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 12,
+      "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 13,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 1–30, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 14,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 44,
+      "text": "J. Ba and M. Rigger, “Cert: Finding performance issues in database systems through the lens of cardinality estimation,” in Proceedings of the IEEE/ACM 46th International Conference on Software Engineering, 2024, pp. 1–13.",
+      "technique": "cert",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing cert"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[11]",
+      "technique": null,
+      "sentence": "Generally, the automated DBMS testing process comprises two phases: test case generation [6], [11] and test oracle construction [12], [13], [14], [15].",
+      "context_before": "evolving to support increasingly rich SQL syntax and functionalities like window functions, JSON operations, and GIS spatial data processing [7]. This inherent complexity combined with ongoing dynamic expansion inevitably introduces various defects, which lead to severe consequences like inconsistent query results, service interruptions, and performance degradation [8], [9], [10]. As a result, systematic, automated, and efficient testing of DBMSs become a critical approach to ensure their reliability and facilitate early bug detection and remediation within the software development life-cycle.",
+      "context_after": "The test case generation phase produces large volumes of structurally diverse SQL statements, and the test oracle construction phase determines whether theexecution results on the tested DBMS are correct, thereby identifying potential bugs. According to previous studies [15], [9], the effectiveness of DBMS fuzzing techniques is critically dependent on the quality of the SQL statements generated during the test case generation phase. Therefore, optimizing the methods for test case generation is vital to ensure the production of such high-quality test cases. Existing techniques for test case ge",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 2740,
+      "cited_reference": {
+        "number": 11,
+        "text": "“Sqlancer,” https://github.com/sqlancer/sqlancer, 2019, accessed on July, 7, 2025.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp",
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "2) For test cases containing SELECT queries, we employ result inconsistency detection by randomly selecting one test oracle from TLP [13], NoREC [12], or CERT [44].",
+      "context_before": "MS to conduct comprehensive bug detection based on execution outcomes. Our detection methodology implements a two-tiered validation system: 1) For all test cases, we perform direct execution fault monitoring by feeding mutated queries into the DBMS to capture runtime abnormalities. This process identifies execution-triggered errors or crashes, including but not limited to memory operation exceptions (e.g., buffer overflows), core executor faults within query optimizers, concurrency failures such as lock mechanism breakdowns, and other system-level anomalies that manifest during SQL processing.",
+      "context_after": "The selected oracle transforms the original query into semantically equivalent variants while preserving all non-query statements intact. Both the original and transformed statement sequences are then executed against the target DBMS. Any discrepancies between their result sets indicate potential logical bugs. We subsequently conduct thorough execution log analysis to verify the presence of database bugs, with the entire process maintaining the original test case structure during equivalence transformation to ensure accurate differential diagnosis. E. Discussion of the Hybrid Design of LLMSQL",
+      "section": "D DBMS Testing",
+      "page": 8,
+      "char_offset": 41134,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "norec",
+        "cert"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[12]",
+      "technique": "norec",
+      "sentence": "It is important to note that we used the latest release of each RDBMS, which has been extensively tested by existing approaches [12], [13].",
+      "context_before": "ines GitHub stars MySQL 2 5.0K 380K 1995 8.1.0 4209 TiDB 118 23.1K 800K 2017 7.5.1 8337 SQLite 9 1.5K 300K 2000 3.46.0 433 DuckDB-0.5K 59K 2018 1.1.3 758 Clickhouse 30 41.8K 125K 2016 24.12.2 2163 OceanBase 119 8.3K 300K 2015 4.3.2 148 We conducted all experiments on a server with two Intel(R) Xeon(R) Platinum 5320 CPUs at 2.20 GHz and 251 GB of memory, running Ubuntu 20.04.5 LTS. We ran the experiments using Python version 3.12. Tested RDBMS. We selected six popular and widely used RDBMSs. The statistics of these RDBMSs, as obtained from their open-source repositories, are shown in Table III.",
+      "context_after": "MySQL [1] is the most popular open-source database management systems. SQLite [3] and DuckDB [5] are both embedded DBMSs, running within the process of other applications. TiDB [2], Clickhouse [4] and OceanBase [45] are popular distributed RDBMSs. Table III also lists the number of bug reports we collected for each database. We collected them based on the tags provided by the developers to determine whether they are bugs or not. The core filtering criteria require that the report must include at least one executable SQL statement that can reproduce the unexpected behavior of the RDBMS. LLMs f",
+      "section": "IV EVALUATION",
+      "page": 8,
+      "char_offset": 43836,
+      "cited_reference": {
+        "number": 12,
+        "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "We selected the three most effective existing oracles for detecting logic bugs through result inconsistency: NoREC [12], TLP [13], and CERT [44].",
+      "context_before": "ment that can reproduce the unexpected behavior of the RDBMS. LLMs for mutation. We chose the following four representative LLMs for comparative experiments: the efficient open-source model deepseek-v3 [46], the specialized code generation model codellama-34B [47], the industrial grade general-purpose model gpt-3.5-turbo [48], and the lightweight closed source model gpt-4o-mini [49]. The selection covers different technical routes such as open source/closed source, dedicated/general, aiming to comprehensively evaluate the performance of LLM in mutation tasks. Test oracle for result comparison.",
+      "context_after": "These approaches have all demonstrated significant effectiveness in detecting bugs within RDBMS implementations. Calculation method for bug pattern coverage. To evaluate the effectiveness of test case generation, we introduce a new metric called bug pattern coverage, which measures the proportion of known bug patterns covered by the generated SQL queries. This metric is computed using the formula: Pattern coverage =|Pknown∩Ptest||Pknown|×100% (1) where Pknown denotes the set of known bug patterns (previously extracted from historical bug reports as sequences of SQL keywords, operators, and fu",
+      "section": "IV EVALUATION",
+      "page": 8,
+      "char_offset": 45108,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp",
+        "cert"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Of these 14 result inconsistency bugs, 12 bugs are detected by the TLP oracle, and the other two are found by the CERT oracle.",
+      "context_before": "structures. B. Experiment results 1) Effectiveness of bug detection We ran LLMSQLM UTATOR on six RDBMSs and reported the detected issues to the corresponding developer communities. Table IV shows the details (e.g., types, bug patterns, and root causes) of the bugs in six RDBMSs detected by LLMSQLM UTATOR. We have detected 27 bugs during this work and all of them are confirmed by the developers. Among these bugs, 13 triggered DBMS errors during SQL statement execution. The remaining 14 bugs produce execution results, but those results deviated from expectations. We call them inconsistency bugs.",
+      "context_after": "It is noteworthy that all six databases have undergone extensive testing with existing methods, yet LLMSQLM UTATOR is still able to detect these previously undetected errors, including seven unique bug patterns not present in historical reports (MySQL 113176, DuckDB 17286, TiDB 59662&61074&61075, Oceanbase 2104, Clickhouse 79911). These novel findings—spanning constraint validation, recursive queries, complex joins, and schema modification operations—demonstrate our tool’s ability to uncover defects beyond simple variations of known issues. This capability stems from our controlled mutation s",
+      "section": "B Experiment results",
+      "page": 9,
+      "char_offset": 46734,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "cert"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker",
+      "surface": "[13]",
+      "technique": "tlp",
+      "sentence": "Existing fuzzers typically restrict recursion depth to maintain syntactic correctness [15], [13], thereby failing to reach the parser’s threshold.",
+      "context_before": "’), ’ d ’,’ e ’), ’ e ’,’ f ’), ’ f ’, ’ g ’), ’ g ’,’ h ’), ’ h ’,’ i ’), ’ i ’,’ j ’), ’ j ’,’ k ’), ’ k ’, ’ l ’), ’ l ’,’m’), ’m’,’ n ’), ’ n ’,’ o ’), ’ o ’,’ p ’), ’ p ’, ’ q ’), ’ q ’,’ r ’), ’ r ’,’ s ’), ’ s ’,’ t ’), ’ t ’,’ u ’), ’ u ’, ’ v ’), ’ v ’,’w’), ’w’,’ x ’), ’ x ’,’ y ’), ’ y ’,’ z ’), (3, ’ Record w ith JSON: ’ || json_object( ’ keyA ’ ,’ valueA ’, ’ keyB ’ ,’ valueB ’ )) 3 4Error Message:parser stack overflow Fig. 8: A bug in SQLite with the test SQLs Case Study of the Bugs. Figure 8 illustrates a parser stack overflow in SQLite triggered by 32 nested REPLACE functions.",
+      "context_after": "In contrast, LLMSQLM UTATOR1CREATE TABLE t (a INT NOT NULL, b INTUNIQUE); 2CREATE TABLE t1 (a INT NOT NULL, b INTDEFAULT 0); 3INSERT INTO t (a, b) VALUES (1, 100), (2, 200), (3, 300); 4Error executing SQL: 5EXPLAIN ANALYZE SELECT SUM(CASEWHEN t.a > 0 THEN (SELECT SUM(b) FROM t1WHERE t.a = t1.a GROUP BY t.a HAVING COUNT( *) > 1) ELSE 0END) FROM tLEFT JOIN t1ONt.a = t1.a WHERE EXISTS (SELECT 1FROM t t2 WHERE t2.b < 250) GROUP BY t.a WITHROLLUP 6Error Message:(1815, ” I n t e r n a l: Can ’ t f i n d a p r o p e r p h y s i c a l p l a n f o r t h i s query ” ) Fig. 9: A bug in TiDB with the tes",
+      "section": "B Experiment results",
+      "page": 9,
+      "char_offset": 49066,
+      "cited_reference": {
+        "number": 13,
+        "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 1–30, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "2) Comparsion of baselines We compare LLMSQLM UTATOR with state-of-the-art DBMS testing approaches, including mutation-based methods SQLRight [15] and Squirrel [16], as well as grammar-based SQLancer [11] and random-based SQLsmith [6] to provide a comprehensive empirical comparison.",
+      "context_before": "raints, our LLM-driven SQL mutation intelligently explores the semantically related but syntactically distinct domain of CHECK constraints, systematically constructing multi-level nested expressions that expose deep parser flaws— the parser incorrectly interpreted certain constant expressions within complex CHECK constraints as cross-column references, leading to improper constraint rejection. This contrast highlights our tool’s ability to transcend conventional testing boundaries by generating sophisticated constraint constructs that reveal previously undetectable defects in database engines.",
+      "context_after": "2We conducted 48-hour experiments for all comparable baselines, recording test case correctness, bug pattern coverage, and bug detection numbers to ensure a fair evaluation. 2Due to architectural limits, SQLRight and Squirrel are limited to MySQL and SQLite, while SQLsmith supports only SQLite. Unsupported results are marked “–” as extension requires major re-engineering. 3259 TABLE IV: Bugs detected by LLMSQLM UTATOR SNID Target Type Bug pattern Root cause 1 118145 MySQL Error CREATE, INDEX, ENGINE=Archive Archive engine: Index validation missing during table creation 2 113176 MySQL Error C",
+      "section": "B Experiment results",
+      "page": 9,
+      "char_offset": 51825,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "3259 TABLE IV: Bugs detected by LLMSQLM UTATOR SNID Target Type Bug pattern Root cause 1 118145 MySQL Error CREATE, INDEX, ENGINE=Archive Archive engine: Index validation missing during table creation 2 113176 MySQL Error CREATE, CHECK, NOT, IN, IS FALSE Error with null expression in check condition 3 109149 MySQL Incons MOD Decimal arithmetic error in modulus operation 4 17286 DuckDB Error WWITH RECURSIVE, SUBSTR, POSITION Recursive CTE: Column binding failure with nested queries 5 15731 DuckDB Incons IS NULL, UNION ALL NULL operand mishandling in comparison logic 6 15742 DuckDB Incons <, UNION ALL NULL operand mishandling in comparison logic 7 15745 DuckDB Incons BETWEEN, DATE, UNION ALL NULL operand mishandling in date range checks 8 17288 DuckDB Error WITH, EXISTS CTE scope: Column binding failure on empty strings 9 6804 DuckDB Incons NOT On abnormal results of the not operator 10 59662 TiDB Incons INNER JOIN, REGEXP, CASE, WHEN Join row estimation flaw (CERT oracle) 11 59664 TiDB Incons GROUP BY, HAVING, CAST Join row estimation flaw (CERT oracle) 12 60880 TiDB Error EXPLAIN ANALYZE, WITHROLLUP Optimizer: ROLLUP physical plan not found 13 61074 TiDB Error JSON˙OBJECT, GROUP BY, WITHROLLUP Optimizer: ROLLUP+JSON combination unsupported 14 61075 TiDB Error YEAR, HAVING, WITHROLLUP Optimizer: ROLLUP+ dynamic function failure 15 58960 TiDB Incons RIGHT JOIN, BIT˙LENGTH JOIN column reference missing in function 16 58961 TiDB Incons LEFT JOIN, FIELD NULL operand mishandling in field function 17 59669 TiDB Incons LEFT JOIN, FIELD, CASE, WHEN NULL operand mishandling in CASE expression 18 60886 TiDB Error WITHRECURSIVE, RECOVER Historical read: Missing GC safe-point data 19 60882 TiDB Error LOADDATA Protocol implementation incomplete 20 60887 TiDB Error <==>, ALL NULL-safe operator unsupported with ALL 21 61002 TiDB Error INNER JOIN, DEFAULT, CASE, WHEN Type-mismatch boundary condition crash 22 61313 TiDB Incons NATURAL RIGHT JOIN, GROUP BY JOIN column reference missing in grouping 23 ab39bc73ed SQLite Error REPLACE, JSON˙OBJECT Parser stack overflow: Deeply nested REPLACE 24 6ca4e1c1d2 SQLite Incons BETWEEN, CAST Type affinity conflict (NONE/INTEGER) in view 25 2104 Oceanbase Incons SELECT, BIT Operator Bitwise ops: Incorrect negative number handling 26 2105 Oceanbase Incons MOD Decimal arithmetic error in modulus operation 27 79911 Clickhouse Error ADDCOLUMN, INSERT Schema validation: DateTime precedence over column count TABLE V: The correctness of test case generated by SQLsmith, SQLancer, SQLRight, Squirrel and LLMSQLM UTATOR in 48h DBMSSQLsmith SQLancer Squirrel SQLRight LLMSQLM UTATOR Syn Sem Syn Sem Syn Sem Syn Sem Syn Sem MySQL - - 99.",
+      "context_before": "state-of-the-art DBMS testing approaches, including mutation-based methods SQLRight [15] and Squirrel [16], as well as grammar-based SQLancer [11] and random-based SQLsmith [6] to provide a comprehensive empirical comparison.2We conducted 48-hour experiments for all comparable baselines, recording test case correctness, bug pattern coverage, and bug detection numbers to ensure a fair evaluation. 2Due to architectural limits, SQLRight and Squirrel are limited to MySQL and SQLite, while SQLsmith supports only SQLite. Unsupported results are marked “–” as extension requires major re-engineering.",
+      "context_after": "54% 97.76% 71.45% 19.32% 77.21% 27.09% 90.05% 71.20% SQLite 13.76% 2.83% 92.07% 78.12% 91.56% 35.76% 95.23% 40.10% 96.79% 75.13% TiDB - - 90.68% 77.32% - - - - 90.62% 72.84% DuckDB - - 90.56% 72.37% - - - - 90.97% 72.84% OceanBase - - 91.17% 79.34% - - - - 86.41% 50.89% Clickhouse - - 96.21% 82.14% - - - - 89.44% 59.88% Test case correctness. Table V shows the correctness of test cases generated by five approaches. For mutationbased tools SQLRight and Squirrel, LLMSQLM UTATOR demonstrates exceptional syntactic and semantic correctness across all tested RDBMSs, comprehensively outperforming bas",
+      "section": "B Experiment results",
+      "page": 9,
+      "char_offset": 52483,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "As a grammar-based tool, SQLancer demonstrates consistently high syntactic correctness across all six tested DBMSs,with rates exceeding 90% in every case and reaching 99.",
+      "context_before": "ic correctness (50.89%–75.13%) surpassed the baselines by 2–3×, exemplified by its 71.20% rate in MySQL—far exceeding SQLRight’s 27.09% and Squirrel’s 19.32%—which is attributed to the LLM-based semantic validator’s dynamic validation capabilities for metadata and fine-grained constraints. Notably, the relatively lower semantic correctness in OceanBase and ClickHouse (50.89% and 59.88% respectively) stems primarily from dialect-specific challenges posed by their distributed architectures to LLM semantic comprehension, such as OceanBase’s sharding syntax and ClickHouse’s column store semantics.",
+      "context_after": "54% on MySQL—the highest among all approaches. This exceptional performance stems from its strict adherence to predefined grammar rules, which ensures syntactic validity but simultaneously limits semantic diversity and exploration of unconventional SQL constructs. Moreover, this grammar-based approach requires manual implementation of dialect-specific grammar for each DBMS, incurring significant engineering overhead and poor scalability when extending to new database systems. In contrast, our method employs AST-based structural hollowing to abstract away dialect-specific syntax variations whil",
+      "section": "B Experiment results",
+      "page": 10,
+      "char_offset": 56649,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "TABLE VI: The bug number and bug pattern covered by SQLsmith, SQLancer, SQLRight, Squirrel and LLMSQLM UTATOR in 48h DBMSSQLsmith SQLancer Squirrel SQLRight LLMSQLM UTATOR #Bug Pattern #Bug Pattern #Bug Pattern #Bug Pattern #Bug Pattern MySQL - - 1 23.",
+      "context_before": "t-specific grammar for each DBMS, incurring significant engineering overhead and poor scalability when extending to new database systems. In contrast, our method employs AST-based structural hollowing to abstract away dialect-specific syntax variations while preserving logical equivalence, enabling natural adaptation to multiple DBMSs with minimal reconfiguration effort. Meanwhile, purely random-based tool, SQLsmith, exhibits critically low validity (13.76% syntactic and 2.83% semantic correctness on SQLite), demonstrating the inherent limitations of blind generation without semantic guidance.",
+      "context_after": "7% 1 24.5% 1 55.5% 3 71.8% SQLite 0 5.42% 1 31.4% 0 28.4% 0 65.8% 1 86.6% TiDB - - 3 52.0% - - - - 8 79.9% DuckDB - - 2 18.2% - - - - 6 55.5% OceanBase - - 0 14.9% - - - - 1 68.2% Clickhouse - - 0 18.7% - - - - 1 40.4% Bug pattern and bug number. Table VI shows the number of detected bugs and the coverage of bug patterns by five approaches. Compared to mutation-based tools SQLRight and Squirrel, LLMSQLM UTATOR demonstrates superior performance in both bug pattern coverage and detection counts. 3260 It achieves 71%–86.6% coverage across MySQL, SQLite, and TiDB, surpassing baselines by over 16",
+      "section": "B Experiment results",
+      "page": 10,
+      "char_offset": 57763,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In contrast, grammar-based SQLancer and random-based tool SQLsmith exhibit significant limitations.",
+      "context_before": "erage of bug patterns by five approaches. Compared to mutation-based tools SQLRight and Squirrel, LLMSQLM UTATOR demonstrates superior performance in both bug pattern coverage and detection counts. 3260 It achieves 71%–86.6% coverage across MySQL, SQLite, and TiDB, surpassing baselines by over 16%, although coverage is lower on complex systems like OceanBase. Regarding bug counts, LLMSQLM UTATOR uncovers critical faults—including MySQL engine flaws and SQLite stack overflows—that were undetected by baselines due to their limited seed pools and incapacity to generate deeply nested structures.",
+      "context_after": "SQLancer attains only modest coverage (peaking at 52.0% on TiDB) with few detected bugs, while SQLsmith fails to identify any distinct bugs, showing negligible coverage (5.42% on SQLite). These results underscore that traditional approaches lack the semantic depth and fault-triggering potential required for effective testing, whereas LLMSQLM UTATOR successfully probes vulnerable code paths through semantically rich query generation. 3) Ablation Study of LLMSQLM UTATOR We designed experiments to investigate the effectiveness of mutation guidance and semantic validation. Table VII shows the bug",
+      "section": "B Experiment results",
+      "page": 11,
+      "char_offset": 58917,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer attains only modest coverage (peaking at 52.",
+      "context_before": "MSQLM UTATOR demonstrates superior performance in both bug pattern coverage and detection counts. 3260 It achieves 71%–86.6% coverage across MySQL, SQLite, and TiDB, surpassing baselines by over 16%, although coverage is lower on complex systems like OceanBase. Regarding bug counts, LLMSQLM UTATOR uncovers critical faults—including MySQL engine flaws and SQLite stack overflows—that were undetected by baselines due to their limited seed pools and incapacity to generate deeply nested structures. In contrast, grammar-based SQLancer and random-based tool SQLsmith exhibit significant limitations.",
+      "context_after": "0% on TiDB) with few detected bugs, while SQLsmith fails to identify any distinct bugs, showing negligible coverage (5.42% on SQLite). These results underscore that traditional approaches lack the semantic depth and fault-triggering potential required for effective testing, whereas LLMSQLM UTATOR successfully probes vulnerable code paths through semantically rich query generation. 3) Ablation Study of LLMSQLM UTATOR We designed experiments to investigate the effectiveness of mutation guidance and semantic validation. Table VII shows the bug patterns covered and the number of bugs triggered by",
+      "section": "B Experiment results",
+      "page": 11,
+      "char_offset": 59017,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "citation_marker",
+      "surface": "[14]",
+      "technique": "pqs",
+      "sentence": "Metamorphic testing is another mainstream approaches for RDB-MS testing [51], [54], [14], [12], [13], [55], [56], [15].",
+      "context_before": "for database testing. Ratel [33] improves the robustness of SQL generation for database testing by merging SQL dictionaries with grammar-based mutations. SparkFuzz [51] introduces a fuzzing-based method that utilizes the query results from a reference database as test oracles. These methods [33], [52], [53], [51] perform result consistency checks by inputting the same SQL statement into different DBMS systems. The effectiveness of these methods is limited by syntax supported across the databases under test. They also may yield false positives due to the varied implementation choices of RDBMSs.",
+      "context_after": "MUTASQL [54] and Eqsql [57] construct test cases by defining mutation rules, which are used to generate or synthesize SQL query statements that are functionally equivalent to the original ones. In recent years, SQLancer [11] has emerged as the most effective black-box fuzzing tool, distinguished by its adoption of three complementary oracles [14], [12], [13]. SQLRight [15] focuses on enhancing the semantic correctness of generated SQL queries. GRIFFIN [58] executes mutation testing within the grammatical boundaries of SQL language. Squirrel [16] introduces a test case generation framework bas",
+      "section": "V RELATED WORK",
+      "page": 12,
+      "char_offset": 65864,
+      "cited_reference": {
+        "number": 14,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In recent years, SQLancer [11] has emerged as the most effective black-box fuzzing tool, distinguished by its adoption of three complementary oracles [14], [12], [13].",
+      "context_before": "perform result consistency checks by inputting the same SQL statement into different DBMS systems. The effectiveness of these methods is limited by syntax supported across the databases under test. They also may yield false positives due to the varied implementation choices of RDBMSs. Metamorphic testing is another mainstream approaches for RDB-MS testing [51], [54], [14], [12], [13], [55], [56], [15]. MUTASQL [54] and Eqsql [57] construct test cases by defining mutation rules, which are used to generate or synthesize SQL query statements that are functionally equivalent to the original ones.",
+      "context_after": "SQLRight [15] focuses on enhancing the semantic correctness of generated SQL queries. GRIFFIN [58] executes mutation testing within the grammatical boundaries of SQL language. Squirrel [16] introduces a test case generation framework based on syntax mutation and semantic statement filling, and tests DBMS through coverage guidance. The seed SQL of the above methods all come from the testing suite provided by the developers, and the mutation process focuses on the comprehensiveness of detection, that is, triggering more SQL branches. However, the efficiency of these methods in detecting bugs is",
+      "section": "V RELATED WORK",
+      "page": 12,
+      "char_offset": 66178,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "describes_as_state_of_the_art": [
+        "M4",
+        "M14"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:57:35Z",
+    "is_model_written": true,
+    "summary": "LLMSQLMutator generates DBMS test cases by having a language model mutate SQL drawn from historical bug reports, on the argument that reports encode the shapes that have already broken systems. It reaches constructs grammar-based fuzzers avoid -- deep recursion, for instance, which they cap to stay syntactically correct -- and found bugs across six relational DBMSs.",
+    "narrative": "SQLancer is both a baseline and a component. As a baseline it is one of four tools compared over 48 hours, and the paper is even-handed: SQLancer's syntactic correctness exceeds 90% on every system tested, higher than the mutation-based tools, while its coverage peaks around 52%. It is called the most effective black-box fuzzing tool, distinguished by its three complementary oracles. Those oracles are also reused directly: for test cases containing SELECT queries, LLMSQLMutator randomly selects one of TLP, NoREC or CERT as its oracle, describing them as the three most effective existing oracles for detecting result inconsistency. Of its 14 result-inconsistency bugs, TLP found 12 and CERT the other two.",
+    "roles": {
+      "M1": "background",
+      "M2": "reuse_component",
+      "M3": "background",
+      "M4": "reuse_component",
+      "M5": "result_comparison",
+      "M6": "motivation",
+      "M7": "baseline",
+      "M8": "incidental",
+      "M9": "result_comparison",
+      "M10": "result_comparison",
+      "M11": "result_comparison",
+      "M12": "result_comparison",
+      "M13": "background",
+      "M14": "state_of_the_art"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M2",
+          "M4",
+          "M5"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M2",
+            "sentence": "2) For test cases containing SELECT queries, we employ result inconsistency detection by randomly selecting one test oracle from TLP [13], NoREC [12], or CERT [44].",
+            "section": "D DBMS Testing",
+            "page": 8
+          },
+          {
+            "mention_id": "M4",
+            "sentence": "We selected the three most effective existing oracles for detecting logic bugs through result inconsistency: NoREC [12], TLP [13], and CERT [44].",
+            "section": "IV EVALUATION",
+            "page": 8
+          },
+          {
+            "mention_id": "M5",
+            "sentence": "Of these 14 result inconsistency bugs, 12 bugs are detected by the TLP oracle, and the other two are found by the CERT oracle.",
+            "section": "B Experiment results",
+            "page": 9
+          }
+        ],
+        "reasoning": "M2 states that for SELECT test cases the tool selects one oracle at random from TLP, NoREC or CERT, M4 names those as the oracles chosen, and M5 reports which of them found each bug. The oracles are used as-is inside the tool, but the paper does not say whether they are invoked through SQLancer or reimplemented, so the form of the reuse is unclear.",
+        "reuse_kind": "unclear"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The three oracles are used as they are; nothing is generalised or adapted. The contribution is the LLM-driven mutation that produces the test cases."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M7",
+          "M10",
+          "M12"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M7",
+            "sentence": "2) Comparsion of baselines We compare LLMSQLM UTATOR with state-of-the-art DBMS testing approaches, including mutation-based methods SQLRight [15] and Squirrel [16], as well as grammar-based SQLancer [11] and random-based SQLsmith [6] to provide a comprehensive empirical comparison.",
+            "section": "B Experiment results",
+            "page": 9
+          },
+          {
+            "mention_id": "M10",
+            "sentence": "TABLE VI: The bug number and bug pattern covered by SQLsmith, SQLancer, SQLRight, Squirrel and LLMSQLM UTATOR in 48h DBMSSQLsmith SQLancer Squirrel SQLRight LLMSQLM UTATOR #Bug Pattern #Bug Pattern #Bug Pattern #Bug Pattern #Bug Pattern MySQL - - 1 23.",
+            "section": "B Experiment results",
+            "page": 10
+          },
+          {
+            "mention_id": "M12",
+            "sentence": "SQLancer attains only modest coverage (peaking at 52.",
+            "section": "B Experiment results",
+            "page": 11
+          }
+        ],
+        "reasoning": "M7 names SQLancer among the state-of-the-art approaches compared against, M10 gives the 48-hour bug and pattern table, and M12 reports its coverage."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M14"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M14",
+            "sentence": "In recent years, SQLancer [11] has emerged as the most effective black-box fuzzing tool, distinguished by its adoption of three complementary oracles [14], [12], [13].",
+            "section": "V RELATED WORK",
+            "page": 12
+          }
+        ],
+        "reasoning": "M14 states that SQLancer has emerged as the most effective black-box fuzzing tool, distinguished by its adoption of three complementary oracles."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

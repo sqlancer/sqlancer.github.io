@@ -1,0 +1,404 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T14:33:10Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3597503.3608133",
+    "title": "EDEFuzz: A Web API Fuzzer for Excessive Data Exposures",
+    "authors": [
+      "Lianglu Pan",
+      "Shaanan Cohney",
+      "Toby C. Murray",
+      "Van-Thuan Pham"
+    ],
+    "year": 2023,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1145/3597503.3608133",
+    "arxiv_id": "2301.09258",
+    "s2_paper_id": "d2bf26b7ec662c29c30e6ad4548ce53d360718f2",
+    "url": "https://doi.org/10.1145/3597503.3608133",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2301.09258",
+      "retrieved_at": "2026-09-08T14:33:10Z",
+      "chars": 71296,
+      "content_sha256": "sha256:3836cc133539dce41cc1124f2029e0464c1576f060fd693cc3fd7b53a72b1a28"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 1785
+      },
+      {
+        "number": "1.1",
+        "title": "Research Ethics",
+        "start": 11322
+      },
+      {
+        "number": "2",
+        "title": "BACKGROUND",
+        "start": 12679
+      },
+      {
+        "number": "2.1",
+        "title": "Web APIs & Excessive Data Exposure",
+        "start": 12692
+      },
+      {
+        "number": "2.2",
+        "title": "Fuzzing",
+        "start": 14049
+      },
+      {
+        "number": "2.3",
+        "title": "Metamorphic Testing/Fuzzing",
+        "start": 15621
+      },
+      {
+        "number": "3",
+        "title": "MOTIVATING EXAMPLES",
+        "start": 17319
+      },
+      {
+        "number": "4",
+        "title": "OUR APPROACH",
+        "start": 23748
+      },
+      {
+        "number": "4.1",
+        "title": "Overview",
+        "start": 24439
+      },
+      {
+        "number": "4.2",
+        "title": "Simulated Server",
+        "start": 30706
+      },
+      {
+        "number": "4.3",
+        "title": "Mutation Engine",
+        "start": 32390
+      },
+      {
+        "number": "4.5",
+        "title": "Result Inspection",
+        "start": 39112
+      },
+      {
+        "number": "5",
+        "title": "EXPERIMENTAL EVALUATION",
+        "start": 40518
+      },
+      {
+        "number": "5.1",
+        "title": "Procedure",
+        "start": 44605
+      },
+      {
+        "number": "5.2",
+        "title": "Results",
+        "start": 46737
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "OWASP API Top 10: 2019, 2019. [Online]. Available: https://owasp.org/wwwproject-api-security/ (cit. on p. 1).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Microsoft announces new Project OneFuzz framework, 2020. [Online]. Available:https://www.microsoft.com/security/blog/2020/09/15/microsoft-onefuzzframework-open-source-developer-tool-fix-bugs/ (cit.on p. 1).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "E.T.Barr,M.Harman,P.McMinn,M.Shahbaz,andS.Yoo,Theoracleproblem in software testing: A survey, IEEE transactions on software engineering, vol.41, no. 5, 507–525, 2014 (cit. on p. 1).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "T.Y.Chen,S.C.Cheung,andS.M.Yiu “Metamorphictesting:Anewapproach for generating next test cases,” Tech. Rep. HKUST-CS98-01, 1998, arXiv preprint arXiv:2002.12543 (cit. on pp. 1,3).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Usingburptotestforsensitivedataexposureissues ,2022.[Online].Available: https://portswigger.net/support/using-burp-to-test-for-sensitive-data-exposureissues(cit. on pp. 2,4).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "V.Atlidakis,P.Godefroid,andM.Polishchuk Restler:Statefulrestapifuzzing, in (ICSE), IEEE, 2019, 748–758 (cit. on pp. 2,3,10).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "R.Netravali,A.Sivaraman,S.Das, etal. Mahimahi:Accurate {record-andreplay }for{http},in2015USENIXAnnualTechnicalConference(USENIX ATC15), 2015, 417–429 (cit. on pp. 2,11).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "S. Ikeda, Massive optus data leak prompts new privacy rules in australia, CPO Magazine, 2022 (cit. on p. 2).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Api3:2019excessivedataexposure ,2019.[Online].Available: https://github. com/OWASP/API-Security/blob/master/2019/en/src/0xa3-excessive-dataexposure.md (cit. on p. 3).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "V.Atlidakis,R.Geambasu,P.Godefroid,M.Polishchuk,andB.Ray,Pythia: Grammar-basedfuzzingofrestapiswithcoverage-guidedfeedbackandlearningbased mutations, arXiv preprintarXiv:2005.11498 ,2020 (cit. on pp. 3,10).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "V.Atlidakis,P.Godefroid,andM.Polishchuk Checkingsecurityproperties of cloud service rest apis, in Software Testing, Validation and Verification (ICST), IEEE, 2020, 387–397 (cit.on pp. 3,10).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "OpenAPIInitiative Openapispecification ,Availableonline: https://swagger. io/resources/open-api/, 2020 (cit. on p. 3).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "V.J.M.Manès,H.Han,C.Han, etal.,Theart,science,andengineeringof fuzzing: A survey, TSE,2019 (cit. on pp. 3,10).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Google clusterfuzz, 2022. [Online]. Available: https://google.github.io/ clusterfuzz/ (cit. on p. 3).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "P.He,C.Meister,andZ.Su Testingmachinetranslationvia referentialtransparency, in neering (ICSE), IEEE, 2021, 410–422 (cit. on p. 3).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "M. Rigger, and Z. Su Testing database engines via pivoted query synthesis, in 14thUSENIXSymposiumonOperatingSystemsDesignandImplementation (OSDI20), 2020, 667–682 (cit. on p. 3).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 17,
+      "text": "What is social engineering? 2022. [Online]. Available: https://www.kaspersky. com.au/resource-center/definitions/what-is-social-engineering (cit. on p. 4).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Webdriver ,2022.[Online].Available: https://www.selenium.dev/documentation/ webdriver/ (cit. on p. 5).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "American fuzzy lop. [Online]. Available: https://lcamtuf.coredump.cx/afl/ (cit.on p. 6).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "A.Zeller,Yesterday,myprogramworked.today,itdoesnot.why? ACMSIGSOFT Softwareengineering notes, vol.24, no. 6, 253–267, 1999 (cit. on p. 6).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "R. Wang, G. Xu, X. Zeng, X. Li, and Z. Feng, Tt-xss: A novel taint tracking baseddynamicdetectionframeworkfordomcross-sitescripting, Journalof Parallel and Distributed Computing, vol. 118, 100–106, 2018 (cit. on p. 10). ICSE 2024, April 14–20, 2024, Lisbon, Portugal Pan et al.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "F. Duchene, S. Rawat, J. -L. Richier, and R. Groz Kameleonfuzz: Evolutionary fuzzing for black-box xss detection, in Proceedings of the 4th ACM conference on Data and application security and privacy, 2014, 37–48 (cit. on p. 10).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "O. v. Rooij, M. A. Charalambous, D. Kaizer, M. Papaevripides, and E. Athanasopoulos Webfuzz: Grey-box fuzzing for web applications, in European SymposiumonResearchinComputerSecurity ,Springer,2021,152–172(cit.on p.10).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "U. Sarmah, D. Bhattacharyya, and J. K. Kalita, A survey of detection methods for xss attacks, Journal of Network and Computer Applications, vol. 118, 113– 143,2018 (cit. on p. 10).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "A. Doupé, L. Cavedon, C. Kruegel, and G. Vigna Enemy of the state: A {state-aware }{black-box }web vulnerability scanner, in 21st USENIX Security Symposium (USENIX Security 12), 2012, 523–538 (cit. on p. 10).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "M.C.Martin,andM.S.Lam Automaticgenerationofxssandsqlinjection attacks with goal-directed model checking. In USENIX Security symposium, 2008, 31–44 (cit. on p. 10).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "E.Trickel,F.Pagani,C.Zhu, etal. Tossafaulttoyourwitcher:Applyinggreybox coverage-guided mutational fuzzing to detect sql and command injection vulnerabilities, in Computer Society, 2022, 116–133 (cit. on p. 10).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Owasp top 10: 2021, 2021. [Online]. Available: https://owasp.org/Top10/ (cit. on p. 10).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "W.Koch,A.Chaabane,M.Egele,W.Robertson,andE.Kirda Semi-automated discoveryofserver-basedinformationoversharingvulnerabilitiesinandroidapplications,in Proceedingsofthe26thACMSIGSOFTInternationalSymposium on Software Testing and Analysis, 2017, 147–157 (cit. on p. 10).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "S. Segura, J. A. Parejo, J. Troya, and A. Ruiz-Cortés, Metamorphic testingof restful web apis, IEEE Transactions on Software Engineering, vol. 44, no. 11, 1083–1099,2017 (cit. on p. 10).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "P.Godefroid,B. -Y.Huang,andM.Polishchuk Intelligentrestapidatafuzzing, inProceedingsofthe28thACMJointMeetingonEuropeanSoftwareEngineeringConferenceandSymposiumontheFoundationsofSoftwareEngineering, 2020, 725–736 (cit. on p. 10).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "S.Andrica,andG.Candea Warr:Atoolforhigh-fidelitywebapplicationrecord andreplay,in 2011IEEE/IFIP41stInternationalConferenceonDependable Systems & Networks (DSN), IEEE, 2011, 403–410 (cit. on p. 11).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "B.Burg,R.Bailey,A.J.Ko,andM.D.Ernst Interactiverecord/replayforweb application debugging, in Proceedings of the 26th annual ACM symposium on User interface software and technology, 2013, 473–484 (cit. on p. 11).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "S.Flesca,F.Furfaro,andE.Masciari Monitoringwebinformationchanges, inProceedings International Conference on Information Technology: Coding and Computing, IEEE, 2001, 421–425 (cit. on p. 11).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Y. Wang, D. J. DeWitt, and J. -Y. Cai X-diff: An effective change detection algorithm for xml documents, in Proceedings 19th international conference on data engineering (Cat. No. 03CH37405), IEEE, 2003, 519–530 (cit. on p. 11).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "I.Khoury,R.M.El-Mawas,O.El-Rawas,E.F.Mounayar,andH.Artail,An efficientwebpagechangedetectionsystembasedonanoptimizedhungarian algorithm, IEEETransactionsonKnowledgeandDataEngineering ,vol.19, no. 5, 599–613, 2007 (cit. on p. 11).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "M. Hammoudi, G. Rothermel, and A. Stocco Waterfall: An incremental approach for repairing record-replay tests of web applications, in Proceedings of the 2016 24th ACMSIGSOFT International Symposium on Foundations of Software Engineering, 2016, 751–762 (cit. on p. 11).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "F. Shao, R. Xu, W. Haque, etal. Webevo: Taming web application evolution via detecting semantic structure changes, in Proceedings of the 30th ACM SIGSOFTInternationalSymposiumonSoftwareTestingandAnalysis ,2021, 16–28 (cit. on p. 11).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "S.Schumilo,C.Aschermann,A.Jemmett,A.Abbasi,andT.Holz,Nyx-net: Networkfuzzingwithincrementalsnapshots, arXivpreprintarXiv:2111.03013, 2021 (cit. on p. 11).",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 16,
+      "text": "M. Rigger, and Z. Su Testing database engines via pivoted query synthesis, in 14thUSENIXSymposiumonOperatingSystemsDesignandImplementation (OSDI20), 2020, 667–682 (cit. on p. 3).",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 16]",
+      "technique": "pqs",
+      "sentence": "Pastworkhassuccessfullyidentifiedandusedmetamorphic relations to find bugs in a variety of systems, including Machine Translation software [ 15] and popular DBMSs [ 16].",
+      "context_before": "tion ) holds between their corresponding outputs. Consider the following toy example of metamorphic bug finding: wecantestafunctionthatreversesalistbytesting,foranarbitrary inputlist G,whetherreversingthereverseof Gyields Gitself;orfora functionthatcalculatesdistancebetweenapairofpoints,whether thedistancefrompoint 0to2isalwayssmallerorequaltothesum of the distances from 0to1and from 1to2, etc. Metamorphicrelationsarepropertiesthatmustnecessarilyhold with respect to the correct functioning of the SUT. In metamorphic testing, the violation of a metamorphic relation indicates a potential bug[4].",
+      "context_after": "3 MOTIVATING EXAMPLES Inthissection,wepresentaselectionofreal-world EDEsdetectedby ourtooltodemonstratetheirprevalenceandimplications,thechallenges in detecting them using prior approaches, and the motivation for our tool (which we comprehensively evaluate in Section 5 ). Vulnerability 1 - Locations and Contact Details EDEFuzz discoveredavulnerabilitywhiletestingthelivedeliverytrackingservice offered by Company-I, an Australian last-mile delivery service. The vulnerabilityhasbeenreportedandfixed.Asshownin Figure2,a customerreceivesauniquelinkonthedaythatanitemisonboard for delivery. The link o",
+      "section": "2.3 Metamorphic Testing/Fuzzing",
+      "page": 3,
+      "char_offset": 17149,
+      "cited_reference": {
+        "number": 16,
+        "text": "M. Rigger, and Z. Su Testing database engines via pivoted query synthesis, in 14thUSENIXSymposiumonOperatingSystemsDesignandImplementation (OSDI20), 2020, 667–682 (cit. on p. 3).",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:16:45Z",
+    "is_model_written": true,
+    "summary": "EDEFuzz detects Excessive Data Exposure, where a web API sends clients far more data than they need, often over public channels. The authors note the problem has no explicit oracle -- nothing crashes -- and develop a metamorphic relation to supply one, building the first fuzzer for it. Across 69 targets from the Alexa Top-200 it found 33,365 potential leaks, and on eight websites it reached a 98.65% true positive rate.",
+    "narrative": "One citation, in a list of systems where metamorphic relations have been used successfully to find bugs.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

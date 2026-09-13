@@ -1,0 +1,867 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-10T15:23:13Z",
+  "paper": {
+    "id": "paper:arxiv:2602.19490",
+    "title": "FuzzySQL: Uncovering Hidden Vulnerabilities in DBMS Special Features with LLM-Driven Fuzzing",
+    "authors": [
+      "Yongxin Chen",
+      "Zhiyuan Jiang",
+      "Chao Zhang",
+      "Haoran Xu",
+      "Shenglin Xu",
+      "Jianping Tang",
+      "Zheming Li",
+      "Peidai Xie",
+      "Yongjun Wang"
+    ],
+    "year": 2026,
+    "venue": "arXiv.org",
+    "doi": null,
+    "arxiv_id": "2602.19490",
+    "s2_paper_id": "aad1150ad6b87608cbd6c02f7792a28e785746ff",
+    "url": "https://arxiv.org/abs/2602.19490",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2602.19490",
+      "retrieved_at": "2026-09-10T15:23:13Z",
+      "chars": 97646,
+      "content_sha256": "sha256:bb918cc68b3f54bb7b3da49b8ba65aaaab309bfda7f03fa27e85a0ad56f2bb7a"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 29,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 4134
+      },
+      {
+        "number": "2",
+        "title": "Motivation",
+        "start": 10198
+      },
+      {
+        "number": "2.1",
+        "title": "Under-Tested Features in Modern DBMSs",
+        "start": 10783
+      },
+      {
+        "number": "2.2",
+        "title": "Why Existing Fuzzers Miss These Bugs",
+        "start": 13147
+      },
+      {
+        "number": "2.3",
+        "title": "LLM: Opportunities and Challenges",
+        "start": 14579
+      },
+      {
+        "number": "2.4",
+        "title": "Goals of FuzzySQL",
+        "start": 16692
+      },
+      {
+        "number": "3",
+        "title": "Methodology",
+        "start": 18269
+      },
+      {
+        "number": "3.1",
+        "title": "Grammar-Guided SQL Generation",
+        "start": 19787
+      },
+      {
+        "number": "3.2",
+        "title": "Logic-Shifting Progressive Mutation",
+        "start": 23443
+      },
+      {
+        "number": "3.3",
+        "title": "Automated Error Repair",
+        "start": 29180
+      },
+      {
+        "number": "3.4",
+        "title": "Replay-Guided Crash Validation",
+        "start": 39916
+      },
+      {
+        "number": "4",
+        "title": "Implemention",
+        "start": 43610
+      },
+      {
+        "number": "4.1",
+        "title": "Prompt Engineering",
+        "start": 43625
+      },
+      {
+        "number": "4.2",
+        "title": "Execution Framework and Instrumentation",
+        "start": 46149
+      },
+      {
+        "number": "5",
+        "title": "Evaluation",
+        "start": 49211
+      },
+      {
+        "number": "5.1",
+        "title": "Experimental Setup",
+        "start": 49224
+      },
+      {
+        "number": "5.2",
+        "title": "Bug Discovery Effectiveness",
+        "start": 51810
+      },
+      {
+        "number": "5.3",
+        "title": "Ablation Study",
+        "start": 55358
+      },
+      {
+        "number": "5.4",
+        "title": "Case Study",
+        "start": 61879
+      },
+      {
+        "number": "6",
+        "title": "Discussion",
+        "start": 67880
+      },
+      {
+        "number": "7",
+        "title": "Related Work",
+        "start": 71933
+      },
+      {
+        "number": "7.1",
+        "title": "DBMS Fuzzing",
+        "start": 71948
+      },
+      {
+        "number": "7.2",
+        "title": "Grammar-Based Fuzzing",
+        "start": 74471
+      },
+      {
+        "number": "7.3",
+        "title": "LLM-Assisted Fuzzing",
+        "start": 76546
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2015. SQLsmith. https://github.com/anse1/sqlsmith.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Ziyad Alsaeed and Michal Young. 2023. Finding short slow inputs faster with grammar-based search. InProceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis. 1068–1079., Vol. 1, No. 1, Article. Publication date: March 2018. 24 Chen et al.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Cornelius Aschermann, Tommaso Frassetto, Thorsten Holz, Patrick Jauernig, Ahmad-Reza Sadeghi, and Daniel Teuchert. 2019. NAUTILUS: Fishing for deep bugs with grammars.. InNDSS.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 5,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 6,
+      "text": "Tim Blazytko, Cornelius Aschermann, Moritz Schlögel, Ali Abbasi, Sergej Schumilo, Simon Wörner, and Thorsten Holz. 2019.{GRIMOIRE}: Synthesizing structure while fuzzing. In28th USENIX Security Symposium (USENIX Security 19). 1985–2002.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Yongheng Chen, Rui Zhong, Hong Hu, Hangfan Zhang, Yupeng Yang, Dinghao Wu, and Wenke Lee. 2021. One engine to fuzz’em all: Generic language processor testing with semantic validation. In Privacy (SP). IEEE, 642–658.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Yinlin Deng, Chunqiu Steven Xia, Haoran Peng, Chenyuan Yang, and Lingming Zhang. 2023. Large language models are zero-shot fuzzers: Fuzzing deep-learning libraries via large language models. InProceedings of the 32nd ACMSIGSOFT international symposium on software testing and analysis. 423–435.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Yinlin Deng, Chunqiu Steven Xia, Chenyuan Yang, Shizhuo Dylan Zhang, Shujing Yang, and Lingming Zhang. 2024. Large language models are edge-case generators: Crafting unusual programs for fuzzing deep learning libraries. In Proceedings of the 46th IEEE/ACM international conference on software engineering. 1–13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Jueon Eom, Seyeon Jeong, and Taekyoung Kwon. 2024. Fuzzing JavaScript Interpreters with Coverage-Guided Reinforcement Learning for LLM-Based Mutation. InProceedings of the 33rd ACMSIGSOFT International Symposium on Software Testing and Analysis. 1656–1668.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Karine Even-Mendoza, Arindam Sharma, Alastair F Donaldson, and Cristian Cadar. 2023. Grayc: Greybox fuzzing of compilers and analysers for c. InProceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis. 1219–1231.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, and Yu Jiang. 2024. Sedar: Obtaining high-quality seeds for dbms fuzzing via cross-dbms sql transfer. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-free DBMS fuzzing. In Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Patrice Godefroid, Adam Kiezun, and Michael Y Levin. 2008. Grammar-based whitebox fuzzing. InProceedings of the 29th ACMSIGPLAN conference on programming language design and implementation. 206–215.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Rahul Gopinath, Hamed Nemati, and Andreas Zeller. 2021. Input algebras. In2021 IEEE/ACM 43rd International Conference on Software Engineering (ICSE). IEEE, 699–710.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Nikolas Havrikov and Andreas Zeller. 2019. Systematically covering input structure. In2019 34th IEEE/ACM international conference on automated software engineering (ASE). IEEE, 189–199.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Christian Holler, Kim Herzig, and Andreas Zeller. 2012. Fuzzing with code fragments. In21st USENIX Security Symposium (USENIX Security 12). 445–458.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. 2023. {DynSQL}: Stateful Fuzzing for Database Management Systems with Complex and Valid {SQL}Query Generation. In32nd USENIX Security Symposium (USENIX Security 23). 4949–4965.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Zu-Ming Jiang and Zhendong Su. 2024. Detecting logic bugs in database engines via equivalent expression transformation. In18th USENIX Symposium on Operating Systems Design and Implementation (OSDI 24). 821–835.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2019. Apollo: Automatic detection and diagnosis of performance regressions in database systems.Proceedings of the VLDB Endowment13, 1 (2019), 57–70.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Caroline Lemieux, Jeevana Priya Inala, Shuvendu K Lahiri, and Siddhartha Sen. 2023. Codamosa: Escaping coverage plateaus in test generation with pre-trained large language models. In Software Engineering (ICSE). IEEE, 919–931.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. 2023. Sequence-oriented DBMS fuzzing. In Engineering (ICDE). IEEE, 668–681.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting logical bugs of {DBMS}with coverage-based guidance. In31st USENIX Security Symposium (USENIX Security 22). 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Ben Limpanukorn, Jiyuan Wang, Hong Jin Kang, Zitong Zhou, and Miryung Kim. 2024. Fuzzing MLIR Compilers with Custom Mutation Synthesis. In. IEEE Computer Society, 457–468.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Hangtian Liu, Lei Zheng, Shuitao Gan, Chao Zhang, Zicong Gao, Hongqi Zhang, Yishun Zeng, Zhiyuan Jiang, and Jiahai Yang. 2025. EAGLEYE: Exposing Hidden Web Interfaces in IoT Devices via Routing Analysis. InProceedings of the 32st Annual Network and Distributed System Security Symposium (NDSS)., Vol. 1, No. 1, Article. Publication date: March 2018. FuzzySQL: Uncovering Hidden Vulnerabilities in DBM",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Jiawei Liu, Jinkun Lin, Fabian Ruffy, Cheng Tan, Jinyang Li, Aurojit Panda, and Lingming Zhang. 2023. Nnsmith: Generating diverse and valid test cases for deep learning compilers. InProceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2. 530–543.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Xinyue Liu, Xiangnan Kong, Lei Liu, and Kuorong Chiang. 2018. TreeGAN: syntax-aware sequence generation with generative adversarial networks. In. IEEE, 1140–1145.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. 2022. Automatic detection of performance bugs in database systems using equivalent queries. InProceedings of the 44th International Conference on Software Engineering. 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Zhe Liu, Chunyang Chen, Junjie Wang, Mengzhuo Chen, Boyu Wu, Zhilin Tian, Yuekai Huang, Jun Hu, and Qing Wang. 2024. Testing the limits: Unusual text inputs generation for mobile app crash detection with large language model. InProceedings of the IEEE/ACM 46th international conference on software engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Yunlong Lyu, Yuxuan Xie, Peng Chen, and Hao Chen. 2024. Prompt Fuzzing for Fuzz Driver Generation. InProceedings of the 2024 on ACMSIGSAC Conference on Computer and Communications Security. 3793–3807.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Xiaoyue Ma, Lannan Luo, and Qiang Zeng. 2024. From One Thousand Pages of Specification to Unveiling Hidden Bugs: Large Language Model Assisted Fuzzing of Matter IoT Devices. In33rd USENIX Security Symposium (USENIX Security 24). 4783–4800.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Ruijie Meng, Martin Mirchev, Marcel Böhme, and Abhik Roychoudhury. 2024. Large language model guided protocol fuzzing. InProceedings of the 31st Annual Network and Distributed System Security Symposium (NDSS), Vol. 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Yaroslav Oliinyk, Michael Scott, Ryan Tsang, Chongzhou Fang, Houman Homayoun, et al .2024. Fuzzing BusyBox: Leveraging LLM and Crash Reuse for Embedded Bug Unearthing. In33rd USENIX Security Symposium (USENIX Security 24). 883–900.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Xianfei Ou, Cong Li, Yanyan Jiang, and Chang Xu. 2024. The mutators reloaded: Fuzzing compilers with large language model generated mutation operators. InProceedings of the 29th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 4. 298–312.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 36,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proceedings of the ACM on Programming Languages4, OOPSLA, Article 211 (2020), 30 pages. doi:10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 37,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 38,
+      "text": "Prashast Srivastava and Mathias Payer. 2021. Gramatron: Effective grammar-aware fuzzing. InProceedings of the 30th acm sigsoft international symposium on software testing and analysis. 244–256.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Chenyao Suo, Junjie Chen, Shuang Liu, Jiajun Jiang, Yingquan Zhao, and Jianrong Wang. 2024. Fuzzing MLIR Compiler Infrastructure via Operation Dependency Analysis. InProceedings of the 33rd ACMSIGSOFT International Symposium on Software Testing and Analysis. 1287–1299.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Dawei Wang, Geng Zhou, Li Chen, Dan Li, and Yukai Miao. 2024. ProphetFuzz: Fully Automated Prediction and Fuzzing of High-Risk Option Combinations with Only Documentation via Large Language Model. InProceedings of the 2024 on ACMSIGSAC Conference on Computer and Communications Security. 735–749.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Haoyu Wang, Junjie Chen, Chuyue Xie, Shuang Liu, Zan Wang, Qingchao Shen, and Yingquan Zhao. 2023. Mlirsmith: Random program generation for fuzzing mlir compiler infrastructure. In2023 38th IEEE/ACM International Conference on Automated Software Engineering (ASE). IEEE, 1555–1566.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Junjie Wang, Bihuan Chen, Lei Wei, and Yang Liu. 2017. Skyfire: Data-driven seed generation for fuzzing. In2017 IEEE Symposium on Security and Privacy (SP). 579–594.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Junjie Wang, Bihuan Chen, Lei Wei, and Yang Liu. 2019. Superion: Grammar-aware greybox fuzzing. In2019 IEEE/ACM 41st International Conference on Software Engineering (ICSE). IEEE, 724–735.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Jincheng Wang, Le Yu, and Xiapu Luo. 2024. Llmif: Augmented large language model for fuzzing iot devices. In. IEEE, 881–896.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. 2021. Industry practice of coverage-guided enterprise-level DBMS fuzzing. In Engineering: Software Engineering in Practice (ICSE-SEIP). IEEE, 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Chunqiu Steven Xia, Matteo Paltenghi, Jia Le Tian, Michael Pradel, and Lingming Zhang. 2024. Fuzz4all: Universal fuzzing with large language models. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Haoran Xu, Zhiyuan Jiang, Yongjun Wang, Shuhui Fan, Shenglin Xu, Peidai Xie, Shaojing Fu, and Mathias Payer. 2024. Fuzzing JavaScript Engines with a Graph-based IR. InProceedings of the 2024 on ACMSIGSAC Conference on Computer and Communications Security. 3734–3748., Vol. 1, No. 1, Article. Publication date: March 2018. 26 Chen et al.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Wen Xu, Soyeon Park, and Taesoo Kim. 2020. Freedom: Engineering a state-of-the-art dom fuzzer. InProceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security. 971–986.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Chenyuan Yang, Zijie Zhao, and Lingming Zhang. 2025. Kernelgpt: Enhanced kernel fuzzing via large language models. InProceedings of the 30th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2. 560–573.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. 2011. Finding and understanding bugs in C compilers. In Proceedings of the 32nd ACMSIGPLAN conference on Programming language design and implementation. 283–294.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Yupeng Yang, Yongheng Chen, Rui Zhong, Jizhou Chen, and Wenke Lee. 2024. Towards generic database management system fuzzing. In33rd USENIX Security Symposium (USENIX Security 24). 901–918.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Chi Zhang and Manuel Rigger. 2025. Constant Optimization Driven Database System Testing.Proceedings of the ACM on Management of Data3, 1 (2025), 1–24.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 53,
+      "text": "Lixi Zhang, Chengliang Chai, Xuanhe Zhou, and Guoliang Li. 2022. Learnedsqlgen: Constraint-aware sql generation using reinforcement learning. InProceedings of the 2022 International Conference on Management of Data. 945–958.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Qifan Zhang, Xuesong Bai, Xiang Li, Haixin Duan, Qi Li, and Zhou Li. 2024. ResolverFuzz: Automated Discovery of DNS Resolver Vulnerabilities with Query-Response Fuzzing. In33rd USENIX Security Symposium (USENIX Security 24). 4729–4746.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Qiang Zhang, Yuheng Shen, Jianzhong Liu, Yiru Xu, Heyuan Shi, Yu Jiang, and Wanli Chang. 2024. ECG: Augmenting Embedded Operating System Fuzzing via LLM-Based Corpus Generation.IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems43, 11 (2024), 4238–4249.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. Squirrel: Testing database management systems with language validity and coverage feedback. InProceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security. 955–970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Suyang Zhong and Manuel Rigger. 2025. Testing Database Systems with Large Language Model Synthesized Fragments. arXiv:2505.02012 [cs.SE]",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 58,
+      "text": "Chijin Zhou, Quan Zhang, Lihua Guo, Mingzhe Wang, Yu Jiang, Qing Liao, Zhiyong Wu, Shanshan Li, and Bin Gu. 2023. Towards better semantics exploration for browser fuzzing.Proceedings of the ACM on Programming Languages7, OOPSLA2 (2023), 604–631.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Zhuotong Zhou, Yongzhuo Yang, Susheng Wu, Yiheng Huang, Bihuan Chen, and Xin Peng. 2024. Magneto: A Step-Wise Approach to Exploit Vulnerabilities in Dependent Libraries via LLM-Empowered Directed Fuzzing. InProceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering. 1633–1644. A Prompts Used In FuzzySQL This section documents the exact prompts used in FuzzySQL for ",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 4,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 5,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13.",
+      "technique": "cert",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing cert"
+      ]
+    },
+    {
+      "number": 35,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 36,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proceedings of the ACM on Programming Languages4, OOPSLA, Article 211 (2020), 30 pages. doi:10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 37,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 52,
+      "text": "Chi Zhang and Manuel Rigger. 2025. Constant Optimization Driven Database System Testing.Proceedings of the ACM on Management of Data3, 1 (2025), 1–24.",
+      "technique": "coddtest",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing coddtest",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 57,
+      "text": "Suyang Zhong and Manuel Rigger. 2025. Testing Database Systems with Large Language Model Synthesized Fragments. arXiv:2505.02012 [cs.SE]",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "prints the arXiv id of the paper introducing shqvel"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 1,19,23,37,56]",
+      "technique": "pqs",
+      "sentence": "However, most existing DBMS fuzzers [ 1,19,23,37,56] predominantly focus on generalpurpose statement structures (e.",
+      "context_before": "InProceedings of Make sure to enter the correct conference title from your rights confirmation email (Conference acronym ’XX).ACM, New York, NY, USA, 29 pages. https://doi.org/XXXXXXX.XXXXXXX 1 Introduction Modern database management systems (DBMSs) sit at the core of software infrastructure that is critical to security and reliability, where subtle logic flaws can lead to persistent crashes, state corruption, and severe service disruption. As a result, fuzzing has emerged as an effective technique for uncovering DBMS bugs by generating SQL statements and executing them against target systems.",
+      "context_after": "g., SELECT ), covering only a limited portion of the DBMS grammar. Recent efforts such as BUZZBEE [51] and POLYGLOT [7] emphasize cross-target generalizability, rather than systematically exercising DBMS-specific features such as read-only modes or GTID control. DBMS special features are vendor-specific extensions that deviate from standard SQL specifications and, although invoked less frequently, are deeply embedded in core execution paths and can trigger severe system failures under edge conditions. For example, Listing 1 shows that a seemingly benign combination of statements, such as UPDAT",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 4542,
+      "cited_reference": {
+        "number": 37,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[ 19,23,35]",
+      "technique": "norec",
+      "sentence": "Existing DBMS fuzzers have explored SQL generation and mutation from multiple perspectives, including structural complexity [ 18,56], sequence-level interactions [ 13,22], and oracle-guided logic testing [ 19,23,35].",
+      "context_before": "neralizability, rather than systematically exercising DBMS-specific features such as read-only modes or GTID control. DBMS special features are vendor-specific extensions that deviate from standard SQL specifications and, although invoked less frequently, are deeply embedded in core execution paths and can trigger severe system failures under edge conditions. For example, Listing 1 shows that a seemingly benign combination of statements, such as UPDATE HISTOGRAM and RESET within a read-only transaction, can lead to a full-system crash—behaviors that are rarely exercised by conventional fuzzers.",
+      "context_after": "Despite these advances, they share a common limitation: none have made effective attempts to systematically explore feature-specific logic. At a fundamental level, this limitation stems from the mismatch between feature-specific DBMS behaviors and the design assumptions of existing fuzzers, and manifests in several aspects. Concretely, we identify three key factors that hinder existing fuzzers from effectively exploring feature-specific DBMS logic. First, traditional fuzzers lack support for feature-specific SQL constructs that are often tied to internal DBMS mechanisms. These constructs are",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 5403,
+      "cited_reference": {
+        "number": 35,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "To demonstrate the advantage of FuzzySQL, we compare it against three state-of-the-art opensource fuzzing baselines: Squirrel [ 56], EET [ 19], and SQLancer [ 35].",
+      "context_before": "rch 2018. FuzzySQL: Uncovering Hidden Vulnerabilities in DBMS Special Features with LLM-Driven Fuzzing 15 Table 2. Bugs discovered by FuzzySQL DBMS Found Confirmed Fixed Feature-Related MySQL 22 22 12 10 MariaDB 28 24 10 9 SQLite 2 2 2 1 ClickHouse 12 12 7 7 Total 64 60 31 27 reproducible evaluation, all reported results are based on Qwen3-30B. We used a temperature of 0.3–0.5 to balance stability and diversity. In pilot tests, a temperature of 0.4 produced natural yet varied outputs—sufficiently diverse for fuzzing under structured constraints. All experiments used an 8K-token context window.",
+      "context_after": "Among them, Squirrel represents mutation-based fuzzing, while both EET and SQLancer adopt generation-based approaches. Since EET and SQLancer are not inherently a grey-box fuzzing tool, we first collect their generated test cases and then utilize FuzzySQL’s replay mechanism to measure its coverage. For SQLancer, we use TLP [ 36] as the test oracle for MySQL, and NoREC [ 35] for the other DBMS targets. This choice is constrained by the design of SQLancer, which employs different oracle-based testing strategies tailored to specific DBMSs. All baselines were evaluated under identical runtime con",
+      "section": "5.1 Experimental Setup",
+      "page": 15,
+      "char_offset": 50639,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Among them, Squirrel represents mutation-based fuzzing, while both EET and SQLancer adopt generation-based approaches.",
+      "context_before": "Fixed Feature-Related MySQL 22 22 12 10 MariaDB 28 24 10 9 SQLite 2 2 2 1 ClickHouse 12 12 7 7 Total 64 60 31 27 reproducible evaluation, all reported results are based on Qwen3-30B. We used a temperature of 0.3–0.5 to balance stability and diversity. In pilot tests, a temperature of 0.4 produced natural yet varied outputs—sufficiently diverse for fuzzing under structured constraints. All experiments used an 8K-token context window. To demonstrate the advantage of FuzzySQL, we compare it against three state-of-the-art opensource fuzzing baselines: Squirrel [ 56], EET [ 19], and SQLancer [ 35].",
+      "context_after": "Since EET and SQLancer are not inherently a grey-box fuzzing tool, we first collect their generated test cases and then utilize FuzzySQL’s replay mechanism to measure its coverage. For SQLancer, we use TLP [ 36] as the test oracle for MySQL, and NoREC [ 35] for the other DBMS targets. This choice is constrained by the design of SQLancer, which employs different oracle-based testing strategies tailored to specific DBMSs. All baselines were evaluated under identical runtime conditions and DBMS versions. We adopted official configurations and standardized crash triage procedures to ensure fair a",
+      "section": "5.1 Experimental Setup",
+      "page": 15,
+      "char_offset": 50803,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Since EET and SQLancer are not inherently a grey-box fuzzing tool, we first collect their generated test cases and then utilize FuzzySQL’s replay mechanism to measure its coverage.",
+      "context_before": "ucible evaluation, all reported results are based on Qwen3-30B. We used a temperature of 0.3–0.5 to balance stability and diversity. In pilot tests, a temperature of 0.4 produced natural yet varied outputs—sufficiently diverse for fuzzing under structured constraints. All experiments used an 8K-token context window. To demonstrate the advantage of FuzzySQL, we compare it against three state-of-the-art opensource fuzzing baselines: Squirrel [ 56], EET [ 19], and SQLancer [ 35]. Among them, Squirrel represents mutation-based fuzzing, while both EET and SQLancer adopt generation-based approaches.",
+      "context_after": "For SQLancer, we use TLP [ 36] as the test oracle for MySQL, and NoREC [ 35] for the other DBMS targets. This choice is constrained by the design of SQLancer, which employs different oracle-based testing strategies tailored to specific DBMSs. All baselines were evaluated under identical runtime conditions and DBMS versions. We adopted official configurations and standardized crash triage procedures to ensure fair and reproducible comparisons. Except for Squirrel, a mutation-based fuzzer using its default seeds, all baselines ran without a seed corpus. Each experiment was repeated 5 times on i",
+      "section": "5.1 Experimental Setup",
+      "page": 15,
+      "char_offset": 50922,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For SQLancer, we use TLP [ 36] as the test oracle for MySQL, and NoREC [ 35] for the other DBMS targets.",
+      "context_before": "tural yet varied outputs—sufficiently diverse for fuzzing under structured constraints. All experiments used an 8K-token context window. To demonstrate the advantage of FuzzySQL, we compare it against three state-of-the-art opensource fuzzing baselines: Squirrel [ 56], EET [ 19], and SQLancer [ 35]. Among them, Squirrel represents mutation-based fuzzing, while both EET and SQLancer adopt generation-based approaches. Since EET and SQLancer are not inherently a grey-box fuzzing tool, we first collect their generated test cases and then utilize FuzzySQL’s replay mechanism to measure its coverage.",
+      "context_after": "This choice is constrained by the design of SQLancer, which employs different oracle-based testing strategies tailored to specific DBMSs. All baselines were evaluated under identical runtime conditions and DBMS versions. We adopted official configurations and standardized crash triage procedures to ensure fair and reproducible comparisons. Except for Squirrel, a mutation-based fuzzer using its default seeds, all baselines ran without a seed corpus. Each experiment was repeated 5 times on identical hardware, and the reported results are the averages, which show consistent statistical stability",
+      "section": "5.1 Experimental Setup",
+      "page": 15,
+      "char_offset": 51103,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "This choice is constrained by the design of SQLancer, which employs different oracle-based testing strategies tailored to specific DBMSs.",
+      "context_before": "sed an 8K-token context window. To demonstrate the advantage of FuzzySQL, we compare it against three state-of-the-art opensource fuzzing baselines: Squirrel [ 56], EET [ 19], and SQLancer [ 35]. Among them, Squirrel represents mutation-based fuzzing, while both EET and SQLancer adopt generation-based approaches. Since EET and SQLancer are not inherently a grey-box fuzzing tool, we first collect their generated test cases and then utilize FuzzySQL’s replay mechanism to measure its coverage. For SQLancer, we use TLP [ 36] as the test oracle for MySQL, and NoREC [ 35] for the other DBMS targets.",
+      "context_after": "All baselines were evaluated under identical runtime conditions and DBMS versions. We adopted official configurations and standardized crash triage procedures to ensure fair and reproducible comparisons. Except for Squirrel, a mutation-based fuzzer using its default seeds, all baselines ran without a seed corpus. Each experiment was repeated 5 times on identical hardware, and the reported results are the averages, which show consistent statistical stability. 5.2 Bug Discovery Effectiveness To evaluate the practical effectiveness of FuzzySQL, we conducted a systematic fuzzing campaign on five",
+      "section": "5.1 Experimental Setup",
+      "page": 15,
+      "char_offset": 51208,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Deduplicated MySQL bugs discovered within 24 hours Target ID†FR Type FuzzySQL Squirrel EET SQLancer FuzzySQL!",
+      "context_before": "e bugs or reaching higher coverage, but also in exposing a broader and qualitatively different set of vulnerabilities. In particular, feature-related bugs are not isolated anecdotes in our results; with 27 confirmed cases, they constitute a substantial portion of the bugs uncovered by FuzzySQL. This capability arises from FuzzySQL’s integrated design, which jointly addresses three obstacles in feature-related DBMS bug discovery: insufficient coverage of feature-specific constructs, unmet semantic preconditions, and hidden state interactions that span multiple statements or executions. Table 3.",
+      "context_after": "r FuzzySQL!r !m MySQL 3◦Use After Free✔ ✗ ✔ ✗ ✗ ✗ MySQL 6◦Assertion Failure✔ ✗ ✗ ✗ ✔ ✗ MySQL 8•Assertion Failure✔ ✗ ✗ ✗ ✔ ✗ MySQL 9◦NULL Ptr Deref✔ ✗ ✔ ✗ ✔ ✔ MySQL 17•Assertion Failure✔ ✗ ✗ ✗ ✗ ✗ MySQL 21◦NULL Ptr Deref✔ ✗ ✔ ✗ ✔ ✗ †Bug ID corresponds to Table 4 (Appendix B). FR: •feature-related,◦not feature-related;!r: repair disabled;!m: mutation disabled. 5.3 Ablation Study We perform an ablation study to assess the impact of three core design choices in FuzzySQL: logic-shifting progressive mutation, automated semantic repair, and the choice of LLM for semantic instantiation. Our analysis a",
+      "section": "5.2 Bug Discovery Effectiveness",
+      "page": 16,
+      "char_offset": 54887,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker",
+      "surface": "[ 4,19,23,35–37,52]",
+      "technique": "qpg",
+      "sentence": "Depending on the bug types targeted—ranging from crash vulnerabilities [ 1,12,13,18, 22,27,45,56] to logic inconsistencies [ 4,19,23,35–37,52] and performance regressions [ 5,20,28, 53]—existing DBMS fuzzers follow either generation-based or mutation-based strategies.",
+      "context_before": "se challenges largely reflect the limitations of current LLMs. As LLMs improve in reasoning depth and code synthesis capability, their effectiveness in fuzzing high-complexity structures will improve correspondingly. FuzzySQL excels at triggering feature-related failures and hard-to-reach logic branches, aspects that are often invisible to basic coverage models. 7 Related Work 7.1 DBMS Fuzzing Fuzzing has emerged as a critical technique for testing database management systems (DBMSs) by directly targeting components such as parsers, optimizers, and execution engines through crafted SQL inputs.",
+      "context_after": "Generation-based approaches rely on hand-crafted grammars or learned rules to synthesize SQL sequences from scratch. SQLSmith [ 1] uses randomized AST construction to generate structurally valid SQL inputs, but often fails on semantic soundness. To enhance expressiveness, DynSQL [ 18] dynamically tracks schema evolution to guide generation, while TreeGAN [ 27] adopts grammaraware GANs to synthesize syntactically valid SQL trees. SQLancer [ 35–37,52] and EET [ 19] generate ASTs while preserving contextual variable bindings to ensure validity. However, most generators still rely heavily on manu",
+      "section": "7.1 DBMS Fuzzing",
+      "page": 22,
+      "char_offset": 72168,
+      "cited_reference": {
+        "number": 4,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE). IEEE, 2060–2071.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg",
+        "cert"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [ 35–37,52] and EET [ 19] generate ASTs while preserving contextual variable bindings to ensure validity.",
+      "context_before": "logic inconsistencies [ 4,19,23,35–37,52] and performance regressions [ 5,20,28, 53]—existing DBMS fuzzers follow either generation-based or mutation-based strategies. Generation-based approaches rely on hand-crafted grammars or learned rules to synthesize SQL sequences from scratch. SQLSmith [ 1] uses randomized AST construction to generate structurally valid SQL inputs, but often fails on semantic soundness. To enhance expressiveness, DynSQL [ 18] dynamically tracks schema evolution to guide generation, while TreeGAN [ 27] adopts grammaraware GANs to synthesize syntactically valid SQL trees.",
+      "context_after": "However, most generators still rely heavily on manual rule engineering or specifications. The concurrent work ShQveL [57] uses LLM to construct fragments and then uses these fragments to combine SQL statements. This test case generation method still relies on the implementation of general syntax rules. Mutation-based fuzzers, in contrast, transform existing SQL statements through changes at the syntax or intermediate representation (IR) level. Some prior work also explores context-dependent mutations arising from the composition of SQL statement sequences. Squirrel [ 56] represents SQL as int",
+      "section": "7.1 DBMS Fuzzing",
+      "page": 22,
+      "char_offset": 72870,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "ShQveL",
+      "technique": null,
+      "sentence": "The concurrent work ShQveL [57] uses LLM to construct fragments and then uses these fragments to combine SQL statements.",
+      "context_before": "and-crafted grammars or learned rules to synthesize SQL sequences from scratch. SQLSmith [ 1] uses randomized AST construction to generate structurally valid SQL inputs, but often fails on semantic soundness. To enhance expressiveness, DynSQL [ 18] dynamically tracks schema evolution to guide generation, while TreeGAN [ 27] adopts grammaraware GANs to synthesize syntactically valid SQL trees. SQLancer [ 35–37,52] and EET [ 19] generate ASTs while preserving contextual variable bindings to ensure validity. However, most generators still rely heavily on manual rule engineering or specifications.",
+      "context_after": "This test case generation method still relies on the implementation of general syntax rules. Mutation-based fuzzers, in contrast, transform existing SQL statements through changes at the syntax or intermediate representation (IR) level. Some prior work also explores context-dependent mutations arising from the composition of SQL statement sequences. Squirrel [ 56] represents SQL as intermediate representation (IR) and applies typed, data-aware mutation. RATEL [ 45] adds finegrained coverage tracking and feedback-guided deduplication for robust crash reporting. Griffin [ 13] shuffles SQL state",
+      "section": "7.1 DBMS Fuzzing",
+      "page": 22,
+      "char_offset": 73075,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M3"
+      ],
+      "describes_as_state_of_the_art": [
+        "M3"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T17:00:23Z",
+    "is_model_written": true,
+    "summary": "FuzzySQL targets the special features of individual DBMSs -- vendor-specific syntax and subsystems that general-purpose generators do not model -- using a language model to produce test cases for them. Its argument is that existing fuzzers concentrate on general statement structures, so features unique to one system go untested. It is evaluated on MySQL and other systems against mutation-based and generation-based baselines.",
+    "narrative": "SQLancer is one of three state-of-the-art open-source baselines, alongside Squirrel and EET. The comparison required accommodation in both directions: because SQLancer is not a grey-box tool, the authors collected its generated test cases and replayed them through FuzzySQL's own mechanism to measure coverage, and because SQLancer pairs different oracles with different systems they ran TLP for MySQL and NoREC for the other targets. That constraint is noted as a property of SQLancer's design rather than a shortcoming. Bug counts are reported per target over 24 hours.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "state_of_the_art",
+      "M4": "definition",
+      "M5": "baseline",
+      "M6": "baseline",
+      "M7": "definition",
+      "M8": "result_comparison",
+      "M9": "background",
+      "M10": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer's test cases are collected and replayed to measure its coverage on equal terms, which is part of running it as a baseline rather than reuse in FuzzySQL's own generation."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No SQLancer oracle is extended; FuzzySQL generates test cases for vendor-specific features with a language model."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M3",
+          "M5",
+          "M6",
+          "M8"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M3",
+            "sentence": "To demonstrate the advantage of FuzzySQL, we compare it against three state-of-the-art opensource fuzzing baselines: Squirrel [ 56], EET [ 19], and SQLancer [ 35].",
+            "section": "5.1 Experimental Setup",
+            "page": 15
+          },
+          {
+            "mention_id": "M5",
+            "sentence": "Since EET and SQLancer are not inherently a grey-box fuzzing tool, we first collect their generated test cases and then utilize FuzzySQL’s replay mechanism to measure its coverage.",
+            "section": "5.1 Experimental Setup",
+            "page": 15
+          },
+          {
+            "mention_id": "M6",
+            "sentence": "For SQLancer, we use TLP [ 36] as the test oracle for MySQL, and NoREC [ 35] for the other DBMS targets.",
+            "section": "5.1 Experimental Setup",
+            "page": 15
+          },
+          {
+            "mention_id": "M8",
+            "sentence": "Deduplicated MySQL bugs discovered within 24 hours Target ID†FR Type FuzzySQL Squirrel EET SQLancer FuzzySQL!",
+            "section": "5.2 Bug Discovery Effectiveness",
+            "page": 16
+          }
+        ],
+        "reasoning": "M3 names SQLancer among the three baselines, M5 describes how its test cases were collected for the coverage comparison, M6 records TLP being used for MySQL and NoREC for the other targets, and M8 gives the 24-hour bug table.",
+        "techniques": [
+          "tlp",
+          "norec"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M3"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M3",
+            "sentence": "To demonstrate the advantage of FuzzySQL, we compare it against three state-of-the-art opensource fuzzing baselines: Squirrel [ 56], EET [ 19], and SQLancer [ 35].",
+            "section": "5.1 Experimental Setup",
+            "page": 15
+          }
+        ],
+        "reasoning": "M3 describes SQLancer as one of three state-of-the-art open-source fuzzing baselines."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,950 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T17:07:43Z",
+  "paper": {
+    "id": "paper:doi:10.1109/icse-seip52600.2021.00042",
+    "title": "Industry Practice of Coverage-Guided Enterprise-Level DBMS Fuzzing",
+    "authors": [
+      "Mingzhe Wang",
+      "Zhiyong Wu",
+      "Xinyi Xu",
+      "Jie Liang",
+      "Chijin Zhou",
+      "Huafeng Zhang",
+      "Yu Jiang"
+    ],
+    "year": 2021,
+    "venue": "2021 IEEE/ACM 43rd International Conference on Software Engineering: Software Engineering in Practice (ICSE-SEIP)",
+    "doi": "10.1109/icse-seip52600.2021.00042",
+    "arxiv_id": "2103.00804",
+    "s2_paper_id": "8356864e3802eaee426a1fec7ea838bf8d7d7e57",
+    "url": "https://doi.org/10.1109/icse-seip52600.2021.00042",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2103.00804",
+      "retrieved_at": "2026-09-07T17:07:43Z",
+      "chars": 56637,
+      "content_sha256": "sha256:de760d8ddc6e1bbf389770e8eb1a38cb8ea1113dedad0e7e785c0e54dbf0242a"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 10,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 1873
+      },
+      {
+        "number": "II",
+        "title": "BACKGROUND",
+        "start": 8092
+      },
+      {
+        "number": "B",
+        "title": "Fuzzing DBMSs",
+        "start": 10045
+      },
+      {
+        "number": "C",
+        "title": "Fuzzers Chosen by This Paper",
+        "start": 13228
+      },
+      {
+        "number": "A",
+        "title": "Imprecise Coverage Collection",
+        "start": 20669
+      },
+      {
+        "number": "B",
+        "title": "Fragile Input Generation",
+        "start": 27326
+      },
+      {
+        "number": "C",
+        "title": "Unreproducible Bugs",
+        "start": 30246
+      },
+      {
+        "number": "A",
+        "title": "Analysis of Results",
+        "start": 34220
+      },
+      {
+        "number": "B",
+        "title": "Analysis of Bugs",
+        "start": 40188
+      },
+      {
+        "number": "S",
+        "title": "Goikhman, E. Levy, I. Levy, F. Lu, L. Mishali, Y. Mo, N. Pachter,",
+        "start": 53642
+      },
+      {
+        "number": "D",
+        "title": "Sivov, V. Veeraraghavan, V. Vexler, L. Wang, and P. Wang, “Industrial",
+        "start": 53711
+      },
+      {
+        "number": "Y",
+        "title": "Shoshitaishvili, C. Kruegel, and G. Vigna, “Driller: Augmenting",
+        "start": 55381
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "A. Seltenreich, B. Tang, and S. Mullender, “Sqlsmith: a random sql query generator,” 2018. [Online]. Available: https://github.com/anse1/ sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "D. R. Slutz, “Massive stochastic testing of SQL,” in VLDB’98, Proceedings of 24rd International Conference on Very Large Data Bases, New York, USA. Morgan Kaufmann, pp. 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "M. Rigger, “Sqlancer: detecting logic bugs in dbms,” 2020. [Online]. Available: https://github.com/sqlancer/sqlancer",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 4,
+      "text": "M. Rigger and Z. Su, “Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction,” in Proceedings of the 2020 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ser. ESEC/FSE 2020, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 5,
+      "text": "“Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). Banff, Alberta: USENIX Association, Nov. 2020. [Online]. Available: https://www.usenix.org/conference/osdi20/presentation/rigger",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 6,
+      "text": "J. Liang, Y. Jiang, Y. Chen, M. Wang, C. Zhou, and J. Sun, “PAFL: extend fuzzing optimizations of single mode to industrial parallel mode,” inProceedings of the 2018 ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/SIGSOFT FSE, USA, November 04-09, 2018, 2018, pp. 809–814.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "C. Zhou, M. Wang, J. Liang, Z. Liu, and Y. Jiang, “Zeror: Speed up fuzzing with coverage-sensitive tracing and scheduling,” in 2020 35th IEEE/ACM International Conference on Automated Software Engineering (ASE). IEEE, 2020, pp. 858–870.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "R. Zhong, Y. Chen, H. Hu, H. Zhang, W. Lee, and D. Wu, “Squirrel: Testing database management systems with language validity and coverage feedback,” in The ACM Conference on Computer and Communications Security (CCS), 2020, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "“SQLite: All Tickets,” https://www.sqlite.org/src/rptview?rn=1, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "“PostgreSQL: PostgreSQL Mailing Lists: pgsql-bugs,” https://www. postgresql.org/list/pgsql-bugs/, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "C. Lattner and V. Adve, “Llvm: A compilation framework for lifelong program analysis & transformation,” in International Symposium on Code Generation and Optimization, 2004. CGO 2004. IEEE, 2004, pp. 75–86.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "“Gaussdb Documentation,” https://opengauss.org/en/docs/1.0.1/docs/ Releasenotes/Terms-of-Use.html, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "H. Avni, A. Aliev, O. Amor, A. Avitzur, I. Bronshtein, E. Ginot, S. Goikhman, E. Levy, I. Levy, F. Lu, L. Mishali, Y. Mo, N. Pachter, D. Sivov, V. Veeraraghavan, V. Vexler, L. Wang, and P. Wang, “Industrial strength OLTP using main memory and many cores,” Proc. VLDB Endow., vol. 13, no. 12, pp. 3099–3111, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proc. ACM Program. Lang., no. OOPSLA, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 15,
+      "text": "J. Jung, H. Hu, J. Arulraj, T. Kim, and W. Kang, “APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems (to appear),” in Proceedings of the 46th International Conference on Very Large Data Bases (VLDB), Tokyo, Japan, Aug. 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "A. Seltenreich, B. Tang, and S. Mullender, “Sqlsmith: Score list,” 2020. [Online]. Available: https://github.com/anse1/sqlsmith/wiki#score-list",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "M. Rigger, “Sqlancer: Bugs found in database management systems,” 2020. [Online]. Available: https://www.manuelrigger.at/dbms-bugs",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 18,
+      "text": "lcamtuf, “American fuzzy lop (aﬂ),” 2017. [Online]. Available: http://lcamtuf.coredump.cx/aﬂ/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "libfuzzer@googlegroups.com, “libfuzzer – a library for coverage-guided fuzz testing.” 2020. [Online]. Available: https://llvm.org/docs/LibFuzzer. html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "honggfuzz@googlegroups.com, “hongfuzzsecurity oriented fuzzer with powerful analysis options.” 2020. [Online]. Available: http: //honggfuzz.com",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "M. Wang, J. Liang, Y. Chen, Y. Jiang, X. Jiao, H. Liu, X. Zhao, and J. Sun, “SAFL: increasing and accelerating testing coverage with symbolic execution and guided fuzzing,” in Proceedings of the 40th International Conference on Software Engineering: Companion Proceeedings, ICSE 2018, Gothenburg, Sweden. ACM, 2018, pp. 61–64.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "N. Stephens, J. Grosen, C. Salls, A. Dutcher, R. Wang, J. Corbetta, Y. Shoshitaishvili, C. Kruegel, and G. Vigna, “Driller: Augmenting fuzzing through selective symbolic execution,” in 23rd Annual Network and Distributed System Security Symposium, NDSS 2016, San Diego, California, USA, February 21-24, 2016. The Internet Society, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "C. Lemieux and K. Sen, “Fairfuzz: a targeted mutation strategy for increasing greybox fuzz testing coverage,” in Proceedings of the 33rd ACM/IEEE International Conference on Automated Software Engineering, ASE 2018, Montpellier, France, September 3-7, 2018, 2018, pp. 475–485. [Online]. Available: https://doi.org/10.1145/ 3238147.3238176",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "J. Liang, Y. Chen, M. Wang, Y. Jiang, Z. Yang, C. Sun, X. Jiao, and J. Sun, “Engineering a better fuzzer with synergically integrated optimizations,” in Reliability Engineering (ISSRE). IEEE, 2019, pp. 82–92.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "“STANDARDS BYISO/IECJTC 1/SC 32 Data management and interchange,” https://www.iso.org/committee/45342/x/catalogue/p/1/u/0/ w/0/d/0, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "S. Gan, C. Zhang, X. Qin, X. Tu, K. Li, Z. Pei, and Z. Chen, “Collaﬂ: Path sensitive fuzzing,” in and Privacy, SP 2018, Proceedings, 21-23 May 2018, San Francisco, California, USA. IEEE Computer Society, 2018, pp. 679–696. [Online]. Available: https://doi.org/10.1109/SP.2018.00040",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 3,
+      "text": "M. Rigger, “Sqlancer: detecting logic bugs in dbms,” 2020. [Online]. Available: https://github.com/sqlancer/sqlancer",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 4,
+      "text": "M. Rigger and Z. Su, “Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction,” in Proceedings of the 2020 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ser. ESEC/FSE 2020, 2020.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 5,
+      "text": "“Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). Banff, Alberta: USENIX Association, Nov. 2020. [Online]. Available: https://www.usenix.org/conference/osdi20/presentation/rigger",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 14,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proc. ACM Program. Lang., no. OOPSLA, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 17,
+      "text": "M. Rigger, “Sqlancer: Bugs found in database management systems,” 2020. [Online]. Available: https://www.manuelrigger.at/dbms-bugs",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Compared to industrial black box fuzzers SQLsmith and SQLancer, as well as coverage-guided academic fuzzer Squirrel, RATEL covered 38.",
+      "context_before": "In our practice of testing GaussDB and Comdb2, we found major challenges in all three testing stages. The challenges are collecting precise coverage, optimizing fuzzing performance, and analyzing root causes. In search of a general method to overcome these challenges, we propose RATEL, a coverage-guided fuzzer for enterprise-level DBMSs. With its industry-oriented design, RATEL improves the feedback precision, enhances the robustness of input generation, and performs an on-line investigation on the root cause of bugs. As a result, RATEL outperformed other fuzzers in terms of coverage and bugs.",
+      "context_after": "38%, 106.14%, 583.05% more basic blocks than the best results of other three fuzzers in GaussDB, PostgreSQL, and Comdb2, respectively. More importantly, RATEL has discovered 32, 42, and 5 unknown bugs in GaussDB, Comdb2, and PostgreSQL. Index Terms —DBMS testing, coverage-guided fuzzing, enterprise DBMS I. INTRODUCTION As an infrastructure for data persistence and analysis, Database Management Systems (DBMSs) are widely applied in the modern software stack, especially enterprise software. In recent years, their reliability and security have gained traction in academic research as well as in in",
+      "section": null,
+      "page": 1,
+      "char_offset": 1433,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For example, SQLsmith [1] triggers system bugs by continuously generating random SQL queries; RAGS [2] detects logic bugs by comparing the results of a query on multiple DBMSs; SQLancer [3] detects logic bugs by constructing an invariant oracle from different angles [4], BYu Jiang is the correspondence author.",
+      "context_before": "pecially enterprise software. In recent years, their reliability and security have gained traction in academic research as well as in industry. To improve the correctness of DBMSs, the industry has been applying blackbox fuzzing for decades. Basically, to perform fuzz testing, a fuzzer generates a number of random inputs and sends them to the target system for execution. If anomalies such as crashes, timeouts, internal errors, or incorrect results are detected, then the triggering input is saved. Developers can use the input to reproduce the anomaly, investigate the root cause, and ﬁx the bug.",
+      "context_after": "[5]. The effectiveness of blackbox fuzzing has been proven by many previously-unknown bugs from the industry’s practice: more than 100 bugs were found by SQLsmith, and more than 400 bugs were found by SQLancer. Recently, coverage-guided fuzzing has become a hot topic in the research community, and impressive gains over the conventional blackbox fuzzing methods are observed [6], [7]. Coverage-guided fuzzing introduces feedback into the fuzzing loop: more than blindly generating random inputs, a coverageguided fuzzer collects the execution trace of an input to recognize interesting inputs trigge",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 2632,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[5]",
+      "technique": "pqs",
+      "sentence": "[5].",
+      "context_before": "dom inputs and sends them to the target system for execution. If anomalies such as crashes, timeouts, internal errors, or incorrect results are detected, then the triggering input is saved. Developers can use the input to reproduce the anomaly, investigate the root cause, and ﬁx the bug. For example, SQLsmith [1] triggers system bugs by continuously generating random SQL queries; RAGS [2] detects logic bugs by comparing the results of a query on multiple DBMSs; SQLancer [3] detects logic bugs by constructing an invariant oracle from different angles [4], BYu Jiang is the correspondence author.",
+      "context_after": "The effectiveness of blackbox fuzzing has been proven by many previously-unknown bugs from the industry’s practice: more than 100 bugs were found by SQLsmith, and more than 400 bugs were found by SQLancer. Recently, coverage-guided fuzzing has become a hot topic in the research community, and impressive gains over the conventional blackbox fuzzing methods are observed [6], [7]. Coverage-guided fuzzing introduces feedback into the fuzzing loop: more than blindly generating random inputs, a coverageguided fuzzer collects the execution trace of an input to recognize interesting inputs triggering",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 2944,
+      "cited_reference": {
+        "number": 5,
+        "text": "“Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). Banff, Alberta: USENIX Association, Nov. 2020. [Online]. Available: https://www.usenix.org/conference/osdi20/presentation/rigger",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The effectiveness of blackbox fuzzing has been proven by many previously-unknown bugs from the industry’s practice: more than 100 bugs were found by SQLsmith, and more than 400 bugs were found by SQLancer.",
+      "context_before": "inputs and sends them to the target system for execution. If anomalies such as crashes, timeouts, internal errors, or incorrect results are detected, then the triggering input is saved. Developers can use the input to reproduce the anomaly, investigate the root cause, and ﬁx the bug. For example, SQLsmith [1] triggers system bugs by continuously generating random SQL queries; RAGS [2] detects logic bugs by comparing the results of a query on multiple DBMSs; SQLancer [3] detects logic bugs by constructing an invariant oracle from different angles [4], BYu Jiang is the correspondence author.[5].",
+      "context_after": "Recently, coverage-guided fuzzing has become a hot topic in the research community, and impressive gains over the conventional blackbox fuzzing methods are observed [6], [7]. Coverage-guided fuzzing introduces feedback into the fuzzing loop: more than blindly generating random inputs, a coverageguided fuzzer collects the execution trace of an input to recognize interesting inputs triggering new program behaviors; the interesting ones are preserved for further mutations, while the mundane ones are discarded. For example, Squirrel [8] combines coverage-based fuzzing and model-based generation.",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 2948,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Compared to SQLsmith, SQLancer, and Squirrel, it covered 38.",
+      "context_before": "ree challenges encountered in our practice to fuzz DBMSs. The challenges are imprecise coverage collection on distributed systems, fragile input generation of complex SQL dialects, and unreproducible bug reports on stateful systems. •We propose RATEL to solve the challenges as a general solution for coverage-guided fuzzing on enterprise-level DBMSs. We improve the feedback precision, enhance the robustness of input generation, and perform on-line investigation on the root cause of bugs. •The ﬁnal results show that RATEL effectively improved existing DBMS fuzzing works on enterpriselevel DBMSs.",
+      "context_after": "38%, 106.14%, 583.05% more basic blocks than the best results of other three fuzzers in GaussDB, PostgreSQL, and Comdb2, respectively. More importantly, 79 unknown bugs are discovered by it. II. BACKGROUND In this section, we ﬁrst give a brief introduction to DBMS and give an example to illustrate the complexity of enterpriselevel DBMSs. Then, we introduce some existing solutions of DBMS fuzzing. Finally, we detail three state-of-the-art fuzzers, i.e. SQLsmith, SQLancer, and Squirrel, which are chosen for our industry practice.A. Database Management System (DBMS) Client Core Components Backend",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 7840,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLsmith, SQLancer, and Squirrel, which are chosen for our industry practice.",
+      "context_before": "hat RATEL effectively improved existing DBMS fuzzing works on enterpriselevel DBMSs. Compared to SQLsmith, SQLancer, and Squirrel, it covered 38.38%, 106.14%, 583.05% more basic blocks than the best results of other three fuzzers in GaussDB, PostgreSQL, and Comdb2, respectively. More importantly, 79 unknown bugs are discovered by it. II. BACKGROUND In this section, we ﬁrst give a brief introduction to DBMS and give an example to illustrate the complexity of enterpriselevel DBMSs. Then, we introduce some existing solutions of DBMS fuzzing. Finally, we detail three state-of-the-art fuzzers, i.e.",
+      "context_after": "A. Database Management System (DBMS) Client Core Components Backend Checkpoint Vacuum Logging Recovery …Query Engine Parser Planner Analyzer ExecutorStorage Engine Memory-Optimized T able Disk-Based T able Foreign Data W rapper Master Node Redo Log WAL SenderStandby Node Redo Log WAL ReceiverJDBC ODBC Shell Fig. 1. Interactions between different processes/threads in GaussDB. Database management system (DBMS) is the software that interacts with end users and applications. Different from libraries and utilities, most DBMSs are large and complex distributed systems. They generally contain hundred",
+      "section": "II BACKGROUND",
+      "page": 2,
+      "char_offset": 8356,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In addition, SQLancer [3] integrates three different strategies [4], [5], [14] to construct invirant oracle to detect logic bugs.",
+      "context_before": "ure of DBMS, ensuring its reliability and security is difﬁcult. Therefore, many DBMS fuzzers have sprung up in the past years and tried to ﬁnd bugs in different aspects. Generally, two approaches were taken by them, i.e. blackbox fuzzing and coverage-guided fuzzing. Blackbox DBMS fuzzing focuses on rapidly constructing a large amount of valid and effective data to pass to the DBMS without the knowledge of the DBMS’s source code. For instance, SQLsmith [1] continuously generates syntacticallycorrect SQL statements and passes them to the DBMS, meanwhile detects whether the DBMS triggers crashes.",
+      "context_after": "For example, its pivoted query synthesis strategy [5] generates queries of which corresponding result table is supposed to include a speciﬁc row, and if the DBMS fails to fetch the row, a logic bug is discovered. Additionally, some research works [2], [15] leverage differential testing to detect abnormal behavior in DBMSs. RAGS [2] generates and executes queries in multiple DBMSs, meanwhile compares the results of a query on those DBMSs; similar to RAGS, APPOLO [15] generates queries guided by performance difference and compares the results of a query on different versions of the same DBMS. A",
+      "section": "B Fuzzing DBMSs",
+      "page": 2,
+      "char_offset": 10703,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "pqs",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "technique",
+      "surface": "pivoted query synthesis",
+      "technique": "pqs",
+      "sentence": "For example, its pivoted query synthesis strategy [5] generates queries of which corresponding result table is supposed to include a speciﬁc row, and if the DBMS fails to fetch the row, a logic bug is discovered.",
+      "context_before": "tried to ﬁnd bugs in different aspects. Generally, two approaches were taken by them, i.e. blackbox fuzzing and coverage-guided fuzzing. Blackbox DBMS fuzzing focuses on rapidly constructing a large amount of valid and effective data to pass to the DBMS without the knowledge of the DBMS’s source code. For instance, SQLsmith [1] continuously generates syntacticallycorrect SQL statements and passes them to the DBMS, meanwhile detects whether the DBMS triggers crashes. In addition, SQLancer [3] integrates three different strategies [4], [5], [14] to construct invirant oracle to detect logic bugs.",
+      "context_after": "Additionally, some research works [2], [15] leverage differential testing to detect abnormal behavior in DBMSs. RAGS [2] generates and executes queries in multiple DBMSs, meanwhile compares the results of a query on those DBMSs; similar to RAGS, APPOLO [15] generates queries guided by performance difference and compares the results of a query on different versions of the same DBMS. All these blackbox DBMS fuzzers have shown good performance on bug discovery in the industry’s practice. For example, SQLsmith has found 118 bugs in the past ﬁve years [16], SQLancer has found over 400 bugs in the",
+      "section": "B Fuzzing DBMSs",
+      "page": 2,
+      "char_offset": 10833,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For example, SQLsmith has found 118 bugs in the past ﬁve years [16], SQLancer has found over 400 bugs in the past two years [17].",
+      "context_before": "table is supposed to include a speciﬁc row, and if the DBMS fails to fetch the row, a logic bug is discovered. Additionally, some research works [2], [15] leverage differential testing to detect abnormal behavior in DBMSs. RAGS [2] generates and executes queries in multiple DBMSs, meanwhile compares the results of a query on those DBMSs; similar to RAGS, APPOLO [15] generates queries guided by performance difference and compares the results of a query on different versions of the same DBMS. All these blackbox DBMS fuzzers have shown good performance on bug discovery in the industry’s practice.",
+      "context_after": "While blackbox fuzzing for DBMSs has gained popularity, coverage-guided fuzzing is hardly applied in the industry. To increase code coverage, coverage-guided fuzzing leverages instrumentation or even program analysis techniques; sometimes, directed fuzzing can also be used to reach certain critical program locations. Traditional coverage-guided fuzzers, like AFL [18], libFuzzer [19] and Honggfuzz [20], can be easily applied to DBMS libraries such as SQLite. These fuzzers use mutation-based input generation techniques, and the generated inputs are very unlikely to be syntactically correct. To",
+      "section": "B Fuzzing DBMSs",
+      "page": 3,
+      "char_offset": 11536,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "•SQLancer is a fuzzer for hunting logic bugs in DBMS.",
+      "context_before": "e found that only a few of them can be applied practically for bug hunting. For example, RAGS is not open-source and APPOLO requires a certain version of DBMS and the adaption cost is great. After considering the investments and the possible returns, we chose three fuzzers as our target in our experiment. Table I shows the characteristics of these fuzzers. We summarize their features as follow: •SQLsmith is a random SQL query generator. It detects bugs by checking whether the connection to server isclosed. It is easy to adapt to a new DBMS because it only needs to connect to target SQL server.",
+      "context_after": "It detects logic bugs by constructing invariant oracle [4], [5], [14] and checking whether results violate semantic logic. Adapting it to a new DBMS may take some time because new logic assertion and syntax generation should be implemented. •Squirrel is a fuzzer aiming at ﬁnding memory corruption issues in DBMS. It detects memory corruption in a way similar to SQLsmith, i.e. checking whether the connection to server is closed. Adapting it to a new DBMS may take many manual efforts because it requires customizing AST parser, writing grammar rules, and implementing client logic under its framew",
+      "section": "C Fuzzers Chosen by This Paper",
+      "page": 3,
+      "char_offset": 14147,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "citation_marker",
+      "surface": "[4]",
+      "technique": "norec",
+      "sentence": "It detects logic bugs by constructing invariant oracle [4], [5], [14] and checking whether results violate semantic logic.",
+      "context_before": "ally for bug hunting. For example, RAGS is not open-source and APPOLO requires a certain version of DBMS and the adaption cost is great. After considering the investments and the possible returns, we chose three fuzzers as our target in our experiment. Table I shows the characteristics of these fuzzers. We summarize their features as follow: •SQLsmith is a random SQL query generator. It detects bugs by checking whether the connection to server isclosed. It is easy to adapt to a new DBMS because it only needs to connect to target SQL server. •SQLancer is a fuzzer for hunting logic bugs in DBMS.",
+      "context_after": "Adapting it to a new DBMS may take some time because new logic assertion and syntax generation should be implemented. •Squirrel is a fuzzer aiming at ﬁnding memory corruption issues in DBMS. It detects memory corruption in a way similar to SQLsmith, i.e. checking whether the connection to server is closed. Adapting it to a new DBMS may take many manual efforts because it requires customizing AST parser, writing grammar rules, and implementing client logic under its framework. TABLE IFEATURES OFCHOSEN FUZZERS Fuzzer SQLsmith SQLancer Squirrel Syntax Validity√ √ √ Semantic Validity ×√ √ Logic C",
+      "section": "C Fuzzers Chosen by This Paper",
+      "page": 3,
+      "char_offset": 14201,
+      "cited_reference": {
+        "number": 4,
+        "text": "M. Rigger and Z. Su, “Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction,” in Proceedings of the 2020 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ser. ESEC/FSE 2020, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "pqs",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "TABLE IFEATURES OFCHOSEN FUZZERS Fuzzer SQLsmith SQLancer Squirrel Syntax Validity√ √ √ Semantic Validity ×√ √ Logic Check ×√× Coverage-Guided × ×√ Adaption Difﬁculty Easy Medium Hard III.",
+      "context_before": "detects logic bugs by constructing invariant oracle [4], [5], [14] and checking whether results violate semantic logic. Adapting it to a new DBMS may take some time because new logic assertion and syntax generation should be implemented. •Squirrel is a fuzzer aiming at ﬁnding memory corruption issues in DBMS. It detects memory corruption in a way similar to SQLsmith, i.e. checking whether the connection to server is closed. Adapting it to a new DBMS may take many manual efforts because it requires customizing AST parser, writing grammar rules, and implementing client logic under its framework.",
+      "context_after": "HOW TOFUZZ DATABASE Different DBMSs have different properties, but the procedures to fuzz them with coverage guidance are roughly similar. The steps can be summarized as Fig. 2. First, to collect coverage on executions, the fuzz target should be built into instrumented binaries. Next, to generate correct SQL statements, the high-quality initial corpus is collected for further mutations. During the process, crash-triggering inputs are saved for further inspection. Finally, to analyze the root causes, the abnormal inputs are resubmitted to the binaries to reproduce the bug and create bug report",
+      "section": "C Fuzzers Chosen by This Paper",
+      "page": 3,
+      "char_offset": 14805,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Many tools are implemented following this method, including SQLsmith, SQLancer, and Squirrel.",
+      "context_before": "es on corpora of partially constructed SQL statements in the form of ASTs, covering different types of SQL syntax. To generate SQL statements, the original SQL statements are ﬁrst parsed into ASTs. Next, transformations such as splicing and deletion are performed on the nodes of the ASTs. Finally, the transformed ASTs are serialized into SQL statements. Although this type of generation cannot ensure the correctness of semantics, the generated inputs are syntactically-correct at least. Consequently, early rejections at parsers are avoided, and deeper logic in the target system can be exercised.",
+      "context_after": "c) Analyze Root Causes: When executing randomlygenerated SQL statements, unexpected behaviors indicating bugs may occur. To analyze root causes and ﬁx the bug, A fuzzer must contain a test oracle to detect execution anomalies, or the bug-triggering input may be discarded. Additionally, the related context must be collected too, or the bug will be hard to reproduce and analyze. For fuzzers targeted at different types of bugs, different types of anomalies may be monitored, and the context information to record also differs. According to the way of ﬁndingbugs and monitoring anomalies, we can rou",
+      "section": "C Fuzzers Chosen by This Paper",
+      "page": 4,
+      "char_offset": 18754,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "To detect semantic bugs, tools such as SQLancer implement a test oracle by verifying the returned values.",
+      "context_before": "nerated SQL statements, unexpected behaviors indicating bugs may occur. To analyze root causes and ﬁx the bug, A fuzzer must contain a test oracle to detect execution anomalies, or the bug-triggering input may be discarded. Additionally, the related context must be collected too, or the bug will be hard to reproduce and analyze. For fuzzers targeted at different types of bugs, different types of anomalies may be monitored, and the context information to record also differs. According to the way of ﬁndingbugs and monitoring anomalies, we can roughly divide the fuzzing tools into two categories.",
+      "context_after": "If the results are unexpected, the original query and description of mismatched semantics are logged for further inspection. To detect implementation bugs, tools such as Squirrel looks for crashes and then record the input triggering them. Although these tools are targeted at different types of bugs, they all monitor for execution anomalies which provide valuable context for pinpointing the culprits. After discovering the anomalies, developers should analyze and classify the anomalies to ﬁnd root causes. Sometimes, the bug can be reproduced with the anomaly-triggering input for a better under",
+      "section": "C Fuzzers Chosen by This Paper",
+      "page": 4,
+      "char_offset": 19498,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M15",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLsmith, SQLancer, and Squirrel to test enterprise-level DBMSs.",
+      "context_before": "detect implementation bugs, tools such as Squirrel looks for crashes and then record the input triggering them. Although these tools are targeted at different types of bugs, they all monitor for execution anomalies which provide valuable context for pinpointing the culprits. After discovering the anomalies, developers should analyze and classify the anomalies to ﬁnd root causes. Sometimes, the bug can be reproduced with the anomaly-triggering input for a better understanding of the situation. IV. CHALLENGES ANDSOLUTIONS As Section II-C lists, we chose the most popular DBMS testing tools, i.e.",
+      "context_after": "Despite their wide usage in realworld projects, we still faced considerable challenges when using the coverage-guided fuzzer on enterprise-level DBMSs. As summarized in Fig. 3, in the following, we present the details of challenges as well as the solutions in each step. A. Imprecise Coverage Collection Compared to well-tested library-based DBMSs, the introduction of enterprise-level features in industrial DBMSs leads to extra logic, and inevitably, more components. For example, each node of GaussDB can support at most 8,000 concurrent connections. To support business on large scale, GaussDB i",
+      "section": "C Fuzzers Chosen by This Paper",
+      "page": 4,
+      "char_offset": 20332,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M16",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We observed similar results on SQLancer.",
+      "context_before": "ted with a code of 466K basic blocks, not to mention deployments real-life deployments with components for high-availability, monitoring, and management. Such a complex system poses challenges for fuzzers in terms of efﬁciency. While blackbox fuzzers are robust against such a complex system, their efﬁciency is quite limited. When running blackbox fuzzers on DBMSs, we ﬁnd new code coverage takes many executions to discover. Take SQLsmith as an example, although the number of covered number of basic blocks grew continuously, the growth is extraordinarily slow compared to coverage-guided methods.",
+      "context_after": "Coverage-guided fuzzer Squirrel improves efﬁciency by discovering the interesting inputs and assigning more power to mutate them. Compared to blackbox fuzzers, the efﬁciency of Squirrel is greatly improved, but only for a short time: the coverage of Squirrel quickly reached a plateau. By collecting the number of covered basic blocks over time, we found that a bottleneck is reached soon because its newly generated inputs hardly improve the coverage. To solve the problem of efﬁciency and bottleneck, we investigated the causes behind it. The problem can be mainly Collect Coverage Generate Inputs",
+      "section": "A Imprecise Coverage Collection",
+      "page": 4,
+      "char_offset": 21770,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M17",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For example, SQLsmith and SQLancer test DBMS with blackbox methods.",
+      "context_before": "ce FilesBug Report Rich Context CollectionFig. 3. Overview of challenges and solutions in each step. 1) When building fuzz targets, the precision of coverage collection can be improved with bijective block mapping for accuracy and inter-binary coverage linkage for completeness. 2) When generating SQL queries, the fragile SQL corpus-based mutation can be strengthened with dictionaries. 3) When investigating root causes, the analysis of unreproducible anomalies can be performed on-line with deduplication and rich context collection. attributed to the loss of precise coverage feedback collection.",
+      "context_after": "In other words, though they can determine whether executions of SQL statements are normal, they do not have any coverage feedback. As a result, despite being able to generate syntactically correct SQL statements, these fuzzers could only expand the coverage blindly. The SQL statements generated by the fuzzers are in a narrow-range, which leads to difﬁculties in covering new basic blocks or ﬁnding bugs in deep logic. Squirrel introduces sparse feedback in AFL to guide fuzzing on DBMSs. It hashes the branch (transitions of basic blocks) to one position in a 256KB bitmap. However, the coverage f",
+      "section": "A Imprecise Coverage Collection",
+      "page": 5,
+      "char_offset": 23321,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M18",
+      "found_by": "citation_marker",
+      "surface": "[17]",
+      "technique": null,
+      "sentence": "These generation-based methods have shown signiﬁcant effectiveness in DBMS bug discovery [8], [17].",
+      "context_before": "at compile-time, and generates a conﬂict-free layout to store the coverage among a dynamic set of processes. Therefore, we guarantee the completeness by monitoring each active binary and accounting the coverage for each binary. Consequently, when determining whether an input is interesting, RATEL will not discard interesting inputs by mistake. B. Fragile Input Generation Most DBMS fuzzers leverage handcrafted AST as an input model to generate a greater proportion of valid inputs. Especially, Squirrel uses not only handcrafted AST but also customized semantic rules to ensure semantic validity.",
+      "context_after": "However, even with enormous manual efforts in modeling a new DBMS’s syntax, the model is still fragile due to the complexity of DBMS. DBMSs generally conform to ISO SQL standard [25], which contains 16 parts with thousands of pages and is still in evolution, therefore, constructing an input model is labor-consuming. Take PostgreSQL as an example: SQLsmith only targets PostgreSQL’s SELECT statement, and its grammar model already has 42 elements; SQLancer use over 8,000 lines of Java code to generate syntactically-correct test cases; Squirrel uses over 33,000 lines of C++ code to translate betw",
+      "section": "B Fragile Input Generation",
+      "page": 6,
+      "char_offset": 27579,
+      "cited_reference": {
+        "number": 17,
+        "text": "M. Rigger, “Sqlancer: Bugs found in database management systems,” 2020. [Online]. Available: https://www.manuelrigger.at/dbms-bugs",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M19",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Take PostgreSQL as an example: SQLsmith only targets PostgreSQL’s SELECT statement, and its grammar model already has 42 elements; SQLancer use over 8,000 lines of Java code to generate syntactically-correct test cases; Squirrel uses over 33,000 lines of C++ code to translate between SQL statement and AST.",
+      "context_before": "as an input model to generate a greater proportion of valid inputs. Especially, Squirrel uses not only handcrafted AST but also customized semantic rules to ensure semantic validity. These generation-based methods have shown signiﬁcant effectiveness in DBMS bug discovery [8], [17]. However, even with enormous manual efforts in modeling a new DBMS’s syntax, the model is still fragile due to the complexity of DBMS. DBMSs generally conform to ISO SQL standard [25], which contains 16 parts with thousands of pages and is still in evolution, therefore, constructing an input model is labor-consuming.",
+      "context_after": "Another reason is the diversity of different DBMSs. In addition to basic database-related functionality, DBMSs often have their own speciﬁc features. For example, despite being a derived product from PostgreSQL, GaussDB still has vastly different SQL dialects. As Listing 1 shows, in terms of CREATE TABLE, GaussDB adds a special ﬁeld for choosing its adaptive compression algorithms while shutting off functionalities of inheriting other tables and using extra methods. As a result, its proprietary input model is difﬁcult to transfer to other DBMS. CREATE [ [ ... ] TABLE [ ... ] table_name ( [ {",
+      "section": "B Fragile Input Generation",
+      "page": 6,
+      "char_offset": 27997,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M20",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "As Table I shows, besides RATEL, we used SQLsmith and SQLancer for grammar-based techniques with and without semantic checks.",
+      "context_before": "s glue. We wrote 2,323 lines of Rust for the overall algorithm. The online bug analyzer leverages ptrace to monitor behaviors of DBMS’s processes. Once an anomaly is triggered, the analyzer will collect the program context ( i.e. on-site stack trace and coverage), check whether the anomaly is newly-triggered based on the context, and disable core dump generation if the anomaly is duplicated. We implement the analyzer with 1,790 lines of code in Rust. A. Analysis of Results Aiming at improving the correctness of our production database GaussDB, we explored various mainstream fuzzing techniques.",
+      "context_after": "We also used the academic mutationbased fuzzer Squirrel. We further included several projects for comparison use: PostgreSQL, the original DBMS version where GaussDB forked from; Comdb2, another enterpriselevel DBMS from Bloomberg LP. We perform our evaluation on a 64-bit machine with 40 cores (Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz), 128 GiB of RAM, 2 * 7,200 rpm hard disk in RAID0, and Linux 5.5.13. All DBMSs were compiled with-O2 ﬂags. We enable sanitizers for enhanced bug-detection ability on fuzzers. The initial seeds were collected from the built-in integration tests. We conducted eac",
+      "section": "A Analysis of Results",
+      "page": 7,
+      "char_offset": 34365,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M21",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "TABLE IICOVERAGE OF DBMS FOREACH FUZZER DBMS SQLsmith SQLancer Squirrel RATEL GaussDB 50,172 2,513 N/A 69,432 PostgreSQL 42,563 39,913 16,954 87,739 Comdb2 N/A 2,773 N/A 18,941 Table II presents the number of covered basic blocks for each fuzzer.",
+      "context_before": "ation tests. We conducted each experiment for 12 hours. We collected the seeds generated by those fuzzers, and dryran the seeds through our instrumentation to compute their coverage. Note that due to Comdb2 heavily uses Lua to extend its SQLite-based SQL dialect, we failed to adapt Squirrel and SQLsmith to it within a reasonable time. In addition, wedo many engineering efforts to adapt Squirrel to GaussDB. But after Squirrel covered 229 blocks, the fuzzer crashed due to its implementation issues. As a result, we skipped the evaluation of SQLsmith and Squirrel on Comdb2 and Squirrel on GaussDB.",
+      "context_after": "The second and third columns present the results for generation-based fuzzers, and the last two columns present the results for mutation-based fuzzer. From the table, we can see that: Simple blackbox fuzzers have good robustness in industrial practice. For example, the blackbox fuzzer SQLsmith outperformed the coverage-guided fuzzer Squirrel by 151.05%. It is because Squirrel is an academic prototype which lacks feedback from the industry while SQLsmith is designed for testing PostgreSQL from the beginning. Complex blackbox methods have limitations in industrial practice. For example, SQLance",
+      "section": "A Analysis of Results",
+      "page": 7,
+      "char_offset": 35662,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M22",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For example, SQLancer covered more basic blocks than Squirrel on PostgreSQL but under-performed SQLsmith on GaussDB and PostgreSQL.",
+      "context_before": "ocks for each fuzzer. The second and third columns present the results for generation-based fuzzers, and the last two columns present the results for mutation-based fuzzer. From the table, we can see that: Simple blackbox fuzzers have good robustness in industrial practice. For example, the blackbox fuzzer SQLsmith outperformed the coverage-guided fuzzer Squirrel by 151.05%. It is because Squirrel is an academic prototype which lacks feedback from the industry while SQLsmith is designed for testing PostgreSQL from the beginning. Complex blackbox methods have limitations in industrial practice.",
+      "context_after": "The reason is that SQLancer is specialized in logic bug hunting and only uses a part of SQL features to construct its oracle violation. Its strength is discovering more types of bugs instead of coverage improvement. SQLancer also uses advanced test oracles to detect bugs, thus the CREATE TABLE statements generated by it have many ﬁne-tuned parameters. It performs well on its supported DBMSs such as PostgreSQL and SQLite. However, when adapting to PostgreSQL-based GaussDB and SQLitebased Comdb2, the trivial differences in syntax prevented it from function normally. RATEL outperformed other fuz",
+      "section": "A Analysis of Results",
+      "page": 7,
+      "char_offset": 36488,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M23",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The reason is that SQLancer is specialized in logic bug hunting and only uses a part of SQL features to construct its oracle violation.",
+      "context_before": "t the results for mutation-based fuzzer. From the table, we can see that: Simple blackbox fuzzers have good robustness in industrial practice. For example, the blackbox fuzzer SQLsmith outperformed the coverage-guided fuzzer Squirrel by 151.05%. It is because Squirrel is an academic prototype which lacks feedback from the industry while SQLsmith is designed for testing PostgreSQL from the beginning. Complex blackbox methods have limitations in industrial practice. For example, SQLancer covered more basic blocks than Squirrel on PostgreSQL but under-performed SQLsmith on GaussDB and PostgreSQL.",
+      "context_after": "Its strength is discovering more types of bugs instead of coverage improvement. SQLancer also uses advanced test oracles to detect bugs, thus the CREATE TABLE statements generated by it have many ﬁne-tuned parameters. It performs well on its supported DBMSs such as PostgreSQL and SQLite. However, when adapting to PostgreSQL-based GaussDB and SQLitebased Comdb2, the trivial differences in syntax prevented it from function normally. RATEL outperformed other fuzzers in terms of coverage and adaptation range. On GaussDB, it covers 0.38x, 26.63x more basic blocks than SQLsmith and SQLancer, respec",
+      "section": "A Analysis of Results",
+      "page": 7,
+      "char_offset": 36620,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M24",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer also uses advanced test oracles to detect bugs, thus the CREATE TABLE statements generated by it have many ﬁne-tuned parameters.",
+      "context_before": "d fuzzer Squirrel by 151.05%. It is because Squirrel is an academic prototype which lacks feedback from the industry while SQLsmith is designed for testing PostgreSQL from the beginning. Complex blackbox methods have limitations in industrial practice. For example, SQLancer covered more basic blocks than Squirrel on PostgreSQL but under-performed SQLsmith on GaussDB and PostgreSQL. The reason is that SQLancer is specialized in logic bug hunting and only uses a part of SQL features to construct its oracle violation. Its strength is discovering more types of bugs instead of coverage improvement.",
+      "context_after": "It performs well on its supported DBMSs such as PostgreSQL and SQLite. However, when adapting to PostgreSQL-based GaussDB and SQLitebased Comdb2, the trivial differences in syntax prevented it from function normally. RATEL outperformed other fuzzers in terms of coverage and adaptation range. On GaussDB, it covers 0.38x, 26.63x more basic blocks than SQLsmith and SQLancer, respectively; On PostgreSQL, it covers 1.06x, 1.20x, 4.29x more basic blocks than SQLsmith, SQLancer, and Squirrel, respectively; On Comdb2, it covers 5.83x than SQLancer. Figure 6 demonstrates the number of basic blocks and",
+      "section": "A Analysis of Results",
+      "page": 7,
+      "char_offset": 36836,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M25",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "63x more basic blocks than SQLsmith and SQLancer, respectively; On PostgreSQL, it covers 1.",
+      "context_before": "part of SQL features to construct its oracle violation. Its strength is discovering more types of bugs instead of coverage improvement. SQLancer also uses advanced test oracles to detect bugs, thus the CREATE TABLE statements generated by it have many ﬁne-tuned parameters. It performs well on its supported DBMSs such as PostgreSQL and SQLite. However, when adapting to PostgreSQL-based GaussDB and SQLitebased Comdb2, the trivial differences in syntax prevented it from function normally. RATEL outperformed other fuzzers in terms of coverage and adaptation range. On GaussDB, it covers 0.38x, 26.",
+      "context_after": "06x, 1.20x, 4.29x more basic blocks than SQLsmith, SQLancer, and Squirrel, respectively; On Comdb2, it covers 5.83x than SQLancer. Figure 6 demonstrates the number of basic blocks and paths growth for each fuzzer over the 12-hour trails in the ﬁrst and the second column, respectively. The results illustrate that RATEL not only achieves high coverage, but also has advantages in speed. In speciﬁc, in Figure 6 (a) and Figure 6 (b), RATEL ﬁnds less basic blocks and paths than SQLsmith in the beginning. But with the coverage guided, RATEL quickly catches up with and surpasses it. In Figure 6 (c) an",
+      "section": "A Analysis of Results",
+      "page": 7,
+      "char_offset": 37300,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M26",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "29x more basic blocks than SQLsmith, SQLancer, and Squirrel, respectively; On Comdb2, it covers 5.",
+      "context_before": "nstead of coverage improvement. SQLancer also uses advanced test oracles to detect bugs, thus the CREATE TABLE statements generated by it have many ﬁne-tuned parameters. It performs well on its supported DBMSs such as PostgreSQL and SQLite. However, when adapting to PostgreSQL-based GaussDB and SQLitebased Comdb2, the trivial differences in syntax prevented it from function normally. RATEL outperformed other fuzzers in terms of coverage and adaptation range. On GaussDB, it covers 0.38x, 26.63x more basic blocks than SQLsmith and SQLancer, respectively; On PostgreSQL, it covers 1.06x, 1.20x, 4.",
+      "context_after": "83x than SQLancer. Figure 6 demonstrates the number of basic blocks and paths growth for each fuzzer over the 12-hour trails in the ﬁrst and the second column, respectively. The results illustrate that RATEL not only achieves high coverage, but also has advantages in speed. In speciﬁc, in Figure 6 (a) and Figure 6 (b), RATEL ﬁnds less basic blocks and paths than SQLsmith in the beginning. But with the coverage guided, RATEL quickly catches up with and surpasses it. In Figure 6 (c) and Figure 6 (d), RATEL covers more basic blocks and paths in PostgreSQL than other fuzzers in the beginning, and",
+      "section": "A Analysis of Results",
+      "page": 7,
+      "char_offset": 37405,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M27",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "83x than SQLancer.",
+      "context_before": "CREATE TABLE statements generated by it have many ﬁne-tuned parameters. It performs well on its supported DBMSs such as PostgreSQL and SQLite. However, when adapting to PostgreSQL-based GaussDB and SQLitebased Comdb2, the trivial differences in syntax prevented it from function normally. RATEL outperformed other fuzzers in terms of coverage and adaptation range. On GaussDB, it covers 0.38x, 26.63x more basic blocks than SQLsmith and SQLancer, respectively; On PostgreSQL, it covers 1.06x, 1.20x, 4.29x more basic blocks than SQLsmith, SQLancer, and Squirrel, respectively; On Comdb2, it covers 5.",
+      "context_after": "Figure 6 demonstrates the number of basic blocks and paths growth for each fuzzer over the 12-hour trails in the ﬁrst and the second column, respectively. The results illustrate that RATEL not only achieves high coverage, but also has advantages in speed. In speciﬁc, in Figure 6 (a) and Figure 6 (b), RATEL ﬁnds less basic blocks and paths than SQLsmith in the beginning. But with the coverage guided, RATEL quickly catches up with and surpasses it. In Figure 6 (c) and Figure 6 (d), RATEL covers more basic blocks and paths in PostgreSQL than other fuzzers in the beginning, and it maintains lead",
+      "section": "A Analysis of Results",
+      "page": 7,
+      "char_offset": 37503,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M28",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "100101102103 GaussDB(Paths)0200040006000800010000120001400016000 100101102103 GaussDB(Basic Blocks)010000200003000040000500006000070000 100101102103 PostgreSQL(Paths)0200040006000800010000120001400016000 100101102103 PostgreSQL(Basic Blocks)0100002000030000400005000060000700008000090000 100101102103 Comdb2(Paths)020040060080010001200140016001800 100101102103 Comdb2(Basic Blocks)05000100001500020000 SQLsmith SQLancer SQUIRREL Ratel(a) (b) (c) (e) (f)(d)Fig.",
+      "context_before": "12-hour trails in the ﬁrst and the second column, respectively. The results illustrate that RATEL not only achieves high coverage, but also has advantages in speed. In speciﬁc, in Figure 6 (a) and Figure 6 (b), RATEL ﬁnds less basic blocks and paths than SQLsmith in the beginning. But with the coverage guided, RATEL quickly catches up with and surpasses it. In Figure 6 (c) and Figure 6 (d), RATEL covers more basic blocks and paths in PostgreSQL than other fuzzers in the beginning, and it maintains lead to the end. The results on Comdb2 in Figure 6 (e) and Figure 6 (f) also have similar trends.",
+      "context_after": "6. Path and basic block growth for each fuzzer over the 12-hour trials. The performance promotion of RATEL mainly dues to high-quality coverage guidance. With the coverage guidance, Squirrel and RATEL ﬁnd more basic blocks signiﬁcantly. For example, both the curves of Squirrel and RATEL in Figure 6 are always above the other black box fuzzers. Compared to Squirrel, RATEL still performs better because of the more precise feedback. Squirrel employs the feedback mechanism in AFL. Because DBMSs always have a large code scale, Squirrel extends the bitmap from 64 KB to 256KB. However, the AFL’s has",
+      "section": "A Analysis of Results",
+      "page": 7,
+      "char_offset": 38213,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M29",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In contrast, SQLancer, SQLsmith, and Squirrel did not ﬁnd them.",
+      "context_before": "ll have a more serious impact. In contrast, RATEL implements conﬂict-free cross-binary feedback. It eliminates the collision by assigning unique counters for each basic block. To enrich block-based coverage, RATEL analyzes critical edges, whose source has multiple successors and destination has multiple predecessors and represents them with dummy basic blocks. Therefore, the improved coverage brings more opportunities for RATEL to ﬁnd more vulnerabilities. B. Analysis of Bugs In our practice of fuzzing DBMSs, RATEL found 32, 42, and 5 previously-unknown bugs in GaussDB, PostgreSQL, and Comdb2.",
+      "context_after": "Out of these bugs, we take two interesting cases from these DBMSs. For both cases, we illustrate how the challenges in adapting coverage-feedback fuzzing to DBMSs impedes other fuzzer ﬁnd these bugs. And more importantly, we also analyze how the solutions help RATEL to ﬁnd them.-- Terminate the corresponding backend process. SELECT pg_cancel_backend(pg_backend_pid()) -- Now the connection is closed by the server. \\c non_existing_db -- Tries to reuse the closed connection. SELECT ... -- CRASH WITH NULL POINTER! Listing 2. The SQL statements triggering null pointer access. a) Null Pointer Acces",
+      "section": "B Analysis of Bugs",
+      "page": 8,
+      "char_offset": 40327,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M30",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Both SQLancer and SQLsmith did not ﬁnd this bug.",
+      "context_before": "ows the SQL statements which could trigger the bug. This bug involves multiple interactions between the server and the client, which could be triggered with three statements. In speciﬁc, ﬁrst the SQL statement SELECT pg_cancel_backend(pg_backend_PID ()) is executed, and the backend process of the server will shut down and close the connection. Next, the client tries to switch to another database by attempting to reuse the old connection, but the connection is closed and set to NULL pointer. Next, executing any SQL statements tries to access the NULL connection, crashing the client as a result.",
+      "context_after": "They use blackbox methods, which build syntactically correct SQLs based on ASTs. However, queries like pg_cancel_backend are DBMS speciﬁc extension functions. Due to the incomplete syntax modeling, SQLancer and SQLsmith can never generate such queries. Squirrel uses syntax-based mutation to generate SQL statements and enforces strict language-validity: only the inputs which pass its AST parser could be mutated, and the generated query is re-parsed to ensure the validity. However, the incomplete modeling of the syntax prevented it from mutating the input at all. Consequently, neither can Squir",
+      "section": "B Analysis of Bugs",
+      "page": 8,
+      "char_offset": 41620,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M31",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Due to the incomplete syntax modeling, SQLancer and SQLsmith can never generate such queries.",
+      "context_before": "t SELECT pg_cancel_backend(pg_backend_PID ()) is executed, and the backend process of the server will shut down and close the connection. Next, the client tries to switch to another database by attempting to reuse the old connection, but the connection is closed and set to NULL pointer. Next, executing any SQL statements tries to access the NULL connection, crashing the client as a result. Both SQLancer and SQLsmith did not ﬁnd this bug. They use blackbox methods, which build syntactically correct SQLs based on ASTs. However, queries like pg_cancel_backend are DBMS speciﬁc extension functions.",
+      "context_after": "Squirrel uses syntax-based mutation to generate SQL statements and enforces strict language-validity: only the inputs which pass its AST parser could be mutated, and the generated query is re-parsed to ensure the validity. However, the incomplete modeling of the syntax prevented it from mutating the input at all. Consequently, neither can Squirrel trigger this bug. Different from these fuzzers, RATEL addresses the challenge of fragile input generation by not only adapting PostgreSQL with a customized dictionary, but also preserving the syntaxbased mutation with relaxed syntax checks. Because",
+      "section": "B Analysis of Bugs",
+      "page": 8,
+      "char_offset": 41828,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M32",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For blackbox fuzzers like SQLsmith and SQLancer, they have a low possibility of generating SQL statements to cover these states without feedback.",
+      "context_before": "te(..., tzname,...); ..... } osql_sess_t *osql_sess_create(){ if(tzname) Crash due to invalid memory access. strncpy0(sess->tzname, tzname, sizeof (sess->tzname)); } Listing 3. The details of stack-use-after-scope on address The bug is hidden in deep logic, which is triggered only when the speciﬁc basic blocks are covered and Comdb2 reaches a unique state after querying a particular ALTER statement. As shown in Fig. 7, the call stack of the bug is rather deep. In speciﬁc, it contains three levels, namely parsing, logic, and networking. Covering the basic blocks on the top of the stack is hard.",
+      "context_after": "Although Squirrel also guides fuzzing with coverage, the spare coverage and its strict syntax checks lower the probability to trigger the bug. In contrast, RATEL addresses the challenges of imprecise coverage collection with inter-binary linkage and bijectiveblock mapping. With the robustness-oriented syntax-based mutation, it expanded coverage and ﬁnally triggered this bug. More importantly, this bug requires Comdb2 in a particular state: just passing the syntax checks is not enough, the table must be present and its schema must be valid for the ALTER statement. Therefore, simply re-executin",
+      "section": "B Analysis of Bugs",
+      "page": 9,
+      "char_offset": 45734,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M33",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For example, Squirrel and SQLancer drop databases after each query.",
+      "context_before": "hen collecting coverage. If other clients send queries during the interval, the collected coverage is imprecise. In our practice, we can only set up the equivelant number of servers as the number of clients for Squirrel, which is ineffective. We believe it is a valuable research topic and demand to be tackled. c) Low Efﬁciency in Dropping Databases: Dropping database decreases the noise for stateful DBMSs, which assists bug deduplication and helps fuzzer performs more stable. However, frequent dropping will ignore the bugs which only can be triggered in some states and bring a lot of overhead.",
+      "context_after": "We occasionally drop databases to explore more states and lower the overhead. Instead, when bugs are triggered, we investigate the root cause of bugs with on-line triage. d) Bugs Hidden in Heterogeneous Platforms: In practice, we ﬁnd bugs hidden in heterogeneous platforms. For example, GaussDB is mainly deployed in Huawei Kunpeng powered ARM servers. We ﬁnd that some bugs like misaligned pointer accesses have minor performance impacts on x86 platforms, but can cause hardware exceptions on ARM. Undeﬁned behaviors might seem trivial on some certain platforms, they can still lead to major bugs i",
+      "section": "B Analysis of Bugs",
+      "page": 9,
+      "char_offset": 48581,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M27"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:13:36Z",
+    "is_model_written": true,
+    "summary": "An industry report on bringing coverage-guided fuzzing to enterprise DBMSs at Huawei and Bloomberg. The authors note that industry has used black-box fuzzing for decades while coverage guidance has produced impressive research gains that rarely reach enterprise systems, given their complexity and distributed nature. Testing GaussDB and Comdb2 they hit challenges at all three stages -- collecting precise coverage, optimising fuzzing performance, and analysing root causes -- and built Ratel to address them, discovering 32, 42 and 5 unknown bugs in GaussDB, Comdb2 and PostgreSQL.",
+    "narrative": "SQLancer is one of the three fuzzers the practice was built around and measured against, described as a black-box logic-bug fuzzer that combines three oracle strategies and credited with finding over 400 bugs in two years.",
+    "roles": {
+      "M1": "result_comparison",
+      "M2": "background",
+      "M3": "background",
+      "M4": "background",
+      "M5": "result_comparison",
+      "M6": "baseline",
+      "M7": "definition",
+      "M8": "definition",
+      "M9": "incidental",
+      "M10": "definition",
+      "M11": "definition",
+      "M12": "baseline",
+      "M13": "background",
+      "M14": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is one of the fuzzers run for comparison; Ratel is its own coverage-guided tool."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Nothing shown claims to extend PQS, NoREC or TLP."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M1",
+          "M5",
+          "M6"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M1",
+            "sentence": "Compared to industrial black box fuzzers SQLsmith and SQLancer, as well as coverage-guided academic fuzzer Squirrel, RATEL covered 38.",
+            "section": null,
+            "page": 1
+          },
+          {
+            "mention_id": "M5",
+            "sentence": "Compared to SQLsmith, SQLancer, and Squirrel, it covered 38.",
+            "section": "I INTRODUCTION",
+            "page": 2
+          },
+          {
+            "mention_id": "M6",
+            "sentence": "SQLsmith, SQLancer, and Squirrel, which are chosen for our industry practice.",
+            "section": "II BACKGROUND",
+            "page": 2
+          }
+        ],
+        "reasoning": "SQLancer is one of three fuzzers Ratel is measured against, with basic block coverage reported relative to each."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is described as an industrial black-box fuzzer and credited with its bug count, but not called the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

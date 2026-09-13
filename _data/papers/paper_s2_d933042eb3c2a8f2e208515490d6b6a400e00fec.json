@@ -1,0 +1,1004 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:32:44Z",
+  "paper": {
+    "id": "paper:s2:d933042eb3c2a8f2e208515490d6b6a400e00fec",
+    "title": "Towards Generic Database Management System Fuzzing",
+    "authors": [
+      "Yupeng Yang",
+      "Yongheng Chen",
+      "Rui Zhong",
+      "Jizhou Chen",
+      "Wenke Lee"
+    ],
+    "year": 2024,
+    "venue": "USENIX Security Symposium",
+    "doi": null,
+    "arxiv_id": null,
+    "s2_paper_id": "d933042eb3c2a8f2e208515490d6b6a400e00fec",
+    "url": "https://www.semanticscholar.org/paper/d933042eb3c2a8f2e208515490d6b6a400e00fec",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://www.semanticscholar.org/paper/d933042eb3c2a8f2e208515490d6b6a400e00fec",
+      "retrieved_at": "2026-09-09T01:32:44Z",
+      "chars": 93200,
+      "content_sha256": "sha256:388e6fee4d93e389eabb23096f26b6eebd3b10ddb51d99f2c1c8375f0c9dd6a2"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 19,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 1871
+      },
+      {
+        "number": "2.1",
+        "title": "Diverse DBMS Interfaces",
+        "start": 8174
+      },
+      {
+        "number": "2.2",
+        "title": "Existing Challenges and Limitations",
+        "start": 9947
+      },
+      {
+        "number": "2.3",
+        "title": "Our Insights and Solutions",
+        "start": 19256
+      },
+      {
+        "number": "5.1",
+        "title": "Annotation System",
+        "start": 27399
+      },
+      {
+        "number": "5.2",
+        "title": "Semantic Analysis and Validation",
+        "start": 39263
+      },
+      {
+        "number": "8.1",
+        "title": "Environment Setup",
+        "start": 46716
+      },
+      {
+        "number": "8.2",
+        "title": "Generalizability and Portability",
+        "start": 49392
+      },
+      {
+        "number": "8.3",
+        "title": "Real-world Bug Hunting",
+        "start": 51219
+      },
+      {
+        "number": "8.4",
+        "title": "Contributions of the Solutions",
+        "start": 54864
+      },
+      {
+        "number": "8.5",
+        "title": "Comparison with Existing Tools",
+        "start": 63968
+      },
+      {
+        "number": "9.1",
+        "title": "Complex Semantics and Completeness",
+        "start": 68022
+      },
+      {
+        "number": "9.2",
+        "title": "Common Database Interface",
+        "start": 69319
+      },
+      {
+        "number": "10.1",
+        "title": "General Fuzzing Strategies",
+        "start": 70288
+      },
+      {
+        "number": "10.2",
+        "title": "Language Processors Fuzzing",
+        "start": 71663
+      },
+      {
+        "number": "10.3",
+        "title": "DBMSs Fuzzing",
+        "start": 72602
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "ANTLR. Grammars written for ANTLR v4. https://github.com/ antlr/grammars-v4, 2020. Accessed: 2023-09-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "ArangoDB Inc. ArangoDB. https://www.arangodb.com/, 2015. Accessed: 2023-09-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Cornelius Aschermann, Tommaso Frassetto, Thorsten Holz, Patrick Jauernig, Ahmad-Reza Sadeghi, and Daniel Teuchert. NAUTILUS: Fishing for Deep Bugs with Grammars. In 26th Annual Network and Distributed System Security Symposium, NDSS 2019, San Diego, California, USA, February 24-27, 2019. The Internet Society, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Cornelius Aschermann, Sergej Schumilo, Tim Blazytko, Robert Gawlik, and Thorsten Holz. REDQUEEN: Fuzzing with Input-to-State Correspondence. In 26th Annual Network and Distributed System Security Symposium, NDSS 2019, San Diego, California, USA, February 24-27, 2019. The Internet Society, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Bitnine Global Inc. AgensGraph. https://bitnine.net/, 2017. Accessed: 2023-09-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Tim Blazytko, Cornelius Aschermann, Moritz Schlögel, Ali Abbasi, Sergej Schumilo, Simon Wörner, and Thorsten Holz. GRIMOIRE: Synthesizing Structure while Fuzzing. In Nadia Heninger and Patrick Traynor, editors, 28th USENIX Security Symposium, USENIX Security 2019, Santa Clara, CA, USA, August 14-16, 2019, pages 1985–2002. USENIX Association, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Marcel Böhme, Van-Thuan Pham, and Abhik Roychoudhury. Coveragebased Greybox Fuzzing as Markov Chain. In Edgar R. Weippl, Stefan Katzenbeisser, Christopher Kruegel, Andrew C. Myers, and Shai Halevi, editors, Proceedings of the 2016 ACMSIGSAC Conference on Computer and Communications Security, Vienna, Austria, October 24-28, 2016, pages 1032–1043. ACM, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Surajit Chaudhuri. An Overview of Query Optimization in Relational Systems. In Alberto O. Mendelzon and Jan Paredaens, editors, Proceedings of the Seventeenth ACMSIGACT-SIGMOD-SIGART Symposium on Principles of Database Systems, June 1-3, 1998, Seattle, Washington, USA, pages 34–43. ACM Press, 1998.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Yongheng Chen, Rui Zhong, Hong Hu, Hangfan Zhang, Yupeng Yang, Dinghao Wu, and Wenke Lee. One Engine to Fuzz ’em All: Generic Language Processor Testing with Semantic Validation. In 42nd IEEE Symposium on Security and Privacy, SP 2021, San Francisco, CA, USA, 24-27 May 2021, pages 642–658. IEEE, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Nicolas Coppik, Oliver Schwahn, and Neeraj Suri. MemFuzz: Using Memory Accesses to Guide Fuzzing. In 12th IEEE Conference on Software Testing, Validation and Verification, ICST 2019, Xi’an, China, April 22-27, 2019, pages 48–58. IEEE, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Microsoft Corporation. Microsoft SQL Server. https://docs. microsoft.com/en-us/sql/, 1989. Accessed: 2023-09-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Oracle Corporation. Oracle Database. https://www.oracle.com/ database/technologies/, 1979. Accessed: 2023-09-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Ali Davoudian, Liu Chen, and Mengchi Liu. A Survey on NoSQL Stores. ACM Comput. Surv., 51(2):40:1–40:43, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Andrea Fioraldi, Dominik Christian Maier, Heiko Eißfeldt, and Marc Heuse. AFL++: Combining Incremental Steps of Fuzzing Research. In Yuval Yarom and Sarah Zennou, editors, 14th USENIX Workshop on Offensive Technologies, WOOT 2020, August 11, 2020. USENIX Association, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. Griffin: Grammar-Free DBMS Fuzzing. In 37th IEEE/ACM International Conference on Automated Software Engineering, ASE 2022, Rochester, MI, USA, October 10-14, 2022, pages 49:1–49:12. ACM, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Felix Gessert, Wolfram Wingerath, Steffen Friedrich, and Norbert Ritter. NoSQL database systems: a survey and decision guidance. Comput. Sci. Res. Dev., 32(3-4):353–365, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Patrice Godefroid, Adam Kiezun, and Michael Y. Levin. Grammar-based Whitebox Fuzzing. In Rajiv Gupta and Saman P. Amarasinghe, editors, Proceedings of the ACMSIGPLAN 2008 Conference on Programming Language Design and Implementation, Tucson, AZ, USA, June 7-13, 2008, pages 206–215. ACM, 2008.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Google. Honggfuzz. https://google.github.io/honggfuzz/, 2016. Accessed: 2023-09-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Rahul Gopinath, Björn Mathis, Matthias Höschele, Alexander Kampmann, and Andreas Zeller. Sample-Free Learning of Input Grammars for Comprehensive Software Fuzzing. CoRR, abs/1810.08289, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Samuel Groß, Simon Koch, Lukas Bernhard, Thorsten Holz, and Martin Johns. FUZZILLI: Fuzzing for JavaScript JIT Compiler Vulnerabilities. In30th Annual Network and Distributed System Security Symposium, NDSS 2023, San Diego, California, USA, February 27 - March 3, 2023. The Internet Society, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "HyungSeok Han, DongHyeon Oh, and Sang Kil Cha. CodeAlchemist: Semantics-Aware Code Generation to Find Vulnerabilities in JavaScript Engines. In 26th Annual Network and Distributed System Security Symposium, NDSS 2019, San Diego, California, USA, February 24-27, 2019. The Internet Society, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Renáta Hodován, Ákos Kiss, and Tibor Gyimóthy. Grammarinator: a grammar-based open source fuzzer. In Wishnu Prasetya, Tanja E. J. V os, and Sinem Getir, editors, Proceedings of the 9th ACMSIGSOFT International Workshop on Automating TEST Case Design, Selection, and Evaluation, A-TEST@SIGSOFT FSE 2018, Lake Buena Vista, FL, USA, November 05, 2018, pages 45–48. ACM, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Matthias Höschele and Andreas Zeller. Mining Input Grammars from Dynamic Taints. In David Lo, Sven Apel, and Sarfraz Khurshid, editors, Proceedings of the 31st IEEE/ACM International Conference on Automated Software Engineering, ASE 2016, Singapore, September 3-7, 2016, pages 720–725. ACM, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Bo Jiang, Ye Liu, and W. K. Chan. ContractFuzzer: fuzzing smart contracts for vulnerability detection. In Marianne Huchard, Christian Kästner, and Gordon Fraser, editors, Proceedings of the 33rd ACM/IEEE International Conference on Automated Software Engineering, ASE 2018, Montpellier, France, September 3-7, 2018, pages 259–269. ACM, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. DynSQL: Stateful Fuzzing for Database Management Systems with Complex and Valid SQL Query Generation. In Joseph A. Calandrino and Carmela Troncoso, editors, 32nd USENIX Security Symposium, USENIX Security 2023, Anaheim, CA, USA, August 9-11, 2023, pages 4949–4965. USENIX Association, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. Testing Graph Database Engines via Query Partitioning. In René Just and Gordon Fraser, editors, Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis, ISSTA 2023, Seattle, WA, USA, July 17-21, 2023, pages 140–149. ACM, 2023.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 27,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. Sequence-Oriented DBMS Fuzzing. In 39th IEEE International Conference on Data Engineering, ICDE 2023, Anaheim, CA, USA, April 3-7, 2023, pages 668–681. IEEE, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Yu Liang, Song Liu, and Hong Hu. Detecting Logical Bugs of DBMS with Coverage-based Guidance. In Kevin R. B. Butler and Kurt Thomas, editors, 31st USENIX Security Symposium, USENIX Security 2022, Boston, MA, USA, August 10-12, 2022, pages 4309–4326. USENIX Association, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "libFuzzer. libFuzzera library for coverage-guided fuzz testing. https: //llvm.org/docs/LibFuzzer.html, 2015. Accessed: 2023-09-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Chenyang Lyu, Shouling Ji, Chao Zhang, Yuwei Li, Wei-Han Lee, Yu Song, and Raheem Beyah. MOPT: Optimized Mutation Scheduling for Fuzzers. In Nadia Heninger and Patrick Traynor, editors, 28th USENIX Security Symposium, USENIX Security 2019, Santa Clara, CA, USA, August 14-16, 2019, pages 1949–1966. USENIX Association, USENIX Association 33rd USENIX Security Symposium 915 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Chenyang Lyu, Shouling Ji, Xuhong Zhang, Hong Liang, Binbin Zhao, Kangjie Lu, and Raheem Beyah. EMS: History-Driven Mutation for Coverage-based Fuzzing. In 29th Annual Network and Distributed System Security Symposium, NDSS 2022, San Diego, California, USA, April 24-28, 2022. The Internet Society, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Alessandro Mantovani, Andrea Fioraldi, and Davide Balzarotti. Fuzzing with Data Dependency Information. In 7th IEEE European Symposium on Security and Privacy, EuroS&P 2022, Genoa, Italy, June 6-10, 2022, pages 286–302. IEEE, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "MongoDB Inc. MongoDB. https://www.mongodb.com/, 2007. Accessed: 2023-09-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "MozillaSecurity. funfuzz. https://github.com/ MozillaSecurity/funfuzz, 2020. Accessed: 2023-09-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Neo4j and openCypher. Cypher Query Language. https:// opencypher.org/, 2015. Accessed: 2023-09-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Oracle Corporation. MySQL. https://dev.mysql.com/, 1995. Accessed: 2023-09-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Soyeon Park, Wen Xu, Insu Yun, Daehee Jang, and Taesoo Kim. Fuzzing JavaScript Engines with Aspect-preserving Mutation. In CA, USA, May 18-21, 2020, pages 1629–1642. IEEE, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Van-Thuan Pham, Marcel Böhme, and Abhik Roychoudhury. Modelbased Whitebox Fuzzing for Program Binaries. In David Lo, Sven Apel, and Sarfraz Khurshid, editors, Proceedings of the 31st IEEE/ACM International Conference on Automated Software Engineering, ASE 2016, Singapore, September 3-7, 2016, pages 543–553. ACM, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "PostgreSQL Global Development Group. PostgreSQL. https://www. postgresql.org/, 1986. Accessed: 2023-09-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Redis Ltd. Redis. https://redis.io/, 2009. Accessed: 2023-09-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Redis Ltd. RedisGraph. https://oss.redislabs.com/ redisgraph/, 2009. Accessed: 2023-09-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Manuel Rigger and Zhendong Su. Detecting Optimization Bugs in Database Engines via Non-optimizing Reference Engine Construction. In Prem Devanbu, Myra B. Cohen, and Thomas Zimmermann, editors, ESEC/FSE ’20: 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, Virtual Event, USA, November 8-13, 2020, pages 1140–1152. ACM, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 43,
+      "text": "Manuel Rigger and Zhendong Su. Testing Database Engines via Pivoted Query Synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020, Virtual Event, November 4-6, 2020, pages 667–682. USENIX Association, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 44,
+      "text": "Andreas Seltenreich, Bo Tang, and Sjoerd Mullender. SQLsmith. https://github.com/anse1/sqlsmith, 2016. Accessed: 202309-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Snap Inc. KeyDB. https://docs.keydb.dev/, 2019. Accessed: 2023-09-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Spandan Veggalam, Sanjay Rawat, István Haller, and Herbert Bos. IFuzzer: An Evolutionary Interpreter Fuzzer Using Genetic Programming. In Ioannis G. Askoxylakis, Sotiris Ioannidis, Sokratis K. Katsikas, and Catherine Meadows, editors, Computer Security-ESORICS 2016 - 21st European Symposium on Research in Computer Security, Heraklion, Greece, September 26-30, 2016, Proceedings, Part I, volume 9878",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Joachim Viide, Aki Helin, Marko Laakso, Pekka Pietikäinen, Mika Seppänen, Kimmo Halunen, Rauli Puuperä, and Juha Röning. Experiences with Model Inference Assisted Fuzzing. In Dan Boneh, Tal Garfinkel, and Dug Song, editors, 2nd USENIX Workshop on Offensive Technologies, WOOT’08, San Jose, CA, USA, July 28, 2008, Proceedings. USENIX Association, 2008.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Junjie Wang, Bihuan Chen, Lei Wei, and Yang Liu. Superion: Grammaraware Greybox Fuzzing. In Joanne M. Atlee, Tevfik Bultan, and Jon Whittle, editors, Proceedings of the 41st International Conference on Software Engineering, ICSE 2019, Montreal, QC, Canada, May 25-31, 2019, pages 724–735. IEEE / ACM, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. Industry Practice of Coverage-Guided Enterprise-Level DBMS Fuzzing. In 43rd IEEE/ACM International Conference on Software Engineering: Software Engineering in Practice, ICSE (SEIP) 2021, Madrid, Spain, May 25-28, 2021, pages 328–337. IEEE, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Peng Xu, Yanhao Wang, Hong Hu, and Purui Su. COOPER: Testing the Binding Code of Scripting Languages with Cooperative Mutation. In29th Annual Network and Distributed System Security Symposium, NDSS 2022, San Diego, California, USA, April 24-28, 2022. The Internet Society, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. Finding and Understanding Bugs in C Compilers. In Mary W. Hall and David A. Padua, editors, Proceedings of the 32nd ACMSIGPLAN Conference on Programming Language Design and Implementation, PLDI 2011, San Jose, CA, USA, June 4-8, 2011, pages 283–294. ACM, 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Guixin Ye, Zhanyong Tang, Shin Hwei Tan, Songfang Huang, Dingyi Fang, Xiaoyang Sun, Lizhong Bian, Haibo Wang, and Zheng Wang. Automated Conformance Testing for JavaScript Engines via Deep Compiler Fuzzing. In Stephen N. Freund and Eran Yahav, editors, PLDI ’21: 42nd ACMSIGPLAN International Conference on Programming Language Design and Implementation, Virtual Event, Canada, June 20-25, 2021, pages",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Insu Yun, Sangho Lee, Meng Xu, Yeongjin Jang, and Taesoo Kim. QSYM: A Practical Concolic Execution Engine Tailored for Hybrid Fuzzing. In William Enck and Adrienne Porter Felt, editors, 27th USENIX Security Symposium, USENIX Security 2018, Baltimore, MD, USA, August 15-17, 2018, pages 745–761. USENIX Association, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Michal Zalewski. American Fuzzy Lop (2.52b). http://lcamtuf. coredump.cx/afl, 2019. Accessed: 2023-09-14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Yingying Zheng, Wensheng Dou, Yicheng Wang, Zheng Qin, Lei Tang, Yu Gao, Dong Wang, Wei Wang, and Jun Wei. Finding bugs in Gremlinbased graph database systems via Randomized differential testing. In Sukyoung Ryu and Yannis Smaragdakis, editors, ISSTA ’22: 31st ACMSIGSOFT International Symposium on Software Testing and Analysis, Virtual Event, South Korea, July 18 - 22, 2022, pages 302–313. ACM, 20",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Jay Ligatti, Xinming Ou, Jonathan Katz, and Giovanni Vigna, editors, CCS ’20: 2020 ACMSIGSAC Conference on Computer and Communications Security, Virtual Event, USA, November 9-13, 2020, pages 955–970. ACM, 2020. 916 33rd USENIX ",
+      "is_sqlancer_publication": true
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 26,
+      "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. Testing Graph Database Engines via Query Partitioning. In René Just and Gordon Fraser, editors, Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis, ISSTA 2023, Seattle, WA, USA, July 17-21, 2023, pages 140–149. ACM, 2023.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 42,
+      "text": "Manuel Rigger and Zhendong Su. Detecting Optimization Bugs in Database Engines via Non-optimizing Reference Engine Construction. In Prem Devanbu, Myra B. Cohen, and Thomas Zimmermann, editors, ESEC/FSE ’20: 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, Virtual Event, USA, November 8-13, 2020, pages 1140–1152. ACM, 2020.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 43,
+      "text": "Manuel Rigger and Zhendong Su. Testing Database Engines via Pivoted Query Synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020, Virtual Event, November 4-6, 2020, pages 667–682. USENIX Association, 2020.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 56,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Jay Ligatti, Xinming Ou, Jonathan Katz, and Giovanni Vigna, editors, CCS ’20: 2020 ACMSIGSAC Conference on Computer and Communications Security, Virtual Event, USA, November 9-13, 2020, pages 955–970. ACM, 2020. 916 33rd USENIX Security Symposium USENIX Association A Appendix 1// BuzzBee’s IR is a tree structure formed by IRNodes. 2// An IRNode has the following properties: 3IRNode(id, type, text, annotation, children, parent, ...); 4 5// BuzzBee lifts the example shown in Fig.4a into the following 6// IRNodes, forming the IR program shown in Fig.4d: 7node0(id=0, type=testcase, text=NULL, annotation={}, 8 children={&node1}, parent=NULL); 9node1(id=1, type=cmds, text=NULL, annotation={}, 10 children={&node2,&node12,&node22,&node32}, parent=&node0); 11node2(id=2, type=cmd, text=NULL, annotation={}, 12 children={&node3}, parent=&node1); 13node3(id=3, type=hset, text=NULL, annotation={}, 14 children={&node4, &node5, &node7, &node9}, parent=&node2); 15... 16node33(id=33, type=hincrby, text=NULL, annotation={}, 17 children={&node34, &node35, &node37, &node39}, 18 parent=&node32); 19node34(id=34, type=terminal, text=\"HINCRBY\", annotation={}, 20 children={}, parent=&node33); 21node35(id=35, type=key, text=NULL, 22 annotation={\"default\":{operation:Use, 23 args:{type:\"HSET key\"}}}, 24 children={&node36}, parent=&node33); 25node36(id=36, type=terminal, text=\"k1\", annotation={}, 26 children={}, parent=&node35); 27node37(id=37, type=field, text=NULL, 28 annotation={\"default\":{operation:Define, 29 args:{type:hset_field_type_resolver}}}, 30 children={&node38}, parent=&node33); 31node38(id=38, type=terminal, text=\"k1_field1\", annotation={}, 32 children={}, parent=&node37); 33node39(id=39, type=increment, text=NULL, annotation={}, 34 children={&node40}, parent=&node33); 35node40(id=40, type=terminal, text=\"1\", annotation={}, 36 children={}, parent=&node39); Fig. 8: BUZZBEE’s IR structure and the IR program of the example in Fig.4a. The IR program is a tree structure, which is also illustrated in Fig.4f. When lifting, BUZZBEEparses the test case, traverses over the AST of the test case, collects the corresponding annotations, and then creates the IRNodes forming the IR program. The complete source of the test case is stored in the textproperty of the IRNodes of the type terminal. When compiling, BUZZBEE traverses over the IR program, collects the terminal IRNodes, and concatenates their texts into a test case.1cql: 2 navigator* property; 3 4navigator: 5 ’.parent’ 6 | ’.child’ arg | ’.lsib’ arg | ’.rsib’ arg 7 | ...; 8 9arg: 10 ’(’ num ’)’; 11 12property: 13 ’@text’ | ’@id’ | ’@sym_type’ | ...; Fig.9: Context Query Language (CQL) USENIX Association 33rd USENIX Security Symposium 917 Table 5: Real world targets we test B UZZBEEon.Popularity is the number of Stars of the DBMS’s GitHub repository. X* in Data Model means the DBMS supports other models but we only test the interface for its primary model X. DBMSLOC Popularity Data Model redis 281K 60.1K Key-value* MongoDB 8.7M 23.8K Document* ArangoDB 6.8M 13K Document* PostgreSQL 1.6M 12.5K Relational* MySQL 5.5M 9.6K Relational* KeyDB 348K 7.6K Key-value RedisGraph 1.7M 1.9K Graph AgensGraph 1.4M 1.3K Graph Table 6: DBMSs supported by fuzzers. Fuzzer v.s. / DBMS redis RedisGraph ArangoDB PostgreSQL BUZZBEE ✔ ✔ ✔ ✔ AFL++ ✔ ✔ ✔ ✔ POLYGLOT ✔ ✔ ✔ ✔ REDQUEEN ✔ ✔ ✗ ✗ Grammarinator ✔ ✔ ✔ ✔ SQUIRREL ✗ ✗ ✗ ✔ SQLANCER ✗ ✗ ✔ ✔Table 7: Real-world bugs found by BUZZBEE.BUZZBEEfound 40 bugs in latest DBMSs during evaluation. * means BUZZBEE found the bug in the latest DBMS, but it was already known by the vendors when we reported it. †means the bug is known and not in the latest DBMS. DBMSID Version Status CVE redis1 cb1fff3 Fixed 2 395d801 Fixed* CVE-2022-35977 3 1ec82e6 Fixed CVE-2023-22458 4 7.0.7 Fixed CVE-2023-22458 5 7.0.8 Fixed CVE-2023-25515 6 7.0.8 Fixed CVE-2023-25515 7 7.0.8 Fixed CVE-2023-25515 8 7.0.8 Fixed CVE-2023-28425 9 af0a4fe2 Confirmed 10 7.0.10 Fixed* CVE-2023-28856 11 7.0.8 Fixed* 12 af0a4fe2 Fixed KeyDB13 6.3.2 Fixed 14 6.3.2 Fixed 15 6.3.2 Fixed 16 6.3.2 Fixed 17 6.3.2 Fixed 18 6.3.2 Fixed RedisGraph19 v2.10.8 Fixed 20 c425ad8 Fixed CVE-2023-25310 21 v2.10.9 Confirmed 22 v2.10.9 Fixed 23 v2.10.10 Confirmed 24 v2.10.10 Confirmed 25 v2.10.9 Confirmed 26 v2.10.9 Reported 27 v2.10.9 Reported 28 v2.10.9 Confirmed 29 v2.10.9 Confirmed 30 v2.10.9 Fixed 31 v2.10.9 Fixed* AgensGraph32 v2.13.1 Confirmed 33 v2.13.1 Confirmed MongoDB 34 87d48e1 Fixed ArangoDB35 v3.11.0 Fixed 36 v3.11.0 Fixed PostgreSQL 37 v11.12 Fixed† MySQL38 v8.1.0 Confirmed* 39 v8.1.0 Confirmed* 40 v8.1.0 Confirmed* 41 v8.1.0 Confirmed 918 33rd USENIX Security Symposium USENIX Association",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[27,28,43,44,49,56]",
+      "technique": "pqs",
+      "sentence": "Fuzzing frameworks and research related to relational DBMSs [27,28,43,44,49,56] have been developed and advanced extensively over the years, contributing to more secure and trustworthy systems in the relational DBMS venue.",
+      "context_before": "ocument DBMS, and graph DBMS have gained widespread adoption more recently due to their flexibility and performance advantages in handling large-scale, unstructured data. Considering the prevalence and criticality of these systems, it is paramount to strengthen the security and robustness of the diverse DBMSs.Fuzzing, an automated software testing method that injects random data as inputs to software, has proven useful in uncovering faults in DBMSs. However, there exists a disparity in the extent of fuzzing efforts directed towards nonrelational DBMSs compared to their relational counterparts.",
+      "context_after": "In contrast, non-relational DBMSs have not experienced the same level of scrutiny. State-of-the-art generic fuzzing frameworks such as [ 4,7,9,14,30,54] all show non-promising fuzzing performances when applied to non-relational DBMSs because they cannot generate test cases that trigger DBMS behaviors effectively. There is a need for an effective solution capable of testing both relational and non-relational DBMSs. However, multiple challenges exist when designing a fuzzer that extends to non-relational DBMSs. First, it is hard to generalize. The interfaces of non-relational DBMSs are diverse,",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 2981,
+      "cited_reference": {
+        "number": 43,
+        "text": "Manuel Rigger and Zhendong Su. Testing Database Engines via Pivoted Query Synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020, Virtual Event, November 4-6, 2020, pages 667–682. USENIX Association, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[ 27,28,43,44,49,56]",
+      "technique": "pqs",
+      "sentence": "Current research has made significant advancements in relational DBMS testing [ 27,28,43,44,49,56].",
+      "context_before": "g one command is unlikely to abort the remaining commands, command sequences with semantic errors or inadequate semantic dependency may still trigger fewer effective behaviors. 2.2 Existing Challenges and Limitations In this section, we discuss three limitations of current approaches in fuzzing the diverse DBMS interfaces. Non-generic. As discussed in §2.1, the test case quality is important for DBMS testing. However, the variety of DBMS interfaces complicates the creation of a fuzzing framework that can generate high-quality test cases and remain easily adaptable to different DBMS interfaces.",
+      "context_after": "SQLsmith [44] generates ran902 33rd USENIX Security Symposium USENIX Association 1// Partial grammar rules: 2createtbl_stmt: 3 ’CREATE TABLE’ 4 tbl_name ’(’ 5 ... 6 ’)’; 7 8// The test case: 9> CREATE TABLE t1( 10 c1 date 11); 12 13 14// Bind \"TABLE define\" 15// to `tbl_name `. 16 17// When we traverse to the 18// node `t1`, we know a 19// TABLE t1 is defined. (a)PostgreSQL examples1// Partial grammar rules: 2match_clause: 3 MATCH pattern_part where_part; 4 5pattern_part: 6 node_pattern; 7 8where_part: 9 WHERE node_pattern; 10 11node_pattern: 12 ’(’ identifier ’)’ | ...; 13 14// The test case:",
+      "section": "2.2 Existing Challenges and Limitations",
+      "page": 3,
+      "char_offset": 10370,
+      "cited_reference": {
+        "number": 43,
+        "text": "Manuel Rigger and Zhendong Su. Testing Database Engines via Pivoted Query Synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020, Virtual Event, November 4-6, 2020, pages 667–682. USENIX Association, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[56]",
+      "technique": null,
+      "sentence": "SQUIRREL [56] and later works [ 27,28] advance by introducing an intermediate representation (IR) that effectively incorporates SQL syntax and semantics, allowing it to adapt to multiple SQL databases.",
+      "context_before": "o\" // stores an ASCII string 2> HSET k2 k2_field1 \"123\" // stores a numeric string 3 4> HINCRBY k1 k1_field1 1 // increase the stored value 5(error) value not an integer 6 7// > DEL k2 8> HINCRBY k2 k2_field1 1 9(integer) 124 (c)redis commands Fig.1: Static Constraint Examples. Example test cases illustrating the problem of static constraints. While using static constraint sufficiently models the semantics in Fig.1a, it does not correctly model the scope constraints in Fig.1b and the type constraints in Fig.1c. dom SQL queries according to predefined schema information about certain SQL DBMSs.",
+      "context_after": "However, these frameworks still require non-trivial adoption efforts to support a new relational DBMS, as mentioned in [ 49]. Moreover, they either have not supported nonrelational DBMS, or inherently cannot support them due to the model design. Considering the wide use of non-relational DBMSs, we lack a generic solution that enables efficient testing for the diverse DBMS interfaces. Static Constraints. Mutation-based fuzzing has proven successful in fuzzing modern software. However, for DBMS fuzzing, mutations can easily break the semantic correctness of the test case. Recent studies [ 27,28",
+      "section": "2.2 Existing Challenges and Limitations",
+      "page": 4,
+      "char_offset": 11830,
+      "cited_reference": {
+        "number": 56,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Jay Ligatti, Xinming Ou, Jonathan Katz, and Giovanni Vigna, editors, CCS ’20: 2020 ACMSIGSAC Conference on Computer and Communic",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker",
+      "surface": "[ 27,28,56]",
+      "technique": null,
+      "sentence": "Recent studies [ 27,28,56] highlight the significance of maintaining the semantic correctness of the test cases in mutation-based DBMS fuzzing.",
+      "context_before": "multiple SQL databases. However, these frameworks still require non-trivial adoption efforts to support a new relational DBMS, as mentioned in [ 49]. Moreover, they either have not supported nonrelational DBMS, or inherently cannot support them due to the model design. Considering the wide use of non-relational DBMSs, we lack a generic solution that enables efficient testing for the diverse DBMS interfaces. Static Constraints. Mutation-based fuzzing has proven successful in fuzzing modern software. However, for DBMS fuzzing, mutations can easily break the semantic correctness of the test case.",
+      "context_after": "In this work, we use constraints to represent the semantic rules the test case should obey to avoid a DBMS execution error. This includes scope constraints andtype constraints. Scope constraints restrict where a variable is available for use. This is often enforced through data operations such as define, use, and invalidate. Type constraints further restrict the legitimate type of the variable in the data operations. To model the constraints, the approach used by existing fuzzing frameworks [ 9,27,28,56] is HMSET k1 k1_field1 1HMSET k1 k1_field1 1APPEND x 413413HMSET k1 k1_field1 1XGROUP CREA",
+      "section": "2.2 Existing Challenges and Limitations",
+      "page": 4,
+      "char_offset": 12609,
+      "cited_reference": {
+        "number": 56,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Jay Ligatti, Xinming Ou, Jonathan Katz, and Giovanni Vigna, editors, CCS ’20: 2020 ACMSIGSAC Conference on Computer and Communic",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker",
+      "surface": "[ 9,27,28,56]",
+      "technique": null,
+      "sentence": "To model the constraints, the approach used by existing fuzzing frameworks [ 9,27,28,56] is HMSET k1 k1_field1 1HMSET k1 k1_field1 1APPEND x 413413HMSET k1 k1_field1 1XGROUP CREATs g 0HMSET k1 k1_field1 1HRANDFIELD key1 1.",
+      "context_before": "antic correctness of the test case. Recent studies [ 27,28,56] highlight the significance of maintaining the semantic correctness of the test cases in mutation-based DBMS fuzzing. In this work, we use constraints to represent the semantic rules the test case should obey to avoid a DBMS execution error. This includes scope constraints andtype constraints. Scope constraints restrict where a variable is available for use. This is often enforced through data operations such as define, use, and invalidate. Type constraints further restrict the legitimate type of the variable in the data operations.",
+      "context_after": ".....(>2.6k possibilities) ......Level nMutations(showingonly1outofmanypossibilities) HMSET k1 k1_field1 1HRANDFIELD k1-9223372036854770000withvalues crash!Level1 Mutationsmutatemultiplelevels ......Fig.2: Random Mutation Running Examples. This figure shows a demo fuzzer we made for testing redis. When performing random mutations, the level 1 mutations contain many possibilities that cannot form a data dependency with the initial command, which consequently affects the fuzzing performance at later mutation levels. first to parse the test case using the target’s grammar specification, and then",
+      "section": "2.2 Existing Challenges and Limitations",
+      "page": 4,
+      "char_offset": 13174,
+      "cited_reference": {
+        "number": 56,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Jay Ligatti, Xinming Ou, Jonathan Katz, and Giovanni Vigna, editors, CCS ’20: 2020 ACMSIGSAC Conference on Computer and Communic",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker",
+      "surface": "[ 27,28,56]",
+      "technique": null,
+      "sentence": "Existing mutation-based DBMS fuzzers [ 27,28,56] perform mutations randomly and rely on code coverage to explore more program behaviors.",
+      "context_before": "te on k1_field1, USENIX Association 33rd USENIX Security Symposium 903 a field pre-defined but storing a value of an ASCII string instead of a numeric string. Adopting the existing approach, we can only let the AST node of k1yield type \"HSET key\", and let the node of k1_field1 yield type \"HSET field\", losing the information that the value implicitly says k1_field1 is an ASCII string instead of a numeric string. Here, using a static type constraint without looking at the values ( i.e., literals\"Hello\" and \"123\" ) loses vital information to model the semantics correctly. Loose Data Dependencies.",
+      "context_after": "However, we observe that random mutations can waste huge efforts in fuzzing non-relational DBMSs, because they tend to generate loose data dependencies that trigger thin and less effective behaviors. The issue becomes significant when the database interface contains many operations that are notdependencyaffiliative, which are common cases in non-relational DBMSs such as redis. We define two operations as dependencyaffiliative when they can form a data dependency. We observe that test cases triggering deep logic require dependencyaffiliative operations often. For instance, a test case containi",
+      "section": "2.2 Existing Challenges and Limitations",
+      "page": 5,
+      "char_offset": 16501,
+      "cited_reference": {
+        "number": 56,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Jay Ligatti, Xinming Ou, Jonathan Katz, and Giovanni Vigna, editors, CCS ’20: 2020 ACMSIGSAC Conference on Computer and Communic",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker",
+      "surface": "[ 27,28,56]",
+      "technique": null,
+      "sentence": "Inspired by existing works [ 27,28,56], we design an IR to incorporate both the syntactic structures and the abstract semantics of the inputs.",
+      "context_before": "ciency. Semantics Abstraction. To support fuzzing the diverse DBMS interfaces, we propose to abstract the semantics to a point where most semantic differences are neutralized. To achieve this goal, we first describe common DBMS operations at a highly abstract level using only three basic data operations: Define ,Use, and Invalidate, which in turn defines a symbol, uses or updates a symbol, and deletes a symbol. We then use constraints to constrain the highly abstract semantics, such as specifying when to Define orUse, the type of the symbol that is Defined, or the type that a Usecan take, etc.",
+      "context_after": "Afterward, we design an Annotation System for users to specify the semantic constraints. Following this way, we neutralize the semantic differences across diverse DBMS interfaces and stay generic. Context-sensitive Constraint Resolution. To avoid the problem of static constraints, we enable dynamic contextbased constraints with Context-sensitive Constraint Resolution. Specifically, we craft two additional features for the Annotation System, through which users can specify the constraints based on the context. To achieve simplicity, we design a lightweight domain-specific language (DSL) for th",
+      "section": "2.3 Our Insights and Solutions",
+      "page": 5,
+      "char_offset": 20460,
+      "cited_reference": {
+        "number": 56,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Jay Ligatti, Xinming Ou, Jonathan Katz, and Giovanni Vigna, editors, CCS ’20: 2020 ACMSIGSAC Conference on Computer and Communic",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker",
+      "surface": "[ 27,56]",
+      "technique": null,
+      "sentence": "4 Generalization Mutation can easily break the semantic correctness of a test case, as mentioned in many related works [ 27,56].",
+      "context_before": "tion file to constrain the abstract semantics of the target DBMS interface. Next, BUZZBEEconducts semantic analysis and performs principled mutations using data dependencies as the guidance. Lastly, BUZZBEEvalidates the semantics by fixing the errors introduced by mutation and generates new test cases for testing the DBMS. In the next sections, we discuss in detail how the components of BUZZBEEare designed and how they collaborate together to support Generalizability §4,Context-sensitive Constraints §5, and Principled Mutation §6, which address the three aforementioned challenges respectively.",
+      "context_after": "BUZZBEE uses the abstract semantic model to check for the semantic correctness of the mutated test case. Similar to existing works, when BUZZBEEdetects semantic errors, it tries to fix them before sending them to the fuzzing runtime. In this section, we discuss in detail how BUZZBEEstands out by modeling the semantics of the various DBMS interfaces at a highly abstract level to neutralize their differences. BUZZBEEabstracts the DBMS interface semantics with three basic data operations: Define ,Use, and Invalidate. Each operation is associated with a data type and name. Define. Define represent",
+      "section": "2.3 Our Insights and Solutions",
+      "page": 6,
+      "char_offset": 23522,
+      "cited_reference": {
+        "number": 56,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Jay Ligatti, Xinming Ou, Jonathan Katz, and Giovanni Vigna, editors, CCS ’20: 2020 ACMSIGSAC Conference on Computer and Communic",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker",
+      "surface": "[ 27,28,56]",
+      "technique": null,
+      "sentence": "Inspired by existing works [ 27,28,56],BUZZBEE’s IR is a tree structure with a one-to-one mapping to the abstract syntax tree of the original test case.",
+      "context_before": "relations. For instance, in Fig.1c, if we uncomment the DELcommand at line 7, it will delete k2. Since k2_field1 has a subordination relation with k2,k2_field1 should also be deleted. Similarly, in Fig.1a, if we delete table t1, its column c1should also be deleted. After an Invalidate operation, anyUseof already Invalidated data will become a semantic error. Consequently, if we uncomment the DELcommand at line 7 in Fig.1c, line 8 will yield two semantic errors, since k2andk2_field1 are both invalidated. We design an IR to carry both the syntactic and semantic information specified by the user.",
+      "context_after": "Besides, the IR captures the abstract semantics specified by the user. This allows us to conveniently lift the original test case into the IR, perform semantic analysis, mutations, and validations on the IR in a unified fashion, and compile the IR back to a new test case for fuzzing. We detail the structure of the IR in Fig.8. 5 Semantics Constraining After BUZZBEEmodels the DBMS interfaces at a high level, it uses constraints to further express richer semantics. In this section, we introduce how BUZZBEEenforces flexible yet lightweight context-sensitive semantic constraints for different DBM",
+      "section": "2.3 Our Insights and Solutions",
+      "page": 6,
+      "char_offset": 26121,
+      "cited_reference": {
+        "number": 56,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Jay Ligatti, Xinming Ou, Jonathan Katz, and Giovanni Vigna, editors, CCS ’20: 2020 ACMSIGSAC Conference on Computer and Communic",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "SQUIRREL SQLANCER redis 2 Sem ✔ ✔ ✗ ✗ ✗ ✗ ✗ ✗ ⊖ ⊖ redis 3 Data ✔ ✔ ✔ ✗ ✗ ✗ ✗ ✗ ⊖ ⊖ redis 5 Data ✔ ✗ ✗ ✗ ✗ ✗ ✗ ✗ ⊖ ⊖ redis 6 Data ✔ ✔ ✗ ✗ ✗ ✗ ✗ ✗ ⊖ ⊖ redis 7 Data ✔ ✗ ✗ ✗ ✗ ✗ ✗ ✗ ⊖ ⊖ redis 8 Syn ✗ ✗ ✗ ✔ ✗ ✔ ✗ ✗ ⊖ ⊖ redis 12 Sem ✔ ✔ ✔ ✗ ✗ ✗ ✗ ✗ ⊖ ⊖ RedisGraph 19 Data ✔ ✔ ✗ ✗ ✗ ✗ ✗ ✗ ⊖ ⊖ RedisGraph 20 Sem ✔ ✔ ✗ ✗ ✗ ✗ ✗ ✗ ⊖ ⊖ RedisGraph 21 Data ✔ ✗ ✗ ✗ ✗ ✗ ✗ ✗ ⊖ ⊖ ArangoDB 35 Data ✔ ✗ ✗ ✗ ✗ ✗ ⊖✗⊖ ⊖ ArangoDB 36 Data ✔ ✔ ✗ ✗ ✗ ✗ ⊖✗⊖ ⊖ PostgreSQL 37 Data ✔ ✔ ✗ ✗ ✗ ✗ ⊖✗ ✗ ✗ Count 12 8 2 1 0 1 0 0 0 0 triggerable by syntax correct but semantic incorrect test cases, we mark it as Syn.",
+      "context_before": "s), we mark the bug as Sem. For the bug that is onlyTable 4: Bugs found in 24 hours by each fuzzer on four DBMSs. We run each fuzzer five times for 24h and report the bugs it finds during this period. Property Data means the bug needs correct data dependencies to trigger. Sem means the bug does not need data dependencies to trigger, but the triggering test case is semantically correct. Synmeans the bug is not semantically correct but is syntactically correct. ⊖means the fuzzer does not support the DBMS. DBMSID Property BUZZBEE BUZZBEE!g BUZZBEE!gc BUZZBEE!gcs AFL++ POLYGLOT REDQUEEN Grammarin.",
+      "context_after": "As we can see in Table 4, BUZZBEE finds more Data bugs than BUZZBEE!g. For bugs 2 and 20 that are marked as Sem,BUZZBEE!gsuccessfully finds them, but BUZZBEE!gccannot, showing that Context-sensitive Constraint Resolution helps in enforcing the correct semantics of the test cases. Moreover, BUZZBEE!gcfinds two more bugs than BUZZBEE!gcs, which are bugs that require semantic correctness to trigger. This demonstrates the effectiveness of the Annotation System as a whole in enforcing semantic correctness. Finally, BUZZBEE!gcsfinds one bug (ID 8) that only semantic incorrect test cases can trigger.",
+      "section": "8.4 Contributions of the Solutions",
+      "page": 13,
+      "char_offset": 62474,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "We compare BUZZBEEwith general-purpose fuzzers AFL++ [ 14],REDQUEEN [4], syntax-aware fuzzers POLYGLOT [9], Grammarinator [ 22], and SQL-specialized SQUIR REL [56] and SQLANCER [43].",
+      "context_before": "whole in enforcing semantic correctness. Finally, BUZZBEE!gcsfinds one bug (ID 8) that only semantic incorrect test cases can trigger. Other versions cannot find this bug because they will enforce semantic correctness and filter out such test cases. In conclusion, BUZZBEE’s success comes from all the solutions we have proposed. The contribution of each solution varies when applied to different DBMS targets that have distinct characteristics. 8.5 Comparison with Existing Tools In this section, we compare BUZZBEEwith state-of-the-art works regarding code coverage and bug detection capabilities.",
+      "context_after": "AFL++ and REDQUEEN are widely used coverage-guided fuzzers that perform syntax912 33rd USENIX Security Symposium USENIX Association 0 4 8 12 16 2001224364860EdgeCov (1E+02) BuzzBee AFL++ RedQueen PolyGlot Grammarinator 0 4 8 12 16 2001224364860EdgeCov (1E+02) (a)redis 0 4 8 12 16 2001632486480EdgeCov (1E+02) (b)RedisGraph 0 4 8 12 16 2004812EdgeCov (1E+03) BuzzBee AFL++ PolyGlot Squirrel SQLancer Grammarinator 0 4 8 12 16 2006121824EdgeCov (1E+03) (c)ArangoDB 0 4 8 12 16 2004812EdgeCov (1E+03) (d)PostgreSQL Fig.7: Edge coverage comparison with existing fuzzers in 24h. unaware mutations. RED",
+      "section": "8.5 Comparison with Existing Tools",
+      "page": 13,
+      "char_offset": 64121,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "AFL++ and REDQUEEN are widely used coverage-guided fuzzers that perform syntax912 33rd USENIX Security Symposium USENIX Association 0 4 8 12 16 2001224364860EdgeCov (1E+02) BuzzBee AFL++ RedQueen PolyGlot Grammarinator 0 4 8 12 16 2001224364860EdgeCov (1E+02) (a)redis 0 4 8 12 16 2001632486480EdgeCov (1E+02) (b)RedisGraph 0 4 8 12 16 2004812EdgeCov (1E+03) BuzzBee AFL++ PolyGlot Squirrel SQLancer Grammarinator 0 4 8 12 16 2006121824EdgeCov (1E+03) (c)ArangoDB 0 4 8 12 16 2004812EdgeCov (1E+03) (d)PostgreSQL Fig.",
+      "context_before": "y will enforce semantic correctness and filter out such test cases. In conclusion, BUZZBEE’s success comes from all the solutions we have proposed. The contribution of each solution varies when applied to different DBMS targets that have distinct characteristics. 8.5 Comparison with Existing Tools In this section, we compare BUZZBEEwith state-of-the-art works regarding code coverage and bug detection capabilities. We compare BUZZBEEwith general-purpose fuzzers AFL++ [ 14],REDQUEEN [4], syntax-aware fuzzers POLYGLOT [9], Grammarinator [ 22], and SQL-specialized SQUIR REL [56] and SQLANCER [43].",
+      "context_after": "7: Edge coverage comparison with existing fuzzers in 24h. unaware mutations. REDQUEEN does not support fuzzing C/S programs, and we skip its evaluation on ArangoDB and PostgreSQL .POLYGLOTis a coverage-guided fuzzer tailored for fuzzing compilers such as Clang. It models the semantics of language processors effectively, but cannot model the semantics of DBMS interfaces due to its insensitivity to the context. It is a great tool to compare against because it acts as a coverage-guided syntax-aware mutator for targets outside its support range. We also compare against Grammarinator, a fuzzer curr",
+      "section": "8.5 Comparison with Existing Tools",
+      "page": 13,
+      "char_offset": 64304,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "For relational DBMSs, we compare BUZZBEEwith SQUIRREL [56] and SQL ANCER (PQS [ 43]), two DBMS fuzzers specialized in SQL DBMS fuzzing.",
+      "context_before": "port fuzzing C/S programs, and we skip its evaluation on ArangoDB and PostgreSQL .POLYGLOTis a coverage-guided fuzzer tailored for fuzzing compilers such as Clang. It models the semantics of language processors effectively, but cannot model the semantics of DBMS interfaces due to its insensitivity to the context. It is a great tool to compare against because it acts as a coverage-guided syntax-aware mutator for targets outside its support range. We also compare against Grammarinator, a fuzzer currently used by RedisGraph, that generates random programs from a grammar without coverage guidance.",
+      "context_after": "We also evaluate SQLANCER on ArangoDB because SQLANCER recently adds support for it. Table 6 shows the DBMSs each fuzzer supports. In this evaluation, we feed the same input to all fuzzers and the same grammar specification to POLYGLOT and Grammarinator. Coverage. As shown in Fig.7, BUZZBEEachieves the best edge coverage in 24 hours in all targets except PostgreSQL. BUZZBEEachieves 69.2%, 19.8%, and 76.9% more coverage in redis ,RedisGraph, and ArangoDB than the secondbest fuzzer POLYGLOT. This performance gain demonstrates BUZZBEE’s contribution to the non-relational DBMS fuzzing venue. On P",
+      "section": "8.5 Comparison with Existing Tools",
+      "page": 14,
+      "char_offset": 65522,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "We also evaluate SQLANCER on ArangoDB because SQLANCER recently adds support for it.",
+      "context_before": "ing compilers such as Clang. It models the semantics of language processors effectively, but cannot model the semantics of DBMS interfaces due to its insensitivity to the context. It is a great tool to compare against because it acts as a coverage-guided syntax-aware mutator for targets outside its support range. We also compare against Grammarinator, a fuzzer currently used by RedisGraph, that generates random programs from a grammar without coverage guidance. For relational DBMSs, we compare BUZZBEEwith SQUIRREL [56] and SQL ANCER (PQS [ 43]), two DBMS fuzzers specialized in SQL DBMS fuzzing.",
+      "context_after": "Table 6 shows the DBMSs each fuzzer supports. In this evaluation, we feed the same input to all fuzzers and the same grammar specification to POLYGLOT and Grammarinator. Coverage. As shown in Fig.7, BUZZBEEachieves the best edge coverage in 24 hours in all targets except PostgreSQL. BUZZBEEachieves 69.2%, 19.8%, and 76.9% more coverage in redis ,RedisGraph, and ArangoDB than the secondbest fuzzer POLYGLOT. This performance gain demonstrates BUZZBEE’s contribution to the non-relational DBMS fuzzing venue. On PostgreSQL ,BUZZBEEachieves 92.7% code coverage of the state-of-the-art SQL fuzzer SQU",
+      "section": "8.5 Comparison with Existing Tools",
+      "page": 14,
+      "char_offset": 65657,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M15",
+      "found_by": "citation_marker",
+      "surface": "[ 56]",
+      "technique": null,
+      "sentence": "Referring to SQUIRREL ’s paper [ 56], it achieves a semantic correctness rate of 11.",
+      "context_before": "eves the best edge coverage in 24 hours in all targets except PostgreSQL. BUZZBEEachieves 69.2%, 19.8%, and 76.9% more coverage in redis ,RedisGraph, and ArangoDB than the secondbest fuzzer POLYGLOT. This performance gain demonstrates BUZZBEE’s contribution to the non-relational DBMS fuzzing venue. On PostgreSQL ,BUZZBEEachieves 92.7% code coverage of the state-of-the-art SQL fuzzer SQUIRREL, showing comparable abilities considering BUZZBEEgeneralizes to many DBMS categories. In Table 3, we notice BUZZBEE achieves a correctness rate of 9.8% on PostgreSQL. This is also comparable with SQUIRREL.",
+      "context_after": "7% onPostgreSQL, which is only 1.9% higher than BUZZBEE. Bug Finding. As shown on the right side of Table 4, out of the six existing fuzzers we evaluate, only POLYGLOT finds one bug in redis, which falls into the category of Syn, meaning this bug only needs syntax awareness to discover. AFL++and REDQUEEN cannot find any bugs during this period. None of BUZZBEE,SQUIRREL, and SQLANCER can find bugs in the latest version of PostgreSQL within 24 hours. We roll back PostgreSQL to an older version, and BUZZBEEfinds one legacy bug missed by SQUIRREL and SQL ANCER. Notice that BUZZBEEdoes not perform as",
+      "section": "8.5 Comparison with Existing Tools",
+      "page": 14,
+      "char_offset": 66553,
+      "cited_reference": {
+        "number": 56,
+        "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Jay Ligatti, Xinming Ou, Jonathan Katz, and Giovanni Vigna, editors, CCS ’20: 2020 ACMSIGSAC Conference on Computer and Communic",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M16",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "None of BUZZBEE,SQUIRREL, and SQLANCER can find bugs in the latest version of PostgreSQL within 24 hours.",
+      "context_before": "dering BUZZBEEgeneralizes to many DBMS categories. In Table 3, we notice BUZZBEE achieves a correctness rate of 9.8% on PostgreSQL. This is also comparable with SQUIRREL. Referring to SQUIRREL ’s paper [ 56], it achieves a semantic correctness rate of 11.7% onPostgreSQL, which is only 1.9% higher than BUZZBEE. Bug Finding. As shown on the right side of Table 4, out of the six existing fuzzers we evaluate, only POLYGLOT finds one bug in redis, which falls into the category of Syn, meaning this bug only needs syntax awareness to discover. AFL++and REDQUEEN cannot find any bugs during this period.",
+      "context_after": "We roll back PostgreSQL to an older version, and BUZZBEEfinds one legacy bug missed by SQUIRREL and SQL ANCER. Notice that BUZZBEEdoes not perform as well as SQUIRREL and SQL ANCER in terms of code coverage. To understand the reason, we manually analyze this bug and find that it involves a syntax structure SQUIRREL does not model, potentially leading to its missing the bug. SQLANCER focuses on finding logic errors using specific syntax structures and does not discover the bug as well. The result demonstrates the capability of BUZZBEEin discovering real-world bugs that existing tools cannot disco",
+      "section": "8.5 Comparison with Existing Tools",
+      "page": 14,
+      "char_offset": 66983,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M17",
+      "found_by": "name",
+      "surface": "SQLANCER",
+      "technique": null,
+      "sentence": "SQLANCER focuses on finding logic errors using specific syntax structures and does not discover the bug as well.",
+      "context_before": "yn, meaning this bug only needs syntax awareness to discover. AFL++and REDQUEEN cannot find any bugs during this period. None of BUZZBEE,SQUIRREL, and SQLANCER can find bugs in the latest version of PostgreSQL within 24 hours. We roll back PostgreSQL to an older version, and BUZZBEEfinds one legacy bug missed by SQUIRREL and SQL ANCER. Notice that BUZZBEEdoes not perform as well as SQUIRREL and SQL ANCER in terms of code coverage. To understand the reason, we manually analyze this bug and find that it involves a syntax structure SQUIRREL does not model, potentially leading to its missing the bug.",
+      "context_after": "The result demonstrates the capability of BUZZBEEin discovering real-world bugs that existing tools cannot discover, proving its fuzzing effectiveness and contribution to real-world bug detection. In conclusion, BUZZBEEoutperforms existing generic solutions in non-relational DBMS fuzzing, while achieving comparable results with tools specialized in relational DBMS fuzzing, in terms of code coverage and bug-finding capabilities. 9 Discussion 9.1 Complex Semantics and Completeness Some DBMS semantics can be very complex. For instance, the foreign key constraint in SQL DBMSs requires us to track",
+      "section": "8.5 Comparison with Existing Tools",
+      "page": 14,
+      "char_offset": 67464,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M18",
+      "found_by": "citation_marker",
+      "surface": "[ 15,25–27,43,44,49,56]",
+      "technique": "pqs",
+      "sentence": "3 DBMSs Fuzzing Fuzzing DBMSs has been an active research area in recent years [ 15,25–27,43,44,49,56].",
+      "context_before": "utation. DIE [ 37] and Fuzzilli [ 20] propose strategies to maintain the semantics stressing the just-in-time (JIT) engines. For compilers, CSmith [ 51] specializes in modeling C semantics to produce entirely correct test cases for C compilers. Tools such as Nautilus [ 3] and Superion [ 48] propose genericgrammar-based solutions to fuzz more language processors. POLYGLOT [9] further advances using a semantic validation strategy that performs well when no context-sensitive constraint is required. BUZZBEEfocuses on the challenges in fuzzing the diverse DBMS interfaces effectively in general. 10.",
+      "context_after": "Tools like SQLancer [ 42], SQLsmith [ 44], and Squirrel [ 56] have emerged to test relational DBMSs. SQLsmith generates random SQL queries. Squirrel employs semantic validation and coverage feedback to test SQL DBMSs. SQLancer uses differential testing techniques to report inconsistencies in query results. They have been proven successful in finding vulnerabilities in widely used relational DBMSs. Researchers also propose some solutions targeting non-relational DBMSs [ 26,55]. Existing techniques present unique solutions targeting specific DBMS categories, but fail to exhibit decent fuzzing p",
+      "section": "10.3 DBMSs Fuzzing",
+      "page": 15,
+      "char_offset": 72605,
+      "cited_reference": {
+        "number": 43,
+        "text": "Manuel Rigger and Zhendong Su. Testing Database Engines via Pivoted Query Synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020, Virtual Event, November 4-6, 2020, pages 667–682. USENIX Association, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Tools like SQLancer [ 42], SQLsmith [ 44], and Squirrel [ 56] have emerged to test relational DBMSs.",
+      "context_before": "n-time (JIT) engines. For compilers, CSmith [ 51] specializes in modeling C semantics to produce entirely correct test cases for C compilers. Tools such as Nautilus [ 3] and Superion [ 48] propose genericgrammar-based solutions to fuzz more language processors. POLYGLOT [9] further advances using a semantic validation strategy that performs well when no context-sensitive constraint is required. BUZZBEEfocuses on the challenges in fuzzing the diverse DBMS interfaces effectively in general. 10.3 DBMSs Fuzzing Fuzzing DBMSs has been an active research area in recent years [ 15,25–27,43,44,49,56].",
+      "context_after": "SQLsmith generates random SQL queries. Squirrel employs semantic validation and coverage feedback to test SQL DBMSs. SQLancer uses differential testing techniques to report inconsistencies in query results. They have been proven successful in finding vulnerabilities in widely used relational DBMSs. Researchers also propose some solutions targeting non-relational DBMSs [ 26,55]. Existing techniques present unique solutions targeting specific DBMS categories, but fail to exhibit decent fuzzing performance for the diverse DBMS interfaces in general. As a result, BUZZBEE is designed to address th",
+      "section": "10.3 DBMSs Fuzzing",
+      "page": 15,
+      "char_offset": 72708,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M20",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer uses differential testing techniques to report inconsistencies in query results.",
+      "context_before": "solutions to fuzz more language processors. POLYGLOT [9] further advances using a semantic validation strategy that performs well when no context-sensitive constraint is required. BUZZBEEfocuses on the challenges in fuzzing the diverse DBMS interfaces effectively in general. 10.3 DBMSs Fuzzing Fuzzing DBMSs has been an active research area in recent years [ 15,25–27,43,44,49,56]. Tools like SQLancer [ 42], SQLsmith [ 44], and Squirrel [ 56] have emerged to test relational DBMSs. SQLsmith generates random SQL queries. Squirrel employs semantic validation and coverage feedback to test SQL DBMSs.",
+      "context_after": "They have been proven successful in finding vulnerabilities in widely used relational DBMSs. Researchers also propose some solutions targeting non-relational DBMSs [ 26,55]. Existing techniques present unique solutions targeting specific DBMS categories, but fail to exhibit decent fuzzing performance for the diverse DBMS interfaces in general. As a result, BUZZBEE is designed to address this with a focus on generalizability and effectiveness. Some optimizations proposed in SQL fuzzers seem effective and generalizable to other DBMSs. DynSQL [ 25] combines the dynamic feedback from SQL DBMSs wi",
+      "section": "10.3 DBMSs Fuzzing",
+      "page": 15,
+      "char_offset": 72926,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M21",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 26,55]",
+      "technique": null,
+      "sentence": "Researchers also propose some solutions targeting non-relational DBMSs [ 26,55].",
+      "context_before": "ZBEEfocuses on the challenges in fuzzing the diverse DBMS interfaces effectively in general. 10.3 DBMSs Fuzzing Fuzzing DBMSs has been an active research area in recent years [ 15,25–27,43,44,49,56]. Tools like SQLancer [ 42], SQLsmith [ 44], and Squirrel [ 56] have emerged to test relational DBMSs. SQLsmith generates random SQL queries. Squirrel employs semantic validation and coverage feedback to test SQL DBMSs. SQLancer uses differential testing techniques to report inconsistencies in query results. They have been proven successful in finding vulnerabilities in widely used relational DBMSs.",
+      "context_after": "Existing techniques present unique solutions targeting specific DBMS categories, but fail to exhibit decent fuzzing performance for the diverse DBMS interfaces in general. As a result, BUZZBEE is designed to address this with a focus on generalizability and effectiveness. Some optimizations proposed in SQL fuzzers seem effective and generalizable to other DBMSs. DynSQL [ 25] combines the dynamic feedback from SQL DBMSs with fuzzing. Ratel [ 49] tackles the challenges of fuzzing DBMSs in real-world settings. Griffin [ 15] mutates the input without relying on grammar by tracking dependencies am",
+      "section": "10.3 DBMSs Fuzzing",
+      "page": 15,
+      "char_offset": 73109,
+      "cited_reference": {
+        "number": 26,
+        "text": "Matteo Kamm, Manuel Rigger, Chengyu Zhang, and Zhendong Su. Testing Graph Database Engines via Query Partitioning. In René Just and Gordon Fraser, editors, Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis, ISSTA 2023, Seattle, WA, USA, July 17-21, 2023, pag",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M13",
+        "M14"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:37:26Z",
+    "is_model_written": true,
+    "summary": "BuzzBee fuzzes database systems beyond the relational model -- key-value, graph and document stores -- where SQL-specific fuzzers do not apply. It generalises the intermediate-representation approach that SQL fuzzers use for tracking syntax and semantics into a form covering several data models, so that semantic correctness survives mutation. Evaluated on Redis, RedisGraph, ArangoDB, MongoDB and relational systems, it found bugs the specialised tools miss.",
+    "narrative": "SQLancer is one of BuzzBee's baselines for the relational case, run with its PQS oracle, and also on ArangoDB because SQLancer had recently added support for it. The comparison is reported per bug: on several Redis and RedisGraph defects SQLancer's column is empty, and the paper attributes that to scope -- it looks for logic errors through specific syntax structures rather than the crashes and semantic faults those systems exhibit. The paper is even-handed about the relational case, noting that none of BuzzBee, SQUIRREL or SQLancer found a bug in current PostgreSQL within 24 hours. SQLancer's design also informs BuzzBee indirectly through the IR line of work it belongs to.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "background",
+      "M4": "background",
+      "M5": "background",
+      "M6": "background",
+      "M7": "background",
+      "M8": "background",
+      "M9": "background",
+      "M10": "result_comparison",
+      "M11": "baseline",
+      "M12": "incidental",
+      "M13": "baseline",
+      "M14": "result_comparison",
+      "M15": "background",
+      "M16": "result_comparison",
+      "M17": "result_comparison",
+      "M18": "background",
+      "M19": "definition",
+      "M20": "definition",
+      "M21": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is executed as a baseline; BuzzBee's own implementation is an independent intermediate representation, not built on SQLancer."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "BuzzBee generalises the IR approach it credits to SQUIRREL and its successors, not a SQLancer oracle."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M11",
+          "M13",
+          "M14",
+          "M16"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M11",
+            "sentence": "We compare BUZZBEEwith general-purpose fuzzers AFL++ [ 14],REDQUEEN [4], syntax-aware fuzzers POLYGLOT [9], Grammarinator [ 22], and SQL-specialized SQUIR REL [56] and SQLANCER [43].",
+            "section": "8.5 Comparison with Existing Tools",
+            "page": 13
+          },
+          {
+            "mention_id": "M13",
+            "sentence": "For relational DBMSs, we compare BUZZBEEwith SQUIRREL [56] and SQL ANCER (PQS [ 43]), two DBMS fuzzers specialized in SQL DBMS fuzzing.",
+            "section": "8.5 Comparison with Existing Tools",
+            "page": 14
+          },
+          {
+            "mention_id": "M14",
+            "sentence": "We also evaluate SQLANCER on ArangoDB because SQLANCER recently adds support for it.",
+            "section": "8.5 Comparison with Existing Tools",
+            "page": 14
+          },
+          {
+            "mention_id": "M16",
+            "sentence": "None of BUZZBEE,SQUIRREL, and SQLANCER can find bugs in the latest version of PostgreSQL within 24 hours.",
+            "section": "8.5 Comparison with Existing Tools",
+            "page": 14
+          }
+        ],
+        "reasoning": "M11 lists SQLancer among the fuzzers BuzzBee is compared with, M13 states the relational comparison is against SQUIRREL and SQLancer using PQS, M14 that SQLancer was additionally run on ArangoDB, and M16 reports a result covering all three tools.",
+        "techniques": [
+          "pqs"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is called SQL-specialized and a well-known tool, but the paper does not describe it as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T17:13:10Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3428261",
+    "title": "On the unusual effectiveness of type-aware operator mutations for testing SMT solvers",
+    "authors": [
+      "Dominik Winterer",
+      "Chengyu Zhang",
+      "Zhendong Su"
+    ],
+    "year": 2020,
+    "venue": "Proc. ACM Program. Lang.",
+    "doi": "10.1145/3428261",
+    "arxiv_id": "2004.08799v4",
+    "s2_paper_id": "ab6addb4b50a1af3f78fea402980648135d3b8c9",
+    "url": "https://doi.org/10.1145/3428261",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2004.08799v4",
+      "retrieved_at": "2026-09-07T17:13:10Z",
+      "chars": 87515,
+      "content_sha256": "sha256:0bb36a019f27558373f2a42d3d2b0dac566368eff5152e0cad2c882e33ee9afc"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 25,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 2078
+      },
+      {
+        "number": "2",
+        "title": "MOTIVATING EXAMPLES",
+        "start": 14431
+      },
+      {
+        "number": "3",
+        "title": "APPROACH",
+        "start": 19857
+      },
+      {
+        "number": "3.1",
+        "title": "Type-Aware Operator Mutation",
+        "start": 22931
+      },
+      {
+        "number": "3.2",
+        "title": "OpFuzz",
+        "start": 24319
+      },
+      {
+        "number": "4",
+        "title": "EMPIRICAL EVALUATION",
+        "start": 27005
+      },
+      {
+        "number": "4.1",
+        "title": "Evaluation Setup",
+        "start": 28562
+      },
+      {
+        "number": "4.2",
+        "title": "Evaluation Results",
+        "start": 33607
+      },
+      {
+        "number": "5.1",
+        "title": "Quantitative Analysis",
+        "start": 45917
+      },
+      {
+        "number": "5.2",
+        "title": "Insights",
+        "start": 57533
+      },
+      {
+        "number": "5.3",
+        "title": "Assorted Bug Samples",
+        "start": 60282
+      }
+    ]
+  },
+  "references": [],
+  "sqlancer_references": [],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "author_year_citation",
+      "surface": "Rigger and Su 2020",
+      "technique": null,
+      "sentence": "2008; Rigger and Su 2020; Seltenreich 2020], and testing OS kernel [Corina et al .",
+      "context_before": "ey difference to type-aware operator mutation, they both need to fully parse the program and work on the abstract syntax tree level, which may lead to a higher computational cost during fuzzing. Type-aware operator mutation, on the other hand, works on the token level and without fully parsing the formula. Besides general black-box and grey-box fuzzing, various domain-specific fuzzing approaches exist, e.g., for testing compilers [Cummins et al .2018; Le et al .2014; Lidbury et al .2015; Yang et al. 2011; Zhang et al .2017], testing database management systems [Jung et al .2019; Mishra et al .",
+      "context_after": "2017; Han and Cha 2017; Schumilo et al .2017]. Type-aware operator mutation is also a domain-specific fuzzing technique which is unusually effective for testing SMT solvers. 7 CONCLUSION We introduced type-aware operator mutation, a simple and effective approach for stress-testing SMT solvers. We realized type-aware operator mutation in our testing tool OpFuzz in little more than 200LoC, supporting only the most basic operators of the SMT-LIB language. Despite this, OpFuzz found 819confirmed unique bugs (685 fixed) in Z3 and CVC4. These bug findings are highly diverse, ranging over various typ",
+      "section": "5.3 Assorted Bug Samples",
+      "page": 22,
+      "char_offset": 76550,
+      "found_by_all": [
+        "author_year_citation"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:16:45Z",
+    "is_model_written": true,
+    "summary": "Type-aware operator mutation tests SMT solvers by mutating operators of conforming types within seed formulas to produce well-typed mutants used as test cases. Realised in OpFuzz and applied to Z3 and CVC4, it proved unusually effective: over a year the authors reported 1,092 bugs, 819 confirmed and 685 fixed, spanning soundness bugs, invalid model bugs and crashes. A follow-up study found the bugs were high quality, often affecting core components.",
+    "narrative": "SQLancer appears once, in a list of domains where testing has been applied, cited alongside work on SMT solvers and OS kernels. Nothing in the paper connects to it beyond that.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,424 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T14:31:57Z",
+  "paper": {
+    "id": "paper:doi:10.14778/3749646.3749661",
+    "title": "PBench: Workload Synthesizer with Real Statistics for Cloud Analytics Benchmarking",
+    "authors": [
+      "Yan Zhou",
+      "Chunwei Liu",
+      "B. Urgaonkar",
+      "Zhengle Wang",
+      "M. Mueller",
+      "Chao Zhang",
+      "Songyue Zhang",
+      "Pascal Pfeil",
+      "Dominik Horn",
+      "Zhengchun Liu",
+      "Davide Pagano",
+      "Tim Kraska",
+      "Samuel Madden",
+      "Ju Fan"
+    ],
+    "year": 2025,
+    "venue": "Proceedings of the VLDB Endowment",
+    "doi": "10.14778/3749646.3749661",
+    "arxiv_id": "2506.16379",
+    "s2_paper_id": "f174394f4819f1387b1405ee41f9e7219b325573",
+    "url": "https://doi.org/10.14778/3749646.3749661",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2506.16379",
+      "retrieved_at": "2026-09-08T14:31:57Z",
+      "chars": 99344,
+      "content_sha256": "sha256:8b817b120937b7a8a506f7590be14105bfec896edebca37bacd3d117961d6e34"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 3059
+      },
+      {
+        "number": "2",
+        "title": "PRELIMINARIES",
+        "start": 12734
+      },
+      {
+        "number": "2.1",
+        "title": "Cloud Workload Traces",
+        "start": 13043
+      },
+      {
+        "number": "2.2",
+        "title": "Problem Formalization",
+        "start": 18430
+      },
+      {
+        "number": "3.1",
+        "title": "Overall Framework of PBench",
+        "start": 23797
+      },
+      {
+        "number": "3.1.2",
+        "title": "Two-Phase Workload Synthesis. Given a target workload",
+        "start": 25804
+      },
+      {
+        "number": "3.2",
+        "title": "Synthesizer Data Preparation",
+        "start": 28479
+      },
+      {
+        "number": "3.2.1",
+        "title": "Workload Trace Preparation. The statistics collected from",
+        "start": 28681
+      },
+      {
+        "number": "3.2.2",
+        "title": "Workload Component Preparation. To ensure a diverse set",
+        "start": 30610
+      },
+      {
+        "number": "4.1",
+        "title": "Workload Component Selection Phase",
+        "start": 32143
+      },
+      {
+        "number": "4.1.1",
+        "title": "Optimization Objective. To synthesize a workload with real",
+        "start": 32182
+      },
+      {
+        "number": "4.1.2",
+        "title": "Programming Constraints. To obtain a synthetic workload",
+        "start": 33236
+      },
+      {
+        "number": "4.2",
+        "title": "Timestamp Assignment Phase",
+        "start": 35444
+      },
+      {
+        "number": "4.2.2",
+        "title": "Simulated Annealing. To achieve a fine-grained generation,",
+        "start": 60036
+      },
+      {
+        "number": "4.3",
+        "title": "Discussion: Query Level Matching",
+        "start": 61812
+      },
+      {
+        "number": "6.1",
+        "title": "Experiment Setup",
+        "start": 71038
+      },
+      {
+        "number": "6.3",
+        "title": "Ablation Study of PBench",
+        "start": 80191
+      },
+      {
+        "number": "6.4",
+        "title": "Evaluation of PBench on Redset",
+        "start": 82805
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Nikos Armenatzoglou, Sanuj Basu, Naga Bhanoori, Mengchu Cai, Naresh Chainani, Kiran Chinta, Venkatraman Govindaraju, Todd J Green, Monish Gupta, Sebastian Hillig, et al .2022. Amazon Redshift re-invented. In Proceedings of the 2022 International Conference on Management of Data. 2205–2217.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. Proceedings of the ACM on Management of Data 2, 3 (2024), 1–26.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 3,
+      "text": "Peter Boncz, Angelos-Christos Anatiotis, and Steffen Kläbe. 2018. JCC-H: Adding Join Crossing Correlations with Skew to TPC-H. In Performance Evaluation and Benchmarking for the Analytics Era, Raghunath Nambiar and Meikel Poess (Eds.). Springer International Publishing, Cham, 103–119.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Peter Boncz, Thomas Neumann, and Orri Erling. 2013. TPC-H analyzed: Hidden messages and lessons learned from an influential benchmark. In Technology Conference on Performance Evaluation and Benchmarking. Springer, 61–76.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Nicolas Bruno, Surajit Chaudhuri, and Dilys Thomas. 2006. Generating queries with cardinality constraints for dbms testing. IEEE Transactions on Knowledge and Data Engineering 18, 12 (2006), 1721–1725.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Brian F Cooper, Adam Silberstein, Erwin Tam, Raghu Ramakrishnan, and Russell Sears. 2010. Benchmarking cloud serving systems with YCSB. In Proceedings of the 1st ACM symposium on Cloud computing. 143–154.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Benoit Dageville, Thierry Cruanes, Marcin Zukowski, Vadim Antonov, Artin Avanes, Jon Bock, Jonathan Claybaugh, Daniel Engovatov, Martin Hentschel, Jiansheng Huang, et al .2016. The snowflake elastic data warehouse. In Proceedings of the 2016 International Conference on Management of Data. 215–226.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Shaleen Deep, Anja Gruenheid, Kruthi Nagaraj, Hiro Naito, Jeff Naughton, and Stratis Viglas. 2021. Diametrics: benchmarking query engines at scale. ACMSIGMOD Record 50, 1 (2021), 24–31.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Akon Dey, Alan Fekete, Raghunath Nambiar, and Uwe Röhm. 2014. YCSB+ T: Benchmarking web-scale transactional databases. In 2014 IEEE 30th International Conference on Data Engineering Workshops. IEEE, 223–230.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Haowen Dong, Chao Zhang, Guoliang Li, and Huanchen Zhang. 2024. CloudNative Databases: A Survey. IEEE Transactions on Knowledge and Data Engineering(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Markus Dreseler, Martin Boissier, Tilmann Rabl, and Matthias Uflacker. 2020. Quantifying TPC-H choke points and their optimizations. Proceedings of the VLDB Endowment 13, 8 (2020), 1206–1220.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "John Forrest and Robin Lougee-Heimer. [n.d.]. CBC User Guide. https://www. coin-or.org/Cbc/. 2024/12/13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Peter I Frazier. 2018. A tutorial on Bayesian optimization. arXiv preprint arXiv:1807.02811 (2018).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Jacob R Gardner, Matt J Kusner, Zhixiang Eddie Xu, Kilian Q Weinberger, and John P Cunningham. 2014. Bayesian optimization with inequality constraints.. InICML, Vol. 2014. 937–945.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "IMDb. 2024. IMDb Non-Commercial Datasets. https://developer.imdb.com/noncommercial-datasets/. 2024/12/13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Viktor Leis, Andrey Gubichev, Atanas Mirchev, Peter Boncz, Alfons Kemper, and Thomas Neumann. 2015. How good are query optimizers, really? Proceedings of the VLDB Endowment 9, 3 (2015), 204–215.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Viktor Leis and Maximilian Kuschewski. 2021. Towards cost-optimal query processing in the cloud. Proceedings of the VLDB Endowment 14, 9 (2021), 1606– 1612.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Guoliang Li, Haowen Dong, and Chao Zhang. 2022. Cloud databases: New techniques, challenges, and opportunities. Proceedings of the VLDB Endowment 15, 12 (2022), 3758–3761.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Guoliang Li, Xuanhe Zhou, and Lei Cao. 2021. Machine learning for databases. InProceedings of the First International Conference on AI-ML Systems. 1–2.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Zhaodonghui Li, Haitao Yuan, Huiming Wang, Gao Cong, and Lidong Bing. 2024. LLM-R2: A Large Language Model Enhanced Rule-based Rewrite System for Boosting Query Efficiency. arXiv preprint arXiv:2404.12872 (2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Microsoft. 2024. DSB benchmark. https://github.com/microsoft/dsb. 2024/12/13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Chaitanya Mishra, Nick Koudas, and Calisto Zuzarte. 2008. Generating targeted queries for database testing. In Proceedings of the 2008 ACMSIGMOD international conference on Management of data. 499–510.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Magnus Müller, Lucas Woltmann, and Wolfgang Lehner. 2023. Enhanced Featurization of Queries with Mixed Combinations of Predicates for ML-based Cardinality Estimation.. In EDBT. 273–284.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Fernando Nogueira. 2014–. Bayesian Optimization: Open source constrained global optimization tool for Python. https://github.com/bayesian-optimization/ BayesianOptimization",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Meikel Poess, Raghunath Othayoth Nambiar, and David Walrath. 2007. Why You Should Run TPC-DS: A Workload Analysis.. In VLDB, Vol. 7. 1138–1149.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Prometheus. 2024. Prometheus Github Page. https://github.com/prometheus. 2024/12/13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Gaurav Saxena, Mohammad Rahman, Naresh Chainani, Chunbin Lin, George Caragea, Fahim Chowdhury, Ryan Marcus, Tim Kraska, Ippokratis Pandis, and Balakrishnan (Murali) Narayanaswamy. 2023. Auto-WLM: Machine Learning Enhanced Workload Management in Amazon Redshift. In Companion of the 2023 International Conference on Management of Data (Seattle, WA, USA) (SIGMOD ’23). Association for Computing Machine",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Dana Van Aken, Andrew Pavlo, Geoffrey J Gordon, and Bohan Zhang. 2017. Automatic database management system tuning through large-scale machine learning. In Proceedings of the 2017 ACM international conference on management of data. 1009–1024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Alexander van Renen, Dominik Horn, Pascal Pfeil, Kapil Vaidya, Wenjian Dong, Murali Narayanaswamy, Zhengchun Liu, Gaurav Saxena, Andreas Kipf, and Tim Kraska. 2024. Why TPC is not enough: An analysis of the Amazon Redshift fleet. Proceedings of the VLDB Endowment 17, 11 (2024), 3694–3706.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Alexander Van Renen and Viktor Leis. 2023. Cloud analytics benchmark. Proceedings of the VLDB Endowment 16, 6 (2023), 1413–1425.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Midhul Vuppalapati, Justin Miron, Rachit Agarwal, Dan Truong, Ashish Motivala, and Thierry Cruanes. 2020. Building an elastic query engine on disaggregated storage. In 17th USENIX Symposium on Networked Systems Design and Implementation (NSDI 20). 449–462.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Richard J. Wagner. 2024. Python module for simulated annealing. https://github. com/perrygeo/simanneal. 2024/12/13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Chengcheng Wan, Yiwen Zhu, Joyce Cahoon, Wenjing Wang, Katherine Lin, Sean Liu, Raymond Truong, Neetu Singh, Alexandra M. Ciortea, Konstantinos Karanasos, and Subru Krishnan. 2023. Stitcher: Learned Workload Synthesis from Historical Performance Footprints. In EDBT. OpenProceedings.org, 417–423. https://doi.org/10.48786/EDBT.2023.33",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Shaoyi Yin, Franck Morvan, Jorge Martinez-Gil, and Abdelkader Hameurlain. 2023. MTD-DS: an SLA-aware Decision Support Benchmark for Multi-tenant Parallel DBMSs. Ph.D. Dissertation. IRIT-Institut de Recherche en Informatique de Toulouse.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Chao Zhang, Guoliang Li, and Tao Lv. 2024. HyBench: A New Benchmark for HTAP Databases. Proceedings of the VLDB Endowment 17, 5 (2024), 939–951.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Chao Zhang, Guoliang Li, Jintao Zhang, Xinning Zhang, and Jianhua Feng. 2024. HTAP Databases: A Survey. IEEE Transactions on Knowledge and Data Engineering (2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Huanchen Zhang, Yihao Liu, and Jiaqi Yan. 2023. Cost-Intelligent Data Analytics in the Cloud. arXiv preprint arXiv:2308.09569 (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Lixi Zhang, Chengliang Chai, Xuanhe Zhou, and Guoliang Li. 2022. Learnedsqlgen: Constraint-aware sql generation using reinforcement learning. In Proceedings of the 2022 International Conference on Management of Data. 945–958. 13",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. Proceedings of the ACM on Management of Data 2, 3 (2024), 1–26.",
+      "technique": "dqp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing dqp",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 2]",
+      "technique": "dqp",
+      "sentence": "Then, the generated synthetic workload offers an effective solution for database benchmarking [ 8,35,36], performance tuning [ 28], and bug detection [ 2], allowing database developers to perform realistic evaluations while preserving customer privacy and avoiding exposure of sensitive workloads or data.",
+      "context_before": "ith real statistics. Given a real workload trace where original SQL queries and underlying databases are unavailable, the problem is to generate a synthetic workload that, when executed, produces statistics 3 closely approximate the target workload’s performance metrics and operator distributions. In particular, given that real workload traces lack the original SQL queries and their underlying databases, this work focuses on constructing synthetic workloads by combining workload components, i.e., SQL queries and their corresponding databases, from existing benchmarks, such as TPC-H and TPC-DS.",
+      "context_after": "This paper considers two settings to workload synthesis: querylevel andwindow-level. The query-level setting synthesizes a workload by generating a corresponding query for each original query, preserving the number of queries and their arrival times. However, this method may introduce significant computational overhead and higher approximation errors when identifying suitable queries for synthesis. In contrast, the window-level setting aims to approximate the aggregated statistics of all customer queries within a given time window, offering greater flexibility and reducing overall errors comp",
+      "section": "2.2 Problem Formalization",
+      "page": 4,
+      "char_offset": 19112,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. Proceedings of the ACM on Management of Data 2, 3 (2024), 1–26.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing dqp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:17:50Z",
+    "is_model_written": true,
+    "summary": "PBench synthesises analytics workloads that reproduce the execution statistics of real cloud workloads. Standard benchmarks use fixed query patterns and miss production behaviour, while released traces lack the queries and databases needed to be benchmarks. PBench selects and combines components from existing benchmarks and augments them with new ones, using multi-objective optimisation, timestamp assignment for temporal dynamics, and LLM-generated components. It cuts approximation error by up to 6x.",
+    "narrative": "One citation, listing database benchmarking among the uses a synthetic workload serves, with SQLancer's work among the references.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

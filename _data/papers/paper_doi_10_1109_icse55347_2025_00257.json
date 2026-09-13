@@ -1,0 +1,891 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:31:07Z",
+  "paper": {
+    "id": "paper:doi:10.1109/icse55347.2025.00257",
+    "title": "Thanos: DBMS Bug Detection via Storage Engine Rotation Based Differential Testing",
+    "authors": [
+      "Ying Fu",
+      "Zhiyong Wu",
+      "Yuanliang Zhang",
+      "Jie Liang",
+      "Jingzhou Fu",
+      "Yu Jiang",
+      "Shanshan Li",
+      "Xiangke Liao"
+    ],
+    "year": 2025,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1109/icse55347.2025.00257",
+    "arxiv_id": null,
+    "s2_paper_id": "9f1911b932dfb22d05e25106a0da9e4e1febd296",
+    "url": "https://doi.org/10.1109/icse55347.2025.00257",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/icse55347.2025.00257",
+      "retrieved_at": "2026-09-09T01:31:07Z",
+      "chars": 61403,
+      "content_sha256": "sha256:bbc308cb2cfa9487d82ca7c02340e8cb03b19289da7d6f0e67c39af29c7e428f"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 1747
+      },
+      {
+        "number": "II",
+        "title": "BACKGROUND ANDMOTIVATION",
+        "start": 8656
+      },
+      {
+        "number": "A",
+        "title": "Definitions",
+        "start": 15049
+      },
+      {
+        "number": "B",
+        "title": "Feature-Guided Storage Engine Selection",
+        "start": 17863
+      },
+      {
+        "number": "C",
+        "title": "Extract Equivalence Information",
+        "start": 20529
+      },
+      {
+        "number": "D",
+        "title": "Feature-Oriented Test Case Synthesis",
+        "start": 23470
+      },
+      {
+        "number": "E",
+        "title": "Discrepancy Analysis of Execution Results",
+        "start": 28912
+      },
+      {
+        "number": "F",
+        "title": "Implementation",
+        "start": 30710
+      },
+      {
+        "number": "A",
+        "title": "Evaluation Setup",
+        "start": 32468
+      },
+      {
+        "number": "B",
+        "title": "DBMS Bug Detection",
+        "start": 33455
+      },
+      {
+        "number": "C",
+        "title": "Comparison with Existing Techniques",
+        "start": 41383
+      },
+      {
+        "number": "D",
+        "title": "Effectiveness of Feature-Oriented Test Case Synthesis",
+        "start": 45990
+      },
+      {
+        "number": "D",
+        "title": "Wang, W. Wang, and J. Wei, “Finding bugs in",
+        "start": 55719
+      },
+      {
+        "number": "T",
+        "title": "Tse, and Z. Q. Zhou, “Metamorphic testing: A review",
+        "start": 57937
+      },
+      {
+        "number": "H",
+        "title": "Zhong, and T. Huang, “Testing database systems",
+        "start": 59597
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Wikipedia, “Dbms,” https://https://en .wikipedia .org/wiki/ Database, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "M. Stonebraker, S. Madden, and P. Dubey, “Intel” big data” science and technology center vision and execution plan,” ACMSIGMOD Record, vol. 42, no. 1, pp. 44–49, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Wikipedia, “Database security,” https://en .wikipedia .org/ wiki/Database security, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "W. E. Howden, “Theoretical and empirical studies of program testing,” IEEE Transactions on Software Engineering, no. 4, pp. 293–298, 1978.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Wikipedia, “Test oracle,” https://en .wikipedia .org/wiki/ Test oracle, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "D. R. Slutz, “Massive stochastic testing of sql,” in VLDB, vol. 98. Citeseer, 1998, pp. 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "W. M. McKeeman, “Differential testing for software,” Digital Technical Journal, vol. 10, no. 1, pp. 100–107, 1998.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Z. Cui, W. Dou, Q. Dai, J. Song, W. Wang, J. Wei, and D. Ye, “Differentially testing database transactions for fun and profit,” in Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering, 2022, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "J. Jung, H. Hu, J. Arulraj, T. Kim, and W. Kang, “Apollo: Automatic detection and diagnosis of performance regressions in database systems,” Proceedings of the VLDB Endowment, vol. 13, no. 1, pp. 57–70, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Y. Zheng, W. Dou, Y. Wang, Z. Qin, L. Tang, Y. Gao, D. Wang, W. Wang, and J. Wei, “Finding bugs in gremlin-based graph database systems via randomizeddifferential testing,” in Proceedings of the 31st ACMSIGSOFT International Symposium on Software Testing and Analysis, 2022, pp. 302–313.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "MySQL, “Mysql storage engines,” https:// dev.mysql .com/doc/refman/8 .0/en/storage-engines .html, accessed: August 16, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "MariaDB, “Mariadb storage engines,” https: //mariadb .com/kb/en/storage-engines/, accessed: August 16, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Percona, “Percona storage engines,” https: //docs .percona .com/percona-server/8 .0/glossary .html?h= storage+ engine#storage-engine/, accessed: August 16, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "MySQL, “Mysql full-text index,” https://dev .mysql .com/ doc/refman/8 .0/en/create-index .html/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "“Thanos website,” https://github .com/Thanos2024/ Thanos, accessed: August 16, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "ISO/IEC, “Iso/iec 9075-1:2003,” https://www .iso.org/ standard/34132 .html, accessed: August 16, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "“Bison,” https://www .gnu.org/software/bison/, accessed: August 16, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "“Flex, the fast lexical analyzer generator,” https:// github .com/westes/flex, accessed: August 16, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "“Mysql,” https://www .mysql .com/, accessed: August 16, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "“Mariadb,” https://mariadb .org/, accessed: August 16, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "“Percona,” https://www .percona .com/, accessed: August 16, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "R. Zhong, Y. Chen, H. Hu, H. Zhang, W. Lee, and D. Wu, “Squirrel: Testing database management systems with language validity and coverage feedback,” in The ACM Conference on Computer and Communications Security (CCS), 2020, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "C. chen, “Squirrel website,” https://github .com/s3team/ Squirrel, accessed: August 16, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "M. Rigger, “Sqlancer website,” https://github .com/ sqlancer/sqlancer, accessed: August 16, 2024.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 25,
+      "text": "A. Seltenreich, B. Tang, and S. Mullender, “Sqlsmith: a random sql query generator,” 2018. [Online]. Available: https://github .com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "“Sqlsmith description,” https://github .com/anse1/ sqlsmith#description, accessed: August 16, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "A. Fioraldi, D. Maier, H. Eißfeldt, and M. Heuse, “Afl++: Combining incremental steps of fuzzing research,” 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "T. Y. Chen, F.-C. Kuo, H. Liu, P.-L. Poon, D. Towey, T. Tse, and Z. Q. Zhou, “Metamorphic testing: A review of challenges and opportunities,” ACM Computing Surveys (CSUR), vol. 51, no. 1, pp. 1–27, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "H. Liu, F.-C. Kuo, D. Towey, and T. Y. Chen, “How effectively does metamorphic testing alleviate the oracle problem?” IEEE Transactions on Software Engineering, vol. 40, no. 1, pp. 4–22, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on 665 Programming Languages, vol. 4, no. OOPSLA, pp. 1– 30, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 31,
+      "text": "Rigger, Manuel and Su, Zhendong, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 32,
+      "text": "X. Liu, Q. Zhou, J. Arulraj, and A. Orso, “Automatic detection of performance bugs in database systems using equivalent queries,” in Proceedings of the 44th International Conference on Software Engineering, 2022, pp. 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 34,
+      "text": "Z.-M. Jiang, S. Liu, M. Rigger, and Z. Su, “Detecting transactional bugs in database engines via GraphBased oracle construction,” in 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23). Boston, MA: USENIX Association, Jul. 2023, pp. 397–417. [Online]. Available: https: //www .usenix .org/conference/osdi23/presentation/jiang",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 35,
+      "text": "J. Song, W. Dou, Z. Cui, Q. Dai, W. Wang, J. Wei, H. Zhong, and T. Huang, “Testing database systems via differential query execution,” in Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "J. Liang, Y. Chen, Z. Wu, J. Fu, M. Wang, Y. Jiang, X. Huang, T. Chen, J. Wang, and J. Li, “Sequenceoriented dbms fuzzing,” in 2023 IEEE 39th International Conference on Data Engineering (ICDE). IEEE, 2023, pp. 668–681.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "J. Fu, J. Liang, Z. Wu, M. Wang, and Y. Jiang, “Griffin: Grammar-free dbms fuzzing,” in Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering, 2022, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "M. Wang, Z. Wu, X. Xu, J. Liang, C. Zhou, H. Zhang, and Y. Jiang, “Industry practice of coverage-guided enterprise-level dbms fuzzing,” in 2021 IEEE/ACM 43rd International Conference on Software Engineering: Software Engineering in Practice (ICSE-SEIP). IEEE, 2021, pp. 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Z. Wu, J. Liang, M. Wang, C. Zhou, and Y. Jiang, “Unicorn: detect runtime errors in time-series databases with hybrid input synthesis,” in Proceedings of the 31st ACMSIGSOFT International Symposium on Software Testing and Analysis, 2022, pp. 251–262.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Y. Liang, S. Liu, and H. Hu, “Detecting Logical Bugs of DBMS with Coverage-based Guidance,” in Proceedings of the 31st USENIX Security Symposium (USENIX 2022), Boston, MA, aug 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "J. Fu, J. Liang, Z. Wu, and Y. Jiang, “Sedar: Obtaining high-quality seeds for dbms fuzzing via cross-dbms sql transfer,” in Proceedings of the IEEE/ACM 46th Inter-national Conference on Software Engineering, 2024, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "J. Liang, Z. Wu, J. Fu, M. Wang, C. Sun, and Y. Jiang, “Mozi: Discovering dbms bugs via configurationbased equivalent transformation,” in Proceedings of the IEEE/ACM 46th International Conference on Software Engineering, 2024, pp. 1–12. 666",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 24,
+      "text": "M. Rigger, “Sqlancer website,” https://github .com/ sqlancer/sqlancer, accessed: August 16, 2024.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 30,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on 665 Programming Languages, vol. 4, no. OOPSLA, pp. 1– 30, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 31,
+      "text": "Rigger, Manuel and Su, Zhendong, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 33,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 34,
+      "text": "Z.-M. Jiang, S. Liu, M. Rigger, and Z. Su, “Detecting transactional bugs in database engines via GraphBased oracle construction,” in 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23). Boston, MA: USENIX Association, Jul. 2023, pp. 397–417. [Online]. Available: https: //www .usenix .org/conference/osdi23/presentation/jiang",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We evaluate THANOS on three widely used and extensively tested DBMSs, namely MySQL, MariaDB, and Percona against state-of-the-art fuzzers SQLancer, SQLsmith, and SQUIRREL.",
+      "context_before": "t is that a DBMS with different storage engines must provide consistent basic storage functionalities. Therefore, it’s feasible to construct equivalent DBMSs based on storage engine rotation, ensuring that the same SQL test cases to these equivalent DBMSs yield consistent results. The framework involves four main steps: 1) select the appropriate storage engines; 2) extract equivalence information among the selected storage engines; 3) synthesize feature-orient test cases that ensure the DBMS equivalence; and 4) send test cases to the DBMSs with selected storage engines and compare the results.",
+      "context_after": "THANOS outperforms them on branch coverage by 24%–116%, and also finds many bugs missed by other fuzzers. More importantly, the vendors have confirmed 32 previously unknown bugs found by THANOS, with 29 verified as Critical. Index Terms —DBMS Testing, Differential Testing, Storage Engine I. INTRODUCTION Database Management Systems (DBMSs) provide a structured framework for efficient and secure data handling in contemporary computing. They enable the storage, retrieval, and management of vast amounts of data, enhancing accessibility and integrity [1, 2]. Testing DBMSs is essential to guarantee",
+      "section": null,
+      "page": 1,
+      "char_offset": 1285,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "To assess the effectiveness of THANOS, we compare THANOS against contemporary state-of-the-art DBMS testing methods, namely SQLancer, SQLsmith, and SQUIRREL.",
+      "context_before": "emantic correctness but also explore the full spectrum of storage engine features; and finally, we send the test cases to the DBMSs with selected storage engines and compare the results for bug detection. To demonstrate the effectiveness of our approach, we implement a generic DBMS testing framework called THANOS and apply THANOS on three well-tested DBMSs: MySQL, MariaDB, and Percona. THANOS has discovered 32 new bugs confirmed by the corresponding vendors, including 11 bugs in MySQL, 17 bugs in MariaDB, and 4 bugs in Percona, respectively. Among these bugs, 29 bugs were verified as Critical.",
+      "context_after": "THANOS covers 115.95%, 45.23%, 23.72% more branches, and finds 14, 13, and 11 more bugs in 24 hours on three DBMSs than SQLancer, SQLsmith, and SQUIRREL, respectively. Meanwhile, we also show the effectiveness of the feature-oriented test case synthesis. In conclusion, our paper makes the following contributions: •We propose a novel differential testing approach to complement existing methods of defining DBMS test oracle, which constructs equivalent DBMSs by rotating the storage engine components, serving as a reference for validating execution results. •We implement THANOS, a DBMS testing fr",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 7279,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "72% more branches, and finds 14, 13, and 11 more bugs in 24 hours on three DBMSs than SQLancer, SQLsmith, and SQUIRREL, respectively.",
+      "context_before": "detection. To demonstrate the effectiveness of our approach, we implement a generic DBMS testing framework called THANOS and apply THANOS on three well-tested DBMSs: MySQL, MariaDB, and Percona. THANOS has discovered 32 new bugs confirmed by the corresponding vendors, including 11 bugs in MySQL, 17 bugs in MariaDB, and 4 bugs in Percona, respectively. Among these bugs, 29 bugs were verified as Critical. To assess the effectiveness of THANOS, we compare THANOS against contemporary state-of-the-art DBMS testing methods, namely SQLancer, SQLsmith, and SQUIRREL. THANOS covers 115.95%, 45.23%, 23.",
+      "context_after": "Meanwhile, we also show the effectiveness of the feature-oriented test case synthesis. In conclusion, our paper makes the following contributions: •We propose a novel differential testing approach to complement existing methods of defining DBMS test oracle, which constructs equivalent DBMSs by rotating the storage engine components, serving as a reference for validating execution results. •We implement THANOS, a DBMS testing framework that synthesizes test cases based on the features of the selected storage engine to ensure the equivalence of the tested DBMS instances. Any inconsistent execut",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 7472,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Similarly, metamorphic testing tools like SQLancer, which rely on specially crafted rules still prove ineffective in detecting this particular problem.",
+      "context_before": "e test cases generated by THANOS are executed separately by both MySQL engines, the InnoDB returns an ’empty set’, whereas the Memory returns a result set with four rows and four columns of NULL values. Theoretically, these two engines should return the same results. This inconsistency in the results indicates errors within the MySQL storage engines’ implementation. In this case, both storage engines successfully execute the given test cases, generating query results without any crashes or error messages. Traditional DBMS fuzzing methods, such as SQUIRREL, would be unable to detect this issue.",
+      "context_after": "As a result, this bug is difficult for other DBMS testing methods to detect within the same time frame. 1https://bugs.mysql.com/bug.php?id=112913III. DESIGN OFTHANOS Figure 3 illustrates the approach overview of THANOS, utilizing the storage engine as a key point to build equivalent DBMSs, thus defining test oracle for automated DBMS bug detection. THANOS consists of four main steps: In Step 1, THANOS selects appropriate storage engines to serve as the foundation for constructing equivalent DBMSs. In Step 2, THANOS extracts equivalence information among the selected storage engines from Step",
+      "section": "II BACKGROUND ANDMOTIVATION",
+      "page": 3,
+      "char_offset": 13645,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "To evaluate the effectiveness of THANOS, we compared THANOS with the state-of-art DBMS test tools, SQUIRREL [22, 23], SQLancer [24], and SQLsmith [25, 26].",
+      "context_before": "evaluate the effectiveness of detecting bugs with the test oracle constructed by THANOS. Our evaluation aims to answer the following research questions: •RQ1: Can THANOS find DBMSs’ bugs? •RQ2: How does THANOS perform compared to other DBMS testing techniques? •RQ3: How effective is the feature-oriented test case synthesis algorithm? A. Evaluation Setup Tested DBMSs and Compared Techniques. We evaluated THANOS on three widely used DBMSs, namely MySQL [19], MariaDB [20], and Percona [21]. All three tested DBMSs support multiple storage engines and have been extensively tested by existing works.",
+      "context_after": "SQLsmith construct the AST model to generate amounts of queries for detecting crash bugs. SQLancer generates SQL queries and detects the logic bugs of DBMSs. SQUIRREL uses the coverage to guide the SQL generation for detecting the crash bugs of DBMSs. Experiment Environment. We perform the evaluation on a machine running 64-bit Ubuntu 20.04, each DBMS testing instance runs in a docker container with 5 CPU cores (AMDEPYC 7742 Processor @ 2.25 GHz) and 40 GiB of main memory. The three tested DBMSs are compiled by AFL++ [27] for collecting coverage and feedback. B. DBMS Bug Detection THANOS succ",
+      "section": "A Evaluation Setup",
+      "page": 7,
+      "char_offset": 32732,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer generates SQL queries and detects the logic bugs of DBMSs.",
+      "context_before": "ng techniques? •RQ3: How effective is the feature-oriented test case synthesis algorithm? A. Evaluation Setup Tested DBMSs and Compared Techniques. We evaluated THANOS on three widely used DBMSs, namely MySQL [19], MariaDB [20], and Percona [21]. All three tested DBMSs support multiple storage engines and have been extensively tested by existing works. To evaluate the effectiveness of THANOS, we compared THANOS with the state-of-art DBMS test tools, SQUIRREL [22, 23], SQLancer [24], and SQLsmith [25, 26]. SQLsmith construct the AST model to generate amounts of queries for detecting crash bugs.",
+      "context_after": "SQUIRREL uses the coverage to guide the SQL generation for detecting the crash bugs of DBMSs. Experiment Environment. We perform the evaluation on a machine running 64-bit Ubuntu 20.04, each DBMS testing instance runs in a docker container with 5 CPU cores (AMDEPYC 7742 Processor @ 2.25 GHz) and 40 GiB of main memory. The three tested DBMSs are compiled by AFL++ [27] for collecting coverage and feedback. B. DBMS Bug Detection THANOS successfully detected 32 previously unknown bugs in three well-tested DBMSs within three weeks. All 32 bugs were reported to and confirmed by developers, with no",
+      "section": "A Evaluation Setup",
+      "page": 7,
+      "char_offset": 32978,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Or they require adherence to specific rules, as seen in SQLancer where the NOREC test oracle is optimizer-related, and TLP necessitates a pivot row.",
+      "context_before": "LL across different storage engines. The presence of inconsistent storage engine implementations poses significant security risks, as users may employ commands such as ALTER TABLE to change the storage engine of existing tables. Once the inconsistency is triggered, serious business logic issues may arise, potentially leading to financial losses. We have reported this inconsistency issue, sparking extensive discussions among developers, and efforts are underway to resolve and fix the problem. Existing DBMS fuzz testing methods, such as SQUIRREL, typically focus on detecting issues like crashes.",
+      "context_after": "Identifying this issue, which involves comparing 2https://bugs.mysql.com/bug.php?id=112917 661 execution results across multiple engines, is challenging using current DBMS testing methods. Listing 2: Inconsistent error message between CSV and ARCHIVE. -- ENGINE = CSVCREATE TABLE test (v0 INT NOT NULL, v1 CHAR(5) NOT NULL); CREATE INDEX index0 ONtest (v0) USING BTREE; -- ERROR 1069 (42000): Too many keys specified; max 0 keys allowed -- ENGINE = ARCHIVE CREATE TABLE test (v0 INT NOT NULL, v1 CHAR(5) NOT NULL); CREATE INDEX index0 ONtest (v0) USING BTREE; -- ERROR 1030 (HY000): Got error-1 -",
+      "section": "B DBMS Bug Detection",
+      "page": 7,
+      "char_offset": 36947,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Comparison with Existing Techniques To assess the effectiveness of THANOS, we conducted a comparative study that pitted THANOS against contemporary state-of-the-art DBMS testing methods, namely SQLancer, SQLsmith, and SQUIRREL.",
+      "context_before": "orm DBMS testing only with the default storage engine and do not change the storage engines during the test period. THANOS can detect the bug with the storage engine-orient equivalent DBMS construction. First, with the feature-guided storage engine combination selection, THANOS can select theMroonga and InnoDB combination and then extract the equivalence information. Then, with the feature-orient test case synthesis algorithm, the synthesized test cases contain amounts of intensive data storage-related operations, which could be more likely to trigger issues related to DBMS storage engines. C.",
+      "context_after": "Each DBMS underwent a 24hour testing period using these tools, and we documented TABLE III: Number of bugs detected by THANOS, SQLancer, SQLsmith and SQUIRREL on 3 DBMSs in 24 hours. DBMS SQLancer SQLsmith SQUIRREL THANOS MySQL 0 1 1 6 MariaDB 0 0 1 5 Percona 0 0 1 3 Total 0 1 3 14 Increment 14↑ 13↑ 11↑ – TABLE IV: Number of branches covered by THANOS, SQLancer, SQLsmith, and SQUIRREL on 3 DBMSs in 24 hours. DBMS SQLancer SQLsmith SQUIRREL THANOS MySQL 59,242 93,742 109,323 120,156 MariaDB 60,293 88,923 100,920 132,532 Percona 63,829 89,987 109,823 143,293 Total 183,364 272,652 320,066 395,98",
+      "section": "C Comparison with Existing Techniques",
+      "page": 8,
+      "char_offset": 41385,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Each DBMS underwent a 24hour testing period using these tools, and we documented TABLE III: Number of bugs detected by THANOS, SQLancer, SQLsmith and SQUIRREL on 3 DBMSs in 24 hours.",
+      "context_before": "uided storage engine combination selection, THANOS can select theMroonga and InnoDB combination and then extract the equivalence information. Then, with the feature-orient test case synthesis algorithm, the synthesized test cases contain amounts of intensive data storage-related operations, which could be more likely to trigger issues related to DBMS storage engines. C. Comparison with Existing Techniques To assess the effectiveness of THANOS, we conducted a comparative study that pitted THANOS against contemporary state-of-the-art DBMS testing methods, namely SQLancer, SQLsmith, and SQUIRREL.",
+      "context_after": "DBMS SQLancer SQLsmith SQUIRREL THANOS MySQL 0 1 1 6 MariaDB 0 0 1 5 Percona 0 0 1 3 Total 0 1 3 14 Increment 14↑ 13↑ 11↑ – TABLE IV: Number of branches covered by THANOS, SQLancer, SQLsmith, and SQUIRREL on 3 DBMSs in 24 hours. DBMS SQLancer SQLsmith SQUIRREL THANOS MySQL 59,242 93,742 109,323 120,156 MariaDB 60,293 88,923 100,920 132,532 Percona 63,829 89,987 109,823 143,293 Total 183,364 272,652 320,066 395,981 Increment 115.95% ↑45.23% ↑23.72% ↑ – 662 TABLE V: The number of triggered features and feature-related statements ratios in test cases generated by T HANOSand THANOS in 24 hours.",
+      "section": "C Comparison with Existing Techniques",
+      "page": 8,
+      "char_offset": 41613,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "DBMS SQLancer SQLsmith SQUIRREL THANOS MySQL 0 1 1 6 MariaDB 0 0 1 5 Percona 0 0 1 3 Total 0 1 3 14 Increment 14↑ 13↑ 11↑ – TABLE IV: Number of branches covered by THANOS, SQLancer, SQLsmith, and SQUIRREL on 3 DBMSs in 24 hours.",
+      "context_before": "ynthesis algorithm, the synthesized test cases contain amounts of intensive data storage-related operations, which could be more likely to trigger issues related to DBMS storage engines. C. Comparison with Existing Techniques To assess the effectiveness of THANOS, we conducted a comparative study that pitted THANOS against contemporary state-of-the-art DBMS testing methods, namely SQLancer, SQLsmith, and SQUIRREL. Each DBMS underwent a 24hour testing period using these tools, and we documented TABLE III: Number of bugs detected by THANOS, SQLancer, SQLsmith and SQUIRREL on 3 DBMSs in 24 hours.",
+      "context_after": "DBMS SQLancer SQLsmith SQUIRREL THANOS MySQL 59,242 93,742 109,323 120,156 MariaDB 60,293 88,923 100,920 132,532 Percona 63,829 89,987 109,823 143,293 Total 183,364 272,652 320,066 395,981 Increment 115.95% ↑45.23% ↑23.72% ↑ – 662 TABLE V: The number of triggered features and feature-related statements ratios in test cases generated by T HANOSand THANOS in 24 hours. DBMS Number of Triggered Features Feature-Related Statements Ratios Name Features THANOS-THANOS Increment THANOS-THANOS Increment MySQL 289 70 257 187↑ 67.18% 83.32% 16.14% ↑ MariaDB 492 161 434 273↑ 63.11% 85.59% 22.48% ↑ Perco",
+      "section": "C Comparison with Existing Techniques",
+      "page": 8,
+      "char_offset": 41796,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "DBMS SQLancer SQLsmith SQUIRREL THANOS MySQL 59,242 93,742 109,323 120,156 MariaDB 60,293 88,923 100,920 132,532 Percona 63,829 89,987 109,823 143,293 Total 183,364 272,652 320,066 395,981 Increment 115.",
+      "context_before": "assess the effectiveness of THANOS, we conducted a comparative study that pitted THANOS against contemporary state-of-the-art DBMS testing methods, namely SQLancer, SQLsmith, and SQUIRREL. Each DBMS underwent a 24hour testing period using these tools, and we documented TABLE III: Number of bugs detected by THANOS, SQLancer, SQLsmith and SQUIRREL on 3 DBMSs in 24 hours. DBMS SQLancer SQLsmith SQUIRREL THANOS MySQL 0 1 1 6 MariaDB 0 0 1 5 Percona 0 0 1 3 Total 0 1 3 14 Increment 14↑ 13↑ 11↑ – TABLE IV: Number of branches covered by THANOS, SQLancer, SQLsmith, and SQUIRREL on 3 DBMSs in 24 hours.",
+      "context_after": "95% ↑45.23% ↑23.72% ↑ – 662 TABLE V: The number of triggered features and feature-related statements ratios in test cases generated by T HANOSand THANOS in 24 hours. DBMS Number of Triggered Features Feature-Related Statements Ratios Name Features THANOS-THANOS Increment THANOS-THANOS Increment MySQL 289 70 257 187↑ 67.18% 83.32% 16.14% ↑ MariaDB 492 161 434 273↑ 63.11% 85.59% 22.48% ↑ Percona 359 92 306 214↑ 65.15% 82.75% 17.60% ↑ the number of bugs they uncovered. All identified bugs were reported to the developers, and the confirmed bug count was used as the final result. To ensure a fair",
+      "section": "C Comparison with Existing Techniques",
+      "page": 8,
+      "char_offset": 42025,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, THANOS found 14, 13, and 11 more bugs than SQLancer, SQLsmith, and SQUIRREL, respectively.",
+      "context_before": "er of bugs they uncovered. All identified bugs were reported to the developers, and the confirmed bug count was used as the final result. To ensure a fair comparison, we collected the generated test cases from each testing method and dry-ran the test cases to collect the uniform branch coverage. THANOS outperforms other DBMS testing methods in detecting bugs and covering new branches. Table III shows the number of bugs detected by each method in 24 hours. THANOS detected a total of 14 bugs. From the table, we can see that THANOS finds more bugs than other state-of-the-art DBMS testing methods.",
+      "context_after": "Note that all 14 bugs discovered by THANOS during the 24-hour experiment were subsequently confirmed as previously unknown bugs. Table IV shows the number of branches covered by each DBMS testing method in 24hour experiments. From the table, we can see that THANOS outperformed other testing methods in terms of branch coverage. Specifically, THANOS totally covered 115.95%, 45.23%, and 23.72% more branches than SQLancer, SQLsmith, and SQUIRREL, respectively. The main reason for THANOS ’s improvement in bug detection and branch coverage stems from its adept utilization of the DBMS storage engine",
+      "section": "C Comparison with Existing Techniques",
+      "page": 9,
+      "char_offset": 43275,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "72% more branches than SQLancer, SQLsmith, and SQUIRREL, respectively.",
+      "context_before": "From the table, we can see that THANOS finds more bugs than other state-of-the-art DBMS testing methods. Specifically, THANOS found 14, 13, and 11 more bugs than SQLancer, SQLsmith, and SQUIRREL, respectively. Note that all 14 bugs discovered by THANOS during the 24-hour experiment were subsequently confirmed as previously unknown bugs. Table IV shows the number of branches covered by each DBMS testing method in 24hour experiments. From the table, we can see that THANOS outperformed other testing methods in terms of branch coverage. Specifically, THANOS totally covered 115.95%, 45.23%, and 23.",
+      "context_after": "The main reason for THANOS ’s improvement in bug detection and branch coverage stems from its adept utilization of the DBMS storage engine components for testing purposes. On one hand, THANOS systematically tests various storage engines during the evaluation of each DBMS, whereas conventional DBMS testing methods typically focus on the default storage engine. Consequently, THANOS conspicuously manages to test a more extensive portion of DBMS code. Figure 5 illustrates the branch coverage results after a 24hour test on the storage engine components, showcasing that THANOS achieves an average c",
+      "section": "C Comparison with Existing Techniques",
+      "page": 9,
+      "char_offset": 43771,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, the NoREC test oracle in SQLancer detects logical errors in the DBMS optimizer by constructing equivalent optimized and unoptimized queries based on op-timizer rules.",
+      "context_before": "to other testing methods. As mentioned earlier, the storage engine components serve as the core link between the underlying storage and the database system. By thoroughly testing the features of storage engines, comprehensive evaluation, and testing of the overall features of the DBMS system become possible. Therefore, from a holistic perspective, the improvement in coverage is quite significant for the DBMS. On the other hand, THANOS aims to construct the equivalent DBMSs and thoroughly test its features. In comparison to existing tools, it can test a broader spectrum of DBMS functionalities.",
+      "context_after": "However, this method only covers SQL syntax that complies with optimizer rules. In contrast, THANOS lacks such limitations, as the storage engine, being the underlying software of the DBMS, essentially encompasses all the functionalities of the DBMS. Meanwhile, THANOS performs a comprehensive functional modeling of the DBMS storage engine components, enabling thorough testing of the DBMS when generating test cases. Even during the generation of test cases, THANOS incorporates numerous non-standard SQL statements related to storage engine features. In comparison, tools like SQLancer and SQLsmi",
+      "section": "C Comparison with Existing Techniques",
+      "page": 9,
+      "char_offset": 45093,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In comparison, tools like SQLancer and SQLsmith use standard SQL syntax to build test cases, resulting in THANOS covering more branches and detecting more bugs.",
+      "context_before": "unoptimized queries based on op-timizer rules. However, this method only covers SQL syntax that complies with optimizer rules. In contrast, THANOS lacks such limitations, as the storage engine, being the underlying software of the DBMS, essentially encompasses all the functionalities of the DBMS. Meanwhile, THANOS performs a comprehensive functional modeling of the DBMS storage engine components, enabling thorough testing of the DBMS when generating test cases. Even during the generation of test cases, THANOS incorporates numerous non-standard SQL statements related to storage engine features.",
+      "context_after": "D. Effectiveness of Feature-Oriented Test Case Synthesis To evaluate the effectiveness of our feature-oriented test case synthesis algorithm, we developed a comparison tool, THANOS -, which generates test cases randomly without a focus on the storage engines’ features. We conducted a 24-hour experiment running both T HANOSand THANOS on MySQL, MariaDB, and Percona. During this period, we collected data on the number of features triggered and the proportion of feature-related statements produced by each tool for comparative analysis. Table V presents the number of features activated and the pro",
+      "section": "C Comparison with Existing Techniques",
+      "page": 9,
+      "char_offset": 45828,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M16",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "5: Number of branches covered by THANOS, SQLancer, SQLsmith, and SQUIRREL in the Storage Engine component of each DBMS in 24 hours.",
+      "context_before": "th T HANOSand THANOS on MySQL, MariaDB, and Percona. During this period, we collected data on the number of features triggered and the proportion of feature-related statements produced by each tool for comparative analysis. Table V presents the number of features activated and the proportion of statements in the test case with features for both tools across three DBMSs (MySQL, MariaDB, and Percona). The data indicates that THANOS generates more MySQL MariaDB Percona0500010000150002000025000300003500040000Number of branches covered in storage engine component SQLaner SQLsmithSquirrel Thanos Fig.",
+      "context_after": "663 feature-related test cases than THANOS -, which benefits from its feature-oriented test case synthesis approach. In detail, THANOS activated 187, 273, and 214 more features than THANOSin MySQL, MariaDB, and Percona, respectively. This is primarily because the feature-oriented synthesis significantly enhances the proportion of test cases that include storage engine features, with increases of 16.14%, 22.48%, and 17.60% in each DBMS, respectively. These outcomes align with our expectations, as the test case synthesis algorithm was specifically designed to trigger a broader range of storag",
+      "section": "D Effectiveness of Feature-Oriented Test Case Synthesis",
+      "page": 9,
+      "char_offset": 46904,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M17",
+      "found_by": "citation_marker",
+      "surface": "[28, 29, 30, 31]",
+      "technique": "tlp",
+      "sentence": "Metamorphic testing in DBMS involves transforming SQL queries and verifying if the resulting output changes align with expected behavior [28, 29, 30, 31].",
+      "context_before": "ring SQL execution speed acrossdifferent DBMS versions. Vendor-based comparison entails running equivalent SQL statements on various DBMSs. For instance, RAGS [6] validates SQL outputs by comparing results from multiple DBMS vendors. THANOS employs a specialized form of differential testing to evaluate DBMSs. It equips a DBMS with various storage engines and constructs equivalent test cases, thereby creating equivalent DBMSs. In doing so, THANOS combines diverse DBMS implementations with similar input syntax to uncover hidden issues and minimize the cost of SQL generation. Metamorphic Testing.",
+      "context_after": "It relies on metamorphic relations, logical links between input and output, for test case design, with transformations including sorting, filtering, or aggregating data. Developers use this to ensure correct and robust database functions, maintaining consistent accuracy despite input variations, crucial for revealing hidden bugs and bolstering DBMS reliability. Methods like Amoeba [32] detect performance bugs by comparing response times of semantically equivalent query pairs. SQLancer proposes constructing functionally equivalent queries to test one DBMS [30, 31, 33]. TxCheck [34] detects tra",
+      "section": "D Effectiveness of Feature-Oriented Test Case Synthesis",
+      "page": 10,
+      "char_offset": 50658,
+      "cited_reference": {
+        "number": 30,
+        "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on 665 Programming Languages, vol. 4, no. OOPSLA, pp. 1– 30, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer proposes constructing functionally equivalent queries to test one DBMS [30, 31, 33].",
+      "context_before": "s transforming SQL queries and verifying if the resulting output changes align with expected behavior [28, 29, 30, 31]. It relies on metamorphic relations, logical links between input and output, for test case design, with transformations including sorting, filtering, or aggregating data. Developers use this to ensure correct and robust database functions, maintaining consistent accuracy despite input variations, crucial for revealing hidden bugs and bolstering DBMS reliability. Methods like Amoeba [32] detect performance bugs by comparing response times of semantically equivalent query pairs.",
+      "context_after": "TxCheck [34] detects transactional bugs of DBMSs through graph-based oracle construction. DQE [35] verifies consistency of rows fetched by SQL statements designed to access the same rows. Compared to metamorphic testing, our approach focuses more on changing the DBMS itself, specifically by altering the storage engine. Metamorphic testing relies on manually defining metamorphic relations, whereas our method automatically generates equivalent DBMSs, currently applicable for correctness testing. This approach can also be extended to other types of test oracles, such as authorization testing and",
+      "section": "D Effectiveness of Feature-Oriented Test Case Synthesis",
+      "page": 10,
+      "char_offset": 51294,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[34]",
+      "technique": null,
+      "sentence": "TxCheck [34] detects transactional bugs of DBMSs through graph-based oracle construction.",
+      "context_before": "ehavior [28, 29, 30, 31]. It relies on metamorphic relations, logical links between input and output, for test case design, with transformations including sorting, filtering, or aggregating data. Developers use this to ensure correct and robust database functions, maintaining consistent accuracy despite input variations, crucial for revealing hidden bugs and bolstering DBMS reliability. Methods like Amoeba [32] detect performance bugs by comparing response times of semantically equivalent query pairs. SQLancer proposes constructing functionally equivalent queries to test one DBMS [30, 31, 33].",
+      "context_after": "DQE [35] verifies consistency of rows fetched by SQL statements designed to access the same rows. Compared to metamorphic testing, our approach focuses more on changing the DBMS itself, specifically by altering the storage engine. Metamorphic testing relies on manually defining metamorphic relations, whereas our method automatically generates equivalent DBMSs, currently applicable for correctness testing. This approach can also be extended to other types of test oracles, such as authorization testing and compliance testing. DBMS Fuzzing. Fuzz testing continuously generates and executes SQL te",
+      "section": "D Effectiveness of Feature-Oriented Test Case Synthesis",
+      "page": 10,
+      "char_offset": 51388,
+      "cited_reference": {
+        "number": 34,
+        "text": "Z.-M. Jiang, S. Liu, M. Rigger, and Z. Su, “Detecting transactional bugs in database engines via GraphBased oracle construction,” in 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23). Boston, MA: USENIX Association, Jul. 2023, pp. 397–417. [Online]. Available: https: //w",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M20",
+      "found_by": "citation_marker",
+      "surface": "[22, 25, 33, 36, 37, 38, 39, 40, 41, 42]",
+      "technique": "pqs",
+      "sentence": "DBMS fuzzers [22, 25, 33, 36, 37, 38, 39, 40, 41, 42], automate this process, focusing on creating complex SQL queries to uncover memory safety issues.",
+      "context_before": "y SQL statements designed to access the same rows. Compared to metamorphic testing, our approach focuses more on changing the DBMS itself, specifically by altering the storage engine. Metamorphic testing relies on manually defining metamorphic relations, whereas our method automatically generates equivalent DBMSs, currently applicable for correctness testing. This approach can also be extended to other types of test oracles, such as authorization testing and compliance testing. DBMS Fuzzing. Fuzz testing continuously generates and executes SQL test cases on a DBMS, monitoring system responses.",
+      "context_after": "They are categorized into generation-based and mutation-based approaches. Generation-based fuzzing generates large SQL queries using predefined models. SQLsmith [25] is a leading generationbased DBMS fuzzer that creates semantically correct SQL queries using an AST model, primarily limited to SELECT statements due to grammar constraints. Mutation-based fuzzers modify existing queries. Squirrel [22] enhances syntactic accuracy by aligning with SQL grammar and utilizing an Intermediate Representation (IR), facilitating type-based mutations while maintaining syntax correctness. LEGO [36] generat",
+      "section": "D Effectiveness of Feature-Oriented Test Case Synthesis",
+      "page": 10,
+      "char_offset": 52126,
+      "cited_reference": {
+        "number": 33,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M1",
+        "M2",
+        "M3",
+        "M5",
+        "M12",
+        "M13"
+      ],
+      "describes_as_state_of_the_art": [
+        "M1",
+        "M2",
+        "M8"
+      ]
+    },
+    "suppressed": [
+      {
+        "mention_id": "M8",
+        "pattern": "compares_with",
+        "suppressed_because": "the sentence is framed as related work, so it describes somebody else's approach"
+      }
+    ]
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:38:14Z",
+    "is_model_written": true,
+    "summary": "Thanos tests DBMSs that support several storage engines by running the same workload under each in turn and comparing the results. Because the engines sit beneath a shared SQL layer, any difference between them is a defect in one of them, which gives an oracle without needing to know the correct answer. On MySQL, MariaDB and Percona it found 14 bugs in 24 hours and covered substantially more of the storage-engine code than the existing tools.",
+    "narrative": "SQLancer is one of Thanos's three baselines and is named a state-of-the-art DBMS testing tool throughout. The comparison is reported per system in both bugs and branch coverage, and SQLancer found none of the 14 bugs Thanos did. The paper's argument for why is about where the oracles apply: SQLancer's rely on specially crafted rules -- NoREC on optimizer behaviour, and it describes TLP as needing a pivot row -- which leaves storage-engine differences outside their reach, and its use of standard SQL syntax bounds the code it exercises. SQLancer's construction of functionally equivalent queries is also cited as the metamorphic-testing line Thanos departs from.",
+    "roles": {
+      "M1": "state_of_the_art",
+      "M2": "state_of_the_art",
+      "M3": "result_comparison",
+      "M4": "motivation",
+      "M5": "state_of_the_art",
+      "M6": "definition",
+      "M7": "motivation",
+      "M8": "baseline",
+      "M9": "result_comparison",
+      "M10": "result_comparison",
+      "M11": "result_comparison",
+      "M12": "result_comparison",
+      "M13": "result_comparison",
+      "M14": "definition",
+      "M15": "result_comparison",
+      "M16": "result_comparison",
+      "M17": "background",
+      "M18": "definition",
+      "M19": "background",
+      "M20": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is run as a baseline; Thanos rotates storage engines beneath a shared SQL layer and nothing indicates its implementation reuses SQLancer's code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Thanos's oracle is differential comparison across storage engines, which the paper contrasts with SQLancer's rule-based oracles rather than deriving from them."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M8",
+          "M10",
+          "M11",
+          "M12"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M8",
+            "sentence": "Comparison with Existing Techniques To assess the effectiveness of THANOS, we conducted a comparative study that pitted THANOS against contemporary state-of-the-art DBMS testing methods, namely SQLancer, SQLsmith, and SQUIRREL.",
+            "section": "C Comparison with Existing Techniques",
+            "page": 8
+          },
+          {
+            "mention_id": "M10",
+            "sentence": "DBMS SQLancer SQLsmith SQUIRREL THANOS MySQL 0 1 1 6 MariaDB 0 0 1 5 Percona 0 0 1 3 Total 0 1 3 14 Increment 14↑ 13↑ 11↑ – TABLE IV: Number of branches covered by THANOS, SQLancer, SQLsmith, and SQUIRREL on 3 DBMSs in 24 hours.",
+            "section": "C Comparison with Existing Techniques",
+            "page": 8
+          },
+          {
+            "mention_id": "M11",
+            "sentence": "DBMS SQLancer SQLsmith SQUIRREL THANOS MySQL 59,242 93,742 109,323 120,156 MariaDB 60,293 88,923 100,920 132,532 Percona 63,829 89,987 109,823 143,293 Total 183,364 272,652 320,066 395,981 Increment 115.",
+            "section": "C Comparison with Existing Techniques",
+            "page": 8
+          },
+          {
+            "mention_id": "M12",
+            "sentence": "Specifically, THANOS found 14, 13, and 11 more bugs than SQLancer, SQLsmith, and SQUIRREL, respectively.",
+            "section": "C Comparison with Existing Techniques",
+            "page": 9
+          }
+        ],
+        "reasoning": "M8 states the comparative study pits Thanos against SQLancer, and M10, M11 and M12 give the per-DBMS bug counts, branch coverage and totals.",
+        "techniques": [
+          "norec",
+          "tlp"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M1",
+          "M2",
+          "M5"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M1",
+            "sentence": "We evaluate THANOS on three widely used and extensively tested DBMSs, namely MySQL, MariaDB, and Percona against state-of-the-art fuzzers SQLancer, SQLsmith, and SQUIRREL.",
+            "section": null,
+            "page": 1
+          },
+          {
+            "mention_id": "M2",
+            "sentence": "To assess the effectiveness of THANOS, we compare THANOS against contemporary state-of-the-art DBMS testing methods, namely SQLancer, SQLsmith, and SQUIRREL.",
+            "section": "I INTRODUCTION",
+            "page": 2
+          },
+          {
+            "mention_id": "M5",
+            "sentence": "To evaluate the effectiveness of THANOS, we compared THANOS with the state-of-art DBMS test tools, SQUIRREL [22, 23], SQLancer [24], and SQLsmith [25, 26].",
+            "section": "A Evaluation Setup",
+            "page": 7
+          }
+        ],
+        "reasoning": "M1, M2 and M5 each introduce SQLancer as a state-of-the-art DBMS fuzzer or testing tool."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

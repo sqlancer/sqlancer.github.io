@@ -1,0 +1,1366 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-10T15:05:33Z",
+  "paper": {
+    "id": "paper:arxiv:2407.04294",
+    "title": "SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing",
+    "authors": [
+      "Jin Wei",
+      "Ping Chen",
+      "Kangjie Lu",
+      "Jun Dai",
+      "Xiaoyan Sun"
+    ],
+    "year": 2024,
+    "venue": "arXiv.org",
+    "doi": null,
+    "arxiv_id": "2407.04294",
+    "s2_paper_id": "bef377046828fc5f81ae8988d7b500c9442b57d2",
+    "url": "https://arxiv.org/abs/2407.04294",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2407.04294",
+      "retrieved_at": "2026-09-10T15:05:33Z",
+      "chars": 84025,
+      "content_sha256": "sha256:ec2e1d52bd7adfd51eec896ea0182261936dec917b41b9cf6734e1b4633a31b7"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 25,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2717
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 12926
+      },
+      {
+        "number": "2.1",
+        "title": "Logic Bugs and Threat Model",
+        "start": 12940
+      },
+      {
+        "number": "2.2",
+        "title": "Logic Bug Testing Oracles and Differential Testing",
+        "start": 15417
+      },
+      {
+        "number": "2.3",
+        "title": "Coverage-guided Fuzzing and Directed Fuzzing",
+        "start": 18375
+      },
+      {
+        "number": "3",
+        "title": "Analysis of Existing Logic Bug Patterns",
+        "start": 20905
+      },
+      {
+        "number": "4",
+        "title": "SQLaser",
+        "start": 26096
+      },
+      {
+        "number": "4.1",
+        "title": "Logic-Bug Pattern Modeling",
+        "start": 31622
+      },
+      {
+        "number": "4.2",
+        "title": "Call Chain Distance Calculation",
+        "start": 38671
+      },
+      {
+        "number": "4.3",
+        "title": "Mutation based on Seed Energy and Testing Oracles",
+        "start": 43178
+      },
+      {
+        "number": "4.3.1",
+        "title": "Mutation based on Seed Energy",
+        "start": 43427
+      },
+      {
+        "number": "4.3.2",
+        "title": "Testing Oracles",
+        "start": 44095
+      },
+      {
+        "number": "5",
+        "title": "Implementation",
+        "start": 45399
+      },
+      {
+        "number": "6",
+        "title": "Evaluation",
+        "start": 46922
+      },
+      {
+        "number": "20.04.5",
+        "title": "LTS operating system.",
+        "start": 47678
+      },
+      {
+        "number": "6.1",
+        "title": "Finding Bugs in DBMSs",
+        "start": 49159
+      },
+      {
+        "number": "6.2",
+        "title": "Comparison with Existing Tools",
+        "start": 56614
+      },
+      {
+        "number": "6.2.1",
+        "title": "Performance",
+        "start": 56964
+      },
+      {
+        "number": "6.2.2",
+        "title": "Code Coverage",
+        "start": 59193
+      },
+      {
+        "number": "6.2.3",
+        "title": "Seed Distance Distribution",
+        "start": 62213
+      },
+      {
+        "number": "6.3",
+        "title": "Trimmed Call Chains vs. Complete Call Chains",
+        "start": 63631
+      },
+      {
+        "number": "7",
+        "title": "Discussion",
+        "start": 65923
+      },
+      {
+        "number": "7.1",
+        "title": "Completeness of Testing Oracles",
+        "start": 66105
+      },
+      {
+        "number": "7.2",
+        "title": "Completeness of SQL Clause Collections",
+        "start": 67166
+      },
+      {
+        "number": "8",
+        "title": "Related Work",
+        "start": 67948
+      },
+      {
+        "number": "9",
+        "title": "Conclusion",
+        "start": 70130
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "K.S. Abdul and S. Khurshid, Automated SQL query generation for systematic testing of database engines, in: Proceedings of the 25th IEEE/ACM International Conference on Automated Software Engineering, 2010, pp. 329–332.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "C. Aschermann, S. Schumilo, T. Blazytko, R. Gawlik and T. Holz, REDQUEEN: Fuzzing with Input-to-State Correspondence., in: Proceedings of the 26th Annual Network and Distributed System Security Symposium (NDSS), V ol. 19, 2019, pp. 1–15.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "T. Blazytko, M. Bishop, C. Aschermann, J. Cappos, M. Schlögel, N. Korshun, A. Abbasi, M. Schweighauser, S. Schinzel, S. Schumilo et al., {GRIMOIRE }: Synthesizing structure while fuzzing, in: Proceedings of the 28th USENIX Security Symposium (USENIX Security 19), 2019, pp. 1985–2002.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "M. Böhme, V .-T. Pham, M.-D. Nguyen and A. Roychoudhury, Directed greybox fuzzing, in: Proceedings of the 2017 ACMSIGSAC conference on computer and communications security, 2017, pp. 2329–2344.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "H. Chen, Y. Xue, Y. Li, B. Chen, X. Xie, X. Wu and Y. Liu, Hawkeye: Towards a desired directed grey-box fuzzer, in: Proceedings of the 2018 ACMSIGSAC conference on computer and communications security, 2018, pp. 2095–2108. Wei et al. / SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing 23",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "P. Chen and H. Chen, Angora: Efficient fuzzing by principled search, in: Proceedings of the Security and Privacy (SP), IEEE, 2018, pp. 711–725.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Y. Chen, R. Zhong, H. Hu, H. Zhang, Y. Yang, D. Wu and W. Lee, One engine to fuzz’em all: Generic language processor testing with semantic validation, in: Proceedings of the pp. 642–658.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "J. Choi, K. Kim, D. Lee and S.K. Cha, NTFuzz: Enabling type-aware kernel fuzzing on windows with static binary analysis, in: Proceedings of the. 677–693.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Z.Y. Ding and C.L. Goues, An empirical study of oss-fuzz bugs, in: Proceedings of the 2021 IEEE/ACM 18th International Conference on Mining Software Repositories (MSR), IEEE, 2021, pp. 131–142.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "S.T. Dinh, H. Cho, K. Martin, A. Oest, K. Zeng, A. Kapravelos, G.-J. Ahn, T. Bao, R. Wang, A. Doupé et al., Favocado: Fuzzing the Binding Code of JavaScript Engines Using Semantically Correct Test Cases., in: Proceedings of the 28th Annual Network and Distributed System Security Symposium (NDSS), 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "X. Du, B. Chen, Y. Li, J. Guo, Y. Zhou, Y. Liu and Y. Jiang, Leopard: Identifying vulnerable code for vulnerability assessment through program metrics, in: Proceedings of the Engineering (ICSE), IEEE, 2019, pp. 60–71.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Z. Du, Y. Li, Y. Liu and B. Mao, WindRanger: a directed greybox fuzzer driven by deviation basic blocks, in: Proceedings of the 44th International Conference on Software Engineering, 2022, pp. 2440–2451.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "J.K. Fichte, M. Hecher, P. Thier and S. Woltran, Exploiting database management systems and treewidth for counting, Theory and Practice of Logic Programming 22(1) (2022), 128–157.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "P. Foundation, TiDB, 2023. https://www.pingcap.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "S. Gan, C. Zhang, P. Chen, B. Zhao, X. Qin, D. Wu and Z. Chen, GREYONE: Data flow sensitive fuzzing, in: Proceedings of the 29th USENIX security symposium (USENIX Security 20), 2020, pp. 2577–2594.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "B. Ghit, N. Poggi, J. Rosen, R. Xin and P. Boncz, SparkFuzz: Searching correctness regressions in modern query engines, in:Proceedings of the workshop on Testing Database Systems, 2020, pp. 1–6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Google, ClusterFuzz, 2023. https://google.github.io/clusterfuzz.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Google, Honggfuzz, 2023. https://google.github.io/honggfuzz/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "P.D. Group, PostgreSQL, 2023. https://www.postgresql.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "H. Han, D. Oh and S.K. Cha, CodeAlchemist: Semantics-Aware Code Generation to Find Vulnerabilities in JavaScript Engines., in: Proceedings of the 26th Network and Distributed System Security Symposium (NDSS), 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Intel, PIN, 2023. https://www.intel.cn/content/www/cn/zh/developer/articles/tool/pin-a-dynamic-binary-instrumentation-tool. html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "B. Jiang, Y. Liu and W.K. Chan, Contractfuzzer: Fuzzing smart contracts for vulnerability detection, in: Proceedings of the 33rd ACM/IEEE International Conference on Automated Software Engineering, 2018, pp. 259–269.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "J. Jung, H. Hu, J. Arulraj, T. Kim and W. Kang, Apollo: Automatic detection and diagnosis of performance regressions in database systems, Proceedings of the 46th International Conference on Very Large Data Bases (VLDB) 13(1) (2019), 57–70.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "K. Kim, D.R. Jeong, C.H. Kim, Y. Jang, I. Shin and B. Lee, HFL: Hybrid Fuzzing on the Linux Kernel., in: Proceedings of the 27th Annual Network and Distributed System Security Symposium (NDSS), 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "G. Lee, W. Shim and B. Lee, Constraint-guided directed greybox fuzzing, in: Proceedings of the 30th USENIX Security Symposium (USENIX Security 21), 2021, pp. 3559–3576.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "C. Lemieux and K. Sen, Fairfuzz: A targeted mutation strategy for increasing greybox fuzz testing coverage, in: Proceedings of the 33rd ACM/IEEE international conference on automated software engineering, 2018, pp. 475–485.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Y. Li, B. Chen, M. Chandramohan, S.-W. Lin, Y. Liu and A. Tiu, Steelix: program-state based binary fuzzing, in: Proceedings of the 2017 11th joint meeting on foundations of software engineering, 2017, pp. 627–637.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Y. Liang, S. Liu and H. Hu, Detecting Logical Bugs of {DBMS }with Coverage-based Guidance, in: Proceedings of the 31st USENIX Security Symposium (USENIX Security 22), 2022, pp. 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "X. Liu, Q. Zhou, J. Arulraj and A. Orso, Automated performance bug detection in database systems, arXiv preprint arXiv:2105.10016 (2021).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "LLVM, LibFuzzer: A Library For Coverage-guided Fuzz Testing, 2023. http://llvm.org/docs/LibFuzzer.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "E. Lo, C. Binnig, D. Kossmann, M. Tamer Özsu and W.-K. Hon, A framework for testing DBMS features, The VLDB Journal 19(2010), 203–230.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "W.M. McKeeman, Differential testing for software, Digital Technical Journal 10(1) (1998), 100–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "MySQL, MySQL Customers, 2023. https://www.mysql.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "T.D. Nguyen, L.H. Pham, J. Sun, Y. Lin and Q.T. Minh, sfuzz: An efficient adaptive fuzzer for solidity smart contracts, in:Proceedings of the ACM/IEEE 42nd International Conference on Software Engineering, 2020, pp. 778–788.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "S. Österlund, K. Razavi, H. Bos and C. Giuffrida, {ParmeSan }: Sanitizer-guided greybox fuzzing, in: Proceedings of the 29th USENIX Security Symposium (USENIX Security 20), 2020, pp. 2289–2306. 24 Wei et al. / SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "S. Pailoor, A. Aday and S. Jana, {MoonShine }: Optimizing {OS}fuzzer seed selection with trace distillation, in: Proceedings of the 27th USENIX Security Symposium (USENIX Security 18), 2018, pp. 729–743.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "S. Park, W. Xu, I. Yun, D. Jang and T. Kim, Fuzzing javascript engines with aspect-preserving mutation, in: Proceedings of the. 1629–1642.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "M. Rigger and Z. Su, Detecting optimization bugs in database engines via non-optimizing reference engine construction, in:Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 39,
+      "text": "M. Rigger and Z. Su, Finding bugs in database systems via query partitioning, in: Proceedings of the ACM on Programming Languages, V ol. 4, ACM New York, NY, USA, 2020, pp. 1–30.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 40,
+      "text": "M. Rigger and Z. Su, Testing database engines via pivoted query synthesis, in: Proceedings of 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 41,
+      "text": "K. Serebryany, Sanitize, fuzz, and harden your C++ code, San Francisco, CA (2016).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "D.R. Slutz, Massive stochastic testing of SQL, in: VLDB, V ol. 98, Citeseer, 1998, pp. 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "SQLite, SQLite, 2023. https://sqlite.org/index.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "SQLite, SQLite bug fix, 2023. https://www.sqlite.org/src/info/5351e920f489562f.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "N. Stephens, J. Grosen, C. Salls, A. Dutcher, R. Wang, J. Corbetta, Y. Shoshitaishvili, C. Kruegel and G. Vigna, Driller: Augmenting fuzzing through selective symbolic execution., in: NDSS, V ol. 16, 2016, pp. 1–16.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "M. Wang, Z. Wu, X. Xu, J. Liang, C. Zhou, H. Zhang and Y. Jiang, Industry practice of coverage-guided enterpriselevel DBMS fuzzing, in: Proceedings of the Software Engineering in Practice (ICSE-SEIP), IEEE, 2021, pp. 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "wikipedia, ASCII, 2023. https://zh.wikipedia.org/wiki/ASCII.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "wikipedia, coredump, 2023. https://en.wikipedia.org/wiki/Core_dump.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "V. Wüstholz and M. Christakis, Harvey: A greybox fuzzer for smart contracts, in: Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1398–1409.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "M. Xu, S. Kashyap, H. Zhao and T. Kim, Krace: Data race fuzzing for kernel file systems, in: Proceedings of the. 1643–1660.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "P. Xu, Y. Wang, H. Hu and P. Su, COOPER: Testing the Binding Code of Scripting Languages with Cooperative Mutation., in:Proceedings of the 28th Annual Network and Distributed System Security Symposium (NDSS), 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "W. Xu, S. Park and T. Kim, Freedom: Engineering a state-of-the-art dom fuzzer, in: Proceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security, 2020, pp. 971–986.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "W. Xu, H. Moon, S. Kashyap, P.-N. Tseng and T. Kim, Fuzzing file systems via two-dimensional input space exploration, in:Proceedings of the. 818–834.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "I. Yun, S. Lee, M. Xu, Y. Jang and T. Kim, QSYM: A practical concolic execution engine tailored for hybrid fuzzing, in: Proceedings of the 27th USENIX Security Symposium (USENIX Security 18), 2018, pp. 745–761.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "M. Zalewski, American Fuzzy Lop, 2023. https://github.com/google/AFL.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "R. Zhong, Y. Chen, H. Hu, H. Zhang, W. Lee and D. Wu, Squirrel: Testing database management systems with language validity and coverage feedback, in: Proceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security, 2020, pp. 955–970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "P. Zong, T. Lv, D. Wang, Z. Deng, R. Liang and K. Chen, {FuzzGuard }: Filtering out unreachable inputs in directed grey-box fuzzing through deep learning, in: Proceedings of the 29th USENIX security symposium (USENIX security 20), 2020, pp. 2255–2269.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Bug CVE-2012-2081. https://nvd.nist.gov/vuln/detail/CVE-2012-2081.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Bug CVE-2012-2081. https://nvd.nist.gov/vuln/detail/CVE-2014-4987.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Bugs Found in Database Management Systems. https://www.manuelrigger.at/dbms-bugs/.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 61,
+      "text": "LLVM pass. https://llvm.org/docs/WritingAnLLVMPass.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "MySQL bug 95908. https://bugs.mysql.com/bug.php?id=95908.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "MySQL bug 95926. https://bugs.mysql.com/bug.php?id=95926.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "MySQL bug 95927. https://bugs.mysql.com/bug.php?id=95927.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "MySQL bug 95937. https://bugs.mysql.com/bug.php?id=95937.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "MySQL bug 95954. https://bugs.mysql.com/bug.php?id=95954.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "MySQL bug 95975. https://bugs.mysql.com/bug.php?id=95975.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "MySQL bug 95983. https://bugs.mysql.com/bug.php?id=95983.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "MySQL bug 96012. https://bugs.mysql.com/bug.php?id=96012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "MySQL bug 99122. https://bugs.mysql.com/bug.php?id=99122.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "SQLancer. https://github.com/sqlancer/sqlancer.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 72,
+      "text": "SQLite bug 16252d7. https://www.sqlite.org/src/info/16252d7.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "SQLite bug 1685610e. https://www.sqlite.org/src/info/1685610e. Wei et al. / SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing 25",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "SQLite bug 1b1dd4d4. https://www.sqlite.org/src/info/1b1dd4d4.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "SQLite bug 2363a14. https://www.sqlite.org/src/info/2363a14.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "SQLite bug 5351e920. https://www.sqlite.org/src/info/5351e920.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "SQLite bug 54110870. https://www.sqlite.org/src/info/54110870.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "SQLite bug 5c6146b5. https://www.sqlite.org/src/info/5c6146b5.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "SQLite bug 659c551d. https://www.sqlite.org/src/info/659c551d.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "SQLite bug 6ac0f822. https://www.sqlite.org/src/info/6ac0f822.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 81,
+      "text": "SQLite bug 86fa0087. https://www.sqlite.org/src/info/86fa0087.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 82,
+      "text": "SQLite bug 9c8c1092. https://www.sqlite.org/src/info/9c8c1092.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 83,
+      "text": "SQLite bug c0c90961. https://www.sqlite.org/src/info/c0c90961.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 84,
+      "text": "SQLite bug db9acef1. https://www.sqlite.org/src/info/db9acef1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 85,
+      "text": "SQLite bug eb40248. https://www.sqlite.org/src/info/eb40248.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 86,
+      "text": "SQLite bug ebe4845c. https://www.sqlite.org/src/info/ebe4845c.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 87,
+      "text": "SQLite bug f65c929. https://www.sqlite.org/src/info/f65c929.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 88,
+      "text": "SQLite bug f898d04c. https://www.sqlite.org/src/info/f898d04c.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 89,
+      "text": "SQLite bug f9c6426. https://www.sqlite.org/src/info/f9c6426.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 90,
+      "text": "SQLite bug faaaae49. https://www.sqlite.org/src/info/faaaae49.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 91,
+      "text": "TiDB bug 15725. https://github.com/pingcap/tidb/issues/15725.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 92,
+      "text": "TiDB bug 15733. https://github.com/pingcap/tidb/issues/15733.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 93,
+      "text": "TiDB bug 15789. https://github.com/pingcap/tidb/issues/15789.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 94,
+      "text": "TiDB bug 15846. https://github.com/pingcap/tidb/issues/15846.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 95,
+      "text": "TiDB bug 15986. https://github.com/pingcap/tidb/issues/15986.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 96,
+      "text": "TiDB bug 15994. https://github.com/pingcap/tidb/issues/15994.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 97,
+      "text": "TiDB bug 17814. https://github.com/pingcap/tidb/issues/17814.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 38,
+      "text": "M. Rigger and Z. Su, Detecting optimization bugs in database engines via non-optimizing reference engine construction, in:Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 39,
+      "text": "M. Rigger and Z. Su, Finding bugs in database systems via query partitioning, in: Proceedings of the ACM on Programming Languages, V ol. 4, ACM New York, NY, USA, 2020, pp. 1–30.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 40,
+      "text": "M. Rigger and Z. Su, Testing database engines via pivoted query synthesis, in: Proceedings of 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 60,
+      "text": "Bugs Found in Database Management Systems. https://www.manuelrigger.at/dbms-bugs/.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 71,
+      "text": "SQLancer. https://github.com/sqlancer/sqlancer.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[28, 38–40]",
+      "technique": "norec",
+      "sentence": "/ SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing code and are particularly common, can cause a variety of serious issues, such as incorrect query results, exposure of sensitive data, unauthorized access, and data corruption [28, 38–40].",
+      "context_before": "ms, Logic Bug detection, Directed Fuzzing 1. Introduction Database Management Systems (DBMSs) [13] are widely used as centralized storage and management systems for data. For instance, SQLite [43] is used on around 3.5 billion smartphones worldwide. Given their critical role of DBMSs in modern data-driven applications, logic bugs [28] within DBMSs can have severe consequences. These bugs, which are due to implementation errors in the DBMSs’ *Corresponding author. E-mail: pchen@fudan.edu.cn. 0926-227X/$35.00 © 0 – IOS Press. All rights reserved.arXiv:2407.04294v1 [cs.CR] 5 Jul 2024 2 Wei et al.",
+      "context_after": "Due to the non-crashing nature of most logic bugs, detecting them can be challenging, and researchers have invested significant efforts in this area. Rigger et al. propose oracles to detect incorrectness of SQL query results. For example, the Non-Optimizing Reference Engine Construction (NoREC) oracle [38] and the Ternary Logic Partitioning (TLP) oracle [39] are two oracles employing the concept of differential testing [32]. They transform the original SQL query into an equivalent form, and if discrepancies arise between the results of the original query and the transformed query, potential l",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 3275,
+      "cited_reference": {
+        "number": 38,
+        "text": "M. Rigger and Z. Su, Detecting optimization bugs in database engines via non-optimizing reference engine construction, in:Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "Non-Optimizing Reference Engine Construction",
+      "technique": "norec",
+      "sentence": "For example, the Non-Optimizing Reference Engine Construction (NoREC) oracle [38] and the Ternary Logic Partitioning (TLP) oracle [39] are two oracles employing the concept of differential testing [32].",
+      "context_before": "hen@fudan.edu.cn. 0926-227X/$35.00 © 0 – IOS Press. All rights reserved.arXiv:2407.04294v1 [cs.CR] 5 Jul 2024 2 Wei et al. / SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing code and are particularly common, can cause a variety of serious issues, such as incorrect query results, exposure of sensitive data, unauthorized access, and data corruption [28, 38–40]. Due to the non-crashing nature of most logic bugs, detecting them can be challenging, and researchers have invested significant efforts in this area. Rigger et al. propose oracles to detect incorrectness of SQL query results.",
+      "context_after": "They transform the original SQL query into an equivalent form, and if discrepancies arise between the results of the original query and the transformed query, potential logic bugs may be indicated. Pivoted Query Synthesis (PQS) oracle [40] does not employ the concept of differential testing; instead, it automatically generates queries for which they ensure fetching a specific row, called the pivot row. Failure to retrieve the pivot row indicates a potential bug in the system. SQLancer [60, 71] that implements these oracles discovers logic bugs in various DBMSs. However, as SQLancer generates",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 3753,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "technique",
+      "surface": "Pivoted Query Synthesis",
+      "technique": "pqs",
+      "sentence": "Pivoted Query Synthesis (PQS) oracle [40] does not employ the concept of differential testing; instead, it automatically generates queries for which they ensure fetching a specific row, called the pivot row.",
+      "context_before": "ture of most logic bugs, detecting them can be challenging, and researchers have invested significant efforts in this area. Rigger et al. propose oracles to detect incorrectness of SQL query results. For example, the Non-Optimizing Reference Engine Construction (NoREC) oracle [38] and the Ternary Logic Partitioning (TLP) oracle [39] are two oracles employing the concept of differential testing [32]. They transform the original SQL query into an equivalent form, and if discrepancies arise between the results of the original query and the transformed query, potential logic bugs may be indicated.",
+      "context_after": "Failure to retrieve the pivot row indicates a potential bug in the system. SQLancer [60, 71] that implements these oracles discovers logic bugs in various DBMSs. However, as SQLancer generates SQL queries based on specific rules, it may constrain the exploration of broader code paths. Therefore, Liang et al. introduce SQLRight [28], aiming to generate high-quality query statements with validity-oriented mutations to uncover more logic bugs. Specifically, SQLRight employs coverage-guided fuzzing [6, 15, 18, 27, 30, 41, 45, 54, 55] to achieve higher code coverage in code paths. 1CREATE TABLE t0",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 4154,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [60, 71] that implements these oracles discovers logic bugs in various DBMSs.",
+      "context_before": "nd the Ternary Logic Partitioning (TLP) oracle [39] are two oracles employing the concept of differential testing [32]. They transform the original SQL query into an equivalent form, and if discrepancies arise between the results of the original query and the transformed query, potential logic bugs may be indicated. Pivoted Query Synthesis (PQS) oracle [40] does not employ the concept of differential testing; instead, it automatically generates queries for which they ensure fetching a specific row, called the pivot row. Failure to retrieve the pivot row indicates a potential bug in the system.",
+      "context_after": "However, as SQLancer generates SQL queries based on specific rules, it may constrain the exploration of broader code paths. Therefore, Liang et al. introduce SQLRight [28], aiming to generate high-quality query statements with validity-oriented mutations to uncover more logic bugs. Specifically, SQLRight employs coverage-guided fuzzing [6, 15, 18, 27, 30, 41, 45, 54, 55] to achieve higher code coverage in code paths. 1CREATE TABLE t0(c0 COLLATE NOCASE, c1); 2CREATE INDEX i0 ON t0(c0) WHERE c0 >= c1; 3INSERT INTO t0 VALUES(’a’, ’B’); 4SELECT *FROM t0 WHERE t0.c1 <= t0.c0; 5-- output: {}, expec",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 4437,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "However, as SQLancer generates SQL queries based on specific rules, it may constrain the exploration of broader code paths.",
+      "context_before": "pt of differential testing [32]. They transform the original SQL query into an equivalent form, and if discrepancies arise between the results of the original query and the transformed query, potential logic bugs may be indicated. Pivoted Query Synthesis (PQS) oracle [40] does not employ the concept of differential testing; instead, it automatically generates queries for which they ensure fetching a specific row, called the pivot row. Failure to retrieve the pivot row indicates a potential bug in the system. SQLancer [60, 71] that implements these oracles discovers logic bugs in various DBMSs.",
+      "context_after": "Therefore, Liang et al. introduce SQLRight [28], aiming to generate high-quality query statements with validity-oriented mutations to uncover more logic bugs. Specifically, SQLRight employs coverage-guided fuzzing [6, 15, 18, 27, 30, 41, 45, 54, 55] to achieve higher code coverage in code paths. 1CREATE TABLE t0(c0 COLLATE NOCASE, c1); 2CREATE INDEX i0 ON t0(c0) WHERE c0 >= c1; 3INSERT INTO t0 VALUES(’a’, ’B’); 4SELECT *FROM t0 WHERE t0.c1 <= t0.c0; 5-- output: {}, expected: {a|B} Code 1: An example logic bug in SQLite. Despite substantial efforts dedicated to detecting logic bugs, we find so",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 4524,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "technique",
+      "surface": "Non-Optimizing Reference Engine Construction",
+      "technique": "norec",
+      "sentence": "For instance, the Non-Optimizing Reference Engine Construction (NoREC) oracle [38] translates an optimized query containing a WHERE clause into an unoptimized version with identical semantics.",
+      "context_before": "are found among the results produced by these systems, it indicates the presence of at least one system containing a bug. However, constructing an oracle that covers all DBMS logic bugs is challenging. Additionally, due to various languages and extensions, popular DBMSs share only a small subset of functionalities, making cross-DBMS validation incapable of detecting DBMS-specific bugs [42]. Researchers, including Manuel Rigger et al., have made efforts in this direction. They build functionally equivalent SQL queries for a single DBMS and check if these queries could produce the same results.",
+      "context_after": "By comparing the results obtained from both queries, inconsistencies can indicate the presence of a logic bug. Ternary Logic Partitioning (TLP) oracle [39] composes several sub-queries to collectively achieve the semantics of the original query. If the composed query does not yield the same result as the original query, it suggests the possibility of a logic bug. SQLRight [28] also supplements their approach with some oracles. The INDEX oracle adds various CREATE INDEX clauses to the query set to test the impact of INDEX usage on query execution. The ROWID oracle inserts WITHOUT ROWID clause",
+      "section": "2.2 Logic Bug Testing Oracles and Differential Testing",
+      "page": 5,
+      "char_offset": 16820,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "technique",
+      "surface": "Ternary Logic Partitioning",
+      "technique": "tlp",
+      "sentence": "Ternary Logic Partitioning (TLP) oracle [39] composes several sub-queries to collectively achieve the semantics of the original query.",
+      "context_before": "ctionalities, making cross-DBMS validation incapable of detecting DBMS-specific bugs [42]. Researchers, including Manuel Rigger et al., have made efforts in this direction. They build functionally equivalent SQL queries for a single DBMS and check if these queries could produce the same results. For instance, the Non-Optimizing Reference Engine Construction (NoREC) oracle [38] translates an optimized query containing a WHERE clause into an unoptimized version with identical semantics. By comparing the results obtained from both queries, inconsistencies can indicate the presence of a logic bug.",
+      "context_after": "If the composed query does not yield the same result as the original query, it suggests the possibility of a logic bug. SQLRight [28] also supplements their approach with some oracles. The INDEX oracle adds various CREATE INDEX clauses to the query set to test the impact of INDEX usage on query execution. The ROWID oracle inserts WITHOUT ROWID clause to observe its effect on query execution. If the results of the queries with the inserted INDEX or WITHOUT ROWID clause differ from those without these insertions, it indicates a potential logic bug. And the LIKELY oracle checks if the original q",
+      "section": "2.2 Logic Bug Testing Oracles and Differential Testing",
+      "page": 5,
+      "char_offset": 17124,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "technique",
+      "surface": "Pivoted Query Synthesis",
+      "technique": "pqs",
+      "sentence": "It is worth noting that the Pivoted Query Synthesis (PQS) oracles [40] proposed by Manuel Rigger et al.",
+      "context_before": "ic bug. SQLRight [28] also supplements their approach with some oracles. The INDEX oracle adds various CREATE INDEX clauses to the query set to test the impact of INDEX usage on query execution. The ROWID oracle inserts WITHOUT ROWID clause to observe its effect on query execution. If the results of the queries with the inserted INDEX or WITHOUT ROWID clause differ from those without these insertions, it indicates a potential logic bug. And the LIKELY oracle checks if the original queries include the LIKELY clause. If they don’t, it adds the LIKELY clause to see how it impacts query execution.",
+      "context_after": "does not use the differential testing method; instead, it automatically generates queries for which they ensure fetching a specific row, called the pivot row. If the DBMS fails to fetch the pivot row, the likely cause is a bug in the DBMS. As of now, we have not deployed PQS oracles into SQLaser. 2.3. Coverage-guided Fuzzing and Directed Fuzzing Fuzzing [9] is a software testing technique that involves providing invalid, unexpected, or random data as inputs to a computer program. The goal is to discover vulnerabilities or bugs by observing how the program reacts to these inputs [18, 30, 41, 5",
+      "section": "2.2 Logic Bug Testing Oracles and Differential Testing",
+      "page": 5,
+      "char_offset": 17972,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "As of now, we have not deployed PQS oracles into SQLaser.",
+      "context_before": "OUT ROWID clause differ from those without these insertions, it indicates a potential logic bug. And the LIKELY oracle checks if the original queries include the LIKELY clause. If they don’t, it adds the LIKELY clause to see how it impacts query execution. It is worth noting that the Pivoted Query Synthesis (PQS) oracles [40] proposed by Manuel Rigger et al. does not use the differential testing method; instead, it automatically generates queries for which they ensure fetching a specific row, called the pivot row. If the DBMS fails to fetch the pivot row, the likely cause is a bug in the DBMS.",
+      "context_after": "2.3. Coverage-guided Fuzzing and Directed Fuzzing Fuzzing [9] is a software testing technique that involves providing invalid, unexpected, or random data as inputs to a computer program. The goal is to discover vulnerabilities or bugs by observing how the program reacts to these inputs [18, 30, 41, 55]. Coverage-guided fuzzing is a specific type of fuzz testing that utilizes code coverage feedback from the program’s execution to guide the generation of new test 6 Wei et al. / SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing inputs. The key idea is to measure the code coverage ach",
+      "section": "2.2 Logic Bug Testing Oracles and Differential Testing",
+      "page": 5,
+      "char_offset": 18316,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[28, 60]",
+      "technique": null,
+      "sentence": "In particular, we analyze a total of 144 existing logic bugs, including 102 in SQLite, 15 in MySQL, 1 in PostgreSQL, and 26 in TiDB [28, 60].",
+      "context_before": "erability or when testing specific features of the program. In this paper, we employ directed fuzzing to deliberately detect logic bugs, rather than aimlessly testing code paths. Specifically, we target logic bug patterns, which denote paths in the source code that are highly prone to triggering logic bugs. We allocate a substantial portion of the time budget to explore these targeted paths, with the objective of uncovering more bugs. 3. Analysis of Existing Logic Bug Patterns To develop an effective DBMS fuzzer for logic bugs, we conduct the first systematic study against existing logic bugs.",
+      "context_after": "This analysis covers most logic bugs, and we do not investigate logic bugs that result in system crashes because we focus on logic bugs that do not lead to observable system failures (such as crashes). Based on the semantics of SQL clause, we classify SQL clauses related to these logic bugs into five categories: table element/schema, data processing clause, conditional expressions, special keyword, and query optimization function, as shown in Table 1. Below introduces each category: •Table element/schema: This category involves elements or schemas in the created tables, such as column indexes",
+      "section": "3 Analysis of Existing Logic Bug Patterns",
+      "page": 6,
+      "char_offset": 21066,
+      "cited_reference": {
+        "number": 60,
+        "text": "Bugs Found in Database Management Systems. https://www.manuelrigger.at/dbms-bugs/.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "citation_marker",
+      "surface": "[71]",
+      "technique": null,
+      "sentence": "In the case of PostgreSQL, only one logic bug was found, specifically related to the PRIMARY KEY and GROUP BY clauses [71].",
+      "context_before": "WID, and NOCASE. We obtain the SQL clause combination for the remaining logic bugs using a similar approach. As for MySQL, the first SQL clause combination pertains to column values, primarily including errors induced when handling floating-point numbers, such as a query whose predicate involves floating-point numbers yielding an incorrect result (bug: 99122 [70]). Additionally, some logic bugs are caused by query optimization functions such as ANY, LIKE, etc (bug: 95927 [64])). Incorrect results can also be caused by conditional expressions such as IFFULL, IF(FALSE), and IN (bug: 95926 [63]).",
+      "context_after": "For TiDB, it can be observed that certain types of columns such as special characters (like double negation, etc.) or specific data types (like floats/boolean, etc.) are more prone to triggering logic bugs in TiDB (bug: 15725 [91]). Additionally, certain SQL clauses such as conditional expressions (bug: 15733 [92]), data processing functions (bug: 15986 [95]), and special keywords (bugs: 15789 [93], 15846 [94], 15994 [96], 17814 [97]) also contribute to triggering logic bugs in TiDB. 4. SQLaser In this section, we present our design and implementation for SQLaser, which enables fuzzing to con",
+      "section": "3 Analysis of Existing Logic Bug Patterns",
+      "page": 7,
+      "char_offset": 25482,
+      "cited_reference": {
+        "number": 71,
+        "text": "SQLancer. https://github.com/sqlancer/sqlancer.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "citation_marker",
+      "surface": "[71]",
+      "technique": null,
+      "sentence": "DBMS SQL-level Bug Pattern (SQL Clause Combination) Number Bug Example SQLite [43]INDEX, PRIMARY KEY, WITHOUT ROWID, NOCASE 1 1b1dd4d4 [74] partial INDEX, LIKELY, ISFAIL 11 5351e920 [76] WITHOUT ROWID, PRIMARY KEYDESC 2 f65c929 [87] column value, CAST, LIKELY, UNLIKELY, GLOB 26 f9c6426 [89] column value, MIN 3 faaaae49 [90] column value, CAST 8 c0c90961 [83] column value, ROUND 1 db9acef1 [84] CAST, EXISTS 3 16252d7 [72] INSERT ORFAIL 1 659c551d [79] RTRIM, PRIMARY KEY, WITHOUT ROWID 1 86fa0087 [81] DISTINCT, ORDER BY 3 6ac0f822 [80] PRAGMA 3 ebe4845c [86] ALTER TABLE, column value 4 1685610e [73] rtree, (COUNT,CAST) 7 f898d04c [88] VIEW, INDEX 11 9c8c1092 [82] IN, ORDER BY 7 eb40248 [85] Others 10 54110870 [77] MySQL [33]column values 4 99122 [70] ANY 1 [28] LIKEESCAPE,XOR 1 95927 [64] BIGINT UNSIGNED, IFNULL 2 95954 [66] “<=>” comparison 1 95908 [62] IF(FALSE) 1 95926 [63] IN operator 1 95975 [67] &, <, and AND 1 95983 [68] GREATEST 1 96012 [62] others 2 95937 [65] PostgreSQL [19] PRIMARY KEY, GROUP BY 1 [71] TiDB [14]columns 11 15725 [91] CAST, IsTrue/IsFalse 2 15733 [92] CHAR() 1 15986 [95] collation 2 15789 [93] JOIN 6 15846 [94] USE_INDEX_MERGE 1 15994 [96] Others 3 17814 [97] bug pattern information as target sites for directed fuzzing, and creating a tool with the capability to efficiently reach predefined target sites.",
+      "context_before": "(bugs: 15789 [93], 15846 [94], 15994 [96], 17814 [97]) also contribute to triggering logic bugs in TiDB. 4. SQLaser In this section, we present our design and implementation for SQLaser, which enables fuzzing to concentrate on error-prone function chains. These function chains are the implementation of SQL-level bug patterns, at the source code level. Specifically, our design achieves two key objectives: incorporating 8 Wei et al. / SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing Table 2 Analysis of the SQL-level bug patterns of logic bugs for SQLite, MySQL, PostgreSQL and TiDB.",
+      "context_after": "Overview. As shown in Fig. 1, SQLaser consists of two components: 1) logic-bug pattern modeling, and 2) clause-guided fuzzing. Moreover, following established practice of existing directed fuzzing tools [4, 12], SQLaser instruments edge coverage information and basic block distance information into the binary code. Such information is obtained through an approach akin to WindRanger [12], with further intricate details omitted in this paper. In logic-bug pattern modeling phase, SQLaser aims to instrument the call chains of bug pattern information into binary code, and these call chains manifes",
+      "section": "4 SQLaser",
+      "page": 8,
+      "char_offset": 26590,
+      "cited_reference": {
+        "number": 71,
+        "text": "SQLancer. https://github.com/sqlancer/sqlancer.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "The five oracles include: 1) the NoREC oracle, which rewrites an optimized query containing a WHERE clause to a SELECT query statement without the WHERE optimization; 2) the TLP oracle, which partitions a given query into multiple equivalent queries, and their results can be combined to obtain the same results as the original query; 3) the INDEX oracle, which 14 Wei et al.",
+      "context_before": ". Specifically, SQLaser utilizes Equation 8 to calculate the distance between the seed and the target. A shorter distance results in a higher energy allocation for the seed, as expressed in Equation 12. energy =dCallChain−1(12) 4.3.2. Testing Oracles We utilize five testing oracles to analyze the outcomes of seed execution, similar to SQLRight [28]. These oracles can transform the original queries into variant forms with different syntactic structures but equivalent functionality. By comparing the execution results of the original queries and their variants, we can detect potential logic bugs.",
+      "context_after": "/ SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing introduces various CREATE INDEX clauses into the given query set, testing the impact of INDEX usage on the query execution; and 4) the ROWID oracle, which examines whether the original queries contain the WITHOUT ROWID clause. If it is not present, the WITHOUT ROWID clause is inserted to observe its effect on the query execution. 5) the LIKELY oracle checks if the original queries include the LIKELY clause. If they don’t, it adds the LIKELY clause to see how it impacts query execution. 5. Implementation In this section, we introd",
+      "section": "4.3.2 Testing Oracles",
+      "page": 13,
+      "char_offset": 44467,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "For instance, some bugs are identified by the PQS oracle [40] proposed by Manuel Rigger et al.",
+      "context_before": "y of the bug patterns. However, there are still some bug patterns where we do not find bugs, possibly due to the limited duration of our fuzzing runs. It is expected that extending the runtime will lead to the discovery of more bugs, and this is outlined as part of our future work. Furthermore, we note that in the case of MySQL, we find bugs in 4 out of the 10 patterns we instrument, indicating that we do not cover the majority of the bug patterns. We attribute this to the incompleteness of testing oracles supported by SQLaser, which may not be comprehensive enough to detect all types of bugs.",
+      "context_after": ", which is not yet integrated into SQLaser (as discussed in Section 7.1). Additionally, 18 Wei et al. / SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing out of the 15 existing bugs we summarize for MySQL, 13 are detected by the PQS oracle, explaining the comparatively lower number of bug found by SQLaser for MySQL. 6.2. Comparison with Existing Tools For evaluating SQLaser, we also ran SQLRight [28] and WindRanger [12], which represent an instance of coverage-guided fuzzer and single-function-target directed fuzzer, respectively. In this section, we delve into a comparison of the",
+      "section": "6.1 Finding Bugs in DBMSs",
+      "page": 17,
+      "char_offset": 56189,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "/ SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing out of the 15 existing bugs we summarize for MySQL, 13 are detected by the PQS oracle, explaining the comparatively lower number of bug found by SQLaser for MySQL.",
+      "context_before": "l lead to the discovery of more bugs, and this is outlined as part of our future work. Furthermore, we note that in the case of MySQL, we find bugs in 4 out of the 10 patterns we instrument, indicating that we do not cover the majority of the bug patterns. We attribute this to the incompleteness of testing oracles supported by SQLaser, which may not be comprehensive enough to detect all types of bugs. For instance, some bugs are identified by the PQS oracle [40] proposed by Manuel Rigger et al., which is not yet integrated into SQLaser (as discussed in Section 7.1). Additionally, 18 Wei et al.",
+      "context_after": "6.2. Comparison with Existing Tools For evaluating SQLaser, we also ran SQLRight [28] and WindRanger [12], which represent an instance of coverage-guided fuzzer and single-function-target directed fuzzer, respectively. In this section, we delve into a comparison of the performance, code coverage and seed distance distribution of the three fuzzers. 6.2.1. Performance 0123456789103035...60 TTE(day)024681012Bug Number SQLite SQLaser SQLRight WindRanger 012345678910...30 TTE(day)0123456Bug Number MySQL SQLaser SQLRight WindRanger 012345678910...30 TTE(day)01234Bug Number TiDB SQLaser SQLRight Win",
+      "section": "6.1 Finding Bugs in DBMSs",
+      "page": 18,
+      "char_offset": 56385,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "For NoREC and TLP oracles, they are implemented Wei et al.",
+      "context_before": "L and TiDB. Due to the fact that SQLRight and SQLaser do not find bugs in PostgreSQL, we are unable to gather TTE statistics for PostgreSQL. Through our evaluation, we find that both SQLRight and WindRanger take longer to discover bugs or cover target call chains due to their lack of explicit targeting of the bug pattern information. In contrast, SQLaser achieves a significant decrease in bug discovery time, approximately 60%. 6.2.2. Code Coverage As depicted in Fig. 3, Fig. 4 and Fig. 5, we record the code coverage of SQLaser, SQLRight, and WindRanger when testing DBMSs using testing oracles.",
+      "context_after": "/ SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing 19 012345678910...60 Day051015Code Coverage (%) SQLite SQLaser SQLRight WindRanger 012345678910...30 Day0204060Code Coverage (%) MySQL SQLaser SQLRight WindRanger 012345678910...30 Day051015Code Coverage (%) PostgreSQL SQLaser SQLRight WindRanger 012345678910...30 Day051015Code Coverage (%) TiDB SQLaser SQLRight WindRanger Fig. 3. Code coverage of SQLaser, SQLRight and WindRanger for NoREC oracle. 012345678910...60 Day051015Code Coverage (%) SQLite SQLaser SQLRight WindRanger 012345678910...30 Day0204060Code Coverage (%) MySQL SQ",
+      "section": "6.2.2 Code Coverage",
+      "page": 18,
+      "char_offset": 59362,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Code coverage of SQLaser, SQLRight and WindRanger for NoREC oracle.",
+      "context_before": "epicted in Fig. 3, Fig. 4 and Fig. 5, we record the code coverage of SQLaser, SQLRight, and WindRanger when testing DBMSs using testing oracles. For NoREC and TLP oracles, they are implemented Wei et al. / SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing 19 012345678910...60 Day051015Code Coverage (%) SQLite SQLaser SQLRight WindRanger 012345678910...30 Day0204060Code Coverage (%) MySQL SQLaser SQLRight WindRanger 012345678910...30 Day051015Code Coverage (%) PostgreSQL SQLaser SQLRight WindRanger 012345678910...30 Day051015Code Coverage (%) TiDB SQLaser SQLRight WindRanger Fig. 3.",
+      "context_after": "012345678910...60 Day051015Code Coverage (%) SQLite SQLaser SQLRight WindRanger 012345678910...30 Day0204060Code Coverage (%) MySQL SQLaser SQLRight WindRanger 012345678910...30 Day051015Code Coverage (%) PostgreSQL SQLaser SQLRight WindRanger 012345678910...30 Day051015Code Coverage (%) TiDB SQLaser SQLRight WindRanger Fig. 4. Code coverage of SQLaser, SQLRight and WindRanger to trigger bugs for TLP oracle. 012345678910...60 Day051015Code Coverage (%) ROWID oracle SQLaser SQLRight WindRanger 012345678910...60 Day051015Code Coverage (%) LIKELY oracle SQLaser SQLRight WindRanger 012345678910..",
+      "section": "6.2.2 Code Coverage",
+      "page": 19,
+      "char_offset": 59818,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Code coverage of SQLaser, SQLRight and WindRanger to trigger bugs for TLP oracle.",
+      "context_before": "ySQL SQLaser SQLRight WindRanger 012345678910...30 Day051015Code Coverage (%) PostgreSQL SQLaser SQLRight WindRanger 012345678910...30 Day051015Code Coverage (%) TiDB SQLaser SQLRight WindRanger Fig. 3. Code coverage of SQLaser, SQLRight and WindRanger for NoREC oracle. 012345678910...60 Day051015Code Coverage (%) SQLite SQLaser SQLRight WindRanger 012345678910...30 Day0204060Code Coverage (%) MySQL SQLaser SQLRight WindRanger 012345678910...30 Day051015Code Coverage (%) PostgreSQL SQLaser SQLRight WindRanger 012345678910...30 Day051015Code Coverage (%) TiDB SQLaser SQLRight WindRanger Fig. 4.",
+      "context_after": "012345678910...60 Day051015Code Coverage (%) ROWID oracle SQLaser SQLRight WindRanger 012345678910...60 Day051015Code Coverage (%) LIKELY oracle SQLaser SQLRight WindRanger 012345678910...60 Day051015Code Coverage (%) INDEX oracle SQLaser SQLRight WindRanger Fig. 5. Code coverage of SQLaser, SQLRight and WindRanger to trigger bugs in SQLite for ROWID, LIKELY and INDEX oracle. in tested four DBMSs. For ROWID, LIKELY, and INDEX oracles, they are only implemented in SQLite for now, and not in other DBMSs yet. According to Fig. 3, Fig. 4 and Fig. 5, we can see that SQLaser has a lower code covera",
+      "section": "6.2.2 Code Coverage",
+      "page": 19,
+      "char_offset": 60216,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Currently, SQLaser only supports differential testingbased oracles and does not accommodate other types of oracles, such as PQS oracle [40], which detects logic bugs through non-differential testing.",
+      "context_before": "the discovery of more bugs, since the fuzzer explores a wider range of possibilities, even if some of them are false positives. 7. Discussion In this section, we discuss two issues: the completeness of the testing oracles employed in this paper, and the completeness of the SQL clause collections we consider. 7.1. Completeness of Testing Oracles In this paper, we employ five oracles to test logic bugs. Specifically, we validate the existence of logic bugs by converting SQL query statements into functionally equivalent yet different queries and comparing the output results of these two queries.",
+      "context_after": "However, in the process of statistically analyzing existing logic bugs, we include the bugs detected by PQS oracles and instrument their call chains. As SQLaser does not currently support PQS oracles, this may result in its inability to identify logic bugs detectable solely by PQS oracles. Additionally, to the best of our knowledge, existing research has not extensively investigated the completeness of these five oracles (NoREC, TLP, INDEX, ROWID and LIKELY) in addressing logic bugs in real-world scenarios. We will undertake research on this matter in future work. 7.2. Completeness of SQL Cla",
+      "section": "7.1 Completeness of Testing Oracles",
+      "page": 21,
+      "char_offset": 66394,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M20",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "However, in the process of statistically analyzing existing logic bugs, we include the bugs detected by PQS oracles and instrument their call chains.",
+      "context_before": "of the testing oracles employed in this paper, and the completeness of the SQL clause collections we consider. 7.1. Completeness of Testing Oracles In this paper, we employ five oracles to test logic bugs. Specifically, we validate the existence of logic bugs by converting SQL query statements into functionally equivalent yet different queries and comparing the output results of these two queries. Currently, SQLaser only supports differential testingbased oracles and does not accommodate other types of oracles, such as PQS oracle [40], which detects logic bugs through non-differential testing.",
+      "context_after": "As SQLaser does not currently support PQS oracles, this may result in its inability to identify logic bugs detectable solely by PQS oracles. Additionally, to the best of our knowledge, existing research has not extensively investigated the completeness of these five oracles (NoREC, TLP, INDEX, ROWID and LIKELY) in addressing logic bugs in real-world scenarios. We will undertake research on this matter in future work. 7.2. Completeness of SQL Clause Collections We systematically analyze logic bugs extracted from state-of-the-art studies, identifying common error-prone sequences of functions. W",
+      "section": "7.1 Completeness of Testing Oracles",
+      "page": 21,
+      "char_offset": 66594,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M21",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "As SQLaser does not currently support PQS oracles, this may result in its inability to identify logic bugs detectable solely by PQS oracles.",
+      "context_before": "this paper, we employ five oracles to test logic bugs. Specifically, we validate the existence of logic bugs by converting SQL query statements into functionally equivalent yet different queries and comparing the output results of these two queries. Currently, SQLaser only supports differential testingbased oracles and does not accommodate other types of oracles, such as PQS oracle [40], which detects logic bugs through non-differential testing. However, in the process of statistically analyzing existing logic bugs, we include the bugs detected by PQS oracles and instrument their call chains.",
+      "context_after": "Additionally, to the best of our knowledge, existing research has not extensively investigated the completeness of these five oracles (NoREC, TLP, INDEX, ROWID and LIKELY) in addressing logic bugs in real-world scenarios. We will undertake research on this matter in future work. 7.2. Completeness of SQL Clause Collections We systematically analyze logic bugs extracted from state-of-the-art studies, identifying common error-prone sequences of functions. We have made every effort to comprehensively gather existing logic bugs, and these resultant collections effectively represent prevalent logic",
+      "section": "7.1 Completeness of Testing Oracles",
+      "page": 21,
+      "char_offset": 66744,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M22",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Additionally, to the best of our knowledge, existing research has not extensively investigated the completeness of these five oracles (NoREC, TLP, INDEX, ROWID and LIKELY) in addressing logic bugs in real-world scenarios.",
+      "context_before": "nts into functionally equivalent yet different queries and comparing the output results of these two queries. Currently, SQLaser only supports differential testingbased oracles and does not accommodate other types of oracles, such as PQS oracle [40], which detects logic bugs through non-differential testing. However, in the process of statistically analyzing existing logic bugs, we include the bugs detected by PQS oracles and instrument their call chains. As SQLaser does not currently support PQS oracles, this may result in its inability to identify logic bugs detectable solely by PQS oracles.",
+      "context_after": "We will undertake research on this matter in future work. 7.2. Completeness of SQL Clause Collections We systematically analyze logic bugs extracted from state-of-the-art studies, identifying common error-prone sequences of functions. We have made every effort to comprehensively gather existing logic bugs, and these resultant collections effectively represent prevalent logic bugs in the field. To our best knowledge, there is currently no theory or standard proposed in existing research to classify SQL clauses. We are the first to strive to investigate the types of SQL clause of existing logic",
+      "section": "7.1 Completeness of Testing Oracles",
+      "page": 21,
+      "char_offset": 66885,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M23",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [71] is a rulebased tool that successfully identifies numerous logic bugs.",
+      "context_before": "ollections effectively represent prevalent logic bugs in the field. To our best knowledge, there is currently no theory or standard proposed in existing research to classify SQL clauses. We are the first to strive to investigate the types of SQL clause of existing logic bugs, and leverage the discovered insights for detecting bugs in DBMS. However, we acknowledge that ensuring this classification covers all SQL clause might be a challenge, and addressing this limitation is a direction for our future work. 8. Related Work In this section, we discuss techniques for detecting logic bugs in DBMSs.",
+      "context_after": "It employs three distinct methods for detecting logic bugs: PQS [40], NoREC [38], and TLP [39]. PQS focuses on generating queries that fetch a 22 Wei et al. / SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing randomly selected row called the pivot row. If the DBMS fails to retrieve the pivot row based on this random expression, it indicates the presence of a logic bug in the DBMS. NoREC, on the other hand, translates an optimized query into an unoptimized version with identical semantics. By comparing the results obtained from both queries, inconsistencies can indicate the presenc",
+      "section": "8 Related Work",
+      "page": 21,
+      "char_offset": 68037,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M24",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "It employs three distinct methods for detecting logic bugs: PQS [40], NoREC [38], and TLP [39].",
+      "context_before": "ledge, there is currently no theory or standard proposed in existing research to classify SQL clauses. We are the first to strive to investigate the types of SQL clause of existing logic bugs, and leverage the discovered insights for detecting bugs in DBMS. However, we acknowledge that ensuring this classification covers all SQL clause might be a challenge, and addressing this limitation is a direction for our future work. 8. Related Work In this section, we discuss techniques for detecting logic bugs in DBMSs. SQLancer [71] is a rulebased tool that successfully identifies numerous logic bugs.",
+      "context_after": "PQS focuses on generating queries that fetch a 22 Wei et al. / SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing randomly selected row called the pivot row. If the DBMS fails to retrieve the pivot row based on this random expression, it indicates the presence of a logic bug in the DBMS. NoREC, on the other hand, translates an optimized query into an unoptimized version with identical semantics. By comparing the results obtained from both queries, inconsistencies can indicate the presence of a logic bug. Lastly, TLP partitions a query into several sub-queries, which are composed to",
+      "section": "8 Related Work",
+      "page": 21,
+      "char_offset": 68121,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M25",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "PQS focuses on generating queries that fetch a 22 Wei et al.",
+      "context_before": "auses. We are the first to strive to investigate the types of SQL clause of existing logic bugs, and leverage the discovered insights for detecting bugs in DBMS. However, we acknowledge that ensuring this classification covers all SQL clause might be a challenge, and addressing this limitation is a direction for our future work. 8. Related Work In this section, we discuss techniques for detecting logic bugs in DBMSs. SQLancer [71] is a rulebased tool that successfully identifies numerous logic bugs. It employs three distinct methods for detecting logic bugs: PQS [40], NoREC [38], and TLP [39].",
+      "context_after": "/ SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing randomly selected row called the pivot row. If the DBMS fails to retrieve the pivot row based on this random expression, it indicates the presence of a logic bug in the DBMS. NoREC, on the other hand, translates an optimized query into an unoptimized version with identical semantics. By comparing the results obtained from both queries, inconsistencies can indicate the presence of a logic bug. Lastly, TLP partitions a query into several sub-queries, which are composed to have the same semantics as the original query. If the compos",
+      "section": "8 Related Work",
+      "page": 21,
+      "char_offset": 68217,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M26",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC, on the other hand, translates an optimized query into an unoptimized version with identical semantics.",
+      "context_before": "direction for our future work. 8. Related Work In this section, we discuss techniques for detecting logic bugs in DBMSs. SQLancer [71] is a rulebased tool that successfully identifies numerous logic bugs. It employs three distinct methods for detecting logic bugs: PQS [40], NoREC [38], and TLP [39]. PQS focuses on generating queries that fetch a 22 Wei et al. / SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing randomly selected row called the pivot row. If the DBMS fails to retrieve the pivot row based on this random expression, it indicates the presence of a logic bug in the DBMS.",
+      "context_after": "By comparing the results obtained from both queries, inconsistencies can indicate the presence of a logic bug. Lastly, TLP partitions a query into several sub-queries, which are composed to have the same semantics as the original query. If the composed query does not yield the same result as the original query, it suggests the possibility of a logic bug. While SQLancer relies on a rule-based generator to detect logic bugs, limiting its exploration of input samples. Liang et al. [28] propose SQLRight, a methodology for logic bug exploration based on coverage-based fuzzing. SQLRight successfull",
+      "section": "8 Related Work",
+      "page": 22,
+      "char_offset": 68517,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M27",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Lastly, TLP partitions a query into several sub-queries, which are composed to have the same semantics as the original query.",
+      "context_before": "distinct methods for detecting logic bugs: PQS [40], NoREC [38], and TLP [39]. PQS focuses on generating queries that fetch a 22 Wei et al. / SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing randomly selected row called the pivot row. If the DBMS fails to retrieve the pivot row based on this random expression, it indicates the presence of a logic bug in the DBMS. NoREC, on the other hand, translates an optimized query into an unoptimized version with identical semantics. By comparing the results obtained from both queries, inconsistencies can indicate the presence of a logic bug.",
+      "context_after": "If the composed query does not yield the same result as the original query, it suggests the possibility of a logic bug. While SQLancer relies on a rule-based generator to detect logic bugs, limiting its exploration of input samples. Liang et al. [28] propose SQLRight, a methodology for logic bug exploration based on coverage-based fuzzing. SQLRight successfully detects logic bugs in SQLite and MySQL. In their approach, all sample queries are added to a queue, and the fuzzer selects a query to mutate. If the mutated query triggers a new execution path, it is added to the queue. These mutated q",
+      "section": "8 Related Work",
+      "page": 22,
+      "char_offset": 68738,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M28",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "While SQLancer relies on a rule-based generator to detect logic bugs, limiting its exploration of input samples.",
+      "context_before": "w. If the DBMS fails to retrieve the pivot row based on this random expression, it indicates the presence of a logic bug in the DBMS. NoREC, on the other hand, translates an optimized query into an unoptimized version with identical semantics. By comparing the results obtained from both queries, inconsistencies can indicate the presence of a logic bug. Lastly, TLP partitions a query into several sub-queries, which are composed to have the same semantics as the original query. If the composed query does not yield the same result as the original query, it suggests the possibility of a logic bug.",
+      "context_after": "Liang et al. [28] propose SQLRight, a methodology for logic bug exploration based on coverage-based fuzzing. SQLRight successfully detects logic bugs in SQLite and MySQL. In their approach, all sample queries are added to a queue, and the fuzzer selects a query to mutate. If the mutated query triggers a new execution path, it is added to the queue. These mutated queries are then tested to identify any unexpected behaviors. However, SQLRight’s coverage-based fuzzing approach lacks high effectiveness in reaching vulnerable target sites due to the equal evaluation of all seeds. In this paper, we",
+      "section": "8 Related Work",
+      "page": 22,
+      "char_offset": 68984,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-10T15:11:01Z",
+    "is_model_written": true,
+    "summary": "SQLaser fuzzes for logic bugs by targeting clause combinations. From 144 known logic bugs across SQLite, MySQL, PostgreSQL and TiDB it identifies the SQL clause combinations that recur in them, then guides fuzzing towards those combinations rather than exploring the grammar uniformly.",
+    "narrative": "SQLancer's oracles are what SQLaser runs and what bounds it. It implements five oracles, two of them NoREC and TLP, which it describes as differential-testing oracles, and reports coverage for each. PQS it explicitly does not implement -- it is a non-differential oracle and does not fit the design -- and the paper is unusually candid about the cost: 13 of the 15 known MySQL bugs were found by PQS, which it gives as the reason SQLaser finds comparatively few there. The bug corpus it mines is itself drawn from SQLancer's reported bugs.",
+    "roles": {
+      "M1": "background",
+      "M2": "definition",
+      "M3": "definition",
+      "M4": "definition",
+      "M5": "motivation",
+      "M6": "definition",
+      "M7": "definition",
+      "M8": "definition",
+      "M9": "motivation",
+      "M10": "reuse_component",
+      "M11": "incidental",
+      "M12": "incidental",
+      "M13": "reuse_component",
+      "M14": "result_comparison",
+      "M15": "result_comparison",
+      "M16": "definition",
+      "M17": "result_comparison",
+      "M18": "result_comparison",
+      "M19": "motivation",
+      "M20": "reuse_component",
+      "M21": "motivation",
+      "M22": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M13",
+          "M20"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M13",
+            "sentence": "The five oracles include: 1) the NoREC oracle, which rewrites an optimized query containing a WHERE clause to a SELECT query statement without the WHERE optimization; 2) the TLP oracle, which partitions a given query into multiple equivalent queries, and their results can be combined to obtain the same results as the original query; 3) the INDEX oracle, which 14 Wei et al.",
+            "section": "4.3.2 Testing Oracles",
+            "page": 13
+          },
+          {
+            "mention_id": "M20",
+            "sentence": "However, in the process of statistically analyzing existing logic bugs, we include the bugs detected by PQS oracles and instrument their call chains.",
+            "section": "7.1 Completeness of Testing Oracles",
+            "page": 21
+          }
+        ],
+        "reasoning": "M13 states SQLaser's five oracles include NoREC and TLP, and M20 that bugs detected by PQS oracles were included in its analysis and their call chains instrumented. The oracles are used as they are, but the paper does not say whether they are invoked through SQLancer or reimplemented, so the form of the reuse is unclear.",
+        "reuse_kind": "unclear"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "NoREC and TLP are used unchanged; what SQLaser contributes is clause-guided fuzzing that decides which test cases to generate, not what makes a result wrong."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M15",
+          "M17",
+          "M18"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M15",
+            "sentence": "/ SQLaser: Detecting DBMS Logic Bugs with Clause-Guided Fuzzing out of the 15 existing bugs we summarize for MySQL, 13 are detected by the PQS oracle, explaining the comparatively lower number of bug found by SQLaser for MySQL.",
+            "section": "6.1 Finding Bugs in DBMSs",
+            "page": 18
+          },
+          {
+            "mention_id": "M17",
+            "sentence": "Code coverage of SQLaser, SQLRight and WindRanger for NoREC oracle.",
+            "section": "6.2.2 Code Coverage",
+            "page": 19
+          },
+          {
+            "mention_id": "M18",
+            "sentence": "Code coverage of SQLaser, SQLRight and WindRanger to trigger bugs for TLP oracle.",
+            "section": "6.2.2 Code Coverage",
+            "page": 19
+          }
+        ],
+        "reasoning": "M17 and M18 report code coverage for SQLaser against SQLRight and WindRanger under the NoREC and TLP oracles, and M15 compares SQLaser's yield on MySQL against PQS's, which found 13 of the 15 known bugs there.",
+        "techniques": [
+          "norec",
+          "tlp",
+          "pqs"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The oracles are described by mechanism and by their limits; no state-of-the-art claim is made for them."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

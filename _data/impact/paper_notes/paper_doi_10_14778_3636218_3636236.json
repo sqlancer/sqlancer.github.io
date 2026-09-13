@@ -1,0 +1,180 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "paper": {
+    "id": "paper:doi:10.14778/3636218.3636236",
+    "title": "Testing Graph Database Systems via Graph-Aware Metamorphic Relations",
+    "authors": [
+      "Zeyang Zhuang",
+      "Penghui Li",
+      "Pingchuan Ma",
+      "Wei Meng",
+      "Shuai Wang"
+    ],
+    "year": 2023,
+    "venue": "Proceedings of the VLDB Endowment",
+    "doi": "10.14778/3636218.3636236",
+    "url": "https://doi.org/10.14778/3636218.3636236"
+  },
+  "summary": {
+    "text": "Gamera tests graph database systems with metamorphic relations designed around graph native structures, which the authors argue prior solutions were unaware of and therefore could not use to reveal many logic bugs. It defines three classes of graph-aware metamorphic relation, generates queries according to them to exercise diverse and complex graph operations, and checks whether results conform to the chosen relation. Across seven widely used graph systems including Neo4j and OrientDB it detected 39 logic bugs, and outperformed the prior tools Grand, GDsmith and GDBMeter.",
+    "relationship_to_sqlancer": "Extends metamorphic query transformation, the basis of SQLancer's oracles, with graph-specific relations, and its artifact reuses the SQLancer codebase.",
+    "is_model_generated": true,
+    "grounded_in_source": true,
+    "written_from": "abstract",
+    "written_from_url": "https://doi.org/10.14778/3636218.3636236",
+    "source_sha256": "sha256:cbab56b22188e4e55923effd9da38e5ae26d2c21b6c3504111afe5d9bd35748b",
+    "supporting_excerpts": [
+      "However, the logic bugs largely cannot be revealed by prior solutions which are unaware of the graph native structures of the graph data.",
+      "In this paper, we propose Gamera (Graph-aware metamorphic relations), a novel metamorphic testing approach to uncover unknown logic bugs in GDBs.",
+      "Our experiments also demonstrated that Gamera significantly outperformed prior solutions including Grand, GD-smith and GDBMeter."
+    ],
+    "model": "claude-opus-5",
+    "generated_by": "claude_code_session",
+    "classifier_version": null,
+    "generated_at": "2026-09-07T02:37:35Z"
+  },
+  "evidence": [
+    {
+      "relationship": "references",
+      "title": "Cites SQLancer",
+      "value": "yes",
+      "method": "citation_graph",
+      "techniques": [
+        "norec",
+        "tlp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://doi.org/10.14778/3636218.3636236",
+          "source_type": "paper_citation_context",
+          "excerpt": "We next propose the pattern partitioning technique to generate compound MRs by extending the query partitioning technique in the literature [34, 42].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Ternary Logic Partitioning (TLP), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.14778/3636218.3636236",
+          "source_type": "paper_citation_context",
+          "excerpt": "In relational database systems, SQLancer [18] leverages ternary logic partitioning (TLP) [42] and non-optimizing reference engine construction (NoREC) [41] to form MRs and detect logic bugs.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Non-optimizing Reference Engine Construction (NoREC), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.14778/3636218.3636236",
+          "source_type": "paper_citation_context",
+          "excerpt": "Similar to other software systems [41, 42], GDBs contain logic bugs, which could cause unexpected behaviors and lead to severe consequences.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Non-optimizing Reference Engine Construction (NoREC), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.14778/3636218.3636236",
+          "source_type": "paper_citation_context",
+          "excerpt": "To date, MT methods have found hundreds of bugs in database systems, demonstrating its effectiveness [18, 41, 42].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Non-optimizing Reference Engine Construction (NoREC), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.14778/3636218.3636236",
+          "source_type": "paper_citation_context",
+          "excerpt": "It ports the idea of ternary query partitioning [42] used in relational databases to GDBs.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Ternary Logic Partitioning (TLP), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.14778/3636218.3636236",
+          "source_type": "paper_citation_context",
+          "excerpt": "However, most prior database MT works focus on relational database systems [18, 41, 42].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Non-optimizing Reference Engine Construction (NoREC), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    },
+    {
+      "relationship": "uses_infrastructure",
+      "title": "Uses the SQLancer codebase",
+      "value": "yes",
+      "method": "artifact_inspection",
+      "techniques": [],
+      "sources": [
+        {
+          "source_url": "https://github.com/cuhk-seclab/Gamera",
+          "source_type": "github_repository",
+          "excerpt": "Gamera in total detected 39 bugs and 5 new bugs from FalkorDB (, which is related to RedisGraph). All the results are listed here: [results.md](results.md).\n\n\n## Publication\nYou can find more details in our VLDB 2024 paper:\n[Testing Graph Database Systems via Graph-Aware Metamorphic Relations](https://www.vldb.org/pvldb/vol17/p836-zhuang.pdf)\n```\n@article{zhuang2024gamera,\n  title   = {Testing Graph Database Systems via Graph-aware Metamorphic Relations},",
+          "excerpt_is_verbatim": true,
+          "note": "Repository names this paper.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://github.com/cuhk-seclab/Gamera/blob/main/GremlinChecker/src/main/java/org/gdbtesting/Randomly.java",
+          "source_type": "github_code",
+          "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.SOPHISTICATED;",
+          "excerpt_is_verbatim": true,
+          "note": "GremlinChecker/src/main/java/org/gdbtesting/Randomly.java is SQLancer's Randomly.java, with the package renamed to org.gdbtesting (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    },
+    {
+      "relationship": "extends_technique",
+      "title": "Extends a SQLancer technique",
+      "value": "yes",
+      "method": "manual_curation",
+      "techniques": [
+        "tlp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://doi.org/10.14778/3636218.3636236",
+          "source_type": "paper_citation_context",
+          "excerpt": "We next propose the pattern partitioning technique to generate compound MRs by extending the query partitioning technique in the literature [34, 42].",
+          "excerpt_is_verbatim": true,
+          "note": "Passage in the paper, as indexed by Semantic Scholar, supporting this relationship.",
+          "retrieved_at": "2026-09-06T07:08:48Z"
+        },
+        {
+          "source_url": "https://doi.org/10.14778/3636218.3636236",
+          "source_type": "paper_citation_context",
+          "excerpt": "It ports the idea of ternary query partitioning [42] used in relational databases to GDBs.",
+          "excerpt_is_verbatim": true,
+          "note": "Passage in the paper, as indexed by Semantic Scholar, supporting this relationship.",
+          "retrieved_at": "2026-09-06T07:08:48Z"
+        }
+      ]
+    },
+    {
+      "relationship": "artifact",
+      "title": "Artifact",
+      "value": "https://github.com/cuhk-seclab/Gamera",
+      "method": "artifact_inspection",
+      "techniques": [],
+      "markers": [
+        "renamed_sqlancer_package",
+        "sqlancer_source_content_match"
+      ],
+      "sources": [
+        {
+          "source_url": "https://github.com/cuhk-seclab/Gamera",
+          "source_type": "github_repository",
+          "excerpt": "Gamera in total detected 39 bugs and 5 new bugs from FalkorDB (, which is related to RedisGraph). All the results are listed here: [results.md](results.md).\n\n\n## Publication\nYou can find more details in our VLDB 2024 paper:\n[Testing Graph Database Systems via Graph-Aware Metamorphic Relations](https://www.vldb.org/pvldb/vol17/p836-zhuang.pdf)\n```\n@article{zhuang2024gamera,\n  title   = {Testing Graph Database Systems via Graph-aware Metamorphic Relations},",
+          "excerpt_is_verbatim": true,
+          "note": "Repository names this paper.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://github.com/cuhk-seclab/Gamera/blob/main/GremlinChecker/src/main/java/org/gdbtesting/Randomly.java",
+          "source_type": "github_code",
+          "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.SOPHISTICATED;",
+          "excerpt_is_verbatim": true,
+          "note": "GremlinChecker/src/main/java/org/gdbtesting/Randomly.java is SQLancer's Randomly.java, with the package renamed to org.gdbtesting (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    }
+  ]
+}

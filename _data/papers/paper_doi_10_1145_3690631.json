@@ -1,0 +1,479 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:25:45Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3690631",
+    "title": "T-Rec: Fine-Grained Language-Agnostic Program Reduction Guided by Lexical Syntax",
+    "authors": [
+      "Zhenyang Xu",
+      "Yongqiang Tian",
+      "Mengxiao Zhang",
+      "Jiarui Zhang",
+      "Puzhuo Liu",
+      "Yu Jiang",
+      "Chengnian Sun"
+    ],
+    "year": 2024,
+    "venue": "ACM Transactions on Software Engineering and Methodology",
+    "doi": "10.1145/3690631",
+    "arxiv_id": null,
+    "s2_paper_id": "c7ca7db1f2ed7eafe81c58bf6732efb95bee0146",
+    "url": "https://doi.org/10.1145/3690631",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3690631",
+      "retrieved_at": "2026-09-08T15:25:45Z",
+      "chars": 106966,
+      "content_sha256": "sha256:c631a086f5730301b4d0cfc67116c226f94dbf8927c4290e20f1b9f6a23b9166"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 31,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 3828
+      },
+      {
+        "number": "2",
+        "title": "Motivating Example",
+        "start": 14630
+      },
+      {
+        "number": "3",
+        "title": "Preliminaries",
+        "start": 18254
+      },
+      {
+        "number": "3.1",
+        "title": "Program Reduction",
+        "start": 18270
+      },
+      {
+        "number": "3.2",
+        "title": "Lexical Syntax",
+        "start": 25053
+      },
+      {
+        "number": "4",
+        "title": "Methodology",
+        "start": 26781
+      },
+      {
+        "number": "4.1",
+        "title": "Definition of Canonical Tokens",
+        "start": 28739
+      },
+      {
+        "number": "4.2",
+        "title": "Replacement-Based Token Canonicalization",
+        "start": 33017
+      },
+      {
+        "number": "4.3",
+        "title": "Deletion-Based Token Canonicalization",
+        "start": 37751
+      },
+      {
+        "number": "5",
+        "title": "Evaluation",
+        "start": 48184
+      },
+      {
+        "number": "5.1",
+        "title": "RQ1: Effectiveness in De-Duplication",
+        "start": 55693
+      },
+      {
+        "number": "5.2",
+        "title": "RQ2: Effectiveness in Reducing Byte Size",
+        "start": 62660
+      },
+      {
+        "number": "5.3",
+        "title": "RQ3: Effectiveness in Removing Tokens",
+        "start": 69944
+      },
+      {
+        "number": "5.4",
+        "title": "RQ4: Efficiency",
+        "start": 74181
+      },
+      {
+        "number": "6",
+        "title": "Discussion",
+        "start": 80177
+      },
+      {
+        "number": "6.1",
+        "title": "Comparing to Perses with Lex Tree Extension",
+        "start": 80368
+      },
+      {
+        "number": "6.2",
+        "title": "Threats to Validity",
+        "start": 82569
+      },
+      {
+        "number": "7",
+        "title": "Related Work",
+        "start": 84787
+      },
+      {
+        "number": "7.1",
+        "title": "Language-Agnostic Program Reducers",
+        "start": 84908
+      },
+      {
+        "number": "7.2",
+        "title": "Language-Specific Program Reducers",
+        "start": 90334
+      },
+      {
+        "number": "8",
+        "title": "Conclusion",
+        "start": 92679
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "ANTLR. 2017. The ANTLR Parser Generator. Retrieved September 20, 2022 from https://www.antlr.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Cornelius Aschermann, Tommaso Frassetto, Thorsten Holz, Patrick Jauernig, Ahmad-Reza Sadeghi, and Daniel Teuchert. 2019. NAUTILUS: Fishing for deep bugs with grammars. In Proceedings of the 26th Annual Network and DistributedSystemSecuritySymposium(NDSS’19). The Internet Society. Retrieved from https://www.ndss-symposium. org/ndss-paper/nautilus-fishing-for-deep-bugs-with-grammars/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Yang Chen, Alex Groce, Chaoqiang Zhang, Weng-Keen Wong, Xiaoli Fern, Eric Eide, and John Regehr. 2013. Taming compiler fuzzers. In Proceedings of the 2013 ACMSIGPLAN Conference on Programming Language Design and Implementation (PLDI ’13), 197–208.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Nathan Chong, Alastair Donaldson, Andrei Lascu, and Christopher Lidbury. 2015. Many-core compiler fuzzing. In Proceedingsofthe35thACMSIGPLANConferenceonProgrammingLanguageDesignandImplementation(PLDI’15), 65–76.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "CPython. 2022. Bug Report. Retrieved September 20, 2022 from https://github.com/python/cpython/issues/new? assignees={&}labels=type-bug{&}template=bug.md",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Alastair Donaldson and David MacIver. 2021. Test Case Reduction: Beyond Bugs. Retrieved May 29, 2023 from https://blog.sigplan.org/2021/05/25/test-case-reduction-beyond-bugs",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "GCC. 2020. A Guide to Testcase Reduction. Retrieved October 28, 2022 from https://gcc.gnu.org/wiki/A_guide_to_ testcase_reduction",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "GCC-Wiki. 2020. A Guide to Testcase Reduction. Retrieved September 20, 2022 from https://gcc.gnu.org/wiki/A_ guide_to_testcase_reduction",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "GolnazGharachorluandNickSumner.2023.Typebatchedprogramreduction.In Proceedingsofthe32ndACMSIGSOFT International Symposium on Software Testing and Analysis, 398–410.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Rahul Gopinath, Alexander Kampmann, Nikolas Havrikov, Ezekiel O. Soremekun, and Andreas Zeller. 2020a. Abstracting failure-inducing inputs. In Proceedingsofthe29thACMSIGSOFTInternationalSymposiumonSoftwareTesting and Analysis, 237–248.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Rahul Gopinath, Alexander Kampmann, Nikolas Havrikov, Ezekiel O. Soremekun, and Andreas Zeller. 2020b. The DDSET Github Repo. Retrieved June 20, 2024 from https://github.com/vrthra/ddset ACM Transactions on Software Engineering and Methodology, Vol. 34, No. 2, Article 34. Publication date: January 2025. 34:30 Z. Xu et al.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Alex Groce, Josie Holmes, and Kevin Kellar. 2017. One test to rule them all. In Proceedings of the 26th ACMSIGSOFT InternationalSymposiumonSoftwareTestingandAnalysis(ISSTA’17). ACM, New York, NY, USA, 1–11. DOI:https: //doi.org/10.1145/3092703.3092704",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "KihongHeo,WoosukLee,PardisPashakhanloo,andMayurNaik.2018.Effectiveprogramdebloatingviareinforcement learning. In Proceedings of the 2018 ACMSIGSAC Conference on Computer and Communications Security (CCS ’18). David Lie, Mohammad Mannan, Michael Backes, and XiaoFeng Wang (Eds.), ACM, 380–394. DOI:https://doi.org/10. 1145/3243734.3243838",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Renáta Hodován and Ákos Kiss. 2016. Modernizing hierarchical delta debugging. In Proceedingsofthe7thInternational Workshop on AutomatingTest Case Design, Selection, and Evaluation (A-TEST’16). ACM, New York, NY, USA, 31–37. DOI:https://doi.org/10.1145/2994291.2994296",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Renáta Hodován, Ákos Kiss, and Tibor Gyimóthy. 2017. Coarse hierarchical delta debugging. In Proceedingsofthe. IEEE Computer Society, 194–203. DOI:https://doi.org/10.1109/ICSME.2017.26",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Renáta Hodován, Ákos Kiss, and Tibor Gyimóthy. 2018. Grammarinator: A grammar-based open source fuzzer. In Proceedingsofthe9thACMSIGSOFTInternationalWorkshoponAutomatingTESTCaseDesign,Selection,andEvaluation (A-TEST ’18). ACM, New York, NY, USA, 45–48. DOI:https://doi.org/10.1145/3278186.3278193",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "JerryScript. 2022. Bug Report. Retrieved September 20, 2022 from https://github.com/jerryscript-project/jerryscript/ blob/master/.github/ISSUE_TEMPLATE/bug_report.md",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "JS Delta. 2017. JS Delta. Retrieved October 28, 2022 from https://github.com/wala/jsdelta",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Christian Gram Kalhauge and Jens Palsberg. 2019. Binary reduction of dependency graphs. In Proceedings of the ACM JointMeetingonEuropeanSoftwareEngineeringConferenceandSymposiumontheFoundationsofSoftwareEngineering (ESEC/SIGSOFT FSE ’19). Marlon Dumas, Dietmar Pfahl, Sven Apel, and Alessandra Russo (Eds.), ACM, 556–566. DOI: https://doi.org/10.1145/3338906.3338956",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Christian Gram Kalhauge and Jens Palsberg. 2021. Logical bytecode reduction. In Proceedingsofthe PLDI’21:42nd ACMSIGPLANInternationalConferenceonProgrammingLanguageDesignandImplementation. Stephen N. Freund and Eran Yahav (Eds.), ACM, 1003–1016. DOI:https://doi.org/10.1145/3453483.3454091",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Ákos Kiss, Renáta Hodován, and Tibor Gyimóthy. 2018. HDDr: A recursive variant of the hierarchical delta debugging algorithm. In Proceedings of the 9th ACMSIGSOFT International Workshop on Automating TEST Case Design, Selection, and Evaluation (A-TEST ’18). ACM, New York, NY, USA, 16–22. DOI:https://doi.org/10.1145/3278186.3278189",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Gereon Kremer, Aina Niemetz, and Mathias Preiner. 2021. dd SMT 2.0: Better delta debugging for the SMT-LIBv2 language and friends. In Proceedings of the Computer Aided Verification-33rd International Conference (CAV ’21). Alexandra Silva and K. Rustan M. Leino (Eds.), Part II (Lecture Notes in Computer Science, Vol. 12760), Springer, 231–242. DOI:https://doi.org/10.1007/978-3-030-81688-9_11",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. 2014. Compiler validation via equivalence modulo inputs. 216–226. DOI: https://doi.org/10.1145/2594291.2594334",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Cong Li, Yanyan Jiang, Chang Xu, and Zhendong Su. 2023. Validating JIT compilers via compilation space exploration. InProceedingsofthe29thSymposiumonOperatingSystemsPrinciples (SOSP’23). ACM, New York, NY, USA, 66–79. DOI:https://doi.org/10.1145/3600006.3613140",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Vsevolod Livinskii, Dmitry Babokin, and John Regehr. 2020. Random testing for C and C++ compilers with YARPGen. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 1–25.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "LLVM. 2022. How to Submit an LLVM Bug Report. Retrieved September 20, 2022 from https://llvm.org/docs/ HowToSubmitABug.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "David R. MacIver and Alastair F. Donaldson. 2020. Test-case reduction via test-case generation: Insights from the hypothesisreducer(toolinsightspaper).In Proceedingsofthe34thEuropeanConferenceonObject-OrientedProgramming (ECOOP ’20). Schloss-Dagstuhl-Leibniz Zentrum für Informatik.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "GhassanMisherghiandZhendongSu.2006.HDD:HierarchicalDeltaDebugging.In Proceedingsofthe28thInternational ConferenceonSoftwareEngineering(ICSE’06). Leon J. Osterweil, H. Dieter Rombach, and Mary Lou Soffa (Eds.), ACM, 142–151. DOI:https://doi.org/10.1145/1134285.1134307",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Aina Niemetz and Armin Biere. 2013. dd SMT: A delta debugger for the SMT-LIB v2 format. In Proceedings of the 11th International Workshop on Satisfiability Modulo Theories, SMT, 8–9.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "John Regehr. 2019. Design and Evolution of C-Reduce. Retrieved January 20, 2024 from https://blog.regehr.org/ archives/1679",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "John Regehr, Yang Chen, Pascal Cuoq, Eric Eide, Chucky Ellison, and Xuejun Yang. 2012. Test-case reduction for C compiler bugs. In Proceedings of the 33rd ACMSIGPLAN Conference on Programming Language Design and Implementation (PLDI ’12). ACM, New York, NY, USA, 335–346. DOI:https://doi.org/10.1145/2254064.2254104",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedingsofthe28thACMJointMeetingonEuropeanSoftwareEngineeringConferenceand ACM Transactions on Software Engineering and Methodology, Vol. 34, No. 2, Article 34. Publication date: January 2025. T-Rec: Fine-Grained Language-AgnosticProgramReduction 34:31 Sympos",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 33,
+      "text": "Rust. 2024. Finding a Minimal, Standalone Example. Retrieved Januray 20, 2024 from https://rustc-dev-guide.rustlang.org/notification-groups/cleanup-crew.html#finding-a-minimal-standalone-example",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Prashast Srivastava and Mathias Payer. 2021. Gramatron: Effective grammar-aware fuzzing. In Proceedings of the 30th ACMSIGSOFT International Symposium on Software Testing and Analysis, 244–256.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Chengnian Sun, Vu Le, and Zhendong Su. 2016. Finding compiler bugs via live code mutation. In Proceedingsofthe 2016 ACMSIGPLAN International Conference on Object-Oriented Programming, Systems, Languages, and Applications (OOPSLA’16,partof SPLASH’16). Eelco Visser and Yannis Smaragdakis (Eds.), ACM, 849–863. DOI:https://doi.org/10. 1145/2983990.2984038",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Chengnian Sun, Yuanbo Li, Qirun Zhang, Tianxiao Gu, and Zhendong Su. 2018. Perses: Syntax-guided program reduction. In Proceedings of the 40th International Conference on Software Engineering (ICSE ’18). ACM, New York, NY, USA, 361–371. DOI:https://doi.org/10.1145/3180155.3180236",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Yongqiang Tian, Xueyan Zhang, Yiwen Dong, Zhenyang Xu, Mengxiao Zhang, Yu Jiang, Shing-Chi Cheung, and Chengnian Sun. 2023. On the caching schemes to speed up program reduction. ACM Transactions on Software Engineering and Methodology 33, 1, Article 17 (Nov 2023), 30 pages. DOI: https://doi.org/10.1145/3617172",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Dániel Vince. 2022. Iterating the minimizing Delta debugging algorithm. In Proceedings of the 13th International Workshop on Automating Test Case Design, Selection and Evaluation (A-TEST ’22). Ákos Kiss, Beatriz Marín, and Mehrdad Saadatmand (Eds.), ACM, 57–60. DOI:https://doi.org/10.1145/3548659.3561314",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Dániel Vince, Renáta Hodován, Daniella Bársony, and Ákos Kiss. 2021. Extending hierarchical delta debugging with hoisting. In Proceedingsofthe 2021IEEE/ACMInternationalConferenceonAutomationofSoftwareTest(AST). IEEE, 60–69.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Guancheng Wang, Ruobing Shen, Junjie Chen, Yingfei Xiong, and Lu Zhang. 2021. Probabilistic Delta debugging. In Proceedings of the ESEC/FSE ’21: 29th ACM Joint European Software Engineering Conference and Symposium on the FoundationsofSoftwareEngineering. Diomidis Spinellis, Georgios Gousios, Marsha Chechik, and Massimiliano Di Penta (Eds.), ACM, 881–892. DOI:https://doi.org/10.1145/3468264.346862",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Frank Wilcoxon. 1992. Individual Comparisons by Ranking Methods. Springer.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "DominikWinterer,ChengyuZhang,andZhendongSu.2020.ValidatingSMTsolversviasemanticfusion.In Proceedings ofthe41stACMSIGPLANConferenceonProgrammingLanguageDesignandImplementation (PLDI’20). ACM, New York, NY, USA, 718–730. DOI:https://doi.org/10.1145/3385412.3385985",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Zhenyang Xu, Yongqiang Tian, Mengxiao Zhang, Gaosen Zhao, Yu Jiang, and Chengnian Sun. 2023. Pushing the limit of 1-minimality of language-agnostic program reduction. Proceedings of the ACM on Programming Languages 7, OOPSLA1, Article 97 (Apr 2023), 29 pages. DOI:https://doi.org/10.1145/3586049",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. 2011. Finding and understanding bugs in C compilers. In Proceedingsofthe32ndACMSIGPLANConferenceonProgrammingLanguageDesignandImplementation(PLDI’11). ACM, New York, NY, USA, 283–294. DOI:https://doi.org/10.1145/1993498.1993532",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "A. Zeller and R. Hildebrandt. 2002. Simplifying and isolating failure-inducing input. IEEETransactionsonSoftware Engineering 28, 2 (2002), 183–200. DOI:https://doi.org/10.1109/32.988498",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Mengxiao Zhang, Yongqiang Tian, Zhenyang Xu, Yiwen Dong, Shin Hwei Tan, and Chengnian Sun. 2024. LPR: Large language models-aided program reduction. In Proceedings of the 33rd ACMSIGSOFT International Symposium on Software Testing and Analysis, 261–273.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "MengxiaoZhang,ZhenyangXu,YongqiangTian,YuJiang,andChengnianSun.2023.PPR:Pairwiseprogramreduction. InProceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 338–349. Received 8 February 2024; revised 5 July 2024; accepted 10 August 2024 ACM Transactions on Software Engineering and Methodology, Vol. 34, No. 2, Article 34. P",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 32,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedingsofthe28thACMJointMeetingonEuropeanSoftwareEngineeringConferenceand ACM Transactions on Software Engineering and Methodology, Vol. 34, No. 2, Article 34. Publication date: January 2025. T-Rec: Fine-Grained Language-AgnosticProgramReduction 34:31 SymposiumontheFoundationsofSoftwareEngineering (ESEC/FSE’20). ACM, New York, NY, USA, 1140–1152. DOI: https://doi.org/10.1145/3368089.3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 7,23–26,32,33,42]",
+      "technique": "norec",
+      "sentence": "It is a widely recognized and powerful reducer commonly employed in compiler testing work and programming language communities [ 7,23–26,32,33,42].",
+      "context_before": "pecific knowledge, and thus they are more generalized. ACM Transactions on Software Engineering and Methodology, Vol. 34, No. 2, Article 34. Publication date: January 2025. T-Rec: Fine-Grained Language-AgnosticProgramReduction 34:3 C programs. One possible explanation is that when the inputs have strict restrictions imposed upon on each token by the semantics or the property (i.e., triggering a certain bug), the abstracting process may become infeasible, and thus the effectiveness of ddsetmay significantly deteriorate. C-Reduce [ 31] is another reducer that attempts to overcome the limitation.",
+      "context_after": "C-Reduce strives to reduce identifiers, strings, and numbers to their canonical forms (more details in Section 3.1.1). However, the approach used by C-Reduce is specifically optimized for reducing C/C++ programs. Although some parts of its approach are language-agnostic, their performance tends to be limited when the language is less similar to C/C++, and thus could benefit from further enhancements. Practical Benefits of Fine-Grained Reduction. Fine-grained reduction improves program reduction in two aspects. First, it can minimize tokens such as identifiers and literals to canonical tokens",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 8248,
+      "cited_reference": {
+        "number": 32,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedingsofthe28thACMJointMeetingonEuropeanSoftwareEngineeringConferenceand ACM Transactions on Software Engineering and Methodology, Vol. 34, No. 2, Article 34",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:16:45Z",
+    "is_model_written": true,
+    "summary": "T-Rec is a language-agnostic program reduction technique guided by lexical syntax. Program reduction removes bug-irrelevant code from a bug-triggering program, giving a smaller reproducer and making duplicates easier to tell apart. The authors observe that existing language-agnostic reducers treat tokens as atomic and so miss reduction opportunities inside them; T-Rec reduces within tokens, removing up to 65.52% more bytes than Perses on a multi-lingual benchmark.",
+    "narrative": "A single citation, among the compiler-testing and programming-language work that commonly employs program reducers.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

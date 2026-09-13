@@ -1,0 +1,1064 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:29:12Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3802053",
+    "title": "EPSC: Testing Database Management Systems via Equivalent Prepared Statement Construction",
+    "authors": [
+      "Chi Zhang",
+      "Jie Liang",
+      "Zhiyong Wu",
+      "Dalong Shi",
+      "Linzhang Wang",
+      "Yu Jiang"
+    ],
+    "year": 2026,
+    "venue": "Proceedings of the ACM on Management of Data",
+    "doi": "10.1145/3802053",
+    "arxiv_id": null,
+    "s2_paper_id": "f42307b2aae0cdc8c3fae609e844622539b26baa",
+    "url": "https://doi.org/10.1145/3802053",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3802053",
+      "retrieved_at": "2026-09-09T01:29:12Z",
+      "chars": 93719,
+      "content_sha256": "sha256:d89e91ff5491d3fcc8dab7d46ff331d7cdd9ee8134595f3a6a5ad6cb5c0c2cdb"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 25,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 3385
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 13601
+      },
+      {
+        "number": "3",
+        "title": "Approach",
+        "start": 18866
+      },
+      {
+        "number": "3.1",
+        "title": "Approach Overview",
+        "start": 19582
+      },
+      {
+        "number": "3.2",
+        "title": "Statement Generation",
+        "start": 23479
+      },
+      {
+        "number": "3.3",
+        "title": "Error Validation",
+        "start": 26566
+      },
+      {
+        "number": "3.4",
+        "title": "Result Comparison",
+        "start": 37914
+      },
+      {
+        "number": "4",
+        "title": "Evaluation",
+        "start": 40105
+      },
+      {
+        "number": "4.1",
+        "title": "Effectiveness",
+        "start": 43356
+      },
+      {
+        "number": "4.2",
+        "title": "Selected Bugs",
+        "start": 48276
+      },
+      {
+        "number": "4.3",
+        "title": "Compared with Other Approaches",
+        "start": 62796
+      },
+      {
+        "number": "4.4",
+        "title": "Ablation Study",
+        "start": 68024
+      },
+      {
+        "number": "5",
+        "title": "Discussion",
+        "start": 73492
+      },
+      {
+        "number": "6",
+        "title": "Related Work",
+        "start": 76077
+      },
+      {
+        "number": "7",
+        "title": "Conclusion",
+        "start": 83667
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. InProceedings of the 45th International Conference on Software Engineering(Melbourne, Victoria, Australia)(ICSE ’23). IEEE Press, 2060–2071. doi:10.1109/ICSE48619.2023.00174",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. doi:10.1145/3654991",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 3,
+      "text": "Carsten Binnig, Donald Kossmann, Eric Lo, and M. Tamer Özsu. 2007. QAGen: generating query-aware test databases. InProceedings of the 2007 ACMSIGMOD International Conference on Management of Data(Beijing, China)(SIGMOD ’07). Association for Computing Machinery, New York, NY, USA, 341–352. doi:10.1145/1247480.1247520",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Prithvi Bisht, A. Prasad Sistla, and V. N. Venkatakrishnan. 2010. TAPS: automatically preparing safe SQL queries. In Proceedings of the 17th ACM Conference on Computer and Communications Security(Chicago, Illinois, USA)(CCS ’10). Association for Computing Machinery, New York, NY, USA, 645–647. doi:10.1145/1866307.1866384",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Pedro Bizarro, Nicolas Bruno, and David J. DeWitt. 2009. Progressive Parametric Query Optimization.IEEE Trans. on Knowl. and Data Eng.21, 4 (April 2009), 582–594. doi:10.1109/TKDE.2008.160",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Surajit Chaudhuri, Hongrae Lee, and Vivek R. Narasayya. 2010. Variance aware optimization of parameterized queries. InProceedings of the 2010 ACMSIGMOD International Conference on Management of Data(Indianapolis, Indiana, USA) (SIGMOD ’10). Association for Computing Machinery, New York, NY, USA, 531–542. doi:10.1145/1807167.1807226",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Tsong Y Chen, Shing C Cheung, and Shiu Ming Yiu. 2020. Metamorphic testing: a new approach for generating next test cases.arXiv preprint arXiv:2002.12543(2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Anshuman Dutt, Vivek Narasayya, and Surajit Chaudhuri. 2017. Leveraging Re-costing for Online Optimization of Parameterized Queries with Guarantees. InProceedings of the 2017 ACM International Conference on Management of Data(Chicago, Illinois, USA)(SIGMOD ’17). Association for Computing Machinery, New York, NY, USA, 1539–1554. doi:10.1145/3035918.3064040",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, and Yu Jiang. 2024. Sedar: Obtaining High-Quality Seeds for DBMS Fuzzing via Cross-DBMS SQL Transfer. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering (Lisbon, Portugal)(ICSE ’24). Association for Computing Machinery, New York, NY, USA, Article 146, 12 pages. doi:10.1145/3597503.3639210",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2023. Griffin: Grammar-Free DBMS Fuzzing. In Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering(Rochester, MI, USA) (ASE ’22). Association for Computing Machinery, New York, NY, USA, Article 49, 12 pages. doi:10.1145/3551349.3560431",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Kevin P Gaffney, Martin Prammer, Larry Brasfield, D Richard Hipp, Dan Kennedy, and Jignesh M Patel. 2022. SQLite: past, present, and future.Proceedings of the VLDB Endowment15, 12 (2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Ahmad Ghazal, Dawit Seid, Bhashyam Ramesh, Alain Crolotte, Manjula Koppuravuri, and Vinod G. 2009. Dynamic plan generation for parameterized queries. InProceedings of the 2009 ACMSIGMOD International Conference on Management of Data(Providence, Rhode Island, USA)(SIGMOD ’09). Association for Computing Machinery, New York, NY, USA, 909–916. doi:10.1145/1559845.1559946",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Zongyin Hao, Quanfeng Huang, Chengpeng Wang, Jianfeng Wang, Yushan Zhang, Rongxin Wu, and Charles Zhang. 2023. Pinolo: Detecting Logical Bugs in Database Management Systems with Approximate Query Synthesis. In 2023 USENIX Annual Technical Conference (USENIX ATC 23). USENIX Association, Boston, MA, 345–358. https: //www.usenix.org/conference/atc23/presentation/hao",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Dongxu Huang, Qi Liu, Qiu Cui, Zhuhe Fang, Xiaoyu Ma, Fei Xu, Li Shen, Liu Tang, Yuxing Zhou, Menglong Huang, et al. 2020. TiDB: a Raft-based HTAP database.Proceedings of the VLDB Endowment13, 12 (2020), 3072–3084.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Zu-Ming Jiang and Zhendong Su. 2024. Detecting logic bugs in database engines via equivalent expression transformation. InProceedings of the 18th USENIX Conference on Operating Systems Design and Implementation(Santa Clara, CA, USA)(OSDI’24). USENIX Association, USA, Article 44, 15 pages.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "George Klees, Andrew Ruef, Benji Cooper, Shiyi Wei, and Michael Hicks. 2018. Evaluating fuzz testing. InProceedings of the 2018 ACMSIGSAC conference on computer and communications security. 2123–2138.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Jie Liang, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Chengnian Sun, and Yu Jiang. 2024. Mozi: Discovering DBMS Bugs via Configuration-Based Equivalent Transformation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering(Lisbon, Portugal)(ICSE ’24). Association for Computing Machinery, New York, NY, USA, Article 135, 12 pages. doi:10.1145/3597503.3639112 4, No. 3 (SIGMOD",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting Logical Bugs of DBMS with Coverage-based Guidance. InProceedings of the 31st USENIX Security Symposium (USENIX 2022). Boston, MA.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "MariaDB 2024. MariaDB. https://mariadb.org/. Accessed: March 19, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "William M McKeeman. 1998. Differential testing for software.Digital Technical Journal10, 1 (1998), 100–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Bruce Momjian. 2001.PostgreSQL: introduction and concepts. Vol. 192. Addison-Wesley New York.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "MySQL 2024. MySQL. https://www.mysql.com/. Accessed: March 19, 2026.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Mark Raasveldt and Hannes Mühleisen. 2019. Duckdb: an embeddable analytical database. InProceedings of the 2019 international conference on management of data. 1981–1984.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Karthik Ramachandra, Kwanghyun Park, K. Venkatesh Emani, Alan Halverson, César Galindo-Legaria, and Conor Cunningham. 2017. Froid: optimization of imperative programs in a relational database.Proc. VLDB Endow.11, 4 (Dec. 2017), 432–444. doi:10.1145/3186728.3164140",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Virtual Event, USA)(ESEC/FSE 2020). Association for Computing Machinery, New York, NY, USA, 1140–1152. doi:10.1145/33680",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 26,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proc. ACM Program. Lang.4, OOPSLA, Article 211 (Nov. 2020), 30 pages. doi:10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 27,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). USENIX Association, 667–682. https://www. usenix.org/conference/osdi20/presentation/rigger",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 28,
+      "text": "Andreas Seltenreich, Bo Tang, and Sjoerd Mullender. 2018. SQLsmith: a random SQL query generator. https: //github.com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Donald R. Slutz. 1998. Massive Stochastic Testing of SQL. InProceedings of the 24rd International Conference on Very Large Data Bases (VLDB ’98). Morgan Kaufmann Publishers Inc., San Francisco, CA, USA, 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Donald R Slutz. 1998. Massive stochastic testing of SQL. InVLDB, Vol. 98. 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Jiansen Song, Wensheng Dou, Ziyu Cui, Qianwang Dai, Wei Wang, Jun Wei, Hua Zhong, and Tao Huang. 2023. Testing Database Systems via Differential Query Execution. InProceedings of the 45th International Conference on Software Engineering(Melbourne, Victoria, Australia)(ICSE ’23). IEEE Press, 2072–2084. doi:10.1109/ICSE48619.2023.00175",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Rebecca Taft, Irfan Sharif, Andrei Matei, Nathan VanBenschoten, Jordan Lewis, Tobias Grieger, Kai Niemi, Andy Woods, Anne Birzin, Raphael Poss, Paul Bardea, Amruta Ranade, Ben Darnell, Bram Gruneir, Justin Jaffray, Lucy Zhang, and Peter Mattis. 2020. CockroachDB: The Resilient Geo-Distributed SQL Database. InProceedings of the 2020 ACMSIGMOD International Conference on Management of Data(Portland,",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Xiu Tang, Sai Wu, Dongxiang Zhang, Feifei Li, and Gang Chen. 2023. Detecting Logic Bugs of Join Optimizations in DBMS. doi:10.1145/3588909",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Kapil Vaidya, Anshuman Dutt, Vivek Narasayya, and Surajit Chaudhuri. 2021. Leveraging query logs and machine learning for parametric query optimization.Proc. VLDB Endow.15, 3 (Nov. 2021), 401–413. doi:10.14778/3494124.3494126",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Chi Zhang and Manuel Rigger. 2025. Constant Optimization Driven Database System Testing. 2025), 24 pages. doi:10.1145/3709674 Received October 2025; revised January 2026; accepted February 2026 4, No. 3 (SIGMOD), Article 176. Publication date: June 2026.",
+      "is_sqlancer_publication": true
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 1,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. InProceedings of the 45th International Conference on Software Engineering(Melbourne, Victoria, Australia)(ICSE ’23). IEEE Press, 2060–2071. doi:10.1109/ICSE48619.2023.00174",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "prints the DOI of the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. doi:10.1145/3654991",
+      "technique": "dqp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing dqp",
+        "prints the DOI of the paper introducing dqp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 25,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Virtual Event, USA)(ESEC/FSE 2020). Association for Computing Machinery, New York, NY, USA, 1140–1152. doi:10.1145/3368089.3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 26,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proc. ACM Program. Lang.4, OOPSLA, Article 211 (Nov. 2020), 30 pages. doi:10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 27,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20). USENIX Association, 667–682. https://www. usenix.org/conference/osdi20/presentation/rigger",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 35,
+      "text": "Chi Zhang and Manuel Rigger. 2025. Constant Optimization Driven Database System Testing. 2025), 24 pages. doi:10.1145/3709674 Received October 2025; revised January 2026; accepted February 2026 4, No. 3 (SIGMOD), Article 176. Publication date: June 2026.",
+      "technique": "coddtest",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing coddtest",
+        "prints the DOI of the paper introducing coddtest",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 25]",
+      "technique": "norec",
+      "sentence": "These bugs can lead to system crashes, produce unexpected errors, or more subtly, to logic bugs [ 25], which cause the DBMS to silently produce incorrect results, making them hard for developers and users to notice.",
+      "context_before": "26. 176:2 Chi Zhang et al. 1 Introduction Database Management Systems (DBMSs) serve as critical software infrastructure, storing and managing data for a wide range of essential applications. Structured Query Language (SQL) statements serve as inputs to DBMSs, enabling users to specify the operations to be performed on data. DBMSs parse SQL statements, choose an appropriate execution plan, perform the corresponding operations, and return the results. However, given the complexity of DBMS implementations, bugs are likely to arise during the parsing, optimization, and execution of SQL statements.",
+      "context_after": "Recently, various approaches have been proposed for detecting logic bugs in DBMSs. Logic bugs, unlike other types of bugs, seldom cause noticeable system anomalies, making them difficult to detect. Consequently, detecting logic bugs has become a major focus in DBMS testing research. Most existing approaches rely on metamorphic testing to construct effective test oracles. Metamorphic relations form the core of metamorphic testing. Existing approaches leverage a variety of equivalence relations in DBMSs as metamorphic relations to determine whether logic bugs are triggered, including, but not l",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 3958,
+      "cited_reference": {
+        "number": 25,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Virtual Event, USA)(",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[ 25,31]",
+      "technique": "norec",
+      "sentence": "Existing approaches leverage a variety of equivalence relations in DBMSs as metamorphic relations to determine whether logic bugs are triggered, including, but not limited to, equivalence across different systems [ 29], clauses [ 25,31], expressions [ 15,26,35], and configurations [ 2,17].",
+      "context_before": "expected errors, or more subtly, to logic bugs [ 25], which cause the DBMS to silently produce incorrect results, making them hard for developers and users to notice. Recently, various approaches have been proposed for detecting logic bugs in DBMSs. Logic bugs, unlike other types of bugs, seldom cause noticeable system anomalies, making them difficult to detect. Consequently, detecting logic bugs has become a major focus in DBMS testing research. Most existing approaches rely on metamorphic testing to construct effective test oracles. Metamorphic relations form the core of metamorphic testing.",
+      "context_after": "While these methods have successfully detected a large number of logic bugs in widely used DBMSs, they have concentrated exclusively on bugs in ordinary statements, neglecting another critical language feature—prepared statements. Prepared statements were introduced as a specialized language feature to enhance the efficiency of repeated executions, as production environments commonly involve numerous statements that are nearly identical except for their literal values. In contrast to ordinary statements—which are executed directly—prepared statements allow literals to be specified as paramete",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 4608,
+      "cited_reference": {
+        "number": 25,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Virtual Event, USA)(",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Due to the large number of abnormal test cases generated and the repeated triggering of certain common errors, existing testing methods, such as SQLancer, ignore these errors and treat them as normal behavior.",
+      "context_before": "the prepared statement path. By following execution paths distinct from those of ordinary statements, prepared statements can reveal logic bugs when the two statements produce different results. Furthermore, we observed that DBMSs exhibit another type of logic bug, in which a statement that should have triggered an error is executed and produces a result. Detecting this type of logic bug is challenging. Fuzzing typically generates a large number of normal and abnormal test cases and feeds them into the DBMS under test, determining the presence of bugs based on the system’s behavior or output.",
+      "context_after": "1 However, the erroneous parts may exhibit inconsistent behavior between equivalent ordinary and prepared statements. In DBMSs, certain optimizations, such as short-circuit evaluation, may cause parts of a statement’s expressions to be skipped during execution. If an erroneous part is skipped in an ordinary statement but not in a prepared statement—because the bound parameters are unknown and the optimization cannot be applied—the two equivalent statements may exhibit inconsistent behavior, with one executing successfully and returning a result while the other triggers an error. This inconsist",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 10535,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "sqlancer",
+      "technique": null,
+      "sentence": "com/sqlancer/sqlancer/blob/main/src/sqlancer/common/query/ExpectedErrors.",
+      "context_before": "and the optimization cannot be applied—the two equivalent statements may exhibit inconsistent behavior, with one executing successfully and returning a result while the other triggers an error. This inconsistency requires us to determine whether the correctly executed statement skipped the erroneous part or whether the erroneous part was executed incorrectly, producing an incorrect result—that is, a logic bug. Treating inconsistent behavior in equivalent statements as a logic bug in the correctly executed statement without careful analysis can lead to a lot of false positives. 1https://github.",
+      "context_after": "java 4, No. 3 (SIGMOD), Article 176. Publication date: June 2026. 176:4 Chi Zhang et al. To mitigate false positives arising from the skipping of erroneous parts in statements due to DBMS optimizations—leading to behavior inconsistencies—we introduce an error validation mechanism. Specifically, we traverse and force the evaluation of each expression in the statement without error. If an expression produces the same error as in the other statement, this indicates that the erroneous part was skipped, and the error is considered expected. Otherwise, the correctly executed statement may have exec",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 11737,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker",
+      "surface": "[ 25]",
+      "technique": "norec",
+      "sentence": "Logic bugs [ 25] are among the most common types of bugs in DBMSs and cause the system to produce incorrect results silently for certain statements.",
+      "context_before": "y statements, such as short-circuit evaluation and constant folding [ 24], cannot be performed. Prepared statements may use distinct mechanisms for query plan generation [ 12] and selection [ 6]. Additionally, during execution, variables must be parsed in the EXECUTE statement, and SQL injection prevention must be enforced. Consequently, prepared statements may follow execution paths that differ from those of ordinary statements throughout parsing, compilation, optimization, and execution. DBMS logic bugs.DBMSs, due to their complex implementations and optimizations, are prone to various bugs.",
+      "context_after": "Because their occurrence does not produce obvious system behavior, they are difficult for developers and users to detect. These bugs are critical for DBMSs, as they can occur in statements such as SELECT, leading users to obtain incorrect results, or in statements such as INSERT ,DELETE, and UPDATE, which may construct incorrect database states and consequently affect all subsequent queries. Furthermore, such bugs may cause inconsistencies between prepared and ordinary statements (e.g., the ordinary statement produces the correct result, whereas the prepared one does not). This can mislead de",
+      "section": "2 Background",
+      "page": 4,
+      "char_offset": 15066,
+      "cited_reference": {
+        "number": 25,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Virtual Event, USA)(",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We reused the statement generators from SQLancer [ 27] for statement generation, which are manually written and rule-based.",
+      "context_before": "yFROM'DELETE FROM t0 WHERE t0.c0 NOTLIKE(CASEWHEN false THEN? ELSE t0.c0 END)'; EXECUTEprepare_queryUSING@c; SELECT*FROMt0; -- empty resultὁB 4 Evaluation We implemented EPSC and evaluated its effectiveness through the following research questions: Q1:How effective is EPSC at discovering new bugs? Q2:How effective and efficient is EPSC compared with other test oracles? Q3: How does the error validation component of EPSC affect false positives and testing performance? Implementation.EPSC is implemented in 40K lines of Java code, providing a framework for testing DBMSs using prepared statements.",
+      "context_after": "In addition, we extend the generator to support richer JOIN constructions, including self-joins and joins with subqueries. We further add support for stored procedures in PostgreSQL, MySQL, and MariaDB, as well as prepared transactions in PostgreSQL. For generating prepared statements, we first filter out statements that can be executed as prepared statements. We then traverse their ASTs, randomly select literals, and replace them with placeholders supported by the target DBMS. Corresponding EXECUTE statements are also generated to run the prepared statements. Although DBMSs support various t",
+      "section": "4 Evaluation",
+      "page": 11,
+      "char_offset": 40563,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker",
+      "surface": "[ 2,25–27,31,35]",
+      "technique": "dqp",
+      "sentence": "Moreover, all these DBMSs have been tested by existing works on detecting logic bugs in DBMSs [ 2,25–27,31,35].",
+      "context_before": "Methodology.We evaluated the effectiveness of EPSC by testing seven widely-used and mature DBMSs, including MySQL [ 22], MariaDB [ 19], TiDB [ 14], PostgreSQL [ 21], CockroachDB [ 32], SQLite3 [ 11], and DuckDB [ 23]. We selected these DBMSs for two main reasons. First, they are highly popular and mature, and have been extensively tested by existing methods. Among these DBMSs, two rank in the top 10 (i,e,. MySQL and PostgreSQL) and four in the top 20 (i.e., SQLite3 and MariaDB) in terms of overall DBMS popularity according to the DB-Engines Ranking4, with all seven ranking within the top 100.",
+      "context_after": "The high popularity and extensive testing history of these DBMSs indicate a lower likelihood of undiscovered bugs, which demonstrates the effectiveness of EPSC. Second, they represent different types of DBMSs, demonstrating that EPSC can discover bugs across diverse DBMS architectures. MySQL, MariaDB, and PostgreSQL represent traditional client–server relational databases, CockroachDB and TiDB represent distributed relational databases, while SQLite3 and DuckDB represent embedded relational databases. We selected the latest release version of each DBMS as the testing target, since newer relea",
+      "section": "4.1 Effectiveness",
+      "page": 12,
+      "char_offset": 43973,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. doi:10.1145/3654991",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing dqp",
+          "prints the DOI of the paper introducing dqp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker",
+      "surface": "[25, 26, 35]",
+      "technique": "norec",
+      "sentence": "This is a standard practice for evaluating the effectiveness of logic bug detection methods [25, 26, 35].",
+      "context_before": "rchitectures. MySQL, MariaDB, and PostgreSQL represent traditional client–server relational databases, CockroachDB and TiDB represent distributed relational databases, while SQLite3 and DuckDB represent embedded relational databases. We selected the latest release version of each DBMS as the testing target, since newer releases tend to be more stable and robust. In particular, we tested MySQL 9.4.0, MariaDB 12.2.0, TiDB 8.5.3, PostgreSQL 18.0, CockroachDB 25.4.0, SQLite3 3.50.4, and DuckDB 1.4.0. We intermittently ran EPSC over a period of three months, during which we were also developing it.",
+      "context_after": "Results.Table 1 summarizes the number and status of bugs found by EPSC. In total, EPSC discovered 52 previously unknown bugs, including 28 logic bugs and 24 unexpected errors. Among these 52 bugs, 50 have been confirmed, of which 13 have been fixed, and 2 remain under analysis by the developers. These results are highly encouraging, given that the tested DBMSs have already been extensively tested by multiple prior works. Bug root causes.Among the 52 bugs detected by EPSC, 40 are found in prepared statements. Including 20 prepared statement logic bugs (8 type-related, 6 involving special chara",
+      "section": "4.1 Effectiveness",
+      "page": 12,
+      "char_offset": 44959,
+      "cited_reference": {
+        "number": 25,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering(Virtual Event, USA)(",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "EPSC: Testing Database Management Systems via Equivalent Prepared Statement Construction 176:17 of prepared INSERT statements, it is beyond the reach of NoREC [ 25] and TLP [ 26], which target SELECT queries, and also DQE [ 31], whose detection of INSERT -related logic bugs is limited to WHERE-clause conditions.",
+      "context_before": "dation reveals that the two test cases return different results. We reported the issue to the PostgreSQL developers, who responded that in the ordinary statement, the division by zero occurs before c0is incremented, so its first increment takes place during the second insertion, giving it a value of 1. In the prepared statement, the underlying sequence for c0advances before the error and is not rolled back, causing a second increment on the second insertion; thus, c0takes the value 2. As this logic bug arises from the error handling 4, No. 3 (SIGMOD), Article 176. Publication date: June 2026.",
+      "context_after": "Listing 13. A logic bug found in SQLite3 caused by inconsistent encoding. -- The test case executed in the original database PRAGMA encoding ='UTF-16'; CREATE TABLEt0 (c0 TEXTCHECK(c0 ISTRUE)); INSERT INTOt0(c0)VALUES(x'310a'); -- CHECK constraint failed: c0 IS TRUE✔ -- The test case executed in the reference database PRAGMA encoding ='UTF-16'; CREATE TABLEt0 (c0 TEXTCHECK(c0 ISTRUE)); .parameterset$1 x'310a' INSERT INTOt0(c0)VALUES($1); --ὁB SELECTc0, (c0 ISTRUE)FROMt0; -- { |0} The bugs discussed above were all discovered by observing inconsistencies in SELECT query results (i.e., detected",
+      "section": "4.2 Selected Bugs",
+      "page": 16,
+      "char_offset": 58050,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In SQLancer, the expression generator for DuckDB does not strictly validate the return types of generated expressions.",
+      "context_before": "SELECTLENGTH(?)FROMt0GROUP BY NULL; EXECUTEprepare_query(NULL); -- {NULL}✔ Unexpected syntax or semantic errors.Listing 14 shows an unexpected semantic error we found in DuckDB. In the ordinary statement, this error is triggered when a NULL value is used both in the GROUP BY clause and as the argument of the length function. The NULL value is implicitly 4, No. 3 (SIGMOD), Article 176. Publication date: June 2026. 176:18 Chi Zhang et al. assigned an INTEGER type, which causes the error. In contrast, in the prepared statement, the length function correctly returns NULL when its argument is NULL.",
+      "context_after": "As a result, it can easily produce a non-string argument for the length function during random expression generation. Consequently, such errors are treated as expected semantic errors and thus ignored. In contrast, our approach revealed this issue by detecting the inconsistent behavior between the ordinary and prepared statements. Listing 15. An unexpected error occurs in TiDB when a bound parameter is used as the grouping key. CREATE TABLEt0(c0DECIMAL); INSERTIGNOREINTOt0VALUES(1); -- The ordinary statement SELECT2FROMt0WHEREt0.c0GROUP BY1; -- {2}✔ -- The prepared statement SET@a = 2; PREPAR",
+      "section": "4.2 Selected Bugs",
+      "page": 18,
+      "char_offset": 61238,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "For our evaluation, we chose NoREC [ 25], TLP [ 26], DQE [ 31], and CODDTest [ 35] as baseline approaches.",
+      "context_before": "3.30.0 for 24 hours, gathering data on the number of unique bugs triggered by each tool, bugs detected exclusively by a given tool, code coverage, and the number of unique query plans. We selected an older version of SQLite3 because multiple bugs had been reported and fixed in this version by previous works. This allows us to determine whether two bug reports correspond to the same underlying bug by checking their respective fixing commits. In this experiment, we identified the fixing commit of each bug using bisect, a binary search tool supported by multiple source control systems. Baselines.",
+      "context_after": "We selected these methods for several reasons. First, they have each successfully uncovered multiple bugs in widely used DBMSs, demonstrating their practical effectiveness. Second, they represent different directions in constructing testing oracles for logic bug detection. Specifically, NoREC and DQE represent the class of approaches that detect logic bugs by leveraging clause equivalence; TLP represents the set-relation–based oracle design. A similar work, Pinolo [ 13], also adopts this principle, but it does not support testing SQLite3, preventing a direct comparison. CODDTest represents th",
+      "section": "4.3 Compared with Other Approaches",
+      "page": 18,
+      "char_offset": 63584,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp",
+        "coddtest"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Specifically, NoREC and DQE represent the class of approaches that detect logic bugs by leveraging clause equivalence; TLP represents the set-relation–based oracle design.",
+      "context_before": "same underlying bug by checking their respective fixing commits. In this experiment, we identified the fixing commit of each bug using bisect, a binary search tool supported by multiple source control systems. Baselines.For our evaluation, we chose NoREC [ 25], TLP [ 26], DQE [ 31], and CODDTest [ 35] as baseline approaches. We selected these methods for several reasons. First, they have each successfully uncovered multiple bugs in widely used DBMSs, demonstrating their practical effectiveness. Second, they represent different directions in constructing testing oracles for logic bug detection.",
+      "context_after": "A similar work, Pinolo [ 13], also adopts this principle, but it does not support testing SQLite3, preventing a direct comparison. CODDTest represents the class of approaches that construct oracles by performing expression-equivalence transformations; a similar work, EET [ 15], adopts the same principle but cannot be run continuously—it terminates immediately after detecting a bug—making it unsuitable for long-running experiments. Another direction of oracle construction involves changing 4, No. 3 (SIGMOD), Article 176. Publication date: June 2026. EPSC: Testing Database Management Systems v",
+      "section": "4.3 Compared with Other Approaches",
+      "page": 18,
+      "char_offset": 63964,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "CODDTest",
+      "technique": "coddtest",
+      "sentence": "CODDTest represents the class of approaches that construct oracles by performing expression-equivalence transformations; a similar work, EET [ 15], adopts the same principle but cannot be run continuously—it terminates immediately after detecting a bug—making it unsuitable for long-running experiments.",
+      "context_before": "as baseline approaches. We selected these methods for several reasons. First, they have each successfully uncovered multiple bugs in widely used DBMSs, demonstrating their practical effectiveness. Second, they represent different directions in constructing testing oracles for logic bug detection. Specifically, NoREC and DQE represent the class of approaches that detect logic bugs by leveraging clause equivalence; TLP represents the set-relation–based oracle design. A similar work, Pinolo [ 13], also adopts this principle, but it does not support testing SQLite3, preventing a direct comparison.",
+      "context_after": "Another direction of oracle construction involves changing 4, No. 3 (SIGMOD), Article 176. Publication date: June 2026. EPSC: Testing Database Management Systems via Equivalent Prepared Statement Construction 176:19 configurations or optimizer hints to alter query execution paths for bug detection, as exemplified by Mozi [ 17], DQP [ 2], and TQS [ 33]. However, these tools do not support SQLite3 testing, and most of them mainly target join-related bugs, whereas EPSC is not limited to any specific syntactic feature. Finally, all five tools directly reuse SQLancer’s test-case generation code,",
+      "section": "4.3 Compared with Other Approaches",
+      "page": 18,
+      "char_offset": 64267,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "coddtest"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "EPSC: Testing Database Management Systems via Equivalent Prepared Statement Construction 176:19 configurations or optimizer hints to alter query execution paths for bug detection, as exemplified by Mozi [ 17], DQP [ 2], and TQS [ 33].",
+      "context_before": "esents the set-relation–based oracle design. A similar work, Pinolo [ 13], also adopts this principle, but it does not support testing SQLite3, preventing a direct comparison. CODDTest represents the class of approaches that construct oracles by performing expression-equivalence transformations; a similar work, EET [ 15], adopts the same principle but cannot be run continuously—it terminates immediately after detecting a bug—making it unsuitable for long-running experiments. Another direction of oracle construction involves changing 4, No. 3 (SIGMOD), Article 176. Publication date: June 2026.",
+      "context_after": "However, these tools do not support SQLite3 testing, and most of them mainly target join-related bugs, whereas EPSC is not limited to any specific syntactic feature. Finally, all five tools directly reuse SQLancer’s test-case generation code, ensuring that the comparison of bug-detection capabilities focuses solely on the effectiveness of their testing oracles, while eliminating inconsistencies arising from differences in test-case generation implementations. Results.The comparison results are shown in Table 2. Overall, although EPSC did not find the largest total number of unique bugs—its co",
+      "section": "4.3 Compared with Other Approaches",
+      "page": 18,
+      "char_offset": 64692,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Finally, all five tools directly reuse SQLancer’s test-case generation code, ensuring that the comparison of bug-detection capabilities focuses solely on the effectiveness of their testing oracles, while eliminating inconsistencies arising from differences in test-case generation implementations.",
+      "context_before": "ately after detecting a bug—making it unsuitable for long-running experiments. Another direction of oracle construction involves changing 4, No. 3 (SIGMOD), Article 176. Publication date: June 2026. EPSC: Testing Database Management Systems via Equivalent Prepared Statement Construction 176:19 configurations or optimizer hints to alter query execution paths for bug detection, as exemplified by Mozi [ 17], DQP [ 2], and TQS [ 33]. However, these tools do not support SQLite3 testing, and most of them mainly target join-related bugs, whereas EPSC is not limited to any specific syntactic feature.",
+      "context_after": "Results.The comparison results are shown in Table 2. Overall, although EPSC did not find the largest total number of unique bugs—its count is smaller than that of NoREC, TLP, and CODDTest, but higher than DQE—it ranks first in terms of the number of bugs that were exclusively detected by a single tool, tying with TLP and outperforming NoREC, CODDTest, and DQE. Figure 2 presents the overlap among the bugs identified by different testing methods. To avoid false negatives caused by their lack of support for prepared statements, we applied the baseline test oracles to the buginducing test cases o",
+      "section": "4.3 Compared with Other Approaches",
+      "page": 19,
+      "char_offset": 65093,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M16",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Overall, although EPSC did not find the largest total number of unique bugs—its count is smaller than that of NoREC, TLP, and CODDTest, but higher than DQE—it ranks first in terms of the number of bugs that were exclusively detected by a single tool, tying with TLP and outperforming NoREC, CODDTest, and DQE.",
+      "context_before": "ion paths for bug detection, as exemplified by Mozi [ 17], DQP [ 2], and TQS [ 33]. However, these tools do not support SQLite3 testing, and most of them mainly target join-related bugs, whereas EPSC is not limited to any specific syntactic feature. Finally, all five tools directly reuse SQLancer’s test-case generation code, ensuring that the comparison of bug-detection capabilities focuses solely on the effectiveness of their testing oracles, while eliminating inconsistencies arising from differences in test-case generation implementations. Results.The comparison results are shown in Table 2.",
+      "context_after": "Figure 2 presents the overlap among the bugs identified by different testing methods. To avoid false negatives caused by their lack of support for prepared statements, we applied the baseline test oracles to the buginducing test cases of the 6 logic bugs only found by EPSC to examine whether they could detect the same inconsistencies. The results show that one of the six bugs can be detected by NoREC, TLP, and CODDTest, while the remaining five bugs cannot be detected by any of the baseline oracles. We then checked the fix commits corresponding to these five bugs and found that four of them a",
+      "section": "4.3 Compared with Other Approaches",
+      "page": 19,
+      "char_offset": 65444,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp",
+        "coddtest"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "The results show that one of the six bugs can be detected by NoREC, TLP, and CODDTest, while the remaining five bugs cannot be detected by any of the baseline oracles.",
+      "context_before": "t total number of unique bugs—its count is smaller than that of NoREC, TLP, and CODDTest, but higher than DQE—it ranks first in terms of the number of bugs that were exclusively detected by a single tool, tying with TLP and outperforming NoREC, CODDTest, and DQE. Figure 2 presents the overlap among the bugs identified by different testing methods. To avoid false negatives caused by their lack of support for prepared statements, we applied the baseline test oracles to the buginducing test cases of the 6 logic bugs only found by EPSC to examine whether they could detect the same inconsistencies.",
+      "context_after": "We then checked the fix commits corresponding to these five bugs and found that four of them are related to prepared statements. This result highlights the unique value of EPSC, demonstrating its effectiveness in discovering logic bugs that cannot be detected by existing methods. Table 2. Effectiveness and efficiency of EPSC compared to state-of-the-art test oracles Test oracles # of unique bugs # of oracle-exclusive bugs Code coverage # of unique query plans NoREC 23 4 63.36% 172,812 TLP 24 6 63.86% 137,755 DQE 3 0 45.07% 475 CODDTest 21 2 62.33% 2,577,542 EPSC 8 6 69.06% 2,709,700 Fig. 2. O",
+      "section": "4.3 Compared with Other Approaches",
+      "page": 19,
+      "char_offset": 66091,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp",
+        "coddtest"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Effectiveness and efficiency of EPSC compared to state-of-the-art test oracles Test oracles # of unique bugs # of oracle-exclusive bugs Code coverage # of unique query plans NoREC 23 4 63.",
+      "context_before": "st oracles to the buginducing test cases of the 6 logic bugs only found by EPSC to examine whether they could detect the same inconsistencies. The results show that one of the six bugs can be detected by NoREC, TLP, and CODDTest, while the remaining five bugs cannot be detected by any of the baseline oracles. We then checked the fix commits corresponding to these five bugs and found that four of them are related to prepared statements. This result highlights the unique value of EPSC, demonstrating its effectiveness in discovering logic bugs that cannot be detected by existing methods. Table 2.",
+      "context_after": "36% 172,812 TLP 24 6 63.86% 137,755 DQE 3 0 45.07% 475 CODDTest 21 2 62.33% 2,577,542 EPSC 8 6 69.06% 2,709,700 Fig. 2. Overlap among bugs detected by different methods. Under identical statement generation settings, EPSC achieved higher code coverage across all tested DBMSs compared with other methods, improving coverage by up to 5.2% over the next best approach. This improvement primarily stems from its support for executing prepared statements, demonstrating that our approach effectively enables equivalent statements to exercise distinct execution paths within the DBMS. Furthermore, EPSC tr",
+      "section": "4.3 Compared with Other Approaches",
+      "page": 19,
+      "char_offset": 66549,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "36% 172,812 TLP 24 6 63.",
+      "context_before": "be detected by NoREC, TLP, and CODDTest, while the remaining five bugs cannot be detected by any of the baseline oracles. We then checked the fix commits corresponding to these five bugs and found that four of them are related to prepared statements. This result highlights the unique value of EPSC, demonstrating its effectiveness in discovering logic bugs that cannot be detected by existing methods. Table 2. Effectiveness and efficiency of EPSC compared to state-of-the-art test oracles Test oracles # of unique bugs # of oracle-exclusive bugs Code coverage # of unique query plans NoREC 23 4 63.",
+      "context_after": "86% 137,755 DQE 3 0 45.07% 475 CODDTest 21 2 62.33% 2,577,542 EPSC 8 6 69.06% 2,709,700 Fig. 2. Overlap among bugs detected by different methods. Under identical statement generation settings, EPSC achieved higher code coverage across all tested DBMSs compared with other methods, improving coverage by up to 5.2% over the next best approach. This improvement primarily stems from its support for executing prepared statements, demonstrating that our approach effectively enables equivalent statements to exercise distinct execution paths within the DBMS. Furthermore, EPSC triggered the largest numb",
+      "section": "4.3 Compared with Other Approaches",
+      "page": 19,
+      "char_offset": 66738,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M20",
+      "found_by": "technique",
+      "surface": "CODDTest",
+      "technique": "coddtest",
+      "sentence": "07% 475 CODDTest 21 2 62.",
+      "context_before": "the remaining five bugs cannot be detected by any of the baseline oracles. We then checked the fix commits corresponding to these five bugs and found that four of them are related to prepared statements. This result highlights the unique value of EPSC, demonstrating its effectiveness in discovering logic bugs that cannot be detected by existing methods. Table 2. Effectiveness and efficiency of EPSC compared to state-of-the-art test oracles Test oracles # of unique bugs # of oracle-exclusive bugs Code coverage # of unique query plans NoREC 23 4 63.36% 172,812 TLP 24 6 63.86% 137,755 DQE 3 0 45.",
+      "context_after": "33% 2,577,542 EPSC 8 6 69.06% 2,709,700 Fig. 2. Overlap among bugs detected by different methods. Under identical statement generation settings, EPSC achieved higher code coverage across all tested DBMSs compared with other methods, improving coverage by up to 5.2% over the next best approach. This improvement primarily stems from its support for executing prepared statements, demonstrating that our approach effectively enables equivalent statements to exercise distinct execution paths within the DBMS. Furthermore, EPSC triggered the largest number of unique 4, No. 3 (SIGMOD), Article 176. Pu",
+      "section": "4.3 Compared with Other Approaches",
+      "page": 19,
+      "char_offset": 66785,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "coddtest"
+      ]
+    },
+    {
+      "id": "M21",
+      "found_by": "technique",
+      "surface": "CODDTest",
+      "technique": "coddtest",
+      "sentence": "This is largely attributed to its support for subqueries—similar to CODDTest—which increases query complexity and, consequently, plan diversity compared with NoREC and TLP.",
+      "context_before": "ugs detected by different methods. Under identical statement generation settings, EPSC achieved higher code coverage across all tested DBMSs compared with other methods, improving coverage by up to 5.2% over the next best approach. This improvement primarily stems from its support for executing prepared statements, demonstrating that our approach effectively enables equivalent statements to exercise distinct execution paths within the DBMS. Furthermore, EPSC triggered the largest number of unique 4, No. 3 (SIGMOD), Article 176. Publication date: June 2026. 176:20 Chi Zhang et al. query plans.",
+      "context_after": "In addition, prepared statements were also able to trigger query plans that ordinary statements could not. During the 24-hour experiment, 2,319 unique query plans were observed exclusively from prepared statements. In summary, EPSC is capable of exploring previously uncovered code regions and execution paths, and of revealing logic bugs that existing methods fail to detect. 4.4 Ablation Study In our approach, we propose an error validation strategy to determine whether an logic bug occurs when inconsistent behavior is observed between equivalent ordinary statements and prepared statements. Th",
+      "section": "4.3 Compared with Other Approaches",
+      "page": 20,
+      "char_offset": 67473,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "coddtest",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M22",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "This difference arises because we directly adopt SQLancer’s query generators, which are implemented separately for each DBMS and therefore produce SQL statements with different proportions of erroneous.",
+      "context_before": "repared Statement Construction 176:21 compared with EPSC is relatively small. The generator of MariaDB is relatively simpler, and fewer abnormal test cases were produced. As a result, EPSC-generated fewer alarms, and the performance impact of the aforementioned process was smaller than the overhead introduced by error validation. In SQLite3 and DuckDB, connecting to a database instance is much faster, which makes EPSC-less affected by this issue. In this evaluation, although MySQL, MariaDB, and TiDB support largely similar SQL syntax, EPSC and EPSC-exhibit different results across these DBMSs.",
+      "context_after": "Nevertheless, the overall trends of the results remain consistent. To verify that all filtered reports by EPSC are indeed false positives, we deduplicated all error messages reported by EPSC-and conducted a manual analysis. This analysis revealed one genuine unexpected error. The error is skipped in the ordinary statement due to a false WHERE condition but is triggered in the prepared statement. During error validation, the expression is forcibly executed and triggers the same error, causing EPSC to classify it as a false positive. This error lies outside the detection scope of EPSC, as it is",
+      "section": "4.4 Ablation Study",
+      "page": 21,
+      "char_offset": 72201,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M23",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC [ 25] leverages the equivalence between expressions in the SELECT and WHERE clauses, assuming that an expression should evaluate to the same result in both contexts.",
+      "context_before": "ferent DBMSs or across versions of the same system. However, differential testing faces challenges in detecting logic bugs. On the one hand, SQL dialects differ across DBMSs, and differential testing has limited ability to handle system-specific features. On the other hand, logic bugs may arise within different versions of the same DBMS, making it difficult to uncover them by simply comparing results across versions. Metamorphic testing [ 7] generates follow-up test cases from existing ones, expecting the outcomes of the original and follow-up cases to satisfy predefined metamorphic relations.",
+      "context_after": "DQE [ 31] extends NoREC by asserting that the same expression should evaluate consistently in the WHERE clause of SELECT, UPDATE, and DELETE statements. TLP [ 26] is based on the fact that an expression can evaluate to TRUE ,FALSE, or NULL. It constructs three queries using p,NOT p, and p IS NULL as predicates, and asserts that their union should equal the complete set evaluated by the expression. Pinolo [ 13] similarly leverages set relationships to detect logic bugs by constructing looser or stricter predicates, such that the transformed query’s result should either contain or be a subset of",
+      "section": "6 Related Work",
+      "page": 22,
+      "char_offset": 77225,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M24",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "DQE [ 31] extends NoREC by asserting that the same expression should evaluate consistently in the WHERE clause of SELECT, UPDATE, and DELETE statements.",
+      "context_before": "Ss, and differential testing has limited ability to handle system-specific features. On the other hand, logic bugs may arise within different versions of the same DBMS, making it difficult to uncover them by simply comparing results across versions. Metamorphic testing [ 7] generates follow-up test cases from existing ones, expecting the outcomes of the original and follow-up cases to satisfy predefined metamorphic relations. NoREC [ 25] leverages the equivalence between expressions in the SELECT and WHERE clauses, assuming that an expression should evaluate to the same result in both contexts.",
+      "context_after": "TLP [ 26] is based on the fact that an expression can evaluate to TRUE ,FALSE, or NULL. It constructs three queries using p,NOT p, and p IS NULL as predicates, and asserts that their union should equal the complete set evaluated by the expression. Pinolo [ 13] similarly leverages set relationships to detect logic bugs by constructing looser or stricter predicates, such that the transformed query’s result should either contain or be a subset of the original query’s result. TQS [ 33] and Differential Query Plans (DQP) [ 2] detect logic bugs in join optimization by providing hints or modifying DB",
+      "section": "6 Related Work",
+      "page": 22,
+      "char_offset": 77396,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M25",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP [ 26] is based on the fact that an expression can evaluate to TRUE ,FALSE, or NULL.",
+      "context_before": "the same DBMS, making it difficult to uncover them by simply comparing results across versions. Metamorphic testing [ 7] generates follow-up test cases from existing ones, expecting the outcomes of the original and follow-up cases to satisfy predefined metamorphic relations. NoREC [ 25] leverages the equivalence between expressions in the SELECT and WHERE clauses, assuming that an expression should evaluate to the same result in both contexts. DQE [ 31] extends NoREC by asserting that the same expression should evaluate consistently in the WHERE clause of SELECT, UPDATE, and DELETE statements.",
+      "context_after": "It constructs three queries using p,NOT p, and p IS NULL as predicates, and asserts that their union should equal the complete set evaluated by the expression. Pinolo [ 13] similarly leverages set relationships to detect logic bugs by constructing looser or stricter predicates, such that the transformed query’s result should either contain or be a subset of the original query’s result. TQS [ 33] and Differential Query Plans (DQP) [ 2] detect logic bugs in join optimization by providing hints or modifying DBMS configurations to induce different query plans during query execution. Both EET [ 15",
+      "section": "6 Related Work",
+      "page": 22,
+      "char_offset": 77549,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M26",
+      "found_by": "technique",
+      "surface": "Differential Query Plans",
+      "technique": "dqp",
+      "sentence": "TQS [ 33] and Differential Query Plans (DQP) [ 2] detect logic bugs in join optimization by providing hints or modifying DBMS configurations to induce different query plans during query execution.",
+      "context_before": "sserting that the same expression should evaluate consistently in the WHERE clause of SELECT, UPDATE, and DELETE statements. TLP [ 26] is based on the fact that an expression can evaluate to TRUE ,FALSE, or NULL. It constructs three queries using p,NOT p, and p IS NULL as predicates, and asserts that their union should equal the complete set evaluated by the expression. Pinolo [ 13] similarly leverages set relationships to detect logic bugs by constructing looser or stricter predicates, such that the transformed query’s result should either contain or be a subset of the original query’s result.",
+      "context_after": "Both EET [ 15] and CODDTest [ 35] transform expressions to construct equivalent queries. EET generates more complex but equivalent expressions by introducing subexpressions that always evaluate to TRUE or FALSE, while CODDTest creates simpler expressions by applying constant folding and propagation to replace parts of the original expression with equivalent constants. Essentially, EPSC can also be regarded as a form of metamorphic testing. It constructs prepared statements that alter the parsing, compilation, optimization, and execution paths of their ordinary counterparts, while expecting bot",
+      "section": "6 Related Work",
+      "page": 22,
+      "char_offset": 78025,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M27",
+      "found_by": "technique",
+      "surface": "CODDTest",
+      "technique": "coddtest",
+      "sentence": "Both EET [ 15] and CODDTest [ 35] transform expressions to construct equivalent queries.",
+      "context_before": "FALSE, or NULL. It constructs three queries using p,NOT p, and p IS NULL as predicates, and asserts that their union should equal the complete set evaluated by the expression. Pinolo [ 13] similarly leverages set relationships to detect logic bugs by constructing looser or stricter predicates, such that the transformed query’s result should either contain or be a subset of the original query’s result. TQS [ 33] and Differential Query Plans (DQP) [ 2] detect logic bugs in join optimization by providing hints or modifying DBMS configurations to induce different query plans during query execution.",
+      "context_after": "EET generates more complex but equivalent expressions by introducing subexpressions that always evaluate to TRUE or FALSE, while CODDTest creates simpler expressions by applying constant folding and propagation to replace parts of the original expression with equivalent constants. Essentially, EPSC can also be regarded as a form of metamorphic testing. It constructs prepared statements that alter the parsing, compilation, optimization, and execution paths of their ordinary counterparts, while expecting both forms to produce identical results. Compared with differential testing approaches, EPSC",
+      "section": "6 Related Work",
+      "page": 22,
+      "char_offset": 78222,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "coddtest"
+      ]
+    },
+    {
+      "id": "M28",
+      "found_by": "technique",
+      "surface": "CODDTest",
+      "technique": "coddtest",
+      "sentence": "EET generates more complex but equivalent expressions by introducing subexpressions that always evaluate to TRUE or FALSE, while CODDTest creates simpler expressions by applying constant folding and propagation to replace parts of the original expression with equivalent constants.",
+      "context_before": "d asserts that their union should equal the complete set evaluated by the expression. Pinolo [ 13] similarly leverages set relationships to detect logic bugs by constructing looser or stricter predicates, such that the transformed query’s result should either contain or be a subset of the original query’s result. TQS [ 33] and Differential Query Plans (DQP) [ 2] detect logic bugs in join optimization by providing hints or modifying DBMS configurations to induce different query plans during query execution. Both EET [ 15] and CODDTest [ 35] transform expressions to construct equivalent queries.",
+      "context_after": "Essentially, EPSC can also be regarded as a form of metamorphic testing. It constructs prepared statements that alter the parsing, compilation, optimization, and execution paths of their ordinary counterparts, while expecting both forms to produce identical results. Compared with differential testing approaches, EPSC is capable of detecting logic bugs that reside in DBMS-specific language features as well as those hidden across multiple versions of the same system. Compared with other metamorphic testing approaches, EPSC can be regarded as orthogonal to existing methods, as it effectively det",
+      "section": "6 Related Work",
+      "page": 22,
+      "char_offset": 78311,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "coddtest"
+      ]
+    },
+    {
+      "id": "M29",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Generation-based approaches produce syntactically and semantically valid test cases based on the grammar and features supported by the target DBMSs, with SQLSmith [ 28] and SQLancer [ 27] being representative examples.",
+      "context_before": "e exposed by existing approaches. 4, No. 3 (SIGMOD), Article 176. Publication date: June 2026. EPSC: Testing Database Management Systems via Equivalent Prepared Statement Construction 176:23 DBMS test case generation.Numerous studies have focused on improving test case generation to enable fuzzing to cover more code regions and detect bugs more efficiently. These techniques can be considered complementary to EPSC, as they help improve the efficiency and effectiveness of bug triggering. Test case generation methods can be broadly categorized into generation-based and mutation-based approaches.",
+      "context_after": "Query Plan Guidance (QPG) [ 1] was proposed to mitigate redundancy in randomly generated test cases and improve resource efficiency. It evaluates the sufficiency of testing for a given database state by analyzing the query plans triggered by executed queries. Once no additional queries can generate new query plans, the database state is mutated to further enhance testing coverage. QAGen [ 3] takes a query along with a set of constraints and constructs a database that satisfies the expected query results by integrating conventional query processing techniques with symbolic execution. Mutation-",
+      "section": "6 Related Work",
+      "page": 23,
+      "char_offset": 80703,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M30",
+      "found_by": "technique",
+      "surface": "Query Plan Guidance",
+      "technique": "qpg",
+      "sentence": "Query Plan Guidance (QPG) [ 1] was proposed to mitigate redundancy in randomly generated test cases and improve resource efficiency.",
+      "context_before": "umerous studies have focused on improving test case generation to enable fuzzing to cover more code regions and detect bugs more efficiently. These techniques can be considered complementary to EPSC, as they help improve the efficiency and effectiveness of bug triggering. Test case generation methods can be broadly categorized into generation-based and mutation-based approaches. Generation-based approaches produce syntactically and semantically valid test cases based on the grammar and features supported by the target DBMSs, with SQLSmith [ 28] and SQLancer [ 27] being representative examples.",
+      "context_after": "It evaluates the sufficiency of testing for a given database state by analyzing the query plans triggered by executed queries. Once no additional queries can generate new query plans, the database state is mutated to further enhance testing coverage. QAGen [ 3] takes a query along with a set of constraints and constructs a database that satisfies the expected query results by integrating conventional query processing techniques with symbolic execution. Mutation-based methods use existing test cases as seeds and derive new test cases through systematic transformations of the originals. SQLRigh",
+      "section": "6 Related Work",
+      "page": 23,
+      "char_offset": 80922,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M11"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:13:36Z",
+    "is_model_written": true,
+    "summary": "EPSC tests DBMSs by exploiting the fact that a statement can be written both as an ordinary SQL statement and as a prepared statement with literals bound as parameters. The two forms should behave identically, so any difference between them indicates a bug. The authors note that prepared statements, though widely used in production for performance and against SQL injection, have received far less testing attention. Applied to seven mature DBMSs, EPSC found 49 unique bugs, 31 confirmed and 10 fixed.",
+    "narrative": "EPSC reuses SQLancer's statement generators to produce the statements it then rewrites into prepared form, and takes four oracles as baselines, two of which -- NoREC and TLP -- are SQLancer's, alongside CODDTest, which also came out of the project.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "motivation",
+      "M4": "reuse_component",
+      "M5": "definition",
+      "M6": "reuse_component",
+      "M7": "background",
+      "M8": "background",
+      "M9": "definition",
+      "M10": "incidental",
+      "M11": "baseline",
+      "M12": "definition",
+      "M13": "definition",
+      "M14": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M6"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M6",
+            "sentence": "We reused the statement generators from SQLancer [ 27] for statement generation, which are manually written and rule-based.",
+            "section": "4 Evaluation",
+            "page": 11
+          }
+        ],
+        "reasoning": "M6 states the statement generators were reused from SQLancer for statement generation; the oracle itself is the paper's own.",
+        "reuse_kind": "generator"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Equivalent prepared statement construction is a new metamorphic relation rather than a generalisation of NoREC or TLP, which the paper classes as clause-equivalence and set-relation approaches respectively."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M11",
+          "M12"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M11",
+            "sentence": "For our evaluation, we chose NoREC [ 25], TLP [ 26], DQE [ 31], and CODDTest [ 35] as baseline approaches.",
+            "section": "4.3 Compared with Other Approaches",
+            "page": 18
+          },
+          {
+            "mention_id": "M12",
+            "sentence": "Specifically, NoREC and DQE represent the class of approaches that detect logic bugs by leveraging clause equivalence; TLP represents the set-relation–based oracle design.",
+            "section": "4.3 Compared with Other Approaches",
+            "page": 18
+          }
+        ],
+        "reasoning": "M11 names NoREC, TLP, DQE and CODDTest as the baselines, and M12 explains which class each represents.",
+        "techniques": [
+          "norec",
+          "tlp",
+          "coddtest"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The baselines are described by the class of equivalence they exploit rather than as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

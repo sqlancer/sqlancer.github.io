@@ -1,0 +1,599 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:29:29Z",
+  "paper": {
+    "id": "paper:arxiv:2606.11132",
+    "title": "Operationalizing Property-Based Testing for Data-Intensive Scalable Computing Systems",
+    "authors": [
+      "Yaoxuan Wu",
+      "I. Lee",
+      "Ahmad Humayun",
+      "Muhammad Ali Gulzar",
+      "Miryung Kim"
+    ],
+    "year": 2026,
+    "venue": "arXiv.org",
+    "doi": null,
+    "arxiv_id": "2606.11132",
+    "s2_paper_id": "09e050c29b5f2592ad6d0b2a90121bb1530ead84",
+    "url": "https://arxiv.org/abs/2606.11132",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2606.11132",
+      "retrieved_at": "2026-09-09T01:29:29Z",
+      "chars": 68607,
+      "content_sha256": "sha256:49b5f6170e5d0aa8f1f027660ed23f0a2373c230fc47b5596fa0190247129d42"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2009
+      },
+      {
+        "number": "2",
+        "title": "Background and Motivating Example",
+        "start": 9473
+      },
+      {
+        "number": "2.1",
+        "title": "Background on DISC Workloads",
+        "start": 9509
+      },
+      {
+        "number": "2.2",
+        "title": "Motivating Example",
+        "start": 13521
+      },
+      {
+        "number": "3",
+        "title": "Meta Properties",
+        "start": 18542
+      },
+      {
+        "number": "3.2",
+        "title": "Data Decomposition",
+        "start": 27634
+      },
+      {
+        "number": "3.3",
+        "title": "Computation Decomposition",
+        "start": 32139
+      },
+      {
+        "number": "3.4",
+        "title": "Bag and Cardinality Relations",
+        "start": 34156
+      },
+      {
+        "number": "4",
+        "title": "Operationalizing Meta-Properties into PBT",
+        "start": 35696
+      },
+      {
+        "number": "4.1",
+        "title": "Workload Skeleton Generation",
+        "start": 38014
+      },
+      {
+        "number": "4.2",
+        "title": "Source Schema and Data Generation",
+        "start": 39601
+      },
+      {
+        "number": "4.3",
+        "title": "Schema-Aware Instantiation",
+        "start": 41506
+      },
+      {
+        "number": "4.4",
+        "title": "Property Checking",
+        "start": 45576
+      },
+      {
+        "number": "5",
+        "title": "Evaluation",
+        "start": 46716
+      },
+      {
+        "number": "5.1",
+        "title": "RQ1: Semantic Drifts and Pitfalls",
+        "start": 47404
+      },
+      {
+        "number": "5.2",
+        "title": "RQ2: Workflow Complexity and Coverage",
+        "start": 51263
+      },
+      {
+        "number": "6",
+        "title": "Related Work",
+        "start": 55898
+      },
+      {
+        "number": "7",
+        "title": "Conclusion",
+        "start": 60680
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "“Sqlsmith,” 2022. [Online]. Available: https://github.com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 1–30, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 3,
+      "text": "——, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” inProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 4,
+      "text": "——, “Testing database engines via pivoted query synthesis,” in14th USENIX Symposium on Operating Systems Design and Implementation (OSDI), 2020, pp. 667–682. Yaoxuan Wu, Ingrid Lee, Ahmad Humayun, Muhammad Ali Gulzar, and Miryung Kim",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 5,
+      "text": "C. Zhang, L. Wang, and M. Rigger, “Finding cross-rule optimization bugs in datalog engines,”Proceedings of the ACM on Programming Languages, vol. 8, no. OOPSLA1, pp. 110–136, 2024.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 6,
+      "text": "B. Ghit, N. Poggi, J. Rosen, R. Xin, and P. Boncz, “Sparkfuzz: searching correctness regressions in modern query engines,” inProceedings of the workshop on Testing Database Systems, 2020, pp. 1–6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "M. E. Kroner, “Achilles’ spear: Using metamorphic testing to find bugs in stream processing engines,” inDatenbanksysteme für Business, Technologie und Web (BTW 2025). Gesellschaft für Informatik, Bonn, 2025, pp. 1031–1042.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "M. Zaharia, M. Chowdhury, M. J. Franklin, S. Shenker, and I. Stoica, “Spark: Cluster computing with working sets,” in2nd USENIX workshop on hot topics in cloud computing (HotCloud 10), 2010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "“SPARK-33726: Limit and offset ordering behaves differently between dataframe and sql,” https://issues.apache.org/jira/browse/SPARK-33726, accessed 2026-0128.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "“SPARK-49000: Aggregation distinct returning wrong results with literal value,” https://issues.apache.org/jira/browse/SPARK-49000, accessed 2026-01-28.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "K. Claessen and J. Hughes, “Quickcheck: a lightweight tool for random testing of haskell programs,” inProceedings of the fifth ACMSIGPLAN international conference on Functional programming, 2000, pp. 268–279.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Apache DataFusion Comet Developers, “Apache DataFusion Comet: Fuzz Testing,” https://github.com/apache/datafusion-comet/tree/ 03e833b955d369f994d9652026ca3c1eb641acac/fuzz-testing.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "“JaCoCo,” https://www.eclemma.org/jacoco/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "“Scalacheck: Property-based testing for scala,” https://scalacheck.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "“Fscheck: Random testing for .net. ” [Online]. Available: https://fscheck.github.io/ FsCheck/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "“test.check: A property-based testing library for clojure.” [Online]. Available: https://clojure.org/guides/test_check_beginner",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "“Hypothesis: Property-based testing for python.” [Online]. Available: https: //hypothesis.readthedocs.io/en/latest/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "“jqwik: Property-based testing in java.” [Online]. Available: https://jqwik.net/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "“hedgehog: Release with confidence.” [Online]. Available: https://hackage. haskell.org/package/hedgehog",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "“Quickcheck.” [Online]. Available: https://www.quviq.com/documentation/eqc/ overview-summary.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "L. O’Connor and O. Wickström, “Quickstrom: property-based acceptance testing with ltl specifications,” inProceedings of the 43rd ACMSIGPLAN International Conference on Programming Language Design and Implementation, 2022, pp. 1025– 1038.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "J. Hughes, “Experiences with quickcheck: testing the hard stuff and staying sane,” inA List of Successes That Can Change the World: Essays Dedicated to Philip Wadler on the Occasion of His 60th Birthday. Springer, 2016, pp. 169–186.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "H. Goldstein, J. W. Cutler, D. Dickstein, B. C. Pierce, and A. Head, “Property-based testing in practice, ” inProceedings of the IEEE/ACM 46th International Conference on Software Engineering, 2024, pp. 1–13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Q. Zhang, J. Wang, M. A. Gulzar, R. Padhye, and M. Kim, “Bigfuzz: Efficient fuzz testing for data analytics using framework abstraction, ” inProceedings of the 35th IEEE/ACM international conference on automated software engineering, 2020, pp. 722–733.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "A. Humayun, M. Kim, and M. A. Gulzar, “Co-dependence aware fuzzing for dataflow-based big data analytics, ” inProceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "M. A. Gulzar, S. Mardani, M. Musuvathi, and M. Kim, “White-box testing of big data analytics with complex user-defined functions,” inProceedings of the 2019 27th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2019, pp. 290–301.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "A. Humayun, Y. Wu, M. Kim, and M. A. Gulzar, “Naturalfuzz: Natural input generation for big data analytics,” in2023 38th IEEE/ACM International Conference on Automated Software Engineering (ASE). IEEE, 2023, pp. 1592–1603.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Y. Wu, A. Humayun, M. A. Gulzar, and M. Kim, “Natural symbolic executionbased testing for big data analytics,” inProceedings of the ACM International Conference on the Foundations of Software Engineering (FSE), 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "A. Riesco and J. Rodríguez-Hortalá, “Property-based testing for spark streaming,” arXiv preprint arXiv:1812.11838, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "C. V. Espinosa, E. Martin-Martin, A. Riesco, and J. Rodriguez-Hortala, “Flinkcheck: Property-based testing for apache flink,”IEEE Access, vol. 7, pp. 150 369–150 382, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "K. Kallas, F. Niksic, C. Stanford, and R. Alur, “Diffstream: Differential output testing for stream processing programs,”Proc. ACM Program. Lang., vol. 4, no. OOPSLA, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "“Sqlancer: Automatic testing of database systems,” https://github.com/sqlancer/ sqlancer, accessed 2026-01-28.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 33,
+      "text": "C. Zhang and M. Rigger, “Constant optimization driven database system testing,” Proceedings of the ACM on Management of Data, vol. 3, no. 1, pp. 1–24, 2025.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 34,
+      "text": "Q. Mang, J. Ba, P. He, and M. Rigger, “Finding logic bugs in graph-processing systems via graph-cutting,” inProceedings of the ACM on Management of Data(SIGMOD), 2025.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 35,
+      "text": "Y. Wu, I. Lee, A. Humayun, M. A. Gulzar, and M. Kim, “Replication Package for “Operationalizing Property-Based Testing for Data-Intensive Scalable Computing Systems”,” 2026. [Online]. Available: https://doi.org/10.5281/zenodo.19248115",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 2,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 1–30, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 3,
+      "text": "——, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” inProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 4,
+      "text": "——, “Testing database engines via pivoted query synthesis,” in14th USENIX Symposium on Operating Systems Design and Implementation (OSDI), 2020, pp. 667–682. Yaoxuan Wu, Ingrid Lee, Ahmad Humayun, Muhammad Ali Gulzar, and Miryung Kim",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 5,
+      "text": "C. Zhang, L. Wang, and M. Rigger, “Finding cross-rule optimization bugs in datalog engines,”Proceedings of the ACM on Programming Languages, vol. 8, no. OOPSLA1, pp. 110–136, 2024.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 32,
+      "text": "“Sqlancer: Automatic testing of database systems,” https://github.com/sqlancer/ sqlancer, accessed 2026-01-28.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 33,
+      "text": "C. Zhang and M. Rigger, “Constant optimization driven database system testing,” Proceedings of the ACM on Management of Data, vol. 3, no. 1, pp. 1–24, 2025.",
+      "technique": "coddtest",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing coddtest",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 34,
+      "text": "Q. Mang, J. Ba, P. He, and M. Rigger, “Finding logic bugs in graph-processing systems via graph-cutting,” inProceedings of the ACM on Management of Data(SIGMOD), 2025.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 2–5]",
+      "technique": "tlp",
+      "sentence": "Prior work has demonstrated the value of semantic oracles based on rewrites and decompositions [ 2–5].",
+      "context_before": "h primarily relies on shallow failure signals such as crashes or uncaught exceptions. Property-based testing (PBT) [ 11] offers a complementary direction by shifting testing from checking one manually specified input-output behavior to checking whether generated workloads and inputs satisfy a generalized semantic property. With suitable properties and sufficiently diverse generated tests, this style of checking can exercise behaviors that are difficult to observe through crash-based fuzzing alone.This direction has proved effective in the adjacent DBMS testing domain, as summarized in Table 1.",
+      "context_after": "In contrast, engine-level testing for DISC systems remains limited, and the few existing efforts support only restricted oracle forms or narrow workload templates [ 7]. However, DISC semantic testing is not merely a direct reuse of existing DBMS oracle ideas. DISC workloads are expressed as compositional DataFrame workflows with rich features, including higher-order expressions, semi-structured data (e.g., arrays and maps), and Python UDFs. These features make semantic checks more dependent on workload context, schema compatibility, and cross-runtime behavior than in many prior SQL-centric te",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 2947,
+      "cited_reference": {
+        "number": 2,
+        "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 1–30, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Work SUT Workload Gen Data Gen Semantic Oracles DB Fuzzing and Testing SQLsmith [1] DB engine✓ ✗None (failure/crash) SQLancer [2–5] DB engine Templ.",
+      "context_before": "r, and Miryung Kim Table 1: Comparison of testing approaches for Database and DISC systems. While DBMS testing has leveraged PBT-style checks through a limited set of metamorphic relations, mainly for query decomposition and equivalence rewriting,DiscPBT introduces the most comprehensive PBT framework for DISC. By systematizing eight abstract meta-properties, rather than the few used in prior work,DiscPBTprovides strong oracles and coordinated workload and data generation for complex multi-stage DISC pipelines. Oracle patterns are abbreviated as P1–P8; their full definitions appear in Table 2.",
+      "context_after": "✓P3, P5, P6, P8 DISC Fuzzing and Testing SparkFuzz [6] Spark engine✓ ✓None (differential testing) Achilles’ SPEar [7] Spark engine Templ.✓P4, P5 Our approach DiscPBTSpark engine✓ ✓P1–P8 Spark, the abstraction of reusable meta-properties paired with explicit realization logic is not specific to Spark alone.DiscPBTsystematizes oracle forms that are especially important in DISC workloads, including higher-order expression rewrites, UDF/native counterpart equivalences, aggregation decompositions, and operatorlocal semantic relations. It then turns these meta-properties into executable tests throug",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 6219,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We also do not compare against SQLancer because using it for Spark would require an additional adapter.",
+      "context_before": "against CometFuzz [ 12], a fuzzing baseline that generates Spark SQL queries. CometFuzz uses a Spark Yaoxuan Wu, Ingrid Lee, Ahmad Humayun, Muhammad Ali Gulzar, and Miryung Kim SQL frontend, whileDiscPBTgenerates PySpark DataFrame workloads, but both ultimately exercise Spark’s analysis, optimization, planning, and execution pipeline. This makes the comparison useful for evaluating whether DISC-style workloads provide additional structural diversity and coverage benefits beyond SQL-oriented workload generation. We do not compare against SparkFuzz because its replication package is unavailable.",
+      "context_after": "Experimental setup.We run both tools on the same AWS r7i.4xlarge machine under PySpark 4.1.1, with shuffle partitions set to 2 and ANSI mode disabled. We use CometFuzz under its default configuration, where each generated query is a single-layer SQL query without nesting over three Parquet tables with 200 rows each. We apply the same 30-second timeout to both tools and use a fixed budget of 10,000 generated programs. For coverage, we use JaCoCo [ 13] for collection and focus on Spark’s Catalyst (optimization) and execution packages rather than the entire Spark codebase, because our goal is to",
+      "section": "5.2 RQ2: Workflow Complexity and Coverage",
+      "page": 10,
+      "char_offset": 51931,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In relational DBMS testing, SQLancer [ 32] demonstrated the effectiveness of query oracles, including TLP [ 2], which checks result preservation under predicate-based partitioning, and NoREC [ 3], which validates queries through equivalence-preserving rewrites that disable optimizer-dependent execution paths.",
+      "context_before": "the broader semantic space of general DataFrame workflows. Achilles’ SPEar [ 7] brings metamorphic testing to DataFrame workflows and is therefore closer to our setting, but focuses on decomposition-style testing templates. In contrast,DiscPBTtargets reusable semantic testing principles for DISC workloads beyond SQL, including richer workflow structure and a broader range of operators and semantic features. Oracle-Based Testing in DBMSs, Datalog, and Graph Systems.Adjacent data-processing domains have developed a rich set of semantic oracle techniques, many of which can also be viewed as PBT.",
+      "context_after": "CODDTest [ 33] explores constant-based subquery rewrites as a semantic test oracle. In Datalog testing, IRE checks cross-rule optimizations through computation composition [ 5]. In graph-system testing, GSlicer [ 34] derives metamorphic checks by partitioning graph inputs to validate graph libraries and graph databases. These works show that effective semantic testing often relies on decomposition, equivalence-preserving rewrites, or algebraic relations rather than fixed expected outputs.DiscPBTis inspiredby this perspective, but adapts it to DISC systems, whose workloads are expressed as Dat",
+      "section": "6 Related Work",
+      "page": 11,
+      "char_offset": 59457,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "technique",
+      "surface": "CODDTest",
+      "technique": "coddtest",
+      "sentence": "CODDTest [ 33] explores constant-based subquery rewrites as a semantic test oracle.",
+      "context_before": "ond SQL, including richer workflow structure and a broader range of operators and semantic features. Oracle-Based Testing in DBMSs, Datalog, and Graph Systems.Adjacent data-processing domains have developed a rich set of semantic oracle techniques, many of which can also be viewed as PBT. In relational DBMS testing, SQLancer [ 32] demonstrated the effectiveness of query oracles, including TLP [ 2], which checks result preservation under predicate-based partitioning, and NoREC [ 3], which validates queries through equivalence-preserving rewrites that disable optimizer-dependent execution paths.",
+      "context_after": "In Datalog testing, IRE checks cross-rule optimizations through computation composition [ 5]. In graph-system testing, GSlicer [ 34] derives metamorphic checks by partitioning graph inputs to validate graph libraries and graph databases. These works show that effective semantic testing often relies on decomposition, equivalence-preserving rewrites, or algebraic relations rather than fixed expected outputs.DiscPBTis inspiredby this perspective, but adapts it to DISC systems, whose workloads are expressed as DataFrame workflows rather than isolated declarative queries and heavily exercise DAG s",
+      "section": "6 Related Work",
+      "page": 11,
+      "char_offset": 59768,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "coddtest"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 5]",
+      "technique": null,
+      "sentence": "In Datalog testing, IRE checks cross-rule optimizations through computation composition [ 5].",
+      "context_before": "mantic features. Oracle-Based Testing in DBMSs, Datalog, and Graph Systems.Adjacent data-processing domains have developed a rich set of semantic oracle techniques, many of which can also be viewed as PBT. In relational DBMS testing, SQLancer [ 32] demonstrated the effectiveness of query oracles, including TLP [ 2], which checks result preservation under predicate-based partitioning, and NoREC [ 3], which validates queries through equivalence-preserving rewrites that disable optimizer-dependent execution paths. CODDTest [ 33] explores constant-based subquery rewrites as a semantic test oracle.",
+      "context_after": "In graph-system testing, GSlicer [ 34] derives metamorphic checks by partitioning graph inputs to validate graph libraries and graph databases. These works show that effective semantic testing often relies on decomposition, equivalence-preserving rewrites, or algebraic relations rather than fixed expected outputs.DiscPBTis inspiredby this perspective, but adapts it to DISC systems, whose workloads are expressed as DataFrame workflows rather than isolated declarative queries and heavily exercise DAG structure, higher-order operators, semi-structured data, and Python UDFs.DiscPBTorganizes these",
+      "section": "6 Related Work",
+      "page": 11,
+      "char_offset": 59852,
+      "cited_reference": {
+        "number": 5,
+        "text": "C. Zhang, L. Wang, and M. Rigger, “Finding cross-rule optimization bugs in datalog engines,”Proceedings of the ACM on Programming Languages, vol. 8, no. OOPSLA1, pp. 110–136, 2024.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 34]",
+      "technique": null,
+      "sentence": "In graph-system testing, GSlicer [ 34] derives metamorphic checks by partitioning graph inputs to validate graph libraries and graph databases.",
+      "context_before": "ssing domains have developed a rich set of semantic oracle techniques, many of which can also be viewed as PBT. In relational DBMS testing, SQLancer [ 32] demonstrated the effectiveness of query oracles, including TLP [ 2], which checks result preservation under predicate-based partitioning, and NoREC [ 3], which validates queries through equivalence-preserving rewrites that disable optimizer-dependent execution paths. CODDTest [ 33] explores constant-based subquery rewrites as a semantic test oracle. In Datalog testing, IRE checks cross-rule optimizations through computation composition [ 5].",
+      "context_after": "These works show that effective semantic testing often relies on decomposition, equivalence-preserving rewrites, or algebraic relations rather than fixed expected outputs.DiscPBTis inspiredby this perspective, but adapts it to DISC systems, whose workloads are expressed as DataFrame workflows rather than isolated declarative queries and heavily exercise DAG structure, higher-order operators, semi-structured data, and Python UDFs.DiscPBTorganizes these oracle-design principles as reusable meta-properties and systematically instantiates them into executable checks for DISC workloads. 7 Conclusi",
+      "section": "6 Related Work",
+      "page": 11,
+      "char_offset": 59946,
+      "cited_reference": {
+        "number": 34,
+        "text": "Q. Mang, J. Ba, P. He, and M. Rigger, “Finding logic bugs in graph-processing systems via graph-cutting,” inProceedings of the ACM on Management of Data(SIGMOD), 2025.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M3"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T14:24:46Z",
+    "is_model_written": true,
+    "summary": "DiscPBT is a property-based testing engine for Apache Spark. The authors argue that fuzzing's shallow oracles catch crashes but miss semantic drift and optimisation errors in data-intensive scalable computing frameworks, and that operationalising property-based testing there needs reusable property definitions and a way to instantiate them into valid workloads. DiscPBT supplies eight reusable meta-properties and generators for workload skeletons and input data, reaching 1.2x the branch coverage and 1153x the plan diversity of CometFuzz.",
+    "narrative": "SQLancer is the demonstration the paper builds on -- credited with showing the effectiveness of query oracles including TLP -- and is explicitly excluded from the evaluation: the authors say they do not compare against it because using it for Spark would require an additional adapter.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "background",
+      "M4": "state_of_the_art",
+      "M5": "definition",
+      "M6": "background",
+      "M7": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "M3 states the opposite of a comparison: SQLancer was deliberately not run, because applying it to Spark would need an adapter. A pattern fired on that sentence, which is a comparison only in the sense of explaining its absence."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M4"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M4",
+            "sentence": "In relational DBMS testing, SQLancer [ 32] demonstrated the effectiveness of query oracles, including TLP [ 2], which checks result preservation under predicate-based partitioning, and NoREC [ 3], which validates queries through equivalence-preserving rewrites that disable optimizer-dependent execution paths.",
+            "section": "6 Related Work",
+            "page": 11
+          }
+        ],
+        "reasoning": "M4 credits SQLancer with demonstrating the effectiveness of query oracles in relational DBMS testing, which is a claim about its standing."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

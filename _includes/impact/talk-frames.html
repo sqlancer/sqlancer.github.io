@@ -1,0 +1,33 @@
+{%- comment -%}
+The slides a talk put SQLancer on, shown with the talk itself.
+
+Some talks name SQLancer only on a slide, where no transcript reaches it. The
+frame is then the whole of the evidence, so it belongs beside the talk's title
+and summary rather than in a gallery of its own -- a reader should see what was
+on the screen while reading what the talk did with it.
+
+Parameter: talk (a talk record).
+{%- endcomment -%}
+{%- assign slug = include.talk.video_id | default: include.talk.id | split: ":" | last -%}
+{%- comment -%}
+  Any mention may carry a picture: a frame captured from a recording, or the
+  slide itself where the speaker published their deck.
+{%- endcomment -%}
+{%- for frame in include.talk.mentions -%}
+{%- if frame.image %}
+<figure class="impact-slide">
+  <a href="{{ '/impact/talks/' | relative_url }}{{ slug }}/">
+    <img src="{{ frame.image | relative_url }}"
+         alt="{{ frame.note | strip_html | escape }}" loading="lazy">
+  </a>
+  <figcaption class="impact-meta">
+    {{ frame.note }}
+    {%- if frame.timestamp %}
+    <a href="{{ frame.url }}">Watch at {{ frame.timestamp }}</a>
+    {%- else %}
+    <a href="{{ frame.url }}">See the slide</a>
+    {%- endif %}
+  </figcaption>
+</figure>
+{%- endif -%}
+{%- endfor -%}

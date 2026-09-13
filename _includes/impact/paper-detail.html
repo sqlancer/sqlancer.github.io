@@ -1,0 +1,212 @@
+{%- comment -%}
+Everything one paper's record holds about its relationship to SQLancer.
+
+The impact page can only carry a sentence per paper. This carries what that
+sentence was derived from: each classification with the reasoning behind it and
+the paper's own sentences it rests on, every place the paper refers to SQLancer,
+the bibliography entries that resolved to a SQLancer publication, and the
+artifact if one was inspected.
+
+The division of labour matters. The summary and the reasoning are written by a
+model and are labelled as such. The quoted sentences are not: they are stored
+verbatim from the extracted text, and the model's part was to say which of them
+settle a question, never to supply them.
+
+Parameter: key (a record key, matching a file in _data/papers).
+{%- endcomment -%}
+{%- assign record = site.data.papers[include.key] -%}
+{%- assign paper = record.paper -%}
+{%- assign analysis = record.analysis -%}
+
+<div class="impact" markdown="0">
+
+<p class="impact-breadcrumb">
+  <a href="{{ '/impact/#papers' | relative_url }}">&larr; Research building on SQLancer</a>
+</p>
+
+<p class="impact-meta">
+  {%- if paper.authors and paper.authors.size > 0 %}{{ paper.authors | join: ", " }}.{% endif %}
+  {%- if paper.year %} {{ paper.year }}.{% endif %}
+  {%- if paper.venue %} {{ paper.venue }}.{% endif %}
+</p>
+
+<p>
+  {%- if paper.url %}<a href="{{ paper.url }}">Read the paper</a>{% endif -%}
+  {%- if paper.doi %} &middot; <a href="https://doi.org/{{ paper.doi }}">doi:{{ paper.doi }}</a>{% endif -%}
+  {%- if paper.arxiv_id %} &middot; <a href="https://arxiv.org/abs/{{ paper.arxiv_id }}">arXiv:{{ paper.arxiv_id }}</a>{% endif -%}
+</p>
+
+{%- if analysis %}
+<h2 id="about">What this paper does with SQLancer</h2>
+
+<div class="impact-summary">
+  {{ analysis.narrative }}
+  <span class="impact-about">{{ analysis.summary }}</span>
+  <span class="impact-meta">Written by {{ analysis.model }} from the
+  {{ record.mentions.size }} place{% if record.mentions.size != 1 %}s{% endif %}
+  this paper refers to SQLancer. The quotations below are the paper's own
+  words, stored verbatim when the text was extracted.</span>
+</div>
+
+<h2 id="relationships">How it was classified</h2>
+
+{%- assign order = "uses_infrastructure|extends_technique|compares_with|describes_as_state_of_the_art" | split: "|" -%}
+{%- for key in order -%}
+{%- assign entry = analysis.relationships[key] %}
+<div class="impact-adoption">
+  <h3 class="impact-adoption__heading">
+    {{ key | replace: "_", " " }} &mdash; {{ entry.value | replace: "_", " " }}
+    {%- if entry.reuse_kind %} ({{ entry.reuse_kind }}){% endif %}
+  </h3>
+  <p>{{ entry.reasoning }}</p>
+  {%- if entry.techniques and entry.techniques.size > 0 %}
+  <p>
+    {%- for technique in entry.techniques -%}
+      {%- assign definition = site.data.impact.techniques.sqlancer_techniques | where: "id", technique | first -%}
+      <span class="impact-tag">{{ definition.display_name | default: technique }}</span>
+    {%- endfor -%}
+  </p>
+  {%- endif %}
+  {%- for quote in entry.quotes %}
+  <div class="impact-evidence">
+    {%- if quote.text_is_letter_spaced %}
+    <span class="impact-meta">The paper sets this passage with letter-spacing,
+      so extraction returns it one character at a time and there is no readable
+      form to quote.</span>
+    {%- else %}
+    <q>{{ quote.sentence | strip_html }}</q>
+    {%- endif %}
+    <span class="impact-meta">{{ quote.mention_id }}{% if quote.section %} &middot; {{ quote.section }}{% endif %}{% if quote.page %} &middot; page {{ quote.page }}{% endif %}</span>
+  </div>
+  {%- endfor %}
+</div>
+{%- endfor %}
+
+{%- if analysis.disagreements and analysis.disagreements.size > 0 %}
+<h3 id="disagreements">Where this differs from the pattern checks</h3>
+<p>
+  The regular expressions that scan for these relationships are advisory. Where
+  the reading above contradicts one, the reason is recorded.
+</p>
+{%- for item in analysis.disagreements %}
+<div class="impact-evidence">
+  <strong>{{ item.check }}</strong><br>{{ item.why }}
+</div>
+{%- endfor %}
+{%- endif %}
+
+{%- if analysis.unresolved and analysis.unresolved.size > 0 %}
+<h3 id="unresolved">What could not be determined</h3>
+<ul>
+  {%- for item in analysis.unresolved %}
+  <li>{{ item }}</li>
+  {%- endfor %}
+</ul>
+{%- endif %}
+{%- endif %}
+
+{%- if record.artifact and record.artifact.url %}
+<h2 id="artifact">Its artifact</h2>
+<p>
+  <a href="{{ record.artifact.url }}">{{ record.artifact.url | remove: "https://github.com/" }}</a>
+  {%- if record.artifact.markers and record.artifact.markers.size > 0 %}
+  carries {{ record.artifact.markers | join: ", " | replace: "_", " " }}.
+  {%- endif %}
+</p>
+{%- for item in record.artifact.evidence limit: 3 %}
+<div class="impact-evidence">
+  {%- if item.note %}{{ item.note }}<br>{% endif -%}
+  {%- if item.excerpt %}<q>{{ item.excerpt | strip_html | truncate: 300 }}</q><br>{% endif -%}
+  {%- if item.source_url %}<a href="{{ item.source_url }}">source</a>{% endif -%}
+</div>
+{%- endfor %}
+{%- endif %}
+
+{%- if record.sqlancer_references and record.sqlancer_references.size > 0 %}
+<h2 id="references">SQLancer publications it cites ({{ record.sqlancer_references.size }})</h2>
+<p>
+  Bibliography entries that resolved to a SQLancer publication, or to a paper
+  by one of the project's authors. A sentence citing one of these numbers is a
+  reference to SQLancer even when it never writes the name.
+</p>
+<div class="impact-table-wrap">
+  <table class="impact-table">
+    <thead>
+      <tr><th scope="col">#</th><th scope="col">Entry</th><th scope="col">Matched as</th></tr>
+    </thead>
+    <tbody>
+      {%- for reference in record.sqlancer_references %}
+      <tr>
+        <th scope="row">{{ reference.number }}</th>
+        <td>{{ reference.text | truncate: 220 }}</td>
+        <td>
+          {{ reference.matched_as | replace: "_", " " }}
+          {%- if reference.technique %} &middot; {{ reference.technique | upcase }}{% endif %}
+        </td>
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+</div>
+{%- endif %}
+
+{%- if record.mentions and record.mentions.size > 0 %}
+<h2 id="mentions">Every place it refers to SQLancer ({{ record.mentions.size }})</h2>
+<p>
+  {{ record.mentions.size }} sentence{% if record.mentions.size != 1 %}s{% endif %},
+  each stored verbatim from the extracted text with where it was found and how.
+  “Citation marker” means the sentence names no tool at all and was reached
+  through a reference number that resolved to a SQLancer publication.
+</p>
+<div class="impact-table-wrap">
+  <table class="impact-table impact-table--bugs">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Sentence</th>
+        <th scope="col">Found by</th>
+        <th scope="col">Where</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for mention in record.mentions %}
+      <tr>
+        <th scope="row">{{ mention.id }}</th>
+        {%- comment -%}
+          A sentence the PDF set with letter-spacing arrives as single
+          characters, and the word breaks are not in the file to recover. It is
+          reported rather than shown: the mention is real and its location is
+          useful, the text is not readable by anyone.
+        {%- endcomment -%}
+        {%- if mention.text_is_letter_spaced %}
+        <td class="impact-meta">The paper sets this passage with letter-spacing,
+          which extraction cannot undo &mdash; the sentence is there, but no
+          readable form of it is.</td>
+        {%- else %}
+        <td>{{ mention.sentence | strip_html | truncate: 320 }}</td>
+        {%- endif %}
+        <td>
+          {{ mention.found_by | replace: "_", " " }}
+          {%- if analysis.roles[mention.id] %}<br><span class="impact-meta">{{ analysis.roles[mention.id] | replace: "_", " " }}</span>{% endif %}
+        </td>
+        <td class="impact-meta">
+          {%- if mention.section %}{{ mention.section }}{% endif %}
+          {%- if mention.page %}{% if mention.section %}<br>{% endif %}page {{ mention.page }}{% endif %}
+        </td>
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+</div>
+{%- endif %}
+
+<p class="impact-meta">
+  This page is rendered from
+  <a href="https://github.com/sqlancer/sqlancer.github.io/blob/main/_data/papers/{{ include.key }}.json"><code>_data/papers/{{ include.key }}.json</code></a>,
+  extracted from
+  {%- for source in record.sources %} {{ source.route | replace: "_", " " }}{% unless forloop.last %},{% endunless %}{% endfor %}.
+  {%- if record.document.page_count %} {{ record.document.page_count }} pages,
+  {{ record.references.size }} references parsed.{% endif %}
+</p>
+
+</div>

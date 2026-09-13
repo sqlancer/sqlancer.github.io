@@ -1,0 +1,750 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T17:05:50Z",
+  "paper": {
+    "id": "paper:doi:10.1109/ase63991.2025.00151",
+    "title": "ARG: Testing Query Rewriters via Abstract Rule Guided Fuzzing",
+    "authors": [
+      "Dawei Li",
+      "Yuxiao Guo",
+      "Qifan Liu",
+      "Jie Liang",
+      "Zhiyong Wu",
+      "Jingzhou Fu",
+      "Chi Zhang",
+      "Yu Jiang"
+    ],
+    "year": 2025,
+    "venue": "International Conference on Automated Software Engineering",
+    "doi": "10.1109/ase63991.2025.00151",
+    "arxiv_id": null,
+    "s2_paper_id": "eeb659ea2fc76f85e0eb72e54dd83f98ce695d61",
+    "url": "https://doi.org/10.1109/ase63991.2025.00151",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/ase63991.2025.00151",
+      "retrieved_at": "2026-09-07T17:05:50Z",
+      "chars": 61806,
+      "content_sha256": "sha256:8e33ec44aa0326b45cf3b4f8ac5dfbe75ecaa682b0e5be9b74576db2b25d8abc"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 2155
+      },
+      {
+        "number": "II",
+        "title": "BACKGROUND ANDMOTIVATION",
+        "start": 10045
+      },
+      {
+        "number": "III",
+        "title": "DESIGN",
+        "start": 15928
+      },
+      {
+        "number": "A",
+        "title": "Unified Abstract Rule Construction",
+        "start": 17017
+      },
+      {
+        "number": "B",
+        "title": "Rule-Guide Query Generation",
+        "start": 24556
+      },
+      {
+        "number": "C",
+        "title": "Semantic-Oriented Result Validation",
+        "start": 31798
+      },
+      {
+        "number": "IV",
+        "title": "IMPLEMENTATION",
+        "start": 33959
+      },
+      {
+        "number": "V",
+        "title": "EVALUATION",
+        "start": 35258
+      },
+      {
+        "number": "A",
+        "title": "Evaluation Setup",
+        "start": 35602
+      },
+      {
+        "number": "B",
+        "title": "Rewriter Bug Detection",
+        "start": 36779
+      },
+      {
+        "number": "C",
+        "title": "Comparison with Other Techniques",
+        "start": 42309
+      },
+      {
+        "number": "M",
+        "title": "Y. What is query rewriting? In International Workshop on",
+        "start": 56839
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Mysql query rewrite plugin. https://dev .mysql .com/doc/refman/8 .4/en/ rewriter-query-rewrite-plugin .html, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "APACHE. Calcite. https://github .com/apache/calcite .git, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "BEGOLI, E., CAMACHO-RODR´IGUEZ, J., HYDE, J., MIOR, M. J., ANDLEMIRE, D. Apache calcite: A foundational framework for optimized query processing over heterogeneous data sources. In Proceedings of the 2018 International Conference on Management of Data (2018), pp. 221– 230.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "CALVANESE, D., DEGIACOMO, G., LENZERINI, M., ANDVARDI, M. Y. What is query rewriting? In International Workshop on Cooperative Information Agents (2000), Springer, pp. 51–59.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "DING, H., WANG, Z., YANG, Y., ZHANG, D., X U, Z., CHEN, H., PISKAC, R., ANDLI, J. Proving query equivalence using linear integer arithmetic. Proceedings of the ACM on Management of Data 1, 4 (2023), 1–26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "EVANS, R. B., ANDSAVOIA, A. Differential testing: a new approach to change detection. In The 6th Joint Meeting on European Software Engineering Conference and the ACMSIGSOFT Symposium on the Foundations of Software Engineering: Companion Papers (New York, NY, USA, 2007), ESEC-FSE companion ’07, Association for Computing Machinery, p. 549–552.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "FINANCE, B., ANDGARDARIN, G. A rule-based query rewriter in an extensible dbms. In Proceedings. Seventh International Conference on Data Engineering (1991), IEEE Computer Society, pp. 248–249.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "F U, J., LIANG, J., W U, Z., WANG, M., ANDJIANG, Y. Griffin: Grammar-free dbms fuzzing. In Conference on Automated Software Engineering (ASE’22) (2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "G U, Z., SOLIMAN, M. A., ANDWAAS, F. M. Testing the accuracy of query optimizers. In Proceedings of the Fifth International Workshop on Testing Database Systems (2012), pp. 1–6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "IBM. Db2 for linux, unix and windows. https://www .ibm.com/docs/en/ db2/11 .5.x?topic=process-query-rewriting-methods-examples, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "JUNG, J., H U, H., ARULRAJ, J., KIM, T., ANDKANG, W. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems (to appear). In Proceedings of the 46th International Conference on Very Large Data Bases (VLDB) (Tokyo, Japan, Aug. 2020).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "LEARNED REWRITE. https://github .com/XuanheZhou/ LearnedRewrite .git, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "LIANG, Y., LIU, S., ANDHU, H. Detecting logical bugs of {DBMS} with coverage-based guidance. In 31st USENIX Security Symposium (USENIX Security 22) (2022), pp. 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "LIU, X., ZHOU, Q., ARULRAJ, J., ANDORSO, A. Automatic detection of performance bugs in database systems using equivalent queries. In Proceedings of the 44th International Conference on Software Engineering(2022), pp. 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "MANG, Q., FANG, A., Y U, B., CHEN, H., ANDHE, P. Testing graph database systems via equivalent query rewriting. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering (New York, NY, USA, 2024), ICSE ’24, Association for Computing Machinery. 1817",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "MCKEEMAN, W. M. Differential testing for software. Digital Technical Journal 10, 1 (1998), 100–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "NEGRI, M., PELAGATTI, G., ANDSBATTELLA, L. Formal semantics of sql queries. ACM Trans. Database Syst. 16, 3 (Sept. 1991), 513–534.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "RIGGER, M., ANDSU, Z. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (2020), pp. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 19,
+      "text": "RIGGER, M., ANDSU, Z. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA (Nov. 2020).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 20,
+      "text": "SLUTZ, D. R. Massive stochastic testing of sql. In VLDB (1998), vol. 98, Citeseer, pp. 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "SQLFORMATTER. sql-formatter. https://github .com/vertical-blank/sqlformatter .git, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "SQLANCER .https://github .com/sqlancer/sqlancer .git, 2025.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 23,
+      "text": "SQLSMITH .https://github .com/anse1/sqlsmith .git, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "SQLSOLVER .https://github .com/SJTU-IPADS/SQLSolver .git, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "TANG, X., W U, S., ZHANG, D., L I, F., ANDCHEN, G. Detecting logic bugs of join optimizations in dbms. Proceedings of the ACM on Management of Data 1, 1 (2023), 1–26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "WANG, Z., ZHOU, Z., YANG, Y., DING, H., H U, G., DING, D., TANG, C., CHEN, H., ANDLI, J. Wetune: Automatic discovery and verification of query rewrite rules. In Proceedings of the 2022 International Conference on Management of Data (2022), pp. 94–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "WETUNE. https://ipads .se.sjtu.edu.cn:1312/opensource/wetune .git, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "WIKIPEDIA. Query rewriting. https://en .wikipedia .org/wiki/Query rewriting, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "XIAOMI. Soar: Sql optimizer and rewriter. https://github .com/xiaomi/ soar, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "ZALEWSKI, M. Afl: American fuzzy lop. https://github .com/google/ AFL, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "ZHONG, R., CHEN, Y., H U, H., ZHANG, H., LEE, W., ANDWU, D. Squirrel: Testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security (2020), pp. 955– 970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "ZHOU, X., JIN, L., SUN, J., ZHAO, X., Y U, X., FENG, J., L I, S., WANG, T., L I, K., ANDLIU, L. Dbmind: A self-driving platform in opengauss. Proceedings of the VLDB Endowment 14, 12 (2021), 2743– 2746.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "ZHOU, X., L I, G., CHAI, C., ANDFENG, J. A learned query rewrite system using monte carlo tree search. Proc. VLDB Endow. 15, 1 (2021), 46–58.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "ZHOU, X., L I, G., W U, J., LIU, J., SUN, Z., ANDZHANG, X. A learned query rewrite system. Proc. VLDB Endow. (2023). 1818",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 18,
+      "text": "RIGGER, M., ANDSU, Z. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (2020), pp. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 19,
+      "text": "RIGGER, M., ANDSU, Z. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA (Nov. 2020).",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 22,
+      "text": "SQLANCER .https://github .com/sqlancer/sqlancer .git, 2025.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In 24 hours, ARG triggered 76% and 1017% more written rules, triggered 13 and 15 more bugs than SQLsmith and SQLancer, respectively.",
+      "context_before": "bstract rules to identify which patterns have been covered. This feedback is then used to dynamically adjust query generation, prioritizing unexplored patterns to avoid redundancy and expose more rewriting logic. We implemented ARG to test four popular query rewrites, namely Apache Calcite, WeTune, SQLSolver, and LearnedRewrite. ARG discovered 38 previously unknown bugs, consisting of 4 crashes, 13 invalid SQL outputs, and 21 semantic deviations. Among them, 19 have been confirmed, while the remaining cases are still under investigation. We also compared ARG against popular DBMS testing tools.",
+      "context_after": "Index Terms —Query Rewriter, Rule Feedback, Bug Detection I. INTRODUCTION Query rewriting is a widely adopted and critically important technique in database management systems (DBMSs) [ 4], [28]. Many DBMSs employ query rewriters as the logical optimization phase of the query optimization, leveraging equivalence rules to transform complex query statements into more efficient yet semantically equivalent forms [ 7], [29], [32]. These query rewriters enhance query performance, leading to substantial savings in computational resource costs for enterprises and generating considerable economic bene",
+      "section": null,
+      "page": 1,
+      "char_offset": 1963,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[ 22]",
+      "technique": null,
+      "sentence": "Many existing DBMS testing tools [ 22], [23], [31] effectively uncover logic bugs and crashes, but they are primarily designed for broad bug detection rather than targeting query rewrites.",
+      "context_before": "0.0963786}, {0.0963786, 0} -- Rewritten query SELECT CAST (t1.c1AS REAL) ASc0, t10.c1 FROMt1, t1 AS t10; -- Result: {0.09637860208749771, 0}, {0, 0}, {0.09637860208749771,0.0963786}, {0, 0.0963786} Fig. 1. The query to trigger a rewrite bug in Apache Calcite. First, the order of projection operations is incorrectly adjusted. Moreover, an extraneous CAST operation is added to the float-type column c0, converting it to DOUBLE with altered precision. These issues cause nonequivalence. However, there is currently a lack of systematic testing methodologies tailored specifically for query rewrites.",
+      "context_after": "Lacking rewriting semantic awareness, they often fail 18072025 40th IEEE/ACM International Conference on Automated Software Engineering (ASE) 2643-1572/25/$31.00 ©2025 IEEEDOI 10.1109/ASE63991.2025.001512025 40th IEEE/ACM International Conference on Automated Software Engineering (ASE) | 979-8-3503-5733-2/25/$31.00 ©2025 IEEE | DOI: 10.1109/ASE63991.2025.00151 to systematically trigger complex rule combinations, potentially missing critical bugs in the rewriting logic. Moreover, due to the diversity and implementation-specific nature of rewriting rules, these methods can cover only a limite",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 5148,
+      "cited_reference": {
+        "number": 22,
+        "text": "SQLANCER .https://github .com/sqlancer/sqlancer .git, 2025.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In 24 hour experiment on these query rewriters, ARG triggered 76% and 1017% more written rules, triggered 13 and 15 more bugs than SQLsmith and SQLancer, respectively, In summary, we make the following contributions: •We observe that while query rewriters are widely used in DBMSs, bugs persist and can cause serious issues, yet effective testing tools remain lacking.",
+      "context_before": "rewrites, namely Apache Calcite [ 3], WeTune [ 26], SQLSolver [ 5], and LearnedRewrite [ 33], [34]. ARG discovered 38 previously unknown bugs across these query rewriters. Among them, 19 have been confirmed by the rewriter developers, while theremaining cases are still under investigation. The detected bugs result in three major and severe failure symptoms: 4 system crashes, 13 invalid SQL outputs, and 21 query semantic deviations, which causes database service interruptions, execution failures, or incorrect query outputs, respectively. We also compared ARG against popular DBMS testing tools.",
+      "context_after": "•We propose ARG, the first fuzzing-based approach for query rewriters, which extracts abstract rules to guide query generation and trigger more rewriting behaviors. •We uncovered 38 unique bugs in popular query rewriters like Apache Calcite, including 4 crashes, 13 invalid SQL outputs, and 21 query semantic deviations. II. BACKGROUND ANDMOTIVATION Query Rewriter. Query rewriting plays a fundamental role in database query optimization. It transforms initial SQL queries into semantically equivalent but more efficient forms, whether integrated into DBMSs or implemented as standalone components.",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 9354,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Traditional generation-based fuzzers like SQLancer and SQLsmith create diverse SQL statements based on syntax rules but struggle to systematically activate specific rewriting rule combinations due to their random nature.",
+      "context_before": "-free implementation of query rewriters in DBMSs remains a significant challenge. Despite their importance, there is currently a lack of systematic testing methodologies specifically designed for query rewriters. While current DBMS fuzzers have proven effective for general database testing, they fall short when applied to query rewriters due to their limited understanding of internal rewriting logic and rules. Specifically, existing tools often lack a deep understanding of rewriting rules and the internal rewriting logic, making it difficult to identify and trigger precise rewriting scenarios.",
+      "context_after": "Mutation-based tools rely on instrumenting the entire DBMS to gather coverage and runtime information, which is impractical for query rewriters that operate independently in isolated environments. As a result, these tools cannot effectively guide testing for rewriters. Therefore, traditional random testing methods fail to reliably cover complex rewriting paths, limiting their ability to detect bugs and verify query rewriter correctness. Basic Idea of ARG. The key idea of ARG is to use feedback from abstract rules to guide query generation, thereby activating more rewriting logic and enhancing",
+      "section": "II BACKGROUND ANDMOTIVATION",
+      "page": 3,
+      "char_offset": 14414,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "To generate DDL statements and enhance abstract rule extraction, we integrated SQLancer to construct dynamic database schemas and populate test data.",
+      "context_before": "of C++ code, built an automated testing framework for the query rewriter, and implemented mechanisms for abstract rule extraction and rule-based feedback. The rule extraction component uses the AST node identity binding mechanism of sql-formatter [ 21], which identifies SQL structures across dialects and tags syntax tree nodes with feature identifiers, enabling precise keyword AST extraction. To implement the rule feedback mechanism, we developed a customized version of SQLsmith to generate DML queries, introducing probabilistic control flags to govern its syntax structure generation strategy.",
+      "context_after": "This combined approach mitigates the limitations of each tool: SQLancer’s native FUZZER lacks sufficient coverage for complex rule patterns, while SQLsmith, despite its strength in generating intricate query structures, does not support adaptive schema generation. To integrate new query rewriters with ARG, developers only need to implement our standardized rewrite interface, which takes a query and schema as input and returns the optimized statement. 1812 V. EVALUATION To evaluate the effectiveness and efficiency of ARG in detecting bugs in query rewriters, we design experiments to answer t",
+      "section": "IV IMPLEMENTATION",
+      "page": 6,
+      "char_offset": 34645,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "This combined approach mitigates the limitations of each tool: SQLancer’s native FUZZER lacks sufficient coverage for complex rule patterns, while SQLsmith, despite its strength in generating intricate query structures, does not support adaptive schema generation.",
+      "context_before": "ack. The rule extraction component uses the AST node identity binding mechanism of sql-formatter [ 21], which identifies SQL structures across dialects and tags syntax tree nodes with feature identifiers, enabling precise keyword AST extraction. To implement the rule feedback mechanism, we developed a customized version of SQLsmith to generate DML queries, introducing probabilistic control flags to govern its syntax structure generation strategy. To generate DDL statements and enhance abstract rule extraction, we integrated SQLancer to construct dynamic database schemas and populate test data.",
+      "context_after": "To integrate new query rewriters with ARG, developers only need to implement our standardized rewrite interface, which takes a query and schema as input and returns the optimized statement. 1812 V. EVALUATION To evaluate the effectiveness and efficiency of ARG in detecting bugs in query rewriters, we design experiments to answer the following questions: •Q1: Can ARG detect bugs in real-world query rewriters? •Q2: How does ARG compare with existing techniques? •Q3: How does rule feedback guidance contribute to the performance of ARG? A. Evaluation Setup Test Rewriters. To evaluate the bug de",
+      "section": "IV IMPLEMENTATION",
+      "page": 6,
+      "char_offset": 34795,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Therefore, to evaluate the effectiveness of our approach, we compared ARG with two state-of-the-art SQL generators, SQLsmith and SQLancer, both widely used in the industry for generating large volumes of SQL queries that are fed into rewriters for transformation.",
+      "context_before": "itional fuzzers that generate queries randomly or rely on code coverage,ARG extracts and uses abstract rewriting rules to guide query generation, systematically activating complex rewriting logic. By incorporating schema constraints and semantic context, it produces realistic queries that expose subtle bugs. Additionally, its semantic validation precisely compares original and rewritten query results, identifying errors missed by syntaxbased or coverage-driven methods. C. Comparison with Other Techniques To the best of our knowledge, ARG is the first dedicated tool for testing query rewriters.",
+      "context_after": "During the evaluation, all tools were initialized with an empty database as input, executed under their default configurations, and run in the same environment for 24 hours. As the testing proceeds, the data may vary due to randomness and differences in generation strategies. For a fair comparison, after SQLancer 1814 and SQLsmith generated SQL queries, we sent these queries to the target rewriter to collect coverage data and bug counts. Coverage. Table IIIshows the number of covered branches on four rewrite systems exercised by each tool. ARG significantly outperforms SQLsmith and SQLancer",
+      "section": "C Comparison with Other Techniques",
+      "page": 8,
+      "char_offset": 42435,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For a fair comparison, after SQLancer 1814 and SQLsmith generated SQL queries, we sent these queries to the target rewriter to collect coverage data and bug counts.",
+      "context_before": "RG is the first dedicated tool for testing query rewriters. Therefore, to evaluate the effectiveness of our approach, we compared ARG with two state-of-the-art SQL generators, SQLsmith and SQLancer, both widely used in the industry for generating large volumes of SQL queries that are fed into rewriters for transformation. During the evaluation, all tools were initialized with an empty database as input, executed under their default configurations, and run in the same environment for 24 hours. As the testing proceeds, the data may vary due to randomness and differences in generation strategies.",
+      "context_after": "Coverage. Table IIIshows the number of covered branches on four rewrite systems exercised by each tool. ARG significantly outperforms SQLsmith and SQLancer in terms of rule coverage across all four systems. Specifically, ARG covered 18% and 15% more branches in total compared to SQLsmith and SQLancer, respectively. This result demonstrates that ARG explores a broader and deeper range of rewriting logic paths, increasing the likelihood of revealing correctness bugs. TABLE IIINUMBER OFBRANCHES COVERED BYEACH TOOL IN 24HOURS Rewriter SQLsmith SQLancer ARG Calcite 7208 7191 9703 WeTune 2617 2727",
+      "section": "C Comparison with Other Techniques",
+      "page": 8,
+      "char_offset": 42976,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "ARG significantly outperforms SQLsmith and SQLancer in terms of rule coverage across all four systems.",
+      "context_before": "ries that are fed into rewriters for transformation. During the evaluation, all tools were initialized with an empty database as input, executed under their default configurations, and run in the same environment for 24 hours. As the testing proceeds, the data may vary due to randomness and differences in generation strategies. For a fair comparison, after SQLancer 1814 and SQLsmith generated SQL queries, we sent these queries to the target rewriter to collect coverage data and bug counts. Coverage. Table IIIshows the number of covered branches on four rewrite systems exercised by each tool.",
+      "context_after": "Specifically, ARG covered 18% and 15% more branches in total compared to SQLsmith and SQLancer, respectively. This result demonstrates that ARG explores a broader and deeper range of rewriting logic paths, increasing the likelihood of revealing correctness bugs. TABLE IIINUMBER OFBRANCHES COVERED BYEACH TOOL IN 24HOURS Rewriter SQLsmith SQLancer ARG Calcite 7208 7191 9703 WeTune 2617 2727 2810 SQLSolver 2869 3045 3119 LearnedRewrite 8721 8995 9661 Total 21415 21958 25293 Improvement 18% ↑ 15%↑ The primary reason for ARG’s improved code coverage is its ability to cover more rewrite rules than",
+      "section": "C Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 43247,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, ARG covered 18% and 15% more branches in total compared to SQLsmith and SQLancer, respectively.",
+      "context_before": "with an empty database as input, executed under their default configurations, and run in the same environment for 24 hours. As the testing proceeds, the data may vary due to randomness and differences in generation strategies. For a fair comparison, after SQLancer 1814 and SQLsmith generated SQL queries, we sent these queries to the target rewriter to collect coverage data and bug counts. Coverage. Table IIIshows the number of covered branches on four rewrite systems exercised by each tool. ARG significantly outperforms SQLsmith and SQLancer in terms of rule coverage across all four systems.",
+      "context_after": "This result demonstrates that ARG explores a broader and deeper range of rewriting logic paths, increasing the likelihood of revealing correctness bugs. TABLE IIINUMBER OFBRANCHES COVERED BYEACH TOOL IN 24HOURS Rewriter SQLsmith SQLancer ARG Calcite 7208 7191 9703 WeTune 2617 2727 2810 SQLSolver 2869 3045 3119 LearnedRewrite 8721 8995 9661 Total 21415 21958 25293 Improvement 18% ↑ 15%↑ The primary reason for ARG’s improved code coverage is its ability to cover more rewrite rules than other tools. Figure 7shows the number of unique rewrite rules exercised by each tool. ARG consistently covers",
+      "section": "C Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 43350,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "TABLE IIINUMBER OFBRANCHES COVERED BYEACH TOOL IN 24HOURS Rewriter SQLsmith SQLancer ARG Calcite 7208 7191 9703 WeTune 2617 2727 2810 SQLSolver 2869 3045 3119 LearnedRewrite 8721 8995 9661 Total 21415 21958 25293 Improvement 18% ↑ 15%↑ The primary reason for ARG’s improved code coverage is its ability to cover more rewrite rules than other tools.",
+      "context_before": "r 1814 and SQLsmith generated SQL queries, we sent these queries to the target rewriter to collect coverage data and bug counts. Coverage. Table IIIshows the number of covered branches on four rewrite systems exercised by each tool. ARG significantly outperforms SQLsmith and SQLancer in terms of rule coverage across all four systems. Specifically, ARG covered 18% and 15% more branches in total compared to SQLsmith and SQLancer, respectively. This result demonstrates that ARG explores a broader and deeper range of rewriting logic paths, increasing the likelihood of revealing correctness bugs.",
+      "context_after": "Figure 7shows the number of unique rewrite rules exercised by each tool. ARG consistently covers more rewrite rules than the other two tools. Specifically, ARG covers a total of 76% and 1017% more abstract rules than SQLsmith and SQLancer, respectively. Furthermore, we also evaluate the coverage of the actual rewriting rules within each rewriter. Table IVshows the number of unique combinations of real rewriting rules exercised by each tool. ARG covers a total of 53% and 476% more unique rewriting rule combinations than SQLsmith and SQLancer, respectively. These results highlight the advantage",
+      "section": "C Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 43613,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, ARG covers a total of 76% and 1017% more abstract rules than SQLsmith and SQLancer, respectively.",
+      "context_before": "a broader and deeper range of rewriting logic paths, increasing the likelihood of revealing correctness bugs. TABLE IIINUMBER OFBRANCHES COVERED BYEACH TOOL IN 24HOURS Rewriter SQLsmith SQLancer ARG Calcite 7208 7191 9703 WeTune 2617 2727 2810 SQLSolver 2869 3045 3119 LearnedRewrite 8721 8995 9661 Total 21415 21958 25293 Improvement 18% ↑ 15%↑ The primary reason for ARG’s improved code coverage is its ability to cover more rewrite rules than other tools. Figure 7shows the number of unique rewrite rules exercised by each tool. ARG consistently covers more rewrite rules than the other two tools.",
+      "context_after": "Furthermore, we also evaluate the coverage of the actual rewriting rules within each rewriter. Table IVshows the number of unique combinations of real rewriting rules exercised by each tool. ARG covers a total of 53% and 476% more unique rewriting rule combinations than SQLsmith and SQLancer, respectively. These results highlight the advantage of ARG’s abstract rule-guided generation strategy, which intentionally targets equivalence-preserving transformation logic rather than relying on random or grammar-driven query synthesis. TABLE IVNUMBER OFUNIQUE REWRITING RULECOMBINATIONS INREWRITER BYE",
+      "section": "C Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 44104,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "ARG covers a total of 53% and 476% more unique rewriting rule combinations than SQLsmith and SQLancer, respectively.",
+      "context_before": "l 21415 21958 25293 Improvement 18% ↑ 15%↑ The primary reason for ARG’s improved code coverage is its ability to cover more rewrite rules than other tools. Figure 7shows the number of unique rewrite rules exercised by each tool. ARG consistently covers more rewrite rules than the other two tools. Specifically, ARG covers a total of 76% and 1017% more abstract rules than SQLsmith and SQLancer, respectively. Furthermore, we also evaluate the coverage of the actual rewriting rules within each rewriter. Table IVshows the number of unique combinations of real rewriting rules exercised by each tool.",
+      "context_after": "These results highlight the advantage of ARG’s abstract rule-guided generation strategy, which intentionally targets equivalence-preserving transformation logic rather than relying on random or grammar-driven query synthesis. TABLE IVNUMBER OFUNIQUE REWRITING RULECOMBINATIONS INREWRITER BYEACH TOOL IN 24HOURS Rewriter SQLsmith SQLancer ARG Calcite 7548 1824 11544 WeTune 289 44 324 SQLSolver 370 56 402 LearnedRewrite 814 469 1524 Total 9021 2393 13794 Improvement 53% ↑ 476%↑ Triggered Bugs. Table Vpresents the number of unique rewriter-specific bugs detected by each tool. As shown in the table",
+      "section": "C Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 44407,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "TABLE IVNUMBER OFUNIQUE REWRITING RULECOMBINATIONS INREWRITER BYEACH TOOL IN 24HOURS Rewriter SQLsmith SQLancer ARG Calcite 7548 1824 11544 WeTune 289 44 324 SQLSolver 370 56 402 LearnedRewrite 814 469 1524 Total 9021 2393 13794 Improvement 53% ↑ 476%↑ Triggered Bugs.",
+      "context_before": "017% more abstract rules than SQLsmith and SQLancer, respectively. Furthermore, we also evaluate the coverage of the actual rewriting rules within each rewriter. Table IVshows the number of unique combinations of real rewriting rules exercised by each tool. ARG covers a total of 53% and 476% more unique rewriting rule combinations than SQLsmith and SQLancer, respectively. These results highlight the advantage of ARG’s abstract rule-guided generation strategy, which intentionally targets equivalence-preserving transformation logic rather than relying on random or grammar-driven query synthesis.",
+      "context_after": "Table Vpresents the number of unique rewriter-specific bugs detected by each tool. As shown in the table, ARG detects 13 and 15 more bugs than SQLsmith and SQLancer, respectively. SQLsmith primarily generates standalone SELECT statements through random expression synthesis, which limits its ability to cover complex rewrite Fig. 7. Results of Different Tools in Extracting Abstract Rules under a 24-Hour Experiment. We tracked the growth in the number of unique abstract rules extracted by SQLancer, SQLsmith, and ARG during a 24hour experiment. ARG demonstrated a significant advantage in abstract",
+      "section": "C Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 44750,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M15",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "As shown in the table, ARG detects 13 and 15 more bugs than SQLsmith and SQLancer, respectively.",
+      "context_before": "QLancer, respectively. These results highlight the advantage of ARG’s abstract rule-guided generation strategy, which intentionally targets equivalence-preserving transformation logic rather than relying on random or grammar-driven query synthesis. TABLE IVNUMBER OFUNIQUE REWRITING RULECOMBINATIONS INREWRITER BYEACH TOOL IN 24HOURS Rewriter SQLsmith SQLancer ARG Calcite 7548 1824 11544 WeTune 289 44 324 SQLSolver 370 56 402 LearnedRewrite 814 469 1524 Total 9021 2393 13794 Improvement 53% ↑ 476%↑ Triggered Bugs. Table Vpresents the number of unique rewriter-specific bugs detected by each tool.",
+      "context_after": "SQLsmith primarily generates standalone SELECT statements through random expression synthesis, which limits its ability to cover complex rewrite Fig. 7. Results of Different Tools in Extracting Abstract Rules under a 24-Hour Experiment. We tracked the growth in the number of unique abstract rules extracted by SQLancer, SQLsmith, and ARG during a 24hour experiment. ARG demonstrated a significant advantage in abstract rule extraction capability. rules that often require specific structural patterns or contextual constraints. Similarly, SQLancer focuses on generating SQL queries guided by predef",
+      "section": "C Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 45102,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M16",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We tracked the growth in the number of unique abstract rules extracted by SQLancer, SQLsmith, and ARG during a 24hour experiment.",
+      "context_before": "Rewriter SQLsmith SQLancer ARG Calcite 7548 1824 11544 WeTune 289 44 324 SQLSolver 370 56 402 LearnedRewrite 814 469 1524 Total 9021 2393 13794 Improvement 53% ↑ 476%↑ Triggered Bugs. Table Vpresents the number of unique rewriter-specific bugs detected by each tool. As shown in the table, ARG detects 13 and 15 more bugs than SQLsmith and SQLancer, respectively. SQLsmith primarily generates standalone SELECT statements through random expression synthesis, which limits its ability to cover complex rewrite Fig. 7. Results of Different Tools in Extracting Abstract Rules under a 24-Hour Experiment.",
+      "context_after": "ARG demonstrated a significant advantage in abstract rule extraction capability. rules that often require specific structural patterns or contextual constraints. Similarly, SQLancer focuses on generating SQL queries guided by predefined oracles and grammar constraints, making it difficult to explore the full spectrum of rewrite logic, especially those involving equivalence-preserving transformations. In contrast, ARG systematically identifies and targets rewrite rules through its abstract-rule-guided generation strategy. By analyzing rewriting behavior and validating semantic equivalence betw",
+      "section": "C Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 45436,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M17",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Similarly, SQLancer focuses on generating SQL queries guided by predefined oracles and grammar constraints, making it difficult to explore the full spectrum of rewrite logic, especially those involving equivalence-preserving transformations.",
+      "context_before": "G detects 13 and 15 more bugs than SQLsmith and SQLancer, respectively. SQLsmith primarily generates standalone SELECT statements through random expression synthesis, which limits its ability to cover complex rewrite Fig. 7. Results of Different Tools in Extracting Abstract Rules under a 24-Hour Experiment. We tracked the growth in the number of unique abstract rules extracted by SQLancer, SQLsmith, and ARG during a 24hour experiment. ARG demonstrated a significant advantage in abstract rule extraction capability. rules that often require specific structural patterns or contextual constraints.",
+      "context_after": "In contrast, ARG systematically identifies and targets rewrite rules through its abstract-rule-guided generation strategy. By analyzing rewriting behavior and validating semantic equivalence between original and rewritten queries, ARG can effectively uncover subtle logic violations, invalid rule applications, and rewriter-internal crashes that are missed by general-purpose SQL generators. TABLE VNUMBER OFTRIGGER BUGS BY EACHTOOL IN 24HOURS Rewriter SQLsmith SQLancer ARG Calcite 9 6 12 WeTune 5 8 11 SQLSolver 6 4 8 LearnedRewrite 5 5 7 Total 25 23 38 Increment 13 ↑ 15↑ D. Effectiveness of Rule",
+      "section": "C Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 45728,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M18",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "TABLE VNUMBER OFTRIGGER BUGS BY EACHTOOL IN 24HOURS Rewriter SQLsmith SQLancer ARG Calcite 9 6 12 WeTune 5 8 11 SQLSolver 6 4 8 LearnedRewrite 5 5 7 Total 25 23 38 Increment 13 ↑ 15↑ D.",
+      "context_before": "nerating SQL queries guided by predefined oracles and grammar constraints, making it difficult to explore the full spectrum of rewrite logic, especially those involving equivalence-preserving transformations. In contrast, ARG systematically identifies and targets rewrite rules through its abstract-rule-guided generation strategy. By analyzing rewriting behavior and validating semantic equivalence between original and rewritten queries, ARG can effectively uncover subtle logic violations, invalid rule applications, and rewriter-internal crashes that are missed by general-purpose SQL generators.",
+      "context_after": "Effectiveness of Rule-Guided Strategy To assess the effectiveness of the abstract rule guided fuzzing strategy, we implemented a variant of ARG, denoted as ARG-, which disables the rule feedback component. ARGgenerates queries using unguided, randomized clause synthesis based solely on grammar structure, without considering ruletriggering feedback or structural transformations observed during rewriting. We compare ARG and ARGacross all four evaluated query rewriters over 24 hours. 1815 Table VIshows the number of rewrite rules exercised by each approach after 24 hours. Across all four rewri",
+      "section": "C Comparison with Other Techniques",
+      "page": 9,
+      "char_offset": 46362,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M19",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [ 22] leverages predefined syntax tree models to produce grammatically valid SQL 1816 queries, while also creating schemas and populating the database with data.",
+      "context_before": "tion (IR) based on SQL grammar rules and creates syntax-valid SQL queries using mutation techniques from AFL’s core engine with coverage feedback, effectively exposing crashes in DBMS. SQLRight [ 13] employs syntax tree mutation for test case generation and adapts inputs based on coverage feedback. GRIFFIN [8] introduces a grammar-free mutation method to generate queries. Generation-based fuzzers generate queries using predefined templates or models. For example, SQLsmith [ 23] constructs large numbers of SELECT statements by populating abstract syntax trees (ASTs) with metadata to test DBMSs.",
+      "context_after": "APOLLO [11] focuses more on generating complex or adversarial SQL structures that are likely to degrade the performance of the DBMS. While existing approaches are effective, they face limitations when applied to standalone query rewriters. Neither mutation-based nor generation-based methods can sufficiently activate internal rewrite rules or thoroughly test the complex behaviors of rewriters. In contrast, ARG guides test case generation through abstract rules, exploring more rewrite logic within the rewriter. Differential Testing. Differential testing validates DBMS by executing the same test",
+      "section": "C Comparison with Other Techniques",
+      "page": 10,
+      "char_offset": 52236,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M20",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC [ 18] converts an optimizable query into a non-optimizable form of the query, then identifies logic bugs by comparing their execution results.",
+      "context_before": "sues by comparing the execution durations of identical SQL queries across multiple versions of the target DBMS. Differential testing is difficult to directly apply to query rewriters. Substantial rewriting logic differences cause the same query to yield diverse outputs, rendering traditional differential testing ineffective. ARG focuses on checking the semantic equivalence between the original and rewritten query, which shares similarity with differential testing. Metamorphic Testing. Recent works have also adopted metamorphic testing to construct semantically equivalent queries to test DBMSs.",
+      "context_after": "Similarly, TLP [ 19] employs ternary logic to generate three equivalent queries combined via UNION operations. Amoeba [ 14] targets DBMS performance anomalies by crafting logically equivalent queries and examining variations in their runtime behavior TQS [ 25] detects logical bugs by generating semantically equivalent multi-table join query pairs and checking for inconsistent execution results. GRev [ 15] automatically tests graph databases by rewriting queries into logically equivalent forms based on a unified graph abstraction, successfully uncovering multiple previously unknown vulnerabili",
+      "section": "C Comparison with Other Techniques",
+      "page": 11,
+      "char_offset": 54020,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M21",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Similarly, TLP [ 19] employs ternary logic to generate three equivalent queries combined via UNION operations.",
+      "context_before": "directly apply to query rewriters. Substantial rewriting logic differences cause the same query to yield diverse outputs, rendering traditional differential testing ineffective. ARG focuses on checking the semantic equivalence between the original and rewritten query, which shares similarity with differential testing. Metamorphic Testing. Recent works have also adopted metamorphic testing to construct semantically equivalent queries to test DBMSs. NoREC [ 18] converts an optimizable query into a non-optimizable form of the query, then identifies logic bugs by comparing their execution results.",
+      "context_after": "Amoeba [ 14] targets DBMS performance anomalies by crafting logically equivalent queries and examining variations in their runtime behavior TQS [ 25] detects logical bugs by generating semantically equivalent multi-table join query pairs and checking for inconsistent execution results. GRev [ 15] automatically tests graph databases by rewriting queries into logically equivalent forms based on a unified graph abstraction, successfully uncovering multiple previously unknown vulnerabilities. ARG differs from these tools by treating the rewritten query as output and directly verifying semantic eq",
+      "section": "C Comparison with Other Techniques",
+      "page": 11,
+      "char_offset": 54169,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M7"
+      ],
+      "describes_as_state_of_the_art": [
+        "M7"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:15:22Z",
+    "is_model_written": true,
+    "summary": "ARG fuzzes query rewriters, the components that transform a query into a faster but semantically equivalent form. The authors argue that general DBMS testing tools cover only a limited subset of rewrite scenarios given the diversity of rewrite rules. ARG uses abstract rules -- a unified representation of the AST patterns and constraints that trigger a rewrite, plus the resulting transformation -- as coverage feedback, steering generation toward patterns not yet exercised. Testing Apache Calcite, WeTune, SQLSolver and LearnedRewrite it found 38 previously unknown bugs.",
+    "narrative": "ARG integrates SQLancer to construct dynamic database schemas and populate them, and then measures itself against it, reporting 1017% more rewrite rules triggered and 15 more bugs in 24 hours.",
+    "roles": {
+      "M1": "result_comparison",
+      "M2": "background",
+      "M3": "result_comparison",
+      "M4": "motivation",
+      "M5": "reuse_component"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M5"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M5",
+            "sentence": "To generate DDL statements and enhance abstract rule extraction, we integrated SQLancer to construct dynamic database schemas and populate test data.",
+            "section": "IV IMPLEMENTATION",
+            "page": 6
+          }
+        ],
+        "reasoning": "M5 states SQLancer was integrated to construct dynamic database schemas and populate them, so a generation component is reused while the rewrite-rule fuzzing is ARG's own.",
+        "reuse_kind": "generator"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Abstract rule guided fuzzing is ARG's contribution; no SQLancer oracle is generalised."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M1",
+          "M3"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M1",
+            "sentence": "In 24 hours, ARG triggered 76% and 1017% more written rules, triggered 13 and 15 more bugs than SQLsmith and SQLancer, respectively.",
+            "section": null,
+            "page": 1
+          },
+          {
+            "mention_id": "M3",
+            "sentence": "In 24 hour experiment on these query rewriters, ARG triggered 76% and 1017% more written rules, triggered 13 and 15 more bugs than SQLsmith and SQLancer, respectively, In summary, we make the following contributions: •We observe that while query rewriters are widely used in DBMSs, bugs persist and can cause serious issues, yet effective testing tools remain lacking.",
+            "section": "I INTRODUCTION",
+            "page": 2
+          }
+        ],
+        "reasoning": "ARG reports triggering 1017% more rewrite rules and finding 15 more bugs than SQLancer over 24 hours."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "M4 calls SQLancer a traditional generation-based fuzzer and argues it struggles on rewrite rules."
+      }
+    },
+    "disagreements": [
+      "A state-of-the-art pattern fired on M7, which was outside the mentions read; those read describe SQLancer as traditional rather than leading."
+    ],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

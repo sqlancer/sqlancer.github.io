@@ -1,0 +1,854 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:18:16Z",
+  "paper": {
+    "id": "paper:doi:10.14722/ndss.2025.230530",
+    "title": "MTZK: Testing and Exploring Bugs in Zero-Knowledge (ZK) Compilers",
+    "authors": [
+      "Dongwei Xiao",
+      "Zhibo Liu",
+      "Yiteng Peng",
+      "Shuai Wang"
+    ],
+    "year": 2025,
+    "venue": "Network and Distributed System Security Symposium",
+    "doi": "10.14722/ndss.2025.230530",
+    "arxiv_id": null,
+    "s2_paper_id": "654064b6d2b49ac7d66bc4a8b296a4806221ab66",
+    "url": "https://doi.org/10.14722/ndss.2025.230530",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.14722/ndss.2025.230530",
+      "retrieved_at": "2026-09-08T15:18:16Z",
+      "chars": 112759,
+      "content_sha256": "sha256:1d919cdaf4f72e426b6b173e9178948714154e3ffb3c6cb4561bb678bd930c65"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 18,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 1651
+      },
+      {
+        "number": "II",
+        "title": "PRELIMINARY",
+        "start": 7305
+      },
+      {
+        "number": "III",
+        "title": "MOTIVATION",
+        "start": 15321
+      },
+      {
+        "number": "A",
+        "title": "Study Scope",
+        "start": 19783
+      },
+      {
+        "number": "C",
+        "title": "Also, since the number of constraints in EQC signiﬁcantly",
+        "start": 23226
+      },
+      {
+        "number": "C",
+        "title": "Usage Scenario and Clariﬁcation",
+        "start": 24735
+      },
+      {
+        "number": "A",
+        "title": "IR Design",
+        "start": 33455
+      },
+      {
+        "number": "B",
+        "title": "Program Generation",
+        "start": 35685
+      },
+      {
+        "number": "C",
+        "title": "MRSIM: Satisﬁability-Invariant Mutation",
+        "start": 40099
+      },
+      {
+        "number": "D",
+        "title": "MRIV M: Information Visibility Mutation",
+        "start": 45013
+      },
+      {
+        "number": "A",
+        "title": "RQ1: Testing Efﬁciency and Effectiveness",
+        "start": 56170
+      },
+      {
+        "number": "B",
+        "title": "RQ2: Bug Characteristics and Root Causes",
+        "start": 64043
+      },
+      {
+        "number": "C",
+        "title": "RQ3: Effectiveness of Each Testing Stage",
+        "start": 71691
+      },
+      {
+        "number": "D",
+        "title": "RQ4: Security Implications of Bugs",
+        "start": 74302
+      },
+      {
+        "number": "A",
+        "title": "Comparison of Bugs with Existing Works",
+        "start": 111244
+      },
+      {
+        "number": "B",
+        "title": "Security, Privacy, and Ethical Concerns",
+        "start": 112027
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Lifted A. Aztec network raises $100m in series b funding. https: //nfthorizon.io/aztec-network-raises-100m-in-series-b-funding/, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "aharshbe. Token-mining application in aleo. https://github.com/AleoHQ/ workshop/blob/master/token/src/main.leo, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Aleo. Aleofully private applications. https://aleo.org/, 2023. 6This conceptually correlates to the classic backdoor attack noted in Ken Thompson’s Turning award lecture [ 106] — “Reﬂections on Trusting Trust.”",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Aleo. Leo — zero-knowledge programming language. https://leo-lang. org/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Robert Andrew. 21st century technologies: Zero-knowledge proofs. https://citylife.capetown/uncategorized/21st-century-technologies-zeroknowledge-proofs/31487/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Sanjeev Arora and Boaz Barak. Computational complexity: a modern approach. Cambridge University Press, 2009.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Aztec. $50,000 usd bug bounty. https://twitter.com/aztecnetwork/status/ 1453773879898378241, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Aztec. Disclosure of recent vulnerabilities. https://hackmd.io/ @aztec-network/disclosure-of-recent-vulnerabilities, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Aztec. Aztecethereum, encrypted. https://aztec.network/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Jos´e Bacelar Almeida, Manuel Barbosa, Endre Bangerter, Gilles Barthe, Stephan Krenn, and Santiago Zanella B ´eguelin. Full proof cryptography: Veriﬁable compilation of efﬁcient zero-knowledge protocols. InProceedings of the 2012 ACM Conference on Computer and Communications Security, CCS ’12, page 488–500, New York, NY, USA, 2012. Association for Computing Machinery.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Eli Ben-Sasson, Iddo Bentov, Yinon Horesh, and Michael Riabzev. Scalable, transparent, and post-quantum secure computational integrity. Cryptology ePrint Archive, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Lukas Bernhard, Tobias Scharnowski, Moritz Schloegel, Tim Blazytko, and Thorsten Holz. JIT-Picking: Differential Fuzzing of JavaScript Engines. In Proceedings of the 2022 ACMSIGSAC Conference on Computer and Communications Security, CCS ’22, pages 351–364, New York, NY, USA, 2022. Association for Computing Machinery.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "EY Blockchain. Nightfall. https://github.com/EYBlockchain/nightfall, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "EY Blockchain. Nightfall3. https://github.com/EYBlockchain/ nightfall 3, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Sean Bowe, Jack Grigg, and Daira Hopwood. Recursive proof composition without a trusted setup. Cryptology ePrint Archive, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Alexander Bulekov, Bandan Das, Stefan Hajnoczi, and Manuel Egele. No grammar, no problem: Towards fuzzing the linux kernel without system-call descriptions. In Network and Distributed System Security (NDSS) Symposium, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Cristian Cadar, Daniel Dunbar, Dawson R Engler, et al. KLEE: unassisted and automatic generation of high-coverage tests for complex systems programs. In OSDI, volume 8, 2008.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Cairo. Cairolinear types. https://docs.cairo-lang.org/language constructs/linear-types.html, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Cairo. Cairo repo. https://github.com/starkware-libs/cairo/tree/main, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Cairo. cairo/docs/security.md at main ·starkware-libs/cairo ·github. https://github.com/starkware-libs/cairo/blob/main/docs/ SECURITY.md, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Cario. Cairoa stark-based turing-complete language for writing provable programs on blockchain. https://www.cairo-lang.org/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Chainlink. Chainlink — zero knowledge proofs. https://blog.chain.link/zero-knowledge-proof-projects/, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Chainlink. What are zk-rollups (zero-knowledge rollups)? https://blog.chain.link/zero-knowledge-rollup/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Kyle Charbonnet. Missing checks to ensure ’zero’ is less than snark scalar ﬁeld. https://github.com/privacy-scaling-explorations/zk-kit/ issues/23, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Tsong Y Chen, Shing C Cheung, and Shiu Ming Yiu. Metamorphic testing: a new approach for generating next test cases. Technical report, Technical Report HKUST-CS98-01, Department of Computer Science, Hong Kong. .. , 1998.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Tsong Y Chen, Shing C Cheung, and Shiu Ming Yiu. Metamorphic testing: a new approach for generating next test cases. arXiv preprint arXiv:2002.12543, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Alessandro Chiesa, Yuncong Hu, Mary Maller, Pratyush Mishra, Psi Vesely, and Nicholas Ward. Marlin: Preprocessing zksnarks with universal and updatable srs. Cryptology ePrint Archive, Paper 2019/1047, 2019. https://eprint.iacr.org/2019/1047.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Collin Chin, Howard Wu, Raymond Chu, Alessandro Coglio, Eric McCarthy, and Eric Smith. Leo: A programming language for formally veriﬁed, zero-knowledge applications. Cryptology ePrint Archive, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Jaeseung Choi, Kangsu Kim, Daejin Lee, and Sang Kil Cha. Ntfuzz: Enabling type-aware kernel fuzzing on windows with static binary analysis. In pages 677–693. IEEE, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "circomspect. Circomspect. https://github.com/trailofbits/circomspect, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Alessandro Coglio, Eric McCarthy, Eric Smith, Collin Chin, Pranav Gaddamadugu, and Michel Dellepere. Compositional formal veriﬁcation of zero-knowledge circuits. Cryptology ePrint Archive, Paper 2023/1278, 2023. https://eprint.iacr.org/2023/1278.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Alastair F Donaldson, Hugues Evrard, Andrei Lascu, and Paul Thomson. Automated testing of graphics shader compilers. Proceedings of the ACM on Programming Languages, 1(OOPSLA):1–29, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Emine Dumlu, Cemal Yilmaz, Myra B Cohen, and Adam Porter. Feedback driven adaptive combinatorial testing. In Proceedings of the 2011 international symposium on software testing and analysis, pages 243–253, 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Jacob Eberhardt and Stefan Tai. Zokratesscalable privacy-preserving off-chain computations. In on Internet of Things (iThings) and IEEE Green Computing and Communications (GreenCom) and IEEE Cyber, Physical and Social Computing (CPSCom) and IEEE Smart Data (SmartData), pages 1084– 1091, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "ecne. Ecne. https://github.com/franklynwang/EcneProject, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Jens Ernstberger, Stefanos Chaliasos, George Kadianakis, Sebastian Steinhorst, Philipp Jovanovic, Arthur Gervais, Benjamin Livshits, and Michele Orr `u. zk-bench: A toolset for comparative evaluation and performance benchmarking of snarks. Cryptology ePrint Archive, Paper 2023/1503, 2023. https://eprint.iacr.org/2023/1503.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Ethereum. Ethereum — zero knowledge proofs. https://ethereum.org/en/zero-knowledge-proofs/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Paul Fiterau-Brostean, Bengt Jonsson, Robert Merget, Joeri De Ruiter, Konstantinos Sagonas, and Juraj Somorovsky. Analysis of {DTLS } implementations using protocol state fuzzing. In 29th USENIX Security Symposium (USENIX Security 20), pages 2523–2540, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Marius Fleischer, Dipanjan Das, Priyanka Bose, Weiheng Bai, Kangjie Lu, Mathias Payer, Christopher Kruegel, and Giovanni Vigna. {ACTOR }:{Action-Guided }kernel fuzzing. In 32nd USENIX Security Symposium (USENIX Security 23), pages 5003–5020, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Anoma Foundation. Zkp (circuit) compiler shootout. https://github. com/anoma/zkp-compiler-shootout, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "C´edric Fournet, Chantal Keller, and Vincent Laporte. A certiﬁed compiler for veriﬁable computing. In 2016 IEEE 29th Computer Security Foundations Symposium (CSF), pages 268–280, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Tim Freeman and Frank Pfenning. Reﬁnement types for ml. In Proceedings of the ACMSIGPLAN 1991 conference on Programming language design and implementation, pages 268–277, 1991.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Andres Freund. [oss-security] backdoor in upstream xz/liblzma leading to ssh server compromise. https://lwn.net/ml/oss-security/ 20240329155126.kjjfduxw2yrlxgzm@awork3.anarazel.de/, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Ariel Gabizon, Zachary J. Williamson, and Oana Ciobotaru. Plonk: Permutations over lagrange-bases for oecumenical noninteractive arguments of knowledge. Cryptology ePrint Archive, Paper 2019/953, 2019. https://eprint.iacr.org/2019/953.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Oliver Gale. Zero-knowledge proofs: Use-cases for businesses. https://www.forbes.com/sites/forbesbusinesscouncil/2023/04/19/ zero-knowledge-proofs-use-cases-for-businesses/?sh=1e7f6e5c58b8, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Xinyang Ge, Ben Niu, Robert Brotzman, Yaohui Chen, HyungSeok Han, Patrice Godefroid, and Weidong Cui. Hyperfuzzer: An efﬁcient hybrid fuzzer for virtual cpus. In Proceedings of the 2021 ACMSIGSAC Conference on Computer and Communications Security, pages 366–378, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Lior Goldberg, Shahar Papini, and Michael Riabzev. Cairo – a turingcomplete stark-friendly cpu architecture. Cryptology ePrint Archive, Paper 2021/1063, 2021. https://eprint.iacr.org/2021/1063.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "S Goldwasser, S Micali, and C Rackoff. The knowledge complexity of interactive proof-systems. In Proceedings of the Seventeenth Annual ACM Symposium on Theory of Computing, STOC ’85, page 291–304, New York, NY, USA, 1985. Association for Computing Machinery.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Nihal R Gowravaram. Zero Knowledge Proofs and Applications to Financial Regulation. PhD thesis, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Samuel Groß, Simon Koch, Lukas Bernhard, Thorsten Holz, and Martin Johns. Fuzzilli: Fuzzing for javascript jit compiler vulnerabilities. In NDSS, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Jens Groth. On the size of pairing-based non-interactive arguments. InAdvances in Cryptology–EUROCRYPT 2016: 35th Annual International Conference on the Theory and Applications of Cryptographic Techniques, Vienna, Austria, May 8-12, 2016, Proceedings, Part II 35, pages 305–326. Springer, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Jens Groth and Mary Maller. Snarky signatures: minimal signatures of knowledge from simulation-extractable snarks. Cryptology ePrint Archive, Paper 2017/540, 2017. https://eprint.iacr. org/2017/540.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Samuel Groß. A case study of javascriptcore and cve-2016-4622. http://www.phrack.org/issues/70/3.html#article, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Samuel Groß. Exploiting logic bugs in javascript jit engines. http: //www.phrack.org/issues/70/9.html#article, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Alyssa Hertig. Zcash team reveals it ﬁxed a catastrophic coin counterfeiting bug. https://www.coindesk.com/markets/2019/02/05/ zcash-team-reveals-it-ﬁxed-a-catastrophic-coin-counterfeiting-bug/, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Jaewon Hur, Suhwan Song, Dongup Kwon, Eunjin Baek, Jangwoo Kim, and Byoungyoung Lee. Difuzzrtl: Differential fuzz testing to ﬁnd cpu bugs. In pages 1286–1303. IEEE, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Immuneﬁ. Polygon double-spend bugﬁx review — $2m bounty. https://medium.com/immuneﬁ/ polygon-double-spend-bug-ﬁx-postmortem-2m-bounty-5a1db09db7f1, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Haoxiang Jia, Ming Wen, Zifan Xie, Xiaochen Guo, Rongxin Wu, Maolin Sun, Kang Chen, and Hai Jin. Detecting JVMJIT Compiler Bugs via Exploring Two-Dimensional Input Spaces. In 2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE), pages 43–55, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. {DynSQL }: Stateful fuzzing for database management systems with complex and valid {SQL }query generation. In 32nd USENIX Security Symposium (USENIX Security 23), pages 4949–4965, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. Detecting transactional bugs in database engines via {Graph-Based }oracle construction. In 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23), pages 397–417, 2023.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 61,
+      "text": "Guoliang Jin, Linhai Song, Xiaoming Shi, Joel Scherpelz, and Shan Lu. Understanding and detecting real-world performance bugs. ACMSIGPLAN Notices, 47(6):77–88, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Swihart Josh, Winston Benjamin, and Sean Bowe. Zcash counterfeiting vulnerability successfully remediated. https://electriccoin.co/blog/ zcash-counterfeiting-vulnerability-successfully-remediated/, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Jurarpereurs. Proving phase fails for operations on negative literals. https://github.com/noir-lang/noir/issues/2098, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "kevaundray, jfecher, and French Tom. Noir. https://noir-lang.org/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Kyungtae Kim, Dae R Jeong, Chung Hwan Kim, Yeongjin Jang, Insik Shin, and Byoungyoung Lee. Hﬂ: Hybrid fuzzing on the linux kernel. InNDSS, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "George Kushnir. Visibility declarations inside structs. https://github. com/noir-lang/noir/issues/2135, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. Compiler validation via equivalence modulo inputs. ACM Sigplan Notices, 49(6):216–226, 2014.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "Vu Le, Chengnian Sun, and Zhendong Su. Finding deep compiler bugs via guided stochastic program mutation. ACMSIGPLAN Notices, 50(10):386–399, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "Vu Le, Chengnian Sun, and Zhendong Su. Randomized stress-testing of link-time optimizers. In Proceedings of the 2015 International Symposium on Software Testing and Analysis, pages 327–337, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Bastien Lecoeur, Hasan Mohsin, and Alastair F Donaldson. Program reconditioning: Avoiding undeﬁned behaviour when ﬁnding and reducing compiler bugs. Proceedings of the ACM on Programming Languages, 7(PLDI):1801–1825, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Daniel Lehmann and Michael Pradel. Feedback-directed differential testing of interactive debuggers. In Proceedings of the 2018 26th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, pages 610–620, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Cong Li, Yanyan Jiang, Chang Xu, and Zhendong Su. Validating jit compilers via compilation space exploration. In Proceedings of the 29th Symposium on Operating Systems Principles, SOSP ’23, page 66–79, New York, NY, USA, 2023. Association for Computing Machinery.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Shaohua Li, Theodoros Theodoridis, and Zhendong Su. Boosting compiler testing by injecting real-world code. Proc. ACM Program. Lang., 8(PLDI), jun 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "Yichen Li, Dongwei Xiao, Zhibo Liu, Qi Pang, and Shuai Wang. Metamorphic testing of secure multi-party computation (mpc) compilers. Proc. ACM Softw. Eng., 1(FSE), jul 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "Junrui Liu, Ian Kretz, Hanzhi Liu, Bryan Tan, Jonathan Wang, Yi Sun, Luke Pearson, Anders Miltner, I s¸ıl Dillig, and Yu Feng. Certifying zero-knowledge circuits with reﬁnement types. Cryptology ePrint Archive, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "Zhibo Liu, Dongwei Xiao, Zongjie Li, Shuai Wang, and Wei Meng. Exploring missed optimizations in webassembly optimizers. In Proceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis, ISSTA 2023, page 436–448, New York, NY, USA, 2023. Association for Computing Machinery.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "Vsevolod Livinskii, Dmitry Babokin, and John Regehr. Random testing for C and C++ compilers with YARPGen. Proceedings of the ACM on Programming Languages, 4(OOPSLA):196:1–196:25, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "Vsevolod Livinskii, Dmitry Babokin, and John Regehr. Fuzzing Loop Optimizations in Compilers for C++ and Data-Parallel Languages. Proceedings of the ACM on Programming Languages, 7(PLDI):181:1826– 181:1847, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "Haoyang Ma, Qingchao Shen, Yongqiang Tian, Junjie Chen, and Shing-Chi Cheung. Fuzzing deep learning compilers with hirgen. InProceedings of the 32nd ACMSIGSOFT International Symposium on Software Testing and Analysis, ISSTA 2023, page 248–260, New York, NY, USA, 2023. Association for Computing Machinery.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "Ceyhun Onur and Arda Yurdakul. Electanon: A blockchain-based, anonymous, robust and scalable ranked-choice voting protocol. arXiv preprint arXiv:2204.00057, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 81,
+      "text": "Alex Ozdemir, Fraser Brown, and Riad S Wahby. Circ: Compiler infrastructure for proof systems, software veriﬁcation, and more. In. IEEE, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 82,
+      "text": "Alex Ozdemir, Riad S. Wahby, Fraser Brown, and Clark Barrett. Bounded veriﬁcation for ﬁnite-ﬁeld-blasting (in a compiler for zero knowledge proofs). Cryptology ePrint Archive, Paper 2023/778, 2023. https://eprint.iacr.org/2023/778.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 83,
+      "text": "Shankara Pailoor, Yanju Chen, Franklyn Wang, Clara Rodr ´ıguez, Jacob Van Geffen, Jason Morton, Michael Chu, Brian Gu, Yu Feng, and Is¸ıl Dillig. Automated detection of under-constrained circuits in zero-knowledge proofs. Proceedings of the ACM on Programming Languages, 7(PLDI):1510–1532, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 84,
+      "text": "Qi Pang, Yuanyuan Yuan, and Shuai Wang. Mdpfuzz: testing models solving markov decision processes. In Proceedings of the 31st ACMSIGSOFT International Symposium on Software Testing and Analysis, ISSTA 2022, page 378–390, New York, NY, USA, 2022. Association for Computing Machinery.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 85,
+      "text": "Kexin Pei, Yinzhi Cao, Junfeng Yang, and Suman Jana. DeepXplore: Automated whitebox testing of deep learning systems. In Proceedings of the 26th Symposium on Operating Systems Principles, SOSP ’17, pages 1–18, New York, NY, USA, 2017. ACM.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 86,
+      "text": "Hui Peng, Zhihao Yao, Ardalan Amiri Sani, Dave Jing Tian, and Mathias Payer. {GLeeFuzz }: Fuzzing {WebGL }through error message guided mutation. In 32nd USENIX Security Symposium (USENIX Security 23), pages 1883–1899, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 87,
+      "text": "picus. Picus. https://github.com/Veridise/Picus, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 88,
+      "text": "Polygon. Web3, aggregated. https://polygon.technology/, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 89,
+      "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, pages 1140–1152, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 90,
+      "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), pages 667–682, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 91,
+      "text": "Yuyang Sang, Ning Luo, Samuel Judson, Ben Chaimberg, Timos Antonopoulos, Xiao Wang, Ruzica Piskac, and Zhong Shao. Ou: Automating the parallelization of zero-knowledge protocols. Cryptology ePrint Archive, Paper 2023/657, 2023. https://eprint.iacr.org/2023/657.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 92,
+      "text": "Qingchao Shen, Haoyang Ma, Junjie Chen, Yongqiang Tian, Shing-Chi Cheung, and Xiang Chen. A comprehensive study of deep learning compiler bugs. In Proceedings of the 29th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ESEC/FSE 2021, page 968–980, New York, NY, USA, 2021. Association for Computing Machinery.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 93,
+      "text": "shuklaayush. Casting negative literals to unsigned doesn’t work. https: //github.com/noir-lang/noir/issues/2045, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 94,
+      "text": "Juraj Somorovsky. Systematic fuzzing and testing of tls libraries. In Proceedings of the 2016 ACMSIGSAC conference on computer and communications security, pages 1492–1504, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 95,
+      "text": "Fatemeh Heidari Soureshjani, Mathias Hall-Andersen, MohammadMahdi Jahanara, Jeffrey Kam, Jan Gorzny, and Mohsen Ahmadvand. Automated analysis of halo2 circuits. Cryptology ePrint Archive, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 96,
+      "text": "StarkWare. Starknet. https://starkware.co/starknet/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 97,
+      "text": "stealdrop. Stealthdrop: Anonymous airdrops using zk proofs. https: //github.com/stealthdrop/stealthdrop/blob/main/README.md, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 98,
+      "text": "Chengnian Sun, Vu Le, and Zhendong Su. Finding compiler bugs via live code mutation. In Proceedings of the 2016 ACMSIGPLAN International Conference on Object-Oriented Programming, Systems, Languages, and Applications, pages 849–863, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 99,
+      "text": "Yoshiki Takashima, Ruben Martins, Limin Jia, and Corina S. P ˘as˘areanu. Syrust: Automatic testing of rust libraries with semantic-aware program synthesis. In Proceedings of the 42nd ACMSIGPLAN International Conference on Programming Language Design and Implementation, PLDI 2021, page 899–913, New York, NY, USA, 2021. Association for Computing Machinery.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 100,
+      "text": "Xin Tan, Yuan Zhang, Jiadong Lu, Xin Xiong, Zhuang Liu, and Min Yang. Syzdirect: Directed greybox fuzzing for linux kernel. In Proceedings of the 2023 ACMSIGSAC Conference on Computer and Communications Security, pages 1630–1644, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 101,
+      "text": "Remix Team. Remixethereum ide and community. https:// remix-project.org/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 102,
+      "text": "Theodoros Theodoridis, Tobias Grosser, and Zhendong Su. Understanding and exploiting optimal function inlining. In Proceedings of the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, pages 977–989, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 103,
+      "text": "Theodoros Theodoridis, Manuel Rigger, and Zhendong Su. Finding missed optimizations through the lens of dead code elimination. In Proceedings of the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, pages 697–709, 2022.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 104,
+      "text": "Schaeffer Thibaut, Macesic Darko, Jacob Eberhardt, Stefan Tai, and Kuhnert Dennis. Zokratesa toolbox for zksnarks on ethereum. https://zokrates.github.io/, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 105,
+      "text": "Schaeffer Thibaut, Macesic Darko, Jacob Eberhardt, Stefan Tai, and Kuhnert Dennis. Zokratesgithub. https://github.com/Zokrates/ ZoKrates, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 106,
+      "text": "Ken Thompson. Reﬂections on trusting trust. Communications of the ACM, 27(8):761–763, 1984.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 107,
+      "text": "Michael Walﬁsh and Andrew J Blumberg. Verifying computations without reexecuting them. Communications of the ACM, 58(2):74–84, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 108,
+      "text": "Hongbo Wen, Jon Stephens, Yanju Chen, Kostas Ferles, Shankara Pailoor, Kyle Charbonnet, Isil Dillig, and Yu Feng. Practical security analysis of zero-knowledge proof circuits. Cryptology ePrint Archive, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 109,
+      "text": "Hongwei Xi and Frank Pfenning. Dependent types in practical programming. In Proceedings of the 26th ACMSIGPLAN-SIGACT symposium on Principles of programming languages, pages 214–227, 1999.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 110,
+      "text": "Dongwei Xiao, Zhibo Liu, Yiteng Peng, and Shuai Wang. Research artifacts for mtzk. https://sites.google.com/view/mtzk, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 111,
+      "text": "Dongwei Xiao, Zhibo Liu, and Shuai Wang. Metamorphic shader fusion for testing graphics shader compilers. In 2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE), pages 2400–2412, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 112,
+      "text": "Dongwei Xiao, Zhibo Liu, and Shuai Wang. Phyfu: Fuzzing modern physics simulation engines. In 2023 38th IEEE/ACM International Conference on Automated Software Engineering (ASE), pages 1579– 1591, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 113,
+      "text": "Dongwei Xiao, Zhibo Liu, Yuanyuan Yuan, Qi Pang, and Shuai Wang. Metamorphic testing of deep learning compilers. Proceedings of the ACM on Measurement and Analysis of Computing Systems, 6(1):1–28, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 114,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. Finding and understanding bugs in c compilers. In Proceedings of the 32nd ACMSIGPLAN conference on Programming language design and implementation, pages 283–294, 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 115,
+      "text": "Michał Zalewski. American Fuzzy Lop (AFL). https://lcamtuf. coredump.cx/aﬂ/, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 116,
+      "text": "Shahed Zaman, Bram Adams, and Ahmed E Hassan. A qualitative study on performance bugs. In 2012 9th IEEE working conference on mining software repositories (MSR), pages 199–208. IEEE, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 117,
+      "text": "zcash. Zcash: Privacy-protecting digital currency. https://z.cash/, 2023. TABLE XIV: Bug comparison with existing works. Existing Work #Compiler Bugs #Overlapping with MTZKCODA [75] 0 NAZKAP [108] 0 NA QED2 [83] 0 NA TABLE XV: Invalid program causes and their corresponding error message patterns. Invalid Reason Error Message Pattern Divide-by-zero “divisor of zero” Modulo-by-zero “remainder of zer",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 60,
+      "text": "Zu-Ming Jiang, Si Liu, Manuel Rigger, and Zhendong Su. Detecting transactional bugs in database engines via {Graph-Based }oracle construction. In 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23), pages 397–417, 2023.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 89,
+      "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, pages 1140–1152, 2020.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 90,
+      "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), pages 667–682, 2020.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 103,
+      "text": "Theodoros Theodoridis, Manuel Rigger, and Zhendong Su. Finding missed optimizations through the lens of dead code elimination. In Proceedings of the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, pages 697–709, 2022.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 89]",
+      "technique": "norec",
+      "sentence": "MTZK shares a similar testing-based approach with quality assurance tools for critical systems, such as CPUs [ 56], [46], databases [ 89], [59], [60], [90], and operating systems [ 65], [16], to detect errors instead of proving their absence.",
+      "context_before": "the compilation and optimization routines they employ. The black-box view enables us to test any ZK compiler without huge engineering efforts to adapt our tool to the compiler’s internal structure. Such a setting is also aligned with many existing testing tools for software compilers [ 114], [98]. We leave the exploration of white-box testing (e.g., relying on certain coverage criteria in the compiler codebase) for future work. Testing vs. Veriﬁcation. To the best of our knowledge, MTZK is the ﬁrst testing approach toward ZK compilers, addressing a timely demand of our community and industry.",
+      "context_after": "MTZK cannot offer a formal guarantee: when MTZK has no ﬁndings, we cannot conclude that a ZK compiler is free from bugs. Nevertheless, the testing approach delivered by MTZK is precise and speedy, with almost no false positives. More importantly, as a testing tool, MTZK provides defect-triggering inputs, which enable developers to debug and ﬁx the uncovered bugs (see Section VII for details). In contrast, we notice emerging research that aims to formally verify the correctness of ZK compilers [ 41], [82], [28] (details in Section IX). As a common and textbook- level concept, testing and veriﬁ",
+      "section": "C Usage Scenario and Clariﬁcation",
+      "page": 5,
+      "char_offset": 30215,
+      "cited_reference": {
+        "number": 89,
+        "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, pages 1140–1152, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker",
+        "citation_marker_project_authored"
+      ],
+      "techniques": [
+        "norec",
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[103]",
+      "technique": null,
+      "sentence": "Besides discovering correctness issues, testing is also applied to identify performance issues in compilers [ 76], [102], [103].",
+      "context_before": "ranslating programs written in high-level language to lowlevel executables. Traditional compilers like GCC, LLVM have been extensively tested, with thousands of bugs uncovered to date [ 114], [73], [98], [69], [67], [77], [78]. Just-in-time (JIT) compilers such as JVM and JavaScript engines have also been the focus of the research community [ 58], [12], [72], [50]. Other compilers like shader compilers, deep learning compilers, and Multi-Party Computation (MPC) compilers are fruitfully tested using metamorphic testing or differential testing as well [ 32], [113], [111], [70], [79], [92], [74].",
+      "context_after": "Our work isthe ﬁrst to systematically test ZK compilers using metamorphic testing, with a focus on uncovering logic bugs. Quality Assurance for ZK. Our work focuses on testing the correctness of ZK compilers. Another line of work focuses on ﬁnding bugs in ZK application programs. Circomspect [ 30] is a static analyzer for linting common buggy patterns, such as unused variables, in Circom programs. Picus [ 87], Ecne [ 35], QED2[83], and Soureshjani et al.’s work [ 95] aim at discovering under-constrained circuits in ZKP programs. Wen et al. [108] study common vulnerability patterns in ZKP circ",
+      "section": "D RQ4: Security Implications of Bugs",
+      "page": 15,
+      "char_offset": 85974,
+      "cited_reference": {
+        "number": 103,
+        "text": "Theodoros Theodoridis, Manuel Rigger, and Zhendong Su. Finding missed optimizations through the lens of dead code elimination. In Proceedings of the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, pages 697–709, 2022.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T17:02:36Z",
+    "is_model_written": true,
+    "summary": "MTZK tests zero-knowledge compilers, which translate a high-level program into an arithmetic circuit. A miscompilation there is a soundness or completeness flaw with security consequences, since a wrong circuit can accept a false proof. MTZK applies metamorphic testing to find such bugs.",
+    "narrative": "Database testing is cited as one of the domains whose testing-based quality assurance MTZK's approach resembles -- finding errors rather than proving their absence -- alongside CPUs and operating systems. Both mentions are reachable only through citation markers; SQLancer is never named, and nothing of it is used or measured against.",
+    "roles": {
+      "M1": "background",
+      "M2": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited as related work; no reuse of its code, generator or workload is described."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No SQLancer technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer or one of its oracles is reported."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The text does not describe SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,114 @@
+{%- comment -%}
+One talk: where SQLancer comes up in it, and how far each of those can be
+trusted.
+
+A talk is the one source in this dataset whose words are not directly readable.
+What a page can honestly show is therefore layered: the speaker's own slides can
+be quoted; a frame captured from the recording can be shown, since some talks
+name SQLancer only on a slide and no transcript reaches that; automatic captions
+can only be quoted as captions, with a link to the moment so a reader can listen
+for themselves; and where the only source is someone who watched it, the page
+says that instead of quoting anything.
+
+Parameter: id (a talk record id).
+{%- endcomment -%}
+{%- assign talk = site.data.impact.talks.talks | where: "id", include.id | first -%}
+{%- if talk %}
+
+<p class="impact-meta">
+  {%- if talk.speakers.size > 0 %}{{ talk.speakers | join: ", " }}{% endif -%}
+  {%- if talk.event %} &middot; {{ talk.event }}{% endif -%}
+  {%- if talk.year %} &middot; {{ talk.year }}{% endif -%}
+  {%- if talk.publisher %} &middot; {{ talk.publisher }}{% endif %}
+</p>
+
+<p><a href="{{ talk.url }}">Watch the talk</a></p>
+
+{%- if talk.relationship %}
+<h2>What it does with SQLancer</h2>
+<p>{{ talk.relationship.summary }}</p>
+<p>
+  {%- for role in talk.relationship.roles -%}
+  <span class="impact-tag">{{ role | replace: "_", " " }}</span>
+  {%- endfor -%}
+</p>
+{%- endif %}
+
+<h2>Where SQLancer comes up ({{ talk.mentions.size }})</h2>
+
+<ul>
+  {%- for mention in talk.mentions %}
+  <li>
+    {%- if mention.timestamp %}
+    <a href="{{ mention.url }}">{{ mention.timestamp }}</a>
+    {%- else %}
+    <a href="{{ mention.url }}">{{ mention.source }}</a>
+    {%- endif %}
+    {%- for id in mention.technique_ids -%}
+    {%- assign technique = site.data.impact.techniques.techniques | where: "id", id | first -%}
+    <span class="impact-tag">{{ technique.short_name | default: id | upcase }}</span>
+    {%- endfor %}
+    {%- if mention.excerpt %}
+    <br><q>{{ mention.excerpt }}</q>
+    {%- endif %}
+    {%- if mention.image %}
+    <figure class="impact-frame">
+      <a href="{{ mention.url }}"><img src="{{ mention.image }}"
+        alt="{{ mention.note | strip_html | escape }}" loading="lazy"></a>
+      <figcaption class="impact-meta">
+        The talk at {{ mention.timestamp }}. {{ mention.note }}
+      </figcaption>
+    </figure>
+    {%- endif %}
+    <div class="impact-meta">
+      {%- case mention.source -%}
+      {%- when "slides" -%}
+        From the talk's own slides.
+      {%- when "frame" -%}
+        A frame from the recording. Nothing is transcribed from it: what the
+        slide says is shown, not quoted.
+      {%- when "captions" -%}
+        From the talk's automatic captions &mdash; a machine transcription of
+        speech, not the speaker's words as written
+        {%- if mention.heard_as %}: it renders the name as
+        &ldquo;{{ mention.heard_as }}&rdquo;{% endif -%}. Follow the link to
+        hear what was said.
+      {%- when "watched" -%}
+        {{ mention.note }}
+      {%- endcase -%}
+    </div>
+    {%- comment -%}
+      Why a moment has no picture. Without this the absence reads as an
+      oversight, when it is the opposite: somebody went and looked.
+    {%- endcomment -%}
+    {%- if mention.frame_checked %}
+    <div class="impact-meta">
+      Nothing to show from this moment: {{ mention.frame_checked | downcase }}
+    </div>
+    {%- endif %}
+  </li>
+  {%- endfor %}
+</ul>
+
+<h2>What was read</h2>
+
+<ul>
+  {%- for source in talk.sources %}
+  <li>
+    <strong>{{ source.kind }}</strong> &mdash; {{ source.status | replace: "_", " " }}
+    {%- if source.segments %}, {{ source.segments }} caption segments{% endif -%}
+    {%- if source.url and source.kind == "slides" %} (<a href="{{ source.url }}">deck</a>){% endif -%}
+    {%- if source.note %}<div class="impact-meta">{{ source.note }}</div>{% endif -%}
+  </li>
+  {%- endfor %}
+</ul>
+
+<p class="impact-meta">
+  This record is
+  <a href="https://github.com/sqlancer/sqlancer.github.io/blob/main/_data/impact/talks.json"><code>talks.json</code></a>,
+  under the id <code>{{ talk.id }}</code>.
+</p>
+
+{%- else %}
+<p>No talk with this id.</p>
+{%- endif %}

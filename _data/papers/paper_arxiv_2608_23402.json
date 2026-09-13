@@ -1,0 +1,519 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:29:13Z",
+  "paper": {
+    "id": "paper:arxiv:2608.23402",
+    "title": "EXPLAIN Yourself! Finding Query Planner Stalls Across DBMSes",
+    "authors": [
+      "Geoffrey X. Yu",
+      "Ryan Marcus",
+      "Tim Kraska"
+    ],
+    "year": 2026,
+    "venue": null,
+    "doi": null,
+    "arxiv_id": "2608.23402",
+    "s2_paper_id": "5def00bebb723d615e84104a65800e1aa21f3743",
+    "url": "https://arxiv.org/abs/2608.23402",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2608.23402",
+      "retrieved_at": "2026-09-09T01:29:13Z",
+      "chars": 38574,
+      "content_sha256": "sha256:75b73dc7da1d36cd6b8f17b49d774bb26e7bcd56cb049e8c761bf4b44b925f28"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 7,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 1619
+      },
+      {
+        "number": "2",
+        "title": "Finding Query Planner Stalls",
+        "start": 6324
+      },
+      {
+        "number": "2.1",
+        "title": "Search Procedure",
+        "start": 6485
+      },
+      {
+        "number": "2.2",
+        "title": "Search Results",
+        "start": 10422
+      },
+      {
+        "number": "2.3",
+        "title": "Do Planner Stalls Transfer Across Systems?",
+        "start": 12770
+      },
+      {
+        "number": "3",
+        "title": "Query Planner Pathologies",
+        "start": 14220
+      },
+      {
+        "number": "3.1",
+        "title": "Correlated Subqueries",
+        "start": 14507
+      },
+      {
+        "number": "3.2",
+        "title": "Adversarial CTE Expansion",
+        "start": 17256
+      },
+      {
+        "number": "3.3",
+        "title": "Repeated Subquery Expressions",
+        "start": 18779
+      },
+      {
+        "number": "3.4",
+        "title": "Disjunctive Joins",
+        "start": 21664
+      },
+      {
+        "number": "3.5",
+        "title": "Adversarial Constant Folding",
+        "start": 23002
+      },
+      {
+        "number": "4",
+        "title": "Related Work",
+        "start": 25565
+      },
+      {
+        "number": "5",
+        "title": "Conclusion",
+        "start": 27941
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "DuckDB Authors. 2026. WITH Clause. https://duckdb.org/docs/lts/sql/query_ syntax/with.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "PostgreSQL Authors. 2026. Common Table Expression Materialization. https://www.postgresql.org/docs/current/queries-with.html#QUERIESWITH-CTE-MATERIALIZATION.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In The 45th International Conference on Software Engineering (ICSE’23).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 4,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. In The 46th International Conference on Software Engineering (ICSE’24).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 5,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. Proceeding of ACM Management of Data (SIGMOD’24) (June 2024).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 6,
+      "text": "Philipp Fent, Guido Moerkotte, and Thomas Neumann. 2023. Asymptotically Better Query Optimization Using Indexed Algebra. Proc. VLDB Endow. 16, 11 (July 2023), 3018–3030. doi:10.14778/3611479.3611505",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Wook-Shin Han, Wooseong Kwak, Jinsoo Lee, Guy M. Lohman, and Volker Markl. 2008. Parallelizing Query Optimization. Proc. VLDB Endow. 1, 1 (Aug. 2008), 188–200. doi:10.14778/1453856.1453882",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Axel Hertzschuch, Claudio Hartmann, Dirk Habich, and Wolfgang Lehner. 2021. Simplicity Done Right for Join Ordering. In Proceedings of the 11th Annual Conference on Innovative Data Systems Research (CIDR ’21).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Benjamin Hilprecht and Carsten Binnig. 2022. Zero-Shot Cost Models for Outof-the-box Learned Cost Prediction. Proceedings of the VLDB Endowment 15, 11 (2022), 2361–2374. https://www.vldb.org/pvldb/vol15/p2361-hilprecht.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Ihab F. Ilyas, Jun Rao, Guy Lohman, Dengfeng Gao, and Eileen Lin. 2003. Estimating Compilation Time of a Query Optimizer. In Proceedings of the 2003 ACMSIGMOD International Conference on Management of Data (San Diego, California)(SIGMOD ’03). Association for Computing Machinery, New York, NY, USA, 373–384. doi:10.1145/872757.872803",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2019. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems. Proc. VLDB Endow. 13, 1 (Sept. 2019), 57–70. doi:10.14778/ 3357377.3357382",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Jinhui Lai, Chi Zhang, Jie Liang, Zihao Zeng, Zhiyong Wu, Jingzhou Fu, Chijin Zhou, Shuai Ma, Yu Jiang, and Zichen Xu. 2026. Finding Missed Optimizations in DBMSs through Unbalanced Short-circuit Query Construction. doi:10.1145/3802061",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Viktor Leis, Andrey Gubichev, Atanas Mirchev, Peter Boncz, Alfons Kemper, and Thomas Neumann. 2015. How good are query optimizers, really? Proc. VLDB Endow. 9, 3 (Nov. 2015), 204–215. doi:10.14778/2850583.2850594",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Zhan Li, Olga Papaemmanouil, and Mitch Cherniack. 2016. OptMark: A Toolkit for Benchmarking Query Optimizers. In Proceedings of the 25th ACM International on Conference on Information and Knowledge Management (Indianapolis, Indiana, USA) (CIKM ’16). Association for Computing Machinery, New York, NY, USA, 2155–2160. doi:10.1145/2983323.2983658",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. 2022. Automatic detection of performance bugs in database systems using equivalent queries. In Proceedings of the 44th International Conference on Software Engineering (Pittsburgh, Pennsylvania) (ICSE ’22). Association for Computing Machinery, New York, NY, USA, 225–236. doi:10.1145/3510003.3510093",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Qiuyang Mang, Runyuan He, Suyang Zhong, Xiaoxuan Liu, Huanchen Zhang, and Alvin Cheung. 2026. Automated Discovery of Test Oracles for Database Management Systems Using LLMs. doi:10.1145/3802017",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Ryan Marcus, Parimarjan Negi, Hongzi Mao, Nesime Tatbul, Mohammad Alizadeh, and Tim Kraska. 2022. Bao: Making Learned Query Optimization Practical. In Proceedings of the International Conference on Management of Data (SIGMOD ’22).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Ryan Marcus, Parimarjan Negi, Hongzi Mao, Chi Zhang, Mohammad Alizadeh, Tim Kraska, Olga Papaemmanouil, and Nesime Tatbul. 2019. Neo: A Learned Query Optimizer. Proceedings of the VLDB Endowment 12, 11 (2019).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Ryan Marcus and Olga Papaemmanouil. 2019. Plan-Structured Deep Neural Network Models for Query Performance Prediction. Proceedings of the VLDB Endowment 12, 11 (2019), 1733–1746. doi:10.14778/3342263.3342646",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Thomas Neumann. 2025. Improving Unnesting of Complex Queries. In Datenbanksysteme für Business, Technologie und Web (BTW 2025). Gesellschaft für Informatik, Bonn, 25–47. doi:10.18420/BTW2025-01",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Thomas Neumann and Bernhard Radke. 2018. Adaptive Optimization of Very Large Join Queries. In Proceedings of the 2018 International Conference on Management of Data (Houston, TX, USA) (SIGMOD ’18). Association for Computing Machinery, New York, NY, USA, 677–692. doi:10.1145/3183713.3183733",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Oracle Corporation. 2026. MySQL common_subexpression_elimination.cc File Reference. https://dev.mysql.com/doc/dev/mysql-server/9.7.1/common_ _subexpression__elimination_8cc.html. 6 EXPLAIN Yourself! Finding Query Planner Stalls Across DBMSes",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Oracle Corporation. 2026. MySQL Reference Manual. https://dev.mysql.com/doc/ refman/9.7/en/server-system-variables.html#sysvar_optimizer_search_depth.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Oracle Corporation. 2026. MySQL SQL Planner Code. https://github.com/ mysql/mysql-server/blob/06a5c1c99c377fc41b2eba1ea244e8b220bdc3c8/sql/ sql_planner.cc#L2638-L2642.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Anthony G Read. 2006. DeWitt Clauses: Can We Protect Purchasers Without Hurting Microsoft. Rev. Litig. 25 (2006), 387.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Maximilian Rieger and Thomas Neumann. 2025. T3: Accurate and Fast Performance Prediction for Relational Database Systems With Compiled Decision Trees. doi:10.1145/3725364",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of the 2020 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (Sacramento, California, United States) (ESEC/FSE 2020). doi:10.1145/3368089.3409710",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 28,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (2020). doi:10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 29,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI ’20). USENIX Association, Banff, Alberta. https://www. usenix.org/conference/osdi20/presentation/rigger",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 30,
+      "text": "Gaurav Saxena, Mohammad Rahman, Naresh Chainani, Chunbin Lin, George Caragea, Fahim Chowdhury, Ryan Marcus, Tim Kraska, Ippokratis Pandis, and Balakrishnan (Murali) Narayanaswamy. 2023. Auto-WLM: Machine Learning Enhanced Workload Management in Amazon Redshift. In Companion of the 2023 International Conference on Management of Data (Seattle, WA, USA) (SIGMOD ’23). Association for Computing Machine",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Vikramank Singh, Kapil Eknath Vaidya, Vinayshekhar Bannihatti Kumar, Sopan Khosla, Balakrishnan Narayanaswamy, Rashmi Gangadharaiah, and Tim Kraska. 2024. Panda: Performance Debugging for Databases Using LLM Agents. In 14th Conference on Innovative Data Systems Research (CIDR ’24). 6 pages. https: //www.cidrdb.org/cidr2024/papers/p6-singh.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Ji Sun and Guoliang Li. 2019. An End-to-End Learning-based Cost Estimator. Proceedings of the VLDB Endowment 13, 3 (2019), 307–319. doi:10.14778/3368289. 3368296",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Transaction Processing Performance Council. 2025. TPC-H Benchmark. https: //www.tpc.org/TPC_Documents_Current_Versions/pdf/TPC-H_v3.0.1.pdf.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Immanuel Trummer and Christoph Koch. 2016. Parallelizing Query Optimization on Shared-Nothing Architectures. Proc. VLDB Endow. 9, 9 (May 2016), 660–671. doi:10.14778/2947618.2947622",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Zhiyong Wu, Jie Liang, Jingzhou Fu, Mingzhe Wang, and Yu Jiang. 2025. Hulk: Exploring Data-Sensitive Performance Anomalies in DBMSs via Data-Driven Analysis. Proc. ACM Softw. Eng. 2, ISSTA, Article ISSTA096 (June 2025), 22 pages. doi:10.1145/3728973",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Zhiyong Wu, Jie Liang, Jingzhou Fu, Mingzhe Wang, and Yu Jiang. 2025. PUPPY: Finding Performance Degradation Bugs in DBMSs via Limited-Optimization Plan Construction. In Proceedings of the 47th IEEE/ACM International Conference on Software Engineering (ICSE ’25). IEEE Computer Society, 679–690. doi:10.1109/ ICSE55347.2025.00045",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Ziniu Wu, Ryan Marcus, Zhengchun Liu, Parimarjan Negi, Vikram Nathan, Pascal Pfeil, Gaurav Saxena, Mohammad Rahman, Balakrishnan Narayanaswamy, and Tim Kraska. 2024. Stage: Query Execution Time Prediction in Amazon Redshift. In Companion of the 2024 International Conference on Management of Data (Santiago AA, Chile) (SIGMOD ’24). Association for Computing Machinery, New York, NY, USA, 280–294. doi",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Ziniu Wu, Pei Yu, Peilun Yang, Rong Zhu, Yuxing Han, Yaliang Li, Defu Lian, Kai Zeng, and Jingren Zhou. 2022. A Unified Transferable Model for ML-Enhanced DBMS. In Proceedings of the 12th Conference on Innovative Data Systems Research (CIDR ’22). https://www.cidrdb.org/cidr2022/papers/p6-wu.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Geoffrey X. Yu, Ryan Marcus, and Tim Kraska. 2026. Tailwind: A Practical Framework for Query Accelerators. arXiv:2604.28079 [cs.DB] https://arxiv.org/ abs/2604.28079",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Chi Zhang and Manuel Rigger. 2025. Constant Optimization Driven Database System Testing. 2025), 24 pages. doi:10.1145/3709674",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 41,
+      "text": "Xuanhe Zhou, Guoliang Li, Zhaoyan Sun, Zhiyuan Liu, Weize Chen, Jianming Wu, Jiesi Liu, Ruohang Feng, and Guoyang Zeng. 2024. D-Bot: Database Diagnosis System Using Large Language Models. Proceedings of the VLDB Endowment 17, 10 (2024), 2514–2527. https://www.vldb.org/pvldb/vol17/p2514-li.pdf 7",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 3,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In The 45th International Conference on Software Engineering (ICSE’23).",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 4,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. In The 46th International Conference on Software Engineering (ICSE’24).",
+      "technique": "cert",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing cert"
+      ]
+    },
+    {
+      "number": 5,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Keep It Simple: Testing Databases via Differential Query Plans. Proceeding of ACM Management of Data (SIGMOD’24) (June 2024).",
+      "technique": "dqp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing dqp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 27,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of the 2020 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (Sacramento, California, United States) (ESEC/FSE 2020). doi:10.1145/3368089.3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 28,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding Bugs in Database Systems via Query Partitioning. Proc. ACM Program. Lang. 4, OOPSLA, Article 211 (2020). doi:10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 29,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI ’20). USENIX Association, Banff, Alberta. https://www. usenix.org/conference/osdi20/presentation/rigger",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 40,
+      "text": "Chi Zhang and Manuel Rigger. 2025. Constant Optimization Driven Database System Testing. 2025), 24 pages. doi:10.1145/3709674",
+      "technique": "coddtest",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing coddtest",
+        "prints the DOI of the paper introducing coddtest",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 4,11,12,15,35,36]",
+      "technique": "cert",
+      "sentence": "Prior works propose techniques for finding query execution performance bugs in database systems [ 4,11,12,15,35,36].",
+      "context_before": "evaluates query planning effectiveness and efficiency. It measures efficiency using logical counts, e.g., the number of join orders explored (among others), which correlates with optimization time. While OptMark is a methodology for comparing planners on efficiency, our work focuses on finding and analyzing pathological queries that cause long planning times. Ilyas et al. explore predicting query planning time, which might help avoid pathological queries [ 10]. Orthogonal work also proposes techniques to improve the performance of query planning [6–8, 21, 34]. Database performance bug finding.",
+      "context_after": "The high-level idea is to identify a general property about a pair of queries (e.g., making a query more restrictive should result in an output cardinality estimate no larger than the original query [ 4]). Then, they generate query pairs and check if they satisfy the property and report a bug if not. Our work differs, as we identify and study queries that trigger query planner performance bugs (instead of query execution performance bugs). Database correctness bug finding. A complementary set of papers propose techniques to find correctness bugs in database systems [ 3,5,16,27–29,40], applyin",
+      "section": "4 Related Work",
+      "page": 6,
+      "char_offset": 26249,
+      "cited_reference": {
+        "number": 4,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. In The 46th International Conference on Software Engineering (ICSE’24).",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing cert"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[ 4]",
+      "technique": "cert",
+      "sentence": ", making a query more restrictive should result in an output cardinality estimate no larger than the original query [ 4]).",
+      "context_before": "le OptMark is a methodology for comparing planners on efficiency, our work focuses on finding and analyzing pathological queries that cause long planning times. Ilyas et al. explore predicting query planning time, which might help avoid pathological queries [ 10]. Orthogonal work also proposes techniques to improve the performance of query planning [6–8, 21, 34]. Database performance bug finding. Prior works propose techniques for finding query execution performance bugs in database systems [ 4,11,12,15,35,36]. The high-level idea is to identify a general property about a pair of queries (e.g.",
+      "context_after": "Then, they generate query pairs and check if they satisfy the property and report a bug if not. Our work differs, as we identify and study queries that trigger query planner performance bugs (instead of query execution performance bugs). Database correctness bug finding. A complementary set of papers propose techniques to find correctness bugs in database systems [ 3,5,16,27–29,40], applying a similar approach grounded in query pairs as in performance bug finding. Among these proposals, Argus is most thematically similar to this work as it uses LLMs to generate pairs of semantically equivalen",
+      "section": "4 Related Work",
+      "page": 6,
+      "char_offset": 26450,
+      "cited_reference": {
+        "number": 4,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. CERT: Finding Performance Issues in Database Systems Through the Lens of Cardinality Estimation. In The 46th International Conference on Software Engineering (ICSE’24).",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing cert"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[ 3,5,16,27–29,40]",
+      "technique": "qpg",
+      "sentence": "A complementary set of papers propose techniques to find correctness bugs in database systems [ 3,5,16,27–29,40], applying a similar approach grounded in query pairs as in performance bug finding.",
+      "context_before": "ding. Prior works propose techniques for finding query execution performance bugs in database systems [ 4,11,12,15,35,36]. The high-level idea is to identify a general property about a pair of queries (e.g., making a query more restrictive should result in an output cardinality estimate no larger than the original query [ 4]). Then, they generate query pairs and check if they satisfy the property and report a bug if not. Our work differs, as we identify and study queries that trigger query planner performance bugs (instead of query execution performance bugs). Database correctness bug finding.",
+      "context_after": "Among these proposals, Argus is most thematically similar to this work as it uses LLMs to generate pairs of semantically equivalent but syntactically different queries that they then execute and compare results [ 16]. Our work differs as we are searching for and analyzing query planner performance bugs, not correctness bugs. Agentic performance debugging. Researchers have recently been exploring leveraging LLMs to help with performance debugging [ 31] and diagnostics [ 41]. Such techniques propose workflows involving multiple agents, grounded in artifacts (e.g., prior customer tickets, troubl",
+      "section": "4 Related Work",
+      "page": 6,
+      "char_offset": 26844,
+      "cited_reference": {
+        "number": 3,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing Database Engines via Query Plan Guidance. In The 45th International Conference on Software Engineering (ICSE’23).",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-10T14:59:41Z",
+    "is_model_written": true,
+    "summary": "This paper looks for query planner stalls -- cases where planning a query takes disproportionately long, before any of it is executed. Because planning cost is visible through EXPLAIN without running the query, the same probe works across DBMSes, which is what lets the study span several systems rather than instrumenting one.",
+    "narrative": "SQLancer's work is the related-work ground this paper stands on, and all seven of its oracle papers are cited: CERT, QPG and DQP as the performance-bug line, and NoREC, TLP, PQS and CODDTest as the correctness line whose query-pair approach it describes as similar in kind to performance bug finding. CERT is the one drawn on in detail -- the paper restates its principle, that making a query more restrictive should not raise the output cardinality estimate. Every mention is reached through a citation marker; the paper never writes the name SQLancer.",
+    "roles": {
+      "M1": "background",
+      "M2": "definition",
+      "M3": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Nothing describes reuse of SQLancer's code, generator or workload; planner stalls are measured through EXPLAIN."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The paper measures planning cost rather than developing an oracle. M2 restates CERT's principle as background, not as something generalised."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The seven papers are cited as related work. No run of SQLancer or any of its oracles against this tool is reported."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The techniques are described by what they do; no standing is claimed for any of them."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

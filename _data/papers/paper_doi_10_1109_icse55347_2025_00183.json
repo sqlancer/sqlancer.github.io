@@ -1,0 +1,541 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T17:11:49Z",
+  "paper": {
+    "id": "paper:doi:10.1109/icse55347.2025.00183",
+    "title": "ROSA: Finding Backdoors with Fuzzing",
+    "authors": [
+      "Dimitrios Kokkonis",
+      "M. Marcozzi",
+      "Emilien Decoux",
+      "Stefano Zacchiroli"
+    ],
+    "year": 2025,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1109/icse55347.2025.00183",
+    "arxiv_id": "2505.08544",
+    "s2_paper_id": "e13b3c2397adc3c3047750da2263b0678cf048b6",
+    "url": "https://doi.org/10.1109/icse55347.2025.00183",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2505.08544",
+      "retrieved_at": "2026-09-07T17:11:49Z",
+      "chars": 75776,
+      "content_sha256": "sha256:35348d464a7aee23952234ef75aa9f4c6af33c8cbef1e80d248d38d5d6292162"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 2106
+      },
+      {
+        "number": "II",
+        "title": "BACKGROUND",
+        "start": 7943
+      },
+      {
+        "number": "A",
+        "title": "Code-level backdoors",
+        "start": 7958
+      },
+      {
+        "number": "B",
+        "title": "Graybox and metamorphic fuzzing",
+        "start": 11296
+      },
+      {
+        "number": "III",
+        "title": "MOTIVATING EXAMPLE",
+        "start": 17702
+      },
+      {
+        "number": "A",
+        "title": "A “hard-coded credentials” backdoor in sudo",
+        "start": 17726
+      },
+      {
+        "number": "B",
+        "title": "Detecting the backdoor with ROSA",
+        "start": 19092
+      },
+      {
+        "number": "A",
+        "title": "General overview",
+        "start": 22679
+      },
+      {
+        "number": "B",
+        "title": "Phase 1: representative inputs collection",
+        "start": 26613
+      },
+      {
+        "number": "C",
+        "title": "Phase 2: backdoor detection",
+        "start": 29152
+      },
+      {
+        "number": "D",
+        "title": "Post-processing: deduplication and vetting",
+        "start": 31709
+      },
+      {
+        "number": "A",
+        "title": "General overview",
+        "start": 35903
+      },
+      {
+        "number": "B",
+        "title": "Constructing the ROSARUM benchmark",
+        "start": 36901
+      },
+      {
+        "number": "C",
+        "title": "RQ1: usability and usefulness of ROSA",
+        "start": 40836
+      },
+      {
+        "number": "D",
+        "title": "RQ2: comparison with the state of the art",
+        "start": 52969
+      },
+      {
+        "number": "E",
+        "title": "Threats to validity",
+        "start": 56165
+      },
+      {
+        "number": "T",
+        "title": "Holz, M. Stamatogiannakis, and S. Ioannidis, Eds. Cham: Springer",
+        "start": 65163
+      },
+      {
+        "number": "S",
+        "title": "N. Foley, D. Gollmann, and E. Snekkenes, Eds. Cham: Springer",
+        "start": 68481
+      },
+      {
+        "number": "M",
+        "title": "Meier, Eds. Cham: Springer International Publishing, 2017, vol.",
+        "start": 69083
+      },
+      {
+        "number": "A",
+        "title": "Crump, A. Ale-Ebrahim, N. Bissantz, M. Muench, and T. Holz, “Sok:",
+        "start": 74223
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "S. L. Thomas and A. Francillon, “Backdoors: Definition, Deniability and Detection,” in Research in Attacks, Intrusions, and Defenses, M. Bailey, T. Holz, M. Stamatogiannakis, and S. Ioannidis, Eds. Cham: Springer International Publishing, 2018, vol. 11050, pp. 92–113.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "T. Ganz, I. Ashraf, M. H ¨arterich, and K. Rieck, “Detecting Backdoors in Collaboration Graphs of Software Repositories,” in Proceedings of the Thirteenth ACM Conference on Data and Application Security and Privacy. Charlotte NCUSA: ACM, Apr. 2023, pp. 189–200.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "F. Schuster and T. Holz, “Towards reducing the attack surface of software backdoors,” in Proceedings of the 2013 ACMSIGSAC Conference on Computer & Communications Security-CCS ’13. Berlin, Germany: ACM Press, 2013, pp. 851–862.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "C. Evans, “Alert: vsftpd download backdoored,” 2011, https://scarybeastsecurity.blogspot.com/2011/07/ alert-vsftpd-download-backdoored.html [Accessed: July, 19, 2024].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "I. Red Hat, “Malicious code was discovered in the upstream tarballs of xz,” 2024, https://nvd.nist.gov/vuln/detail/CVE-2024-3094 [Accessed: May, 22, 2024].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "J. Toterhi, “Hunting for backdoors in iot firmware at unprecedented scale,” in Proceedings of the 2018 Hack in the Box Dubai Hacking conference Security-HITBSecConf Dubai ’18, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Z. Michael Lee, “D-link routers found to contain backdoor,” 2013, https: //www.zdnet.com/article/d-link-routers-found-to-contain-backdoor [Accessed: May, 22, 2024].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "d. Craig, “From china, with love,” 2013, https://web.archive. org/web/20131020145741/http://www.devttys0.com/2013/10/ from-china-with-love [Accessed: May, 22, 2024].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "E. Benoist-Vanderbeken, “Some codes and notes about the backdoor listening on tcp-32764 in linksys wag200g,” 2015, https://github.com/ elvanderb/TCP-32764/tree/master [Accessed: May, 22, 2024].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "P. Godefroid, “Fuzzing: Hack, art, and science,” Communications of the ACM, vol. 63, no. 2, pp. 70–76, Jan. 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "M. Harman and P. McMinn, “A theoretical and empirical study of searchbased testing: Local, global, and hybrid search,” IEEE Transactions on Software Engineering, vol. 36, no. 2, pp. 226–247, 2009.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "E. T. Barr, M. Harman, P. McMinn, M. Shahbaz, and S. Yoo, “The Oracle Problem in Software Testing: A Survey,” IEEE Transactions on Software Engineering, vol. 41, no. 5, pp. 507–525, May 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "D. Song, J. Lettner, P. Rajasekaran, Y. Na, S. V olckaert, P. Larsen, and M. Franz, “Sok: Sanitizing for security,” in Security and Privacy (SP), 2019, pp. 1275–1295.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "A. Fioraldi, D. Maier, H. Eißfeldt, and M. Heuse, “AFL++: Combining Incremental Steps of Fuzzing Research,” in WOOT’20: Proceedings of the 14th USENIX Conference on Offensive Technologies, Aug. 2020, p. 10.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "AFL++, “Qemu-afl,” 2024. [Online]. Available: https://github.com/ AFLplusplus/qemuafl",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "“Circumventing Fuzzing Roadblocks with Compiler Transformations,” Aug. 2016. [Online]. Available: https://lafintel.wordpress.com/2016/08/ 15/circumventing-fuzzing-roadblocks-with-compiler-transformations/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "C. Aschermann, S. Schumilo, T. Blazytko, R. Gawlik, and T. Holz, “REDQUEEN: Fuzzing with Input-to-State Correspondence,” in Proceedings 2019 Network and Distributed System Security Symposium. San Diego, CA: Internet Society, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "S. L. Thomas, T. Chothia, and F. D. Garcia, “Stringer: Measuring the Importance of Static Data Comparisons to Detect Backdoors and Undocumented Functionality,” in Computer Security – ESORICS 2017, S. N. Foley, D. Gollmann, and E. Snekkenes, Eds. Cham: Springer International Publishing, 2017, vol. 10493, pp. 513–531.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Y. Shoshitaishvili, R. Wang, C. Hauser, C. Kruegel, and G. Vigna, “Firmalice-Automatic Detection of Authentication Bypass Vulnerabilities in Binary Firmware,” in Proceedings 2015 Network and Distributed System Security Symposium. San Diego, CA: Internet Society, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "S. L. Thomas, F. D. Garcia, and T. Chothia, “HumIDIFy: A Tool for Hidden Functionality Detection in Firmware,” in Detection of Intrusions and Malware, and Vulnerability Assessment, M. Polychronakis and M. Meier, Eds. Cham: Springer International Publishing, 2017, vol. 10327, pp. 279–300.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "S. Segura, G. Fraser, A. B. Sanchez, and A. Ruiz-Cort ´es, “A survey on metamorphic testing,” IEEE Transactions on software engineering, vol. 42, no. 9, pp. 805–824, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "A. Hazimeh, A. Herrera, and M. Payer, “Magma: A Ground-Truth Fuzzing Benchmark,” Proceedings of the ACM on Measurement and Analysis of Computing Systems, vol. 4, no. 3, pp. 1–29, Nov. 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "D. Kokkonis, M. Marcozzi, E. Decoux, and S. Zacchiroli, “The ROSA toolchain,” 2025, archived on Software Heritage with SWHID swh:1:rev:d30f7f1800a5dde3b9991125f9b911f8396c6346. [Online]. Available: https://github.com/binsec/rosa",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "——, “The ROSARUM backdoor detection benchmark,” 2025, archived on Software Heritage with SWHID swh:1:rev:21d986293f083a09c0692c504305ac6e4fb9bf38. [Online]. Available: https://github.com/binsec/rosarum",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "V. G. Lokhande and D. Vidyarthi, “A study of hardware architecture based attacks to bypass operating system security,” Security and Privacy, vol. 2, no. 4, p. e81, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "N. Kostyuk and S. Landau, “Dueling over dual ecdrbg: The consequences of corrupting a cryptographic standardization process,” Harv. Nat’l Sec. J., vol. 13, p. 224, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "X. Chen, C. Liu, B. Li, K. Lu, and D. Song, “Targeted backdoor attacks on deep learning systems using data poisoning,” arXiv preprint arXiv:1712.05526, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "M. Ohm, H. Plate, A. Sykosch, and M. Meier, “Backstabber’s knife collection: A review of open source software supply chain attacks,” inDetection of Intrusions and Malware, and Vulnerability Assessment: 17th International Conference, DIMVA 2020, Lisbon, Portugal, June 24–26, 2020, Proceedings. Berlin, Heidelberg: Springer-Verlag, 2020, p. 23–43.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "P. Ladisa, H. Plate, M. Martinez, and O. Barais, “Sok: Taxonomy of attacks on open-source software supply chains,” in 2023 IEEE Symposium on Security and Privacy (SP). IEEE, 2023, pp. 1509–1526.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "R. Kikas, G. Gousios, M. Dumas, and D. Pfahl, “Structure and Evolution of Package Dependency Networks,” in 2017 IEEE/ACM 14th International Conference on Mining Software Repositories (MSR). Buenos Aires, Argentina: IEEE, May 2017, pp. 102–112.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "A. Decan, T. Mens, and P. Grosjean, “An empirical comparison of dependency network evolution in seven software packaging ecosystems,” Empir. Softw. Eng., vol. 24, no. 1, pp. 381–416, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "B. P. Miller, L. Fredriksen, and B. So, “An empirical study of the reliability of UNIX utilities,” Communications of the ACM, vol. 33, no. 12, pp. 32–44, Dec. 1990.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "C. Cadar, D. Dunbar, and D. Engler, “KLEE: Unassisted and Automatic Generation of High-Coverage Tests for Complex Systems Programs,” inProceedings of the 8th USENIX Conference on Operating Systems Design and Implementation, ser. OSDI’08. USENIX Association, 2008, pp. 209–224.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "M. Zalewski, “American Fuzzy Lop-Whitepaper,” Tech. Rep., 2016. [Online]. Available: https://lcamtuf.coredump.cx/afl/technical details.txt",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "F. Bellard, “QEMU, a fast and portable dynamic translator,” in Proceedings of the Annual Conference on USENIX Annual Technical Conference, ser. ATEC ’05. USA: USENIX Association, 2005, p. 41.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "P. Yao, H. Huang, W. Tang, Q. Shi, R. Wu, and C. Zhang, “Skeletal approximation enumeration for smt solver testing,” in Proceedings of the 29th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, ser. ESEC/FSE 2021. New York, NY, USA: Association for Computing Machinery, 2021, p. 1141–1153.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Z. Su and C. Sun, “Emi-based compiler testing,” 2024. [Online]. Available: https://web.cs.ucdavis.edu/ ∼su/emi-project/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proc. ACM Program. Lang., vol. 4, no. OOPSLA, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 39,
+      "text": "A. Lascu, M. Windsor, A. F. Donaldson, T. Grosser, and J. Wickerson, “Dreaming up metamorphic relations: Experiences from three fuzzer tools,” in 2021 IEEE/ACM 6th International Workshop on Metamorphic Testing (MET). IEEE, 2021, pp. 61–68.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "S. Project, “Sqlancer,” 2024. [Online]. Available: https://github.com/ sqlancer/sqlancer",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 41,
+      "text": "Sudo Project, “Sudo,” 2024. [Online]. Available: https://www.sudo.ws/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "R. Hamming, Coding and Information Theory. Prentice-Hall, 1980.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "A. F. Donaldson, P. Thomson, V. Teliman, S. Milizia, A. P. Maselco, and A. Karpi ´nski, “Test-case reduction and deduplication almost for free with transformation-based compiler testing,” in Proceedings of the 42nd ACMSIGPLAN International Conference on Programming Language Design and Implementation, ser. PLDI 2021. New York, NY, USA: Association for Computing Machinery, 2021, p. 1017–1032.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Strace, “Strace Linux utility,” 2024. [Online]. Available: https: //github.com/strace/strace",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "G. Klees, A. Ruef, B. Cooper, S. Wei, and M. Hicks, “Evaluating fuzz testing,” in Proceedings of the 2018 ACMSIGSAC Conference on Computer and Communications Security, ser. CCS ’18. New York, NY, USA: Association for Computing Machinery, 2018, p. 2123–2138.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "M. Schloegel, N. Bars, N. Schiller, L. Bernhard, T. Scharnowski, A. Crump, A. Ale-Ebrahim, N. Bissantz, M. Muench, and T. Holz, “Sok: Prudent evaluation practices for fuzzing,” in Security and Privacy (SP). Los Alamitos, CA, USA: IEEE Computer Society, may 2024, pp. 140–140.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "M. Weiser, “Program slicing,” IEEE Transactions on software engineering, no. 4, pp. 352–357, 1984.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "M. Tehranipoor and F. Koushanfar, “A survey of hardware trojan taxonomy and detection,” IEEE Des. Test, vol. 27, no. 1, p. 10–25, jan 2010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "C. Easttom, “A study of cryptographic backdoors in cryptographic primitives,” in Electrical Engineering (ICEE), Iranian Conference on, 2018, pp. 1664–1669.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Y. Li, Y. Jiang, Z. Li, and S.-T. Xia, “Backdoor learning: A survey,” IEEE Transactions on Neural Networks and Learning Systems, vol. 35, no. 1, pp. 5–22, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "O. A. Aslan and R. Samet, “A comprehensive review on malware detection approaches,” IEEE Access, vol. 8, pp. 6249–6271, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "S. Hangal and M. S. Lam, “Tracking down software bugs using automatic anomaly detection,” in Proceedings of the 24th International Conference on Software Engineering-ICSE ’02. Orlando, Florida: ACM Press, 2002, p. 291.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "S. Nilizadeh, Y. Noller, and C. S. Pasareanu, “DifFuzz: Differential Fuzzing for Side-Channel Analysis,” in 2019 IEEE/ACM 41st International Conference on Software Engineering (ICSE). Montreal, QC, Canada: IEEE, May 2019, pp. 176–187.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Y. Fang, M. Xie, and C. Huang, “PBDT: Python Backdoor Detection Model Based on Combined Features,” Security and Communication Networks, vol. 2021, pp. 1–13, Sep. 2021.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 38,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proc. ACM Program. Lang., vol. 4, no. OOPSLA, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 40,
+      "text": "S. Project, “Sqlancer,” 2024. [Online]. Available: https://github.com/ sqlancer/sqlancer",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[36]–[40]",
+      "technique": "tlp",
+      "sentence": "Known successful uses of metamorphic oracles in fuzzing have notably enabled detecting intricate logic bugs in various complex, mature and large programs, like compilers, SQL database management systems and SMT solvers [36]–[40].",
+      "context_before": "developing such an oracle is a core contribution of this work. Several families of sophisticated oracles [12] have already been proposed to detect complex forms of bugs and vulnerabilities. One such family is metamorphic oracles [21], based on metamorphic relations that are expected to hold between pairs of inputs to a PUT. The principle of the oracle is then that any pair of generated inputs found violating the metamorphic relation is a trace of a PUT failure, to be further investigated. The oracle developed in this work to detect the triggering of backdoors is a form of a metamorphic oracle.",
+      "context_after": "III. MOTIVATING EXAMPLE A. A “hard-coded credentials” backdoor in sudo The sudo Unix command-line tool [41] enables executing a given command as a different (usually more privileged) user. For example, echo PASSWORD | sudo-S -u alice CMD, when run by an entitled user bob, allows them to run command CMD as user alice, provided that PASSWORD is the correct password for user bob. If the password is indeed correct, sudo issues system calls to create a child process owned by alice, in which it executes CMD. Otherwise, sudo issues system calls to print an error message on the screen. 1int verify_us",
+      "section": "B Graybox and metamorphic fuzzing",
+      "page": 3,
+      "char_offset": 17471,
+      "cited_reference": {
+        "number": 38,
+        "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proc. ACM Program. Lang., vol. 4, no. OOPSLA, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[36]–[40]",
+      "technique": "tlp",
+      "sentence": "Bug detection with fuzzing usually relies on simple oracles, like crash detection [14], [34] and sanitizers [13], but metamorphic oracles have also been coupled with fuzzers to find logical bugs in code processors or constraint solvers [36]–[40].",
+      "context_before": "d machine learning [50]. The second includes detecting malware [51] (malicious active programs), as well as exploitable bugs, with a significant part of fuzzing research focusing on detecting memory bugs in memory-unsafe languages [10], which pose security threats. Exploitable bugs can serve a similar purpose as backdoors. So-called “bugdoors” [1] are bugs injected on purpose in programs, for later exploitation by informed attackers. Bugdoors can be more plausibly denied by their authors than backdoors, but they can be detected using well-established tools and practices for software hardening.",
+      "context_after": "Detection of code-level backdoors. Research on codelevel backdoors has been rather scarce [1]. Four approaches and corresponding tools have been proposed to analyze (binary) program code and detect backdoors. We have discussed STRINGER and compared it experimentally to ROSA in Section VI-D. WEASEL [3] aims at detecting authentication bypass (e.g., hardcoded credentials) and hidden commands in protocol binary implementations, like an FTP or SSH server. WEASEL tests the binary with inputs generated from the protocol specification and analyzes the resulting execution traces, to locate the functi",
+      "section": "E Threats to validity",
+      "page": 11,
+      "char_offset": 59069,
+      "cited_reference": {
+        "number": 38,
+        "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Proc. ACM Program. Lang., vol. 4, no. OOPSLA, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:19:46Z",
+    "is_model_written": true,
+    "summary": "ROSA detects code-level backdoors -- hidden access such as hard-coded credentials -- by fuzzing. The authors argue manual auditing is hard, existing semi-automated approaches need reverse-engineering, and no existing fuzzing technique recognises a backdoor being triggered at runtime. ROSA pairs AFL++ with a metamorphic oracle able to detect such triggers, and ships ROSARUM, the first open benchmark for backdoor detection. It finds all 17 benchmark backdoors in about 1.5 hours.",
+    "narrative": "Two citations, both pointing to SQLancer's oracles as the known successful use of metamorphic oracles in fuzzing to find intricate logic bugs in mature software -- the precedent for ROSA's own oracle.",
+    "roles": {
+      "M1": "background",
+      "M2": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

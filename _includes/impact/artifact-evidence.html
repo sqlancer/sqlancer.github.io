@@ -1,0 +1,68 @@
+{%- comment -%}
+Explains, in words, why a paper counts as reusing SQLancer infrastructure.
+
+The raw evidence does not read well on its own: the link evidence quotes the
+repository describing the paper, and the marker evidence quotes a line of Java.
+Neither tells a reader what the connection to SQLancer is. This turns the marker
+list into plain English and puts the two halves of the claim side by side --
+what was found in the artifact, and why the artifact belongs to this paper.
+
+Parameter: paper (a paper record).
+{%- endcomment -%}
+{%- assign artifact = paper.artifacts | first -%}
+{%- if artifact %}
+<div class="impact-evidence">
+  {%- assign marker_phrases = "" | split: "" -%}
+  {%- for marker in artifact.sqlancer_markers -%}
+    {%- case marker -%}
+      {%- when "fork_of_sqlancer_repository" -%}
+        {%- assign phrase = "is a fork of the SQLancer repository" -%}
+      {%- when "sqlancer_source_content_match" -%}
+        {%- assign phrase = "contains SQLancer's own source files" -%}
+      {%- when "renamed_sqlancer_package" -%}
+        {%- assign phrase = "carries them under a renamed package" -%}
+      {%- when "retained_sqlancer_source_files" -%}
+        {%- assign phrase = "retains SQLancer source files" -%}
+      {%- when "sqlancer_package_structure" -%}
+        {%- assign phrase = "keeps SQLancer's package layout" -%}
+      {%- when "sqlancer_provider_directory" -%}
+        {%- assign phrase = "keeps SQLancer's database-system providers" -%}
+      {%- when "sqlancer_build_file_reference" -%}
+        {%- assign phrase = "builds under SQLancer's own build coordinates" -%}
+      {%- when "randomly_java_present" -%}
+        {%- assign phrase = "includes SQLancer's Randomly.java" -%}
+      {%- when "sqlancer_copyright_or_license_notice" -%}
+        {%- assign phrase = "carries a SQLancer copyright notice" -%}
+      {%- when "readme_states_reuse" -%}
+        {%- assign phrase = "says so in its README" -%}
+      {%- else -%}
+        {%- assign phrase = "" -%}
+    {%- endcase -%}
+    {%- if phrase != "" -%}
+      {%- assign marker_phrases = marker_phrases | push: phrase -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  Its artifact,
+  <a href="{{ artifact.url }}">{{ artifact.url | remove: "https://github.com/" }}</a>,
+  {% if marker_phrases.size > 0 %}{{ marker_phrases | join: ", and " }}.{% else %}shows SQLancer markers.{% endif %}
+
+  {%- comment -%}
+    The evidence behind both halves: why the repository is SQLancer's code, and
+    why it is this paper's repository.
+  {%- endcomment -%}
+  {%- comment -%}
+    The note, not the line it was read from. Marker evidence quotes source
+    code, and the same declaration out of SQLancer's Randomly.java is what
+    thirteen of these papers copied -- so the quote says nothing the note has
+    not already said, in a form nobody reads. The link goes to the file for
+    anyone who wants it.
+  {%- endcomment -%}
+  {%- for item in artifact.marker_evidence limit: 3 %}
+  <div class="impact-meta">
+    {{ item.note }}
+    <a href="{{ item.source_url }}">source</a>
+  </div>
+  {%- endfor %}
+</div>
+{%- endif %}

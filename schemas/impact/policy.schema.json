@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sqlancer.github.io/schemas/impact/policy.schema.json",
+  "title": "Impact attribution policy",
+  "description": "The documented policy that governs which records are accepted. It is machine-readable so that the classifiers, the tests and the public /impact/ page all read the same text; bumping policy_version invalidates cached classifications.",
+  "type": "object",
+  "required": ["schema_version", "policy_version", "sections"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "$ref": "common.schema.json#/definitions/schema_version" },
+    "policy_version": { "type": "string", "maxLength": 40 },
+    "effective_date": { "$ref": "common.schema.json#/definitions/date" },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "body"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "common.schema.json#/definitions/slug" },
+          "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+          "body": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1, "maxLength": 2000 },
+            "description": "Paragraphs of prose."
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "text"],
+              "additionalProperties": false,
+              "properties": {
+                "id": { "type": "string", "maxLength": 80 },
+                "text": { "type": "string", "minLength": 5, "maxLength": 1200 },
+                "kind": { "type": "string", "enum": ["include", "exclude", "note"] }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

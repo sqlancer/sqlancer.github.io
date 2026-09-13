@@ -1,0 +1,947 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:30:45Z",
+  "paper": {
+    "id": "paper:arxiv:2503.03893",
+    "title": "Parser Knows Best: Testing DBMS with Coverage-Guided Grammar-Rule Traversal",
+    "authors": [
+      "Yu Liang",
+      "Hong Hu"
+    ],
+    "year": 2025,
+    "venue": "arXiv.org",
+    "doi": null,
+    "arxiv_id": "2503.03893",
+    "s2_paper_id": "45c07812d74c526823b806aaa2c85a4193ecac16",
+    "url": "https://arxiv.org/abs/2503.03893",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2503.03893",
+      "retrieved_at": "2026-09-09T01:30:45Z",
+      "chars": 79898,
+      "content_sha256": "sha256:d918665784586acbf18109fd9cccc79d44f69340e92d636c44c73a70b62c4ec7"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 15,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 1337
+      },
+      {
+        "number": "2",
+        "title": "Background & Challenges",
+        "start": 8214
+      },
+      {
+        "number": "2.1",
+        "title": "An Example Memory Error from MySQL",
+        "start": 8240
+      },
+      {
+        "number": "2.2",
+        "title": "Generation-based DBMS Testing Tools",
+        "start": 12175
+      },
+      {
+        "number": "2.3",
+        "title": "Mutation-based DBMS Testing Tools",
+        "start": 15431
+      },
+      {
+        "number": "2.4",
+        "title": "Parser Generators in the DBMSs",
+        "start": 17736
+      },
+      {
+        "number": "3.1",
+        "title": "Parser Rule-based Query Generation",
+        "start": 22992
+      },
+      {
+        "number": "3.2",
+        "title": "Path Explosion due to Recursive Keyword",
+        "start": 27457
+      },
+      {
+        "number": "3.3",
+        "title": "Query Mutation with Coverage Feedback",
+        "start": 32244
+      },
+      {
+        "number": "5.1",
+        "title": "DBMS Bugs",
+        "start": 42061
+      },
+      {
+        "number": "5.2",
+        "title": "Comparison with Existing Tools",
+        "start": 43404
+      },
+      {
+        "number": "5.3",
+        "title": "Contribution of Coverage Feedback",
+        "start": 55879
+      },
+      {
+        "number": "5.4",
+        "title": "Contribution of Diverse Syntax Features",
+        "start": 58160
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Shadi Abdul Khalek and Sarfraz Khurshid. Automated SQL Query Generation for Systematic Testing of Database Engines. In Proceedings of the IEEE/ACM International Conference on Automated Software Engineering (ASE), 2010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. Testing database engines via query plan guidance. In Proceedings of International Conference on Software Engineering (ICSE), 2023.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 3,
+      "text": "Antonio Bovenzi, Domenico Cotroneo, Roberto Pietrantuono, and Stefano Russo. On the aging effects due to concurrency bugs: A case study on mysql. In Reliability Engineering, pages 211–220. IEEE, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Nicolas Bruno, Surajit Chaudhuri, and Dilys Thomas. Generating queries with cardinality constraints for dbms testing. IEEE Transactions on Knowledge and Data Engineering, 18(12):1721–1725, 2006.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Bikash Chandra, Bhupesh Chawda, Biplab Kar, K. V. Maheshwara Reddy, Shetal Shah, and S. Sudarshan. Data Generation for Testing and Grading SQL Queries. The VLDB Journal, 24(6), Aug 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Yongheng Chen, Rui Zhong, Hong Hu, Hangfan Zhang, Yupeng Yang, Dinghao Wu, and Wenke Lee. One Engine to Fuzz ’em All: Generic Language Processor Testing with Semantic Validation. In Proceedings of the 42nd IEEE Symposium on Security and Privacy (Oakland), Virtual, May 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Jaeseung Choi, Kangsu Kim, Daejin Lee, and Sang Kil Cha. NTFUZZ: Enabling Type-Aware Kernel Fuzzing on Windows with Static Binary Analysis. In Proceedings of the 42nd IEEE Symposium on Security and Privacy (Oakland), Virtual, May 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Catalin Cimpanu. Google Chrome Impacted by New Magellan 2.0 Vulnerabilities. https://www.zdnet.com/article/google-c hrome-impacted-by-new-magellan-2-0-vulnerabilities/, December 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Sung Ta Dinh, Haehyun Cho, Kyle Martin, Adam Oest, Kyle Zeng, Alexandros Kapravelos, Gail-Joon Ahn, Tiffany Bao, Ruoyu Wang, Adam Doupé, et al. Favocado: Fuzzing the Binding Code of JavaScript Engines Using Semantically Correct Test Cases. In Proceedings of the 28th Annual Network and Distributed System Security Symposium (NDSS), Virtual, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Bogdan Ghit, Nicolas Poggi, Josh Rosen, Reynold Xin, and Peter Boncz. SparkFuzz: Searching Correctness Regressions in Modern Query Engines. In Proceedings of the Workshop on Testing Database Systems (DBTest), Portland, Oregon, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Google. ClusterFuzz. https://google.github.io/clusterfuzz. (visited in October 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Google. syzkaller-Kernel Fuzzer. https://github.com/google/ syzkaller, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Tao Guo, Puhan Zhang, Xin Wang, and Qiang Wei. Gramfuzz: Fuzzing testing of web browsers based on grammar analysis and structural mutation. In 2013 Second International Conference on Informatics & Applications (ICIA), pages 212–215. IEEE, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. Dynsql: Stateful fuzzing for database management systems with complex and valid sql query generation. In Proceedings of USENIX Security Symposium (USENIX Security), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Stephen C Johnson and Ravi Sethi. Yacc: a parser generator. UNIX Vol. II: research system, pages 347–374, 1990.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems. In Proceedings of the 46th International Conference on Very Large Data Bases (VLDB), Tokyo, Japan, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Kyungtae Kim, Dae R Jeong, Chung Hwan Kim, Yeongjin Jang, Insik Shin, and Byoungyoung Lee. HFL: Hybrid Fuzzing on the Linux Kernel. In Proceedings of the 27th Annual Network and Distributed System Security Symposium (NDSS), San Diego, CA, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Guoliang Li, Xuanhe Zhou, Shifu Li, and Bo Gao. QTune: A QueryAware Database Tuning System with Deep Reinforcement Learning. Proceedings of the VLDB Endowment, 12(12):2118–2130, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Yabin Li, Yuanping Nie, and Xiaohui Kuang. Fuzzing dbms via nnlm. In2022 7th IEEE International Conference on Data Science in Cyberspace (DSC), pages 367–374. IEEE, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. Sequence-oriented dbms fuzzing. In Proceedings of IEEE International Conference on Data Engineering (ICDE), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Yu Liang, Song Liu, and Hong Hu. Detecting logical bugs of {DBMS } with coverage-based guidance. In 31st USENIX Security Symposium (USENIX Security 22), pages 4309–4326, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Xinyu Liu, Qi Zhou, Joy Arulraj, and Alessandro Orso. Automatic detection of performance bugs in database systems using equivalent queries. In Proceedings of the 44th International Conference on Software Engineering, pages 225–236, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Eric Lo, Carsten Binnig, Donald Kossmann, M. Tamer Özsu, and WingKai Hon. A Framework for Testing DBMS Features. The VLDB Journal, 19(2):203–230, April 2010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Manuel Rigger. SQLancer. https://github.com/sqlancer/sqla ncer. (visited in October 2023).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 25,
+      "text": "Michaël Marcozzi, Wim Vanhoof, and Jean-Luc Hainaut. Test Input Generation for Database Programs Using Relational Constraints. In Proceedings of the Fifth International Workshop on Testing Database Systems (DBTest), Scottsdale, Arizona, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Chaitanya Mishra, Nick Koudas, and Calisto Zuzarte. Generating Targeted Queries for Database Testing. In Proceedings of the 2008 ACMSIGMOD International Conference on Management of Data (SIGMOD), New York, NY, USA, 2008.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Shankara Pailoor, Andrew Aday, and Suman Jana. MoonShine: Optimizing OS Fuzzer Seed Selection with Trace Distillation. In Proceedings of the 27th USENIX Security Symposium (USENIX Security), Baltimore, MD, 2018. 14",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Soyeon Park, Wen Xu, Insu Yun, Daehee Jang, and Taesoo Kim. Fuzzing JavaScript Engines with Aspect-preserving Mutation. In Proceedings of the 41st IEEE Symposium on Security and Privacy (Oakland), San Francisco, CA, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Terence Parr and Kathleen Fisher. Ll (*) the foundation of the antlr parser generator. ACM Sigplan Notices, 46(6):425–436, 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Terence J. Parr and Russell W. Quong. Antlr: A predicated-ll (k) parser generator. Software: Practice and Experience, 25(7):789–810, 1995.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Alexandre Rebert, Sang Kil Cha, Thanassis Avgerinos, Jonathan Foote, David Warren, Gustavo Grieco, and David Brumley. Optimizing seed selection for fuzzing. In 23rd USENIX Security Symposium (USENIX Security 14), pages 861–875, 2014.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Manuel Rigger and Zhendong Su. Detecting Optimization Bugs in Database Engines via Non-optimizing Reference Engine Construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE), 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 33,
+      "text": "Manuel Rigger and Zhendong Su. Finding Bugs in Database Systems via Query Partitioning. Proceedings of the ACM on Programming Languages, 4(OOPSLA):1–30, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 34,
+      "text": "Manuel Rigger and Zhendong Su. Testing Database Engines via Pivoted Query Synthesis. In Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI), Virtual, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 35,
+      "text": "Contessa Brewer Rohan Goswami. Caesars paid millions in ransom to cybercrime group prior to MGM hack. https://www.cnbc.com/2 023/09/14/caesars-paid-millions-in-ransom-to-cybercr ime-group-prior-to-mgm-hack.html, September 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Zeeshan Shah. Over 2 million Pakistanis’ data hacked from restaurants database up for sale. https://www.geo.tv/latest/510830-ove r-2-million-pakistanis-data-hacked-from-restaurants -database-up-for-sale, September 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Chaofan Shou, Ismet Burak Kadron, Qi Su, and Tevfik Bultan. Corbfuzz: Checking browser security policies with fuzzing. In 2021 36th IEEE/ACM International Conference on Automated Software Engineering (ASE), pages 215–226. IEEE, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Donald R Slutz. Massive Stochastic Testing of SQL. In VLDB, volume 98, pages 618–622. Citeseer, 1998.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Michael Stonebraker, Sam Madden, and Pradeep Dubey. Intel \"Big Data\" Science and Technology Center Vision and Execution Plan. ACMSIGMOD Record, 42(1):44–49, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Well-known Users of SQLite. https://www.sqlite.org/famous. html. (visited in October 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Go Fuzzing. https://www.sqlite.org/lemon.html. (visited in October 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "MySQL Customers. https://www.mysql.com/customers/. (visited in October 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "The Lemon LALR(1) Parser Generator. https://www.sqlite.org /lemon.html. (visited in October 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "CockroachDB Customers. https://www.cockroachlabs.com/cu stomers/. (visited in October 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "PingCAP Partner. https://www.pingcap.com/partners/. (visited in October 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "PostgreSQL Clients. https://www.postgresql.org/about/. (visited in October 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "SQLSmith. https://github.com/anse1/sqlsmith. (visited in October 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "CockroachDB Parser. https://github.com/cockroachdb/cockr oach/blob/master/pkg/sql/parser/sql.y. (visited in October 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "MariaDB Parser. https://github.com/MariaDB/server/blob /11.3/sql/sql_yacc.yy. (visited in October 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "MySQL Parser. https://github.com/mysql/mysql-server/bl ob/trunk/sql/sql_yacc.yy. (visited in October 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "PostgreSQL: The Parser Stage. https://www.postgresql.org/d ocs/current/parser-stage.html. (visited in October 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "TiDB Parser. https://github.com/pingcap/tidb/blob/maste r/parser/parser.y. (visited in October 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Testing random, valid SQL in CockroachDB. https://www.cockro achlabs.com/blog/testing-random-valid-sql-in-cockroa chdb/, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Backus–Naur form. https://en.wikipedia.org/wiki/Backus âĂŞNaur_form, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "GNU Bison: Languages and Context-Free Grammars. https://www. gnu.org/software/bison/manual/html_node/Language-and-Grammar.html, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "goyacc.https://pkg.go.dev/golang.org/x/tools/cmd/goya cc, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "SQLsmith Bugs. https://github.com/anse1/sqlsmith/wiki #score-list, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "J. Wang, P. Zhang, L. Zhang, H. Zhu, and X. Ye. A Model-based Fuzzing Approach for DBMS. In Proceedings of the 8th International Conference on Communications and Networking in China (CHINACOM), Aug 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Jiajie Wang, Puhan Zhang, Lei Zhang, Haowen Zhu, and Xiaojun Ye. A model-based fuzzing approach for dbms. In 2013 8th International Conference on Communications and Networking in China (CHINACOM), pages 426–431. IEEE, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. Industry Practice of Coverage-Guided Enterprise-Level DBMS Fuzzing. In 2021 IEEE/ACM 43rd International Conference on Software Engineering: Software Engineering in Practice (ICSE-SEIP), 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Shihao Wen, Peng Jia, Pin Yang, and Chi Hu. Squill: Testing dbms with correctness feedback and accurate instantiation. Applied Sciences, 13(4):2519, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Wen Xu, Hyungon Moon, Sanidhya Kashyap, Po-Ning Tseng, and Taesoo Kim. Fuzzing File Systems via Two-Dimensional Input Space Exploration. In Proceedings of the 40th IEEE Symposium on Security and Privacy (Oakland), San Francisco, CA, May 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Wen Xu, Soyeon Park, and Taesoo Kim. FREEDOM: Engineering a State-of-the-Art DOM Fuzzer. In Proceedings of the 27th ACM Conference on Computer and Communications Security (CCS), Orlando, FL, November 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Jiaqi Yan, Qiuye Jin, Shrainik Jain, Stratis D. Viglas, and Allison Lee. Snowtrail: Testing with Production Queries on a Cloud Database. In Proceedings of the Workshop on Testing Database Systems (DBTest), New York, NY, USA, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Junwen Yang, Pranav Subramaniam, Shan Lu, Cong Yan, and Alvin Cheung. How not to structure your database-backed web applications: a study of performance bugs in the wild. In Proceedings of the 40th International Conference on Software Engineering, pages 800–810, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Michal Zalewski. American Fuzzy Lop (2.52b). http://lcamtuf. coredump.cx/afl. (visited in October 2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Proceedings of the 27th ACM Conference on Computer and Communications Security (CCS), Orlando, USA, November 2020. 15",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 2,
+      "text": "Jinsheng Ba and Manuel Rigger. Testing database engines via query plan guidance. In Proceedings of International Conference on Software Engineering (ICSE), 2023.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 24,
+      "text": "Manuel Rigger. SQLancer. https://github.com/sqlancer/sqla ncer. (visited in October 2023).",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 32,
+      "text": "Manuel Rigger and Zhendong Su. Detecting Optimization Bugs in Database Engines via Non-optimizing Reference Engine Construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE), 2020.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 33,
+      "text": "Manuel Rigger and Zhendong Su. Finding Bugs in Database Systems via Query Partitioning. Proceedings of the ACM on Programming Languages, 4(OOPSLA):1–30, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 34,
+      "text": "Manuel Rigger and Zhendong Su. Testing Database Engines via Pivoted Query Synthesis. In Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI), Virtual, 2020.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[2, 14, 47, 67]",
+      "technique": "qpg",
+      "sentence": "Recent efforts on DBMS testing [2, 14, 47, 67] can be classified into two categories: generation-based testing and mutation-based grey-box fuzzing.",
+      "context_before": "aluation, ParserFuzz outperforms all state-of-the-art existing DBMS testing tools in terms of bug finding, grammar rule coverage and code coverage. ParserFuzz detects 81 previouslyunknown bugs in total across 5 popular DBMSs, where all bugs are confirmed and 34 have been fixed. 1 Introduction Database Management System (DBMS) stores, retrieves and manages data in a structured manner. They are extensively used in real-world data-intensive applications to drive trillions of Internet services and electronic devices [39, 40, 42, 44 –46]. Any DBMS bugs will affect a large number of users [8,35,36].",
+      "context_after": "SQLsmith [47] is the most popular generation-based testing tool to date. It generates SQL queries based on pre-defined query templates. These templates are manually crafted by SQLsmith ’s developers, and can help generate high-quality SQL queries [57]. Another representative generation-based tool is SQLancer +QPG,where QPGrepresents query plan guidance [2].SQLancer +QPG adopts DBMS query plan information as the feedback to guide the query generation process, and is designed to detect logic errors from the DBMS code. Similar to SQLsmith, SQLancer +QPGalso generates query sequences based on pred",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 1658,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba and Manuel Rigger. Testing database engines via query plan guidance. In Proceedings of International Conference on Software Engineering (ICSE), 2023.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Another representative generation-based tool is SQLancer +QPG,where QPGrepresents query plan guidance [2].",
+      "context_before": "sively used in real-world data-intensive applications to drive trillions of Internet services and electronic devices [39, 40, 42, 44 –46]. Any DBMS bugs will affect a large number of users [8,35,36]. Recent efforts on DBMS testing [2, 14, 47, 67] can be classified into two categories: generation-based testing and mutation-based grey-box fuzzing. SQLsmith [47] is the most popular generation-based testing tool to date. It generates SQL queries based on pre-defined query templates. These templates are manually crafted by SQLsmith ’s developers, and can help generate high-quality SQL queries [57].",
+      "context_after": "SQLancer +QPG adopts DBMS query plan information as the feedback to guide the query generation process, and is designed to detect logic errors from the DBMS code. Similar to SQLsmith, SQLancer +QPGalso generates query sequences based on predefined SQL templates. However, due to the significant difference between multiple DBMS dialects, these pre-defined SQL templates cannot cover unique, complicated features from different DBMS systems [21,38]. Further, as every DBMS keeps evolving, developers of SQLsmith and SQLancer +QPGhave to track all recent updates and manually insert new templates. Recen",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 2059,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer +QPG adopts DBMS query plan information as the feedback to guide the query generation process, and is designed to detect logic errors from the DBMS code.",
+      "context_before": "ic devices [39, 40, 42, 44 –46]. Any DBMS bugs will affect a large number of users [8,35,36]. Recent efforts on DBMS testing [2, 14, 47, 67] can be classified into two categories: generation-based testing and mutation-based grey-box fuzzing. SQLsmith [47] is the most popular generation-based testing tool to date. It generates SQL queries based on pre-defined query templates. These templates are manually crafted by SQLsmith ’s developers, and can help generate high-quality SQL queries [57]. Another representative generation-based tool is SQLancer +QPG,where QPGrepresents query plan guidance [2].",
+      "context_after": "Similar to SQLsmith, SQLancer +QPGalso generates query sequences based on predefined SQL templates. However, due to the significant difference between multiple DBMS dialects, these pre-defined SQL templates cannot cover unique, complicated features from different DBMS systems [21,38]. Further, as every DBMS keeps evolving, developers of SQLsmith and SQLancer +QPGhave to track all recent updates and manually insert new templates. Recently, coverage-guided grey-box fuzzing is widely used to detect memory errors from a wide-range of applications, including but not limited to operating systems [7,",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 2165,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Similar to SQLsmith, SQLancer +QPGalso generates query sequences based on predefined SQL templates.",
+      "context_before": "o two categories: generation-based testing and mutation-based grey-box fuzzing. SQLsmith [47] is the most popular generation-based testing tool to date. It generates SQL queries based on pre-defined query templates. These templates are manually crafted by SQLsmith ’s developers, and can help generate high-quality SQL queries [57]. Another representative generation-based tool is SQLancer +QPG,where QPGrepresents query plan guidance [2].SQLancer +QPG adopts DBMS query plan information as the feedback to guide the query generation process, and is designed to detect logic errors from the DBMS code.",
+      "context_after": "However, due to the significant difference between multiple DBMS dialects, these pre-defined SQL templates cannot cover unique, complicated features from different DBMS systems [21,38]. Further, as every DBMS keeps evolving, developers of SQLsmith and SQLancer +QPGhave to track all recent updates and manually insert new templates. Recently, coverage-guided grey-box fuzzing is widely used to detect memory errors from a wide-range of applications, including but not limited to operating systems [7, 12, 17, 27, 62], web browsers [11, 13, 37, 63] and compilers [6, 9, 28]. To conduct grey-box testin",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 2327,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker",
+      "surface": "[24]",
+      "technique": null,
+      "sentence": "There is another generation-based DBMS testing tool called SQLancer [24], that focuses on detecting DBMS logic errors from DBMS systems [32 –34].",
+      "context_before": "generation-based query testing framework is SQLsmith [47]. Since its release, SQLsmith has been used extensively to test on different DBMSs, and found many bugs from the DBMS softwares [57]. However, the hand-written query templates are limited in covering the syntax elements from the DBMS syntax rules, and cannot fit in the complex and ever-changing SQL dialects defined in different DBMS softwares. Therefore, the queries generated from SQLsmith cannot cover all the SQL features from the DBMSs, and lack the capability to detect deep and unique bugs that are dedicated to the DBMSs’ feature sets.",
+      "context_after": "DBMS logic bugs are code logic errors that cause the DBMS to return incorrect results. Unlike tools that detect memory errors, SQLancer doesn’t generate arbitrary types of random queries for fuzzing. Instead, it focuses only on generating queries that matchingits oracles’ needs. In essence, SQLancer prefers to generate multiple syntactically different, but functionally equivalence queries, and verify their results to ensure the query execution correctness. SQLancer introduces a few SQL oracles for this purpose such as NoREC ,TLPandPQS, where each shares a distinct SQL pattern to match [32 –34",
+      "section": "2.2 Generation-based DBMS Testing Tools",
+      "page": 3,
+      "char_offset": 12948,
+      "cited_reference": {
+        "number": 24,
+        "text": "Manuel Rigger. SQLancer. https://github.com/sqlancer/sqla ncer. (visited in October 2023).",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Unlike tools that detect memory errors, SQLancer doesn’t generate arbitrary types of random queries for fuzzing.",
+      "context_before": "are limited in covering the syntax elements from the DBMS syntax rules, and cannot fit in the complex and ever-changing SQL dialects defined in different DBMS softwares. Therefore, the queries generated from SQLsmith cannot cover all the SQL features from the DBMSs, and lack the capability to detect deep and unique bugs that are dedicated to the DBMSs’ feature sets. There is another generation-based DBMS testing tool called SQLancer [24], that focuses on detecting DBMS logic errors from DBMS systems [32 –34]. DBMS logic bugs are code logic errors that cause the DBMS to return incorrect results.",
+      "context_after": "Instead, it focuses only on generating queries that matchingits oracles’ needs. In essence, SQLancer prefers to generate multiple syntactically different, but functionally equivalence queries, and verify their results to ensure the query execution correctness. SQLancer introduces a few SQL oracles for this purpose such as NoREC ,TLPandPQS, where each shares a distinct SQL pattern to match [32 –34]. With its latest configuration SQLancer +QPG[2], it uses the DBMS query plan to guide its query generation in order to stress test the DBMS query optimization logic. However, because SQLancer and SQ",
+      "section": "2.2 Generation-based DBMS Testing Tools",
+      "page": 3,
+      "char_offset": 13180,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In essence, SQLancer prefers to generate multiple syntactically different, but functionally equivalence queries, and verify their results to ensure the query execution correctness.",
+      "context_before": "generated from SQLsmith cannot cover all the SQL features from the DBMSs, and lack the capability to detect deep and unique bugs that are dedicated to the DBMSs’ feature sets. There is another generation-based DBMS testing tool called SQLancer [24], that focuses on detecting DBMS logic errors from DBMS systems [32 –34]. DBMS logic bugs are code logic errors that cause the DBMS to return incorrect results. Unlike tools that detect memory errors, SQLancer doesn’t generate arbitrary types of random queries for fuzzing. Instead, it focuses only on generating queries that matchingits oracles’ needs.",
+      "context_after": "SQLancer introduces a few SQL oracles for this purpose such as NoREC ,TLPandPQS, where each shares a distinct SQL pattern to match [32 –34]. With its latest configuration SQLancer +QPG[2], it uses the DBMS query plan to guide its query generation in order to stress test the DBMS query optimization logic. However, because SQLancer and SQLancer +QPGrestricted themselves to generate queries that align with the oracles’ patterns, they lack the query diversity needed to explore all the grammar features provided by the DBMSs. Therefore, neither SQLancer nor SQLancer +QPGare suitable to detect DBMS m",
+      "section": "2.2 Generation-based DBMS Testing Tools",
+      "page": 3,
+      "char_offset": 13373,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer introduces a few SQL oracles for this purpose such as NoREC ,TLPandPQS, where each shares a distinct SQL pattern to match [32 –34].",
+      "context_before": "is another generation-based DBMS testing tool called SQLancer [24], that focuses on detecting DBMS logic errors from DBMS systems [32 –34]. DBMS logic bugs are code logic errors that cause the DBMS to return incorrect results. Unlike tools that detect memory errors, SQLancer doesn’t generate arbitrary types of random queries for fuzzing. Instead, it focuses only on generating queries that matchingits oracles’ needs. In essence, SQLancer prefers to generate multiple syntactically different, but functionally equivalence queries, and verify their results to ensure the query execution correctness.",
+      "context_after": "With its latest configuration SQLancer +QPG[2], it uses the DBMS query plan to guide its query generation in order to stress test the DBMS query optimization logic. However, because SQLancer and SQLancer +QPGrestricted themselves to generate queries that align with the oracles’ patterns, they lack the query diversity needed to explore all the grammar features provided by the DBMSs. Therefore, neither SQLancer nor SQLancer +QPGare suitable to detect DBMS memory corruption bugs that are arise from interesting but rarely tested syntax features. There are several other generation-based DBMS testin",
+      "section": "2.2 Generation-based DBMS Testing Tools",
+      "page": 3,
+      "char_offset": 13554,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "With its latest configuration SQLancer +QPG[2], it uses the DBMS query plan to guide its query generation in order to stress test the DBMS query optimization logic.",
+      "context_before": "BMS logic bugs are code logic errors that cause the DBMS to return incorrect results. Unlike tools that detect memory errors, SQLancer doesn’t generate arbitrary types of random queries for fuzzing. Instead, it focuses only on generating queries that matchingits oracles’ needs. In essence, SQLancer prefers to generate multiple syntactically different, but functionally equivalence queries, and verify their results to ensure the query execution correctness. SQLancer introduces a few SQL oracles for this purpose such as NoREC ,TLPandPQS, where each shares a distinct SQL pattern to match [32 –34].",
+      "context_after": "However, because SQLancer and SQLancer +QPGrestricted themselves to generate queries that align with the oracles’ patterns, they lack the query diversity needed to explore all the grammar features provided by the DBMSs. Therefore, neither SQLancer nor SQLancer +QPGare suitable to detect DBMS memory corruption bugs that are arise from interesting but rarely tested syntax features. There are several other generation-based DBMS testing tools that aim to detect various kinds of bugs from the DBMSs [23, 26, 58]. Some existing works treat the SQL query generation as a boolean satisfiability problem,",
+      "section": "2.2 Generation-based DBMS Testing Tools",
+      "page": 3,
+      "char_offset": 13695,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "However, because SQLancer and SQLancer +QPGrestricted themselves to generate queries that align with the oracles’ patterns, they lack the query diversity needed to explore all the grammar features provided by the DBMSs.",
+      "context_before": "es of random queries for fuzzing. Instead, it focuses only on generating queries that matchingits oracles’ needs. In essence, SQLancer prefers to generate multiple syntactically different, but functionally equivalence queries, and verify their results to ensure the query execution correctness. SQLancer introduces a few SQL oracles for this purpose such as NoREC ,TLPandPQS, where each shares a distinct SQL pattern to match [32 –34]. With its latest configuration SQLancer +QPG[2], it uses the DBMS query plan to guide its query generation in order to stress test the DBMS query optimization logic.",
+      "context_after": "Therefore, neither SQLancer nor SQLancer +QPGare suitable to detect DBMS memory corruption bugs that are arise from interesting but rarely tested syntax features. There are several other generation-based DBMS testing tools that aim to detect various kinds of bugs from the DBMSs [23, 26, 58]. Some existing works treat the SQL query generation as a boolean satisfiability problem, and use SAT solvers to produce queries that achieve high correctness rate [1, 25]. Chandra et al. extend the database construction technique to boost the efficiency of DBMS query testings [5]. Bruno et al. propose to ge",
+      "section": "2.2 Generation-based DBMS Testing Tools",
+      "page": 3,
+      "char_offset": 13860,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Therefore, neither SQLancer nor SQLancer +QPGare suitable to detect DBMS memory corruption bugs that are arise from interesting but rarely tested syntax features.",
+      "context_before": "eries, and verify their results to ensure the query execution correctness. SQLancer introduces a few SQL oracles for this purpose such as NoREC ,TLPandPQS, where each shares a distinct SQL pattern to match [32 –34]. With its latest configuration SQLancer +QPG[2], it uses the DBMS query plan to guide its query generation in order to stress test the DBMS query optimization logic. However, because SQLancer and SQLancer +QPGrestricted themselves to generate queries that align with the oracles’ patterns, they lack the query diversity needed to explore all the grammar features provided by the DBMSs.",
+      "context_after": "There are several other generation-based DBMS testing tools that aim to detect various kinds of bugs from the DBMSs [23, 26, 58]. Some existing works treat the SQL query generation as a boolean satisfiability problem, and use SAT solvers to produce queries that achieve high correctness rate [1, 25]. Chandra et al. extend the database construction technique to boost the efficiency of DBMS query testings [5]. Bruno et al. propose to generate queries based on Cardinality Constraints [4]. On the topic of performance issues, researchers also propose several tools to detect performance bugs in the",
+      "section": "2.2 Generation-based DBMS Testing Tools",
+      "page": 3,
+      "char_offset": 14080,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In addition, to understand the memory error detecting capability for DBMS logic bug detectors, we compareParserFuzz to state-of-the-art logic bug testing tool SQLancer +QPG.",
+      "context_before": "e to the DBMS as baselines. For SQLite ,MySQL andMariaDB, we compare ParserFuzz againstSquirrel, the most advanced grey-box mutation-based DBMS fuzzer. For CockroachDB andTiDB, we use the official query generation-based testing tools that are maintained by the DBMS developer groups, i.e., we test the customized SQLsmith ( SQLsmith Cfor short) for CockroachDB, and test go-sqlsmith ( SQLsmith Gfor short) for TiDB respectively. To compare ParserFuzz against traditional bit-flips mutation-based fuzzer, we select AFL++ to testC/C++ implemented DBMSs and use LibFuzzer to testGoLang implemented ones.",
+      "context_after": "SQLancer +QPG supports testing with SQLite, CockroachDB andTiDB, and outperforms all other logic bug detectors including SQLRight [2, 21]. We use NoREC oracle for SQLancer +QPGwhen testing with SQLite andCockroachDB. BecauseNoREC oracle is claimed to be a better performer overall compared to TLPoracle [2]. But we fallback to use TLP when testing TiDB, because SQLancer +QPGhasn’t supported testingTiDB withNoREC oracle yet. While the most recent DBMS fuzzing tool DynSQL [14] supports testing 6 DBMSs including SQLite ,MySQL andMariaDB, it is not open-source, so we cannot compare our tool to their i",
+      "section": "3.3 Query Mutation with Coverage Feedback",
+      "page": 8,
+      "char_offset": 40363,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer +QPG supports testing with SQLite, CockroachDB andTiDB, and outperforms all other logic bug detectors including SQLRight [2, 21].",
+      "context_before": "B, we use the official query generation-based testing tools that are maintained by the DBMS developer groups, i.e., we test the customized SQLsmith ( SQLsmith Cfor short) for CockroachDB, and test go-sqlsmith ( SQLsmith Gfor short) for TiDB respectively. To compare ParserFuzz against traditional bit-flips mutation-based fuzzer, we select AFL++ to testC/C++ implemented DBMSs and use LibFuzzer to testGoLang implemented ones. In addition, to understand the memory error detecting capability for DBMS logic bug detectors, we compareParserFuzz to state-of-the-art logic bug testing tool SQLancer +QPG.",
+      "context_after": "We use NoREC oracle for SQLancer +QPGwhen testing with SQLite andCockroachDB. BecauseNoREC oracle is claimed to be a better performer overall compared to TLPoracle [2]. But we fallback to use TLP when testing TiDB, because SQLancer +QPGhasn’t supported testingTiDB withNoREC oracle yet. While the most recent DBMS fuzzing tool DynSQL [14] supports testing 6 DBMSs including SQLite ,MySQL andMariaDB, it is not open-source, so we cannot compare our tool to their implementation. For fuzzing tools that demand input corpus, we use the query libraries from the Squirrel repo to serve as the universal inp",
+      "section": "3.3 Query Mutation with Coverage Feedback",
+      "page": 8,
+      "char_offset": 40537,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "We use NoREC oracle for SQLancer +QPGwhen testing with SQLite andCockroachDB.",
+      "context_before": "SQLsmith ( SQLsmith Cfor short) for CockroachDB, and test go-sqlsmith ( SQLsmith Gfor short) for TiDB respectively. To compare ParserFuzz against traditional bit-flips mutation-based fuzzer, we select AFL++ to testC/C++ implemented DBMSs and use LibFuzzer to testGoLang implemented ones. In addition, to understand the memory error detecting capability for DBMS logic bug detectors, we compareParserFuzz to state-of-the-art logic bug testing tool SQLancer +QPG.SQLancer +QPG supports testing with SQLite, CockroachDB andTiDB, and outperforms all other logic bug detectors including SQLRight [2, 21].",
+      "context_after": "BecauseNoREC oracle is claimed to be a better performer overall compared to TLPoracle [2]. But we fallback to use TLP when testing TiDB, because SQLancer +QPGhasn’t supported testingTiDB withNoREC oracle yet. While the most recent DBMS fuzzing tool DynSQL [14] supports testing 6 DBMSs including SQLite ,MySQL andMariaDB, it is not open-source, so we cannot compare our tool to their implementation. For fuzzing tools that demand input corpus, we use the query libraries from the Squirrel repo to serve as the universal input seeds. To answer Q3, we disable the code coverage feedback fromParserFuzz,",
+      "section": "3.3 Query Mutation with Coverage Feedback",
+      "page": 8,
+      "char_offset": 40675,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "citation_marker",
+      "surface": "[2]",
+      "technique": "qpg",
+      "sentence": "BecauseNoREC oracle is claimed to be a better performer overall compared to TLPoracle [2].",
+      "context_before": "mith Gfor short) for TiDB respectively. To compare ParserFuzz against traditional bit-flips mutation-based fuzzer, we select AFL++ to testC/C++ implemented DBMSs and use LibFuzzer to testGoLang implemented ones. In addition, to understand the memory error detecting capability for DBMS logic bug detectors, we compareParserFuzz to state-of-the-art logic bug testing tool SQLancer +QPG.SQLancer +QPG supports testing with SQLite, CockroachDB andTiDB, and outperforms all other logic bug detectors including SQLRight [2, 21]. We use NoREC oracle for SQLancer +QPGwhen testing with SQLite andCockroachDB.",
+      "context_after": "But we fallback to use TLP when testing TiDB, because SQLancer +QPGhasn’t supported testingTiDB withNoREC oracle yet. While the most recent DBMS fuzzing tool DynSQL [14] supports testing 6 DBMSs including SQLite ,MySQL andMariaDB, it is not open-source, so we cannot compare our tool to their implementation. For fuzzing tools that demand input corpus, we use the query libraries from the Squirrel repo to serve as the universal input seeds. To answer Q3, we disable the code coverage feedback fromParserFuzz, transforming it into a pure random query generation tool, which noted as ParserFuzz -cov.",
+      "section": "3.3 Query Mutation with Coverage Feedback",
+      "page": 8,
+      "char_offset": 40752,
+      "cited_reference": {
+        "number": 2,
+        "text": "Jinsheng Ba and Manuel Rigger. Testing database engines via query plan guidance. In Proceedings of International Conference on Software Engineering (ICSE), 2023.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "But we fallback to use TLP when testing TiDB, because SQLancer +QPGhasn’t supported testingTiDB withNoREC oracle yet.",
+      "context_before": "mutation-based fuzzer, we select AFL++ to testC/C++ implemented DBMSs and use LibFuzzer to testGoLang implemented ones. In addition, to understand the memory error detecting capability for DBMS logic bug detectors, we compareParserFuzz to state-of-the-art logic bug testing tool SQLancer +QPG.SQLancer +QPG supports testing with SQLite, CockroachDB andTiDB, and outperforms all other logic bug detectors including SQLRight [2, 21]. We use NoREC oracle for SQLancer +QPGwhen testing with SQLite andCockroachDB. BecauseNoREC oracle is claimed to be a better performer overall compared to TLPoracle [2].",
+      "context_after": "While the most recent DBMS fuzzing tool DynSQL [14] supports testing 6 DBMSs including SQLite ,MySQL andMariaDB, it is not open-source, so we cannot compare our tool to their implementation. For fuzzing tools that demand input corpus, we use the query libraries from the Squirrel repo to serve as the universal input seeds. To answer Q3, we disable the code coverage feedback fromParserFuzz, transforming it into a pure random query generation tool, which noted as ParserFuzz -cov. We compare ParserFuzz -covagainst the full-featured ParserFuzz in §5.3. Finally, we use the bugs detected to demonstra",
+      "section": "3.3 Query Mutation with Coverage Feedback",
+      "page": 8,
+      "char_offset": 40843,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Although SQLancer +QPGcan detect multiple logic bugs in TiDB in Figure 2i, it detects less memory errors thanParserFuzz in all SQLite ,CockroachDB andTiDB testings.",
+      "context_before": "on. Squirrel can also find one new crashing bug from MySQL. For the new bug detected from Squirrel, we also reported it to theMySQL developer. In addition, Squirrel identifies 2 crashing bugs in Figure 2m. However, the detected bugs from Squirrel are old bugs that had already been known to the developer back in 2019 and 2022 respectively. Despite this, ParserFuzz records the highest bug count with 3 bugs detected in MariaDB fuzzing. Moreover, as shown in Figure 2e and Figure 2i, ParserFuzz detects remarkable numbers of bugs when testing on CockroachDB andTiDB, giving 6 and 4 bugs respectively.",
+      "context_after": "All baselines tools except SQLancer +QPGdo not detect any issues in SQLite evaluation as shown in Figure 2q, where ParserFuzz detects 2 bugs within the set time frame. Grammar edge number. The extensive amount of grammar edge triggered by the ParserFuzz fuzzing is the primary reason why it can find more memory errors compared to other baseline tools. A grammar edge representsthe possible combinations between two non-terminal keywords. For example, in Listing 8, a keyword mapping from table_reference totable_factor represents one edge case, andtable_reference tojoined_table represents another.",
+      "section": "5.2 Comparison with Existing Tools",
+      "page": 9,
+      "char_offset": 46925,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M18",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "All baselines tools except SQLancer +QPGdo not detect any issues in SQLite evaluation as shown in Figure 2q, where ParserFuzz detects 2 bugs within the set time frame.",
+      "context_before": "identifies 2 crashing bugs in Figure 2m. However, the detected bugs from Squirrel are old bugs that had already been known to the developer back in 2019 and 2022 respectively. Despite this, ParserFuzz records the highest bug count with 3 bugs detected in MariaDB fuzzing. Moreover, as shown in Figure 2e and Figure 2i, ParserFuzz detects remarkable numbers of bugs when testing on CockroachDB andTiDB, giving 6 and 4 bugs respectively. Although SQLancer +QPGcan detect multiple logic bugs in TiDB in Figure 2i, it detects less memory errors thanParserFuzz in all SQLite ,CockroachDB andTiDB testings.",
+      "context_after": "Grammar edge number. The extensive amount of grammar edge triggered by the ParserFuzz fuzzing is the primary reason why it can find more memory errors compared to other baseline tools. A grammar edge representsthe possible combinations between two non-terminal keywords. For example, in Listing 8, a keyword mapping from table_reference totable_factor represents one edge case, andtable_reference tojoined_table represents another. The upper bound lines display the total possible grammar edges for each DBMSs’ grammar rules. The grammar edge coverage plots are presented in Figure 2b, Figure 2f, Fi",
+      "section": "5.2 Comparison with Existing Tools",
+      "page": 9,
+      "char_offset": 47089,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M19",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "52 ParserFuzz ParserFuzz−cov Squirrel AFL++ SQLSmith SQLancer+QPG 0 10 20 30 40 501.",
+      "context_before": "whole CockroachDB process. reported than the baseline tools. Code coverage. ParserFuzz reaches the highest DBMS code coverage across all 5 DBMSs’ experiments. The code coverage plots are shown in Figure 2c, Figure 2g, Figure 2k, Figure 2o and Figure 2s. Notably, ParserFuzz doesn’t rely onany input corpus to reach this level of code coverage, sparing the efforts from the DBMS testers to gather interesting queries as input seeds. Query correctness rate. The query correctness rate is illustrated in Figure 2d, Figure 2h, Figure 2l, Figure 2p and Fig10 0 10 20 30 40 501.381.401.421.441.461.481.501.",
+      "context_after": "381.401.421.441.461.481.501.52 SQLsmithC SQLsmithG LibFuzzer Upper Bound 0481216202401234 (a)MySQL: detected bugs 048121620240.00.51.01.52.02.53.03.54.0 (b)MySQL: grammar edges (k) 048121620240255075100125150175200 (c)MySQL: code coverage (k) 04812162024020406080100 (d)MySQL: query validity (%) 048121620240123456 (e)CockroachDB: detected bugs 048121620240.00.20.40.60.81.01.21.4 (f)CockroachDB: grammar edges (k) 0481216202401020304050607080 (g)CockroachDB: code coverage (k) 04812162024020406080100 (h)CockroachDB: query validity (%) 0481216202401234 (i)TiDB: detected bugs 048121620240.00.2",
+      "section": "5.2 Comparison with Existing Tools",
+      "page": 11,
+      "char_offset": 53397,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M20",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For example, SQLancer +QPG,SQLsmith GandSQLsmith all achieve high query validity in their own tests, with SQLsmith Cbeing an exception.",
+      "context_before": "162024020406080100120 (o)MariaDB: code coverage (k) 04812162024020406080100 (p)MariaDB: query validity (%) 0481216202401234 (q)SQLite: detected bugs 048121620240.00.51.01.52.02.53.03.5 (r)SQLite: grammar edges (k) 0481216202401020304050 (s)SQLite: code coverage (k) 048121620020406080100 (t)SQLite: query validity (%) Figure 2: Evaluation of different testing tools on MySQL ,CockroachDB ,TiDB,MariaDB and SQLite. ure 2t.ParserFuzz, along with other mutation-based fuzzing tools, generally has a lower query correctness rate compared to generation-based tools that rely on hand-written templates.",
+      "context_after": "However, these generationbased tools lack the flexibility to produce diverse query statements, because all the generated queries patterns must behand-written by the developers, making the process laborintensive. Therefore, ParserFuzz can find the highest number of bugs by generating more diverse queries and saturating all the grammar rules defined for the parsers. 11 Overall, ParserFuzz can find more memory errors than other testing tools, because it thoroughly examines all the grammar rules defined in the parser, and can reach the highest number of grammar coverage upon testing. Although mos",
+      "section": "5.2 Comparison with Existing Tools",
+      "page": 11,
+      "char_offset": 54944,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M21",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer +QPGcan detect 11 out of 50.",
+      "context_before": "that crashes TiDB, which aims to recover a table from a non-existing DDLJOB ID. infinite resources can be allocated, the columns of Squirrel, SQLsmith ,SQLsmith C,SQLsmith GandSQLancer +QPGin Table 1 and Table 2 indicate whether each bug could theoretically be detected by referenced tools. Given the input corpus and Internal Representation (IR), Squirrel can only detect 8 out of 37 bugs that ParserFuzz found.SQLsmith can detect half of the bugs reported by ParserFuzz (3 out of 6). SQLsmith Ccan detects 13 out of 37 bugs from CockroachDB .SQLsmith Gcan detect none of the bugs from ParserFuzz .",
+      "context_after": "The diverse syntaxes enable ParserFuzz to explore more interesting features from the DBMSs, and trigger more interesting bugs that are overlooked by these baseline tools. Next, we present two case studies to demonstrate the uniqueness of bugs detected by ParserFuzz. One-line query that crashes TiDB. Listing 12 presents a unique bug from TiDB. The PoC is surprisingly simple, consisting of just one line of SQL query. But the simple PoC crashes the TiDB query executor, and results in an immediate loss of connection between the TiDB server and client. The PoC attempts to recover a table that had",
+      "section": "5.4 Contribution of Diverse Syntax Features",
+      "page": 12,
+      "char_offset": 58980,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "describes_as_state_of_the_art": [
+        "M12"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:15:22Z",
+    "is_model_written": true,
+    "summary": "ParserFuzz generates SQL by extracting grammar rules directly from a DBMS's own built-in syntax definition files. The motivation is that existing tools exercise only a small subset of the syntax elements in DBMS-specific dialects, leaving many features untested. Without any input corpus, ParserFuzz saturates the grammar features of the system under test and uses code coverage as feedback to guide mutation and combine features from different rules. It found 81 previously unknown bugs across five popular DBMSs, all confirmed and 34 fixed.",
+    "narrative": "SQLancer, including its QPG configuration, is the generation-based tool ParserFuzz argues against: because SQLancer restricts itself to queries matching its oracles' patterns, the paper says it lacks the diversity needed to reach memory corruption bugs, which is the gap grammar-rule traversal fills.",
+    "roles": {
+      "M1": "background",
+      "M2": "definition",
+      "M3": "definition",
+      "M4": "background",
+      "M5": "definition",
+      "M6": "definition",
+      "M7": "definition",
+      "M8": "definition",
+      "M9": "definition",
+      "M10": "motivation",
+      "M11": "motivation"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is described as a tool of a different kind; nothing shown says ParserFuzz builds on it."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Grammar-rule traversal is presented as an alternative to oracle-pattern generation, not an extension of it."
+      },
+      "compares_with": {
+        "value": "uncertain",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The paper's abstract claims to outperform existing tools, but the mentions read describe SQLancer's design rather than reporting a head-to-head result."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "uncertain",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "A pattern fired on M12, which was outside the mentions read; those read call SQLancer+QPG a representative generation-based tool."
+      }
+    },
+    "disagreements": [],
+    "unresolved": [
+      "Whether a head-to-head comparison against SQLancer is reported: the evaluation mentions were not among those read."
+    ]
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

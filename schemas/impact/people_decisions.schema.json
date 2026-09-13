@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sqlancer.github.io/schemas/impact/people_decisions.schema.json",
+  "title": "Rulings on reporter affiliation",
+  "description": "Human decisions the roster cannot make for itself. Appearing on the lab's people page is evidence of being in the lab, not of belonging to the SQLancer project, and only a person who knows the work can tell the two apart.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "counts_as_external"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "description": {"type": "string"},
+    "counts_as_external": {
+      "type": "array",
+      "description": "Roster members whose reports count as found outside the project.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["github", "reason"],
+        "properties": {
+          "github": {
+            "type": "string",
+            "description": "GitHub login, matched case-insensitively against a bug's reporter."
+          },
+          "also_recorded_as": {
+            "type": "array",
+            "description": "Other names this person's reports are filed under, for trackers that record a display name.",
+            "items": {"type": "string"}
+          },
+          "reason": {"type": "string", "minLength": 20},
+          "decided_by": {"type": "string"},
+          "decided_on": {"$ref": "common.schema.json#/definitions/date"}
+        }
+      }
+    }
+  }
+}

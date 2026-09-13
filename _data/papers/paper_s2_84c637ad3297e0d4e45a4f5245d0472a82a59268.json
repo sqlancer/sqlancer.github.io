@@ -1,0 +1,583 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T14:33:34Z",
+  "paper": {
+    "id": "paper:s2:84c637ad3297e0d4e45a4f5245d0472a82a59268",
+    "title": "Demystifying and Checking Silent Semantic Violations in Large Distributed Systems",
+    "authors": [
+      "Chang Lou",
+      "Yuzhuo Jing",
+      "Peng Huang"
+    ],
+    "year": 2022,
+    "venue": "USENIX Symposium on Operating Systems Design and Implementation",
+    "doi": null,
+    "arxiv_id": null,
+    "s2_paper_id": "84c637ad3297e0d4e45a4f5245d0472a82a59268",
+    "url": "https://www.semanticscholar.org/paper/84c637ad3297e0d4e45a4f5245d0472a82a59268",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://www.semanticscholar.org/paper/84c637ad3297e0d4e45a4f5245d0472a82a59268",
+      "retrieved_at": "2026-09-08T14:33:34Z",
+      "chars": 93367,
+      "content_sha256": "sha256:412f4f908f92635fffe7a506a1632740c287fa34555732f98b71273b0977abbc"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 18,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 1616
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 8882
+      },
+      {
+        "number": "2.1",
+        "title": "Deﬁnition",
+        "start": 8895
+      },
+      {
+        "number": "2.2",
+        "title": "An Example",
+        "start": 11200
+      },
+      {
+        "number": "3",
+        "title": "Study Methodology",
+        "start": 12776
+      },
+      {
+        "number": "4",
+        "title": "Are Silent Semantic Failures Rare?",
+        "start": 16435
+      },
+      {
+        "number": "5",
+        "title": "What Kind of Semantics Is Violated?",
+        "start": 21202
+      },
+      {
+        "number": "5.1",
+        "title": "Sources of Violated Semantics",
+        "start": 21240
+      },
+      {
+        "number": "5.2",
+        "title": "Categorizations of Violated Semantics",
+        "start": 24419
+      },
+      {
+        "number": "6",
+        "title": "Why Do Silent Semantic Failures Occur?",
+        "start": 31365
+      },
+      {
+        "number": "7",
+        "title": "How Are Semantic Failures Manifested?",
+        "start": 33598
+      },
+      {
+        "number": "8.1",
+        "title": "Testing",
+        "start": 37371
+      },
+      {
+        "number": "8.2",
+        "title": "Assertions",
+        "start": 39649
+      },
+      {
+        "number": "8.3",
+        "title": "Observability",
+        "start": 41357
+      },
+      {
+        "number": "9.1",
+        "title": "Design Overview and Workﬂow",
+        "start": 44174
+      },
+      {
+        "number": "9.2",
+        "title": "Instrumentation and Trace Generation",
+        "start": 48253
+      },
+      {
+        "number": "9.3",
+        "title": "Template-Driven Inference",
+        "start": 51534
+      },
+      {
+        "number": "9.4",
+        "title": "Rule Validation",
+        "start": 58950
+      },
+      {
+        "number": "9.5",
+        "title": "Runtime Checking",
+        "start": 61336
+      },
+      {
+        "number": "9.6",
+        "title": "Optimizations",
+        "start": 62381
+      },
+      {
+        "number": "9.7",
+        "title": "Implementation",
+        "start": 64114
+      },
+      {
+        "number": "9.8",
+        "title": "Limitations",
+        "start": 64468
+      },
+      {
+        "number": "10.1",
+        "title": "Generation Overview",
+        "start": 65244
+      },
+      {
+        "number": "10.2",
+        "title": "Checking Newer Violations",
+        "start": 66612
+      },
+      {
+        "number": "10.3",
+        "title": "Performance",
+        "start": 71889
+      },
+      {
+        "number": "10.4",
+        "title": "Runtime Overhead",
+        "start": 73178
+      },
+      {
+        "number": "10.5",
+        "title": "Rule Activation and False Positive",
+        "start": 74571
+      },
+      {
+        "number": "T",
+        "title": "Ramani, N. Govindraju, X. Li, Q. Lin, G. L. Shafriri, and",
+        "start": 88435
+      },
+      {
+        "number": "M",
+        "title": "Chintalapati. Predictive and adaptive failure mitigation to",
+        "start": 88496
+      },
+      {
+        "number": "M",
+        "title": "F. Kaashoek, and Z. Zhang. D3S: Debugging deployed",
+        "start": 89104
+      },
+      {
+        "number": "J",
+        "title": "Cutler, P. Enriquez, A. Fox, E. Kiciman, M. Merzbacher,",
+        "start": 91723
+      },
+      {
+        "number": "D",
+        "title": "Oppenheimer, N. Sastry, W. Tetzlaff, J. Traupman, and",
+        "start": 91782
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Apache ZooKeeper releases. https://zookeeper.apache.org/ releases.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Google cloud infrastructure incident #20013. https://status. cloud.google.com/incident/zall/20013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Google cloud storage incident #17005. https://status.cloud. google.com/incident/storage/17005.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "HBASE-11536: Puts of region location to meta may be out of order which causes inconsistent of region location. https: //issues.apache.org/jira/browse/HBASE-11536.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "HBase-17125: Inconsistent result when use ﬁlter to read data. https://issues.apache.org/jira/browse/HBASE-17125.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "HDFS-12217: HDFS snapshots doesn’t capture all open ﬁles when one of the open ﬁles is deleted. https://issues.apache. org/jira/browse/HDFS-12217.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "HDFS-14359: Inherited acl permissions masked when parent directory does not exist (mkdir -p). https://issues.apache. org/jira/browse/HDFS-14359.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "HDFS-9083: Replication violates block placement policy. https://issues.apache.org/jira/browse/HDFS-12070.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "KAFKA-2960: DelayedProduce may cause message loss during repeated leader change. https://issues.apache.org/ jira/browse/KAFKA-2960.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Lmax disruptor. https://lmax-exchange.github.io/ disruptor/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "MongoDB-12355: add \"invariant\" for invariant checking in server code. https://jira.mongodb.org/browse/ SERVER-12355.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "MongoDB-50971: Invariant failure, wt_notfound: item not found. https://jira.mongodb.org/browse/SERVER-50971.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "ZooKeeper-1208: Ephemeral node not removed after the client session is long gone. https://issues.apache.org/jira/ browse/ZOOKEEPER-1208.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "ZooKeeper-2774: Ephemeral znode will not be removed when sesstion timeout, if the system time of zookeeper node changes unexpectedly. https://issues.apache.org/jira/ browse/ZOOKEEPER-2774.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "ZooKeeper-3144: Potential ephemeral nodes inconsistent due to global session inconsistent with fuzzy snapshot. https: //issues.apache.org/jira/browse/ZOOKEEPER-3144.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "M. Alfatafta, B. Alkhatib, A. Alquraan, and S. Al-Kiswany. Toward a generic fault tolerance technique for partial network partitioning. In 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI ’20, pages 351–368. USENIX Association, Nov. 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "A. Alquraan, H. Takruri, M. Alfatafta, and S. Al-Kiswany. An analysis of network-partitioning failures in cloud systems. In Proceedings of the 13th USENIX Conference on Operating Systems Design and Implementation, OSDI ’18, page 51–68, Carlsbad, CA, USA, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "J. Armstrong. Making reliable distributed systems in the presence of software errors. PhD thesis, The Royal Institute of Technology, Stockholm, Sweden, 2003.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "R. H. Arpaci-Dusseau and A. C. Arpaci-Dusseau. Fail-stutter fault tolerance. In Proceedings of the Eighth Workshop on Hot Topics in Operating Systems, HotOS ’01, pages 33–. IEEE Computer Society, 2001.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "M. Attariyan, M. Chow, and J. Flinn. X-ray: Automating root-cause diagnosis of performance anomalies in production software. In Proceedings of the 10th USENIX Conference on Operating Systems Design and Implementation, OSDI ’12, pages 307–320, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "M. Attariyan and J. Flinn. Automating conﬁguration troubleshooting with dynamic information ﬂow analysis. In Proceedings of the 9th USENIX Conference on Operating Systems Design and Implementation, OSDI ’10, pages 1–11, 2010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "T. D. Chandra and S. Toueg. Unreliable failure detectors for reliable distributed systems. J. ACM, 43(2):225–267, Mar. 1996.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "K. M. Chandy and L. Lamport. Distributed snapshots: Determining global states of distributed systems. ACM Trans. Comput. Syst., 3(1):63–75, Feb. 1985.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "F. Chen and G. Ro¸ su. Mop: An efﬁcient and generic runtime veriﬁcation framework. In Proceedings of the 22nd Annual ACMSIGPLAN Conference on Object-Oriented Programming Systems and Applications, OOPSLA ’07, page 569–588, Montreal, Quebec, Canada, 2007.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "T. Do, M. Hao, T. Leesatapornwongsa, T. Patana-anake, and H. S. Gunawi. Limplock: Understanding the impact of limpware on scale-out cloud systems. In Proceedings of the 4th Annual Symposium on Cloud Computing, SOCC ’13, pages 14:1–14:14, Santa Clara, California, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "M. D. Ernst, J. H. Perkins, P. J. Guo, S. McCamant, C. Pacheco, M. S. Tschantz, and C. Xiao. The daikon system for dynamic detection of likely invariants. Sci. Comput. Program., 69(1–3):35–45, Dec. 2007.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "A. S. Foundation. HDFS high availability using the quorum journal manager. https://hadoop.apache. org/docs/stable/hadoop-project-dist/hadoop-hdfs/ HDFSHighAvailabilityWithQJM.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "D. Fryer, K. Sun, R. Mahmood, T. Cheng, S. Benjamin, A. Goel, and A. D. Brown. Recon: Verifying ﬁle system consistency at runtime. In Proceedings of the 10th USENIX Conference on File and Storage Technologies, FAST ’12, pages 7–7, San Jose, CA, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "J. A. Goguen. Semantics of computation. In Proceedings of the Proceedings of the First International Symposium on Category Theory Applied to Computation and Control, page 151–163. Springer-Verlag, 1974.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "S. Grant, H. Cech, and I. Beschastnikh. Inferring and asserting distributed system invariants. In Proceedings of the 40th International Conference on Software Engineering, ICSE ’18, page 1149–1159, Gothenburg, Sweden, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "H. S. Gunawi, M. Hao, R. O. Suminto, A. Laksono, A. D. Satria, J. Adityatama, and K. J. Eliazar. Why does the cloud stop computing?: Lessons from hundreds of service outages. In Proceedings of the 7th ACM Symposium on Cloud Computing, SOCC ’16, pages 1–16, Santa Clara, CA, USA, Oct. 2016. USENIX Association 16th USENIX Symposium on Operating Systems Design and Implementation 105",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "H. S. Gunawi, R. O. Suminto, R. Sears, C. Golliher, S. Sundararaman, X. Lin, T. Emami, W. Sheng, N. Bidokhti, C. McCaffrey, G. Grider, P. M. Fields, K. Harms, R. B. Ross, A. Jacobson, R. Ricci, K. Webb, P. Alvaro, H. B. Runesha, M. Hao, and H. Li. Fail-slow at scale: Evidence of hardware performance faults in large production systems. In Proceedings of the 16th USENIX Conference on File and Storag",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "S. Hangal and M. S. Lam. Tracking down software bugs using automatic anomaly detection. In Proceedings of the 24th International Conference on Software Engineering, ICSE ’02, page 291–301, Orlando, Florida, 2002.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "K. Havelund and G. Ro¸ su. Runtime veriﬁcation. Computer Aided Veriﬁcation (CAV ’01) satellite workshop (ENTCS), 55, 2001.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Y. Hu, G. Huang, and P. Huang. Automated reasoning and detection of specious conﬁguration in large systems with symbolic execution. In Proceedings of the 14th USENIX Symposium on Networked Systems Design and Implementation, OSDI ’20. USENIX, November 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "P. Huang, C. Guo, J. R. Lorch, L. Zhou, and Y. Dang. Capturing and enhancing in situ system observability for failure detection. In13th USENIX Symposium on Operating Systems Design and Implementation, OSDI ’18, pages 1–16, Carlsbad, CA, October 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "P. Huang, C. Guo, L. Zhou, J. R. Lorch, Y. Dang, M. Chintalapati, and R. Yao. Gray failure: The Achilles’ heel of cloud-scale systems. In Proceedings of the 16th Workshop on Hot Topics in Operating Systems, HotOS ’17. ACM, May 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "C. Killian, J. W. Anderson, R. Jhala, and A. Vahdat. Life, death, and the critical transition: Finding liveness bugs in systems code. In Proceedings of the 4th USENIX Conference on Networked Systems Design and Implementation, NSDI ’07, page 18, Cambridge, MA, 2007.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "S. Kim, M. Xu, S. Kashyap, J. Yoon, W. Xu, and T. Kim. Finding semantic bugs in ﬁle systems with an extensible fuzzing framework. In Proceedings of the 27th ACM Symposium on Operating Systems Principles, SOSP ’19, page 147–161, Huntsville, Ontario, Canada, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "J. B. Leners, H. Wu, W.-L. Hung, M. K. Aguilera, and M. Walﬁsh. Detecting failures in distributed systems with the Falcon spy network. In Proceedings of the 23rd ACM Symposium on Operating Systems Principles, SOSP ’11, pages 279–294, Cascais, Portugal, Oct. 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "S. Levy, R. Yao, Y. Wu, Y. Dang, P. Huang, Z. Mu, P. Zhao, T. Ramani, N. Govindraju, X. Li, Q. Lin, G. L. Shafriri, and M. Chintalapati. Predictive and adaptive failure mitigation to avert production cloud VM interruptions. In Proceedings of the 14th USENIX Symposium on Networked Systems Design and Implementation, OSDI ’20. USENIX, November 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Z. Li, L. Tan, X. Wang, S. Lu, Y. Zhou, and C. Zhai. Have things changed now? an empirical study of bug characteristics in modern open source software. In Proceedings of the 1st Workshop on Architectural and System Support for Improving Software Dependability, ASID ’06, page 25–33, San Jose, California, 2006.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "X. Liu, Z. Guo, X. Wang, F. Chen, X. Lian, J. Tang, M. Wu, M. F. Kaashoek, and Z. Zhang. D3S: Debugging deployed distributed systems. In Proceedings of the 5th USENIX Symposium on Networked Systems Design and Implementation, NSDI ’08, page 423–437. USENIX Association, 2008.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "X. Liu, W. Lin, A. Pan, and Z. Zhang. WiDS checker: Combating bugs in distributed systems. In Proceedings of the 4th USENIX Symposium on Networked Systems Design and Implementation, NSDI ’07. USENIX Association, Apr. 2007.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "C. Lou, P. Huang, and S. Smith. Comprehensive and efﬁcient runtime checking in system software through watchdogs. In Proceedings of the 17th Workshop on Hot Topics in Operating Systems, HotOS ’19, Bertinoro, Italy, May 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "C. Lou, P. Huang, and S. Smith. Understanding, detecting and localizing partial failures in large system software. In 17th USENIX Symposium on Networked Systems Design and Implementation, NSDI ’20, pages 559–574. USENIX Association, Feb. 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "C. Lou, Y. Jing, and P. Huang. A promise is not a promise— demystifying and checking silent semantic violations in large distributed systems. Technical report, Johns Hopkins University, July 2022. https://orderlab.io/paper/oathkeeper-tr. pdf, Accessed July 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "H. Lu, K. Veeraraghavan, P. Ajoux, J. Hunt, Y. J. Song, W. Tobagus, S. Kumar, and W. Lloyd. Existential consistency: Measuring and understanding consistency at facebook. In Proceedings of the 25th Symposium on Operating Systems Principles, SOSP ’15, page 295–310, Monterey, California, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "H. Ma, A. Goel, J.-B. Jeannin, M. Kapritsos, B. Kasikci, and K. A. Sakallah. I4: Incremental inference of inductive invariants for veriﬁcation of distributed protocols. In Proceedings of the 27th ACM Symposium on Operating Systems Principles, SOSP ’19, page 370–384, Huntsville, Ontario, Canada, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "C. Min, S. Kashyap, B. Lee, C. Song, and T. Kim. Crosschecking semantic correctness: The case of ﬁnding ﬁle system bugs. In Proceedings of the 25th Symposium on Operating Systems Principles, SOSP ’15, page 361–377, Monterey, California, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "D. Oppenheimer, A. Ganapathi, and D. A. Patterson. Why do Internet services fail, and what can be done about it? In Proceedings of the 4th Conference on USENIX Symposium on Internet Technologies and Systems, USITS ’03, Seattle, WA, Mar. 2003.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "B. Panda, D. Srinivasan, H. Ke, K. Gupta, V. Khot, and H. S. Gunawi. IASO: A fail-slow detection and mitigation framework for distributed storage services. In 2019 USENIX Annual Technical Conference (USENIX ATC 19), pages 47–62. USENIX Association, July 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "D. Patterson, A. Brown, P. Broadwell, G. Candea, M. Chen, J. Cutler, P. Enriquez, A. Fox, E. Kiciman, M. Merzbacher, D. Oppenheimer, N. Sastry, W. Tetzlaff, J. Traupman, and N. Treuhaft. Recovery oriented computing (roc): Motivation, deﬁnition, techniques, and case studies. Technical Report UCB/CSD-02-1175, EECS Department, University of California, Berkeley, Mar 2002. 106 16th USENIX Symposium on",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "M. Rigger and Z. Su. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI ’20, pages 667– 682. USENIX Association, Nov. 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 55,
+      "text": "L. Tan, C. Liu, Z. Li, X. Wang, Y. Zhou, and C. Zhai. Bug characteristics in open source software. Empirical Softw. Engg., 19(6):1665–1705, Dec. 2014.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "T. Xu, X. Jin, P. Huang, Y. Zhou, S. Lu, L. Jin, and S. Pasupathy. Early detection of conﬁguration errors to reduce failure damage. In Proceedings of the The 12th USENIX Symposium on Operating Systems Design and Implementation, OSDI ’16, November 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "N. Yaseen, B. Arzani, R. Beckett, S. Ciraci, and V. Liu. Aragog: Scalable runtime veriﬁcation of shardable networked systems. In14th USENIX Symposium on Operating Systems Design and Implementation, OSDI ’20, pages 701–718. USENIX Association, Nov. 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Z. Yin, D. Yuan, Y. Zhou, S. Pasupathy, and L. Bairavasundaram. How do ﬁxes become bugs? In Proceedings of the 19th ACMSIGSOFT Symposium and the 13th European Conference on Foundations of Software Engineering, ESEC/FSE ’11, page 26–36, Szeged, Hungary, 2011. USENIX Association 16th USENIX Symposium on Operating Systems Design and Implementation 107",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 54,
+      "text": "M. Rigger and Z. Su. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI ’20, pages 667– 682. USENIX Association, Nov. 2020.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[54]",
+      "technique": "pqs",
+      "sentence": "Several solutions are proposed to detect semantic bugs in ﬁle systems and DBMS, including cross-checking multiple ﬁle system implementations [50], fuzzing [39], and testing using pivoted query [54].",
+      "context_before": "traces from all test cases of a target system. Adding proﬁle runs or a dynamic ban mechanism can further remove the false rules. 11 Related Work Semantic Bugs. Several studies [42,55,58] analyze the prevalence of semantic bugs in open-source server software. Our study analyzes semantic failures in distributed systems. Beyond the difference that we investigate distributed systems, the study of bugs is in general a complementary effort to the study of failures. The former focuses on analyzing the static code patterns, while the latter focuses on the dynamic manifestations and system misbehavior.",
+      "context_after": "Both cross-checking and fuzzing focus on ﬁnding bugs ofﬂine. Oathkeeper focuses on a complementary direction of inferring semantic rules for runtime checking. We hope our study can motivate future work to extend these solutions to detect semantic bugs in distributed systems. We observe some open challenges to cross-check distributed systems: distributed systems usually provide a wide variety of semantics that are less rigorously speciﬁed compared to ﬁle systems, which have well-deﬁned semantics ( e.g., POSIX standard) and many implementations. Each distributed system has its unique semantics",
+      "section": "10.5 Rule Activation and False Positive",
+      "page": 15,
+      "char_offset": 76035,
+      "cited_reference": {
+        "number": 54,
+        "text": "M. Rigger and Z. Su. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI ’20, pages 667– 682. USENIX Association, Nov. 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:16:45Z",
+    "is_model_written": true,
+    "summary": "This paper studies silent semantic violations in large distributed systems -- failures where the system keeps running but breaks a property it promised. The authors analyse such violations across widely used systems, derive rules that capture the properties, and check them at runtime, finding violations that crash-oriented testing does not.",
+    "narrative": "One citation, in a survey of solutions for detecting semantic bugs in file systems and DBMSs, where pivoted query synthesis is named alongside cross-checking file system implementations and fuzzing.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

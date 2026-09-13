@@ -1,0 +1,26 @@
+{%- comment -%}
+A labelled count series as bars, in HTML rather than SVG.
+
+The page charts are generated SVGs because they are shared, few, and reviewed in
+a diff. These are per-system and there are hundreds of them, so they are drawn
+from the data at render time instead: same visual language, no generated
+artifacts to keep in step. One hue, because the job is magnitude.
+
+Each row carries its own number, so the bar is redundant encoding rather than
+the only way to read the value.
+
+Parameter: series (labelled_counts array).
+{%- endcomment -%}
+{%- assign counts = include.series | map: "count" | sort | reverse -%}
+{%- assign top = counts | first -%}
+<dl class="impact-bars">
+  {%- for row in include.series %}
+  <div class="impact-bars__row">
+    <dt class="impact-bars__label">{{ row.label }}</dt>
+    <dd class="impact-bars__value">
+      <span class="impact-bars__bar" style="width: {% if top > 0 %}{{ row.count | times: 100.0 | divided_by: top }}{% else %}0{% endif %}%"></span>
+      <span class="impact-bars__count">{{ row.count }}</span>
+    </dd>
+  </div>
+  {%- endfor %}
+</dl>

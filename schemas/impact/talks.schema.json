@@ -1,0 +1,380 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sqlancer.github.io/schemas/impact/talks.schema.json",
+  "title": "Talks that discuss SQLancer",
+  "description": "Recorded talks by other people in which SQLancer is discussed, and what each says about it. A talk is evidence of a kind no other source gives: someone standing in front of an audience explaining, recommending or reporting on the tool. What is said lives in the audio, so the record locates every mention by timestamp and quotes the transcript it was found in -- never the speaker directly, because a transcript is a machine's reading of speech and is wrong often enough to matter.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "talks"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "$ref": "common.schema.json#/definitions/schema_version"
+    },
+    "talks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "url",
+          "sources",
+          "mentions",
+          "provenance"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/definitions/record_id"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "url": {
+            "$ref": "common.schema.json#/definitions/url"
+          },
+          "video_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 40
+          },
+          "speakers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "maxItems": 20
+          },
+          "publisher": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 200
+          },
+          "event": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 200
+          },
+          "year": {
+            "anyOf": [
+              {
+                "$ref": "common.schema.json#/definitions/year"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "duration_seconds": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "related_dbms": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/definitions/slug"
+            }
+          },
+          "related_techniques": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/definitions/slug"
+            }
+          },
+          "mentions": {
+            "type": "array",
+            "description": "Every place in the talk where SQLancer, one of its techniques, or its author comes up.",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "source",
+                "url",
+                "matched"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^M[0-9]+$"
+                },
+                "at_seconds": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 0,
+                  "description": "When it was said. Absent for a mention read off the slides, which carry no clock."
+                },
+                "timestamp": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 12,
+                  "description": "The moment, as a person reads it. Absent for a mention with no clock behind it."
+                },
+                "url": {
+                  "$ref": "common.schema.json#/definitions/url",
+                  "description": "Deep link to the moment, so a reader can check the claim by listening."
+                },
+                "matched": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "maxLength": 60
+                  },
+                  "description": "What was found: a name, a technique id, or 'author'."
+                },
+                "heard_as": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 80,
+                  "description": "How the transcriber rendered the name, when it got it wrong -- 'SQL lenser' for SQLancer."
+                },
+                "excerpt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "minLength": 1,
+                  "maxLength": 2000,
+                  "description": "Verbatim with respect to the source named above -- for captions that is the caption track, not the speaker. Null when the only source is a person's account of watching the talk."
+                },
+                "excerpt_is_verbatim": {
+                  "type": "boolean",
+                  "description": "Verbatim with respect to the source named above, which for automatic captions is not the same as verbatim with respect to the speaker."
+                },
+                "technique_ids": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "common.schema.json#/definitions/slug"
+                  }
+                },
+                "source": {
+                  "type": "string",
+                  "enum": [
+                    "slides",
+                    "frame",
+                    "captions",
+                    "watched"
+                  ],
+                  "description": "Which of the talk's sources this mention was read in. Decides how far the excerpt can be trusted."
+                },
+                "note": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 500,
+                  "description": "What a viewer reported, where there is nothing quotable."
+                },
+                "image": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 300,
+                  "description": "Site path of a frame captured from the recording at this moment. What it shows is described in the note; the picture is the evidence, and nothing is transcribed off it."
+                },
+                "frame_checked": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 300,
+                  "description": "Why this moment has no frame, when somebody looked and there was nothing on screen worth capturing. Keeps it off the worklist."
+                }
+              },
+              "allOf": [
+                {
+                  "description": "Every mention says something: it quotes a source, or shows one, or reports what a viewer heard.",
+                  "anyOf": [
+                    {
+                      "required": [
+                        "excerpt"
+                      ],
+                      "properties": {
+                        "excerpt": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    {
+                      "required": [
+                        "note"
+                      ],
+                      "properties": {
+                        "note": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    {
+                      "required": [
+                        "image"
+                      ],
+                      "properties": {
+                        "image": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "relationship": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "roles",
+              "summary",
+              "mention_ids"
+            ],
+            "additionalProperties": false,
+            "description": "What the talk does with SQLancer, decided from the mentions and citing them.",
+            "properties": {
+              "roles": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "explains_technique",
+                    "cites_as_example",
+                    "recognition",
+                    "reports_adoption",
+                    "compares",
+                    "background"
+                  ]
+                }
+              },
+              "summary": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 800
+              },
+              "mention_ids": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "pattern": "^M[0-9]+$"
+                }
+              },
+              "decided_by": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 100
+              }
+            }
+          },
+          "provenance": {
+            "$ref": "common.schema.json#/definitions/provenance"
+          },
+          "sources": {
+            "type": "array",
+            "minItems": 1,
+            "description": "Where the words in this record came from. A talk can be read four ways, and they are not equally trustworthy: the speaker's own slides are authored text and can be quoted; a frame captured from the recording shows a slide that was never spoken, which no transcript can reach; automatic captions are a machine's reading of speech, good enough to find a moment and not good enough to put words in someone's mouth; and a person who watched it can report what was said but not quote it.",
+            "items": {
+              "type": "object",
+              "required": [
+                "kind",
+                "status"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "slides",
+                    "frame",
+                    "captions",
+                    "watched"
+                  ]
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "extracted",
+                    "unavailable",
+                    "not_attempted"
+                  ],
+                  "description": "'unavailable' means the platform published no such source, or would not serve the one it has."
+                },
+                "url": {
+                  "anyOf": [
+                    {
+                      "$ref": "common.schema.json#/definitions/url"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "retrieved_at": {
+                  "anyOf": [
+                    {
+                      "$ref": "common.schema.json#/definitions/timestamp"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "segments": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 0
+                },
+                "characters": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 0
+                },
+                "content_sha256": {
+                  "$ref": "common.schema.json#/definitions/sha256"
+                },
+                "note": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 500
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,607 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-10T15:23:01Z",
+  "paper": {
+    "id": "paper:arxiv:2608.25573",
+    "title": "DBcover: A White-box SQL Test Generation Framework for Coverage Improvement",
+    "authors": [
+      "Yan-Kai Rong",
+      "Shuang Liu",
+      "Jinhao Dong",
+      "Qiang Yin",
+      "Wei Lu",
+      "Jian-Hua Wang",
+      "Xiaoyong Du"
+    ],
+    "year": 2026,
+    "venue": null,
+    "doi": null,
+    "arxiv_id": "2608.25573",
+    "s2_paper_id": "2b1f7251af13eb3114cc0c8812ae6a07cf970db2",
+    "url": "https://arxiv.org/abs/2608.25573",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2608.25573",
+      "retrieved_at": "2026-09-10T15:23:01Z",
+      "chars": 70224,
+      "content_sha256": "sha256:15eb33d11895d6be08798f96acccb9111bba277361781f3901375850d91cc60b"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2750
+      },
+      {
+        "number": "2",
+        "title": "Motivation Example",
+        "start": 11759
+      },
+      {
+        "number": "3.1",
+        "title": "Overview",
+        "start": 19126
+      },
+      {
+        "number": "3.2",
+        "title": "Knowledge Graph Construction",
+        "start": 21103
+      },
+      {
+        "number": "3.3",
+        "title": "Seed Selection",
+        "start": 27807
+      },
+      {
+        "number": "3.4",
+        "title": "Test Cases Generation",
+        "start": 30023
+      },
+      {
+        "number": "4.1",
+        "title": "Experimental Setup",
+        "start": 36972
+      },
+      {
+        "number": "4.1.4",
+        "title": "Baselines:",
+        "start": 39245
+      },
+      {
+        "number": "4.1.5",
+        "title": "Seed test cases.Seed inputs were collected from the official",
+        "start": 40503
+      },
+      {
+        "number": "4.2",
+        "title": "Comparison with Baselines",
+        "start": 40882
+      },
+      {
+        "number": "4.3",
+        "title": "Ablation Study",
+        "start": 45144
+      },
+      {
+        "number": "4.4",
+        "title": "Case Study",
+        "start": 51349
+      },
+      {
+        "number": "4.5",
+        "title": "Evaluation on Enterprise Closed-Source",
+        "start": 53780
+      },
+      {
+        "number": "5.1",
+        "title": "RDBMS Test Case Generation Methods",
+        "start": 55369
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2026. Doxygen. https://doxygen.cn/index.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2026. KingbaseES. https://www.kingbase.com.cn/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "2026. Neo4j. https://neo4j.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "2026. Pintool. https://www.intel.com/content/www/us/en/developer/articles/ tool/pin-a-dynamic-binary-instrumentation-tool.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya, Florencia Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, Shyamal Anadkat, et al .2023. Gpt-4 technical report.arXiv preprint arXiv:2303.08774 (2023). 11",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Juan Altmayer Pizzorno and Emery D Berger. 2025. CoverUp: Effective High Coverage Test Generation for Python.Proceedings of the ACM on Software Engineering2, FSE (2025), 2897–2919.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Andrea Arcuri, Man Zhang, and Juan Galeotti. 2024. Advanced white-box heuristics for search-based fuzzing of rest apis.ACM Transactions on Software Engineering and Methodology33, 6 (2024), 1–36.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In (ICSE). IEEE, 2060–2071.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 9,
+      "text": "Tim Blazytko, Cornelius Aschermann, Moritz Schlögel, Ali Abbasi, Sergej Schumilo, Simon Wörner, and Thorsten Holz. 2019. {GRIMOIRE}: Synthesizing structure while fuzzing. In28th USENIX Security Symposium (USENIX Security 19). 1985–2002.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Xiang Cheng, Fan Sang, Yizhuo Zhai, Xiaokuan Zhang, and Taesoo Kim. 2025. RUG: Turbo LLM for Rust Unit Test Generation. In2025 IEEE/ACM 47th International Conference on Software Engineering (ICSE). IEEE Computer Society, 634–634.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Arghavan Moradi Dakhel, Amin Nikanjam, Vahid Majdinasab, Foutse Khomh, and Michel C Desmarais. 2024. Effective test generation using pre-trained large language models and mutation testing.Information and Software Technology171 (2024), 107468.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-free dbms fuzzing. InProceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Keke Gai, Haochen Liang, Jing Yu, Liehuang Zhu, and Dusit Niyato. 2025. LLAMA: Multi-Feedback Smart Contract Fuzzing Framework with LLM-Guided Seed Generation.arXiv preprint arXiv:2507.12084(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. 2023. {DynSQL}: Stateful fuzzing for database management systems with complex and valid {SQL}query generation. In32nd USENIX Security Symposium (USENIX Security 23). 4949–4965.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2019. Apollo: Automatic detection and diagnosis of performance regressions in database systems.Proceedings of the VLDB Endowment13, 1 (2019), 57–70.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting logical bugs of {DBMS}with coverage-based guidance. In31st USENIX Security Symposium (USENIX Security 22). 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Zhengxiong Luo, Qingpeng Du, Yujue Wang, Abhik Roychoudhury, and Yu Jiang. 2025. Enhancing protocol fuzzing via diverse seed corpus generation.IEEE Transactions on Software Engineering(2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Yunbo Ni and Shaohua Li. 2025. Interleaving Large Language Models for Compiler Testing.Proceedings of the ACM on Programming Languages9, OOPSLA2 (2025), 815–841.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Yaroslav Oliinyk, Michael Scott, Ryan Tsang, Chongzhou Fang, Houman Homayoun, et al .2024. Fuzzing{BusyBox}: Leveraging{LLM}and Crash Reuse for Embedded Bug Unearthing. In33rd USENIX Security Symposium (USENIX Security 24). 883–900.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Pansilu Pitigalaarachchi. 2024. Symbolic Execution for Dynamic Kernel Analysis. InProceedings of the 2024 on ACMSIGSAC Conference on Computer andCommunications Security. 5104–5106.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "M. Rigger. 2020. Sqlancer: Detecting Logic Bugs in DBMS. https://github.com/ sqlancer/sqlancer.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 22,
+      "text": "A. Seltenreich, B. Tang, and S. Mullender. 2018. SQLsmith: A random SQL query generator. https://github.com/anse1/sqlsmith.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Jinghan Wang, Yue Duan, Wei Song, Heng Yin, and Chengyu Song. 2019. Be sensitive and collaborative: Analyzing impact of coverage metrics in greybox fuzzing. In22nd International Symposium on Research in Attacks, Intrusions and Defenses (RAID 2019). 1–15.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. 2021. Industry practice of coverage-guided enterprise-level DBMS fuzzing. In Software Engineering in Practice (ICSE-SEIP). IEEE, 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Chunqiu Steven Xia, Matteo Paltenghi, Jia Le Tian, Michael Pradel, and Lingming Zhang. 2024. Fuzz4all: Universal fuzzing with large language models. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Hanxiang Xu, Wei Ma, Ting Zhou, Yanjie Zhao, Kai Chen, Qiang Hu, Yang Liu, and Haoyu Wang. 2025. CKGFuzzer: LLM-Based Fuzz Driver Generation Enhanced By Code Knowledge Graph. In Software Engineering: Companion Proceedings (ICSE-Companion). IEEE, 243–254.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Chen Yang, Junjie Chen, Bin Lin, Ziqi Wang, and Jianyi Zhou. 2024. Advancing code coverage: Incorporating program analysis with large language models.ACM Transactions on Software Engineering and Methodology(2024).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Chenyuan Yang, Yinlin Deng, Runyu Lu, Jiayi Yao, Jiawei Liu, Reyhaneh Jabbarvand, and Lingming Zhang. 2024. Whitefox: White-box compiler fuzzing empowered by large language models.Proceedings of the ACM on Programming Languages8, OOPSLA2 (2024), 709–735.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Chenyuan Yang, Xuheng Li, Md Rakib Hossain Misu, Jianan Yao, Weidong Cui, Yeyun Gong, Chris Hawblitzel, Shuvendu Lahiri, Jacob R Lorch, Shuai Lu, et al. 2025. Autoverus: Automated proof generation for rust code.Proceedings of the ACM on Programming Languages9, OOPSLA2 (2025), 3454–3482.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Chenyuan Yang, Zijie Zhao, and Lingming Zhang. 2025. Kernelgpt: Enhanced kernel fuzzing via large language models. InProceedings of the 30th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2. 560–573.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Zhiyu Zhang, Longxing Li, Ruigang Liang, and Kai Chen. 2025. Unlocking Low Frequency Syscalls in Kernel Fuzzing with Dependency-Based RAG.Proceedings of the ACM on Software Engineering2, ISSTA (2025), 848–870.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. Squirrel: Testing database management systems with language validity and coverage feedback. InProceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security. 955–970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Suyang Zhong and Manuel Rigger. 2025. Scaling Automated Database System Testing.arXiv preprint arXiv:2503.21424(2025).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 34,
+      "text": "Suyang Zhong and Manuel Rigger. 2025. Testing Database Systems with Large Language Model Synthesized Fragments.arXiv preprint arXiv:2505.02012(2025). 12",
+      "is_sqlancer_publication": true
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 8,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In (ICSE). IEEE, 2060–2071.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 21,
+      "text": "M. Rigger. 2020. Sqlancer: Detecting Logic Bugs in DBMS. https://github.com/ sqlancer/sqlancer.",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 33,
+      "text": "Suyang Zhong and Manuel Rigger. 2025. Scaling Automated Database System Testing.arXiv preprint arXiv:2503.21424(2025).",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing sqlancer_pp"
+      ]
+    },
+    {
+      "number": 34,
+      "text": "Suyang Zhong and Manuel Rigger. 2025. Testing Database Systems with Large Language Model Synthesized Fragments.arXiv preprint arXiv:2505.02012(2025). 12",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "prints the arXiv id of the paper introducing shqvel"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 8,14,16,32]",
+      "technique": "qpg",
+      "sentence": "In recent years, a variety of automated SQL test case generation techniques have been proposed [ 8,14,16,32], aiming to produce both syntactically and semantically valid queries.",
+      "context_before": "ase Management Systems (RDBMSs) serve as the core infrastructure of modern data-intensive applications, where their stability directly determines the reliability of upper-layer services. As a key metric for assessing testing adequacy, code coverage has been widely adopted to evaluate the completeness of system testing [ 23,24,32], exerting a direct impact on the quality assessment and release decisions of industrial RDBMSs. Given the pervasive deployment of RDBMSs in critical systems, improving code coverage of RDBMSs has become an urgent requirement for ensuring system quality and robustness.",
+      "context_after": "Some approaches operate at the intermediate representation (IR) level to preserve semantic correctness during mutation [ 16,32], while others employ stateful fuzzing to maintain consistent database states throughout execution [ 14]. Another line of work emphasizes fine-grained coverage collection [24], improving the applicability of testing frameworks in industrial settings. Despite these advances, DBMS-oriented test generation techniques still facea fundamental challenge that constrains their coverage improvement: the absence of source code level context information, i.e., an explicit mappin",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 3381,
+      "cited_reference": {
+        "number": 8,
+        "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In (ICSE). IEEE, 2060–2071.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing qpg",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "ShQveL",
+      "technique": null,
+      "sentence": "4 Baselines: •Base: The baseline approach refers to using the initial set of regression test cases as input, executing the test cases on 7 Table 1: Line coverage achieved by the compared methods DBMS Base SQUIRREL ShQveL DBcover nse DBcover PostgreSQL 68.",
+      "context_before": "CentOS 7. Experiments for DBcover and its variant DBcover nseuse the qwen3:32b large language model with a temperature of 0.7. 4.1.3 Target RDBMSs.To demonstrate the effectiveness of DBcover, we applied it to a variety of relational database management systems (DBMS), including the open-source systems MySQL (version 8.0.33) and PostgreSQL (version 17.0), as well as a proprietary industrial DBMS, KingbaseES [ 2]. The inclusion of both open-source and closed-source systems in our evaluation provides a comprehensive assessment of DBcover’s performance across different RDBMS implementations. 4.1.",
+      "context_after": "6% 69.0% 31.5% 75.7%80.1% MySQL 71.2% 71.4% 25.7% 77.2%82.3% the target RDBMS and measuring the collective coverage achieved after these executions. •ShQveL [ 34] enhances existing SQL test case generator (SQLancer++ [ 33]) by leveraging LLM to synthesize SQL fragments. This is the first and only available LLM-assisted test generation method for RDBMS and thus is selected as a comparison method. In our implementation, we utilized Gemini-2.5-pro (with 175B parameters) as the LLM for the test case generation process. Additionally, we made modifications to certain parts of the code to adapt it to",
+      "section": "4.1.4 Baselines:",
+      "page": 7,
+      "char_offset": 39249,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "ShQveL",
+      "technique": null,
+      "sentence": "•ShQveL [ 34] enhances existing SQL test case generator (SQLancer++ [ 33]) by leveraging LLM to synthesize SQL fragments.",
+      "context_before": "gbase ES [ 2]. The inclusion of both open-source and closed-source systems in our evaluation provides a comprehensive assessment of DBcover’s performance across different RDBMS implementations. 4.1.4 Baselines: •Base: The baseline approach refers to using the initial set of regression test cases as input, executing the test cases on 7 Table 1: Line coverage achieved by the compared methods DBMS Base SQUIRREL ShQveL DBcover nse DBcover PostgreSQL 68.6% 69.0% 31.5% 75.7%80.1% MySQL 71.2% 71.4% 25.7% 77.2%82.3% the target RDBMS and measuring the collective coverage achieved after these executions.",
+      "context_after": "This is the first and only available LLM-assisted test generation method for RDBMS and thus is selected as a comparison method. In our implementation, we utilized Gemini-2.5-pro (with 175B parameters) as the LLM for the test case generation process. Additionally, we made modifications to certain parts of the code to adapt it to MySQL. •SQUIRREL [ 32]: is a representative test generation approach that conducts mutations on the intermediate representation (IR) representations, aiming to achieve high syntax and semantic correctness of the generated SQL query. SQUIRREL also supports the generatio",
+      "section": "4.1.4 Baselines:",
+      "page": 8,
+      "char_offset": 39652,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "ShQveL",
+      "technique": null,
+      "sentence": "ShQveL—a standalone LLM-augmented generator that does not leverage the seed corpus—achieves substantially lower coverage (31.",
+      "context_before": "ith Baselines Table 1 shows the results by each compared RDBMS test case generator in 24-hour time-bounded experiments. The columnBase reports the coverage achieved by executing only the initial seed pool (i.e., without generating any new test cases). We can observe that the initial seed pools already achieve a rather high line coverage, with68.6%on PostgreSQL and71.2%on MySQL. DBcover achieves the highest coverage—80.1%on PostgreSQL and82.3% on MySQL—surpassing the seed baseline by11.5%and11.1%, respectively. SQUIRREL improves coverage by merely0.4%on PostgreSQL (68.6%→69.0%) and0.2%on MySQL.",
+      "context_after": "5%on PostgreSQL, 25.7%on MySQL). We attribute the effectiveness of DBcover largely to its use of source-level context that explicitly links SQL inputs to their execution paths, which we refer to as SQL-to-path correspondence. Without this mapping, test generators cannot determine which SQL constructs are needed to reach a given uncovered code region. Both SQUIRREL and shQveL lack such context information, and thus cannot effectively cover the target code region. DBcover overcomes this barrier by explicitly collecting the SQL-to-path correspondence, providing LLM with this global context—and lev",
+      "section": "4.2 Comparison with Baselines",
+      "page": 8,
+      "char_offset": 41498,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "shQveL",
+      "technique": null,
+      "sentence": "Both SQUIRREL and shQveL lack such context information, and thus cannot effectively cover the target code region.",
+      "context_before": "aseline by11.5%and11.1%, respectively. SQUIRREL improves coverage by merely0.4%on PostgreSQL (68.6%→69.0%) and0.2%on MySQL. ShQveL—a standalone LLM-augmented generator that does not leverage the seed corpus—achieves substantially lower coverage (31.5%on PostgreSQL, 25.7%on MySQL). We attribute the effectiveness of DBcover largely to its use of source-level context that explicitly links SQL inputs to their execution paths, which we refer to as SQL-to-path correspondence. Without this mapping, test generators cannot determine which SQL constructs are needed to reach a given uncovered code region.",
+      "context_after": "DBcover overcomes this barrier by explicitly collecting the SQL-to-path correspondence, providing LLM with this global context—and leveraging its native code comprehension ability—DBcover unlocks deep,Table 2: Ablation study results (per module on PostgreSQL) Project Lines Base DBcover nse DBcover utils/adt 66211 81.60% 84.90% 88.00% (+3.10%, +6.40%) commands 32326 81.60% 83.40% 86.10% (+2.70%, +4.50%) nodes 24882 44.30% 44.70% 47.80% (+3.10%, +3.50%) parser 24206 87.30% 88.30% 90.00% (+1.70%, +2.70%) executor 23181 86.40% 86.50% 90.20% (+3.70%, +3.80%) catalog 13791 83.00% 85.90% 87.70% (+1.",
+      "section": "4.2 Comparison with Baselines",
+      "page": 8,
+      "char_offset": 41975,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker",
+      "surface": "[ 9,14,16,24,32–\n34]",
+      "technique": null,
+      "sentence": "1 RDBMS Test Case Generation Methods In traditional DBMS test case generation, fuzzing [ 9,14,16,24,32– 34] has received extensive attention due to its efficiency in automatically producing diverse inputs and triggering program behaviors.",
+      "context_before": "and metadata-intensive operations. Starting from an initial coverage of 50.0% in the data type processing module and 68.0% in the metadata management module (achieved by existing internal test suites), DBcover significantly advances coverage to80.0%and 81.4%, respectively. These results demonstrate that our approach can effectively explore deep, stateful logic in proprietary database engines. Due to licensing restrictions, internal implementation details cannot be disclosed; however, the reported coverage metrics reflect genuine execution paths within the production codebase. 5 Related Work 5.",
+      "context_after": "Existing approaches can be broadly grouped into two complementary directions, i.e., improving the syntactic and semantic validity of generated test cases, and refining coverage feedback to better reflect meaningful execution differences. The first line of work focuses on generating well-formed SQL that adheres to DBMS grammar and semantics. Early tools like SQLsmith [ 22], SQLancer [ 21] and Apollo [ 15] generate single statements via syntax-driven traversal. Recent approaches produce multiple semantically related queries per test case, with generative methods synthesizing these groups from s",
+      "section": "5.1 RDBMS Test Case Generation Methods",
+      "page": 10,
+      "char_offset": 55371,
+      "cited_reference": {
+        "number": 33,
+        "text": "Suyang Zhong and Manuel Rigger. 2025. Scaling Automated Database System Testing.arXiv preprint arXiv:2503.21424(2025).",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing sqlancer_pp"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Early tools like SQLsmith [ 22], SQLancer [ 21] and Apollo [ 15] generate single statements via syntax-driven traversal.",
+      "context_before": ". 5 Related Work 5.1 RDBMS Test Case Generation Methods In traditional DBMS test case generation, fuzzing [ 9,14,16,24,32– 34] has received extensive attention due to its efficiency in automatically producing diverse inputs and triggering program behaviors. Existing approaches can be broadly grouped into two complementary directions, i.e., improving the syntactic and semantic validity of generated test cases, and refining coverage feedback to better reflect meaningful execution differences. The first line of work focuses on generating well-formed SQL that adheres to DBMS grammar and semantics.",
+      "context_after": "Recent approaches produce multiple semantically related queries per test case, with generative methods synthesizing these groups from scratch. DynSQL [ 14] dynamically queries the schema to guide abstract syntax tree instantiation into valid SQL. SQUIRREL [ 32], mutate seed queries, supporting syntax-preserving mutations. Griffin [ 12] recombines SQL fragments and repairs semantic inconsistencies using a metadata dependency graph. However, these methods treat the DBMS as a black/grey box and cannot reason about how SQL inputs map to internal execution paths, limiting their ability to improve",
+      "section": "5.1 RDBMS Test Case Generation Methods",
+      "page": 10,
+      "char_offset": 55952,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker",
+      "surface": "[ 6,11,18,25–31,34]",
+      "technique": null,
+      "sentence": "2 LLM for Test Case Generation With the rapid progress of large language models (LLMs) in code understanding and generation, LLM-driven test case generation has surged recently [ 6,11,18,25–31,34].",
+      "context_before": "] extend AFL’s bitmap size (Squirrel enlarges the default 64 KB bitmap to 256 KB) to alleviate hash collisions and obtain finer-grained coverage feedback for SQL synthesis. Ratel [ 24] addresses these issues by using static analysis to assign dedicated counters to basic blocks and branches, eliminating collisions, and by instrumenting all binaries at compile time for system-wide coverage in multi-process RDBMS. This line of work is orthogonal to ours. While this work does not generate queries, it provides valuable, precise coverage feedback that can enhance test-case generation guidance. 10 5.",
+      "context_after": "Due to their strong semantic modeling abilities, LLMs can generate structured, semantically meaningful test inputs and have been integrated into various testing frameworks to enhance testing quality and automation across software systems. Two main approaches have emerged: using LLMs to augment existing test generators and directly synthesizing tests with LLMs. In the augmentation paradigm, LLMs are integrated into existing test generators to enhance their generation process [ 13,17,34]. For instance, ShQveL [ 34] extracts SQL features through LLM interactions and incorporates them into existi",
+      "section": "5.1 RDBMS Test Case Generation Methods",
+      "page": 11,
+      "char_offset": 57568,
+      "cited_reference": {
+        "number": 34,
+        "text": "Suyang Zhong and Manuel Rigger. 2025. Testing Database Systems with Large Language Model Synthesized Fragments.arXiv preprint arXiv:2505.02012(2025). 12",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "prints the arXiv id of the paper introducing shqvel"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker",
+      "surface": "[ 13,17,34]",
+      "technique": null,
+      "sentence": "In the augmentation paradigm, LLMs are integrated into existing test generators to enhance their generation process [ 13,17,34].",
+      "context_before": "nce test-case generation guidance. 10 5.2 LLM for Test Case Generation With the rapid progress of large language models (LLMs) in code understanding and generation, LLM-driven test case generation has surged recently [ 6,11,18,25–31,34]. Due to their strong semantic modeling abilities, LLMs can generate structured, semantically meaningful test inputs and have been integrated into various testing frameworks to enhance testing quality and automation across software systems. Two main approaches have emerged: using LLMs to augment existing test generators and directly synthesizing tests with LLMs.",
+      "context_after": "For instance, ShQveL [ 34] extracts SQL features through LLM interactions and incorporates them into existing generators, increasing behavioral coverage while maintaining efficiency. LLAMA [ 13] uses an LLM to generate semantically valid seeds and refines them with multi-feedback optimization and hybrid fuzzing for smart contracts. In these approaches, LLMs assist with tasks like syntax repair, seed enrichment, and semantic expansion, compensating for the limitations of traditional generators. However, their effectiveness is still constrained by the base generator’s ability to construct the e",
+      "section": "5.1 RDBMS Test Case Generation Methods",
+      "page": 11,
+      "char_offset": 58128,
+      "cited_reference": {
+        "number": 34,
+        "text": "Suyang Zhong and Manuel Rigger. 2025. Testing Database Systems with Large Language Model Synthesized Fragments.arXiv preprint arXiv:2505.02012(2025). 12",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "prints the arXiv id of the paper introducing shqvel"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "ShQveL",
+      "technique": null,
+      "sentence": "For instance, ShQveL [ 34] extracts SQL features through LLM interactions and incorporates them into existing generators, increasing behavioral coverage while maintaining efficiency.",
+      "context_before": "code understanding and generation, LLM-driven test case generation has surged recently [ 6,11,18,25–31,34]. Due to their strong semantic modeling abilities, LLMs can generate structured, semantically meaningful test inputs and have been integrated into various testing frameworks to enhance testing quality and automation across software systems. Two main approaches have emerged: using LLMs to augment existing test generators and directly synthesizing tests with LLMs. In the augmentation paradigm, LLMs are integrated into existing test generators to enhance their generation process [ 13,17,34].",
+      "context_after": "LLAMA [ 13] uses an LLM to generate semantically valid seeds and refines them with multi-feedback optimization and hybrid fuzzing for smart contracts. In these approaches, LLMs assist with tasks like syntax repair, seed enrichment, and semantic expansion, compensating for the limitations of traditional generators. However, their effectiveness is still constrained by the base generator’s ability to construct the execution context needed to trigger deep system logic, limiting improvements from LLM-based augmentation alone. More recent research efforts [ 6,7,10,11,25] increasingly treat large la",
+      "section": "5.1 RDBMS Test Case Generation Methods",
+      "page": 11,
+      "char_offset": 58257,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T14:26:20Z",
+    "is_model_written": true,
+    "summary": "DBcover generates SQL tests for RDBMSs with white-box knowledge of the engine. Lightweight dynamic analysis extracts the correspondence between SQL inputs and execution paths along with call graphs as global context, and source-level information around target functions as local context, organised in a knowledge graph. Generation then runs in two phases: pick a seed whose execution path is near the uncovered target, then prompt an LLM with both contexts to reach uncovered code. It reports 80.1% and 82.3% coverage on PostgreSQL and MySQL.",
+    "narrative": "ShQveL, which enhances SQLancer++ with LLM-synthesised SQL fragments, is one of DBcover's baselines and is reported to achieve substantially lower coverage because it lacks the seed corpus and context DBcover uses. SQLancer itself is cited as an early syntax-driven generator.",
+    "roles": {
+      "M1": "background",
+      "M2": "baseline",
+      "M3": "baseline",
+      "M4": "result_comparison",
+      "M5": "result_comparison",
+      "M6": "background",
+      "M7": "background",
+      "M8": "background",
+      "M9": "background",
+      "M10": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M3",
+          "M4",
+          "M5"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M3",
+            "sentence": "•ShQveL [ 34] enhances existing SQL test case generator (SQLancer++ [ 33]) by leveraging LLM to synthesize SQL fragments.",
+            "section": "4.1.4 Baselines:",
+            "page": 8
+          },
+          {
+            "mention_id": "M4",
+            "sentence": "ShQveL—a standalone LLM-augmented generator that does not leverage the seed corpus—achieves substantially lower coverage (31.",
+            "section": "4.2 Comparison with Baselines",
+            "page": 8
+          },
+          {
+            "mention_id": "M5",
+            "sentence": "Both SQUIRREL and shQveL lack such context information, and thus cannot effectively cover the target code region.",
+            "section": "4.2 Comparison with Baselines",
+            "page": 8
+          }
+        ],
+        "reasoning": "ShQveL, built on SQLancer++, is one of the baselines, and M4 and M5 report its coverage against DBcover's and explain the difference."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

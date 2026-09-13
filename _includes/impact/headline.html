@@ -1,0 +1,28 @@
+{%- comment -%}
+Headline impact numbers for the homepage hero.
+
+Every value is read from _data/impact/stats.json, which is regenerated from the
+underlying records by `python -m tools.impact.run stats`. Nothing here is a
+literal: editing a number means editing a record, not this file.
+{%- endcomment -%}
+{%- assign head = site.data.impact.stats.headline -%}
+{%- if head -%}
+<ul class="impact impact-headline">
+  <li class="impact-headline__item">
+    <span class="impact-headline__value">{{ head.bugs_total_rounded }}</span>
+    <span class="impact-headline__label">bugs found</span>
+  </li>
+  <li class="impact-headline__item">
+    <span class="impact-headline__value">{{ head.dbms_supported }}</span>
+    <span class="impact-headline__label">DBMSs supported</span>
+  </li>
+  <li class="impact-headline__item">
+    <span class="impact-headline__value">{{ head.dbms_projects_using_sqlancer }}</span>
+    <span class="impact-headline__label">DBMS projects using SQLancer</span>
+  </li>
+  <li class="impact-headline__item">
+    <span class="impact-headline__value">{{ head.papers_building_on_sqlancer }}</span>
+    <span class="impact-headline__label">papers building on SQLancer</span>
+  </li>
+</ul>
+{%- endif -%}

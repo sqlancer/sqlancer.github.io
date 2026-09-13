@@ -1,0 +1,781 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:24:27Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3728965",
+    "title": "DepState: Detecting Synchronization Failure Bugs in Distributed Database Management Systems",
+    "authors": [
+      "Cundi Fang",
+      "Jie Liang",
+      "Zhiyong Wu",
+      "Jingzhou Fu",
+      "Zhouyang Jia",
+      "Chun Huang",
+      "Yu Jiang",
+      "Shanshan Li"
+    ],
+    "year": 2025,
+    "venue": "Proc. ACM Softw. Eng.",
+    "doi": "10.1145/3728965",
+    "arxiv_id": null,
+    "s2_paper_id": "810786dd896fe2eef0a129db6e3b115c95375130",
+    "url": "https://doi.org/10.1145/3728965",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3728965",
+      "retrieved_at": "2026-09-08T15:24:27Z",
+      "chars": 84249,
+      "content_sha256": "sha256:811218796936009b291d6e145761cf6cb98569e9fa867f83744569faba7a09d0"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 22,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 3893
+      },
+      {
+        "number": "2",
+        "title": "Background and Motivation",
+        "start": 11041
+      },
+      {
+        "number": "2.1",
+        "title": "DDBMS Overview",
+        "start": 11069
+      },
+      {
+        "number": "2.2",
+        "title": "Synchronization Process in DDBMS",
+        "start": 12945
+      },
+      {
+        "number": "2.3",
+        "title": "An Example of Synchronization Failure Bug",
+        "start": 15915
+      },
+      {
+        "number": "3",
+        "title": "Design of DepState",
+        "start": 20041
+      },
+      {
+        "number": "3.1",
+        "title": "Sharding-Aware Dependent Data Generation",
+        "start": 21000
+      },
+      {
+        "number": "3.2",
+        "title": "Synchronization Sensitive Cluster Operation Sequence Exploration",
+        "start": 30680
+      },
+      {
+        "number": "4",
+        "title": "Implementation",
+        "start": 45333
+      },
+      {
+        "number": "5",
+        "title": "Evaluation",
+        "start": 47842
+      },
+      {
+        "number": "5.1",
+        "title": "Evaluation Setup",
+        "start": 48252
+      },
+      {
+        "number": "5.2",
+        "title": "Synchronization Failure Bug Detection",
+        "start": 53272
+      },
+      {
+        "number": "5.3",
+        "title": "Comparison with Other Techniques",
+        "start": 58538
+      },
+      {
+        "number": "5.4",
+        "title": "Effectiveness of Each Component",
+        "start": 63341
+      },
+      {
+        "number": "6",
+        "title": "Discussion",
+        "start": 65219
+      },
+      {
+        "number": "6.1",
+        "title": "Generality and Flexibility of DepState",
+        "start": 65232
+      },
+      {
+        "number": "6.2",
+        "title": "Testing Non-relational DDBMSs",
+        "start": 66809
+      },
+      {
+        "number": "6.3",
+        "title": "Testing Other Distributed Systems",
+        "start": 68439
+      },
+      {
+        "number": "7",
+        "title": "Related Work",
+        "start": 69490
+      },
+      {
+        "number": "7.1",
+        "title": "Distributed System Testing",
+        "start": 69505
+      },
+      {
+        "number": "7.2",
+        "title": "DBMS Testing",
+        "start": 71559
+      },
+      {
+        "number": "8",
+        "title": "Conclusion",
+        "start": 73370
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Raoof Altaher. 2024. Transparency Levels in Distributed Database Management System DDBMS. Preprints (April 2024). doi:10.20944/preprints202404.1327.v1",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Anse1. 2015. sqlsmith – A Random SQL Query Generator. https://github.com/anse1/sqlsmith A random SQL query generator.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Shannon Bradshaw, Eoin Brazil, and Kristina Chodorow. 2019. MongoDB: The Definitive Guide: Powerful and Scalable Data Storage. O’Reilly Media, Sebastopol, CA, USA.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Michael Alan Chang, Bredan Tschaen, Theophilus Benson, and Laurent Vanbever. 2015. Chaos Monkey: Increasing SDN Reliability through Systematic Network Destruction. In Proceedings of the 2015 ACM Conference on Special Interest Group on Data Communication (London, United Kingdom) (SIGCOMM ’15). Association for Computing Machinery, New York, NY, USA, 371–372. doi:10.1145/2785956.2790038",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "MariaDB Community. 2024. MariaDB Galera Cluster. https://mariadb.com/kb/en/galera-cluster/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "James C. Corbett, Jeffrey Dean, Michael Epstein, Andrew Fikes, Christopher Frost, J. J. Furman, Sanjay Ghemawat, Andrey Gubarev, Christopher Heiser, Peter Hochschild, Wilson Hsieh, Sebastian Kanthak, Eugene Kogan, Hongyi Li, Alexander Lloyd, Sergey Melnik, David Mwaura, David Nagle, Sean Quinlan, Rajesh Rao, Lindsay Rolig, Yasushi Saito, Michal Szymaniak, Christopher Taylor, Ruth Wang, and Dale Wo",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Stephen Elliot. 2014. DevOps and the Cost of Downtime: Fortune 1000 Best Practice Metrics Quantified. International Data Corporation (IDC) (2014).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Paul Ezhilchelvan, Amjad Aldweesh, and Aad van Moorsel. 2018. Non-Blocking Two Phase Commit Using Blockchain. InProceedings of the 1st Workshop on Cryptocurrencies and Blockchains for Distributed Systems (Munich, Germany) (CryBlock’18). Association for Computing Machinery, New York, NY, USA, 36–41. doi:10.1145/3211933.3211940",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2023. Griffin: Grammar-Free DBMS Fuzzing. In Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering (Rochester, MI, USA) (ASE ’22). Association for Computing Machinery, New York, NY, USA, Article 49, 12 pages. doi:10.1145/3551349.3560431",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Ying Fu, Zhiyong Wu, Yuanliang Zhang, Jie Liang, Jingzhou Fu, Yu Jiang, Shanshan Li, and Xiangke Liao. 2024. THANOS: DBMS Bug Detection via Storage Engine Rotation Based Differential Testing. In Proceedings of the. IEEE Computer Society, 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Jim Gray and Leslie Lamport. 2006. Consensus on Transaction Commit. ACM Transactions on Database Systems (TODS) 31, 1 (2006), 133–160. doi:10.1145/1188913.1188915",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Theo Haerder and Andreas Reuter. 1983. Principles of transaction-oriented database recovery. ACM Comput. Surv. 15, 4 (Dec. 1983), 287–317. doi:10.1145/289.291",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Haochen He, Erci Xu, Shanshan Li, Zhouyang Jia, Si Zheng, Yue Yu, Jun Ma, and Xiangke Liao. 2023. When Database Meets New Storage Devices: Understanding and Exposing Performance Mismatches via Configurations. Proc. VLDB Endow. 16, 7 (March 2023), 1712–1725. doi:10.14778/3587136.3587145",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Victor Heorhiadi, Shriram Rajagopalan, Hani Jamjoom, Michael K. Reiter, and Vyas Sekar. 2016. Gremlin: Systematic Resilience Testing of Microservices. In (ICDCS). 57–66. doi:10.1109/ICDCS.2016.11",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Shawn Hogan, Frazer Clement, and Jon Stephens. 2020. Bug #98526 Forced Shutdown at End of Process When Data Node Tries to Join Cluster. https://bugs.mysql.com/bug.php?id=98526",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Luke Jones. 2020. Google Explains Monday’s Google Cloud Outage That Took Down Gmail and YouTube. https://winbuzzer. com/2020/12/15/google-explains-mondays-google-cloud-outage-that-took-down-gmail-and-youtube-xcxwbn/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Kyle Kingsbury. 2023. Jepsen. https://jepsen.io/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Kyle Kingsbury and Peter Alvaro. 2020. Elle: Inferring Isolation Anomalies from Experimental Observations. arXiv preprint (2020). doi:10.48550/arXiv.2003.10554 arXiv:arXiv:2003.10554",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Jonathan Kirsch and Yair Amir. 2008. Paxos for System Builders: an overview. In Proceedings of the 2nd Workshop on Large-Scale Distributed Systems and Middleware (Yorktown Heights, New York, USA) (LADIS ’08). Association for Computing Machinery, New York, NY, USA, Article 3, 6 pages. doi:10.1145/1529974.1529979",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Leslie Lamport. 2019. The part-time parliament. Association for Computing Machinery, New York, NY, USA, 277–317. https://doi.org/10.1145/3335772.3335939",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Sami M. Lasassmeh and James M. Conrad. 2010. Time synchronization in wireless sensor networks: A survey. In Proceedings of the IEEE SoutheastCon 2010 (SoutheastCon). 242–245. doi:10.1109/SECON.2010.5453878",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Jie Liang, Yaoguang Chen, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Yu Jiang, Xiangdong Huang, Ting Chen, Jiashui Wang, and Jiajia Li. 2023. Sequence-Oriented DBMS Fuzzing. In Engineering (ICDE). 668–681. doi:10.1109/ICDE55515.2023.00057",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Jie Liang, Zhiyong Wu, Jingzhou Fu, Mingzhe Wang, Chengnian Sun, and Yu Jiang. 2024. Mozi: Discovering DBMS Bugs via Configuration-Based Equivalent Transformation. In Proceedings of the IEEE/ACM 46th International Conference Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA088. Publication date: July 2025. ISSTA088:22 Cundi Fang, Jie Liang, Zhiyong Wu, Jingzhou Fu, Zhouyang Jia, Chun Huang, ",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Tao Lyu, Liyi Zhang, Zhiyao Feng, Yueyang Pan, Yujie Ren, Meng Xu, Mathias Payer, and Sanidhya Kashyap. 2024. Monarch: A Fuzzing Framework for Distributed File Systems. In 2024 USENIX Annual Technical Conference (USENIX ATC 24). USENIX Association, Santa Clara, CA, 529–543. https://www.usenix.org/conference/atc24/presentation/lyu",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Fuchen Ma, Yuanliang Chen, Yuanhang Zhou, Jingxuan Sun, Zhuo Su, Yu Jiang, Jiaguang Sun, and Huizhong Li. 2023. Phoenix: Detect and Locate Resilience Issues in Blockchain via Context-Sensitive Chaos. In Proceedings of the 2023 ACMSIGSAC Conference on Computer and Communications Security (Copenhagen, Denmark) (CCS ’23). Association for Computing Machinery, New York, NY, USA, 1182–1196. doi:10.1145/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Ruijie Meng, George Pîrlea, Abhik Roychoudhury, and Ilya Sergey. 2023. Greybox Fuzzing of Distributed Systems (CCS ’23). Association for Computing Machinery, New York, NY, USA, 1615–1629. doi:10.1145/3576915.3623097",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Diego Ongaro and John Ousterhout. 2014. In search of an understandable consensus algorithm. In Proceedings of the 2014 USENIX Conference on USENIX Annual Technical Conference (Philadelphia, PA) (USENIX ATC’14). USENIX Association, USA, 305–320.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Oracle. 2024. MySQL InnoDB Cluster Documentation. https://dev.mysql.com/doc/refman/8.0/en/mysql-cluster.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Oracle. 2024. MySQL NDB Cluster Documentation. https://dev.mysql.com/doc/refman/8.0/en/mysql-cluster.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "M. Tamer Özsu and Patrick Valduriez. 1999. Principles of Distributed Database Systems. Springer, Berlin, Heidelberg, Germany.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "PingCAP. 2024. TiDB: An Open Source Distributed SQL Database. https://pingcap.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (Virtual Event, USA) (ESEC/FSE 2020). Association for Computing Machinery, New York, NY, USA, 1140–1152. doi:10.1145/33",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 33,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation (OSDI’20). USENIX Association, USA, Article 38, 16 pages. doi:10.5555/3488766.3488804",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 34,
+      "text": "Mark Roantree. 2002. Metadata Management in Federated Multimedia Systems. In Australasian Database Conference. 147–155.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Amanpreet Kaur Sandhu. 2022. Big data with cloud computing: Discussions and challenges. Big Data Mining and Analytics 5, 1 (2022), 32–40. doi:10.26599/BDMA.2021.9020016",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Fred B. Schneider. 1982. Synchronization in Distributed Programs. ACM Trans. Program. Lang. Syst. 4, 2 (April 1982), 125–148. doi:10.1145/357162.357163",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Redgate Software. 2024. DB-Engines Ranking. https://db-engines.com/en/ranking",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Siamak Solat. 2024. Sharding Distributed Databases: A Critical Review. arXiv preprint (2024). doi:10.48550/arXiv.2404. 04384 arXiv:arXiv:2404.04384",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Jason Warner. 2018. October 21 Post-Incident Analysis. https://github.blog/news-insights/company-news/oct21-postincident-analysis/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "M. Wiesmann, F. Pedone, A. Schiper, B. Kemme, and G. Alonso. 2000. Understanding replication in databases and distributed systems. In Proceedings 20th IEEE International Conference on Distributed Computing Systems. 464–474. doi:10.1109/ICDCS.2000.840959",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback. In Proceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security (Virtual Event, USA) (CCS ’20). Association for Computing Machinery, New York, NY, USA, 955–970. doi:10.1145/3372297.3417260 Received 202",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 32,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (Virtual Event, USA) (ESEC/FSE 2020). Association for Computing Machinery, New York, NY, USA, 1140–1152. doi:10.1145/3368089.3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 33,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation (OSDI’20). USENIX Association, USA, Article 38, 16 pages. doi:10.5555/3488766.3488804",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "28% more lines in synchronization-related functions than Jepsen, Mallory, SQLsmith, SQLancer, and Mozi in 24 hours, respectively.",
+      "context_before": ". DepState enhances synchronization testing by simulating the complexities of data sharding and dynamic cluster conditions. It establishes dependencies between tables across nodes and systematically introduces controlled variations in cluster states. We utilize DepState on four DDBMSs: MySQL NDB Cluster, MySQL InnoDB Cluster, MariaDB Galera Cluster, and TiDB Cluster, discovering 25 new bugs, with 13 confirmed. We compare DepState against state-of-the-art tools. DepState finds 14 more synchronization failure bugs and covers 6.13%-66.51%, 5.82%57.28%, 14.12%-83.30%, 36.81%-83.88%, and 43.24%-54.",
+      "context_after": "CCS Concepts: •Software and its engineering →Software testing and debugging ;•Information systems→Relational parallel and distributed DBMSs; Distributed data locking. Additional Key Words and Phrases: Distributed Database Management Systems; Synchronization Failure ACM Reference Format: Cundi Fang, Jie Liang, Zhiyong Wu, Jingzhou Fu, Zhouyang Jia, Chun Huang, Yu Jiang, and Shanshan Li. 2025. DepState: Detecting Synchronization Failure Bugs in Distributed Database Management Systems. Proc. ACM Softw. Eng. 2, ISSTA, Article ISSTA088 (July 2025), 22 pages. https://doi.org/10.1145/3728965 ∗Cundi",
+      "section": null,
+      "page": 1,
+      "char_offset": 1779,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In addition, we compare DepState with the state-of-the-art distributed system testing tool Jepsen and Mallory, and advanced database testing tools SQLsmith, SQLancer, and Mozi.",
+      "context_before": "r, we propose synchronization-sensitive cluster state sequence exploration to precisely modify cluster states during different synchronization phases. This methodology investigates novel test sequences that emerge at distinct synchronization intervals via mutation, leveraging coverage feedback to efficiently identify potential synchronization issues. We implement DepState and evaluate it on four widely-used DDBMSs: MySQL NDB Cluster, MySQL InnoDB Cluster, MariaDB Galera Cluster, and TiDB Cluster. DepState reports a total of 25synchronization failure bugs, with 13 anomalies have been confirmed.",
+      "context_after": "The 24-hour result shows that DepState found 14 more synchronization failure bugs, and covered 6.13%-66.51%, 5.82%-57.28%, 14.12%-83.30%, 36.81%-83.88%, and 43.24%-54.28% more lines in synchronization-related functions than Jepsen, Mallory, SQLsmith, SQLancer, and Mozi, respectively. In summary, we make the following contributions: •We identified that synchronization process in DDBMSs can be faulty and lead to serious issues such as service interruptions, but state-of-the-art testing techniques pay little attention to the synchronization failure bugs. •We designed and implemented a fuzzing fr",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 9871,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "28% more lines in synchronization-related functions than Jepsen, Mallory, SQLsmith, SQLancer, and Mozi, respectively.",
+      "context_before": "issues. We implement DepState and evaluate it on four widely-used DDBMSs: MySQL NDB Cluster, MySQL InnoDB Cluster, MariaDB Galera Cluster, and TiDB Cluster. DepState reports a total of 25synchronization failure bugs, with 13 anomalies have been confirmed. In addition, we compare DepState with the state-of-the-art distributed system testing tool Jepsen and Mallory, and advanced database testing tools SQLsmith, SQLancer, and Mozi. The 24-hour result shows that DepState found 14 more synchronization failure bugs, and covered 6.13%-66.51%, 5.82%-57.28%, 14.12%-83.30%, 36.81%-83.88%, and 43.24%-54.",
+      "context_after": "In summary, we make the following contributions: •We identified that synchronization process in DDBMSs can be faulty and lead to serious issues such as service interruptions, but state-of-the-art testing techniques pay little attention to the synchronization failure bugs. •We designed and implemented a fuzzing framework DepState, which combines dependencyaware sharding data generation and synchronization-sensitive cluster state sequence exploration to detect synchronization failure bugs. •We demonstrated that DepState improves synchronization code coverage compared to existing state-of-the-ar",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 10216,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "To evaluate the effectiveness of DepState in testing DDBMSs, we compare it with five state-of-the-art tools: Jepsen [ 17],Mallory [26], SQLsmith [ 2], SQLancer [ 33], andMozi [23].",
+      "context_before": "te, we select four popular open-source DDBMSs for evaluation, namely MySQL NDB Cluster [ 29], MySQL InnoDB Cluster [ 28], MariaDB Galera Cluster [ 5], and TiDB Cluster [ 31]. They are all widely used opensource DDBMSs according to DB-Engine Ranking [ 37]. They support similar DBMS features (e.g., the relational data model) but use different distributed architecture implementations. The versions under evaluation are MySQL NDB Cluster v8.0.40, MySQL InnoDB Cluster v8.0.35, MariaDB Galera Cluster v10.6.20, and TiDB Cluster 8.0.11-TiDB-v9.0.0-alpha-100-g91706ec8df-dirty. 5.1.2 Compared Techniques.",
+      "context_after": "Jepsen [ 17] is a distributed system testing tool, which has been adapted to test DDBMSs in the industry. Mallory [26] is an enhancement built upon the foundation of Jepsen. SQLsmith, SQLancer, and Mozi are three state-of-the-art DBMS testing techniques, which have detected hundreds of bugs in practice. We adapted Jepsen’s default configuration to make it work on these DDBMSs, and Mallory was similarly configured. For SQLsmith, SQLancer, and Mozi, since they were designed for testing traditional DBMS, we used them on a single SQL server of the DDBMS as a baseline. We selected traditional data",
+      "section": "5.1 Evaluation Setup",
+      "page": 14,
+      "char_offset": 48945,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLsmith, SQLancer, and Mozi are three state-of-the-art DBMS testing techniques, which have detected hundreds of bugs in practice.",
+      "context_before": "architecture implementations. The versions under evaluation are MySQL NDB Cluster v8.0.40, MySQL InnoDB Cluster v8.0.35, MariaDB Galera Cluster v10.6.20, and TiDB Cluster 8.0.11-TiDB-v9.0.0-alpha-100-g91706ec8df-dirty. 5.1.2 Compared Techniques. To evaluate the effectiveness of DepState in testing DDBMSs, we compare it with five state-of-the-art tools: Jepsen [ 17],Mallory [26], SQLsmith [ 2], SQLancer [ 33], andMozi [23]. Jepsen [ 17] is a distributed system testing tool, which has been adapted to test DDBMSs in the industry. Mallory [26] is an enhancement built upon the foundation of Jepsen.",
+      "context_after": "We adapted Jepsen’s default configuration to make it work on these DDBMSs, and Mallory was similarly configured. For SQLsmith, SQLancer, and Mozi, since they were designed for testing traditional DBMS, we used them on a single SQL server of the DDBMS as a baseline. We selected traditional database testing tools, including SQLsmith, SQLancer, and Mozi, as benchmarks. By using them as baselines, we aim to demonstrate that traditional database testing tools are not directly applicable to distributed databases. 5.1.3 Basic Setup. All experiments were conducted on a 64-bit Ubuntu 22.04 machine wit",
+      "section": "5.1 Evaluation Setup",
+      "page": 14,
+      "char_offset": 49300,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For SQLsmith, SQLancer, and Mozi, since they were designed for testing traditional DBMS, we used them on a single SQL server of the DDBMS as a baseline.",
+      "context_before": ". To evaluate the effectiveness of DepState in testing DDBMSs, we compare it with five state-of-the-art tools: Jepsen [ 17],Mallory [26], SQLsmith [ 2], SQLancer [ 33], andMozi [23]. Jepsen [ 17] is a distributed system testing tool, which has been adapted to test DDBMSs in the industry. Mallory [26] is an enhancement built upon the foundation of Jepsen. SQLsmith, SQLancer, and Mozi are three state-of-the-art DBMS testing techniques, which have detected hundreds of bugs in practice. We adapted Jepsen’s default configuration to make it work on these DDBMSs, and Mallory was similarly configured.",
+      "context_after": "We selected traditional database testing tools, including SQLsmith, SQLancer, and Mozi, as benchmarks. By using them as baselines, we aim to demonstrate that traditional database testing tools are not directly applicable to distributed databases. 5.1.3 Basic Setup. All experiments were conducted on a 64-bit Ubuntu 22.04 machine with an AMDEPYC 7742 processor (128 cores @ 2.25 GHz) and 488 GiB of main memory. Each testing tool used its default configuration to ensure consistency throughout all evaluations. The DDBMS clusters employed a single setup with 2 replicas and 2 slices, without multi-c",
+      "section": "5.1 Evaluation Setup",
+      "page": 14,
+      "char_offset": 49544,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We selected traditional database testing tools, including SQLsmith, SQLancer, and Mozi, as benchmarks.",
+      "context_before": "SQLancer [ 33], andMozi [23]. Jepsen [ 17] is a distributed system testing tool, which has been adapted to test DDBMSs in the industry. Mallory [26] is an enhancement built upon the foundation of Jepsen. SQLsmith, SQLancer, and Mozi are three state-of-the-art DBMS testing techniques, which have detected hundreds of bugs in practice. We adapted Jepsen’s default configuration to make it work on these DDBMSs, and Mallory was similarly configured. For SQLsmith, SQLancer, and Mozi, since they were designed for testing traditional DBMS, we used them on a single SQL server of the DDBMS as a baseline.",
+      "context_after": "By using them as baselines, we aim to demonstrate that traditional database testing tools are not directly applicable to distributed databases. 5.1.3 Basic Setup. All experiments were conducted on a 64-bit Ubuntu 22.04 machine with an AMDEPYC 7742 processor (128 cores @ 2.25 GHz) and 488 GiB of main memory. Each testing tool used its default configuration to ensure consistency throughout all evaluations. The DDBMS clusters employed a single setup with 2 replicas and 2 slices, without multi-cluster failover. We ran each DDBMS with one testing tool for 24 hours, which is a commonly used time se",
+      "section": "5.1 Evaluation Setup",
+      "page": 14,
+      "char_offset": 49697,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "3 Comparison with Other Techniques To evaluate the effectiveness of our DepState, we conducted comparison experiments between DepState with Jepsen, Mallory, SQLsmith, SQLancer, and Mozi.",
+      "context_before": "te ?Detecting this bug requires complex cross-node dependencies (from node5 tonode2 ) triggered by cluster architecture changes during synchronization. DepState addresses this via ShardinOg-Aware Data Generation and Synchronization-Sensitive Operation Sequences, injecting fine-grained behaviors to reveal intricate synchronization issues. DepState successfully detected this vulnerability within hours, highlighting its efficacy in capturing complex synchronization behaviors. This demonstrates DepState ’s capability in discovering previously unknown synchronization failure bugs, answering RQ1. 5.",
+      "context_after": "Jepsen and Mallory are stateof-the-art tools for testing distributed systems. SQLsmith, SQLancer and Mozi are three popular DBMS testing methods. These five tools support testing the tested DDBMSs, and we compare DepState to them using their default configurations. We ran the testing tools on each DDBMS for Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA088. Publication date: July 2025. DepState: Detecting Synchronization Failure Bugs in Distributed Database Management Systems ISSTA088:17 Table 3. Number of Unique Bugs Detected by Jepsen, Mallory, SQLsmith, SQLancer, Mozi, and DepSta",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 16,
+      "char_offset": 58540,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLsmith, SQLancer and Mozi are three popular DBMS testing methods.",
+      "context_before": "njecting fine-grained behaviors to reveal intricate synchronization issues. DepState successfully detected this vulnerability within hours, highlighting its efficacy in capturing complex synchronization behaviors. This demonstrates DepState ’s capability in discovering previously unknown synchronization failure bugs, answering RQ1. 5.3 Comparison with Other Techniques To evaluate the effectiveness of our DepState, we conducted comparison experiments between DepState with Jepsen, Mallory, SQLsmith, SQLancer, and Mozi. Jepsen and Mallory are stateof-the-art tools for testing distributed systems.",
+      "context_after": "These five tools support testing the tested DDBMSs, and we compare DepState to them using their default configurations. We ran the testing tools on each DDBMS for Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA088. Publication date: July 2025. DepState: Detecting Synchronization Failure Bugs in Distributed Database Management Systems ISSTA088:17 Table 3. Number of Unique Bugs Detected by Jepsen, Mallory, SQLsmith, SQLancer, Mozi, and DepState DDBMS Jepsen Mallory SQLsmith SQLancer Mozi DepState MySQL NDB Cluster 0 1 0 1 7 7 MySQL InnoDB Cluster 1 0 0 1 6 2 MariaDB Galera Cluster 1 1",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 16,
+      "char_offset": 58804,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Number of Unique Bugs Detected by Jepsen, Mallory, SQLsmith, SQLancer, Mozi, and DepState DDBMS Jepsen Mallory SQLsmith SQLancer Mozi DepState MySQL NDB Cluster 0 1 0 1 7 7 MySQL InnoDB Cluster 1 0 0 1 6 2 MariaDB Galera Cluster 1 1 0 1 0 2 TiDB Cluster 0 0 0 0 0 3 Total (Sync Failure Bugs) 2 (0) 2 (0) 0 (0) 3 (0) 13 (0) 14 (14) 24 hours, recording the number of detected bugs and covered synchronization-related functions as metrics.",
+      "context_before": "parison experiments between DepState with Jepsen, Mallory, SQLsmith, SQLancer, and Mozi. Jepsen and Mallory are stateof-the-art tools for testing distributed systems. SQLsmith, SQLancer and Mozi are three popular DBMS testing methods. These five tools support testing the tested DDBMSs, and we compare DepState to them using their default configurations. We ran the testing tools on each DDBMS for Proc. ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA088. Publication date: July 2025. DepState: Detecting Synchronization Failure Bugs in Distributed Database Management Systems ISSTA088:17 Table 3.",
+      "context_after": "These functions are implemented specifically for the synchronization process in DDBMSs. 5.3.1 Bug Statistics. DepState outperforms other state-of-the-art testing techniques in finding DDBMS bugs. Table 3 displays the number of bugs detected by each tool in 24 hours. Specifically, DepState detected a total of 7, 2, 2, and 3 synchronization failure bugs on MySQL NDB Cluster, MySQL InnoDB Cluster, MariaDB Galera Cluster, and TiDB Cluster, respectively. In comparison, Jepsen, Mallory, SQLancer, and Mozi reported 2, 2, 3, and 13 bugs, respectively, while SQLsmith found no bugs. We analyzed the roo",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 17,
+      "char_offset": 59238,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In comparison, Jepsen, Mallory, SQLancer, and Mozi reported 2, 2, 3, and 13 bugs, respectively, while SQLsmith found no bugs.",
+      "context_before": ") 2 (0) 2 (0) 0 (0) 3 (0) 13 (0) 14 (14) 24 hours, recording the number of detected bugs and covered synchronization-related functions as metrics. These functions are implemented specifically for the synchronization process in DDBMSs. 5.3.1 Bug Statistics. DepState outperforms other state-of-the-art testing techniques in finding DDBMS bugs. Table 3 displays the number of bugs detected by each tool in 24 hours. Specifically, DepState detected a total of 7, 2, 2, and 3 synchronization failure bugs on MySQL NDB Cluster, MySQL InnoDB Cluster, MariaDB Galera Cluster, and TiDB Cluster, respectively.",
+      "context_after": "We analyzed the root causes of the bugs detected by each tool. The 14 bugs found byDepState are all related to the synchronization process. In contrast, the bugs identified by other tools are transaction or logic bugs, with none involving synchronization functions in DDBMS. 5.3.2 Synchronization-Related Function Coverage. One of the main reasons that DepState discovered synchronization failure bugs is that DepState can cover more synchronization function logic and trigger more behaviors of DDBMSs compared to Jepsen, Mallory, SQLsmith, SQLancer, andMozi. Table 4 shows the number of synchroniza",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 17,
+      "char_offset": 60129,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "One of the main reasons that DepState discovered synchronization failure bugs is that DepState can cover more synchronization function logic and trigger more behaviors of DDBMSs compared to Jepsen, Mallory, SQLsmith, SQLancer, andMozi.",
+      "context_before": "tal of 7, 2, 2, and 3 synchronization failure bugs on MySQL NDB Cluster, MySQL InnoDB Cluster, MariaDB Galera Cluster, and TiDB Cluster, respectively. In comparison, Jepsen, Mallory, SQLancer, and Mozi reported 2, 2, 3, and 13 bugs, respectively, while SQLsmith found no bugs. We analyzed the root causes of the bugs detected by each tool. The 14 bugs found byDepState are all related to the synchronization process. In contrast, the bugs identified by other tools are transaction or logic bugs, with none involving synchronization functions in DDBMS. 5.3.2 Synchronization-Related Function Coverage.",
+      "context_after": "Table 4 shows the number of synchronization-related function lines covered by each technique in 24 hours. It demonstrates that DepState covers more synchronization-related function lines compared to Jepsen, Mallory, SQLsmith, SQLancer, and Mozi. Specifically, DepState covers 6.13%-66.51%, 5.82%-57.28%, 14.12%-83.30%, 36.81%-83.88%, and 43.24%-54.28% more synchronizationrelated function lines compared to Jepsen, Mallory, SQLsmith, SQLancer, and Mozi, respectively. The increased coverage of synchronization-related function lines is attributed to DepState ’s sharding-aware dependent data generat",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 17,
+      "char_offset": 60579,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "It demonstrates that DepState covers more synchronization-related function lines compared to Jepsen, Mallory, SQLsmith, SQLancer, and Mozi.",
+      "context_before": "e 14 bugs found byDepState are all related to the synchronization process. In contrast, the bugs identified by other tools are transaction or logic bugs, with none involving synchronization functions in DDBMS. 5.3.2 Synchronization-Related Function Coverage. One of the main reasons that DepState discovered synchronization failure bugs is that DepState can cover more synchronization function logic and trigger more behaviors of DDBMSs compared to Jepsen, Mallory, SQLsmith, SQLancer, andMozi. Table 4 shows the number of synchronization-related function lines covered by each technique in 24 hours.",
+      "context_after": "Specifically, DepState covers 6.13%-66.51%, 5.82%-57.28%, 14.12%-83.30%, 36.81%-83.88%, and 43.24%-54.28% more synchronizationrelated function lines compared to Jepsen, Mallory, SQLsmith, SQLancer, and Mozi, respectively. The increased coverage of synchronization-related function lines is attributed to DepState ’s sharding-aware dependent data generation and cluster state sequence exploration. Sharding-aware data generation aids DepState in producing dependent test data, while cluster state sequence exploration triggers more synchronization behaviors. In contrast, Jepsen covers fewer synchron",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 17,
+      "char_offset": 60921,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "28% more synchronizationrelated function lines compared to Jepsen, Mallory, SQLsmith, SQLancer, and Mozi, respectively.",
+      "context_before": "ction Coverage. One of the main reasons that DepState discovered synchronization failure bugs is that DepState can cover more synchronization function logic and trigger more behaviors of DDBMSs compared to Jepsen, Mallory, SQLsmith, SQLancer, andMozi. Table 4 shows the number of synchronization-related function lines covered by each technique in 24 hours. It demonstrates that DepState covers more synchronization-related function lines compared to Jepsen, Mallory, SQLsmith, SQLancer, and Mozi. Specifically, DepState covers 6.13%-66.51%, 5.82%-57.28%, 14.12%-83.30%, 36.81%-83.88%, and 43.24%-54.",
+      "context_after": "The increased coverage of synchronization-related function lines is attributed to DepState ’s sharding-aware dependent data generation and cluster state sequence exploration. Sharding-aware data generation aids DepState in producing dependent test data, while cluster state sequence exploration triggers more synchronization behaviors. In contrast, Jepsen covers fewer synchronization function lines because its simplified approach lacks fine-grained analysis, modeling, and creation of complex data scenarios. Its fault injection is limited to the system level, without addressing deeper synchroniz",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 17,
+      "char_offset": 61164,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M15",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Moreover, SQLsmith, SQLancer, and Mozi only generate SQL queries, hindering their ability to navigate the vast search space of distributed environments and detect cluster-state-induced bugs.",
+      "context_before": "overage of synchronization-related function lines is attributed to DepState ’s sharding-aware dependent data generation and cluster state sequence exploration. Sharding-aware data generation aids DepState in producing dependent test data, while cluster state sequence exploration triggers more synchronization behaviors. In contrast, Jepsen covers fewer synchronization function lines because its simplified approach lacks fine-grained analysis, modeling, and creation of complex data scenarios. Its fault injection is limited to the system level, without addressing deeper synchronization behaviors.",
+      "context_after": "In contrast, by using a designed data and mutation strategy, DepState discovered 14 synchronization failure bugs in 24 hours, showing DepState can exercise more synchronization functionality and find additional bugs, thus answering RQ2. Table 4. Lines of Synchronization-Related Functions Covered by Tested Tools in 24 Hours DDBMS Jepsen Mallory SQLsmith SQLancer Mozi DepState MySQL NDB Cluster 11,850 11,092 11,505 10,588 10,622 16,388 MySQL InnoDB Cluster 2,096 2,219 1,904 2,551 2,731 3,490 MariaDB Galera Cluster 1,241 1,257 1,147 1,185 1,191 1,706 TiDB Cluster 4,127 4,139 3,838 2,382 3,002 4,",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 17,
+      "char_offset": 61899,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M16",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Lines of Synchronization-Related Functions Covered by Tested Tools in 24 Hours DDBMS Jepsen Mallory SQLsmith SQLancer Mozi DepState MySQL NDB Cluster 11,850 11,092 11,505 10,588 10,622 16,388 MySQL InnoDB Cluster 2,096 2,219 1,904 2,551 2,731 3,490 MariaDB Galera Cluster 1,241 1,257 1,147 1,185 1,191 1,706 TiDB Cluster 4,127 4,139 3,838 2,382 3,002 4,380 Proc.",
+      "context_before": "nalysis, modeling, and creation of complex data scenarios. Its fault injection is limited to the system level, without addressing deeper synchronization behaviors. Moreover, SQLsmith, SQLancer, and Mozi only generate SQL queries, hindering their ability to navigate the vast search space of distributed environments and detect cluster-state-induced bugs. In contrast, by using a designed data and mutation strategy, DepState discovered 14 synchronization failure bugs in 24 hours, showing DepState can exercise more synchronization functionality and find additional bugs, thus answering RQ2. Table 4.",
+      "context_after": "ACM Softw. Eng., Vol. 2, No. ISSTA, Article ISSTA088. Publication date: July 2025. ISSTA088:18 Cundi Fang, Jie Liang, Zhiyong Wu, Jingzhou Fu, Zhouyang Jia, Chun Huang, Yu Jiang, and Shanshan Li Table 5. Number of Synchronization Failure Bugs and Synchronization-Related Function Lines Covered by DepState𝐷𝑎𝑡𝑎−,DepState𝑆𝑒𝑞−, and DepState in 24 Hours Number of Synchronization Failure Bugs Line Coverage of Sync-Related Functions DDBMS DepState𝐷𝑎𝑡𝑎−DepState𝑆𝑒𝑞−DepState DepState𝐷𝑎𝑡𝑎−DepState𝑆𝑒𝑞−DepState MySQL NDB Cluster 4 2 7 15,252 12,920 16,388 MySQL InnoDB Cluster 1 0 2 1,765 2,992 3,490 Maria",
+      "section": "5.3 Comparison with Other Techniques",
+      "page": 17,
+      "char_offset": 62336,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M17",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Furthermore, SQLancer [ 33] employs metamorphic testing methodologies [ 32] to detect logical bugs within DBMSs, proposing three distinct test oracles for the automatic detection of various correctness issues.",
+      "context_before": "system, primarily focused on the generation of complex SQL queries and the evaluation of their effects on system performance and correctness. Sqirrel [41] introduces mutation-based fuzzing to detect memory safety bugs, which combines SQL query generation with coverage feedback. LEGO [ 22] improves fuzzing by generating SQL sequences through combinatorial logic. It focuses on pairing SQL types to enhance branch coverage. Griffin [ 9] adopts a grammar-free approach. It uses metadata graphs to guide mutations, creating more valid SQL statements and finding errors missed by grammar-based fuzzers.",
+      "context_after": "Mozi [ 23] proposes a configuration-based equivalent transformations framework to detect bugs. Thanos [ 10] is testing against the database’s storage engine. As well as some more work on the configuration in the database [13]. However, existing DBMS testing tools are inadequate for DDBMSs due to their inability to effectively manage the complexities of distributed architectures, such as handling multiple nodes, shards, and intricate data dependencies. In contrast, DepState is specifically designed to detect problems in the synchronization process of DDBMSs. It first generates dependent data a",
+      "section": "7.2 DBMS Testing",
+      "page": 20,
+      "char_offset": 72353,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M2",
+        "M4",
+        "M8"
+      ],
+      "describes_as_state_of_the_art": [
+        "M4",
+        "M5"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:52:31Z",
+    "is_model_written": true,
+    "summary": "DepState looks for synchronization failure bugs in distributed DBMSs -- cases where replicas diverge or a node fails to converge after a state change. It drives clusters through dependency-aware state transitions rather than only issuing queries, so it reaches synchronization code that query-level testing never executes. On MySQL NDB Cluster, MySQL InnoDB Cluster, MariaDB Galera Cluster and TiDB Cluster it found 14 synchronization failure bugs, where the five existing tools found none.",
+    "narrative": "SQLancer is one of five baselines and is called a state-of-the-art DBMS testing technique. Because it was built for single-node systems, the authors ran it against one SQL server of each cluster. The comparison is reported in both bugs and coverage of synchronization-related functions, and the paper's explanation for the gap is structural rather than dismissive: SQLancer, SQLsmith and Mozi only generate SQL queries, which cannot navigate the space of cluster states, so all three of SQLancer's bugs were ordinary ones and none was a synchronization failure.",
+    "roles": {
+      "M1": "result_comparison",
+      "M2": "baseline",
+      "M3": "result_comparison",
+      "M4": "state_of_the_art",
+      "M5": "state_of_the_art",
+      "M6": "baseline",
+      "M7": "baseline",
+      "M8": "baseline",
+      "M9": "definition",
+      "M10": "result_comparison",
+      "M11": "result_comparison",
+      "M12": "result_comparison",
+      "M13": "result_comparison",
+      "M14": "result_comparison",
+      "M15": "result_comparison",
+      "M16": "result_comparison",
+      "M17": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is executed as a baseline on a single server of each cluster; DepState's own mechanism is dependency-aware state transitions across the cluster."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No SQLancer oracle is carried forward. DepState's oracle is divergence between replicas, which the paper contrasts with query-level testing."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M4",
+          "M10",
+          "M11"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M4",
+            "sentence": "To evaluate the effectiveness of DepState in testing DDBMSs, we compare it with five state-of-the-art tools: Jepsen [ 17],Mallory [26], SQLsmith [ 2], SQLancer [ 33], andMozi [23].",
+            "section": "5.1 Evaluation Setup",
+            "page": 14
+          },
+          {
+            "mention_id": "M10",
+            "sentence": "Number of Unique Bugs Detected by Jepsen, Mallory, SQLsmith, SQLancer, Mozi, and DepState DDBMS Jepsen Mallory SQLsmith SQLancer Mozi DepState MySQL NDB Cluster 0 1 0 1 7 7 MySQL InnoDB Cluster 1 0 0 1 6 2 MariaDB Galera Cluster 1 1 0 1 0 2 TiDB Cluster 0 0 0 0 0 3 Total (Sync Failure Bugs) 2 (0) 2 (0) 0 (0) 3 (0) 13 (0) 14 (14) 24 hours, recording the number of detected bugs and covered synchronization-related functions as metrics.",
+            "section": "5.3 Comparison with Other Techniques",
+            "page": 17
+          },
+          {
+            "mention_id": "M11",
+            "sentence": "In comparison, Jepsen, Mallory, SQLancer, and Mozi reported 2, 2, 3, and 13 bugs, respectively, while SQLsmith found no bugs.",
+            "section": "5.3 Comparison with Other Techniques",
+            "page": 17
+          }
+        ],
+        "reasoning": "M4 names SQLancer among the five tools DepState is compared with, M10 gives the per-cluster unique-bug table, and M11 reports SQLancer's three bugs against DepState's fourteen."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M4",
+          "M5"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M4",
+            "sentence": "To evaluate the effectiveness of DepState in testing DDBMSs, we compare it with five state-of-the-art tools: Jepsen [ 17],Mallory [26], SQLsmith [ 2], SQLancer [ 33], andMozi [23].",
+            "section": "5.1 Evaluation Setup",
+            "page": 14
+          },
+          {
+            "mention_id": "M5",
+            "sentence": "SQLsmith, SQLancer, and Mozi are three state-of-the-art DBMS testing techniques, which have detected hundreds of bugs in practice.",
+            "section": "5.1 Evaluation Setup",
+            "page": 14
+          }
+        ],
+        "reasoning": "M4 calls the five comparison tools state-of-the-art, and M5 says specifically that SQLsmith, SQLancer and Mozi are three state-of-the-art DBMS testing techniques that have detected hundreds of bugs in practice."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

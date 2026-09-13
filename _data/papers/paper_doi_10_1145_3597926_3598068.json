@@ -1,0 +1,729 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T17:12:44Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3597926.3598068",
+    "title": "Exploring Missed Optimizations in WebAssembly Optimizers",
+    "authors": [
+      "Zhibo Liu",
+      "Dongwei Xiao",
+      "Zongjie Li",
+      "Shuai Wang",
+      "W. Meng"
+    ],
+    "year": 2023,
+    "venue": "International Symposium on Software Testing and Analysis",
+    "doi": "10.1145/3597926.3598068",
+    "arxiv_id": null,
+    "s2_paper_id": "dc1cc47e14653eb9a834f44a39273c1a2e2de4ae",
+    "url": "https://doi.org/10.1145/3597926.3598068",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3597926.3598068",
+      "retrieved_at": "2026-09-07T17:12:44Z",
+      "chars": 85110,
+      "content_sha256": "sha256:1a636b6976b7364e9b1e92e0a26bc9a1d9e23d2d087e87354f1b2f971927058c"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 2905
+      },
+      {
+        "number": "2",
+        "title": "BACKGROUND",
+        "start": 9202
+      },
+      {
+        "number": "3",
+        "title": "MOTIVATION",
+        "start": 15239
+      },
+      {
+        "number": "4",
+        "title": "APPROACH OVERVIEW",
+        "start": 19706
+      },
+      {
+        "number": "5",
+        "title": "TRACE CONSISTENCY CHECKS",
+        "start": 25535
+      },
+      {
+        "number": "7.1",
+        "title": "RQ1: Characteristics of Missed Opt.",
+        "start": 36513
+      },
+      {
+        "number": "7.2",
+        "title": "RQ2: Improvement Estimation",
+        "start": 53133
+      },
+      {
+        "number": "7.3",
+        "title": "RQ3: Lessons and Future Improvements",
+        "start": 59133
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2021. Binaryen vs LLVM as a compiler backend. https://github.com/ WebAssembly/binaryen/discussions/3886.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2022. AssemblyScript. https://github.com/AssemblyScript/assemblyscript.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "2022. Awesome WebAssembly Languages. https://github.com/appcypher/ awesome-wasm-langs.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "2022. Browsers support WebAssembly. https://caniuse.com/?search= WebAssembly.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "2022. Ditwo Artifact. https://github.com/monkbai/wasm-testing.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "2022. Ethereum WebAssembly. https://ewasm.readthedocs.io/en/mkdocs/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "2022. ink! Documentation. https://use.ink/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "2022. Terra Wasm Module. https://docs.terra.money/develop/modulespecifications/spec-wasm/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "2022. TinyGo. https://github.com/tinygo-org/tinygo.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "2022. wasm-bindgen. https://github.com/rustwasm/wasm-bindgen. 446 ISSTA ’23, July 17–21, 2023, Seattle, WA, USA Zhibo Liu, Dongwei Xiao, Zongjie Li, Shuai Wang, and Wei Meng",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "2022. wasm3. https://github.com/wasm3/wasm3.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "2022. WasmEdgeRuntime. https://github.com/WasmEdge/WasmEdge.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "2022. wasmer. https://github.com/wasmerio/wasmer.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "2022. wasmi. https://github.com/paritytech/wasmi.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "2022. wasmtime. https://github.com/bytecodealliance/wasmtime.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Gogul Balakrishnan and Thomas Reps. 2010. Wysinwyx: What you see is not what you execute. ACM Transactions on Programming Languages and Systems (TOPLAS) 32, 6 (2010), 1–84.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Gogul Balakrishnan, Thomas Reps, David Melski, and Tim Teitelbaum. 2005. Wysinwyx: What you see is not what you execute. In Working Conference on Verified Software: Theories, Tools, and Experiments. Springer, 202–213.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Gergö Barany. 2018. Finding missed compiler optimizations by differential testing. InProceedings of the 27th international conference on compiler construction. 82–92.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "bytecodealliance. [n. d.]. Wasmtime Fuzzer. https://github.com/bytecodealliance/ wasmtime/tree/main/fuzz.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Dhruva R Chakrabarti and Shin-Ming Liu. 2006. Inline analysis: Beyond selection heuristics. In International Symposium on Code Generation and Optimization (CGO’06). IEEE, 12–pp.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Yuting Chen, Ting Su, and Zhendong Su. 2019. Deep differential testing of JVM implementations. In Engineering (ICSE). IEEE, 1257–1268.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Yuting Chen, Ting Su, Chengnian Sun, Zhendong Su, and Jianjun Zhao. 2016. Coverage-directed Differential Testing of JVM Implementations. In PLDI.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Emscripten Contributors. 2022. Emscripten. https://github.com/emscriptencore/emscripten.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Grain core team. 2022. Grain Compiler. https://github.com/grain-lang/grain.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Clang Developers. 2022. Clang-Tidy-Extra Clang Tools 16.0.0git documentation. https://clang.llvm.org/extra/clang-tidy/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "LLVM Project Developers. 2022. llvm-dwarfdumpdump and verify DWARF debug information. https://llvm.org/docs/CommandGuide/llvm-dwarfdump. html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Sushant Dinesh, Nathan Burow, Dongyan Xu, and Mathias Payer. 2020. Retrowrite: Statically instrumenting cots binaries for fuzzing and sanitization. In. IEEE, 1497–1511.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Antonio Flores-Montoya and Eric Schulte. 2020. Datalog disassembly. In 29th USENIX Security Symposium (USENIX Security 20). 1075–1092.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "William Fu, Raymond Lin, and Daniel Inge. 2018. Taintassembly: Taint-based information flow control tracking for webassembly. arXiv preprint arXiv:1802.01050 (2018).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "David Goltzsche, Manuel Nieke, Thomas Knauth, and Rüdiger Kapitza. 2019. Acctee: A webassembly-based two-way sandbox for trusted resource accounting. InProceedings of the 20th International Middleware Conference. 123–135.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "WebAssembly Group. 2022. Binaryen. https://github.com/WebAssembly/ binaryen.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "WebAssembly Group. 2022. Binaryen Optimizations. https://github.com/ WebAssembly/binaryen#binaryen-optimizations.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "WebAssembly Group. 2022. Roadmap-WebAssembly. https://webassembly.org/ roadmap/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "WebAssembly Group. 2022. WABT: The WebAssembly Binary Toolkit. https: //github.com/WebAssembly/wabt.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "WebAssembly Group. 2022. wasm-opt peephole optimizations. https://github. com/WebAssembly/binaryen/blob/main/src/passes/OptimizeInstructions.cpp.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "WebAssembly Community Group. 2022. Use Cases-WebAssembly. https: //webassembly.org/docs/use-cases/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Jianmin Guo, Yu Jiang, Yue Zhao, Quan Chen, and Jiaguang Sun. 2018. Dlfuzz: Differential fuzzing testing of deep learning systems. In Proceedings of the 2018 26th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 739–743.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Andreas Haas, Andreas Rossberg, Derek L Schuff, Ben L Titzer, Michael Holman, Dan Gohman, Luke Wagner, Alon Zakai, and JF Bastien. 2017. Bringing the web up to speed with WebAssembly. In Proceedings of the 38th ACMSIGPLAN Conference on Programming Language Design and Implementation. 185–200.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Yuko Hara, Hiroyuki Tomiyama, Shinya Honda, Hiroaki Takada, and Katsuya Ishii. 2008. Chstone: A benchmark program suite for practical c-based high-level synthesis. In. IEEE, 1192–1195.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Keno Haßler and Dominik Maier. 2021. WAFL: Binary-Only WebAssembly Fuzzing with Fast Snapshots. In Reversing and Offensive-oriented Trends Symposium. 23–30.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Jingxuan He, Pesho Ivanov, Petar Tsankov, Veselin Raychev, and Martin Vechev. 2018. Debin: Predicting debug information in stripped binaries. In Proceedings of the 2018 ACMSIGSAC Conference on Computer and Communications Security. 1667–1680.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Aaron Hilbig, Daniel Lehmann, and Michael Pradel. 2021. An empirical study of real-world webassembly binaries: Security, languages, use cases. In Proceedings of the Web Conference 2021. 2696–2708.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Tweag I/O. 2022. Asterius: A Haskell to WebAssembly compiler. https://github. com/tweag/asterius.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Abhinav Jangda, Bobby Powers, Emery D Berger, and Arjun Guha. 2019. Not So Fast: Analyzing the Performance of WebAssembly vs. Native Code. In 2019 USENIX Annual Technical Conference (USENIX ATC 19). 107–120.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Timotej Kapus and Cristian Cadar. 2017. Automatic testing of symbolic execution engines via program generation and differential testing. In 2017 32nd IEEE/ACM International Conference on Automated Software Engineering (ASE). IEEE, 590–600.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Matthew Kolosick, Shravan Narayan, Conrad Watt, Michael LeMay, Deepak Garg, Ranjit Jhala, and Deian Stefan. 2021. Isolation Without Taxation: Near Zero Cost Transitions for SFI. arXiv preprint arXiv:2105.00033 (2021).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. 2014. Compiler Validation via Equivalence Modulo Inputs. In PLDI.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Vu Le, Chengnian Sun, and Zhendong Su. 2015. Finding Deep Compiler Bugs via Guided Stochastic Program Mutation. In OOPSLA.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Daniel Lehmann, Johannes Kinder, and Michael Pradel. 2020. Everything Old is New Again: Binary Security of WebAssembly. In 29th USENIX Security Symposium (USENIX Security 20). 217–234.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Daniel Lehmann and Michael Pradel. 2019. Wasabi: A framework for dynamically analyzing webassembly. In Proceedings of the Twenty-Fourth International Conference on Architectural Support for Programming Languages and Operating Systems. 1045–1058.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Daniel Lehmann and Michael Pradel. 2022. Finding the dwarf: recovering precise types from WebAssembly binaries. In Proceedings of the 43rd ACMSIGPLAN International Conference on Programming Language Design and Implementation. 410–425.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Daniel Lehmann, Martin Toldam Torp, and Michael Pradel. 2021. Fuzzm: Finding Memory Bugs through Binary-Only Instrumentation and Fuzzing of WebAssembly.arXiv preprint arXiv:2110.15433 (2021).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Shaohua Li and Zhendong Su. 2023. Finding Unstable Code via Compiler-Driven Differential Testing. In Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 3. 238–251.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Zhibo Liu and Shuai Wang. 2020. How far we have come: Testing decompilation correctness of C decompilers. In Proceedings of the 29th ACMSIGSOFT International Symposium on Software Testing and Analysis. 475–487.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Nuno P Lopes, David Menendez, Santosh Nagarakatte, and John Regehr. 2015. Provably correct peephole optimizations with alive. In Proceedings of the 36th ACMSIGPLAN Conference on Programming Language Design and Implementation. 22–32.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Chi-Keung Luk, Robert Cohn, Robert Muth, Harish Patil, Artur Klauser, Geoff Lowney, Steven Wallace, Vijay Janapa Reddi, and Kim Hazelwood. 2005. Pin: Building Customized Program Analysis Tools with Dynamic Instrumentation. InProceedings of the 2005 ACMSIGPLAN Conference on Programming Language Design and Implementation (Chicago, IL, USA) (PLDI ’05). ACM, 190–200.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Jämes Ménétrey, Marcelo Pasin, Pascal Felber, and Valerio Schiavoni. 2021. Twine: An embedded trusted runtime for webassembly. In 2021 IEEE 37th International Conference on Data Engineering (ICDE). IEEE, 205–216.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "Eric Mullen, Daryl Zuniga, Zachary Tatlock, and Dan Grossman. 2016. Verified peephole optimizations for CompCert. In Proceedings of the 37th ACMSIGPLAN Conference on Programming Language Design and Implementation. 448–461.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Shravan Narayan, Craig Disselkoen, Tal Garfinkel, Nathan Froyd, Eric Rahm, Sorin Lerner, Hovav Shacham, and Deian Stefan. 2020. Retrofitting fine grain isolation in the Firefox renderer. In 29th USENIX Security Symposium (USENIX Security 20). 699–716.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Shravan Narayan, Craig Disselkoen, Daniel Moghimi, Sunjay Cauligi, Evan Johnson, Zhao Gang, Anjo Vahldiek-Oberwagner, Ravi Sahita, Hovav Shacham, Dean Tullsen, et al .2021. Swivel: Hardening WebAssembly against Spectre. In 30th USENIX Security Symposium (USENIX Security 21). 1433–1450.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Shravan Narayan, Tal Garfinkel, Sorin Lerner, Hovav Shacham, and Deian Stefan. 2019. Gobi: WebAssembly as a practical path to library sandboxing. arXiv preprint arXiv:1912.02285 (2019).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Senthil Padmanabhan and Pranav Jha. 2022. WebAssembly at eBay: A Real-World Use Case. https://tech.ebayinc.com/engineering/webassembly-at-ebay-a-realworld-use-case/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Roberto Paleari, Lorenzo Martignoni, Giampaolo Fresi Roglia, and Danilo Bruschi. 2010. N-version disassembly: differential testing of x86 disassemblers. In Proceedings of the 19th international symposium on Software testing and analysis. 265–274.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "G Paolini. 1994. Netscape and Sun announce JavaScript, the open cross-platform object scripting language for enterprise networks and the internet. Press Release]. Sun Microsystems, Inc (1994).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "John Regehr, Yang Chen, Pascal Cuoq, Eric Eide, Chucky Ellison, and Xuejun Yang. 2012. Test-case reduction for C compiler bugs. In Proceedings of the 33rd ACMSIGPLAN conference on Programming Language Design and Implementation. 335–346.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152. 447 Exploring Missed Optimizations in WebAssembly Optimizers ISSTA ’23, July 17–21, 2023, Seattle, WA, USA",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 67,
+      "text": "Alan Romano, Xinyue Liu, Yonghwi Kwon, and Weihang Wang. 2021. An Empirical Study of Bugs in WebAssembly Compilers. In 2021 36th IEEE/ACM International Conference on Automated Software Engineering (ASE). IEEE, 42–54.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "Alan Romano and Weihang Wang. 2020. Wasim: Understanding webassembly applications through classification. In 2020 35th IEEE/ACM International Conference on Automated Software Engineering (ASE). IEEE, 1321–1325.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "The Rust and WebAssembly Working Group. 2022. Shrinking .wasm Code Size Rust and WebAssembly. https://rustwasm.github.io/docs/book/reference/codesize.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Andreas Sewe, Jannik Jochem, and Mira Mezini. 2011. Next in line, please! exploiting the indirect benefits of inlining by accurately predicting further inlining. InProceedings of the compilation of the co-located workshops on DSM’11, TMC’11, AGERE! 2011, AOOPES’11, NEAT’11, & VMIL’11. 317–328.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Simon Shillaker and Peter Pietzuch. 2020. Faasm: Lightweight isolation for efficient stateful serverless computing. In 2020 USENIX Annual Technical Conference (USENIX ATC 20). 419–433.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Donald R Slutz. 1998. Massive stochastic testing of SQL. In VLDB, Vol. 98. Citeseer, 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Daniel Smilkov, Nikhil Thorat, and Ann Yuan. 2022. Introducing the WebAssembly backend for TensorFlow.js. https://blog.tensorflow.org/2020/03/introducingwebassembly-backend-for-tensorflow-js.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "Quentin Stiévenart, David W Binkley, and Coen De Roover. 2022. Static StackPreserving Intra-Procedural Slicing of WebAssembly Binaries. In 2022 IEEE/ACM 44th International Conference on Software Engineering (ICSE). IEEE, 2031–2042.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "Yulei Sui and Jingling Xue. 2016. SVF: interprocedural static value-flow analysis in LLVM. In Proceedings of the 25th international conference on compiler construction. 265–266.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "Chengnian Sun, Vu Le, and Zhendong Su. 2016. Finding Compiler Bugs via Live Code Mutation. In OOPSLA.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "Aron Szanto, Timothy Tamm, and Artidoro Pagnoni. 2018. Taint tracking for webassembly. arXiv preprint arXiv:1807.08349 (2018).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "Leaning Technologies. 2022. An Enterprise-Grade C++ Compiler For The Web. https://leaningtech.com/cheerp/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "Theodoros Theodoridis, Tobias Grosser, and Zhendong Su. 2022. Understanding and exploiting optimal function inlining. In Proceedings of the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems. 977–989.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "Theodoros Theodoridis, Manuel Rigger, and Zhendong Su. 2022. Finding missed optimizations through the lens of dead code elimination. In Proceedings of the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems. 697–709.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 81,
+      "text": "Ruoyu Wang, Yan Shoshitaishvili, Antonio Bianchi, Aravind Machiry, John Grosen, Paul Grosen, Christopher Kruegel, and Giovanni Vigna. 2017. Ramblr: Making Reassembly Great Again. In NDSS.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 82,
+      "text": "Shuai Wang, Pei Wang, and Dinghao Wu. 2015. Reassembleable Disassembling. InUSENIX Sec.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 83,
+      "text": "Wenwen Wang. 2022. How Far We’ve Come–A Characterization Study of Standalone WebAssembly Runtimes. (2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 84,
+      "text": "wasmCloud Project Authors. 2022. WasmCloud. https://wasmcloud.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 85,
+      "text": "wasmerio. [n. d.]. Wasmer Fuzz Testing. https://github.com/wasmerio/wasmer/ tree/master/fuzz.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 86,
+      "text": "Elliott Wen and Gerald Weber. 2020. Wasmachine: Bring iot up to speed with a webassembly os. In and Communications Workshops (PerCom Workshops). IEEE, 1–4.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 87,
+      "text": "Yutian Yan, Tengfei Tu, Lijian Zhao, Yuchen Zhou, and Weihang Wang. 2021. Understanding the performance of webassembly applications. In Proceedings of the 21st ACM Internet Measurement Conference. 533–549.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 88,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. 2011. Finding and Understanding Bugs in C Compilers. In PLDI.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 89,
+      "text": "Peng Zhao and José Nelson Amaral. 2003. To inline or not to inline? Enhanced inlining decisions. In International Workshop on Languages and Compilers for Parallel Computing. Springer, 405–419. Received 2023-02-16; accepted 2023-05-03 448",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 66,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152. 447 Exploring Missed Optimizations in WebAssembly Optimizers ISSTA ’23, July 17–21, 2023, Seattle, WA, USA",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 80,
+      "text": "Theodoros Theodoridis, Manuel Rigger, and Zhendong Su. 2022. Finding missed optimizations through the lens of dead code elimination. In Proceedings of the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems. 697–709.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 80]",
+      "technique": null,
+      "sentence": "Inspired by contemporary research on testing C compiler optimizations [ 80], we instead explore a differential testing setting, by treating native x86 executables fully optimized by modern C compilers as the “reference” to unveil MO.",
+      "context_before": "d optimizations (MO) of wasm optimizers. While this may be partially accomplished by reading the wasm optimizer documents and code, in practice the feasibility is limited by the complexity of the wasm optimizer as well as the nature of program optimizations: optimization opportunities may be subtle and certain optimizations are deemed “missed” only when processing specific code emitted by compiler frontends. In principle, deciding MO of wasm optimizers would require a “ground truth” (e.g., manually crafting some fully-optimized wasm executables) to compare with, which is challenging to obtain.",
+      "context_after": "This enables an automated, systematic, and scalable testing of wasm optimizers. Overall, we present Ditwo, adifferential testing framework for wasmoptimizers. Ditwo differentiates runtime behaviors of wasm binary code and its native x86 counterparts compiled from the same C code to uncover MO. The key technical challenge is to select proper “performance indicators” from the wasm runtime logs that are practically feasible to compare and uncover the neglect of various wasm optimization opportunities. To do so, Ditwo launches both wasm and native executables to log two indicators: global variabl",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 5692,
+      "cited_reference": {
+        "number": 80,
+        "text": "Theodoros Theodoridis, Manuel Rigger, and Zhendong Su. 2022. Finding missed optimizations through the lens of dead code elimination. In Proceedings of the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems. 697–709.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 79,80]",
+      "technique": null,
+      "sentence": "While recent research has conducted empirical studies to evaluate MO in GCC/Clang [ 79,80], they mainly focus on dead code elimination and code size optimization when compiling C code to x86 executables.",
+      "context_before": "Moreover, during the WW phase, both wasm -specific and classic compile-time optimizations can be fulfilled, whereas during the SW phase, the optimizations are mostly target-agnostic, potentially losing optimization opportunities and being less comprehensive than the later phase. In practice, however, it is hard to implement comprehensive optimization passes at the WW phase. As an assembly-like language, wasm lacks high-level abstraction compared with compiler IR. It becomes technically harder for the optimizer to collect context information from wasm code, as illustrated in R1–3; see Sec. 7.1.",
+      "context_after": "To systematically assess the status quo of WW optimizations, we detect missed optimizations in live code blocks that are likely executed in runtime. From this point, the issues we found should be more severe, impeding program performance if not properly handled. We aim to provide an up-to-date assessment of present WW optimizations and identify their MO. We will investigate and categorize root causes of the detected MO cases, and harvest lessons to serve as guidelines for better WW optimizations. 4 APPROACH OVERVIEW This section describes the challenges in detecting missed optimization opport",
+      "section": "3 MOTIVATION",
+      "page": 4,
+      "char_offset": 18999,
+      "cited_reference": {
+        "number": 80,
+        "text": "Theodoros Theodoridis, Manuel Rigger, and Zhendong Su. 2022. Finding missed optimizations through the lens of dead code elimination. In Proceedings of the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems. 697–709.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 79,80]",
+      "technique": null,
+      "sentence": "4 and argued by relevant works [ 79,80], GW and FC heavily depend on the whole optimization pipeline.",
+      "context_before": "encies, to detect MO. They are: Global Variable Write Consistency (GW) checks for redundant assignments (memory writes) to global variables. Function Call Consistency (FC) checks for function calls that the WW optimizer fails to inline. Clarification. Note that we do not aim for false negative-free testing, i.e., our trace consistency checks are not complete, and even if both GW and FC are satisfied, potential MO can still exist in wasm-opt -optimized binary. Ditwo uses these two checks, given their generally promising comprehensiveness and high implementation feasibility; as clarified in Sec.",
+      "context_after": "Thus, inconsistencies reflect missed GW/FC optimization opportunities, or other MO that have dependency with GW/FC. Overall, we believe through the lens of GW and FC, we shed light on optimizations to quantify how well wasm-opt optimizes wasm binary. Also, other consistency checks could be defined to capture finer-grained program runtime states, and we present relevant discussions in Sec. 8. We now elaborate on checking each indicator below. 5.1 Global Variable Write Consistency (GW) We assume that if a global variable write is optimized out by the mainstream C compiler, then it should be equ",
+      "section": "5 TRACE CONSISTENCY CHECKS",
+      "page": 5,
+      "char_offset": 26255,
+      "cited_reference": {
+        "number": 80,
+        "text": "Theodoros Theodoridis, Manuel Rigger, and Zhendong Su. 2022. Finding missed optimizations through the lens of dead code elimination. In Proceedings of the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems. 697–709.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker",
+      "surface": "[ 66,\n72]",
+      "technique": "norec",
+      "sentence": "Differential testing (DT) is used in different software domains, including databases [ 66, 72], Java Virtual Machines (JVMs) [ 21,22], symbolic execution engines [ 45], disassemblers [ 63], decompilers [ 54], and deep learning systems [37].",
+      "context_before": "ave noticed recent works launching empirical studies to characterize wasm compiler bugs and performance defects [ 67,87]. A recent research characterizes standalone wasm runtimes and advocates for effective and low-cost runtime wasm optimizations [ 83]. In addition to empirical studies, we have also noticed some community efforts launching fuzz testing toward wasm VMs [ 19,85].Ditwo aims to expose and explore more stealthy MO that can induce performance defects. To the best of our knowledge, this has not been comprehensively studied by previous works. Differential Testing for Systems Software.",
+      "context_after": "Beyond finding functionality bugs, recent work also explores locating missed optimization opportunities with DT to improve C compiler infrastructures [ 18,80].CompDiff [53] detects undefined behavior in C/C++ programs with compiler-driven DT. 10 CONCLUSION This study systematically investigated the hidden MO of wasm optimizers with Ditwo, a differential testing framework to crosscompare wasm executables and their x86 counterparts. Our study exposes a large number of MO. We analyze root causes of all uncovered MO, and outline the key takeaways from this study. This work may serve as a roadmap",
+      "section": "7.3 RQ3: Lessons and Future Improvements",
+      "page": 11,
+      "char_offset": 69061,
+      "cited_reference": {
+        "number": 66,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 1140–1152. 447 Exp",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 18,80]",
+      "technique": null,
+      "sentence": "Beyond finding functionality bugs, recent work also explores locating missed optimization opportunities with DT to improve C compiler infrastructures [ 18,80].",
+      "context_before": "tions [ 83]. In addition to empirical studies, we have also noticed some community efforts launching fuzz testing toward wasm VMs [ 19,85].Ditwo aims to expose and explore more stealthy MO that can induce performance defects. To the best of our knowledge, this has not been comprehensively studied by previous works. Differential Testing for Systems Software. Differential testing (DT) is used in different software domains, including databases [ 66, 72], Java Virtual Machines (JVMs) [ 21,22], symbolic execution engines [ 45], disassemblers [ 63], decompilers [ 54], and deep learning systems [37].",
+      "context_after": "CompDiff [53] detects undefined behavior in C/C++ programs with compiler-driven DT. 10 CONCLUSION This study systematically investigated the hidden MO of wasm optimizers with Ditwo, a differential testing framework to crosscompare wasm executables and their x86 counterparts. Our study exposes a large number of MO. We analyze root causes of all uncovered MO, and outline the key takeaways from this study. This work may serve as a roadmap for researchers and users to improve wasm program performance with optimizers. ACKNOWLEDGMENTS We thank anonymous reviewers for their valuable feedback. The res",
+      "section": "7.3 RQ3: Lessons and Future Improvements",
+      "page": 11,
+      "char_offset": 69302,
+      "cited_reference": {
+        "number": 80,
+        "text": "Theodoros Theodoridis, Manuel Rigger, and Zhendong Su. 2022. Finding missed optimizations through the lens of dead code elimination. In Proceedings of the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems. 697–709.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:20:36Z",
+    "is_model_written": true,
+    "summary": "DITWO looks for optimisations that WebAssembly optimizers miss, motivated by findings that real wasm applications run slower than expected. It compiles a C program to both a native x86 executable and a wasm executable, then compares optimization indication traces -- global variable writes and function calls -- and treats divergence as a missed optimisation. Analysing wasm-opt it identified 1,293 inputs triggering missed optimisations and nine root causes.",
+    "narrative": "The citations that shape the paper are to work by a SQLancer author on C compiler optimisation testing, which DITWO says inspired its differential setting. SQLancer itself appears once, listing databases among the domains where differential testing is used.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "background",
+      "M4": "background",
+      "M5": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

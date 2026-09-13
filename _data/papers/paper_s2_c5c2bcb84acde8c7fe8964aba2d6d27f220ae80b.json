@@ -1,0 +1,1368 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:33:14Z",
+  "paper": {
+    "id": "paper:s2:c5c2bcb84acde8c7fe8964aba2d6d27f220ae80b",
+    "title": "Pinolo: Detecting Logical Bugs in Database Management Systems with Approximate Query Synthesis",
+    "authors": [
+      "Zongyin Hao",
+      "Quanfeng Huang",
+      "Chengpeng Wang",
+      "Jianfeng Wang",
+      "Yushan Zhang",
+      "Rongxin Wu",
+      "Charles Zhang"
+    ],
+    "year": 2023,
+    "venue": "USENIX Annual Technical Conference",
+    "doi": null,
+    "arxiv_id": null,
+    "s2_paper_id": "c5c2bcb84acde8c7fe8964aba2d6d27f220ae80b",
+    "url": "https://www.semanticscholar.org/paper/c5c2bcb84acde8c7fe8964aba2d6d27f220ae80b",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://www.semanticscholar.org/paper/c5c2bcb84acde8c7fe8964aba2d6d27f220ae80b",
+      "retrieved_at": "2026-09-09T01:33:14Z",
+      "chars": 71229,
+      "content_sha256": "sha256:45417770f7ef7fc606a877626653a302b096cb19077eccc7dda52bc8394d2c8f"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 15,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2860
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 10194
+      },
+      {
+        "number": "2.1",
+        "title": "Database Management Systems",
+        "start": 10477
+      },
+      {
+        "number": "2.2",
+        "title": "Logical Bugs in DBMSs",
+        "start": 12402
+      },
+      {
+        "number": "3",
+        "title": "Approximate Query Synthesis",
+        "start": 16470
+      },
+      {
+        "number": "3.1",
+        "title": "Approach Overview",
+        "start": 18208
+      },
+      {
+        "number": "3.2",
+        "title": "SQL Query Approximation",
+        "start": 19632
+      },
+      {
+        "number": "3.3",
+        "title": "Approximate Mutators",
+        "start": 23326
+      },
+      {
+        "number": "3.4",
+        "title": "Mutation-based Query Synthesis",
+        "start": 27914
+      },
+      {
+        "number": "3.5",
+        "title": "Summary",
+        "start": 33945
+      },
+      {
+        "number": "4",
+        "title": "Implementation",
+        "start": 35246
+      },
+      {
+        "number": "5",
+        "title": "Evaluation",
+        "start": 39111
+      },
+      {
+        "number": "5.1",
+        "title": "Experiment Setup",
+        "start": 39540
+      },
+      {
+        "number": "5.2",
+        "title": "Effectiveness of PINOLO",
+        "start": 43047
+      },
+      {
+        "number": "5.3",
+        "title": "Comparisons on Detecting Logical Bugs",
+        "start": 44903
+      },
+      {
+        "number": "5.4",
+        "title": "Impacts of The Seed Query Generation",
+        "start": 48240
+      },
+      {
+        "number": "5.5",
+        "title": "Discussion",
+        "start": 50105
+      },
+      {
+        "number": "6",
+        "title": "Threats to Validity",
+        "start": 55153
+      },
+      {
+        "number": "7",
+        "title": "Related Work",
+        "start": 56001
+      },
+      {
+        "number": "8",
+        "title": "Conclusion",
+        "start": 59810
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Kinan Dak Albab, Jonathan DiLorenzo, Stefan Heule, Ali Kheradmand, Steffen Smolka, Konstantin Weitz, Muhammad Timarzi, Jiaqi Gao, and Minlan Yu. Switchv: Automated sdn switch validation with p4 models. In Proceedings of the ACMSIGCOMM 2022 Conference, page 365–379, New York, NY, USA, 2022. ACM.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Jialun Cao, Meiziniu Li, Yeting Li, Ming Wen, ShingChi Cheung, and Haiming Chen. Semmt: A semanticbased testing approach for machine translation systems. ACM Trans. Softw. Eng. Methodol., 31(2):1–36, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Donald D Chamberlin and Raymond F Boyce. Sequel: A structured english query language. In Proceedings of the 1974 ACMSIGFIDET workshop on Data description, access and control, pages 249–264, 1974.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Tsong Yueh Chen, S. C. Cheung, and Siu-Ming Yiu. Metamorphic testing: A new approach for generating next test cases. CoRR, abs/2002.12543, 2020. 356 2023 USENIX Annual Technical Conference USENIX Association",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Tsong Yueh Chen, Fei-Ching Kuo, Huai Liu, Pak-Lok Poon, Dave Towey, T. H. Tse, and Zhi Quan Zhou. Metamorphic testing: A review of challenges and opportunities. ACM Comput. Surv., 51(1):4:1–4:27, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Yuting Chen, Ting Su, and Zhendong Su. Deep differential testing of JVM implementations. In Proceedings of the 41st International Conference on Software Engineering, pages 1257–1268. IEEE / ACM, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Edgar F Codd. A relational model of data for large shared data banks. Communications of the ACM, 13(6):377–387, 1970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Joeri de Ruiter and Erik Poll. Protocol state fuzzing of TLS implementations. In Proceedings of 24th USENIX Security Symposium, pages 193–206. USENIX Association, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "MariaDB Foundation. MariaDB Database. https: //mariadb.org/, 2022. [Online; accessed Dec-2022].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. Griffin: Grammar-free dbms fuzzing. InThe 37th IEEE/ACM International Conference on Automated Software Engineering, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Patrice Godefroid, Adam Kiezun, and Michael Y. Levin. Grammar-based whitebox fuzzing. In Proceedings of the ACMSIGPLAN 2008 Conference on Programming Language Design and Implementation, pages 206–215. ACM, 2008.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "William E Howden. Theoretical and empirical studies of program testing. IEEE Transactions on Software Engineering, SE-4(4):293–298, 1978.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Free Software Foundation Inc. BNU Bison. https: //www.gnu.org/software/bison/, 2022. [Online; accessed Jan-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Google Inc. american fuzzy lopa security-oriented fuzzer. https://github.com/google/AFL, 2022. [Online; accessed Dec-2022].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Google Inc. Go 1.20 Release Notes. https://tip. golang.org/doc/go1.20, 2022. [Online; accessed Jan-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. Compiler validation via equivalence modulo inputs. In Proceedings of the 35th ACMSIGPLAN Conference on Programming Language Design and Implementation, pages 216–226. ACM, 2014.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "MaraiaDB. Bug #30249 of MaraiaDB. https://jira. mariadb.org/browse/MDEV-30249, 2022. [Online; accessed Jan-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "William M. McKeeman. Differential testing for software. Digit. Tech. J., 10(1):100–107, 1998.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Michaël Mera. Mining constraints for grammar fuzzing. InProceedings of the 28th ACMSIGSOFT International Symposium on Software Testing and Analysis, pages 415– 418. ACM, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "MySQL. Bug #108937 of MySQL. https://bugs. mysql.com/bug.php?id=108937, 2022. [Online; accessed Jan-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "MySQL. Bug #109407 of MySQL. https://bugs. mysql.com/bug.php?id=109407, 2022. [Online; accessed Jan-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "MySQL. MySQL Database. https://www.mysql. com/, 2022. [Online; accessed Dec-2022].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "MySQL. The MySQL Test Framework. https://dev.mysql.com/doc/dev/mysql-server/ latest/PAGE_MYSQL_TEST_RUN.html, 2022. [Online; accessed Dec-2022].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "OceanBase. A deployer and package manager for OceanBase. https://github.com/oceanbase/obdeploy, 2022. [Online; accessed Jan-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "OceanBase. Issue #1100 of OceanBase. https:// github.com/oceanbase/oceanbase/issues/1100, 2022. [Online; accessed Jan-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "OceanBase. OceanBase Database. https://www. oceanbase.com/, 2022. [Online; accessed Dec-2022].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "PingCap. go randgen. https://github.com/ pingcap/go-randgen, 2022. [Online; accessed Dec2022].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "PingCap. Parser-A MySQL Compatible SQL Parser. https://github.com/pingcap/tidb/tree/ master/parser, 2022. [Online; accessed Jan-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "PingCAP. TiDB Database. https://github.com/ pingcap/tidb, 2022. [Online; accessed Dec-2022].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "GNU Project. gcov——a Test Coverage Program. https://gcc.gnu.org/onlinedocs/gcc/ Gcov.html, 2022. [Online; accessed Jan-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "qaqcatz. The Complete List of Instantiated Mutators in PINOLO. https://github.com/qaqcatz/ impomysql_binary/blob/main/mutators.md, 2022. [Online; accessed Jan-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Mian Qin, Qing Zheng, Jason Lee, Bradley Settlemyer, Fei Wen, Narasimha Reddy, and Paul Gratz. Kvrangedb: Range queries for a hash-based key-value device. ACM Trans. Storage, jan 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Manuel Rigger. sqlancer. https://github.com/ sqlancer/sqlancer, 2022. [Online; accessed Jan2023].",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 34,
+      "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, pages 1140– 1152. ACM, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 35,
+      "text": "Manuel Rigger and Zhendong Su. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang., 4(OOPSLA):211:1–211:30, 2020. USENIX Association 2023 USENIX Annual Technical Conference 357",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 36,
+      "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, pages 667–682. USENIX Association, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 37,
+      "text": "Manuel Rigger and Zhendong Su. Intramorphic testing: A new approach to the test oracle problem. In Proceedings of the 2022 ACMSIGPLAN International Symposium on New Ideas, New Paradigms, and Reflections on Programming and Software, pages 128–136. ACM, 2022.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 38,
+      "text": "Andreas Seltenreich. SQLsmith: A random SQL query generator. https://github.com/anse1/sqlsmith, 2022. [Online; accessed Dec-2022].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Donald R Slutz. Massive stochastic testing of sql. In VLDB, volume 98, pages 618–622. Citeseer, 1998.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Thodoris Sotiropoulos, Stefanos Chaliasos, Vaggelis Atlidakis, Dimitris Mitropoulos, and Diomidis Spinellis. Data-oriented differential testing of object-relational mapping systems. In 43rd IEEE/ACM International Conference on Software Engineering, pages 1535–1547. IEEE, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "SQLite. How SQLite is Tested. https://www.sqlite. org/testing.html, 2022. [Online; accessed Dec2022].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "TiDB. Issue #40015 of TiDB. https://github. com/pingcap/tidb/issues/40015, 2022. [Online; accessed Jan-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Jianfeng Wang, Tamás Lévai, Zhuojin Li, Marcos A. M. Vieira, Ramesh Govindan, and Barath Raghavan. Quadrant: A cloud-deployable NF virtualization platform. In Proceedings of the 13th Symposium on Cloud Computing, page 493–509, New York, NY, USA, 2022. ACM.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Jianfeng Wang, Tamás Lévai, Zhuojin Li, Marcos Augusto M. Vieira, Ramesh Govindan, and Barath Raghavan. Galleon: Reshaping the square peg of NFV. CoRR, abs/2101.06466, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Junjie Wang, Bihuan Chen, Lei Wei, and Yang Liu. Superion: grammar-aware greybox fuzzing. In Proceedings of the 41st International Conference on Software Engineering, pages 724–735. IEEE / ACM, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. Industry practice of coverage-guided enterprise-level DBMS fuzzing. In43rd IEEE/ACM International Conference on Software Engineering: Software Engineering in Practice, pages 328–337. IEEE, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Shuai Wang and Zhendong Su. Metamorphic object insertion for testing object detection systems. In 35th IEEE/ACM International Conference on Automated Software Engineering, pages 1053–1065. IEEE, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Dominik Winterer, Chengyu Zhang, and Zhendong Su. Validating SMT solvers via semantic fusion. In Proceedings of the 41st ACMSIGPLAN International Conference on Programming Language Design and Implementation, pages 718–730. ACM, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Zhiyong Wu, Jie Liang, Mingzhe Wang, Chijin Zhou, and Yu Jiang. Unicorn: detect runtime errors in timeseries databases with hybrid input synthesis. In 31st ACMSIGSOFT International Symposium on Software Testing and Analysis, pages 251–262. ACM, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Dongwei Xiao, Zhibo Liu, Yuanyuan Yuan, Qi Pang, and Shuai Wang. Metamorphic testing of deep learning compilers. Proc. ACM Meas. Anal. Comput. Syst., 6(1):15:1–15:28, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Haoran Xu, Shuhui Fan, Yongjun Wang, Zhijian Huang, Hongzuo Xu, and Peidai Xie. Tree2tree structural language modeling for compiler fuzzing. In Algorithms and Architectures for Parallel Processing-20th International Conference, pages 563–578. Springer, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Yibiao Yang, Yuming Zhou, Hao Sun, Zhendong Su, Zhiqiang Zuo, Lei Xu, and Baowen Xu. Hunting for bugs in code coverage tools via randomized differential testing. In Proceedings of the 41st International Conference on Software Engineering, pages 488–498. IEEE / ACM, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Peisen Yao, Heqing Huang, Wensheng Tang, Qingkai Shi, Rongxin Wu, and Charles Zhang. Fuzzing SMT solvers via two-dimensional input space exploration. InProceedings of 30th ACMSIGSOFT International Symposium on Software Testing and Analysis, pages 322–335. ACM, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Peisen Yao, Heqing Huang, Wensheng Tang, Qingkai Shi, Rongxin Wu, and Charles Zhang. Skeletal approximation enumeration for SMT solver testing. In Proceedings of 29th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, pages 1141–1153. ACM, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Yuanyuan Yuan, Shuai Wang, Mingyue Jiang, and Tsong Yueh Chen. Perception matters: Detecting perception failures of VQA models using metamorphic testing. In Vision and Pattern Recognition, pages 16908–16917. Computer Vision Foundation / IEEE, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Andreas Zeller. Why Programs Fail-A Guide to Systematic Debugging, 2nd Edition. Academic Press, 2009.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. SQUIRREL: testing database management systems with language validity and coverage feedback. In 2020 ACMSIGSAC Conference on Computer and Communications Security, pages 955–970. ACM, 2020. 358 2023 USENIX Annual Technical Conference USENIX Association",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 33,
+      "text": "Manuel Rigger. sqlancer. https://github.com/ sqlancer/sqlancer, 2022. [Online; accessed Jan2023].",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 34,
+      "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, pages 1140– 1152. ACM, 2020.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 35,
+      "text": "Manuel Rigger and Zhendong Su. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang., 4(OOPSLA):211:1–211:30, 2020. USENIX Association 2023 USENIX Annual Technical Conference 357",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 36,
+      "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, pages 667–682. USENIX Association, 2020.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 37,
+      "text": "Manuel Rigger and Zhendong Su. Intramorphic testing: A new approach to the test oracle problem. In Proceedings of the 2022 ACMSIGPLAN International Symposium on New Ideas, New Paradigms, and Reflections on Programming and Software, pages 128–136. ACM, 2022.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 10,34–36]",
+      "technique": "norec",
+      "sentence": "Therefore, DBMS testing has attracted considerable attention in the industry [ 14,23,38,41] and academia [ 10,34–36].",
+      "context_before": "lt set returned by our synthesized query does not follow the expected approximation relation. We implemented our idea as a DBMS testing system and evaluated it on four widely-used DBMSs: MySQL, MariaDB, TiDB, and OceanBase. By the time of writing, PINOLO has found 41 unique logical bugs in these DBMSs, 39 of which have been confirmed by developers. 1 Introduction Database Management Systems (DBMSs) are widely used as a key component in modern enterprise software. Their correctness and reliability are critical for many enterprise applications, such as online banking, e-shopping, e-payment, etc.",
+      "context_after": "For example, fuzzing, a widely-used testing technique, has been extensively applied to DBMSs [ 14,38], showing its effectiveness in detecting crash bugs. However, as another typical kind ∗Corresponding author: Rongxin Wu (wurongxin@xmu.edu.cn)of bug, logical bugs would cause DBMSs to return an incorrect result set for a given query but can easily go unnoticed by developers since they would not behave with apparent manifestations like system crash. The predominant approach to detecting logical bugs consists of various automatic testing techniques. However, designing effective automatic testing",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 3109,
+      "cited_reference": {
+        "number": 34,
+        "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, pages 1140– 1152. ACM, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[ 34,36,39]",
+      "technique": "norec",
+      "sentence": "However, as pointed out by the existing studies [ 34,36,39], differential testing cannot be applied when a generated SQL query cannot comply with the grammar of all selected DBMSs or contains operations that have different semantics between different DBMSs.",
+      "context_before": "tal technical challenges is to characterize a correct result concerning a given query for comparison, which is a classical problem in testing, i.e., test oracle problem [12]. To tackle this challenge, researchers have proposed various ways to obtain the test oracle. The first category is based on differential testing [ 39]. It provides the same generated SQL query to multiple DBMSs for execution and resorts to the querying results to construct the test oracle. More concretely, the inconsistency among the result sets returned by different DBMSs indicates the presence of a potential logical bug.",
+      "context_after": "Although all the DBMSs support the common core syntax of SQL, each of them provides various extensions and forms its own dialect [ 39], which dramatically limits the generality of differential testing. The second category is the oracle-guided synthesis approach [ 36], which does not rely on multiple DBMSs and thus mitigates the limitation of differential testing. It first specifies a randomly-selected row in a database table, namely, pivot row, as the test oracle and then synthesizes the query whose result set should contain this pivot row. The failure of fetching the row with the synthesized",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 4474,
+      "cited_reference": {
+        "number": 34,
+        "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, pages 1140– 1152. ACM, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[ 36]",
+      "technique": "pqs",
+      "sentence": "The second category is the oracle-guided synthesis approach [ 36], which does not rely on multiple DBMSs and thus mitigates the limitation of differential testing.",
+      "context_before": "cle. More concretely, the inconsistency among the result sets returned by different DBMSs indicates the presence of a potential logical bug. However, as pointed out by the existing studies [ 34,36,39], differential testing cannot be applied when a generated SQL query cannot comply with the grammar of all selected DBMSs or contains operations that have different semantics between different DBMSs. Although all the DBMSs support the common core syntax of SQL, each of them provides various extensions and forms its own dialect [ 39], which dramatically limits the generality of differential testing.",
+      "context_after": "It first specifies a randomly-selected row in a database table, namely, pivot row, as the test oracle and then synthesizes the query whose result set should contain this pivot row. The failure of fetching the row with the synthesized query evidences a potential bug underlying the tested DBMS. However, since such an approach considers only one row each time and the synthesis merely focuses on the where clause generation, it would miss logical bugs in various scenarios [ 34,35]. For example, those rows that are duplicated to the pivot row are wrongly fetched or omitted, or the values processed",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 4934,
+      "cited_reference": {
+        "number": 36,
+        "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, pages 667–682. USENIX Association, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker",
+      "surface": "[ 34,35]",
+      "technique": "norec",
+      "sentence": "However, since such an approach considers only one row each time and the synthesis merely focuses on the where clause generation, it would miss logical bugs in various scenarios [ 34,35].",
+      "context_before": "L, each of them provides various extensions and forms its own dialect [ 39], which dramatically limits the generality of differential testing. The second category is the oracle-guided synthesis approach [ 36], which does not rely on multiple DBMSs and thus mitigates the limitation of differential testing. It first specifies a randomly-selected row in a database table, namely, pivot row, as the test oracle and then synthesizes the query whose result set should contain this pivot row. The failure of fetching the row with the synthesized query evidences a potential bug underlying the tested DBMS.",
+      "context_after": "For example, those rows that are duplicated to the pivot row are wrongly fetched or omitted, or the values processed by performing operators on the original row data are mistakenly computed and returned. Moreover, as pointed out by some recent studies [34,35], the synthesis requires domain knowledge of the database dialect’s supported operators and functions, and thus the implementation effort is high. USENIX Association 2023 USENIX Annual Technical Conference 345 The third category is the metamorphic testing based approach [ 34,35]. It first transforms a given query qinto another query q′suc",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 5392,
+      "cited_reference": {
+        "number": 34,
+        "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, pages 1140– 1152. ACM, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker",
+      "surface": "[34,35]",
+      "technique": "norec",
+      "sentence": "Moreover, as pointed out by some recent studies [34,35], the synthesis requires domain knowledge of the database dialect’s supported operators and functions, and thus the implementation effort is high.",
+      "context_before": "the test oracle and then synthesizes the query whose result set should contain this pivot row. The failure of fetching the row with the synthesized query evidences a potential bug underlying the tested DBMS. However, since such an approach considers only one row each time and the synthesis merely focuses on the where clause generation, it would miss logical bugs in various scenarios [ 34,35]. For example, those rows that are duplicated to the pivot row are wrongly fetched or omitted, or the values processed by performing operators on the original row data are mistakenly computed and returned.",
+      "context_after": "USENIX Association 2023 USENIX Annual Technical Conference 345 The third category is the metamorphic testing based approach [ 34,35]. It first transforms a given query qinto another query q′such that their querying results satisfy a specific relation, which is referred to as a metamorphic relation. The violation of the metamorphic relation upon the querying results indicates the wrong result of evaluating qorq′. For example, TLP [35] decomposes a query qinto three partitioning sub-queries, each of which computes the result sets for a boolean predicate to be evaluated as TRUE ,FALSE, and NULL,",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 5784,
+      "cited_reference": {
+        "number": 34,
+        "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, pages 1140– 1152. ACM, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker",
+      "surface": "[ 34,35]",
+      "technique": "norec",
+      "sentence": "USENIX Association 2023 USENIX Annual Technical Conference 345 The third category is the metamorphic testing based approach [ 34,35].",
+      "context_before": "DBMS. However, since such an approach considers only one row each time and the synthesis merely focuses on the where clause generation, it would miss logical bugs in various scenarios [ 34,35]. For example, those rows that are duplicated to the pivot row are wrongly fetched or omitted, or the values processed by performing operators on the original row data are mistakenly computed and returned. Moreover, as pointed out by some recent studies [34,35], the synthesis requires domain knowledge of the database dialect’s supported operators and functions, and thus the implementation effort is high.",
+      "context_after": "It first transforms a given query qinto another query q′such that their querying results satisfy a specific relation, which is referred to as a metamorphic relation. The violation of the metamorphic relation upon the querying results indicates the wrong result of evaluating qorq′. For example, TLP [35] decomposes a query qinto three partitioning sub-queries, each of which computes the result sets for a boolean predicate to be evaluated as TRUE ,FALSE, and NULL, respectively, and then constructs an equivalent query q′ by performing the union operation on these three sub-queries. NOREC [34] tra",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 5986,
+      "cited_reference": {
+        "number": 34,
+        "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, pages 1140– 1152. ACM, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For example, TLP [35] decomposes a query qinto three partitioning sub-queries, each of which computes the result sets for a boolean predicate to be evaluated as TRUE ,FALSE, and NULL, respectively, and then constructs an equivalent query q′ by performing the union operation on these three sub-queries.",
+      "context_before": "ted out by some recent studies [34,35], the synthesis requires domain knowledge of the database dialect’s supported operators and functions, and thus the implementation effort is high. USENIX Association 2023 USENIX Annual Technical Conference 345 The third category is the metamorphic testing based approach [ 34,35]. It first transforms a given query qinto another query q′such that their querying results satisfy a specific relation, which is referred to as a metamorphic relation. The violation of the metamorphic relation upon the querying results indicates the wrong result of evaluating qorq′.",
+      "context_after": "NOREC [34] transforms an optimized version of a query into a non-optimized one by the customized rule, e.g., changing “SELECT *FROM tWHERE p” into “ SELECT (pIS TRUE ) FROM t.” Compared with the aforementioned two categories of approaches, metamorphic testing based approaches are much more lightweight to implement and have been proven to be more effective in detecting logical bugs [ 34,35]. However, existing studies instantiate the metamorphic relations as equivalent relations, which are still insufficient to detect many deeply-hidden bugs. This is because it is highly possible that, owing to",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 6402,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "technique",
+      "surface": "NOREC",
+      "technique": "norec",
+      "sentence": "NOREC [34] transforms an optimized version of a query into a non-optimized one by the customized rule, e.",
+      "context_before": "roach [ 34,35]. It first transforms a given query qinto another query q′such that their querying results satisfy a specific relation, which is referred to as a metamorphic relation. The violation of the metamorphic relation upon the querying results indicates the wrong result of evaluating qorq′. For example, TLP [35] decomposes a query qinto three partitioning sub-queries, each of which computes the result sets for a boolean predicate to be evaluated as TRUE ,FALSE, and NULL, respectively, and then constructs an equivalent query q′ by performing the union operation on these three sub-queries.",
+      "context_after": "g., changing “SELECT *FROM tWHERE p” into “ SELECT (pIS TRUE ) FROM t.” Compared with the aforementioned two categories of approaches, metamorphic testing based approaches are much more lightweight to implement and have been proven to be more effective in detecting logical bugs [ 34,35]. However, existing studies instantiate the metamorphic relations as equivalent relations, which are still insufficient to detect many deeply-hidden bugs. This is because it is highly possible that, owing to the limited search space of mutations, the pair of equivalent queries would still share common buggy oper",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 6705,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker",
+      "surface": "[ 34,35]",
+      "technique": "norec",
+      "sentence": "” Compared with the aforementioned two categories of approaches, metamorphic testing based approaches are much more lightweight to implement and have been proven to be more effective in detecting logical bugs [ 34,35].",
+      "context_before": "tion. The violation of the metamorphic relation upon the querying results indicates the wrong result of evaluating qorq′. For example, TLP [35] decomposes a query qinto three partitioning sub-queries, each of which computes the result sets for a boolean predicate to be evaluated as TRUE ,FALSE, and NULL, respectively, and then constructs an equivalent query q′ by performing the union operation on these three sub-queries. NOREC [34] transforms an optimized version of a query into a non-optimized one by the customized rule, e.g., changing “SELECT *FROM tWHERE p” into “ SELECT (pIS TRUE ) FROM t.",
+      "context_after": "However, existing studies instantiate the metamorphic relations as equivalent relations, which are still insufficient to detect many deeply-hidden bugs. This is because it is highly possible that, owing to the limited search space of mutations, the pair of equivalent queries would still share common buggy operators and functions and eventually return the same results. In such a case, the oracle from the equivalent query cannot provide any hint to detect logical bugs. In this work, we present a new metamorphic testing based approach, named PINOLO, to detect logical bugs. Our idea to instantiat",
+      "section": "1 Introduction",
+      "page": 3,
+      "char_offset": 6881,
+      "cited_reference": {
+        "number": 34,
+        "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, pages 1140– 1152. ACM, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "citation_marker",
+      "surface": "[ 35,37]",
+      "technique": "tlp",
+      "sentence": "Notably, the metamorphic testing based approach has been recognized to be state-of-the-art in DBMS testing for logical bug detection [ 35,37].",
+      "context_before": "ations. In contrast, people are often unaware of logical bugs in DBMSs. Typically, the developers of database-backed applications may realize the abnormal data retrieved from the database, while they are still uncertain whether their application is wrongly implemented or a logical bug of the DBMS is triggered. Therefore, detecting a logical bug in the DBMS has been typically recognized as a problem with both high impact and significant technical challenges.2.3 Metamorphic Testing Recent years have witnessed tremendous efforts in resolving the test oracle for logical bug detection in the DBMSs.",
+      "context_after": "Generally, the metamorphic testing based techniques attempt to construct multiple SQL queries of which the querying results have a specific relation, namely a metamorphic relation. If the querying results violate the metamorphic relation, we can have the confidence that at least one of the queries triggers a logical bug in the tested DBMS. For example, NOREC [34] transforms a query into a form in which the DBMS does not apply optimizations, which yields the test oracle that the two queries should make the tested DBMS return the same result. Besides, TLP [35] gets the equivalent query result b",
+      "section": "2.2 Logical Bugs in DBMSs",
+      "page": 4,
+      "char_offset": 14445,
+      "cited_reference": {
+        "number": 35,
+        "text": "Manuel Rigger and Zhendong Su. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang., 4(OOPSLA):211:1–211:30, 2020. USENIX Association 2023 USENIX Annual Technical Conference 357",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "NOREC",
+      "technique": "norec",
+      "sentence": "For example, NOREC [34] transforms a query into a form in which the DBMS does not apply optimizations, which yields the test oracle that the two queries should make the tested DBMS return the same result.",
+      "context_before": "Recent years have witnessed tremendous efforts in resolving the test oracle for logical bug detection in the DBMSs. Notably, the metamorphic testing based approach has been recognized to be state-of-the-art in DBMS testing for logical bug detection [ 35,37]. Generally, the metamorphic testing based techniques attempt to construct multiple SQL queries of which the querying results have a specific relation, namely a metamorphic relation. If the querying results violate the metamorphic relation, we can have the confidence that at least one of the queries triggers a logical bug in the tested DBMS.",
+      "context_after": "Besides, TLP [35] gets the equivalent query result by splitting the input query into several sub-queries and merging the results of sub-queries into one. When adapting the metamorphic testing, they take randomlygenerated queries as the seed queries and then transform them into other queries to ensure the metamorphic relations, which automates the testing process for logical bug detection. Unfortunately, the existing effort has not resolved the test oracle problem perfectly. To the best of our knowledge, previous studies only leverage the equivalent transformations, which are supported by the",
+      "section": "2.2 Logical Bugs in DBMSs",
+      "page": 4,
+      "char_offset": 14930,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "Besides, TLP [35] gets the equivalent query result by splitting the input query into several sub-queries and merging the results of sub-queries into one.",
+      "context_before": "t in DBMS testing for logical bug detection [ 35,37]. Generally, the metamorphic testing based techniques attempt to construct multiple SQL queries of which the querying results have a specific relation, namely a metamorphic relation. If the querying results violate the metamorphic relation, we can have the confidence that at least one of the queries triggers a logical bug in the tested DBMS. For example, NOREC [34] transforms a query into a form in which the DBMS does not apply optimizations, which yields the test oracle that the two queries should make the tested DBMS return the same result.",
+      "context_after": "When adapting the metamorphic testing, they take randomlygenerated queries as the seed queries and then transform them into other queries to ensure the metamorphic relations, which automates the testing process for logical bug detection. Unfortunately, the existing effort has not resolved the test oracle problem perfectly. To the best of our knowledge, previous studies only leverage the equivalent transformations, which are supported by the tested DBMS or conducted by their approaches, leaving the functions and operators in the query unchanged. This greatly limits their approaches to explorin",
+      "section": "2.2 Logical Bugs in DBMSs",
+      "page": 4,
+      "char_offset": 15135,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "NOREC",
+      "technique": "norec",
+      "sentence": "For example, the logical bug shown in Figure 1 can not be revealed by NOREC [34] and TLP [35], as the transformations preserve all the operators and the functions, still triggering the buggy evaluation process.",
+      "context_before": "seed queries and then transform them into other queries to ensure the metamorphic relations, which automates the testing process for logical bug detection. Unfortunately, the existing effort has not resolved the test oracle problem perfectly. To the best of our knowledge, previous studies only leverage the equivalent transformations, which are supported by the tested DBMS or conducted by their approaches, leaving the functions and operators in the query unchanged. This greatly limits their approaches to exploring the code of the tested DBMSs and thus reduces the chance of finding logical bugs.",
+      "context_after": "To improve the capability of the metamorphic testing in finding logical bugs in the DBMSs, we propose a new DBMS testing approach in this work, which relaxes the equivalence relation with a less restrictive metamorphic relation, finally supporting finding more insightful logical bugs. 3 Approximate Query Synthesis We propose the approximate query synthesis technique PINOLO1for detecting logical bugs in the DBMSs. Basically, our insight comes from the intuition that the mutation of specific grammatical constructs can induce the approximation relation between the original query and the mutated",
+      "section": "2.2 Logical Bugs in DBMSs",
+      "page": 4,
+      "char_offset": 15972,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "citation_marker",
+      "surface": "[ 34–36]",
+      "technique": "norec",
+      "sentence": "Compared with the existing techniques [ 34–36],PINOLO considers more SQL features, such as set operators, arithmetic expressions, sub-queries, etc.",
+      "context_before": "the approximation relation between each synthesized query and the seed query based on the principle of structural induction. 3.5 Summary PINOLO automates the DBMS testing via the approximate query synthesis, which discovers underlying logical bugs in the DBMSs. The syntax in Figure 3 ensures the syntactical validity of the seed queries, and furthermore, guarantees that the synthesized queries have valid SQL syntax. Meanwhile, our approximate mutators enable us to obtain the approximation relation between the seed query and the synthesized ones, which perfectly resolves the test oracle problem.",
+      "context_after": "The expressive syntax permits us to test the DBMS more thoroughly and discover more logical bugs reported in previous studies, which will be evidenced by our experiments. Besides, the approximate operators can aggressively mutate the seed query, which may remove the buggy operators and functions, revealing the logical bugs more thoroughly than existing techniques. Lastly, it is worth noting that PINOLO provides a general framework for discovering the logical bugs in the DBMS. We can further extend the syntax of SQL queries and instantiate more approximate mutators, which can promote the capab",
+      "section": "3.5 Summary",
+      "page": 8,
+      "char_offset": 34420,
+      "cited_reference": {
+        "number": 34,
+        "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, pages 1140– 1152. ACM, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "citation_marker",
+      "surface": "[ 36]",
+      "technique": "pqs",
+      "sentence": "Following the best practice summarized in the prior study [ 36], we restrict the number of table records to be no more than 30.",
+      "context_before": "extend the syntax of SQL queries and instantiate more approximate mutators, which can promote the capability of discovering the logical bugs triggered by sophisticated SQL queries. 4 Implementation We implemented our approach PINOLO as a DBMS testing system, which was written in GOwith 8,055 lines of code. The source code of our tool is hosted in the github repository2. Next, we present more details of our implementation decisions that are important for the outcome of our experiments. Database population. We randomly generate the database tables by leveraging an existing tool, GO-RANDGEN [27].",
+      "context_after": "Besides, we randomly generate the tables with the same attributes, which makes the join operator yield a non-trivial result. Particularly, we avoid null values in any table, as the test oracle requires non-null values as a prerequisite, which is stated in Theorem 3.1. Seed query generation and parsing. To generate seed queries as the input of our synthesis algorithm, we utilize GORANDGEN [27] to automatically produce seed SQL queries. Specifically, we use the general-purpose parser generator BISON [13] to write a context-free grammar file describing the SQL syntax with a series of production",
+      "section": "4 Implementation",
+      "page": 8,
+      "char_offset": 35665,
+      "cited_reference": {
+        "number": 36,
+        "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, pages 667–682. USENIX Association, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "citation_marker",
+      "surface": "[ 34–36]",
+      "technique": "norec",
+      "sentence": "They are also commonly used in the evaluation of previous studies [ 34–36].",
+      "context_before": "inux kernel version: 5.4.0-135-generic. To ensure fair comparisons, we allocated four threads for each DBMS testing in our following experiments. Tested DBMS. Our focus was on testing four widely-used and large-scale open-source DBMSs: MySQL, MariaDB, TiDB, and OceanBase. There are two main reasons for the subject selection. First, these selected DBMSs are representative DBMSs from phenomenal open-source and/or commercial products: MySQL and MariaDB are the two most well-known open-source DBMSs; OceanBase is a mature commercial database product from Ant Group; TiDB is developed by PingCap Inc.",
+      "context_after": "Moreover, we admit and discuss potential limitations introduced by our selection of DBMS systems in § 6. Second, we chose a DBMS whose SQL syntax is compatible with MySQL as an evaluation subject to reduce the implementation effort. This is because, although our approach can be generalized to other DBMSs, the implementation of the seed query generation and parsing (See § 4) requires a grammar file that describes the SQL syntax of a tested DBMS. To obtain timely feedback from developers, we tested the latest release versions of the selected DBMSs: MySQL 8.0.31, MariaDB 10.11.1, TiDB 6.4.0, and",
+      "section": "5.1 Experiment Setup",
+      "page": 9,
+      "char_offset": 40340,
+      "cited_reference": {
+        "number": 34,
+        "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, pages 1140– 1152. ACM, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "We compared PINOLO with the three state-ofthe-art logical bug detection techniques, namely PQS [ 36], NOREC [34], and TLP [35], respectively, which correspond to three kinds of test oracles.",
+      "context_before": "cuss potential limitations introduced by our selection of DBMS systems in § 6. Second, we chose a DBMS whose SQL syntax is compatible with MySQL as an evaluation subject to reduce the implementation effort. This is because, although our approach can be generalized to other DBMSs, the implementation of the seed query generation and parsing (See § 4) requires a grammar file that describes the SQL syntax of a tested DBMS. To obtain timely feedback from developers, we tested the latest release versions of the selected DBMSs: MySQL 8.0.31, MariaDB 10.11.1, TiDB 6.4.0, and OceanBase 4.0.0. Baseline.",
+      "context_after": "Similar to our approach, these baselines also require knowledge about the SQL syntax of different DBMSs for seed query generation and parsing. Unfortunately, their implementations cannot support all the selected DBMSs. We also sought help from their authors, but they still could not fix the problems before the paper submission. Therefore, we skipped the evaluation of the baselines on the unsupported DBMSs. Moreover, we tried to use the same random seed as the baselines. However, we found that they can neither export their random seeds nor import the random seeds provided by users. Therefore,",
+      "section": "5.1 Experiment Setup",
+      "page": 9,
+      "char_offset": 41043,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "352 2023 USENIX Annual Technical Conference USENIX Association 024681012141618202224 Testing Time(h)0246810121416Unique Bug (a) MySQLPINOLO TLP 024681012141618202224 Testing Time(h)0246810121416Unique Bug (b) MariaDBPINOLO NoREC 024681012141618202224 Testing Time(h)024681012Unique Bug (c) TiDBPINOLO TLP 024681012141618202224 Testing Time(h)0123Unique Bug (d) OceanBasePINOLOFigure 5: Comparison between PINOLO and the baselines.",
+      "context_before": "nnot support all the selected DBMSs. We also sought help from their authors, but they still could not fix the problems before the paper submission. Therefore, we skipped the evaluation of the baselines on the unsupported DBMSs. Moreover, we tried to use the same random seed as the baselines. However, we found that they can neither export their random seeds nor import the random seeds provided by users. Therefore, we generated the random seeds by ourselves for PINOLO. To understand the impacts of the random seed query generation, we investigated how PINOLO is robust to such randomness in § 5.4.",
+      "context_after": "(a)-(d) show the number of unique logical bugs over time (24 hours) on each DBMS. We ignore the results of the baselines on the unsupported DBMSs and the baselines finding no bugs. Table 2: The demographics of the DBMSs under the test DBMS Version GitHub Stars LOC First Release MySQL 8.0.31 8.6K 4,766,086 1995 MariaDB 10.11.1 4.6K 3,727,410 2009 TiDB 6.4.0 33.1K 985,518 2017 OceanBase 4.0.0 5.1K 2,722,881 2021 Table 3: Applicability of existing logical detection techniques and PINOLO for the selected DBMSs DBMSPQS NOREC TLP PINOLO MySQL ✓ × ✓ ✓ MariaDB × ✓ × ✓ TiDB × × ✓ ✓ OceanBase ✓ ✓ ✓ ✓ 5",
+      "section": "5.1 Experiment Setup",
+      "page": 9,
+      "char_offset": 42017,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "technique",
+      "surface": "NOREC",
+      "technique": "norec",
+      "sentence": "1K 2,722,881 2021 Table 3: Applicability of existing logical detection techniques and PINOLO for the selected DBMSs DBMSPQS NOREC TLP PINOLO MySQL ✓ × ✓ ✓ MariaDB × ✓ × ✓ TiDB × × ✓ ✓ OceanBase ✓ ✓ ✓ ✓ 5.",
+      "context_before": "C 024681012141618202224 Testing Time(h)024681012Unique Bug (c) TiDBPINOLO TLP 024681012141618202224 Testing Time(h)0123Unique Bug (d) OceanBasePINOLOFigure 5: Comparison between PINOLO and the baselines. (a)-(d) show the number of unique logical bugs over time (24 hours) on each DBMS. We ignore the results of the baselines on the unsupported DBMSs and the baselines finding no bugs. Table 2: The demographics of the DBMSs under the test DBMS Version GitHub Stars LOC First Release MySQL 8.0.31 8.6K 4,766,086 1995 MariaDB 10.11.1 4.6K 3,727,410 2009 TiDB 6.4.0 33.1K 985,518 2017 OceanBase 4.0.0 5.",
+      "context_after": "2 Effectiveness of PINOLO We used PINOLO to test the latest version of MySQL, MariaDB, TiDB, and OceanBase for 24 hours. Table 4 summarizes the results of PINOLO. The column Allshows the number of problematic query pairs that induce unexpected results, which indicate the existence of logical bugs. As we can see, PINOLO discovered a large number of problematic query pairs, ranging from 4,675 to 46,772 for the tested DBMSs. However, we found that most of these pairs can be attributed to the same bug. To relieve the developers from the heavy burden of checking the duplicate bugs, we leverage the",
+      "section": "5.1 Experiment Setup",
+      "page": 10,
+      "char_offset": 42845,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M20",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": ", PQS, NOREC, and TLP.",
+      "context_before": "bugs have been confirmed, while the rest are still waiting for the investigation. We sampled several bug reports of MariaDB submitted by others and found that developers typically take a much longer time to handle the bugs. To keep track of the status of our reported bugs, we release the bug list in a public GitHub repository3. Answer to RQ1 :PINOLO discovers 41 unique bugs on MySQL, MariaDB, TiDB, and OceanBase, 39 of which have been confirmed by DBMS developers. 5.3 Comparisons on Detecting Logical Bugs Logical bug detection. We compared PINOLO with the three state-of-the-art baselines, i.e.",
+      "context_after": "We ran all methods with a time budget of 24 hours. The comparison results are shown in Figure 5. Note that the baselines do not support all the DBMSs, and thus we only concentrated on the comparison between PINOLO and the runnable baselines with respect to each DBMS. For MySQL, PINOLO detected 14 logical bugs, while TLP only discovered 2 bugs. For MariaDB, PINOLO detected 14 bugs, while NOREC discovered 10 bugs. For TiDB, PINOLO detected 11 bugs, while TLP only discovered 2 bugs. For OceanBase, PINOLO can detect 2 bugs, while the baselines cannot find any. We also manually verified the overla",
+      "section": "5.3 Comparisons on Detecting Logical Bugs",
+      "page": 10,
+      "char_offset": 45034,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M21",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For MySQL, PINOLO detected 14 logical bugs, while TLP only discovered 2 bugs.",
+      "context_before": "ug list in a public GitHub repository3. Answer to RQ1 :PINOLO discovers 41 unique bugs on MySQL, MariaDB, TiDB, and OceanBase, 39 of which have been confirmed by DBMS developers. 5.3 Comparisons on Detecting Logical Bugs Logical bug detection. We compared PINOLO with the three state-of-the-art baselines, i.e., PQS, NOREC, and TLP. We ran all methods with a time budget of 24 hours. The comparison results are shown in Figure 5. Note that the baselines do not support all the DBMSs, and thus we only concentrated on the comparison between PINOLO and the runnable baselines with respect to each DBMS.",
+      "context_after": "For MariaDB, PINOLO detected 14 bugs, while NOREC discovered 10 bugs. For TiDB, PINOLO detected 11 bugs, while TLP only discovered 2 bugs. For OceanBase, PINOLO can detect 2 bugs, while the baselines cannot find any. We also manually verified the overlap in the bugs detected by PINOLO and the baselines. For MariaDB, 4 out of 10 bugs detected by NOREC can also be found by PINOLO. For TiDB, 1 out of 2 bugs detected by TLP can also be found by PINOLO. There are no bugs detected by PQS. Figure 5 shows the logical bug detection progress over time for PINOLO and the baselines. We found that PINOLO",
+      "section": "5.3 Comparisons on Detecting Logical Bugs",
+      "page": 10,
+      "char_offset": 45324,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M22",
+      "found_by": "technique",
+      "surface": "NOREC",
+      "technique": "norec",
+      "sentence": "For MariaDB, PINOLO detected 14 bugs, while NOREC discovered 10 bugs.",
+      "context_before": "que bugs on MySQL, MariaDB, TiDB, and OceanBase, 39 of which have been confirmed by DBMS developers. 5.3 Comparisons on Detecting Logical Bugs Logical bug detection. We compared PINOLO with the three state-of-the-art baselines, i.e., PQS, NOREC, and TLP. We ran all methods with a time budget of 24 hours. The comparison results are shown in Figure 5. Note that the baselines do not support all the DBMSs, and thus we only concentrated on the comparison between PINOLO and the runnable baselines with respect to each DBMS. For MySQL, PINOLO detected 14 logical bugs, while TLP only discovered 2 bugs.",
+      "context_after": "For TiDB, PINOLO detected 11 bugs, while TLP only discovered 2 bugs. For OceanBase, PINOLO can detect 2 bugs, while the baselines cannot find any. We also manually verified the overlap in the bugs detected by PINOLO and the baselines. For MariaDB, 4 out of 10 bugs detected by NOREC can also be found by PINOLO. For TiDB, 1 out of 2 bugs detected by TLP can also be found by PINOLO. There are no bugs detected by PQS. Figure 5 shows the logical bug detection progress over time for PINOLO and the baselines. We found that PINOLO is more efficient in finding logical bugs compared to all of the basel",
+      "section": "5.3 Comparisons on Detecting Logical Bugs",
+      "page": 10,
+      "char_offset": 45402,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M23",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For TiDB, PINOLO detected 11 bugs, while TLP only discovered 2 bugs.",
+      "context_before": "confirmed by DBMS developers. 5.3 Comparisons on Detecting Logical Bugs Logical bug detection. We compared PINOLO with the three state-of-the-art baselines, i.e., PQS, NOREC, and TLP. We ran all methods with a time budget of 24 hours. The comparison results are shown in Figure 5. Note that the baselines do not support all the DBMSs, and thus we only concentrated on the comparison between PINOLO and the runnable baselines with respect to each DBMS. For MySQL, PINOLO detected 14 logical bugs, while TLP only discovered 2 bugs. For MariaDB, PINOLO detected 14 bugs, while NOREC discovered 10 bugs.",
+      "context_after": "For OceanBase, PINOLO can detect 2 bugs, while the baselines cannot find any. We also manually verified the overlap in the bugs detected by PINOLO and the baselines. For MariaDB, 4 out of 10 bugs detected by NOREC can also be found by PINOLO. For TiDB, 1 out of 2 bugs detected by TLP can also be found by PINOLO. There are no bugs detected by PQS. Figure 5 shows the logical bug detection progress over time for PINOLO and the baselines. We found that PINOLO is more efficient in finding logical bugs compared to all of the baselines. Within one hour, PINOLO was able to detect 57.1% (8/14) of bugs",
+      "section": "5.3 Comparisons on Detecting Logical Bugs",
+      "page": 10,
+      "char_offset": 45472,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M24",
+      "found_by": "technique",
+      "surface": "NOREC",
+      "technique": "norec",
+      "sentence": "For MariaDB, 4 out of 10 bugs detected by NOREC can also be found by PINOLO.",
+      "context_before": "The comparison results are shown in Figure 5. Note that the baselines do not support all the DBMSs, and thus we only concentrated on the comparison between PINOLO and the runnable baselines with respect to each DBMS. For MySQL, PINOLO detected 14 logical bugs, while TLP only discovered 2 bugs. For MariaDB, PINOLO detected 14 bugs, while NOREC discovered 10 bugs. For TiDB, PINOLO detected 11 bugs, while TLP only discovered 2 bugs. For OceanBase, PINOLO can detect 2 bugs, while the baselines cannot find any. We also manually verified the overlap in the bugs detected by PINOLO and the baselines.",
+      "context_after": "For TiDB, 1 out of 2 bugs detected by TLP can also be found by PINOLO. There are no bugs detected by PQS. Figure 5 shows the logical bug detection progress over time for PINOLO and the baselines. We found that PINOLO is more efficient in finding logical bugs compared to all of the baselines. Within one hour, PINOLO was able to detect 57.1% (8/14) of bugs on MySQL, 85.7% (12/14) on MariaDB, 63.6% (7/11) on TiDB and 50% (1/2) on OceanBase. Code coverage. To understand why PINOLO can find more 3https://github.com/qaqcatz/impomysql_bugreports USENIX Association 2023 USENIX Annual Technical Confer",
+      "section": "5.3 Comparisons on Detecting Logical Bugs",
+      "page": 10,
+      "char_offset": 45707,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M25",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For TiDB, 1 out of 2 bugs detected by TLP can also be found by PINOLO.",
+      "context_before": "support all the DBMSs, and thus we only concentrated on the comparison between PINOLO and the runnable baselines with respect to each DBMS. For MySQL, PINOLO detected 14 logical bugs, while TLP only discovered 2 bugs. For MariaDB, PINOLO detected 14 bugs, while NOREC discovered 10 bugs. For TiDB, PINOLO detected 11 bugs, while TLP only discovered 2 bugs. For OceanBase, PINOLO can detect 2 bugs, while the baselines cannot find any. We also manually verified the overlap in the bugs detected by PINOLO and the baselines. For MariaDB, 4 out of 10 bugs detected by NOREC can also be found by PINOLO.",
+      "context_after": "There are no bugs detected by PQS. Figure 5 shows the logical bug detection progress over time for PINOLO and the baselines. We found that PINOLO is more efficient in finding logical bugs compared to all of the baselines. Within one hour, PINOLO was able to detect 57.1% (8/14) of bugs on MySQL, 85.7% (12/14) on MariaDB, 63.6% (7/11) on TiDB and 50% (1/2) on OceanBase. Code coverage. To understand why PINOLO can find more 3https://github.com/qaqcatz/impomysql_bugreports USENIX Association 2023 USENIX Annual Technical Conference 353 024681012141618202224 Testing Time(h)100110120130140150Coverag",
+      "section": "5.3 Comparisons on Detecting Logical Bugs",
+      "page": 10,
+      "char_offset": 45784,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M26",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "There are no bugs detected by PQS.",
+      "context_before": "between PINOLO and the runnable baselines with respect to each DBMS. For MySQL, PINOLO detected 14 logical bugs, while TLP only discovered 2 bugs. For MariaDB, PINOLO detected 14 bugs, while NOREC discovered 10 bugs. For TiDB, PINOLO detected 11 bugs, while TLP only discovered 2 bugs. For OceanBase, PINOLO can detect 2 bugs, while the baselines cannot find any. We also manually verified the overlap in the bugs detected by PINOLO and the baselines. For MariaDB, 4 out of 10 bugs detected by NOREC can also be found by PINOLO. For TiDB, 1 out of 2 bugs detected by TLP can also be found by PINOLO.",
+      "context_after": "Figure 5 shows the logical bug detection progress over time for PINOLO and the baselines. We found that PINOLO is more efficient in finding logical bugs compared to all of the baselines. Within one hour, PINOLO was able to detect 57.1% (8/14) of bugs on MySQL, 85.7% (12/14) on MariaDB, 63.6% (7/11) on TiDB and 50% (1/2) on OceanBase. Code coverage. To understand why PINOLO can find more 3https://github.com/qaqcatz/impomysql_bugreports USENIX Association 2023 USENIX Annual Technical Conference 353 024681012141618202224 Testing Time(h)100110120130140150Coverage(K) (a) MySQLPINOLO PQSTLP 0246810",
+      "section": "5.3 Comparisons on Detecting Logical Bugs",
+      "page": 10,
+      "char_offset": 45855,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M27",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "For MySQL, the improvement of PINOLO over PQS and TLP is 2.",
+      "context_before": "0] to compute the line coverage achieved by PINOLO and all others. Note that we are unable to provide code coverage results for TiDB and OceanBase. As TiDB is developed in GO, we cannot find any feasible tool to support the program instrumentation or the code coverage profile for system test4. For OceanBase, the instrumented binary has to be deployed by the specific tool OBDEPLOY [24], which breaks the functionality of code coverage profiling. Figure 6 shows the code coverage over time for MySQL and MariaDB. The results show that PINOLO achieves a higher line coverage than the three baselines.",
+      "context_after": "2% (3,008 lines) and 4.0% (5,316 lines), respectively. For MariaDB, the improvement of PINOLO over NOREC is 12.4% (2,835 lines). Code coverage is well recognized as an approximation of testing capability, because a bug cannot be detected if its buggy code is not executed. However, larger code coverage does not mean more bugs. To better understand the impact of larger code coverage achieved by PINOLO, we further investigated whether there were some bugs whose buggy code is uniquely covered by PINOLO. TiDB#40015 [ 42] is a typical example. The root cause of this bug is the improper exception han",
+      "section": "5.3 Comparisons on Detecting Logical Bugs",
+      "page": 11,
+      "char_offset": 47309,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M28",
+      "found_by": "technique",
+      "surface": "NOREC",
+      "technique": "norec",
+      "sentence": "For MariaDB, the improvement of PINOLO over NOREC is 12.",
+      "context_before": "ge results for TiDB and OceanBase. As TiDB is developed in GO, we cannot find any feasible tool to support the program instrumentation or the code coverage profile for system test4. For OceanBase, the instrumented binary has to be deployed by the specific tool OBDEPLOY [24], which breaks the functionality of code coverage profiling. Figure 6 shows the code coverage over time for MySQL and MariaDB. The results show that PINOLO achieves a higher line coverage than the three baselines. For MySQL, the improvement of PINOLO over PQS and TLP is 2.2% (3,008 lines) and 4.0% (5,316 lines), respectively.",
+      "context_after": "4% (2,835 lines). Code coverage is well recognized as an approximation of testing capability, because a bug cannot be detected if its buggy code is not executed. However, larger code coverage does not mean more bugs. To better understand the impact of larger code coverage achieved by PINOLO, we further investigated whether there were some bugs whose buggy code is uniquely covered by PINOLO. TiDB#40015 [ 42] is a typical example. The root cause of this bug is the improper exception handling in the function vecGetDateFromString, which has been covered by PINOLO but missed by other baselines duri",
+      "section": "5.3 Comparisons on Detecting Logical Bugs",
+      "page": 11,
+      "char_offset": 47422,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M29",
+      "found_by": "citation_marker",
+      "surface": "[35]",
+      "technique": "tlp",
+      "sentence": "This result indicates that the logical bugs are typically difficult and slow to be found, which is also consistent with the findings of the prior study [35].",
+      "context_before": "MSs necessarily. For example, we received an appreciation from the MySQL developers in one of the bug reports with the S3 level: “ Thank you for your contribution. It is our standpoint that all bugs should be fixed, whether major or minor. ” Table 6 also shows the bug impact duration, which is computed as the interval between the time of the bug-inducing version and the bug reporting time. Surprisingly, we found that 10 (25.6%) and 21 (53.8%) of bugs have lasted for 510 and 1-5 years, respectively. Specifically, the two earliest bugs of MySQL [ 20] and MariaDB [ 17] can be traced back to 2014.",
+      "context_after": "False Positive and False Negative. According to Theorem 3.1, PINOLO will not produce false positives in theory. However, we observe two bugs that have not been confirmed by developers for more than five months, and thus suspect that they are false positives. We manually inspected the two cases. In one bug report, a query returns “0”, while the approximated query returns “-0”. In the other one, a query returns “0”, while the approximated query returns “-0.001”. Although PINOLO considers the above inconsistency results as bugs, developers may have a higher tolerance for such inconsistencies. Th",
+      "section": "5.5 Discussion",
+      "page": 12,
+      "char_offset": 52206,
+      "cited_reference": {
+        "number": 35,
+        "text": "Manuel Rigger and Zhendong Su. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang., 4(OOPSLA):211:1–211:30, 2020. USENIX Association 2023 USENIX Annual Technical Conference 357",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M30",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "However, we believe that it is non-trivial to detect new bugs in these selected DBMSs, as they have been thoroughly tested by SQLancer [ 33].",
+      "context_before": "ision of bug deduplication. 6 Threats to Validity The threat to internal validity is primarily associated with the implementation of our approach. To mitigate this concern, we have employed several DBMSs to cross-check whether the mutants generated by PINOLO accurately represented overapproximations or under-approximations of the seed query. The threat to external validity lies in the representative of the evaluation subjects. Our proposed approach was evaluated on a restricted set of DBMSs, as explained in the evaluation section. As a result, the conclusion drawn in this paper may be limited.",
+      "context_after": "In the future, we will extend the implementation of PINOLO to support the evaluation of additional open-source and commercial DBMSs. 7 Related Work PINOLO is an unique DBMS testing system for finding logical bugs in DBMSs, but draws inspiration from several areas in the literature, including DBMS testing, metamorphic testing, differential testing, and grammar fuzzing. USENIX Association 2023 USENIX Annual Technical Conference 355 DBMS testing. Recent efforts on DBMS testing focus on various aspects of DBMSs. Most of them target discovering logical bugs in the relational DBMS [ 34–36]. They us",
+      "section": "6 Threats to Validity",
+      "page": 12,
+      "char_offset": 55725,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M31",
+      "found_by": "citation_marker",
+      "surface": "[ 34–36]",
+      "technique": "norec",
+      "sentence": "Most of them target discovering logical bugs in the relational DBMS [ 34–36].",
+      "context_before": "w bugs in these selected DBMSs, as they have been thoroughly tested by SQLancer [ 33]. In the future, we will extend the implementation of PINOLO to support the evaluation of additional open-source and commercial DBMSs. 7 Related Work PINOLO is an unique DBMS testing system for finding logical bugs in DBMSs, but draws inspiration from several areas in the literature, including DBMS testing, metamorphic testing, differential testing, and grammar fuzzing. USENIX Association 2023 USENIX Annual Technical Conference 355 DBMS testing. Recent efforts on DBMS testing focus on various aspects of DBMSs.",
+      "context_after": "They use specific metamorphic relations or multiple implementations as the oracles and generate syntactically valid SQL queries for metamorphic testing [ 5] or differential testing [ 18]. Some also attempt to improve the coverage of the DBMSs and leverage fuzzing techniques to enumerate the queries in various forms [ 10,46,49,57].PINOLO uses a new design, termed approximate query synthesis, and does not use other DBMS implementations as the oracle. Metamorphic testing. Metamorphic testing [ 5] has become more and more popular over the past decade. It has been used in testing many software sys",
+      "section": "7 Related Work",
+      "page": 13,
+      "char_offset": 56381,
+      "cited_reference": {
+        "number": 34,
+        "text": "Manuel Rigger and Zhendong Su. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, pages 1140– 1152. ACM, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M32",
+      "found_by": "citation_marker",
+      "surface": "[ 35,36]",
+      "technique": "tlp",
+      "sentence": "It has been used in testing many software systems, such as compilers [ 16,50], SMT solvers [ 48,54], DBMSs [ 35,36], and AI systems [ 2,47,55].",
+      "context_before": "logical bugs in the relational DBMS [ 34–36]. They use specific metamorphic relations or multiple implementations as the oracles and generate syntactically valid SQL queries for metamorphic testing [ 5] or differential testing [ 18]. Some also attempt to improve the coverage of the DBMSs and leverage fuzzing techniques to enumerate the queries in various forms [ 10,46,49,57].PINOLO uses a new design, termed approximate query synthesis, and does not use other DBMS implementations as the oracle. Metamorphic testing. Metamorphic testing [ 5] has become more and more popular over the past decade.",
+      "context_after": "Metamorphic testing uses one type of metamorphic relations to compare outputs produced by a seed input and a mutated one. As long as the two outputs violate the specific metamorphic relation, then at least one of the two inputs yields a wrong result [ 4].PINOLO utilizes an instantiation of a metamorphic relation, i.e., the approximation relation, as an effective testing oracle for discovering logical bugs in the DBMSs. Similar to the skeleton approximation enumeration in the SMT solver testing [ 54],PINOLO performs the over-/under-approximation of the seed queries. However, PINOLO has to deal",
+      "section": "7 Related Work",
+      "page": 13,
+      "char_offset": 57013,
+      "cited_reference": {
+        "number": 35,
+        "text": "Manuel Rigger and Zhendong Su. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang., 4(OOPSLA):211:1–211:30, 2020. USENIX Association 2023 USENIX Annual Technical Conference 357",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M33",
+      "found_by": "technique",
+      "surface": "NOREC",
+      "technique": "norec",
+      "sentence": "Therefore, it is able to detect insightful logical bugs that existing approaches, such as NOREC [34] and TLP [35], fail to discover.",
+      "context_before": "ong as the two outputs violate the specific metamorphic relation, then at least one of the two inputs yields a wrong result [ 4].PINOLO utilizes an instantiation of a metamorphic relation, i.e., the approximation relation, as an effective testing oracle for discovering logical bugs in the DBMSs. Similar to the skeleton approximation enumeration in the SMT solver testing [ 54],PINOLO performs the over-/under-approximation of the seed queries. However, PINOLO has to deal with more sophisticated syntax and supports more flexible mutations so that more buggy operators and functions can be removed.",
+      "context_after": "Differential testing. Apart from metamorphic testing, differential testing provides another testing paradigm for resolving the oracle problem in software testing [ 6,40,52,53]. Utilizing another software system with the same functionality as an oracle implementation, differential testing techniques compare the system’s outputs under testing and the oracle implementation and reveal potential functional bugs with the divergent outputs. Although the techniques can generate the inputs of the systems flexibly, they can only be applied to software systems that have other implementations supporting",
+      "section": "7 Related Work",
+      "page": 13,
+      "char_offset": 57884,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M34",
+      "found_by": "citation_marker",
+      "surface": "[ 36,57]",
+      "technique": "pqs",
+      "sentence": "It has been widely used in testing many real-world software systems, such as browsers [ 45], compilers [ 51], and DBMSs [ 36,57].",
+      "context_before": "eal potential functional bugs with the divergent outputs. Although the techniques can generate the inputs of the systems flexibly, they can only be applied to software systems that have other implementations supporting the same functionality, such as JVM [ 6], ORM frameworks [ 40], and SMT solvers [ 53]. We believe PINOLO and other metamorphic testing approaches are orthogonal to differential testing techniques, which can be applied and strengthened to each other in testing DBMSs. Grammar fuzzing. Grammar fuzzing is used to generate inputs that satisfy a specific language syntax [ 8,11,19,19].",
+      "context_after": "The generated inputs can always pass the syntax checking of software systems, which avoids the unnecessary enumeration of the inputs in an ill form, improving the effectiveness of generated inputs. Instead of relying ona specific grammar, PINOLO mutates an existing seed query to synthesize an approximate query. Our synthesis process rewrites specific grammatical constructs in the seed query, which ensures the syntactical validity of the synthesized one. We do think it is also promising to utilize existing grammar fuzzing techniques to enumerate initial seed queries automatically [ 36,57], whi",
+      "section": "7 Related Work",
+      "page": 13,
+      "char_offset": 58998,
+      "cited_reference": {
+        "number": 36,
+        "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, pages 667–682. USENIX Association, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M35",
+      "found_by": "citation_marker",
+      "surface": "[ 36,57]",
+      "technique": "pqs",
+      "sentence": "We do think it is also promising to utilize existing grammar fuzzing techniques to enumerate initial seed queries automatically [ 36,57], which can provide more opportunities for improving the coverage in the DBMS testing.",
+      "context_before": "8,11,19,19]. It has been widely used in testing many real-world software systems, such as browsers [ 45], compilers [ 51], and DBMSs [ 36,57]. The generated inputs can always pass the syntax checking of software systems, which avoids the unnecessary enumeration of the inputs in an ill form, improving the effectiveness of generated inputs. Instead of relying ona specific grammar, PINOLO mutates an existing seed query to synthesize an approximate query. Our synthesis process rewrites specific grammatical constructs in the seed query, which ensures the syntactical validity of the synthesized one.",
+      "context_after": "8 Conclusion This paper presents PINOLO, an automatic query synthesizer for discovering logical bugs in DBMSs. Given a seed query, PINOLO mutates specific SQL constructs and generates a query that over-approximates or under-approximates the seed query. We posit that the approximation relation provides effective guidance for discovering logical bugs underlying DBMSs. Our experimental results demonstrate the effectiveness of PINOLO. Benefiting from our approximate query synthesis, PINOLO discovers 41 logical bugs in four mature DBMSs. At the time of the submission, 39 bugs have been confirmed b",
+      "section": "7 Related Work",
+      "page": 13,
+      "char_offset": 59586,
+      "cited_reference": {
+        "number": 36,
+        "text": "Manuel Rigger and Zhendong Su. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, pages 667–682. USENIX Association, 2020.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M17"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:13:36Z",
+    "is_model_written": true,
+    "summary": "Pinolo detects logical bugs in DBMSs by approximate query synthesis: rather than constructing an exactly equivalent query, it mutates a query into one whose result set must be a superset or subset of the original, and reports a violation of that containment as a bug. The authors survey three existing categories -- differential testing, oracle-guided synthesis, and metamorphic testing -- and argue each is limited, the last because its transformations preserve all operators and so miss certain bugs. Pinolo covers more SQL features than those techniques, including set operators, arithmetic expressions and sub-queries.",
+    "narrative": "Pinolo positions itself directly against SQLancer's oracles: PQS is the oracle-guided synthesis it says considers only one row at a time, NoREC and TLP are the metamorphic approaches it says preserve too much of the query, and it states that metamorphic testing of that kind is recognised as the state of the art in DBMS logical bug detection.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "definition",
+      "M4": "motivation",
+      "M5": "motivation",
+      "M6": "background",
+      "M7": "definition",
+      "M8": "definition",
+      "M9": "background",
+      "M10": "state_of_the_art",
+      "M11": "definition",
+      "M12": "definition",
+      "M13": "motivation",
+      "M14": "motivation"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Nothing shown says Pinolo is built on SQLancer's codebase."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Approximate query synthesis relaxes equivalence to containment, which the paper presents as an alternative to the metamorphic approaches rather than a generalisation of one."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M13",
+          "M14"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M13",
+            "sentence": "For example, the logical bug shown in Figure 1 can not be revealed by NOREC [34] and TLP [35], as the transformations preserve all the operators and the functions, still triggering the buggy evaluation process.",
+            "section": "2.2 Logical Bugs in DBMSs",
+            "page": 4
+          },
+          {
+            "mention_id": "M14",
+            "sentence": "Compared with the existing techniques [ 34–36],PINOLO considers more SQL features, such as set operators, arithmetic expressions, sub-queries, etc.",
+            "section": "3.5 Summary",
+            "page": 8
+          }
+        ],
+        "reasoning": "M13 shows a bug NoREC and TLP cannot reveal and M14 states Pinolo covers more SQL features than those techniques, so they are the approaches it measures itself against.",
+        "techniques": [
+          "pqs",
+          "norec",
+          "tlp"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M10"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M10",
+            "sentence": "Notably, the metamorphic testing based approach has been recognized to be state-of-the-art in DBMS testing for logical bug detection [ 35,37].",
+            "section": "2.2 Logical Bugs in DBMSs",
+            "page": 4
+          }
+        ],
+        "reasoning": "M10 states the metamorphic testing based approach, citing TLP, has been recognised as state-of-the-art in DBMS testing for logical bug detection."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

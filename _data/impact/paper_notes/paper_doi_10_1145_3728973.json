@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "paper": {
+    "id": "paper:doi:10.1145/3728973",
+    "title": "Hulk: Exploring Data-Sensitive Performance Anomalies in DBMSs via Data-Driven Analysis",
+    "authors": [
+      "Zhiyong Wu",
+      "Jie Liang",
+      "Jingzhou Fu",
+      "Mingzhe Wang",
+      "Yu Jiang"
+    ],
+    "year": 2025,
+    "venue": "Proc. ACM Softw. Eng.",
+    "doi": "10.1145/3728973",
+    "url": "https://doi.org/10.1145/3728973"
+  },
+  "summary": {
+    "text": "Hulk looks for performance anomalies that depend on the data rather than the query. The authors argue that developers diagnose performance issues by intuition or by comparing execution time against a baseline DBMS, and that both overlook how the dataset affects performance. Hulk instead watches performance as the dataset grows, estimating a reasonable response-time range for each data volume to locate performance cliffs, then checks whether a cliff deviates from expectation by finding a plan consistent with that expectation. Across six DBMSs it reported 135 anomalies, 129 confirmed as new bugs including 14 CVEs.",
+    "relationship_to_sqlancer": "Performance-anomaly detection for DBMSs, citing SQLancer's work as the state of the art in automated DBMS testing.",
+    "is_model_generated": true,
+    "grounded_in_source": true,
+    "written_from": "abstract",
+    "written_from_url": "https://doi.org/10.1145/3728973",
+    "source_sha256": "sha256:99ae27394eea5f82f89917560967da64414b24a0d23aa41eaacb1f6ac24478ac",
+    "supporting_excerpts": [
+      "To diagnose performance issues, DBMS developers often rely on intuitions or compare execution times to a baseline DBMS.",
+      "In this paper, we propose Hulk to automatically explore these data-sensitive performance anomalies via data-driven analysis.",
+      "Hulk totally reports 135 anomalies, with 129 have been confirmed as new bugs, including 14 CVEs."
+    ],
+    "model": "claude-opus-5",
+    "generated_by": "claude_code_session",
+    "classifier_version": null,
+    "generated_at": "2026-09-07T02:29:23Z"
+  },
+  "evidence": [
+    {
+      "relationship": "references",
+      "title": "Cites SQLancer",
+      "value": "yes",
+      "method": "citation_graph",
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp",
+        "cert"
+      ],
+      "sources": [
+        {
+          "source_url": "https://doi.org/10.1145/3728973",
+          "source_type": "paper_citation_context",
+          "excerpt": "In addition, we compare Hulk with the state-of-the-art DBMS validation tools in industry, including both DBMS performance testing tool APOLLO [30] and SQLancer [11], as well as DBMS fuzzing tools Sqirrel [60].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Cardinality Estimation Restriction Testing (CERT), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1145/3728973",
+          "source_type": "paper_citation_context",
+          "excerpt": "Additionally, CERT 1 [11] tests cardinality estimation to find performance anomalies.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Cardinality Estimation Restriction Testing (CERT), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    },
+    {
+      "relationship": "describes_as_state_of_the_art",
+      "title": "Calls SQLancer state of the art",
+      "value": "yes",
+      "method": "deterministic",
+      "techniques": [
+        "cert"
+      ],
+      "sources": [
+        {
+          "source_url": "https://doi.org/10.1145/3728973",
+          "source_type": "paper_citation_context",
+          "excerpt": "In addition, we compare Hulk with the state-of-the-art DBMS validation tools in industry, including both DBMS performance testing tool APOLLO [30] and SQLancer [11], as well as DBMS fuzzing tools Sqirrel [60].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper describing Cardinality Estimation Restriction Testing (CERT) as state of the art.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    }
+  ]
+}

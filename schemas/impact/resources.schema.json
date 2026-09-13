@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sqlancer.github.io/schemas/impact/resources.schema.json",
+  "title": "External resources related to SQLancer",
+  "description": "Curated, evidence-backed pointers to material about SQLancer by other people. Deliberately narrow twice over: a resource must be substantially about SQLancer rather than merely mention it, and the project's own material is excluded -- the site already links its own documentation, papers and blog, and repeating them here says nothing about reach.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "resources"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "$ref": "common.schema.json#/definitions/schema_version"
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "type",
+          "url",
+          "description",
+          "evidence",
+          "provenance"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/definitions/record_id"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "talk",
+              "blog_post",
+              "documentation_note",
+              "dataset",
+              "artifact",
+              "tool",
+              "educational_material"
+            ]
+          },
+          "url": {
+            "$ref": "common.schema.json#/definitions/url"
+          },
+          "date": {
+            "anyOf": [
+              {
+                "$ref": "common.schema.json#/definitions/date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "year": {
+            "anyOf": [
+              {
+                "$ref": "common.schema.json#/definitions/year"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "maxItems": 30
+          },
+          "publisher": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 200
+          },
+          "description": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 600,
+            "description": "Short factual description of what the resource is."
+          },
+          "related_techniques": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/definitions/slug"
+            }
+          },
+          "related_dbms": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/definitions/slug"
+            }
+          },
+          "official": {
+            "type": "boolean",
+            "description": "True when maintained by the SQLancer project itself."
+          },
+          "evidence": {
+            "$ref": "common.schema.json#/definitions/evidence_list"
+          },
+          "provenance": {
+            "$ref": "common.schema.json#/definitions/provenance"
+          }
+        }
+      }
+    }
+  }
+}

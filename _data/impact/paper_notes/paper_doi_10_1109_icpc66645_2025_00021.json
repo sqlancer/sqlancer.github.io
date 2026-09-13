@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "paper": {
+    "id": "paper:doi:10.1109/icpc66645.2025.00021",
+    "title": "Sembug: Detecting Logic Bugs in Dbms Through Generating Semantic-Aware Non-Optimizing Query",
+    "authors": [
+      "Shiyang Ye",
+      "Chao Ni",
+      "Jue Wang",
+      "Qianqian Pang",
+      "Xinrui Li",
+      "Xiaodan Xu"
+    ],
+    "year": 2025,
+    "venue": "IEEE International Conference on Program Comprehension",
+    "doi": "10.1109/icpc66645.2025.00021",
+    "url": "https://doi.org/10.1109/icpc66645.2025.00021"
+  },
+  "summary": {
+    "text": "SemBug detects logic bugs by transforming queries a DBMS can optimise heavily into equivalent but less optimised forms, and comparing the results. The authors divide prior work into two groups: approaches that target optimization bugs but check only result cardinality, missing semantic errors and advanced features, and approaches that check both cardinality and semantics but handle optimization bugs poorly. SemBug aims to cover both by adding semantic analysis to non-optimizing query construction. Over 24 hours on five widely used DBMSs it found 34 unique logic bugs, 13 to 19 more than each of three state-of-the-art approaches, and 37 in total by submission, 29 verified.",
+    "relationship_to_sqlancer": "A direct descendant of NoREC: it extends non-optimizing query construction with semantic awareness, and measures itself against NoREC, TLP and Pinolo as the state of the art. The paper also observes that over 70% of the logic bugs TLP and Pinolo find are optimization-related, which is its argument for concentrating there.",
+    "is_model_generated": true,
+    "grounded_in_source": true,
+    "written_from": "supplied PDF",
+    "written_from_url": "https://doi.org/10.1109/icpc66645.2025.00021",
+    "source_sha256": "sha256:48388f7b6d5af8eb9e55a6acb27932af6f4f41365bd475734adb78a441ad159e",
+    "supporting_excerpts": [
+      "To investigate the effectiveness of SemBug, we conduct a large-scale experiment on five widelyused DBMS systems (i.e., MySQL, TiDB, MariaDB, SQLite, and PostgreSQL) and compare it with three state-of-the-art (SOTA) approaches (i.e., Pinolo, TLP, and NoREC).",
+      "More precisely, we find that over 70% of the logic bugs found by those approaches (i.e., TLP and Pinolo) in the second group are optimization-related bugs, which indicates that we should pay more attention to these types of logic bugs.",
+      "This particular bug cannot be detected by NoREC, as it only identifies bugs resulting from inconsistent cardinality."
+    ],
+    "model": "claude-opus-5",
+    "generated_by": "claude_code_session",
+    "classifier_version": null,
+    "generated_at": "2026-09-07T15:22:55Z"
+  },
+  "evidence": [
+    {
+      "relationship": "references",
+      "title": "Cites SQLancer",
+      "value": "yes",
+      "method": "citation_graph",
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp",
+        "cert",
+        "dqp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://www.semanticscholar.org/paper/aeea391e73991ef6f033917dba0f577c948eedb4",
+          "source_type": "paper",
+          "excerpt": null,
+          "excerpt_is_verbatim": false,
+          "note": "Semantic Scholar records this paper as citing the publication that introduced Pivoted Query Synthesis (PQS), Non-optimizing Reference Engine Construction (NoREC), Ternary Logic Partitioning (TLP), Cardinality Estimation Restriction Testing (CERT), Differential Query Plans (DQP).",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    },
+    {
+      "relationship": "uses_infrastructure",
+      "title": "Uses the SQLancer codebase",
+      "value": "yes",
+      "method": "artifact_inspection",
+      "techniques": [],
+      "sources": [
+        {
+          "source_url": "https://github.com/Syang111/SemBug",
+          "source_type": "github_repository",
+          "excerpt": "# SemBug",
+          "excerpt_is_verbatim": true,
+          "note": "Repository is named after Sembug, the tool this paper says it built, and is about database testing.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://github.com/Syang111/SemBug/blob/master/src/Sonar/Randomly.java",
+          "source_type": "github_code",
+          "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.SOPHISTICATED;",
+          "excerpt_is_verbatim": true,
+          "note": "src/Sonar/Randomly.java is SQLancer's Randomly.java, with the package renamed to Sonar (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    },
+    {
+      "relationship": "artifact",
+      "title": "Artifact",
+      "value": "https://github.com/Syang111/SemBug",
+      "method": "artifact_inspection",
+      "techniques": [],
+      "markers": [
+        "renamed_sqlancer_package",
+        "sqlancer_source_content_match"
+      ],
+      "sources": [
+        {
+          "source_url": "https://github.com/Syang111/SemBug",
+          "source_type": "github_repository",
+          "excerpt": "# SemBug",
+          "excerpt_is_verbatim": true,
+          "note": "Repository is named after Sembug, the tool this paper says it built, and is about database testing.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://github.com/Syang111/SemBug/blob/master/src/Sonar/Randomly.java",
+          "source_type": "github_code",
+          "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.SOPHISTICATED;",
+          "excerpt_is_verbatim": true,
+          "note": "src/Sonar/Randomly.java is SQLancer's Randomly.java, with the package renamed to Sonar (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,516 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T14:37:15Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3597926.3598052",
+    "title": "Dependency-Aware Metamorphic Testing of Datalog Engines",
+    "authors": [
+      "Muhammad Numair Mansur",
+      "Valentin Wüstholz",
+      "M. Christakis"
+    ],
+    "year": 2023,
+    "venue": "International Symposium on Software Testing and Analysis",
+    "doi": "10.1145/3597926.3598052",
+    "arxiv_id": null,
+    "s2_paper_id": "df170dd0f26ec903ee0a8d0ad89305ec60a125c5",
+    "url": "https://doi.org/10.1145/3597926.3598052",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3597926.3598052",
+      "retrieved_at": "2026-09-08T14:37:15Z",
+      "chars": 67080,
+      "content_sha256": "sha256:c7239f3ae917c965ae41af24b0a89f7399bcfdeb319f53c2f856f4295acc6f4e"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 1484
+      },
+      {
+        "number": "2",
+        "title": "BACKGROUND",
+        "start": 6822
+      },
+      {
+        "number": "2.1",
+        "title": "DatalogPrograms",
+        "start": 6930
+      },
+      {
+        "number": "2.2",
+        "title": "Precedence Graphs",
+        "start": 10093
+      },
+      {
+        "number": "3",
+        "title": "OVERVIEW",
+        "start": 11238
+      },
+      {
+        "number": "4",
+        "title": "GRAPH ANNOTATOR",
+        "start": 15379
+      },
+      {
+        "number": "5",
+        "title": "GRAPH TRANSFORMER",
+        "start": 23242
+      },
+      {
+        "number": "5.1",
+        "title": "GraphRewriteRules",
+        "start": 23464
+      },
+      {
+        "number": "5.2",
+        "title": "SpecifyingMetamorphicTransformations",
+        "start": 28839
+      },
+      {
+        "number": "5.3",
+        "title": "Example MetamorphicTransformations",
+        "start": 31954
+      },
+      {
+        "number": "6",
+        "title": "IMPLEMENTATION",
+        "start": 41349
+      },
+      {
+        "number": "7.1",
+        "title": "Setup",
+        "start": 45166
+      },
+      {
+        "number": "7.2",
+        "title": "Results",
+        "start": 46241
+      },
+      {
+        "number": "7.3",
+        "title": "Threatsto Validity",
+        "start": 53556
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Paolo Baldan, Andrea Corradini, and Barbara König. 2001. A Static Analysis Technique for Graph Transformation Systems. In CONCUR (LNCS, Vol. 2154). Springer, 381–395.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "PaoloBaldan andBarbara König. 2002. ApproximatingtheBehaviourof Graph TransformationSystems. In ICGT (LNCS, Vol.2505). Springer, 14–29.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Earl T. Barr, Mark Harman, Phil McMinn, Muzammil Shahbaz, and Shin Yoo. 2015. TheOracle Problem inSoftware Testing: A Survey. TSE41(2015), 507–525. Issue 5.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Aaron Bembenek, Michael Greenberg, and Stephen Chong. 2020. Formulog: Datalog for SMT-Based Static Analysis. In OOPSLA. ACM,141:1–141:31.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Dmitry Blotsky, Federico Mora, Murphy Berzish, Yunhui Zheng, Ifaz Kabir, and Vijay Ganesh. 2018. StringFuzz: A Fuzzer for String Solvers. In CAV (LNCS, Vol.10982). Springer, 45–51.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Martin Bravenboer and Yannis Smaragdakis. 2009. Strictly Declarative Speci/f_icationof Sophisticated Points-ToAnalyses. In OOPSLA. ACM,243–262.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Neville Brent, Lexiand Grech, Si/f_is Lagouvardos, Bernhard Scholz, and Yannis Smaragdakis.2020. Ethainter:ASmartContractSecurityAnalyzerforComposite Vulnerabilities.In PLDI. ACM,454–469.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Danilo Bruschi, Lorenzo Martignoni, and Mattia Monga. 2006. Detecting SelfMutating Malware Using Control-Flow Graph Matching. In DIMVA (LNCS, Vol.4064). Springer, 129–143.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Alexandra Bugariu and Peter Müller. 2020. Automatically Testing String Solvers. InICSE. ACM,1459–1470.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Alexandra Bugariu, Valentin Wüstholz, Maria Christakis, and Peter Müller. 2018. Automatically Testing Implementations of Numerical Abstract Domains. In ASE. ACM,768–778.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "CristianCadarandAlastairF.Donaldson.2016. AnalysingtheProgramAnalyser. InICSE. ACM,765–768.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "W.K.Chan,S.C.Cheung,andKarlR.P.H.Leung.2005. TowardsaMetamorphic Testing Methodology for Service-Oriented Software Applications. In QSIC. IEEE Computer Society, 470–476.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "JunjieChen,JibeshPatra,MichaelPradel,YingfeiXiong,HongyuZhang,Dan Hao,andLuZhang.2020. ASurveyofCompilerTesting. Comput.Surv. 53(2020), 4:1–4:36. Issue 1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "J.-L. Chen, F.-J. Wang, and Y.-L. Chen. 1997. An Object-Oriented Dependency Graphfor ProgramSlicing. In TOOLS. IEEE Computer Society, 121–130.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "TsongYuehChen,S.C.Cheung,andSiu-MingYiu.1998. MetamorphicTesting:A NewApproachforGeneratingNextTestCases. TechnicalReportHKUST–CS98–01. HKUST.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Distributed and Parallel Systems Group at the University of Innsbruck. 2012. Insieme Compiler. http://insieme-compiler.org.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "AlastairF.Donaldson,HuguesEvrard,AndreiLascu,andPaulThomson.2017. Automated Testing of Graphics Shader Compilers. PACMPL1 (2017), 93:1–93:29. Issue OOPSLA.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Antonio Flores-Montoya and Eric M. Schulte. 2020. Datalog Disassembly. In Security. USENIX, 1075–1092.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Neville Grech, Michael Kong, Anton Jurisevic, Lexi Brent, Bernhard Scholz, and Yannis Smaragdakis. 2018. MadMax: Surviving Out-of-Gas Conditions in EthereumSmartContracts. PACMPL 2 (2018), 116:1–116:27. Issue OOPSLA.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Sergio Greco and Cristian Molinaro. 2015. Datalog and Logic Databases. Morgan & Claypool.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Krystof Hoder, Nikolaj Bjørner, and Leonardo de Moura. 2011. /u1D707Z—An Eﬃcient Engine for Fixed Points with Constraints. In CAV (LNCS, Vol. 6806). Springer, 457–462.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Susan Horwitz and Thomas W. Reps. 1992. The Use of Program Dependence Graphs in SoftwareEngineering.In ICSE. ACM,392–411.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Jiani Huang, Ziyang Li, Binghong Chen, Karan Samel, Mayur Naik, Le Song, andXujieSi.2021. Scallop:FromProbabilisticDeductiveDatabasestoScalable DiﬀerentiableReasoning.In NeurIPS. 25134–25145.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Herbert Jordan, Bernhard Scholz, and Pavle Subotic. 2016. Souﬄé: On Synthesis of ProgramAnalyzers. In CAV (LNCS,Vol.9780). Springer, 422–430.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "TimotejKapusandCristianCadar.2017.AutomaticTestingofSymbolicExecution EnginesviaProgramGenerationandDiﬀerentialTesting.In ASE.IEEEComputer Society, 590–600.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Christian Klinger, Maria Christakis, and Valentin Wüstholz. 2019. Diﬀerentially TestingSoundnessandPrecisionofProgramAnalyzers.In ISSTA.ACM,239–250.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. 2014. Compiler Validation via EquivalenceModulo Inputs.In PLDI. ACM,216–226.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "VuLe,ChengnianSun,andZhendongSu.2015. FindingDeepCompilerBugsvia Guided StochasticProgramMutation. In OOPSLA. ACM,386–399.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "ChristopherLidbury,AndreiLascu,NathanChong,andAlastairF.Donaldson. 2015. Many-CoreCompilerFuzzing. In PLDI. ACM,65–76.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "VladimirLifschitz.1988. OntheDeclarativeSemanticsofLogicProgramswith Negation. In FoundationsofDeductiveDatabasesandLogicProgramming .Morgan Kaufmann,177–192.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "JiaweiLiu, JinkunLin,Fabian Ruﬀy, ChengTan,JinyangLi,AurojitPanda, and LingmingZhang.2022. FindingDeep-LearningCompilationBugswithNNSmith. CoRRabs/2207.13066 (2022).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Vsevolod Livinskii, Dmitry Babokin, and John Regehr. 2020. Random Testing for C and C++ Compilers with YARPGen. PACMPL4 (2020), 196:1–196:25. Issue OOPSLA.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Magnus Madsen and Ondrej Lhoták. 2018. Safe and Sound Program Analysis with FLIX.In ISSTA. ACM,38–48.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Muhammad Numair Mansur, Maria Christakis, and Valentin Wüstholz. 2021. MetamorphicTesting of Datalog Engines. In ESEC/FSE. ACM,639–650.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Muhammad NumairMansur, Maria Christakis, Valentin Wüstholz, and Fuyuan Zhang. 2020. Detecting Critical Bugs in SMT Solvers Using Blackbox Mutational Fuzzing. In ESEC/FSE. ACM,701–712.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "William M. McKeeman. 1998. Diﬀerential Testing for Software. Digital Technical Journal10(1998), 100–107. Issue 1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "John M. McQuillan. 1977. Graph Theory Applied to Optimal Connectivity in Computer Networks. Comput. Commun. Rev. 7 (1977), 13–41. Issue 2.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Mayur Naik, Alex Aiken, and John Whaley. 2006. Eﬀective Static Race Detection for Java. In PLDI. ACM,308–319.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "MatteoPaltenghiand MichaelPradel.2022. Bugsin Quantum ComputingPlatforms: AnEmpiricalStudy. PACMPL 6 (2022), 1–27. Issue OOPSLA. 246 ISSTA ’23, July 17–21, 2023,Sea/t_tle, WA,USA MuhammadNumair Mansur,Valentin Wüstholz,andMaria Christakis",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Georgios A. Pavlopoulos, Maria Secrier, Charalampos N. Moschopoulos, Theodoros G. Soldatos, Sophia Kossida, Jan Aerts, Reinhard Schneider, and PantelisG.Bagos.2011.UsingGraphTheorytoAnalyzeBiologicalNetworks. BioData Min.4 (2011). Issue 10.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Karl-HeinzPennemann.2008. DevelopmentofCorrectGraphTransformation Systems. In ICGT (LNCS,Vol.5214). Springer, 508–510.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "DetlefPlump.1995. OnTerminationofGraphRewriting.In WG (LNCS,Vol.1017). Springer, 88–100.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "ManuelRiggerandZhendongSu.2020. FindingBugsinDatabaseSystemsvia QueryPartitioning. PACMPL 4 (2020), 211:1–211:30. Issue OOPSLA.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 44,
+      "text": "LeonidRyzhykandMihaiBudiu.2019. DiﬀerentialDatalog.In Datalog (CEUR, Vol.2368). CEUR-WS.org, 56–67.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Arash Sahebolamri, Thomas Gilray, and Kristopher K. Micinski. 2022. Seamless DeductiveInferenceviaMacros.In CC. ACM,77–88.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Sergio Segura, Juan C. Alonso, Alberto Martin-Lopez, Amador Durán, Javier Troya,andAntonioRuiz-Cortés.2022. AutomatedGenerationofMetamorphic Relations for Query-Based Systems. In MET@ICSE. ACM,48–55.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Sergio Segura, Gordon Fraser, Ana B. Sánchez, and Antonio Ruiz Cortés. 2016. A SurveyonMetamorphicTesting. TSE42(2016), 805–824. Issue 9.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "ChengnianSun,VuLe,andZhendongSu.2016. FindingandAnalyzingCompiler WarningDefects.In ICSE. ACM,203–213.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Chengnian Sun, Vu Le, and Zhendong Su. 2016. Finding Compiler Bugs via Live CodeMutation. In OOPSLA. ACM,849–863.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Jubi Taneja, ZhengyangLiu, andJohn Regehr.2020. Testing Static Analysesfor Precisionand Soundness. In CGO. ACM,81–93.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Petar Tsankov, Andrei Marian Dan, Dana Drachsler-Cohen, Arthur Gervais, Florian Bünzli, and Martin T. Vechev. 2018. Securify: Practical Security Analysis of SmartContracts. In CCS. ACM,67–82.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Muhammad Usman, Wenxi Wang, and Sarfraz Khurshid. 2020. TestMC: TestingModelCountersUsingDiﬀerentialandMetamorphicTesting.In ASE.IEEE Computer Society, 709–721.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "JohnWhaley,DzintarsAvots,MichaelCarbin,andMonica S.Lam.2005. Using Datalog with Binary Decision Diagrams for Program Analysis. In APLAS (LNCS, Vol.3780). Springer, 97–118.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Dominik Winterer, Chengyu Zhang, and Zhendong Su. 2020. On the Unusual EffectivenessofType-AwareOperatorMutationsforTestingSMTSolvers. PACMPL 4 (2020), 193:1–193:25. Issue OOPSLA.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Dominik Winterer, Chengyu Zhang, and Zhendong Su. 2020. Validating SMT SolversviaSemantic Fusion.In PLDI. ACM,718–730.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Dongwei Xiao, Zhibo Liu, Yuanyuan Yuan, Qi Pang, and Shuai Wang. 2022. MetamorphicTestingofDeepLearningCompilers. Proc.ACMMeas.Anal.Comput. Syst.6 (2022), 15:1–15:28. Issue 1.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "XiaoyuanXie,JoshuaWingKeiHo,ChristianMurphy,GailE.Kaiser,BaowenXu, and Tsong Yueh Chen. 2009. Application of Metamorphic Testing to Supervised Classi/f_iers.In QSIC. IEEE Computer Society, 135–144.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "XuejunYang,Yang Chen,EricEide,andJohnRegehr.2011. FindingandUnderstanding Bugs in CCompilers. In PLDI. ACM,283–294.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Peisen Yao, Heqing Huang, Wensheng Tang, Qingkai Shi, Rongxin Wu, and Charles Zhang. 2021. Fuzzing SMT Solvers via Two-Dimensional Input Space Exploration. In ISSTA. ACM,322–335.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Peisen Yao, Heqing Huang, Wensheng Tang, Qingkai Shi, Rongxin Wu, and Charles Zhang. 2021. Skeletal Approximation Enumeration for SMT Solver Testing.In ESEC/FSE. ACM,1141–1153.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "ChengyuZhang,TingSu,YichenYan,FuyuanZhang,GeguangPu,andZhendong Su. 2019. Finding and Understanding Bugs in Software Model Checkers. In ESEC/FSE. ACM,763–773.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "QirunZhang,ChengnianSun,andZhendongSu.2017. SkeletalProgramEnumerationfor Rigorous CompilerTesting.In PLDI. ACM,347–361.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Zhiquan Zhou, Shaowen Xiang, and Tsong Yueh Chen. 2016. Metamorphic Testing for Software Quality Assessment: A Study of Search Engines. TSE42 (2016), 264–284. Issue 3. Received 2023-02-16; accepted 2023-05-03 247",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 43,
+      "text": "ManuelRiggerandZhendongSu.2020. FindingBugsinDatabaseSystemsvia QueryPartitioning. PACMPL 4 (2020), 211:1–211:30. Issue OOPSLA.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 43,46,63]",
+      "technique": "tlp",
+      "sentence": "Metamorphictestinghasalsobeensuccessfully used to test a variety of software applications [ 12,27,47,57], includingotherquery-basedsystems[ 43,46,63].",
+      "context_before": "velystudiedinthegraphtheorycommunity.Next,wediscussthe three mostcloselyrelatedareas of work. Metamorphictesting. Metamorphictesting[ 15,47]isatechnique to eﬀectively address the oracle problem in software testing. It works by constructing new test cases via mutating existing ones usingmetamorphicrelations.Theserelationsarethenusedtoinfer the output of the newly generated test cases. In previous work, we 245 Dependency-Aware MetamorphicTestingof DatalogEngines ISSTA ’23, July 17–21, 2023,Sea/t_tle, WA,USA presented the /f_irst metamorphic testing approach to detect bugs in Datalogengines[ 34].",
+      "context_after": "Testing compilers. Ensuring the correctness of compilers is acriticalareaofresearch,andsigni/f_icanteﬀorthasbeendevoted to testing compilers [ 13,29,48,58]. Csmith [ 58] is a popular random program generator for C compilers that can generate large and complex programs. Le et al.[27] proposed a metamorphic testingapproachtogenerateequivalentprograms.Thetechnique inspired a number of related approaches [ 17,28,29,49,62] that wereusedtodetecthundredsofbugsinpopularandwidelyused compilers.YarpGen[ 32]isatechniqueforgeneratingexpressive programs without unde/f_ined behavior to test C and C++ compi",
+      "section": "7.3 Threatsto Validity",
+      "page": 11,
+      "char_offset": 55408,
+      "cited_reference": {
+        "number": 43,
+        "text": "ManuelRiggerandZhendongSu.2020. FindingBugsinDatabaseSystemsvia QueryPartitioning. PACMPL 4 (2020), 211:1–211:30. Issue OOPSLA.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T17:03:26Z",
+    "is_model_written": true,
+    "summary": "This work tests Datalog engines with dependency-aware metamorphic relations, taking account of how rules depend on one another so that a transformation's effect on the derived result stays predictable in the presence of recursion.",
+    "narrative": "The single mention places the work in context: metamorphic testing has been used successfully across a variety of software, including other query-based systems, which is where SQLancer's techniques are cited. The relation is one of shared method rather than of use, and the mention is reachable only through the citation marker.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited as related work; no reuse of its code, generator or workload is described."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No SQLancer technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer or one of its oracles is reported."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The text does not describe SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

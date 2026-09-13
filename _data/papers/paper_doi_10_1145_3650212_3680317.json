@@ -1,0 +1,629 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T14:32:42Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3650212.3680317",
+    "title": "SQLess: Dialect-Agnostic SQL Query Simplification",
+    "authors": [
+      "Li Lin",
+      "Zongyin Hao",
+      "Chengpeng Wang",
+      "Zhuangda Wang",
+      "Rongxin Wu",
+      "Gang Fan"
+    ],
+    "year": 2024,
+    "venue": "International Symposium on Software Testing and Analysis",
+    "doi": "10.1145/3650212.3680317",
+    "arxiv_id": null,
+    "s2_paper_id": "deb987f2a988b7585e7423ec2d48b5cd20f2cb6a",
+    "url": "https://doi.org/10.1145/3650212.3680317",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3650212.3680317",
+      "retrieved_at": "2026-09-08T14:32:42Z",
+      "chars": 75308,
+      "content_sha256": "sha256:329427759e974e6ca4077f0fa30c05ff7d367b583c1d55b767bddf6dd88e925b"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 3068
+      },
+      {
+        "number": "2",
+        "title": "Motivation",
+        "start": 10808
+      },
+      {
+        "number": "2.1",
+        "title": "Importance of SQL Query Simplification",
+        "start": 11091
+      },
+      {
+        "number": "2.2",
+        "title": "Challenges of SQL Query Simplification",
+        "start": 13831
+      },
+      {
+        "number": "2.3",
+        "title": "Key Idea",
+        "start": 16948
+      },
+      {
+        "number": "3",
+        "title": "Approach",
+        "start": 21529
+      },
+      {
+        "number": "3.2",
+        "title": "Adaptive Parsing",
+        "start": 22791
+      },
+      {
+        "number": "3.2.2",
+        "title": "Dialect Builder. Dialect builder is a crucial step in adaptive",
+        "start": 25881
+      },
+      {
+        "number": "3.3",
+        "title": "Semantics-Sensitive Query Trimming",
+        "start": 28590
+      },
+      {
+        "number": "3.3.1",
+        "title": "Semantic Analysis. An effective query trimmer maintains",
+        "start": 29263
+      },
+      {
+        "number": "4",
+        "title": "Implementation",
+        "start": 38486
+      },
+      {
+        "number": "5",
+        "title": "Evaluation",
+        "start": 40226
+      },
+      {
+        "number": "5.1",
+        "title": "Experimental Setting",
+        "start": 40883
+      },
+      {
+        "number": "5.1.2",
+        "title": "Metrics. We use two metrics to assess SQLess: simplification",
+        "start": 41991
+      },
+      {
+        "number": "5.2",
+        "title": "Effectiveness and Efficiency",
+        "start": 44974
+      },
+      {
+        "number": "5.3",
+        "title": "Comparison with Existing Approaches",
+        "start": 50010
+      },
+      {
+        "number": "5.4",
+        "title": "Ablation Study",
+        "start": 53790
+      },
+      {
+        "number": "6",
+        "title": "Discussion",
+        "start": 62004
+      },
+      {
+        "number": "7",
+        "title": "Related Work",
+        "start": 62825
+      },
+      {
+        "number": "8",
+        "title": "Conclusion",
+        "start": 66679
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Alfred V. Aho, Monica S. Lam, Ravi Sethi, and Jeffrey D. Ullman. 2006. Compilers: Principles, Techniques, and Tools (2nd ed.). Pearson Education, Chapter 4.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "ANSI. 2023. The SQL Standard-ISO/IEC 9075:2023 (ANSI X3.135). https:// blog.ansi.org/sql-standard-iso-iec-9075-2023-ansi-x3-135/. [Online; accessed 12-Dec-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Andrea Arcuri and Lionel C. Briand. 2011. A practical guide for using statistical tests to assess randomized algorithms in software engineering. In Proceedings of the 33rd International Conference on Software Engineering. 1–10.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "J Asplund. 2011. Data Science revealed: Data-driven glimpse into the burgeoning new field.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Carsten Binnig, Donald Kossmann, Eric Lo, and M Tamer Özsu. 2007. QAGen: generating query-aware test databases. In Proceedings of the 2007 ACMSIGMOD international conference on Management of data. 341–352.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. 2022. Griffin: Grammar-free DBMS fuzzing. In Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Zongyin Hao, Quanfeng Huang, Chengpeng Wang, Jianfeng Wang, Yushan Zhang, Rongxin Wu, and Charles Zhang. 2023. Pinolo: Detecting Logical Bugs in Database Management Systems with Approximate Query Synthesis. In 2023 USENIX Annual Technical Conference. 345–358.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "IECISO and NIEC. 2017. ISO/IEC. IEEE International Standard-Systems and software engineering–Vocabulary (2017), 1–541.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Zu-Ming Jiang, Jia-Ju Bai, and Zhendong Su. 2023. DynSQL: Stateful fuzzing for database management systems with complex and valid SQL query generation. In Proceedings of USENIX Security Symposium. 4949–4965.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "JSQlParser. 2023. JSqlParser. https://jsqlparser.github.io/. [Online; accessed 23-Nov-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2019. Apollo: Automatic detection and diagnosis of performance regressions in database systems. Proceedings of the VLDB Endowment 13, 1 (2019), 57–70.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Yong Lei and James H Andrews. 2005. Minimization of randomized unit test cases. In 16th IEEE International Symposium on Software Reliability Engineering. 10–pp.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Yu Liang, Song Liu, and Hong Hu. 2022. Detecting Logical Bugs of {DBMS}with Coverage-based Guidance. In 31st USENIX Security Symposium. 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "libpgquery. 2023. libpg_query: PostgreSQL Parser Library. https://github.com/ pganalyze/libpg_query. [Online; accessed 23-Nov-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Mariadb. 2023. Mariadb Database. https://mariadb.org/. [Online; accessed Dec-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Ghassan Misherghi and Zhendong Su. 2006. HDD: hierarchical delta debugging. InProceedings of the 28th international conference on Software engineering. 142– 151.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Chaitanya Mishra, Nick Koudas, and Calisto Zuzarte. 2008. Generating targeted queries for database testing. In Proceedings of the 2008 ACMSIGMOD international conference on Management of data. 499–510.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "MySQL. 2023. MySQL Bug Reporting Guidelines. https://bugs.mysql.com/. [Online; accessed Dec-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "MySQL. 2023. MySQL Database. https://www.mysql.com/. [Online; accessed Dec-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "OceanBase. 2023. OceanBase Database. https://www.oceanbase.com/. [Online; accessed Dec-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Alessandro Orso, Shrinivas Joshi, Martin Burger, and Andreas Zeller. 2006. Isolating relevant component interactions with JINSI. In Proceedings of the 2006 international workshop on Dynamic systems analysis. 3–10.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Terence Parr. 2013. The Definitive ANTLR 4 Reference. Pragmatic Bookshelf, Chapter 9.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "pincap. 2023. Parser-A MySQL Compatible SQL Parser. https://github.com/ pingcap/tidb/tree/master/parser. [Online; accessed January-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "pincap. 2023. TiDB Parser: The SQL Parser for TiDB. https://github.com/pingcap/ tidb/tree/master/parser. [Online; accessed Nov-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "PostgreSQL. 2023. PostgreSQL Bug Reporting Guidelines. https://www.postgresql. org/list/pgsql-bugs/. [Online; accessed Dec-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "PostgreSQL. 2023. PostgreSQL Database. https://www.postgresql.org/. [Online; accessed Dec-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "pquery. 2023. PQuery: Multithreaded SQL Tester / Reducer. https://github.com/ Percona-QA/pquery. [Online; accessed 23-Nov-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "John Regehr, Yang Chen, Pascal Cuoq, Eric Eide, Chucky Ellison, and Xuejun Yang. 2012. Test-case reduction for C compiler bugs. In Proceedings of the 33rd ACMSIGPLAN conference on Programming Language Design and Implementation. 335–346.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Manuel Rigger. 2023. SQLancer. https://github.com/sqlancer/sqlancer. [Online; accessed 23-Nov-2023].",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 30,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 1–30.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 31,
+      "text": "Donald R Slutz. 1998. Massive stochastic testing of SQL. In VLDB, Vol. 98. Citeseer, 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "SQLite. 2023. SQLite Database. https://sqlite.org/. [Online; accessed Dec-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "sqlparser. 2023. phpMyAdmin SQL Parser. https://github.com/phpmyadmin/sqlparser. [Online; accessed Nov-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "SQLParser. 2023. SQLParser. https://www.sqlparser.com/. [Online; accessed Nov-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "SQLSmith. 2023. SQLSmith. https://github.com/anse1/sqlsmith. [Online; accessed June-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "ANTLR Team. 2023. ANTLR (ANother Tool for Language Recognition). https: //www.ANTLR.org/. [Online; accessed 23-Nov-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "ANTLR Team. 2023. ANTLR DefaultErrorStrategy Class Documentation. https:// www.ANTLR.org/api/Java/org/ANTLR/v4/runtime/DefaultErrorStrategy.html. [Online; accessed 23-Nov-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "SQLess Team. 2023. SQLess. https://github.com/SQLess/AdaptSQLess.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "SQLess Team. 2023. SQLessBugReports. https://github.com/SQLess/SQLess_ Bugreports.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "SQLess Team. 2023. SQLessExample. https://github.com/SQLess/Examples/blob/ main/README.md",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "SQLite Team. 2023. SQLite Bug Reporting Guidelines. https://www.chiark. greenend.org.uk/~sgtatham/bugs.html. [Online; accessed Dec-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "The ANTLR Organization. 2023. ANTLR Grammars Repository. https://github. com/ANTLR/grammars-v4. [Online; accessed 23-Nov-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "TiDB. 2023. TiDB Database. https://www.pingcap.com/tidb/. [Online; accessed Dec-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Jiajie Wang, Puhan Zhang, Lei Zhang, Haowen Zhu, and Xiaojun Ye. 2013. A model-based fuzzing approach for DBMS. In 2013 8th International Conference on Communications and Networking in China. 426–431.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. 2021. Industry practice of coverage-guided enterprise-level DBMS fuzzing. In Software Engineering in Practice. 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "wiki. 2023. Comparison of Relational Database Management Systems. https://en.wikipedia.org/wiki/Comparison_of_relational_database_ management_systems. [Online; accessed Sep-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "wikibooks. 2023. SQL Dialects Reference/Introduction. https://en.wikibooks.org/ wiki/SQL_Dialects_Reference/Introduction. [Online; accessed Nov-2023].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Michal Zalewski. 2021. American Fuzzy Lop (2.52b). http://lcamtuf.coredump.cx/ afl. Accessed: June 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Andreas Zeller. 1999. Yesterday, my program worked. Today, it does not. Why? ACMSIGSOFT Software engineering notes 24, 6 (1999), 253–267.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Andreas Zeller and Ralf Hildebrandt. 2002. Simplifying and isolating failureinducing input. IEEE Transactions on Software Engineering 28, 2 (2002), 183–200.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. Squirrel: Testing database management systems with language validity and coverage feedback. In Proceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security. 955–970. Received 2024-04-12; accepted 2024-07-03 754",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 29,
+      "text": "Manuel Rigger. 2023. SQLancer. https://github.com/sqlancer/sqlancer. [Online; accessed 23-Nov-2023].",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 30,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 1–30.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[ 7,11,29,31]",
+      "technique": null,
+      "sentence": "Existing studies [ 7,11,29,31] on database bug detection merely integrate SQL query simplification into their workflows in a simplistic manner.",
+      "context_before": "inpointing the root cause of the issue. Figure 1 gives a real-world example of bug report in TiDB. This bug was quickly confirmed by the developer within one day, but it had been lasted for more than two months without any fix due to the lengthy test case. Until a simplified SQL query was provided, this bug then was quickly fixed within two days. This example indicates that SQL query simplification is critical for developers to diagnose the bugs in DBMSs. While many approaches concentrate on bug detection in DBMSs, most do not adequately consider the importance of the SQL query simplification.",
+      "context_after": "They employ the principles of Delta debugging [ 50] to minimize SQL queries on structured inputs such as Abstract Syntax Tree (AST). However, a common oversight in these studies is the neglect of interdependencies among different structural elements. Such dependency-insensive deletion approach without semantic checks can render the simplified SQL query nonexecutable. For instance, in a query like \"SELECT c1, c2 from t 743 ISSTA ’24, September 16–20, 2024, Vienna, Austria Li Lin, Zongyin Hao, Chengpeng Wang, Zhuangda Wang, Rongxin Wu, and Gang Fan Table 1: Comparison of SQL query simplificatio",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 4562,
+      "cited_reference": {
+        "number": 29,
+        "text": "Manuel Rigger. 2023. SQLancer. https://github.com/sqlancer/sqlancer. [Online; accessed 23-Nov-2023].",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For instance, in a query like \"SELECT c1, c2 from t 743 ISSTA ’24, September 16–20, 2024, Vienna, Austria Li Lin, Zongyin Hao, Chengpeng Wang, Zhuangda Wang, Rongxin Wu, and Gang Fan Table 1: Comparison of SQL query simplification tools Simplification Strategy Correctness Guarantee Extensibility Bug type Tool Expression Clause Subquery Column Syntactic Semantic Adaption to Crash Logical Simplification Simplification Simplification Simplification Correctness Correctness other DBMSs Bugs Bugs SQLancer [29] ✓ ✓××××× ✓ ✓ PINOLO [7] ✓ ✓×××××× ✓ RAGS [31] ✓ ✓××××× ✓× APOLLO [11] ✓ ✓ ✓ ✓ ✓×× ✓× IssueReport:#40015User:qaqcatzReportedDate:Dec 18, 2022Description:Bug Report: Logical bug.",
+      "context_before": "DBMSs, most do not adequately consider the importance of the SQL query simplification. Existing studies [ 7,11,29,31] on database bug detection merely integrate SQL query simplification into their workflows in a simplistic manner. They employ the principles of Delta debugging [ 50] to minimize SQL queries on structured inputs such as Abstract Syntax Tree (AST). However, a common oversight in these studies is the neglect of interdependencies among different structural elements. Such dependency-insensive deletion approach without semantic checks can render the simplified SQL query nonexecutable.",
+      "context_after": "Value changed after relaxing ON condition [v5.0.2, v6.4.0]Minimal reproduce step (Required):drop table if exists t; CREATE TABLE t (c1 FLOAT UNSIGNED); INSERT INTO t VALUES (47),(28.1237); SELECT (DATE_ADD(BIN(c1), INTERVAL 1 DAY_HOUR)) AS f1 FROM (SELECT 1 FROM t) AS t1 JOIN (SELECT c1 FROM t) AS t2 ON 1; --sql1 SELECT (DATE_ADD(BIN(c1), INTERVAL 1 DAY_HOUR)) AS f1 FROM (SELECT 1 FROM t) AS t1 JOIN (SELECT c1 FROM t) AS t2 ON (0 AND c1 != 1) IS FALSE; --sql2SeaRise commented on Feb 28SeaRise: “We need minor case.SELECT DATE_ADD(c1, INTERVAL 1 DAY_HOUR) from test.test; --sql1”Fix error handli",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 5076,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[ 7,29,31]",
+      "technique": null,
+      "sentence": "Expression simplification and clause simplification [ 7,29,31] are relatively easy to implement, but the scope for simplification is limited.",
+      "context_before": "ifying SQL queries. 2.2 Challenges of SQL Query Simplification Although SQL query simplification plays a crucial role in the detection of DBMS bugs, to date, there has yet to be a systematic study dedicated exclusively to the exploration of SQL query simplification. Existing work on database bug detection integrates SQL query simplification into their workflows, employing methods for SQL query simplification as outlined in Table 1. Table 1 provides a comparative overview of various SQL query simplification tools, detailing their strategies, correctness guarantee, DBMS extensibility, and so on.",
+      "context_after": "The elimination of operations within subqueries and removing unused columns [ 11] broaden the extent of the simplification,which enhances the simplification effectiveness. However, existing tools have yet to effectively address these two main challenges: adaptability to various DBMSs and preserving semantic correctness and bug-triggering capability after simplification. The first challenge involves achieving adaptability to various DBMSs, as existing efforts predominantly depend on the specific grammar of target DBMSs to simplify SQL queries. SQL dialects [ 47] represent subtle variations of",
+      "section": "2.2 Challenges of SQL Query Simplification",
+      "page": 3,
+      "char_offset": 14411,
+      "cited_reference": {
+        "number": 29,
+        "text": "Manuel Rigger. 2023. SQLancer. https://github.com/sqlancer/sqlancer. [Online; accessed 23-Nov-2023].",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "As illustrated in Table 1, existing tools primarily deploy two approaches: •ClauseDelete: Tools such as SQLancer [29],RAGS [31], and PINOLO [7] employ a strategy of randomly deleting clauses from SQL queries.",
+      "context_before": "QLite 143 48.7 37.10% 90.32% 46.1 403 All 180 47.3 37.74% 90.32% 43.3 403 queries which is defined as the percentage reduction in the number of tokens. It is computed as follows: SimRatio(%) = Original Token Count −Reduced Token Count Original Token Count ×100 (1) •Simplification Time: This metric measures the temporal efficiency of the simplification process from initiation to completion. Shorter times are indicative of a more efficient simplification algorithm, which is critical for real-time database bug detection and maintenance tasks. 5.1.3 Baselines. We compare SQLess with two baselines.",
+      "context_after": "This approach is straightforward to implement and is limited to the parts of the query. •APOLLO: This tool [ 11] takes simplification further by allowing subquery simplifications and column deletions, thereby expanding the scope of the simplification strategy. Note that the above tools all use different parsers and a variety of error types. Since the query simplification strategies in these baselines are not implemented as an isolated component, and we have no way to run the original tools, to ensure a fair comparison, we have implemented these two baselines on the ANTLR MySQL grammar utilize",
+      "section": "5.1.2 Metrics. We use two metrics to assess SQLess: simplification",
+      "page": 8,
+      "char_offset": 43842,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker",
+      "surface": "[ 7,9,30]",
+      "technique": "tlp",
+      "sentence": "They typically suffer from a dilemma that the malformed, complex, and lengthy queries are more likely to trigger bugs but are less likely to 752 SQLess: Dialect-Agnostic SQL Query Simplification ISSTA ’24, September 16–20, 2024, Vienna, Austria be accepted by DBMS developers, which is highlighted by many prior studies [ 7,9,30].",
+      "context_before": "he confirmation or fixing of bugs that had been outstanding for an average of 246.3 days, all within an average span of just 0.7 days. Owing to the rapid resolution times by the developers of PostgreSQL and SQLite, SQLess can only simplify three bug reports for these DBMSs, focusing on issues that were still unconfirmed or unresolved. To track the status of the bugs we generated simplified queries, we published a list of these bugs in a public GitHub repository [39]. The potential users of SQLess primarily fall into two categories. First, the tool can greatly benefit designers of DBMS fuzzers.",
+      "context_after": "Second, SQLess can potentially benefit DBMS developers when they have difficulties in debugging bugs involving lengthy and complex queries, thereby reducing their workload. For instance, the bug report #32981 for MariaDB elicited appreciative feedback from an experienced developer: \"Thank you very much! Yes, it is quite useful.\" Similarly, in the bug report #1678 for OceanBase, the developer acknowledged the usefulness of the simplified query. Such positive feedback underscores the practical utility of SQLess and its significance in assisting developers to effectively address and fix bugs. Po",
+      "section": "5.4 Ablation Study",
+      "page": 10,
+      "char_offset": 60662,
+      "cited_reference": {
+        "number": 30,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proceedings of the ACM on Programming Languages 4, OOPSLA (2020), 1–30.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing tlp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker",
+      "surface": "[ 7,11,27,29,31]",
+      "technique": null,
+      "sentence": "Nevertheless, existing work has adapted the principles of Delta Debugging to simplify complex SQL queries that lead to certain behaviors, such as incorrect result sets or performance issues [ 7,11,27,29,31].",
+      "context_before": "e studies in this work, performing more thorough and comprehensive user studies for more debugging tasks is an important future work. 7 Related Work Test Case Minimization. Delta debugging [ 12,21,49,50] and Hierarchical Delta Debugging [ 16] target simplifying failing test cases to minimal ones that still produce failures. They can be utilized for batch debugging of independent SQL statement collections or lists of numbers. However, they cannot directly be used for SQL simplification because they require adherence to strict grammar rules that SQL’s complex and nested structures often violate.",
+      "context_after": "For example, Reducer [27] employs a two-step approach for minimizing queries: it sequentially removes each line and eliminates column names from SELECT statements. Besides, RAGS [ 31] eliminates terms within expressions and also removes WHERE and HAVING clauses. Later, APOLLO [11] improves the above approaches by adding several simplification strategies. Unfortunately, these tools can achieve effective simplification only if there are few dependencies between elements. An excessive amount of dependence yields output that is not minimized adequately. Furthermore, these tools expects structured",
+      "section": "7 Related Work",
+      "page": 11,
+      "char_offset": 63291,
+      "cited_reference": {
+        "number": 29,
+        "text": "Manuel Rigger. 2023. SQLancer. https://github.com/sqlancer/sqlancer. [Online; accessed 23-Nov-2023].",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For instance, SQLancer [ 29] constructs equivalent queries to ensure consistent results.",
+      "context_before": "h attention. Specifically, researchers have focused on detecting two types of bugs in DBMSs: crashes and logical bugs. To induce crashes in a DBMS, previous studies have primarily concentrated on automating query generation. On the one hand, generation-based methods employ well-defined rules to create valid DBMS queries [ 5,17,35,44], ensuring the syntactic validity of the queries. On the other hand, mutation-based approaches apply specific forms of mutators to SQL queries [ 6,48,51]. In addition to automatically generating SQL queries, detecting logical bugs requires an effective test oracle.",
+      "context_after": "Similarly, PINOLO [ 7] leverages the approximation relation as a specific type of metamorphic relation acting as the test oracle. Our approach, distinct from prior SQL testing studies, simplifies SQL queries using SQLess, providing concise, compelling evidence to address bugs, thanks to reduced query sizes. 8 Conclusion SQL query simplification reduces the length of a lengthy SQL query in different contexts, facilitating debugging and patching in DBMSs. This paper presents SQLess, a dialect-agnostic approach for simplifying SQL queries. SQLess effectively reduces the sizes of queries generate",
+      "section": "7 Related Work",
+      "page": 11,
+      "char_offset": 66280,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T14:24:46Z",
+    "is_model_written": true,
+    "summary": "SQLess simplifies bug-triggering SQL queries. The authors note that to reach deep bugs most testing techniques generate long, complex queries, leaving developers to debug them. Unlike previous simplifiers that depend on DBMS-specific grammar, SQLess uses an adaptive parser with error recovery and grammar expansion to handle different dialects, and performs semantics-sensitive trimming using alias and dependency analysis so the query still triggers the bug. On over 32,000 complex queries across six DBMSs it achieved an average simplification rate of 72.45%.",
+    "narrative": "SQLancer is the example of the problem SQLess addresses: it is named among the tools that integrate query simplification into their workflow only simplistically, deleting whole clauses, and its equivalent-query construction is what produces the long queries that then need reducing.",
+    "roles": {
+      "M1": "motivation",
+      "M2": "background",
+      "M3": "motivation",
+      "M4": "motivation",
+      "M5": "motivation",
+      "M6": "background",
+      "M7": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,404 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:31:03Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3769832",
+    "title": "Test Data Generation for Complex SQL Queries",
+    "authors": [
+      "Sunanda Somwase",
+      "Parismita Das",
+      "S. Sudarshan"
+    ],
+    "year": 2025,
+    "venue": "Proc. ACM Manag. Data",
+    "doi": "10.1145/3769832",
+    "arxiv_id": null,
+    "s2_paper_id": "d05ca28c4eaaf47e4757524b7638551ba0881cd6",
+    "url": "https://doi.org/10.1145/3769832",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3769832",
+      "retrieved_at": "2026-09-09T01:31:03Z",
+      "chars": 88400,
+      "content_sha256": "sha256:e8b3ae7a073b845f2e5c6ddb91f075ff55a48380c9b2c8306ace66cbf8cd290e"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 26,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 1486
+      },
+      {
+        "number": "2",
+        "title": "Background and Solution Approach",
+        "start": 9920
+      },
+      {
+        "number": "3",
+        "title": "Overview of Our Contributions",
+        "start": 13163
+      },
+      {
+        "number": "3.1",
+        "title": "Multiset Representation",
+        "start": 13923
+      },
+      {
+        "number": "3.2",
+        "title": "Data Types",
+        "start": 16316
+      },
+      {
+        "number": "3.3",
+        "title": "Handling Integrity Constraints",
+        "start": 18435
+      },
+      {
+        "number": "3.4",
+        "title": "Result Table Approach",
+        "start": 19852
+      },
+      {
+        "number": "3.5",
+        "title": "Datasets to Kill Mutations",
+        "start": 22024
+      },
+      {
+        "number": "3.6",
+        "title": "Handling Correlated Queries",
+        "start": 22872
+      },
+      {
+        "number": "4",
+        "title": "Result Table Constraints",
+        "start": 23177
+      },
+      {
+        "number": "4.1",
+        "title": "Join Result Table",
+        "start": 24215
+      },
+      {
+        "number": "4.2",
+        "title": "Selection Result Table",
+        "start": 31188
+      },
+      {
+        "number": "4.3",
+        "title": "Aggregation Result Table",
+        "start": 32374
+      },
+      {
+        "number": "4.4",
+        "title": "Set Operation Result Table",
+        "start": 37691
+      },
+      {
+        "number": "5",
+        "title": "Dataset Generation",
+        "start": 39290
+      },
+      {
+        "number": "5.2",
+        "title": "Deciding Number of Tuples",
+        "start": 42584
+      },
+      {
+        "number": "5.3",
+        "title": "Handling String Types",
+        "start": 47073
+      },
+      {
+        "number": "6",
+        "title": "Handling Nested Subqueries",
+        "start": 53670
+      },
+      {
+        "number": "6.1",
+        "title": "Single-Level Simple Subqueries",
+        "start": 55046
+      },
+      {
+        "number": "6.2",
+        "title": "Single-Level Complex Subqueries",
+        "start": 58569
+      },
+      {
+        "number": "6.3",
+        "title": "Multi-Level Nesting of Subqueries",
+        "start": 61333
+      },
+      {
+        "number": "7",
+        "title": "Related Work",
+        "start": 62382
+      },
+      {
+        "number": "8",
+        "title": "Performance Study",
+        "start": 67154
+      },
+      {
+        "number": "8.1",
+        "title": "Effectiveness in Killing Mutations",
+        "start": 69929
+      },
+      {
+        "number": "8.2",
+        "title": "Execution Time",
+        "start": 75016
+      },
+      {
+        "number": "9",
+        "title": "Conclusion and Future Work",
+        "start": 79717
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Bikash Chandra, Ananyo Banerjee, Udbhas Hazra, Mathew Joseph, and S. Sudarshan. 2019. Automated Grading of SQL Queries. InIEEE Intl. Conf. on Data Engineering, ICDE. IEEE, 1630–1633. https://doi.org/10.1109/ICDE.2019.00159",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Bikash Chandra, Bhupesh Chawda, Biplab Kar, K. V. Maheshwara Reddy, Shetal Shah, and S. Sudarshan. 2015. Data generation for testing and grading SQL queries.VLDB J.24, 6 (2015), 731–755. https://doi.org/10.1007/s00778-0150395-0",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Bikash Chandra, Bhupesh Chawda, Shetal Shah, S. Sudarshan, and Ankit Shah. 2013. Extending XData to kill SQL query mutants in the wild. InProcs. International Workshop on Testing Database Systems, DBTest 2013. ACM, 2:1–2:6. https://doi.org/10.1145/2479440.2479442",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Shumo Chu, Brendan Murphy, Jared Roesch, Alvin Cheung, and Dan Suciu. 2018. Axiomatic Foundations and Algorithms for Deciding Semantic Equivalences of SQL Queries.Proc. VLDB Endow.11, 11 (2018), 1482–1495. https: //doi.org/10.14778/3236187.3236200",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Claudio de la Riva, María José Suárez-Cabal, and Javier Tuya. 2010. Constraint-based test database generation for SQL queries. InProceedings of the 5th Workshop on Automation of Software Test (AST ’10). 67–74. https://doi.org/10.1145/ 1808266.1808276",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Leonardo Mendonça de Moura and Nikolaj S. Bjørner. 2008. Z3: An Efficient SMT Solver. InTools and Algorithms for the Construction and Analysis of Systems, TACAS (Lecture Notes in Computer Science), Vol. 4963. Springer, 337–340. https://doi.org/10.1007/978-3-540-78800-3_24",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Yuetang Deng, Phyllis Frankl, and David Chays. 2005. Testing database transactions with AGENDA. InProceedings of the 27th International Conference on Software Engineering(St. Louis, MO, USA)(ICSE ’05). Association for Computing Machinery, New York, NY, USA, 78–87. https://doi.org/10.1145/1062455.1062486",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Haoran Ding, Zhaoguo Wang, Yicun Yang, Dexin Zhang, Zhenglin Xu, Haibo Chen, Ruzica Piskac, and Jinyang Li. 2023. Proving Query Equivalence Using Linear Integer Arithmetic. https://doi.org/10.1145/3626768",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Mostafa Elhemali, César A. Galindo-Legaria, Torsten Grabs, and Milind Joshi. 2007. Execution strategies for SQL subqueries. InProcs. ACMSIGMOD. ACM, 993–1004. https://doi.org/10.1145/1247480.1247598",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Florian Haftmann, Donald Kossmann, and Alexander Kreutz1. 2005. Efficient Regression Tests for Database Applications. InProcs. of the Conference on Innovative Database Systems Research (CIDR).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Yang He, Pinhan Zhao, Xinyu Wang, and Yuepeng Wang. 2024. VeriEQL: Bounded Equivalence Verification for Complex SQL Queries with Integrity Constraints.Proc. ACM Program. Lang.8, OOPSLA1 (2024), 1071–1099. https: //doi.org/10.1145/3649849",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Fangyu Lei, Jixuan Chen, Yuxiao Ye, Ruisheng Cao, Dongchan Shin, Hongjin Su, Zhaoqing Suo, Hongcheng Gao, Wenjing Hu, Pengcheng Yin, Victor Zhong, Caiming Xiong, Ruoxi Sun, Qian Liu, Sida Wang, and Tao Yu. 2025. Spider 2.0: Evaluating Language Models on Real-World Enterprise Text-to-SQL Workflows. arXiv:2411.07763 [cs.CL] https://arxiv.org/abs/2411.07763",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Jinyang Li, Binyuan Hui, Ge Qu, Jiaxi Yang, Binhua Li, Bowen Li, Bailin Wang, Bowen Qin, Ruiying Geng, Nan Huo, Xuanhe Zhou, Chenhao Ma, Guoliang Li, Kevin Chen-Chuan Chang, Fei Huang, Reynold Cheng, and Yongbin Li. 2023. Can LLM Already Serve as A Database Interface? A BIg Bench for Large-Scale Database Grounded Text-to-SQLs. In NeurIPS 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Mudathir Mahgoub Yahia Mohamed, Andrew Reynolds, Cesare Tinelli, and Clark Barrett. 2024. Verifying SQL queries using theories of tables and relations. InProceedings of 25th Conference on Logic for Programming, Artificial Intelligence and Reasoning (EPiC Series in Computing), Nikolaj Bj{\\o}rner, Marijn Heule, and Andrei Voronkov (Eds.), Vol. 100. EasyChair, 445–463. https://doi.org/10.29007/rlt7",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Arpit Narechania, Adam Fourney, Bongshin Lee, and Gonzalo Ramos. 2021. DIY: Assessing the Correctness of Natural Language to SQL Systems. InProceedings of the 26th International Conference on Intelligent User Interfaces (IUI ’21). 597–607. https://doi.org/10.1145/3397481.3450667",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Thomas Neumann. 2025. Improving Unnesting of Complex Queries. InDatenbanksysteme für Business, Technologie und Web (BTW 2025). Gesellschaft für Informatik, Bonn, 25–47. https://doi.org/10.18420/BTW2025-01",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Thomas Neumann and Alfons Kemper. 2015. Unnesting Arbitrary Queries. InDatenbanksysteme für Business, Technologie und Web (BTW 2015). Gesellschaft für Informatik e.V., Bonn, 383–402.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Zheng Ning, Yuan Tian, Zheng Zhang, Tianyi Zhang, and Toby Jia-Jun Li. 2024. Insights into Natural Language Database Query Errors: from Attention Misalignment to User Handling Strategies.ACM Trans. Interact. Intell. Syst.14, 4, Article 25 (Dec. 2024), 32 pages. https://doi.org/10.1145/3650114",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE 2020). 1140–1152. 3, No. 6 (SIGMOD), Article 367. Publication date: December 2025. 367:26 Sunanda Somwase, Par",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 20,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proc. ACM Program. Lang.4, OOPSLA, Article 211 (Nov. 2020), 30 pages. https://doi.org/10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 21,
+      "text": "Shetal Shah, S. Sudarshan, Suhas Kajbaje, Sandeep Patidar, Bhanu Pratap Gupta, and Devang Vira. 2011. Generating test data for killing SQL mutants: A constraint-based approach. InIEEE International Conference on Data Engineering, ICDE. IEEE Computer Society, 1175–1186. https://doi.org/10.1109/ICDE.2011.5767876",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Abraham Silberschatz, Henry F. Korth, and S. Sudarshan. 2020.Database system concepts(7 ed.). McGraw-Hill.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Javier Tuya, María José Suárez-Cabal, and Claudio de la Riva. 2007. Mutating database queries.Information and Software Technology49 (04 2007), 398–417. https://doi.org/10.1016/j.infsof.2006.06.009",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Margus Veanes, Jonathan de Halleux, Nikolai Tillmann, and Peli de Halleux. 2009.Qex: Symbolic SQL Query Explorer. Technical Report MSR-TR-2009-2015. https://www.microsoft.com/en-us/research/publication/qex-symbolic-sqlquery-explorer/ Updated January 2010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Margus Veanes, Nikolai Tillmann, and Jonathan de Halleux. 2010. Qex: Symbolic SQL Query Explorer. InLogic for Programming, Artificial Intelligence, and Reasoning, Edmund M. Clarke and Andrei Voronkov (Eds.). Springer Berlin Heidelberg, Berlin, Heidelberg, 425–446.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Qi Zhou, Joy Arulraj, Shamkant B. Navathe, William Harris, and Jinpeng Wu. 2022. SPES: A Symbolic Approach to Proving Query Equivalence Under Bag Semantics. InIEEE Intl. Conf. on Data Engineering, ICDE. IEEE, 2735–2748. https://doi.org/10.1109/ICDE53745.2022.00250 Received April 2025; revised July 2025; accepted August 2025 3, No. 6 (SIGMOD), Article 367. Publication date: December 2025.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 19,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE 2020). 1140–1152. 3, No. 6 (SIGMOD), Article 367. Publication date: December 2025. 367:26 Sunanda Somwase, Parismita Das, and S. Sudarshan",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 20,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning.Proc. ACM Program. Lang.4, OOPSLA, Article 211 (Nov. 2020), 30 pages. https://doi.org/10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[19, 20]",
+      "technique": "norec",
+      "sentence": "[19, 20].",
+      "context_before": "includes (i) extensions to handle more SQL features such as LIMIT clause with ORDER BY, windowing functions, string and date manipulation functions that are common in data wrangling tasks, (ii) extensions to catch further types of mutations, and (iii) optimizing the generated constraints to handle larger queries and larger datasets. We also plan to extend our system to support checking of query equivalence. Another potential area for future work is to explore the use of data generation to improve the detection of bugs in database system implementations, following the approach of Rigger et al.",
+      "context_after": "Acknowledgements: We thank Chaitra Gurjar, Kartik Patel, and Kumaran Kartikeyan, for their contributions towards the implementation of some of the techniques described in this paper. We also thank all students who have contributed to the development of the XData system since the version described in [2], including: Bikash Chandra, Saurabh Chaturvedi, Ravi Shankar, Sai Balaji Polakampalli, Rahul Sharma, Pooja Gayakwad, and Deeksha Kasture. We also thank the referees for their detailed comments that have helped improve the presentation of the paper. 3, No. 6 (SIGMOD), Article 367. Publication",
+      "section": "9 Conclusion and Future Work",
+      "page": 24,
+      "char_offset": 80750,
+      "cited_reference": {
+        "number": 19,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. InProceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE 2020). 114",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:17:50Z",
+    "is_model_written": true,
+    "summary": "This paper generates sample data for testing SQL queries, a task with applications in testing analytics and application queries, grading student queries, and validating text-to-SQL output. Earlier work handled single-block and single-level nested queries but not more complex ones. The authors present an architecture aimed at complex queries, and also beat the state of the art on the narrower problem of demonstrating that two queries are not equivalent.",
+    "narrative": "A single citation in the conclusion, placing SQLancer's work among related database testing research.",
+    "roles": {
+      "M1": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

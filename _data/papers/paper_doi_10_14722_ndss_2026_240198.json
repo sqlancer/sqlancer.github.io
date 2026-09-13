@@ -1,0 +1,988 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:29:09Z",
+  "paper": {
+    "id": "paper:doi:10.14722/ndss.2026.240198",
+    "title": "Efficiently Detecting DBMS Bugs through Bottom-up Syntax-based SQL Generation",
+    "authors": [
+      "Yu Liang",
+      "Peng Liu"
+    ],
+    "year": 2026,
+    "venue": "Network and Distributed System Security Symposium",
+    "doi": "10.14722/ndss.2026.240198",
+    "arxiv_id": null,
+    "s2_paper_id": "dcc3bf3a8219e17b5990057d6185f7007da89f88",
+    "url": "https://doi.org/10.14722/ndss.2026.240198",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.14722/ndss.2026.240198",
+      "retrieved_at": "2026-09-09T01:29:09Z",
+      "chars": 89669,
+      "content_sha256": "sha256:7e38b2d5b09bbf0853746da7fa660d16ba97eaa17db1c30d613c31373ebda485"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 16,
+    "has_outline": true,
+    "sections": []
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "“PostgreSQL Clients,” https://www.postgresql.org/about/, 2025, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "“MySQL Customers,” https://www.mysql.com/customers/, 2025, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "“CockroachDB Customers,” https://www.cockroachlabs.com/customers/, 2025, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "“Awesome DuckDB,” https://github.com/davidgasquez/awesome-duckdb, 2025, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "“Starbucks: A Case Study on the Impact of ERP Systems,” https: //pangrow.com/blog/business-automation/starbucks-erp-case-study/, 2024, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Y. Yusuf, A. Gunasekaran, and M. S. Abthorpe, “Enterprise Information Systems Project Implementation: A Case Study of ERP in Rolls-Royce,” International journal of production economics, vol. 87, no. 3, pp. 251– 266, 2004.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "M. Ali and L. Miller, “ERP System Implementation in Large Enterprises– A Systematic Literature Review,” Journal of enterprise information management, vol. 30, no. 4, pp. 666–692, 2017.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "S. V. Grabski, S. A. Leech, and P. J. Schmidt, “A Review of ERP Research: A Future Agenda for Accounting Information Systems,” Journal of information systems, vol. 25, no. 1, pp. 37–78, 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "I.-Y. Song and K.-Y. Whang, “Database Design for Real-world Ecommerce Systems,” IEEE Data Eng. Bull., vol. 23, no. 1, pp. 23–28, 2000.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "S. DeFazio, R. Krishnan, J. Srinivasan, and S. Zeldin, “The Importance of Extensible Database Systems for E-commerce,” in Proceedings 17th International Conference on Data Engineering. IEEE, 2001, pp. 63–70.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "F. Y. Ahmed, R. Sreejith, and M. I. Abdullah, “Enhancement of ECommerce Database System During the COVID-19 Pandemic,” in Electronics (ISCAIE). IEEE, 2021, pp. 174–179.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "L. Lim and M. Wang, “Managing E-commerce Catalogs in a DBMS with Native XML Support,” in IEEE International Conference on e-Business Engineering (ICEBE’05). IEEE, 2005, pp. 564–571.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "H. Wang, “Online banking: A case study for dynamic database-driven client/server system,” Ph.D. dissertation, Concordia University, 2000.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "P. Rai, A. Singh, T. Sharma, and N. Sreenarayanan, “Banking Management System—The Web Application Way,” in Applications of Computational Methods in Manufacturing and Product Design: Select Proceedings of IPDIMS 2020. Springer, 2022, pp. 581–590.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "A. Ayman, M. Sherif et al., “Review of Online Banking Systems: Innovations and Challenges,” Advanced Sciences and Technology Journal, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "H. Upadhyay, R. Wadhawan, and D. Gupta, “Integrating Multiple Security Features in and Online Banking Platform,” 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Y. Liang, S. Liu, and H. Hu, “Detecting Logical Bugs of DBMS with Coverage-based Guidance,” in 31st USENIX Security Symposium (USENIX Security 22), 2022, pp. 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "J. Liang, Z. Wu, J. Fu, M. Wang, C. Sun, and Y. Jiang, “Mozi: Discovering DBMS Bugs via Configuration-Based Equivalent Transformation,” in Proceedings of the IEEE/ACM 46th International Conference on Software Engineering, 2024, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Y. Fu, Z. Wu, Y. Zhang, J. Liang, J. Fu, Y. Jiang, S. Li, and X. Liao, “THANOS: DBMS Bug Detection via Storage Engine Rotation Based Differential Testing,” in on Software Engineering (ICSE). IEEE Computer Society, 2024, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "M. Rigger, “Bugs Found in Database Management Systems,” https: //www.manuelrigger.at/dbms-bugs/, (visited in April 2025).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 21,
+      "text": "“The Knight Capital Disaster-Speculative Branches,” https://specbranch. com/posts/knight-capital/, 2012, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Binder, Matt, “Apple Explains Why Deleted Photos were being Restored on some iPhones,” https://mashable.com/article/ apple-iphone-deleted-photos-restored-explained, 2024, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Federal Trade Commission, “Equifax Data Breach Settlement,” https: //www.ftc.gov/enforcement/refunds/equifax-data-breach-settlement, 2019, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Nick Baker, “NYSE Fined $14 Million by SEC for Series of Rule Violations,” https://www.bloomberg.com/news/articles/2018-03-06/ nyse-fined-14-million-by-sec-for-a-series-of-rule-violations, 2018, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "C. Mishra, N. Koudas, and C. Zuzarte, “Generating Targeted Queries for Database Testing,” in Proceedings of the 2008 ACMSIGMOD International Conference on Management of Data (SIGMOD), New York, NY, USA, 2008.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "J. Wang, P. Zhang, L. Zhang, H. Zhu, and X. Ye, “A Model-based Fuzzing Approach for DBMS,” in 2013 8th International Conference on Communications and Networking in China (CHINACOM). IEEE, 2013, pp. 426–431.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "E. Lo, C. Binnig, D. Kossmann, M. Tamer Özsu, and W.-K. Hon, “A Framework for Testing DBMS Features,” The VLDB Journal, vol. 19, no. 2, pp. 203–230, Apr. 2010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "B. Chandra, B. Chawda, B. Kar, K. V. M. Reddy, S. Shah, and S. Sudarshan, “Data Generation for Testing and Grading SQL Queries,” The VLDB Journal, vol. 24, no. 6, Aug 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "G. Li, X. Zhou, S. Li, and B. Gao, “QTune: A Query-aware Database Tuning System with Deep Reinforcement Learning,” Proceedings of the VLDB Endowment, vol. 12, no. 12, pp. 2118–2130, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Manuel Rigger, “SQLancer,” https://github.com/sqlancer/sqlancer, (visited in April 2025).",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 31,
+      "text": "“SQLSmith,” https://github.com/anse1/sqlsmith, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "E. Soremekun, E. Pavese, N. Havrikov, L. Grunske, and A. Zeller, “Inputs From Hell,” IEEE Transactions on Software Engineering, vol. 48, no. 4, pp. 1138–1153, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "C. Aschermann, T. Frassetto, T. Holz, P. Jauernig, A.-R. Sadeghi, and D. Teuchert, “NAUTILUS: Fishing for Deep Bugs with Grammars,” in Proceedings of the 26th Annual Network and Distributed System Security Symposium (NDSS), San Diego, CA, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "L. Fernandez, G. Karlsson, and D. Hübinette, “A Framework for Feedback-enabled Blackbox Fuzzing Using Context-free Grammars,” 2022, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "J. Jung, H. Hu, J. Arulraj, T. Kim, and W. Kang, “APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems,” in Proceedings of the 46th International Conference on Very Large Data Bases (VLDB), Tokyo, Japan, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "P. Srivastava and M. Payer, “Gramatron: Effective grammar-aware fuzzing,” in Proceedings of the 30th acm sigsoft international symposium on software testing and analysis, 2021, pp. 244–256.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Y. Liang and H. Hu, “Parser knows best: Testing dbms with coverageguided grammar-rule traversal,” arXiv preprint arXiv:2503.03893, 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "J. Patra and M. Pradel, “Learning to Fuzz: Application-independent Fuzz Testing with Probabilistic, Generative Models of Input Data,” TU Darmstadt, Department of Computer Science, Tech. Rep. TUD-CS-201614664, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "R. Zhong, Y. Chen, H. Hu, H. Zhang, W. Lee, and D. Wu, “SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback,” in Proceedings of the 27th ACM Conference on Computer and Communications Security (CCS), Orlando, USA, Nov. 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "“The Lemon LALR(1) Parser Generator,” https://www.sqlite.org/lemon. html, 2025, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "S. C. Johnson and R. Sethi, “Yacc: a parser generator,” UNIX Vol. II: research system, pp. 347–374, 1990.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "T. Parr and K. Fisher, “Ll (*) the foundation of the antlr parser generator,” ACM Sigplan Notices, vol. 46, no. 6, pp. 425–436, 2011.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "T. J. Parr and R. W. Quong, “Antlr: A predicated-ll (k) parser generator,” Software: Practice and Experience, vol. 25, no. 7, pp. 789–810, 1995.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "“GNU Bison: Languages and Context-Free Grammars,” https://www.gnu. org/software/bison/manual/html_node/Language-and-Grammar.html, 2023, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "“ANTLR: Parser Rules,” https://github.com/antlr/antlr4/blob/master/doc/ parser-rules.md, 2023, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "“DuckDB Github Repository,” https://github.com/duckdb/duckdb.git, 2025, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "“MySQL Parser,” https://github.com/mysql/mysql-server/blob/trunk/sql/ sql_yacc.yy, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "“MariaDB Parser,” https://github.com/MariaDB/server/blob/11.3/sql/sql_ yacc.yy, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "“PostgreSQL: The Parser Stage,” https://www.postgresql.org/docs/current/ parser-stage.html, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "“CockroachDB Parser,” https://github.com/cockroachdb/cockroach/blob/ master/pkg/sql/parser/sql.y, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "“Squirrel Github Repository,” https://github.com/s3team/Squirrel, 2022, (visited in April 2025). 14",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "J. Ba and M. Rigger, “Testing Database Engines via Query Plan Guidance,” inProceedings of International Conference on Software Engineering (ICSE), 2023.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 53,
+      "text": "——, “Keep it simple: Testing databases via differential query plans,” 2, no. 3, May 2024. [Online]. Available: https://doi.org/10.1145/3654991",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 54,
+      "text": "M. Rigger and Z. Su, “Testing Database Engines via Pivoted Query Synthesis,” in Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI), Virtual, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 55,
+      "text": "——, “Finding Bugs in Database Systems via Query Partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 1–30, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 56,
+      "text": "——, “Detecting Optimization Bugs in Database Engines via Nonoptimizing Reference Engine Construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE), 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 57,
+      "text": "M. Jibson, “SQLsmith: Randomized SQL Testing in CockroachDB,” https: //www.cockroachlabs.com/blog/sqlsmith-randomized-sql-testing/, 2019, (visited in April 2025).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "E. Pavese, E. Soremekun, N. Havrikov, L. Grunske, and A. Zeller, “Inputs From Hell: Generating Uncommon Inputs From Common Samples,” arXiv preprint arXiv:1812.07525, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "S. Deb, K. Jain, R. Van Tonder, C. Le Goues, and A. Groce, “Syntax Is All You Need: A Universal-Language Approach to Mutant Generation,” Proceedings of the ACM on Software Engineering, vol. 1, no. FSE, pp. 654–674, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "P. Godefroid, A. Kiezun, and M. Y. Levin, “Grammar-based Whitebox Fuzzing,” in Proceedings of the 29th ACMSIGPLAN conference on programming language design and implementation, 2008, pp. 206–215.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "S. Sargsyan, S. Kurmangaleev, M. Mehrabyan, M. Mishechkin, T. Ghukasyan, and S. Asryan, “Grammar-based Fuzzing,” in 2018 Ivannikov Memorial Workshop (IVMEM). IEEE, 2018, pp. 32–35.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Google, “Syzkaller-Kernel Fuzzer,” https://github.com/google/syzkaller, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "S. Tang, S. Liu, J. Wang, and X. Zhang, “An Empirical Study on ASTlevel Mutation-based Fuzzing Techniques for JavaScript Engines,” in Proceedings of the 14th Asia-Pacific Symposium on Internetware, 2023, pp. 216–226.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "J. Wang, B. Chen, L. Wei, and Y. Liu, “Superion: Grammar-aware Greybox Fuzzing,” in on Software Engineering (ICSE). IEEE, 2019, pp. 724–735.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "R. Hodován, Á. Kiss, and T. Gyimóthy, “Grammarinator: A Grammarbased Open Source Fuzzer,” in Proceedings of the 9th ACMSIGSOFT international workshop on automating TEST case design, selection, and evaluation, 2018, pp. 45–48.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Y. Chen, R. Zhong, H. Hu, H. Zhang, Y. Yang, D. Wu, and W. Lee, “One Engine to Fuzz’em All: Generic Language Processor Testing with Semantic Validation,” in Proceedings of the 42nd IEEE Symposium on Security and Privacy (Oakland), Virtual, May 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "S. Abdul Khalek and S. Khurshid, “Automated SQL Query Generation for Systematic Testing of Database Engines,” in Proceedings of the IEEE/ACM International Conference on Automated Software Engineering (ASE), 2010.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "M. Marcozzi, W. Vanhoof, and J.-L. Hainaut, “Test Input Generation for Database Programs Using Relational Constraints,” in Proceedings of the Fifth International Workshop on Testing Database Systems (DBTest), Scottsdale, Arizona, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "M. Wang, Z. Wu, X. Xu, J. Liang, C. Zhou, H. Zhang, and Y. Jiang, “Industry Practice of Coverage-guided Enterprise-level DBMS Fuzzing,” in Software Engineering in Practice (ICSE-SEIP), 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "J. Liang, Y. Chen, Z. Wu, J. Fu, M. Wang, Y. Jiang, X. Huang, T. Chen, J. Wang, and J. Li, “Sequence-oriented DBMS Fuzzing,” in Proceedings of IEEE International Conference on Data Engineering (ICDE), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "J. Liang, Z. Wu, J. Fu, Y. Bai, Q. Zhang, and Y. Jiang, “WingFuzz: Implementing Continuous Fuzzing for DBMSs,” in 2024 USENIX Annual Technical Conference (USENIX ATC 24), 2024, pp. 479–492.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Z.-M. Jiang, J.-J. Bai, and Z. Su, “DynSQL: Stateful Fuzzing for Database Management Systems with Complex and Valid SQL Query Generation,” inProceedings of USENIX Security Symposium (USENIX Security), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Y. Yang, Y. Chen, R. Zhong, J. Chen, and W. Lee, “Towards generic database management system fuzzing,” in 33rd USENIX Security Symposium (USENIX Security 24), 2024, pp. 901–918.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "S. Jiang, Y. Zhang, J. Li, H. Yu, L. Luo, and G. Sun, “A Survey of Network Protocol Fuzzing: Model, Techniques and Directions,” arXiv preprint arXiv:2402.17394, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "S. Park, W. Xu, I. Yun, D. Jang, and T. Kim, “Fuzzing JavaScript Engines with Aspect-preserving Mutation,” in Proceedings of the 41st IEEE Symposium on Security and Privacy (Oakland), San Francisco, CA, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "M. Raselimo, J. Taljaard, and B. Fischer, “Breaking Parsers: Mutationbased Generation of Programs with Guaranteed Syntax Errors,” in Proceedings of the 12th ACMSIGPLAN International Conference on Software Language Engineering, 2019, pp. 83–87. APPENDIX A. PoC Simplification Algorithm When the DBMS crashes or throws fatal error indicating memory or data corruption, SQLBull uses the PoC Simplificati",
+      "is_sqlancer_publication": true
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 20,
+      "text": "M. Rigger, “Bugs Found in Database Management Systems,” https: //www.manuelrigger.at/dbms-bugs/, (visited in April 2025).",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 30,
+      "text": "Manuel Rigger, “SQLancer,” https://github.com/sqlancer/sqlancer, (visited in April 2025).",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 52,
+      "text": "J. Ba and M. Rigger, “Testing Database Engines via Query Plan Guidance,” inProceedings of International Conference on Software Engineering (ICSE), 2023.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 53,
+      "text": "——, “Keep it simple: Testing databases via differential query plans,” 2, no. 3, May 2024. [Online]. Available: https://doi.org/10.1145/3654991",
+      "technique": "dqp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing dqp",
+        "prints the DOI of the paper introducing dqp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 54,
+      "text": "M. Rigger and Z. Su, “Testing Database Engines via Pivoted Query Synthesis,” in Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI), Virtual, 2020.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 55,
+      "text": "——, “Finding Bugs in Database Systems via Query Partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 1–30, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 56,
+      "text": "——, “Detecting Optimization Bugs in Database Engines via Nonoptimizing Reference Engine Construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE), 2020.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 76,
+      "text": "M. Raselimo, J. Taljaard, and B. Fischer, “Breaking Parsers: Mutationbased Generation of Programs with Guaranteed Syntax Errors,” in Proceedings of the 12th ACMSIGPLAN International Conference on Software Language Engineering, 2019, pp. 83–87. APPENDIX A. PoC Simplification Algorithm When the DBMS crashes or throws fatal error indicating memory or data corruption, SQLBull uses the PoC Simplification algorithm shown in Algorithm 3 to simplify the generated SQL query sequence and save the simplified queries as bug PoC. Algorithm 3: PoC Simplification 1:function PoCSimplification( stmt _seq) 2:simpl _stmt _seq← ∅ 3:for all stmt∈stmt _seq do 4: reset_database() 5: for all stmt′∈stmt do 6: ifstmt ==stmt′then 7: continue 8: end if 9: execute( stmt′) 10: end for 11: ifnot database_crash() then 12: simpl _stmt _seq←simpl _stmt _seq+ stmt 13: end if 14: end for 15: for all stmt∈simpl _stmt _seq do 16: for all tree _node∈stmt. get_tree_nodes() do 17: reset_database() 18: for all stmt′∈simpl _stmt _seq do 19: ifstmt ==stmt′then 20: stmt′←stmt′.copy().remove( tree _node ) 21: end if 22: execute( stmt′) 23: end for 24: ifnot database_crash() then 25: stmt←stmt .remove( tree _node ) 26: end if 27: end for 28: end for 29: return simpl _stmt _seq 30: end function B. Syntax-based Testing Tools on Other Systems The technique of syntax-based testing has also been widely adopted in other systems, such as programming systems (e.g., JavaScript engines) [63] and network protocol implementations [74] . Specifically, [34] proposes a syntax-based fuzzing framework and applies the learned grammar to generate Link Layer Discovery Protocol (LLDP). DIE applies type-based AST mutation extracted from the JavaScript grammar code while preserving the context-rich parts of the input based on the intuition of the JavaScript programs [75] . NAUTILUS demonstrates that code coverage feedback is beneficial for guiding syntax-based input generation [33] . [76] proposes a syntax-based fuzzing tool that intentionally introduces slight syntactic errors to the generated inputs to expose faulty parser logic. Many of these previous works formulate the task of 15 syntax-based input generation as a Multi-arm Bandit (MAB) problem [33] , [34] , [58] . However, they all employ Top-down generation, which is not suitable for deep bug discovery in DBMS. To prioritize feature-rich SQL grammar that is more likely to expose bugs, some existing works [32] , [38] , [58] prioritize the grammar rules used to construct the previous failures. However, the previous failure inputs may not contain the deep SQL grammar we want to explore in this paper. Furthermore, not all grammar used in the previous failure is useful for triggering bugs. By blindly prioritizing all the grammar distributed in these inputs without knowing which grammar is critical for bug triggering, previous failure inputs are less efficient for preserving the deep SQL grammar to uncover new deep bugs. 16",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[17]–[20]",
+      "technique": null,
+      "sentence": "However, the high complexity of DBMSs makes them prone to bugs [17]–[20].",
+      "context_before": "diverse SQL queries for fuzzing. A prototype tool,SQLBull, adopts the Bottom-up generation technique for fuzzing. In the evaluation, SQLBullfound 63 zero-day bugs from 5 well-tested DBMSs: MySQL,MariaDB,CockroachDB,DuckDB, and PostgreSQL. It outperforms all existing tools in both bug-finding and code coverage. The evaluation results verify the effectiveness of the Bottom-up generation technique. I.INTRODUCTION Database Management Systems (DBMSs) power today’s internet applications [1]–[4], such as enterprise resource planning (ERP) [5]–[8], E-commerce [9]–[12], and online banking [ 13]– [16].",
+      "context_after": "ADBMS bug triggered in real-world applications can lead to severe consequences, such as money loss [21] or data breach [22], [23]. For example, in June 2015, the New York Stock Exchange (NYSE) froze stock trading for almost 4 hours because of a database glitch. This glitch caused the NYSE to lose at least $14 million [ 24]. Accordingly, proactively identifying DBMS bugs through automatic software testing (and other viable means) is a critical aspect of securing DBMS software development [ 25]–[29]. In the DBMS automatic testing domain, it is a well-known practice to generate SQL testing queri",
+      "section": null,
+      "page": 1,
+      "char_offset": 1892,
+      "cited_reference": {
+        "number": 20,
+        "text": "M. Rigger, “Bugs Found in Database Management Systems,” https: //www.manuelrigger.at/dbms-bugs/, (visited in April 2025).",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[30]",
+      "technique": null,
+      "sentence": ", syntax-based) [ 17], [30], [31].",
+      "context_before": "lications can lead to severe consequences, such as money loss [21] or data breach [22], [23]. For example, in June 2015, the New York Stock Exchange (NYSE) froze stock trading for almost 4 hours because of a database glitch. This glitch caused the NYSE to lose at least $14 million [ 24]. Accordingly, proactively identifying DBMS bugs through automatic software testing (and other viable means) is a critical aspect of securing DBMS software development [ 25]–[29]. In the DBMS automatic testing domain, it is a well-known practice to generate SQL testing queries by following SQLgrammar rules (i.e.",
+      "context_after": "The primary benefit is that the generated test cases have a higher chance of being syntactically correct. These test cases are more likely to pass the sanity checks conducted by the DBMS parser and subsequently trigger the execution of the internal DBMS program code. Therefore, the syntax-based testers achieve a higher code coverage and uncover more bugs than nonsyntax-based ones. Because of this benefit, the DBMS testing community has developed a series of syntax-based testing tools to examine the DBMS program code. For example, SQLancer[30] is a representative syntax-based SQL testing platf",
+      "section": null,
+      "page": 1,
+      "char_offset": 2604,
+      "cited_reference": {
+        "number": 30,
+        "text": "Manuel Rigger, “SQLancer,” https://github.com/sqlancer/sqlancer, (visited in April 2025).",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For example, SQLancer[30] is a representative syntax-based SQL testing platform that adopts hand-crafted SQL templates to generate testing SQL queries.",
+      "context_before": "queries by following SQLgrammar rules (i.e., syntax-based) [ 17], [30], [31]. The primary benefit is that the generated test cases have a higher chance of being syntactically correct. These test cases are more likely to pass the sanity checks conducted by the DBMS parser and subsequently trigger the execution of the internal DBMS program code. Therefore, the syntax-based testers achieve a higher code coverage and uncover more bugs than nonsyntax-based ones. Because of this benefit, the DBMS testing community has developed a series of syntax-based testing tools to examine the DBMS program code.",
+      "context_after": "All the existing syntax-based testing tools adopt the Topdown (TD) generation method. To generate a SQL query (syntax tree), aTDgenerator starts its grammar exploration from the rootsymbol, where the root is always the topmost node in the syntax tree. Then, it forward traverses the grammar, constructing a syntax tree with all the grammar rules it has explored, and only stops the tree construction when no more grammar rules can be used further to expand the leaf nodes of the syntax tree. A more detailed illustration of the TDgeneration method is shown in§II-B. However, the TDgenerator tends to",
+      "section": null,
+      "page": 1,
+      "char_offset": 3161,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "This method is more commonly used by syntax-based testing tools that rely on handwritten SQL templates, such as SQLancer [30] and SQLsmith [31].",
+      "context_before": "mmon among theNetwork and Distributed System Security (NDSS) Symposium 202623-27 February 2026, San Diego, CA, USAISBN 979-8-9919276-8-0https://dx.doi.org/10.14722/ndss.2026.240198www.ndss-symposium.org rules in the shallow layers. They further increase the difficulty for the TDgenerator in exploring the deeper grammar space. Several existing works attempt to address the above issues [32]–[34]. For example, some TDgenerators allocate pre-defined exploration probabilities to different grammar rules, putting more weight on certain grammar rules that are known to lead to existing bugs [27], [35].",
+      "context_after": "Another method is to rewrite the grammar rules by uplifting some feature-rich grammar into the shallower layers for more frequent exploration [36]. However, both methods are manual effort-intensive to implement and are not scalable to the large number of grammar rules defined by the DBMSs. They demand the testers to have deep domain knowledge of the DBMS SQL grammar to identify the feature-rich SQL grammar and apply the necessary grammar annotation. Moreover, these methods are not adaptable in adjusting their weights when testing the ever-changing SQL dialects implemented by different DBMSs.",
+      "section": null,
+      "page": 2,
+      "char_offset": 5799,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For example, SQLancer uses Java to implement its SQL templates, while SQLsmith uses C++.",
+      "context_before": "hen introduce a motivating example in § II-B to demonstrate a TDgenerator’s inefficiency and a BUgenerator’s effectiveness in detecting DBMS bugs. A. Background of Syntax-based DBMS Testing To improve the quality of the generated test cases, the fuzzing community adopts the syntax-based fuzzing strategy to generate syntactically correct test cases. They can be classified into two main categories: those based on handwritten SQL templates and those based on DBMSs’ built-in grammar. The former uses hand-crafted SQL templates implemented in custom programming languages to output SQL query strings.",
+      "context_after": "The second category of tools borrows the built-in SQL grammar of a DBMS to guide the test case generation. The parser of a DBMS takes the grammar as input and transforms the input SQL query strings into syntax trees. Instead of matching the grammar rules to the provided seed (test case) queries, a syntax-based generator chooses one arbitrary grammar rule to execute for each parsed tree node, which eventually constructs a syntax tree from all the executed grammar rules. The generated syntax tree is then transformed into a syntactically correct SQL query for execution. A more detailed descripti",
+      "section": null,
+      "page": 2,
+      "char_offset": 10498,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The most advanced tool in this category is SQLancer.",
+      "context_before": "identifies which SQL grammar expands the symbols listed in the table and backtracks the identified grammar to the root to generate syntax paths. all SQL statements, to ensure the comparisons between SQLBull and the other tools are fair, we configured SQLBull to only generate SQL statements that are commonly supported by all baselines, specifically, CREATE ,INSERT ,ALTER ,DELETE ,UPDATE, and SELECT statements. We note this configuration as SQLBull M. We include existing works from three main categories. The first category of tools generates testing SQL queries based on handwritten SQL templates.",
+      "context_after": "Although SQLancer was first introduced in 2022, it has become the most popular platform for implementing the latest SQL testing techniques [52]–[56]. In this evaluation, we include two of the latest and most advanced testing techniques implemented in SQLancer which are capable of detecting DBMS memory errors, i.e., SQLancer +QPG[52] and SQLancer +DQP[53]. We compare SQLBull with SQLancer +QPG onCockroachDB, and SQLancer +DQPonMySQL and MariaDB. In addition, we include SQLsmith Cas an SQL template-based testing tool maintained by the CockroachDB developer team and evaluate it on CockroachDB [5",
+      "section": null,
+      "page": 8,
+      "char_offset": 41922,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Although SQLancer was first introduced in 2022, it has become the most popular platform for implementing the latest SQL testing techniques [52]–[56].",
+      "context_before": "ed in the table and backtracks the identified grammar to the root to generate syntax paths. all SQL statements, to ensure the comparisons between SQLBull and the other tools are fair, we configured SQLBull to only generate SQL statements that are commonly supported by all baselines, specifically, CREATE ,INSERT ,ALTER ,DELETE ,UPDATE, and SELECT statements. We note this configuration as SQLBull M. We include existing works from three main categories. The first category of tools generates testing SQL queries based on handwritten SQL templates. The most advanced tool in this category is SQLancer.",
+      "context_after": "In this evaluation, we include two of the latest and most advanced testing techniques implemented in SQLancer which are capable of detecting DBMS memory errors, i.e., SQLancer +QPG[52] and SQLancer +DQP[53]. We compare SQLBull with SQLancer +QPG onCockroachDB, and SQLancer +DQPonMySQL and MariaDB. In addition, we include SQLsmith Cas an SQL template-based testing tool maintained by the CockroachDB developer team and evaluate it on CockroachDB [57]. The second category of testing baselines is syntax-based fuzzing tools that directly learn the SQL grammar from the DBMS grammar code. We include",
+      "section": null,
+      "page": 8,
+      "char_offset": 41975,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In this evaluation, we include two of the latest and most advanced testing techniques implemented in SQLancer which are capable of detecting DBMS memory errors, i.",
+      "context_before": "ull and the other tools are fair, we configured SQLBull to only generate SQL statements that are commonly supported by all baselines, specifically, CREATE ,INSERT ,ALTER ,DELETE ,UPDATE, and SELECT statements. We note this configuration as SQLBull M. We include existing works from three main categories. The first category of tools generates testing SQL queries based on handwritten SQL templates. The most advanced tool in this category is SQLancer. Although SQLancer was first introduced in 2022, it has become the most popular platform for implementing the latest SQL testing techniques [52]–[56].",
+      "context_after": "e., SQLancer +QPG[52] and SQLancer +DQP[53]. We compare SQLBull with SQLancer +QPG onCockroachDB, and SQLancer +DQPonMySQL and MariaDB. In addition, we include SQLsmith Cas an SQL template-based testing tool maintained by the CockroachDB developer team and evaluate it on CockroachDB [57]. The second category of testing baselines is syntax-based fuzzing tools that directly learn the SQL grammar from the DBMS grammar code. We include Squirrel in this category, which has been the default choice by different DBMS vendors to fuzz their products [39]. Furthermore, we implemented a TDsyntax-based gen",
+      "section": null,
+      "page": 8,
+      "char_offset": 42125,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ", SQLancer +QPG[52] and SQLancer +DQP[53].",
+      "context_before": "TER ,DELETE ,UPDATE, and SELECT statements. We note this configuration as SQLBull M. We include existing works from three main categories. The first category of tools generates testing SQL queries based on handwritten SQL templates. The most advanced tool in this category is SQLancer. Although SQLancer was first introduced in 2022, it has become the most popular platform for implementing the latest SQL testing techniques [52]–[56]. In this evaluation, we include two of the latest and most advanced testing techniques implemented in SQLancer which are capable of detecting DBMS memory errors, i.e.",
+      "context_after": "We compare SQLBull with SQLancer +QPG onCockroachDB, and SQLancer +DQPonMySQL and MariaDB. In addition, we include SQLsmith Cas an SQL template-based testing tool maintained by the CockroachDB developer team and evaluate it on CockroachDB [57]. The second category of testing baselines is syntax-based fuzzing tools that directly learn the SQL grammar from the DBMS grammar code. We include Squirrel in this category, which has been the default choice by different DBMS vendors to fuzz their products [39]. Furthermore, we implemented a TDsyntax-based generation tool that utilizes the ϵ-greedy meth",
+      "section": null,
+      "page": 8,
+      "char_offset": 42291,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg",
+        "dqp"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We compare SQLBull with SQLancer +QPG onCockroachDB, and SQLancer +DQPonMySQL and MariaDB.",
+      "context_before": "We note this configuration as SQLBull M. We include existing works from three main categories. The first category of tools generates testing SQL queries based on handwritten SQL templates. The most advanced tool in this category is SQLancer. Although SQLancer was first introduced in 2022, it has become the most popular platform for implementing the latest SQL testing techniques [52]–[56]. In this evaluation, we include two of the latest and most advanced testing techniques implemented in SQLancer which are capable of detecting DBMS memory errors, i.e., SQLancer +QPG[52] and SQLancer +DQP[53].",
+      "context_after": "In addition, we include SQLsmith Cas an SQL template-based testing tool maintained by the CockroachDB developer team and evaluate it on CockroachDB [57]. The second category of testing baselines is syntax-based fuzzing tools that directly learn the SQL grammar from the DBMS grammar code. We include Squirrel in this category, which has been the default choice by different DBMS vendors to fuzz their products [39]. Furthermore, we implemented a TDsyntax-based generation tool that utilizes the ϵ-greedy methodology to decide which grammar to explore from each symbol handling. This tool formulates",
+      "section": null,
+      "page": 8,
+      "char_offset": 42333,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For completeness, we also include the statistics of these SQL features from the queries generated by other testing tools, including mutation-based fuzzer Squirrel [39] and templatebased SQL generator SQLancer [30].",
+      "context_before": "selected based on the following criteria: 1) They are implemented on top of the SQL expression grammar rules, which matches the configuration we provided to SQLBull for the BUgrammar exploration; 2) They are feature-rich and are commonly seen in the bug-triggering PoCs. We do not claim the selected SQL features represent all the interesting features that could potentially trigger bugs. However, the statistics of these selected SQL features indicate the effectiveness of SQLBull BUgrammar exploration, especially when compared with the results from TDgeneration under similar experimental settings.",
+      "context_after": "These statistics infer the grammar space exploration priorities for these testing tools. All evaluations were conducted on a machine with Intel(R) Core(TM) i5-9600KF 6 cores CPU and 48GB of RAM. Each tool was run on a single CPU core and evaluated for 24 hours. We repeated each evaluation 10 times and report only the average result. We chose the latest version of the DBMSs available at the time of the evaluation, i.e., the evaluations were run upon MySQL on version 8.0.40 ,MariaDB on version 11.7.2 ,CockroachDB on version v24.3.1 ,DuckDB on version v1.1.3, and PostgreSQL on version REL_17_4.",
+      "section": null,
+      "page": 8,
+      "char_offset": 46582,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer +QPG and SQLancer +DQP are the latest and most advanced DBMS testing techniques implemented on top of SQLancer.",
+      "context_before": "is worth noting thatSquirrel could perform better if we provide an even more comprehensive testing seed that covers more SQL grammar. However, we observed that gathering a comprehensive testing corpus is also challenging and requires a lot of manual work. In comparison, SQLBull does not require any input seed. The DBMS user only needs to configure the SQL features to be tested, and SQLBull will automatically explore the SQL features with diverse generated queries. Overall, SQLBull and SQLBull Mcan find more bugs than Squirrel by more thoroughly exploring the feature-rich grammar of the DBMSs.",
+      "context_after": "Both tools utilize the same SQL templates from SQLancer to generate SQL queries but leverage different testing strategies to explore the grammar space of the DBMSs. Interestingly, both techniques achieve a near-perfect query correctness rate close to 99.9%. Especially for SQLancer +DQP, it is designed to execute the same valid SQL query multiple times with different optimization settings to understand the impact of the query optimization on the query execution plan, which leads to a near-perfect query correctness rate. However, the handwritten SQL templates limit the flexibility of both tools",
+      "section": null,
+      "page": 9,
+      "char_offset": 52333,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Both tools utilize the same SQL templates from SQLancer to generate SQL queries but leverage different testing strategies to explore the grammar space of the DBMSs.",
+      "context_before": "SQL grammar. However, we observed that gathering a comprehensive testing corpus is also challenging and requires a lot of manual work. In comparison, SQLBull does not require any input seed. The DBMS user only needs to configure the SQL features to be tested, and SQLBull will automatically explore the SQL features with diverse generated queries. Overall, SQLBull and SQLBull Mcan find more bugs than Squirrel by more thoroughly exploring the feature-rich grammar of the DBMSs. SQLancer +QPG and SQLancer +DQP are the latest and most advanced DBMS testing techniques implemented on top of SQLancer.",
+      "context_after": "Interestingly, both techniques achieve a near-perfect query correctness rate close to 99.9%. Especially for SQLancer +DQP, it is designed to execute the same valid SQL query multiple times with different optimization settings to understand the impact of the query optimization on the query execution plan, which leads to a near-perfect query correctness rate. However, the handwritten SQL templates limit the flexibility of both tools in exploring the vast grammar space of the DBMSs. Although they achieve higher query correctness rates than SQLBull in Figure 8c, Figure 8f, and Figure 8i, they fal",
+      "section": null,
+      "page": 9,
+      "char_offset": 52454,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Especially for SQLancer +DQP, it is designed to execute the same valid SQL query multiple times with different optimization settings to understand the impact of the query optimization on the query execution plan, which leads to a near-perfect query correctness rate.",
+      "context_before": "d, and SQLBull will automatically explore the SQL features with diverse generated queries. Overall, SQLBull and SQLBull Mcan find more bugs than Squirrel by more thoroughly exploring the feature-rich grammar of the DBMSs. SQLancer +QPG and SQLancer +DQP are the latest and most advanced DBMS testing techniques implemented on top of SQLancer. Both tools utilize the same SQL templates from SQLancer to generate SQL queries but leverage different testing strategies to explore the grammar space of the DBMSs. Interestingly, both techniques achieve a near-perfect query correctness rate close to 99.9%.",
+      "context_after": "However, the handwritten SQL templates limit the flexibility of both tools in exploring the vast grammar space of the DBMSs. Although they achieve higher query correctness rates than SQLBull in Figure 8c, Figure 8f, and Figure 8i, they fall behind by achieving a lower code coverage in Figure 8b, Figure 8e, and Figure 8h because the generated queries are less diverse. Both techniques fail to detect as many bugs as SQLBull and SQLBull Min our repeated 24-hour experiments. SQLsmith Cis yet another handwritten SQL template-based fuzzing tool, mimicking the original SQL syntax implemented in Cockr",
+      "section": null,
+      "page": 9,
+      "char_offset": 52712,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M15",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "4% SQLancer 3.",
+      "context_before": "00%) 2 (66.6%) Total 31 (49.2%) 13 (20.6%) 17 (30.0%) 12 (19.0%) 44 (69.8%) TABLE III: Statistics of SQL features under survey upon all the zero-day bugs detected by SQLBull. DBMS ToolsSQL Features Under Survey SubqueryGROUP BY, ORDER BY, HAVING, WINDOW, OVERJOINConditional SQL Expressions MySQLSQLBull 69.5% 51.1% 21.8% 34.1% SQLBull M 69.8% 57.7% 18.0% 64.1% SQLBull TD 41.3% 13.2% 1.3% 0.38% SQLBull MAB 47.4% 42.8% 18.5% 3.9% SQLBull NE 46.0% 40.8% 4.57% 12.6% Squirrel 19.3% 19.5% 13.1% 5.6% AFL 0.00% 0.00% 0.00% 0.00% CockroachDBSQLBull 46.9% 33.0% 39.2% 39.0% SQLBull M 55.6% 57.1% 26.5% 33.",
+      "context_after": "6% 18.9% 5.3% 7.2% SQLsmith 12.8% 62.6% 9.8% 3.6% TABLE IV: Statistics of SQL features under survey upon different tools. The statistics are calculated based on all the SQL queries generated from each testing tool running for 24 hours. We provide 0% statistics for AFLto demonstrate that it does not effectively explore these SQL features by mutation, but simply repeats the features presented in the seeds. that SQLBull MABtends to generate correct but simple queries, such as “(((TABLE t0)))”, where the repeated parenthesized expression is a recursive expression to hold the “ TABLE ” subexpressio",
+      "section": null,
+      "page": 12,
+      "char_offset": 62957,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M16",
+      "found_by": "citation_marker",
+      "surface": "[30]",
+      "technique": null,
+      "sentence": "We first discuss the existing syntax-based testing tools for the DBMS testing community [30], [39], [52] in § VI-A and § VI-B.",
+      "context_before": "th JOIN and Conditional SQL Expressions, limiting their bugfinding effectiveness. SQLBull and SQLBull M, instead, can more thoroughly explore all the SQL features, so they can detect more bugs. SQLBull NEexposes fewer SQL features than SQLBull, because it is not configured to target the SQL expression grammar rules, on which all SQL features under survey are defined. AFLhardly generates any valid SQL queries, and thus does not explore any of the SQL features under survey. VI. RELATED WORKS Syntax-based automatic testing has been widely adopted to find bugs in various software systems [59]–[62].",
+      "context_after": "We extend the scope of syntax-based testing tools to other securityoriented testing domains [63]–[66] in Appendix B. A. SQL Template-based DBMS Testing Tools Certain existing DBMS testing tools rely on handwritten SQL templates to generate the SQL queries. These templates are implemented with custom programming languages, such as C/C++ [31], [35], Java [27], [30], and languages designed for SAT solvers [67], [68]. The most well-known template-based query testing framework is SQLsmith [31]. The developers of CockroachDB recently ported SQLsmith to support their own DBMS [57], which is referred",
+      "section": null,
+      "page": 13,
+      "char_offset": 68797,
+      "cited_reference": {
+        "number": 30,
+        "text": "Manuel Rigger, “SQLancer,” https://github.com/sqlancer/sqlancer, (visited in April 2025).",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "citation_marker",
+      "surface": "[30]",
+      "technique": null,
+      "sentence": "These templates are implemented with custom programming languages, such as C/C++ [31], [35], Java [27], [30], and languages designed for SAT solvers [67], [68].",
+      "context_before": "ates any valid SQL queries, and thus does not explore any of the SQL features under survey. VI. RELATED WORKS Syntax-based automatic testing has been widely adopted to find bugs in various software systems [59]–[62]. We first discuss the existing syntax-based testing tools for the DBMS testing community [30], [39], [52] in § VI-A and § VI-B. We extend the scope of syntax-based testing tools to other securityoriented testing domains [63]–[66] in Appendix B. A. SQL Template-based DBMS Testing Tools Certain existing DBMS testing tools rely on handwritten SQL templates to generate the SQL queries.",
+      "context_after": "The most well-known template-based query testing framework is SQLsmith [31]. The developers of CockroachDB recently ported SQLsmith to support their own DBMS [57], which is referred to as SQLsmith Cin this paper. SQLancer [30] is another template-based DBMS testing tool that detects DBMS memory and logic bugs [54]–[56]. Its latest improvement, SQLancer +QPG[52] and SQLancer +DQP[53], leverage the DBMS query plan and optimization hints to guide the query generation. All of the SQL template-based DBMS testing tools suffer from the same limitation: their hand-crafted SQL templates are limited in",
+      "section": null,
+      "page": 13,
+      "char_offset": 69181,
+      "cited_reference": {
+        "number": 30,
+        "text": "Manuel Rigger, “SQLancer,” https://github.com/sqlancer/sqlancer, (visited in April 2025).",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M18",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [30] is another template-based DBMS testing tool that detects DBMS memory and logic bugs [54]–[56].",
+      "context_before": "based testing tools to other securityoriented testing domains [63]–[66] in Appendix B. A. SQL Template-based DBMS Testing Tools Certain existing DBMS testing tools rely on handwritten SQL templates to generate the SQL queries. These templates are implemented with custom programming languages, such as C/C++ [31], [35], Java [27], [30], and languages designed for SAT solvers [67], [68]. The most well-known template-based query testing framework is SQLsmith [31]. The developers of CockroachDB recently ported SQLsmith to support their own DBMS [57], which is referred to as SQLsmith Cin this paper.",
+      "context_after": "Its latest improvement, SQLancer +QPG[52] and SQLancer +DQP[53], leverage the DBMS query plan and optimization hints to guide the query generation. All of the SQL template-based DBMS testing tools suffer from the same limitation: their hand-crafted SQL templates are limited in covering the complete set of SQL grammar implemented by the DBMSs. B. Grammar Code-based DBMS Testing Tools Several DBMS testing frameworks utilize the DBMS builtin grammar code to generate syntactically valid SQL queries. Squirrel is one of the state-of-the-art syntax-based DBMS fuzzing tools in this category [39]. Ado",
+      "section": null,
+      "page": 13,
+      "char_offset": 69555,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Its latest improvement, SQLancer +QPG[52] and SQLancer +DQP[53], leverage the DBMS query plan and optimization hints to guide the query generation.",
+      "context_before": "DBMS Testing Tools Certain existing DBMS testing tools rely on handwritten SQL templates to generate the SQL queries. These templates are implemented with custom programming languages, such as C/C++ [31], [35], Java [27], [30], and languages designed for SAT solvers [67], [68]. The most well-known template-based query testing framework is SQLsmith [31]. The developers of CockroachDB recently ported SQLsmith to support their own DBMS [57], which is referred to as SQLsmith Cin this paper. SQLancer [30] is another template-based DBMS testing tool that detects DBMS memory and logic bugs [54]–[56].",
+      "context_after": "All of the SQL template-based DBMS testing tools suffer from the same limitation: their hand-crafted SQL templates are limited in covering the complete set of SQL grammar implemented by the DBMSs. B. Grammar Code-based DBMS Testing Tools Several DBMS testing frameworks utilize the DBMS builtin grammar code to generate syntactically valid SQL queries. Squirrel is one of the state-of-the-art syntax-based DBMS fuzzing tools in this category [39]. Adopting the Top-down generation methodology, Squirrel parses the DBMS grammar into its internal representation (IR) and employs type-based IR mutation",
+      "section": null,
+      "page": 13,
+      "char_offset": 69664,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg",
+        "dqp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "uses_infrastructure": [
+        "M8"
+      ],
+      "compares_with": [
+        "M10"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:48:43Z",
+    "is_model_written": true,
+    "summary": "SQLBull generates SQL bottom-up from a DBMS's own grammar rather than from hand-written templates, on the argument that templates only cover the features whoever wrote them thought to include. Building queries upwards from grammar productions reaches syntax the template-based generators never emit, which is where a class of memory errors lives. It is evaluated on CockroachDB, MySQL and MariaDB.",
+    "narrative": "SQLancer is the paper's reference point for the template-based approach it is arguing against, and it is unusually direct about SQLancer's standing: the most advanced tool in the category, and the most popular platform for implementing the latest SQL testing techniques. Its baselines are two of those techniques rather than SQLancer's own oracles -- SQLancer+QPG on CockroachDB and SQLancer+DQP on MySQL and MariaDB -- and the paper notes both are built on top of SQLancer and use its SQL templates. The critique is that those hand-written Java templates bound which SQL features can appear at all, which is the limitation the grammar-based generation is meant to remove.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "definition",
+      "M4": "motivation",
+      "M5": "motivation",
+      "M6": "state_of_the_art",
+      "M7": "state_of_the_art",
+      "M8": "baseline",
+      "M9": "baseline",
+      "M10": "baseline",
+      "M11": "result_comparison",
+      "M12": "state_of_the_art",
+      "M13": "definition",
+      "M14": "definition",
+      "M15": "result_comparison",
+      "M16": "background",
+      "M17": "background",
+      "M18": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer+QPG and SQLancer+DQP are run as baselines. M12 and M13 describe those tools as built on SQLancer and using its templates, but that is a property of the baselines, not of SQLBull, whose generator works from the DBMS grammar instead."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLBull replaces template-based generation with bottom-up grammar-based generation. No SQLancer oracle is carried forward or generalised."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M8",
+          "M9",
+          "M10",
+          "M11"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M8",
+            "sentence": "In this evaluation, we include two of the latest and most advanced testing techniques implemented in SQLancer which are capable of detecting DBMS memory errors, i.",
+            "section": null,
+            "page": 8
+          },
+          {
+            "mention_id": "M9",
+            "sentence": ", SQLancer +QPG[52] and SQLancer +DQP[53].",
+            "section": null,
+            "page": 8
+          },
+          {
+            "mention_id": "M10",
+            "sentence": "We compare SQLBull with SQLancer +QPG onCockroachDB, and SQLancer +DQPonMySQL and MariaDB.",
+            "section": null,
+            "page": 8
+          },
+          {
+            "mention_id": "M11",
+            "sentence": "For completeness, we also include the statistics of these SQL features from the queries generated by other testing tools, including mutation-based fuzzer Squirrel [39] and templatebased SQL generator SQLancer [30].",
+            "section": null,
+            "page": 8
+          }
+        ],
+        "reasoning": "M8 and M9 name SQLancer+QPG and SQLancer+DQP as the techniques included in the evaluation, M10 records which was run against which system, and M11 reports SQLancer's generated queries in the feature statistics.",
+        "techniques": [
+          "qpg",
+          "dqp"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M6",
+          "M7",
+          "M12"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M6",
+            "sentence": "The most advanced tool in this category is SQLancer.",
+            "section": null,
+            "page": 8
+          },
+          {
+            "mention_id": "M7",
+            "sentence": "Although SQLancer was first introduced in 2022, it has become the most popular platform for implementing the latest SQL testing techniques [52]–[56].",
+            "section": null,
+            "page": 8
+          },
+          {
+            "mention_id": "M12",
+            "sentence": "SQLancer +QPG and SQLancer +DQP are the latest and most advanced DBMS testing techniques implemented on top of SQLancer.",
+            "section": null,
+            "page": 9
+          }
+        ],
+        "reasoning": "M6 calls SQLancer the most advanced tool in its category, M7 the most popular platform for implementing the latest SQL testing techniques, and M12 describes QPG and DQP as the latest and most advanced DBMS testing techniques, implemented on top of it."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

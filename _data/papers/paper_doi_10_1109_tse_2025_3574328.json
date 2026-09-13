@@ -1,0 +1,1256 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T17:06:30Z",
+  "paper": {
+    "id": "paper:doi:10.1109/tse.2025.3574328",
+    "title": "SQLaw: Detecting Bugs in GPU Database Management Systems via Rule-Based Differential Execution",
+    "authors": [
+      "Jiaxin Hu",
+      "Rongxin Wu"
+    ],
+    "year": 2025,
+    "venue": "IEEE Transactions on Software Engineering",
+    "doi": "10.1109/tse.2025.3574328",
+    "arxiv_id": null,
+    "s2_paper_id": "4f46526dc9fbb444b85f054e44c84bfa107065fd",
+    "url": "https://doi.org/10.1109/tse.2025.3574328",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/tse.2025.3574328",
+      "retrieved_at": "2026-09-07T17:06:30Z",
+      "chars": 87714,
+      "content_sha256": "sha256:bfb998eac1b65248d7345ee690890399d7d181e9a5fa802159b198de1826346e"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 17,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 1503
+      },
+      {
+        "number": "II",
+        "title": "BACKGROUND ANDMOTIVATION",
+        "start": 9005
+      },
+      {
+        "number": "A",
+        "title": "GPU DBMSs",
+        "start": 9414
+      },
+      {
+        "number": "B",
+        "title": "GPU-Related Bugs",
+        "start": 13721
+      },
+      {
+        "number": "C",
+        "title": "Preliminary Study of Detecting GPU-Related Bugs",
+        "start": 15039
+      },
+      {
+        "number": "D",
+        "title": "Challenge",
+        "start": 19486
+      },
+      {
+        "number": "E",
+        "title": "Key Idea",
+        "start": 22144
+      },
+      {
+        "number": "III",
+        "title": "APPROACH",
+        "start": 25357
+      },
+      {
+        "number": "A",
+        "title": "Overview of SQLaw",
+        "start": 25713
+      },
+      {
+        "number": "B",
+        "title": "Ofﬂine Rule Learning",
+        "start": 27624
+      },
+      {
+        "number": "C",
+        "title": "Online Interpreter With Mutation",
+        "start": 35373
+      },
+      {
+        "number": "D",
+        "title": "Bug Detector",
+        "start": 37496
+      },
+      {
+        "number": "E",
+        "title": "Detailed Process of SQLaw",
+        "start": 39000
+      },
+      {
+        "number": "IV",
+        "title": "IMPLEMENTATION",
+        "start": 41128
+      },
+      {
+        "number": "V",
+        "title": "EVALUATION",
+        "start": 42888
+      },
+      {
+        "number": "A",
+        "title": "Evaluation Step",
+        "start": 43350
+      },
+      {
+        "number": "B",
+        "title": "Effectiveness and Efﬁciency of SQLaw",
+        "start": 46406
+      },
+      {
+        "number": "C",
+        "title": "Comparison With Baselines",
+        "start": 52216
+      },
+      {
+        "number": "D",
+        "title": "Ablation Study",
+        "start": 56309
+      },
+      {
+        "number": "E",
+        "title": "Discussion",
+        "start": 60006
+      },
+      {
+        "number": "VI",
+        "title": "RELATED WORK",
+        "start": 65069
+      },
+      {
+        "number": "VII",
+        "title": "CONCLUSION",
+        "start": 72155
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "A. Shanbhag, S. Madden, and X. Yu, “A study of the fundamental performance characteristics of GPUs and CPUs for database analytics,” inProc. SIGMOD’20, 2020, pp. 1617–1632.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "V. Rosenfeld, S. Bre ß, and V. Markl, “Query processing on heterogeneous CPU/GPU systems,” CSUR’22, vol. 55, no. 1, pp. 1–38, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "C. Lutz, S. Bre ß, S. Zeuch, T. Rabl, and V. Markl, “Triton join: efﬁciently scaling to a large join state on GPUs with fast interconnects,” inProc. SIGMOD’22, 2022, pp. 1017–1032.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "J. Cao, R. Sen, M. Interlandi, J. Arulraj, and H. Kim, “GPU database systems characterization and optimization,” in Proc. VLDB’23, vol. 17, no. 3, 2023, pp. 441–454.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "J. Krueger, M. Grund, I. J aeckel, A. Zeier, and H. Plattner, “Applicability of GPU computing for efﬁcient merge in in-memory databases,” in Proc. VLDB’11, 2011, pp. 19–26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "HEAVY .AI, “HEAVY .AI For Your Industry: Learn how accelerated analytics can transform your enterprise.” A ccessed: Dec. 20, 2024. [Online]. Available: https://www.heavy.ai/industries",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "SQreamDB, “SQreamDB: Case Studies.” Accessed: Dec. 20, 2024. [Online]. Available: https://sqream.com/resources/?category=case-studies",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "K. D. Inc., “Kinetica for Automotive: Real-time analytics from vehicle sensor data.” Accessed: Dec. 20, 2024. [Online]. Available: https://www. kinetica.com/solutions/automotive/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Brytlyt, “Brytlyt for Energy, Oil and Gas: Extract the value from data to boost operation efﬁciency.” 2024. A ccessed: Dec. 20, 2024. [Online]. Available: https://brytlyt.io/oil-and-gas/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "M. Tarek Ibn Ziad, S. Damani, A. Jaleel, S. W. Keckler, and M. Stephenson, “CuCatch: A debugging tool for efﬁciently catching memory safety violations in CUDA applications,” in Proc. PLDI, vol. 7, 2023, pp. 124– 147.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "M. Wu, Y. Ouyang, H. Zhou, L. Zhang, C. Liu, and Y. Zhang, “Simulee: Detecting CUDA synchronization bugs via memory-access modeling,” inProc. ICSE, 2020, pp. 937–948.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "F. R. Monteiro, E. H. d S. Alves, I. S. Silva, H. I. Ismail, L. C. Cordeiro, and E. B. de Lima Filho, “ESBMC-GPU a context-bounded model checking tool to verify CUDA programs,” Sci. Comput. Program. ,v o l. 152, pp. 63–69, Jan. 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Y. Zheng et al., “Finding bugs in gremlin-based graph database systems via randomized differential testing,” in Proc. ISSTA, 2022, pp. 302–313.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Y. Fu et al., “THANOs: DBMs bug detection via storage engine rotation based differential testing,” in Proc. ICSE, 2025, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Z. Cui et al., “Differentially testing database transactions for fun and proﬁt,” in Proc. ASE, 2022, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "J. Ba and M. Rigger, “Keep it simple: Testing databases via differential query plans,” in Proc. SIGMOD, 2024, pp. 38–52.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 17,
+      "text": "J. Wang et al., “D3: Differential testing of distributed deep learning with model generation,” IEEE Trans. Softw. Eng., vol. 51, no. 1, pp. 38–52, Jan. 2025.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Z. Deng, G. Meng, K. Chen, T. Liu, L. Xiang, and C. Chen, “Differential testing of cross deep learning framework {APIs}: Revealing inconsistencies and vulnerabilities,” in Proc. USENIX Secur., 2023, pp. 7393–7410.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "W. M. McKeeman, “Differential testing for software,” Digit. Tech. J., vol. 10, no. 1, pp. 100–107, 1998.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "R. Agrawal, T. Imieli ´nski, and A. Swami, “Mining association rules between sets of items in large databases,” in Proc. SIGMOD, 1993, pp. 207–216.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "R. Agrawal and R. Srikant et al., “Fast algorithms for mining association rules,” in Proc. VLDB’94, vol. 1215, 1994, pp. 487–499.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "“Brytlyt white paper: Speed of thought analytics at scale,” 2024. Accessed: Dec. 20, 2024. [Online]. Available: https://www.brytlyt.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "“Kinetica on-premises documentation,” 2024. A ccessed: Dec. 20, 2024. [Online]. Available: https://docs.kinetica.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "“Sqream DB architecture whitepaper: A next generation GPU powered analytics SQL database,” 2024. A ccessed: Dec. 20, 2024. [Online]. Available: https://sqream.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "BlazingSQL, “BlazingSQL,” 2021. A ccessed: Dec. 20, 2024. [Online]. Available: https://github.com/BlazingDB/blazingsql",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Dask, “Dask-sql,” 2024. A ccessed: Dec. 20, 2024. [Online]. Available: https://github.com/dask-contrib/dask-sql",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "K. Zhang et al., “Hetero-DB: next generation high-performance database systems by best utilizing heterogeneous computing and storage resources,” J. Comput. Sci. Technol., vol. 30, no. 4, pp. 657–678, 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "R. Lee et al., “The art of balance: A rateupdb™ experience of building a CPU/GPU hybrid database product,” in Proc. VLDB, vol. 14, 2021, pp. 2999–3013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "K. Kohei, “PG-Strom,” 2024. A ccessed: Dec. 20, 2024. [Online]. Available: https://github.com/heterodb/pg-strom",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "OmniSci, “OmniSci technical white paper: GPU-accelerated analyticsbig data analytics at speed and SCAL,” 2020. A ccessed: Dec. 20, 2024. [Online]. Available: https://www.omnisci.com/platform",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "C. Root and T. Mostak, “MAPD: AGPU-powered big data analytics and visualization platform,” in Proc. SIGGRAPH, 2016, pp. 1–2. A ccessed: Dec. 20, 2024.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "HEAVY .AI, “HeavyDB,” 2024. A ccessed: Dec. 20, 2024. [Online]. Available: https://github.com/heavyai/heavydb",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "“DB-engines ranking,” 2024. A ccessed: Dec. 20, 2024. [Online]. Available: https://db-engines.com/en/ranking",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "I. HeteroDB, “PG-Strom manual,” 2024. A ccessed: Dec. 20, 2024. [Online]. Available: https://heterodb.github.io/pg-strom/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "C. Lattner and V. Adve, “Llvm: A compilation framework for lifelong program analysis & transformation,” CGO’04, 2004, pp. 75–86.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "NVIDIA, “Parallel thread execution ISA version 8.3,” 2024. Accessed: Dec. 20, 2024. [Online]. Available: https://docs.nvidia.com/cuda/parallel-thread-execution/index.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "HEAVY .AI, “HEAVY .AI documentation,” 2024. A ccessed: Dec. 20, 2024. [Online]. Available: https://docs.heavy.ai/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "RAPIDS Development Team, “RAPIDS: Collection of libraries for end to end GPU data science,” 2024. A ccessed: Dec. 20, 2024. [Online]. Available: https://rapids.ai",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "RAPIDS Development Team, “cu DF-GPU DataFrames,” 2024. Accessed: Dec. 20, 2024. [Online]. Available: https://github.com/rapidsai/cudf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "N. Braun, “Dask-sql Documentation,” 2024. A ccessed: Dec. 20, 2024. [Online]. Available: https://dask-sql.readthedocs.io/en/latest/index.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "J. Fürnkranz and T. Kliegr, “A brief overview of rule learning,” in Proc. Int. Symp. Rules Rule Markup Lang. Semantic Web, 2015, pp. 54–69.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "M. Santolucito, E. Zhai, R. Dhodapkar, A. Shim, and R. Piskac, “Synthesizing conﬁguration ﬁle speciﬁcations with association rule learning,”inProc. OOPSLA, vol. 1, 2017, pp. 1–20.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "V. Leis, A. Gubichev, A. Mirchev, P. Boncz, A. Kemper, and T. Neumann, “How good are query optimizers, really?” in Proc .VLDB, vol. 9, no. 3, 2015, pp. 204–215.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "P. S. Foundation, “Trace — Trace or track Python statement execution,” 2024. [Online]. Available: https://docs.python.org/zh-cn/3/library/trace. html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "T. Parr, “ANTLR v4,” 2023. [Online]. Available: https://github.com/ antlr/antlr",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "T. Parr and K. Fisher, “Ll ( ∗) the foundation of the ANTLR parser generator,” ACM Sigplan Notices, vol. 46, no. 6, pp. 425–436, 2011. 2160 IEEETRANSACTIONS ONSOFTW AREENGINEERING, VOL. 51, NO. 7, JULY 2025",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "M. Rigger, “SQLancer,” 2024. [Online]. Available: https://github.com/ sqlancer/sqlancer",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 48,
+      "text": "A. Zeller, Why Programs Fail: A Guide to Systematic Debugging ,S a n Francisco, CA, USA: Morgan Kaufmann Publishers Inc. Oct 2005.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "NVIDIA, “NVIDIA GeForce RTX 4090 datasheet,” 2024. [Online]. Available: https://www.nvidia.com/en-us/geforce/graphics-cards/ 40-series/rtx-4090/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "NVIDIA, “NVIDIA Tesla V100 datasheet,” 2018. [Online]. Available: https://images.nvidia.com/content/technologies/volta/pdf/tesla-voltav100-datasheet-letter-fnl-web.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "A. Seltenreich, “SQLsmith: A random SQL query generator,” Mar. 2023. A ccessed Dec-2022. [Online]. Available: https://github.com/anse1/ sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proc. ESEC/FSE, 2020, pp. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 53,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Oopsla’20, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 54,
+      "text": "K. N. Khan, M. Hirki, T. Niemi, J. K. Nurminen, and Z. Ou, “RAPL in action: Experiences in using RAPL for power measurements,” in Proc. TOMPECS, vol. 3, no. 2, 2018, pp. 1–26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "G. Rodola, “psutil library,” 2025. [Online]. Available: https://pypi.org/ project/psutil/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "F. Cotter, “py3nvml library,” 2025. [Online]. Available: https://pypi.org/ project/py3nvml/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "NVIDIA, “NVTX (NVIDIA Tools Extension Library),” 2024. [Online]. Available: https://github.com/NVIDIA/NVTX",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "S. Meraji et al., “Towards a hybrid design for fast query processing in DB2 with Blu acceleration using graphical processing units: Atechnology demonstration,” in Proc. SIGMOD, 2016, pp. 1951–1960.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "PostgreSQL, “PostgreSQL: The world’s most advanced open source relational database,” 2023. [Online]. Available: https://www.postgresql.org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "IBM, “IBM Db2 database,” 2023. [Online]. Available: https://www.ibm. com/products/db2/database",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "X. Tang, S. Wu, D. Zhang, F. Li, and G. Chen, “Detecting logic bugs of join optimizations in DBMs,” in Proc. SIGMOD, vol. 1, no. 1, 2023, pp. 1–26.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Z. Hao et al., “PINOLO: Detecting logical bugs in database management systems with approximate query synthesis,” in Proc. USENIX ATC, 2023, pp. 345–358.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "J. Liang et al., “Sequence-oriented DBMs fuzzing,” in Proc. ICDE, 2023, pp. 668–681.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Z.-M. Jiang and Z. Su, “Detecting logic bugs in database engines via equivalent expression transformation,” in Proc .USENIX OSDI, 2024, pp. 821–835.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "M. Kamm, M. Rigger, C. Zhang, and Z. Su, “Testing graph database engines via query partitioning,” in Proc. ISSTA, 2023, pp. 140–149.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 66,
+      "text": "Z. Zhuang, P. Li, P. Ma, W. Meng, and S. Wang, “Testing graph database systems via graph-aware metamorphic relations,” in Proc. VLDB ,v o l. 17, no. 4, 2023, pp. 836–848.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "R. Yang, Y. Zheng, L. Tang, W. Dou, W. Wang, and J. Wei, “Randomized differential testing of RDF stores,” in Proc. ICSE-Companion, 2023, pp. 136–140.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "X. Zhu, S. Wen, S. Camtepe, and Y. Xiang, “Fuzzing: A survey for roadmap,” ACM Comput. Surv., vol. 54, no. 11s, pp. 1–36, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "T. Y. Chen et al., “Metamorphic testing: A review of challenges and opportun ities,” ACM Comput. Surv., vol. 51, no. 1, pp. 1–27, 2018.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "M. Jibson, “SQLsmith: randomized SQL testing in CockroachDB,” Cockroach Labs, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "R. Zhong, Y. Chen, H. Hu, H. Zhang, W. Lee, and D. Wu, “Squirrel: Testing database management systems with language validity and coverage feedback,” in Proc. CCS, 2020, pp. 955–970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "J. Fu, J. Liang, Z. Wu, M. Wang, and Y. Jiang, “Grifﬁn: Grammar-free DBMs fuzzing,” in Proc. ASE, 2022, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Z.-M. Jiang, J.-J. Bai, and Z. Su, “DynSQL: Stateful fuzzing for database management systems with complex and valid SQL query generation,” inProc. USENIX Secur., 2023, pp. 4949–4965.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "Y. Liang, S. Liu, and H. Hu, “Detecting logical bugs of DBMS with coverage-based guidance,” in Proc. USENIX Secur., 2022, pp. 4309– 4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "J. Liang, Z. Wu, J. Fu, Y. Bai, Q. Zhang, and Y. Jiang, “WingFuzz: Implementing continuous fuzzing for DBMSs,” in Proc. USENIX ATC, 2024, pp. 479–492.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "J. Jung, H. Hu, J. Arulraj, T. Kim, and W. Kang, “APOLLO: Automatic detection and diagnosis of performance regressions in database systems,” inProc. VLDB, vol. 13, no. 1, 2019, pp. 57–70.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "J. Liang, Z. Wu, J. Fu, M. Wang, C. Sun, and Y. Jiang, “MOZI: Discovering DBMs bugs via conﬁguration-based equivalent transformation,” in Proc. ICSE, 2024, pp. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "T. Sotiropoulos, S. Chaliasos, V. A tlidakis, D. Mitr opoulos, and D. Spinellis, “Data-oriented differential testing of object-relational mapping systems,” in Proc. ICSE, 2021, pp. 1535–1547.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "M. A. Gulzar, Y. Zhu, and X. Han, “Perception and practices of differential testing,” in Proc. ICSE-SEIP, 2019, pp. 71–80.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "Y. Chen, T. Su, and Z. Su, “Deep differential testing of JVM implementations,” in Proc. ICSE, 2019, pp. 1257–1268.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 81,
+      "text": "I. Lima, J. Silva, B. Miranda, G. Pinto, and M. d’Amorim, “Exposing bugs in JavaScript engines through test transplantation and differential testing,” Softw. Qual. J., vol. 29, pp. 129–158, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 82,
+      "text": "E. T. Barr, M. Harman, P. McMinn, M. Shahbaz, and S. Yoo, “The oracle problem in software testing: A survey,” IEEE Trans. Softw. Eng., vol. 41, no. 5, pp. 507–525, May 2015.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 83,
+      "text": "G. Li, P. Li, G. Sawaya, G. Gopalakrishnan, I. Ghosh, and S. P. Rajan, “GKLEE: Concolic veriﬁcation and test generation for GPUs,” in Proc. PPoPP, 2012, pp. 215–224.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 84,
+      "text": "C. Peng, “On the correctness of GPU programs,” in Proc. ISSTA, 2019, pp. 443–447.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 85,
+      "text": "L. Bernhard, N. Schiller, M. Schloegel, N. Bars, and T. Holz, “DarthShader: Fuzzing WebGPU shader translators & compilers,” in Proc .CCS, 2024, pp. 690–704.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 86,
+      "text": "J. Fürnkranz, D. Gamberger, and N. Lavra ˇc,Foundations of Rule Learning. New York, NY, USA: Springer Sci. & Bus. Media, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 87,
+      "text": "L. Raedt, A. Dries, I. Thon, G. Broeck, and M. Verbeke, “Inducing probabilistic relational rules from probabilistic examples,” in Proc. IJCAI, Jul. 2015, pp. 1835–1842.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 88,
+      "text": "F. Yang, Z. Yang, and W. W. Cohen, “Differentiable learning of logical rules for knowledge base reasoning,” in Proc. NeurIPS, vol. 30, 2017, pp. 2316–2325.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 89,
+      "text": "R. Rawat, R. K. Chakrawarti, A. S. A. Raj, G. Mani, K. Chidambarathanu, and R. Bhardwaj, “Association rule learning for threat analysis using trafﬁc analysis and packet ﬁltering approach,” Int. J. Inf. Technol., Aug. 2023, pp. 3245–3255, doi: 10.1007/s41870-023-01353-0. Jiaxin Hu is currently working toward the Ph.D. degree with the School of Informatics, XiamenUniversity, China. His research focu",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 16,
+      "text": "J. Ba and M. Rigger, “Keep it simple: Testing databases via differential query plans,” in Proc. SIGMOD, 2024, pp. 38–52.",
+      "technique": "dqp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing dqp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 47,
+      "text": "M. Rigger, “SQLancer,” 2024. [Online]. Available: https://github.com/ sqlancer/sqlancer",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 52,
+      "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proc. ESEC/FSE, 2020, pp. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 53,
+      "text": "M. Rigger and Z. Su, “Finding bugs in database systems via query partitioning,” Oopsla’20, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 65,
+      "text": "M. Kamm, M. Rigger, C. Zhang, and Z. Su, “Testing graph database engines via query partitioning,” in Proc. ISSTA, 2023, pp. 140–149.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[16]",
+      "technique": "dqp",
+      "sentence": "Inspired by the widely adopted differential testing approach forbug detection in non-GPU DBMSs [13] ,[14] ,[15] ,[16] and GPU-related software [17] ,[18], we borrow its core concept of comparing the results of identical test cases executed ondifferent software systems to establish a test oracle [19] .",
+      "context_before": "361102, China (e-mail: hujiaxin@stu.xmu.edu.cn; wurongxin@xmu.edu.cn). Digital Object Identiﬁer 10.1109/TSE.2025.3574328of GPU features, implementing GPU-related applications correctly is non-trivial, and thus cr itical bugs are inevitable [10], [11] ,[12]. Unfortunately, to the best of our knowledge, there has yet to be a systematic study to detect bugs in GPU DBMSs. Essentially, detecting GPU-related bugs in GPU DBMSs entails tackling two fundamental problems. The ﬁrst problem is to come up with an effective test oracle that can verify whether a GPU DBMS behaves correctly for a given input.",
+      "context_after": "H o w ever, directly applying the aforementioned differential testing approaches may not be applicable in detecting GPU-related bugs in DBMSs. First, the existing approaches for non-GPU DBMSs are limited to detecting bugs in non-GPU-speciﬁc fea-tures [13] ,[14] ,[15] ,[16]. For example, Grand [13] leverages multiple Gremlin-based graph databases to verify the return results of same queries, thus inherently limiting its applicabilityto other database paradigms. DT2 [15] limits its effectiveness for identifying transaction-level bugs in databases. Similarly, THANOS [14] maintains its detection e",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 3196,
+      "cited_reference": {
+        "number": 16,
+        "text": "J. Ba and M. Rigger, “Keep it simple: Testing databases via differential query plans,” in Proc. SIGMOD, 2024, pp. 38–52.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing dqp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[16]",
+      "technique": "dqp",
+      "sentence": "First, the existing approaches for non-GPU DBMSs are limited to detecting bugs in non-GPU-speciﬁc fea-tures [13] ,[14] ,[15] ,[16].",
+      "context_before": "fundamental problems. The ﬁrst problem is to come up with an effective test oracle that can verify whether a GPU DBMS behaves correctly for a given input. Inspired by the widely adopted differential testing approach forbug detection in non-GPU DBMSs [13] ,[14] ,[15] ,[16] and GPU-related software [17] ,[18], we borrow its core concept of comparing the results of identical test cases executed ondifferent software systems to establish a test oracle [19] .H o w ever, directly applying the aforementioned differential testing approaches may not be applicable in detecting GPU-related bugs in DBMSs.",
+      "context_after": "For example, Grand [13] leverages multiple Gremlin-based graph databases to verify the return results of same queries, thus inherently limiting its applicabilityto other database paradigms. DT2 [15] limits its effectiveness for identifying transaction-level bugs in databases. Similarly, THANOS [14] maintains its detection efﬁcacy only when applied to databases incorporating multiple storage engines. Second, some studies on testing GPU-related software (e.g., deeplearning frameworks) crosscheck the execution results under different counterpart framework APIs [18] to ﬁnd bugs. However, adapting",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 3641,
+      "cited_reference": {
+        "number": 16,
+        "text": "J. Ba and M. Rigger, “Keep it simple: Testing databases via differential query plans,” in Proc. SIGMOD, 2024, pp. 38–52.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing dqp",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker",
+      "surface": "[47]",
+      "technique": null,
+      "sentence": "To identify unique GPU-related bugs, we imitated the statement-level and syntax-based reduction in SQLancer [47] to automatically simplify bug reports.",
+      "context_before": "or Learner. Thus, we leveraged Generator to generate 1 million groups of query statements with conﬁgurations for PG-Strom, and 100 thousand groups for HeavyDB and Dask-sql. Parser is constructed based on ANTLR4 version 4.12.0, and the threshold values tl,tfcandtfginLearner are set to 0.1, 0.9 and 0.5, respectively. The justiﬁcation of the threshold selection will be discussed in §V-E. Finally, Learner mined 2,082, 1,378 and 617 pairs of differential execution rules from PG-Strom, HeavyDB and Dask-sql, respectively. After bug detection implementation, we obtained numerous duplicate bug reports.",
+      "context_after": "Then, for better distinction, we also borrowed ideas from delta debugging [48] to localize the root cause of simpliﬁed bug reports. If two bug reports belong to the same root cause, we will consider them duplicated. V. EVALUATION After presenting the design of SQLaw, we evaluate its effectiveness and efﬁciency in detecting GPU-related bugs in real-world GPU DBMSs. Our evaluation aims to address the following research questions: •RQ1: How many GPU-related bugs in real-world GPU DBMSs can be detected by SQLaw? •RQ2: Can SQLaw outperform existing state-of-the-art bug detection approaches? •RQ3:",
+      "section": "IV IMPLEMENTATION",
+      "page": 10,
+      "char_offset": 42520,
+      "cited_reference": {
+        "number": 47,
+        "text": "M. Rigger, “SQLancer,” 2024. [Online]. Available: https://github.com/ sqlancer/sqlancer",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "We selected three representative state-ofthe-art approaches, including SQLsmith ,NoREC and TLP .",
+      "context_before": "rating system with 6.8.0-31-generic Linux kernel. We deployed three GPUDBMSs for testing via Docker 26.1.1. GPU DBMSs Under Test. We selected three mainstream GPU DBMSs as evaluation subjects, including PG-Strom [29], HeavyDB [32] ,a n d Dask-sql [26], as described in Table I.W e chose the latest version of each GPU DBMS at the time of conducting our experiments. The version information is listed in Table III. Baselines and Ablations. Since SQLaw is the ﬁrst tool for detecting bugs in GPU DBMSs, we can only adapt existingstate-of-the-art approaches developed for non-GPU DBMSs as the baselines.",
+      "context_after": "I n particular, SQLsmith is one of the most effective approaches for detecting crash and error bugs, while both NoREC and TLP represent advanced approaches for detecting logic bugs. Each of them has found a total of over a hundred previously unknown bugs in various non-GPU DBMSs [51] ,[52], [53]. We brieﬂy introduce the methodologies of each baseline as follows. •SQLsmith [51] generates random query statements using an AST model and checks whether the DBMS works normally when executing them. •NoREC [52] translates query statements into nonoptimized queries in the optimizer and compares the res",
+      "section": "A Evaluation Step",
+      "page": 10,
+      "char_offset": 44347,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M5",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "I n particular, SQLsmith is one of the most effective approaches for detecting crash and error bugs, while both NoREC and TLP represent advanced approaches for detecting logic bugs.",
+      "context_before": "er 26.1.1. GPU DBMSs Under Test. We selected three mainstream GPU DBMSs as evaluation subjects, including PG-Strom [29], HeavyDB [32] ,a n d Dask-sql [26], as described in Table I.W e chose the latest version of each GPU DBMS at the time of conducting our experiments. The version information is listed in Table III. Baselines and Ablations. Since SQLaw is the ﬁrst tool for detecting bugs in GPU DBMSs, we can only adapt existingstate-of-the-art approaches developed for non-GPU DBMSs as the baselines. We selected three representative state-ofthe-art approaches, including SQLsmith ,NoREC and TLP .",
+      "context_after": "Each of them has found a total of over a hundred previously unknown bugs in various non-GPU DBMSs [51] ,[52], [53]. We brieﬂy introduce the methodologies of each baseline as follows. •SQLsmith [51] generates random query statements using an AST model and checks whether the DBMS works normally when executing them. •NoREC [52] translates query statements into nonoptimized queries in the optimizer and compares the results to identify logic bugs. •TLP [53] partitions an original query into three separated queries by decomposing its predicate, and triggers a logic bug when the union result of thes",
+      "section": "A Evaluation Step",
+      "page": 10,
+      "char_offset": 44444,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker",
+      "surface": "[52]",
+      "technique": "norec",
+      "sentence": "Each of them has found a total of over a hundred previously unknown bugs in various non-GPU DBMSs [51] ,[52], [53].",
+      "context_before": "e chose the latest version of each GPU DBMS at the time of conducting our experiments. The version information is listed in Table III. Baselines and Ablations. Since SQLaw is the ﬁrst tool for detecting bugs in GPU DBMSs, we can only adapt existingstate-of-the-art approaches developed for non-GPU DBMSs as the baselines. We selected three representative state-ofthe-art approaches, including SQLsmith ,NoREC and TLP .I n particular, SQLsmith is one of the most effective approaches for detecting crash and error bugs, while both NoREC and TLP represent advanced approaches for detecting logic bugs.",
+      "context_after": "We brieﬂy introduce the methodologies of each baseline as follows. •SQLsmith [51] generates random query statements using an AST model and checks whether the DBMS works normally when executing them. •NoREC [52] translates query statements into nonoptimized queries in the optimizer and compares the results to identify logic bugs. •TLP [53] partitions an original query into three separated queries by decomposing its predicate, and triggers a logic bug when the union result of these separated queries mis-matches the original one. Additionally, we adapted the above three approaches to detect GPU-",
+      "section": "A Evaluation Step",
+      "page": 10,
+      "char_offset": 44625,
+      "cited_reference": {
+        "number": 52,
+        "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proc. ESEC/FSE, 2020, pp. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "•NoREC [52] translates query statements into nonoptimized queries in the optimizer and compares the results to identify logic bugs.",
+      "context_before": "elines. We selected three representative state-ofthe-art approaches, including SQLsmith ,NoREC and TLP .I n particular, SQLsmith is one of the most effective approaches for detecting crash and error bugs, while both NoREC and TLP represent advanced approaches for detecting logic bugs. Each of them has found a total of over a hundred previously unknown bugs in various non-GPU DBMSs [51] ,[52], [53]. We brieﬂy introduce the methodologies of each baseline as follows. •SQLsmith [51] generates random query statements using an AST model and checks whether the DBMS works normally when executing them.",
+      "context_after": "•TLP [53] partitions an original query into three separated queries by decomposing its predicate, and triggers a logic bug when the union result of these separated queries mis-matches the original one. Additionally, we adapted the above three approaches to detect GPU-related bugs through two key modiﬁcations. First, we extended these three approaches to support the dialects of the three GPU DBMSs under test. Second, we introduced a conﬁgurationstep (following the pivotal conﬁguration approach in §II-C ) to control query statements on GPU-used execution. Speciﬁcally, this step involves setting",
+      "section": "A Evaluation Step",
+      "page": 10,
+      "char_offset": 44940,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "•TLP [53] partitions an original query into three separated queries by decomposing its predicate, and triggers a logic bug when the union result of these separated queries mis-matches the original one.",
+      "context_before": "one of the most effective approaches for detecting crash and error bugs, while both NoREC and TLP represent advanced approaches for detecting logic bugs. Each of them has found a total of over a hundred previously unknown bugs in various non-GPU DBMSs [51] ,[52], [53]. We brieﬂy introduce the methodologies of each baseline as follows. •SQLsmith [51] generates random query statements using an AST model and checks whether the DBMS works normally when executing them. •NoREC [52] translates query statements into nonoptimized queries in the optimizer and compares the results to identify logic bugs.",
+      "context_after": "Additionally, we adapted the above three approaches to detect GPU-related bugs through two key modiﬁcations. First, we extended these three approaches to support the dialects of the three GPU DBMSs under test. Second, we introduced a conﬁgurationstep (following the pivotal conﬁguration approach in §II-C ) to control query statements on GPU-used execution. Speciﬁcally, this step involves setting all pivotal conﬁguration optionsshown in Fig. 1for GPU-used execution before executing query statements. This increases the percentage of generated query statements executed on GPU devices compared to e",
+      "section": "A Evaluation Step",
+      "page": 10,
+      "char_offset": 45072,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Consequently, we refer to the adapted approaches as SQLsmith ∗,NoREC∗and TLP∗.",
+      "context_before": "bove three approaches to detect GPU-related bugs through two key modiﬁcations. First, we extended these three approaches to support the dialects of the three GPU DBMSs under test. Second, we introduced a conﬁgurationstep (following the pivotal conﬁguration approach in §II-C ) to control query statements on GPU-used execution. Speciﬁcally, this step involves setting all pivotal conﬁguration optionsshown in Fig. 1for GPU-used execution before executing query statements. This increases the percentage of generated query statements executed on GPU devices compared to executions without conﬁguration.",
+      "context_after": "Since SQLaw represents a novel extension of differential testing, we compared its performance against a conventional differential testing approach in the ablation study ( §V-D ). This differential testing approach utilizes Generator in§III-B1 to generate query statements, adopts the pivotal conﬁguration approach detailed in §II-C to control CPU-only and GPU-used execution, and compares their results to identify bugs. B. Effectiveness and Efﬁciency of SQLaw To evaluate the effectiveness and efﬁciency of SQLaw, we used it to detect GPU-related bugs in PG-Strom ,HeavyDB, and Dask-sql. As shown i",
+      "section": "A Evaluation Step",
+      "page": 10,
+      "char_offset": 45905,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "HU AND WU: SQLAW: DETECTING BUGS IN GPUDA TABASE MANAGEMENT SYSTEMS 2155 TABLE VIIIUNIQUE BUGSDETECTED INTHREE GPU DBMS SUNDER TESTWITHIN 24 HOURS DBMS SQLaw SQLsmith∗TLP∗NoREC∗ PG-Strom 22 10 7 5 HeavyDB 15 6 6 4 Dask-sql 14 7 4 6 Total 51 23 17 15 Improvement-122% ↑ 200%↑ 240%↑ C.",
+      "context_before": "statements with conﬁgurations ( Generator needs to verify the correctness of generated query statements with conﬁgurations via databases), thereby consuming less time. Overall, the time cost of ofﬂine rule learning for all three databases is under 1.4 hours. Notably,ofﬂine rule learning process is a one-time effort, unless there are major updates to GPU DBMSs under test. Despite its time cost, the generated differential execution rules can be reused during testing. It is marginally consumptive compared to 24-hour continuous testing as long as it improves bug-ﬁnding effectivenessand efﬁciency.",
+      "context_after": "Comparison With Baselines GPU-related Bug Detection. For a more comprehensive evaluation of SQLaw, we compared it with the three stateof-the-art approaches with GPU DBMSs adaptation, including SQLsmith∗, which is good at detecting GPU crash bugs and GPU error bugs, NoREC∗and TLP∗, which are proﬁcient at ﬁnding GPU logic bugs. We ran all of the approaches with a time budget of 24 hours. As shown in Table VIII, for PG-Strom, SQLaw detected 22 GPU-related bugs, while SQLsmith∗,TLP∗and NoREC∗only found 10, 7, and 5 bugs, respectively. For HeavyDB, SQLaw detected 15 GPU-related bugs, while SQLsmith",
+      "section": "B Effectiveness and Efﬁciency of SQLaw",
+      "page": 11,
+      "char_offset": 51932,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "For a more comprehensive evaluation of SQLaw, we compared it with the three stateof-the-art approaches with GPU DBMSs adaptation, including SQLsmith∗, which is good at detecting GPU crash bugs and GPU error bugs, NoREC∗and TLP∗, which are proﬁcient at ﬁnding GPU logic bugs.",
+      "context_before": "or updates to GPU DBMSs under test. Despite its time cost, the generated differential execution rules can be reused during testing. It is marginally consumptive compared to 24-hour continuous testing as long as it improves bug-ﬁnding effectivenessand efﬁciency. HU AND WU: SQLAW: DETECTING BUGS IN GPUDA TABASE MANAGEMENT SYSTEMS 2155 TABLE VIIIUNIQUE BUGSDETECTED INTHREE GPU DBMS SUNDER TESTWITHIN 24 HOURS DBMS SQLaw SQLsmith∗TLP∗NoREC∗ PG-Strom 22 10 7 5 HeavyDB 15 6 6 4 Dask-sql 14 7 4 6 Total 51 23 17 15 Improvement-122% ↑ 200%↑ 240%↑ C. Comparison With Baselines GPU-related Bug Detection.",
+      "context_after": "We ran all of the approaches with a time budget of 24 hours. As shown in Table VIII, for PG-Strom, SQLaw detected 22 GPU-related bugs, while SQLsmith∗,TLP∗and NoREC∗only found 10, 7, and 5 bugs, respectively. For HeavyDB, SQLaw detected 15 GPU-related bugs, while SQLsmith∗,TLP∗and NoREC∗only discovered 6, 6, 4 bugs, respectively. For Dask-sql, SQLaw detected 14 GPU-related bugs, while SQLsmith∗,TLP∗and NoREC∗only detected 7, 4, 6 bugs, respectively. In total, the number of GPUrelated bugs detected by SQLaw is 122% to 240% more thanthe one by the baseline approaches. In terms of bug types, SQLa",
+      "section": "C Comparison With Baselines",
+      "page": 12,
+      "char_offset": 52271,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "As shown in Table VIII, for PG-Strom, SQLaw detected 22 GPU-related bugs, while SQLsmith∗,TLP∗and NoREC∗only found 10, 7, and 5 bugs, respectively.",
+      "context_before": "TABLE VIIIUNIQUE BUGSDETECTED INTHREE GPU DBMS SUNDER TESTWITHIN 24 HOURS DBMS SQLaw SQLsmith∗TLP∗NoREC∗ PG-Strom 22 10 7 5 HeavyDB 15 6 6 4 Dask-sql 14 7 4 6 Total 51 23 17 15 Improvement-122% ↑ 200%↑ 240%↑ C. Comparison With Baselines GPU-related Bug Detection. For a more comprehensive evaluation of SQLaw, we compared it with the three stateof-the-art approaches with GPU DBMSs adaptation, including SQLsmith∗, which is good at detecting GPU crash bugs and GPU error bugs, NoREC∗and TLP∗, which are proﬁcient at ﬁnding GPU logic bugs. We ran all of the approaches with a time budget of 24 hours.",
+      "context_after": "For HeavyDB, SQLaw detected 15 GPU-related bugs, while SQLsmith∗,TLP∗and NoREC∗only discovered 6, 6, 4 bugs, respectively. For Dask-sql, SQLaw detected 14 GPU-related bugs, while SQLsmith∗,TLP∗and NoREC∗only detected 7, 4, 6 bugs, respectively. In total, the number of GPUrelated bugs detected by SQLaw is 122% to 240% more thanthe one by the baseline approaches. In terms of bug types, SQLaw found 11, 6 and 7 GPU crash and error bugs in PG-Strom ,HeavyDB and Dask-sql, respectively. It covered 10, 6 and 7 of GPU crash and error bugs found by SQLsmith ∗. SQLaw detected 11, 9 and 7 GPU logic bugs",
+      "section": "C Comparison With Baselines",
+      "page": 12,
+      "char_offset": 52607,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For HeavyDB, SQLaw detected 15 GPU-related bugs, while SQLsmith∗,TLP∗and NoREC∗only discovered 6, 6, 4 bugs, respectively.",
+      "context_before": "sql 14 7 4 6 Total 51 23 17 15 Improvement-122% ↑ 200%↑ 240%↑ C. Comparison With Baselines GPU-related Bug Detection. For a more comprehensive evaluation of SQLaw, we compared it with the three stateof-the-art approaches with GPU DBMSs adaptation, including SQLsmith∗, which is good at detecting GPU crash bugs and GPU error bugs, NoREC∗and TLP∗, which are proﬁcient at ﬁnding GPU logic bugs. We ran all of the approaches with a time budget of 24 hours. As shown in Table VIII, for PG-Strom, SQLaw detected 22 GPU-related bugs, while SQLsmith∗,TLP∗and NoREC∗only found 10, 7, and 5 bugs, respectively.",
+      "context_after": "For Dask-sql, SQLaw detected 14 GPU-related bugs, while SQLsmith∗,TLP∗and NoREC∗only detected 7, 4, 6 bugs, respectively. In total, the number of GPUrelated bugs detected by SQLaw is 122% to 240% more thanthe one by the baseline approaches. In terms of bug types, SQLaw found 11, 6 and 7 GPU crash and error bugs in PG-Strom ,HeavyDB and Dask-sql, respectively. It covered 10, 6 and 7 of GPU crash and error bugs found by SQLsmith ∗. SQLaw detected 11, 9 and 7 GPU logic bugs in PG-Strom ,HeavyDB and Dask-sql, respectively. It is considerably more than 2 and 1 GPU logic bugs detected by TLP∗in PG-S",
+      "section": "C Comparison With Baselines",
+      "page": 12,
+      "char_offset": 52754,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "For Dask-sql, SQLaw detected 14 GPU-related bugs, while SQLsmith∗,TLP∗and NoREC∗only detected 7, 4, 6 bugs, respectively.",
+      "context_before": "more comprehensive evaluation of SQLaw, we compared it with the three stateof-the-art approaches with GPU DBMSs adaptation, including SQLsmith∗, which is good at detecting GPU crash bugs and GPU error bugs, NoREC∗and TLP∗, which are proﬁcient at ﬁnding GPU logic bugs. We ran all of the approaches with a time budget of 24 hours. As shown in Table VIII, for PG-Strom, SQLaw detected 22 GPU-related bugs, while SQLsmith∗,TLP∗and NoREC∗only found 10, 7, and 5 bugs, respectively. For HeavyDB, SQLaw detected 15 GPU-related bugs, while SQLsmith∗,TLP∗and NoREC∗only discovered 6, 6, 4 bugs, respectively.",
+      "context_after": "In total, the number of GPUrelated bugs detected by SQLaw is 122% to 240% more thanthe one by the baseline approaches. In terms of bug types, SQLaw found 11, 6 and 7 GPU crash and error bugs in PG-Strom ,HeavyDB and Dask-sql, respectively. It covered 10, 6 and 7 of GPU crash and error bugs found by SQLsmith ∗. SQLaw detected 11, 9 and 7 GPU logic bugs in PG-Strom ,HeavyDB and Dask-sql, respectively. It is considerably more than 2 and 1 GPU logic bugs detected by TLP∗in PG-Strom and HeavyDB, and only 1 GPU logic bug detected by NoREC∗in PG-Strom .F u r t h e r m o r e, TLP∗cannot ﬁnd any GPU log",
+      "section": "C Comparison With Baselines",
+      "page": 12,
+      "char_offset": 52877,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "It is considerably more than 2 and 1 GPU logic bugs detected by TLP∗in PG-Strom and HeavyDB, and only 1 GPU logic bug detected by NoREC∗in PG-Strom .",
+      "context_before": ", while SQLsmith∗,TLP∗and NoREC∗only discovered 6, 6, 4 bugs, respectively. For Dask-sql, SQLaw detected 14 GPU-related bugs, while SQLsmith∗,TLP∗and NoREC∗only detected 7, 4, 6 bugs, respectively. In total, the number of GPUrelated bugs detected by SQLaw is 122% to 240% more thanthe one by the baseline approaches. In terms of bug types, SQLaw found 11, 6 and 7 GPU crash and error bugs in PG-Strom ,HeavyDB and Dask-sql, respectively. It covered 10, 6 and 7 of GPU crash and error bugs found by SQLsmith ∗. SQLaw detected 11, 9 and 7 GPU logic bugs in PG-Strom ,HeavyDB and Dask-sql, respectively.",
+      "context_after": "F u r t h e r m o r e, TLP∗cannot ﬁnd any GPU logic bugs in Dask-sql. Neither can NoREC∗ﬁnd any GPU logic bugs in either HeavyDB orDask-sql. Overall, SQLaw outperforms corresponding state-of-the-art approaches for detecting crash and GPU error bugs as well as GPU logicbugs. These results demonstrate the superiority of SQLaw in terms of GPU-related bug detection. Answer to RQ2: Compared with the existing state-of-theart approaches with GPU DBMSs adaptation, SQLaw candetect 122% to 240% more GPU-related bugs in three GPU DBMSs under test. Testing Time Budget for SQLaw. In most cases, GPU DBMS fe",
+      "section": "C Comparison With Baselines",
+      "page": 12,
+      "char_offset": 53402,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "F u r t h e r m o r e, TLP∗cannot ﬁnd any GPU logic bugs in Dask-sql.",
+      "context_before": "d NoREC∗only detected 7, 4, 6 bugs, respectively. In total, the number of GPUrelated bugs detected by SQLaw is 122% to 240% more thanthe one by the baseline approaches. In terms of bug types, SQLaw found 11, 6 and 7 GPU crash and error bugs in PG-Strom ,HeavyDB and Dask-sql, respectively. It covered 10, 6 and 7 of GPU crash and error bugs found by SQLsmith ∗. SQLaw detected 11, 9 and 7 GPU logic bugs in PG-Strom ,HeavyDB and Dask-sql, respectively. It is considerably more than 2 and 1 GPU logic bugs detected by TLP∗in PG-Strom and HeavyDB, and only 1 GPU logic bug detected by NoREC∗in PG-Strom .",
+      "context_after": "Neither can NoREC∗ﬁnd any GPU logic bugs in either HeavyDB orDask-sql. Overall, SQLaw outperforms corresponding state-of-the-art approaches for detecting crash and GPU error bugs as well as GPU logicbugs. These results demonstrate the superiority of SQLaw in terms of GPU-related bug detection. Answer to RQ2: Compared with the existing state-of-theart approaches with GPU DBMSs adaptation, SQLaw candetect 122% to 240% more GPU-related bugs in three GPU DBMSs under test. Testing Time Budget for SQLaw. In most cases, GPU DBMS features remain stable, allowing rules learned during the ofﬂine proces",
+      "section": "C Comparison With Baselines",
+      "page": 12,
+      "char_offset": 53550,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp"
+      ],
+      "text_is_letter_spaced": true
+    },
+    {
+      "id": "M17",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Neither can NoREC∗ﬁnd any GPU logic bugs in either HeavyDB orDask-sql.",
+      "context_before": "r of GPUrelated bugs detected by SQLaw is 122% to 240% more thanthe one by the baseline approaches. In terms of bug types, SQLaw found 11, 6 and 7 GPU crash and error bugs in PG-Strom ,HeavyDB and Dask-sql, respectively. It covered 10, 6 and 7 of GPU crash and error bugs found by SQLsmith ∗. SQLaw detected 11, 9 and 7 GPU logic bugs in PG-Strom ,HeavyDB and Dask-sql, respectively. It is considerably more than 2 and 1 GPU logic bugs detected by TLP∗in PG-Strom and HeavyDB, and only 1 GPU logic bug detected by NoREC∗in PG-Strom .F u r t h e r m o r e, TLP∗cannot ﬁnd any GPU logic bugs in Dask-sql.",
+      "context_after": "Overall, SQLaw outperforms corresponding state-of-the-art approaches for detecting crash and GPU error bugs as well as GPU logicbugs. These results demonstrate the superiority of SQLaw in terms of GPU-related bug detection. Answer to RQ2: Compared with the existing state-of-theart approaches with GPU DBMSs adaptation, SQLaw candetect 122% to 240% more GPU-related bugs in three GPU DBMSs under test. Testing Time Budget for SQLaw. In most cases, GPU DBMS features remain stable, allowing rules learned during the ofﬂine process to be reused effectively. However, when new featuresare introduced, S",
+      "section": "C Comparison With Baselines",
+      "page": 12,
+      "char_offset": 53619,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M18",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "It should be notedthat SQLaw can only begin bug detection after completing the TABLE IXPOWER ANDMEMORY CONSUMPTION ,INCLUDINGS AVERAGE CPU POWER ,AVERAGE CPU MEMORY USAGE ,AVERAGE GPUPOWER ANDAVERAGE GPU MEMORY USAGE DBMS PG-Strom HeavyDB Dask-sql SQLaw 40W 457MB 58W 1222MB32W 1130MB 79W 2551MB62W 1407MB 81W 1980MB SQLsmith∗ 19W 439MB 44W 1222MB29W 685MB 77W 1986MB62W 1324MB 80W 1980MB TLP∗ 39W 442MB 53W 1222MB30W 1060MB 74W2091MB61W 1224MB 79W 1957MB NoREC∗ 36W 434MB 55W 1222MB31W 1012MB 72W 2412MB61W 1306MB 79W 1965MB ofﬂine process, causing it to initially lag behind the baselines.",
+      "context_before": "-theart approaches with GPU DBMSs adaptation, SQLaw candetect 122% to 240% more GPU-related bugs in three GPU DBMSs under test. Testing Time Budget for SQLaw. In most cases, GPU DBMS features remain stable, allowing rules learned during the ofﬂine process to be reused effectively. However, when new featuresare introduced, SQLaw must perform ofﬂine rule learning to adapt to these changes, which inevitably incurs additional time overhead. To ensure fair evaluation under such circumstances, we compare SQLaw with the baseline approaches by taking the time cost of ofﬂine rule learning into account.",
+      "context_after": "Nevertheless, it requires only 1 hour, 2 hours, and 2 hoursto outperform the best baseline in PG-strom ,HeavyDB ,a n d Dask-sql, respectively. The corresponding ofﬂine rule learning durations are 0.35 hours, 1.1 hours, and 1.38 hours for these three systems. Power and Memory Consumption. To quantify energy and resource consumption of SQLaw and the baselines during 24hour testing, we used the Intel RAPL [54] interface to measure average CPU power, while utilizing the library psutil [55] to collect average CPU memory usage. Additionally, average GPU power and memory usage were monitored through",
+      "section": "C Comparison With Baselines",
+      "page": 12,
+      "char_offset": 54565,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M19",
+      "found_by": "citation_marker",
+      "surface": "[52]",
+      "technique": "norec",
+      "sentence": "In terms of DBMS types, signiﬁcant research efforts have been devoted to relational DBMSs [14] ,[52] ,[53] ,[61] ,[62] ,[63] ,[64] ,g r a p hD B M S s [13] ,[65] ,[66] ,a n dR D Fs t o r e s [67].",
+      "context_before": "e of the GPU and increases the speed of data processing by having all the data reside in memory. The non-memory GPU DBMSs, including Dask-sql [26] ,BlazingSQL [25] ,SQreamDB [24], etc., leverages the GPU to perform all or most of the database relational operations, allowing for the analysis of larger data volumes. In aword, these GPU DBMSs under test are well represented. With the emergence of more and more GPU DBMSs, we believe our technique will provide important values in the reliability of these DBMSs. DBMS Testing. Recent research studies on DBMS testing focus on various aspects of DBMSs.",
+      "context_after": "Different from the prior studies, SQLaw focuses on detecting GPU-related bugs in GPU DBMSs, a brandly new type of DBMSs in terms of the execution processor unit. With respect to methodologies for DBMS testing, existing research can be primarily categorized into three groups: DBMS fuzzing [68], metamorphic testing [69] and differential testing [19]. DBMS Fuzzing. DBMS fuzzing approaches generate test cases and verify whether the DBMS operates normally during executing them to identify bugs [68] .SQLsmith [70] is a leading grammar-based DBMS fuzzer that ra ndomly generates SQL queries to test v",
+      "section": "VI RELATED WORK",
+      "page": 15,
+      "char_offset": 66621,
+      "cited_reference": {
+        "number": 52,
+        "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proc. ESEC/FSE, 2020, pp. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker",
+        "citation_marker_project_authored"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M20",
+      "found_by": "citation_marker",
+      "surface": "[52]",
+      "technique": "norec",
+      "sentence": "Many studies [52] ,[53] ,[61] ,[62], [64] ,[65] ,[66] employ metamorphic testing to evaluate DBMSs.",
+      "context_before": "generates SQL queries to test various DBMSs. SQUIRREL [71] ,Grifﬁn [72], LEGO [63] ,DynSQL [73] ,SQLRight [74] ,a n d WINGFUZZ [75] are mutation-based fuzzers that u tilize coverage information to guide mutation from original queries to new ones,thereby generating diverse queries to test DBMSs. In contrast to these approaches, we employ an AST-based fuzzer to ra ndomly generate SQL datasets for mining differential execution rules. This helps SQLaw to generate query statements with conﬁgurations capable of expected execution,thereby detect GPU-related bugs more effectively. Metamorphic Testing.",
+      "context_after": "Metamorphic testing veriﬁes SQL statement results against predeﬁned rules to detect bugs [69] .TLP (Ternary Logic Partitioning) is an effective metamorphic relation for detecting logic bugs in both relational DBMSs [53] and graph DBMSs [65]. To uncover logic bugs in relational DBMSs, NoREC [52] veriﬁes the equivalence between original queriesand their non-optimized translations; PINOLO [62] employs the approximation relation; TQS [61] utilizes join optimization relations; and EET [64] constructs equivalent transformations through expression-level manipulation. Add itionally, GAMERA [66] lever",
+      "section": "VI RELATED WORK",
+      "page": 15,
+      "char_offset": 67987,
+      "cited_reference": {
+        "number": 52,
+        "text": "M. Rigger and Z. Su, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proc. ESEC/FSE, 2020, pp. 1140–1152.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker",
+        "citation_marker_project_authored"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M21",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP (Ternary Logic Partitioning) is an effective metamorphic relation for detecting logic bugs in both relational DBMSs [53] and graph DBMSs [65].",
+      "context_before": "guide mutation from original queries to new ones,thereby generating diverse queries to test DBMSs. In contrast to these approaches, we employ an AST-based fuzzer to ra ndomly generate SQL datasets for mining differential execution rules. This helps SQLaw to generate query statements with conﬁgurations capable of expected execution,thereby detect GPU-related bugs more effectively. Metamorphic Testing. Many studies [52] ,[53] ,[61] ,[62], [64] ,[65] ,[66] employ metamorphic testing to evaluate DBMSs. Metamorphic testing veriﬁes SQL statement results against predeﬁned rules to detect bugs [69] .",
+      "context_after": "To uncover logic bugs in relational DBMSs, NoREC [52] veriﬁes the equivalence between original queriesand their non-optimized translations; PINOLO [62] employs the approximation relation; TQS [61] utilizes join optimization relations; and EET [64] constructs equivalent transformations through expression-level manipulation. Add itionally, GAMERA [66] leverages graph-aware metamorphic relations to detect logic bugs in graph DBMSs. These approaches rely on customized relations or rules that are less tailored to the characteristics of GPU DBMSs. This limits their direct applicabilityin effectivel",
+      "section": "VI RELATED WORK",
+      "page": 15,
+      "char_offset": 68183,
+      "found_by_all": [
+        "technique",
+        "citation_marker",
+        "citation_marker_project_authored"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M22",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "To uncover logic bugs in relational DBMSs, NoREC [52] veriﬁes the equivalence between original queriesand their non-optimized translations; PINOLO [62] employs the approximation relation; TQS [61] utilizes join optimization relations; and EET [64] constructs equivalent transformations through expression-level manipulation.",
+      "context_before": "AST-based fuzzer to ra ndomly generate SQL datasets for mining differential execution rules. This helps SQLaw to generate query statements with conﬁgurations capable of expected execution,thereby detect GPU-related bugs more effectively. Metamorphic Testing. Many studies [52] ,[53] ,[61] ,[62], [64] ,[65] ,[66] employ metamorphic testing to evaluate DBMSs. Metamorphic testing veriﬁes SQL statement results against predeﬁned rules to detect bugs [69] .TLP (Ternary Logic Partitioning) is an effective metamorphic relation for detecting logic bugs in both relational DBMSs [53] and graph DBMSs [65].",
+      "context_after": "Add itionally, GAMERA [66] leverages graph-aware metamorphic relations to detect logic bugs in graph DBMSs. These approaches rely on customized relations or rules that are less tailored to the characteristics of GPU DBMSs. This limits their direct applicabilityin effectively detecting GPU-related bugs. Differential Testing. Differential testing compares the results of identical test cases executed on different software systemsor versions to identify inconsistencies, correctness bugs and performance issues [19]. This technique is widely used in DBMS testing. For example, DT2 [15] identiﬁes tra",
+      "section": "VI RELATED WORK",
+      "page": 15,
+      "char_offset": 68329,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M23",
+      "found_by": "technique",
+      "surface": "DQP",
+      "technique": "dqp",
+      "sentence": "To detect correctness bugs, Grand [13] and RD2 [67] employ randomized differential testing for multiple graph DBMSs and RDF stores, respectively; THANOS [14] compares test cases on differential storage engines; and DQP [16] leverages differential query plans for simple yet effective bug detection.",
+      "context_before": "graph DBMSs. These approaches rely on customized relations or rules that are less tailored to the characteristics of GPU DBMSs. This limits their direct applicabilityin effectively detecting GPU-related bugs. Differential Testing. Differential testing compares the results of identical test cases executed on different software systemsor versions to identify inconsistencies, correctness bugs and performance issues [19]. This technique is widely used in DBMS testing. For example, DT2 [15] identiﬁes transaction discrepancies across multiple DBMSs by comparing the results of identical transactions.",
+      "context_after": "APOLLO [76] detects performance issues by comparing SQL execution speeds across different DBMS versions. Moreover, Mozi [77] uncovers both performance and correctness bugs by altering DBMS conﬁgurations to createvaried system states for comparison. Beyond DBMS testing, differential testing is widely applied to test various software applications, such as ORM frameworks[78], compilers [79] ,J V M s [80], JavaScript engines [81] and search engines [82]. Unlike previous studies, SQLaw can be considered a novel extension of differential testing, since it combines rule learning, mutation, and diffe",
+      "section": "VI RELATED WORK",
+      "page": 15,
+      "char_offset": 69350,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "dqp"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "extends_technique": [
+        "M9"
+      ],
+      "describes_as_state_of_the_art": [
+        "M5"
+      ]
+    },
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:14:29Z",
+    "is_model_written": true,
+    "summary": "SQLaw tests GPU-based DBMSs, which the authors say had received no systematic bug-detection effort despite growing interest. It combines offline rule learning, which automatically extracts differential execution rules used to guide synthesis of configurations and queries, with an online interpreter that mutates those statements to generalise them. Evaluated on three major GPU DBMSs it outperformed state-of-the-art approaches by up to 2.22x and detected 51 previously unknown GPU-related bugs, 37 confirmed or fixed.",
+    "narrative": "SQLaw imitates SQLancer's statement-level, syntax-based reduction to simplify its own bug reports, and takes NoREC and TLP as two of its three baselines, describing them as representative state-of-the-art approaches that have each found over a hundred bugs in non-GPU DBMSs.",
+    "roles": {
+      "M1": "background",
+      "M2": "motivation",
+      "M3": "reuse_component",
+      "M4": "state_of_the_art",
+      "M5": "state_of_the_art",
+      "M6": "incidental",
+      "M7": "definition",
+      "M8": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "uncertain",
+        "mention_ids": [
+          "M3"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M3",
+            "sentence": "To identify unique GPU-related bugs, we imitated the statement-level and syntax-based reduction in SQLancer [47] to automatically simplify bug reports.",
+            "section": "IV IMPLEMENTATION",
+            "page": 10
+          }
+        ],
+        "reasoning": "M3 says they imitated SQLancer's statement-level, syntax-based reduction to simplify test cases. Imitating a technique is not necessarily reusing the code, and no mention read settles which.",
+        "reuse_kind": "unclear"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "A pattern fired on M9, but the rule-based differential execution SQLaw contributes is its own; NoREC and TLP are described as baselines."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M4",
+          "M7",
+          "M8"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M4",
+            "sentence": "We selected three representative state-ofthe-art approaches, including SQLsmith ,NoREC and TLP .",
+            "section": "A Evaluation Step",
+            "page": 10
+          },
+          {
+            "mention_id": "M7",
+            "sentence": "•NoREC [52] translates query statements into nonoptimized queries in the optimizer and compares the results to identify logic bugs.",
+            "section": "A Evaluation Step",
+            "page": 10
+          },
+          {
+            "mention_id": "M8",
+            "sentence": "•TLP [53] partitions an original query into three separated queries by decomposing its predicate, and triggers a logic bug when the union result of these separated queries mis-matches the original one.",
+            "section": "A Evaluation Step",
+            "page": 10
+          }
+        ],
+        "reasoning": "NoREC and TLP are two of the three representative approaches selected for comparison.",
+        "techniques": [
+          "norec",
+          "tlp"
+        ]
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M4",
+          "M5"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M4",
+            "sentence": "We selected three representative state-ofthe-art approaches, including SQLsmith ,NoREC and TLP .",
+            "section": "A Evaluation Step",
+            "page": 10
+          },
+          {
+            "mention_id": "M5",
+            "sentence": "I n particular, SQLsmith is one of the most effective approaches for detecting crash and error bugs, while both NoREC and TLP represent advanced approaches for detecting logic bugs.",
+            "section": "A Evaluation Step",
+            "page": 10
+          }
+        ],
+        "reasoning": "M4 calls the three selected approaches state-of-the-art and M5 says NoREC and TLP represent the most effective for logic bugs."
+      }
+    },
+    "disagreements": [
+      "An extends_technique pattern fired on M9, which describes a baseline rather than a contribution."
+    ],
+    "unresolved": [
+      "Whether SQLaw reuses SQLancer's reduction code or reimplements the idea."
+    ]
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

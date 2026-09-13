@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "paper": {
+    "id": "paper:arxiv:2206.08530",
+    "title": "GDsmith: Detecting Bugs in Graph Database Engines",
+    "authors": [
+      "Weisheng Lin",
+      "Ziyue Hua",
+      "Luyao Ren",
+      "Z. Li",
+      "Lu Zhang",
+      "Tao Xie"
+    ],
+    "year": 2022,
+    "venue": "arXiv.org",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2206.08530"
+  },
+  "summary": {
+    "text": "The preprint of GDsmith, a black-box approach for testing graph database engines. Random test generation, the most practical route to automation, faces three obstacles here — semantic validity, non-empty results, and behaviour diversity. GDsmith ensures each generated Cypher query is semantically valid through skeleton generation and completion, raises the chance of non-empty results with three kinds of structural mutation, and improves behavioural diversity by selecting property keys according to their previous frequencies. It detected 27 previously unknown bugs across three popular open-source graph engines.",
+    "relationship_to_sqlancer": "Its artifact reuses the SQLancer codebase, carrying random query generation for bug detection to graph engines.",
+    "is_model_generated": true,
+    "grounded_in_source": true,
+    "written_from": "abstract",
+    "written_from_url": "https://arxiv.org/abs/2206.08530",
+    "source_sha256": "sha256:e9550e6c8d66a5a8e89de65a27a31adf725aa63e2acb32b2db37735d31f1d7ac",
+    "supporting_excerpts": [
+      "However, random testing, the most practical way of automated test generation, faces the challenges of semantic validity, non-empty result, and behavior diversity to detect bugs in graph database engines.",
+      "To address these challenges, in this paper, we propose GDsmith, the first black-box approach for testing graph database engines.",
+      "GDsmith successfully detects 27 previously unknown bugs on the released versions of three popular open-source graph database engines and receive positive feedback from their developers."
+    ],
+    "model": "claude-opus-5",
+    "generated_by": "claude_code_session",
+    "classifier_version": null,
+    "generated_at": "2026-09-07T02:38:27Z"
+  },
+  "evidence": [
+    {
+      "relationship": "references",
+      "title": "Cites SQLancer",
+      "value": "yes",
+      "method": "citation_graph",
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ],
+      "sources": [
+        {
+          "source_url": "https://arxiv.org/abs/2206.08530",
+          "source_type": "paper_citation_context",
+          "excerpt": "NoREC [24] detects bugs in relational database engines by applying a semantics-preserving transformation to a given SQL query to disable the engine’s optimizations and addresses PQS’ high implementation effort.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://arxiv.org/abs/2206.08530",
+          "source_type": "paper_citation_context",
+          "excerpt": "PQS [26] detects wrong-result bugs by checking whether a specific record is fetched correctly.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://arxiv.org/abs/2206.08530",
+          "source_type": "paper_citation_context",
+          "excerpt": "TLP [25] derives multiple SQL queries that compute a partial result of the initial query.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Ternary Logic Partitioning (TLP), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://arxiv.org/abs/2206.08530",
+          "source_type": "paper_citation_context",
+          "excerpt": "TLP [25] derives multiple SQL queries that",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Ternary Logic Partitioning (TLP), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    },
+    {
+      "relationship": "uses_infrastructure",
+      "title": "Uses the SQLancer codebase",
+      "value": "yes",
+      "method": "artifact_inspection",
+      "techniques": [],
+      "sources": [
+        {
+          "source_url": "https://github.com/ddaa2000/GDsmith",
+          "source_type": "github_repository",
+          "excerpt": "# GDsmith",
+          "excerpt_is_verbatim": true,
+          "note": "Repository is named after GDsmith, the tool this paper says it built, and is about database testing.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://github.com/ddaa2000/GDsmith/blob/master/src/main/java/org/example/gdsmith/Randomly.java",
+          "source_type": "github_code",
+          "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.ALPHANUMERIC;",
+          "excerpt_is_verbatim": true,
+          "note": "src/main/java/org/example/gdsmith/Randomly.java is SQLancer's Randomly.java, with the package renamed to org.example.gdsmith (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    },
+    {
+      "relationship": "artifact",
+      "title": "Artifact",
+      "value": "https://github.com/ddaa2000/GDsmith",
+      "method": "artifact_inspection",
+      "techniques": [],
+      "markers": [
+        "renamed_sqlancer_package",
+        "sqlancer_source_content_match"
+      ],
+      "sources": [
+        {
+          "source_url": "https://github.com/ddaa2000/GDsmith",
+          "source_type": "github_repository",
+          "excerpt": "# GDsmith",
+          "excerpt_is_verbatim": true,
+          "note": "Repository is named after GDsmith, the tool this paper says it built, and is about database testing.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://github.com/ddaa2000/GDsmith/blob/master/src/main/java/org/example/gdsmith/Randomly.java",
+          "source_type": "github_code",
+          "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.ALPHANUMERIC;",
+          "excerpt_is_verbatim": true,
+          "note": "src/main/java/org/example/gdsmith/Randomly.java is SQLancer's Randomly.java, with the package renamed to org.example.gdsmith (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    }
+  ]
+}

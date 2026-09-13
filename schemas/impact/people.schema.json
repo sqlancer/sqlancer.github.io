@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sqlancer.github.io/schemas/impact/people.schema.json",
+  "title": "SQLancer campaign reporters",
+  "description": "People who report bugs found with SQLancer. The roster decides whose issues are worth fetching -- author search is the only route to a report that never names SQLancer -- and grants no bug any attribution by itself.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "people"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "policy_version": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "people": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "evidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^person:[a-z0-9][a-z0-9_-]*$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "As the source records it, handle or display name."
+          },
+          "github": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "GitHub login, or null for someone who reports on a non-GitHub tracker."
+          },
+          "handle_is_verified": {
+            "type": "boolean",
+            "description": "The handle was read off issues this person is credited with, not assumed from the recorded name."
+          },
+          "reports_on_lab_list": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "role": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "entry_hash": {
+            "type": "string"
+          },
+          "first_seen": {
+            "type": "string"
+          },
+          "last_verified": {
+            "type": "string"
+          },
+          "evidence": {
+            "$ref": "common.schema.json#/definitions/evidence_list"
+          },
+          "also_recorded_as": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Other spellings the sources use for this person."
+          }
+        }
+      }
+    }
+  }
+}

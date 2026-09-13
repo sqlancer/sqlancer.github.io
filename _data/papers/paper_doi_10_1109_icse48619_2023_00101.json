@@ -1,0 +1,992 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-10T15:26:32Z",
+  "paper": {
+    "id": "paper:doi:10.1109/icse48619.2023.00101",
+    "title": "Detecting Isolation Bugs via Transaction Oracle Construction",
+    "authors": [
+      "Wensheng Dou",
+      "Ziyu Cui",
+      "Qianwang Dai",
+      "Jiansen Song",
+      "Dong Wang",
+      "Yu Gao",
+      "Wei Wang",
+      "Jun Wei",
+      "Lei Chen",
+      "Han Wang",
+      "Hua Zhong",
+      "Tao Huang"
+    ],
+    "year": 2023,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1109/icse48619.2023.00101",
+    "arxiv_id": null,
+    "s2_paper_id": "a9fa1a56ba118fa3b629fc6308d6b5606751f023",
+    "url": "https://doi.org/10.1109/icse48619.2023.00101",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1109/icse48619.2023.00101",
+      "retrieved_at": "2026-09-10T15:26:32Z",
+      "chars": 75120,
+      "content_sha256": "sha256:a5b2434826fc24eed6b25f5c076328e5904bc518eb104d5dd67abef341bb26fa"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": false,
+    "sections": [
+      {
+        "number": "I",
+        "title": "INTRODUCTION",
+        "start": 1835
+      },
+      {
+        "number": "II",
+        "title": "PRELIMINARIES",
+        "start": 10231
+      },
+      {
+        "number": "III",
+        "title": "APPROACH",
+        "start": 14485
+      },
+      {
+        "number": "A",
+        "title": "Transaction Test Protocol",
+        "start": 14786
+      },
+      {
+        "number": "B",
+        "title": "Troc Overview",
+        "start": 17196
+      },
+      {
+        "number": "C",
+        "title": "Database and SQL Statement Generation",
+        "start": 21492
+      },
+      {
+        "number": "D",
+        "title": "Transaction Test Case Generation",
+        "start": 24636
+      },
+      {
+        "number": "E",
+        "title": "Transaction Oracle Construction",
+        "start": 25767
+      },
+      {
+        "number": "F",
+        "title": "Detecting Isolation Bugs",
+        "start": 38814
+      },
+      {
+        "number": "IV",
+        "title": "EVALUA TION",
+        "start": 40784
+      },
+      {
+        "number": "A",
+        "title": "Experimental Methodology",
+        "start": 41123
+      },
+      {
+        "number": "B",
+        "title": "Overall Bug Detection Results",
+        "start": 43197
+      },
+      {
+        "number": "C",
+        "title": "New Bugs",
+        "start": 47857
+      },
+      {
+        "number": "D",
+        "title": "Other Experimental Statistics",
+        "start": 53446
+      },
+      {
+        "number": "V",
+        "title": "DISCUSSION",
+        "start": 54651
+      },
+      {
+        "number": "VI",
+        "title": "RELA TED WORK",
+        "start": 57375
+      },
+      {
+        "number": "VII",
+        "title": "CONCLUSION",
+        "start": 60296
+      },
+      {
+        "number": "W",
+        "title": "Wang, and J. Wei, “Finding bugs in Gremlin-based graph database",
+        "start": 71351
+      },
+      {
+        "number": "T",
+        "title": "Huang, “Testing database systems via differential query execution,”",
+        "start": 72061
+      },
+      {
+        "number": "J",
+        "title": "Wang, and J. Li, “Sequence-oriented DBMS fuzzing,” in Proceedings",
+        "start": 72874
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "(2022) MySQL. [Online]. Available: https://www.mysql.com",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "(2022) MariaDB. [Online]. Available: https://mariadb.org",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "(2022) PostgreSQL. [Online]. Available: https://www.postgresql.org",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "(2022) TiDB, PingCAP. [Online]. Available: https://pingcap.com",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "(2022) CockroachDB. [Online]. Available: https://www.cockroachlabs. com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "D. D. Chamberlin and R. F. Boyce, “SEQUEL: A structured english query language,” in Proceedings of ACMSIGFIDET Workshop on Data Description, Access and Control (SIGFIDET), 1974, pp. 249–264.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "P. A. Bernstein, V. Hadzilacos, and N. Goodman, Concurrency Control and Recovery in Database Systems. Addison-Wesley Longman Publishing Co., Inc., 1986.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "P. M. Lewis, A. Bernstein, and M. Kifer, “Databases and transaction processing: An application-oriented approach,” ACMSIGMOD Record, vol. 31, no. 1, pp. 74–75, 2002.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "(2022) The ANSI isolation levels. [Online]. Available: http://www. adp-gmbh.ch/ora/misc/isolation level.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "H. Berenson, P. Bernstein, J. Gray, J. Melton, E. O’Neil, and P. O’Neil, “A critique of ANSI SQL isolation levels,” in Proceedings of ACMSIGMOD International Conference on Management of Data (SIGMOD), 1995, pp. 1–10.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "P. Bailis, A. Davidson, A. Fekete, A. Ghodsi, J. M. Hellerstein, and I. Stoica, “Highly available transactions: Virtues and limitations,” Proceedings of the VLDB Endowment (VLDB), vol. 7, no. 3, pp. 181–192, 2013.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "D. Potier and P. Leblanc, “Analysis of locking policies in database management systems,” Communications of the ACM, vol. 23, no. 10, pp. 584–593, 1980.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "S. Sippu and E. Soisalon-Soininen, Lock-Based Concurrency Control, 2014, pp. 125–158.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "D. P. Reed, “Naming and synchronization in a decentralized computer system,” Tech. Rep., 1978.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "P. A. Bernstein and N. Goodman, “Multiversion concurrency control—theory and algorithms,” ACM Transactions on Database Systems (TODS), vol. 8, no. 4, pp. 465–483, 1983.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "M. J. Carey, “Improving the performance of an optimistic concurrency control algorithm through timestamps and versions,” IEEE Transactions on Software Engineering (TSE), vol. SE-13, no. 6, pp. 746–751, 1987.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "X. Song and J. W.-S. Liu, “Performance of multiversion concurrency control algorithms in maintaining temporal consistency,” in Proceedings of Annual International Computer Software and Applications Conference (COMPSAC), 1990, pp. 132–139.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "H.-T. Kung and J. T. Robinson, “On optimistic methods for concurrency control,” ACM Transactions on Database Systems (TODS), vol. 6, no. 2, pp. 213–226, 1981.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "X. Y u, A. Pavlo, D. Sanchez, and S. Devadas, “TicToc: Time traveling optimistic concurrency control,” in Proceedings of International Conference on Management of Data (SIGMOD), 2016, pp. 1629–1642.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "(2022) Hermitage. [Online]. Available: https://github.com/ept/hermitage",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "R. Biswas and C. Enea, “On the complexity of checking transactional consistency,” in Proceedings of ACMSIGPLAN Conference on ObjectOriented Programming Systems, Languages, and Applications (OOPSLA), 2019, pp. 165:1–165:28.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "C. Tan, C. Zhao, S. Mu, and M. Walﬁsh, “Cobra: Making transactional key-value stores veriﬁably serializable,” in Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI), 2020, pp. 63–80.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "K. Kingsbury and P. Alvaro, “Elle: Inferring isolation anomalies from experimental observations,” Proceedings of the VLDB Endowment (VLDB), vol. 14, no. 3, pp. 268–280, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "(2022) SQLsmith. [Online]. Available: https://github.com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "D. R. Slutz, “Massive stochastic testing of SQL,” in Proceedings of International Conference on V ery Large Data Bases (VLDB), 1998, pp. 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI), 2020, pp. 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 27,
+      "text": "——, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 211:1–211:30, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 28,
+      "text": "——, “Detecting optimization bugs in database engines via nonoptimizing reference engine construction,” in Proceedings of ACM Joint European Software Engineering Conference and Symposium on theF oundations of Software Engineering (ESEC/FSE), 2020, pp. 1140– 1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 29,
+      "text": "(2022) Inconsistent behaviors of UPDATE under Read Uncommitted. [Online]. Available: https://bugs.mysql.com/bug.php?id=104833",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "E. F. Codd, “A relational model of data for large shared data banks,” Communications of the ACM, vol. 13, no. 6, pp. 377–387, 1970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "(2022) DB-Engines. [Online]. Available: https://db-engines.com/en/ ranking",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "(2022) GitHub. [Online]. Available: https://github.com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "A. Adya, “Weak consistency: A generalized theory and optimistic implementations for distributed transactions,” Ph.D. dissertation, Massachusetts Institute of Technology, 1999.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "A. Adya, B. Liskov, and P. O’Neil, “Generalized isolation level deﬁnitions, ” in Proceedings of International Conference on Data Engineering (ICDE), 2000, pp. 67–78.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "A. Cerone, G. Bernardi, and A. Gotsman, “A framework for transactional consistency models with atomic visibility,” in Proceedings of International Conference on Concurrency Theory (CONCUR), 2015, pp. 58–71.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "P. Bailis, A. Fekete, A. Ghodsi, J. M. Hellerstein, and I. Stoica, “Scalable atomic visibility with RAMP transactions,” ACM Transactions on Database Systems (TODS), vol. 41, no. 3, pp. 15:1–15:45, 2016.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "L. Brutschy, D. Dimitrov, P. M ¨uller, and M. V echev, “Serializability for eventual consistency: Criterion, analysis, and applications,” in Proceedings of ACMSIGPLAN Symposium on Principles of Programming Languages (POPL), 2017, pp. 458–472.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "(2022) MySQL isolation. [Online]. Available: https://dev.mysql.com/ doc/refman/8.0/en/innodb-transaction-isolation-levels.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "(2022) Isolation levels in MariaDB. [Online]. Available: https: //mariadb.com/kb/en/set-transaction/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "(2022) TiDB Isolation. [Online]. Available: https://docs.pingcap.com/ tidb/v5.0/transaction-isolation-levels",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "C. Binnig, D. Kossmann, E. Lo, and M. T. ¨Ozsu, “QAGen: Generating query-aware test databases,” in Proceedings of ACMSIGMOD International Conference on Management of Data (SIGMOD), 2007, pp. 341– 352.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "N. Bruno and S. Chaudhuri, “Flexible database generators,” in Proceedings of International Conference on V ery Large Data Bases (VLDB), 2005, pp. 1097–1107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "E. F. Codd, “Relational completeness of data base sublanguages,” Research Report, 1972.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "J. Gray, P. Sundaresan, S. Englert, K. Baclawski, and P. J. Weinberger, “Quickly generating billion-record synthetic databases,” in Proceedings of ACMSIGMOD International Conference on Management of Data (SIGMOD), 1994, pp. 243–252.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "K. Houkjær, K. Torp, and R. Wind, “Simple and realistic data generation,” in Proceedings of International Conference on V ery Large Data Bases (VLDB), 2006, pp. 1243–1246.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "S. A. Khalek, B. Elkarablieh, Y. O. Laleye, and S. Khurshid, “Queryaware test generation using a relational constraint solver,” in Proceedings of IEEE/ACM International Conference on Automated Software Engineering (ASE), 2008, pp. 238–247.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "(2022) go-randgen. [Online]. Available: https://github.com/pingcap/ go-randgen",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "R. Zhong, Y. Chen, H. Hu, H. Zhang, W. Lee, and D. Wu, “SQUIRREL: Testing database management systems with language validity and coverage feedback,” in Proceedings of ACMSIGSAC Conference on Computer and Communications Security (CCS), 2020, pp. 58–71.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "(2022) SQLancer. [Online]. Available: https://www.manuelrigger.at/ dbms-bugs/",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 50,
+      "text": "(2022) InnoDB transaction model. [Online]. Available: https://dev. mysql.com/doc/refman/8.0/en/innodb-transaction-model.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "J. N. Gray, R. A. Lorie, and G. R. Putzolu, “Granularity of locks in a shared data base,” in Proceedings of International Conference on V ery Large Data Bases (VLDB), 1975, pp. 428–451.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "(2022) Next-key locking in MySQL. [Online]. Available: https: //dev.mysql.com/doc/refman/8.0/en/innodb-next-key-locking.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "(2022) Execution plan information in MySQL. [Online]. Available: https://dev.mysql.com/doc/refman/8.0/en/ execution-plan-information.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "(2022) DELETE fails to delete record after blocking is released. [Online]. Available: https://jira.mariadb.org/browse/MDEV-27992",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "(2022) Weird SELECT view when a record is modiﬁed to a same value by two transactions. [Online]. Available: https: //jira.mariadb.org/browse/MDEV-26642 1134",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "(2022) Inconsistent behaviors of UPDATE under RU & RC isolation level. [Online]. Available: https://jira.mariadb.org/browse/MDEV-26643",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "(2022) Weird SELECT view when a record is modiﬁed to the same value by two transactions. [Online]. Available: https: //github.com/pingcap/tidb/issues/28212",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "(2022) UPDATE has inconsistent behaviors in a transaction. [Online]. Available: https://github.com/pingcap/tidb/issues/28092",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "(2022) UPDATE with CAST has inconsistent behaviors in transaction. [Online]. Available: https://github.com/pingcap/tidb/issues/28095",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "(2022) Isolation levles-IBM documentation. [Online]. Available: https://www.ibm.com/docs/en/db2/10.5?topic=issues-isolation-levels",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "J. Jung, H. Hu, J. Arulraj, T. Kim, and W. Kang, “APOLLO: Automatic detection and diagnosis of performance regressions in database systems,” Proceedings of the VLDB Endowment (VLDB), vol. 13, no. 1, pp. 57–70, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "M. Wang, Z. Wu, X. Xu, J. Liang, C. Zhou, H. Zhang, and Y. Jiang, “Industry practice of coverage-guided enterprise-level DBMS fuzzing,” inProceedings of International Conference on Software Engineering: Software Engineering in Practice (ICSESEIP), 2021, pp. 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "X. Liu, Q. Zhou, J. Arulraj, and A. Orso, “Automatic detection of performance bugs in database systems using equivalent queries,” in Proceedings of IEEE/ACMSIGSOFT International Conference on Software Engineering (ICSE), 2022, pp. 225–236.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Y. Zheng, W. Dou, Y. Wang, Z. Qin, L. Tang, Y. Gao, D. Wang, W. Wang, and J. Wei, “Finding bugs in Gremlin-based graph database systems via randomized differential testing,” in Proceedings of ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA), 2022, pp. 302–313.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Z. Cui, W. Dou, Q. Dai, J. Song, W. Wang, J. Wei, and D. Y e, “Differentially testing database transactions for fun and proﬁt,” in Proceedings of IEEE/ACM International Conference on Automated Software Engineering (ASE), 2022, pp. 35:1–35:12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Y. Liang, S. Liu, and H. Hu, “Detecting logical bugs of DBMS with coverage-based guidance,” in Proceedings of USENIX Security Symposium (USENIX Security), 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "J. Song, W. Dou, Z. Cui, Q. Dai, W. Wang, J. Wei, H. Zhong, and T. Huang, “Testing database systems via differential query execution,” inProceedings of IEEE/ACM International Conference on Software Engineering (ICSE), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "R. Y ang, Y. Zheng, L. Tang, W. Dou, W. Wang, and J. Wei, “Randomized differential testing of RDF stores,” in Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE Demo), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "J. Ba and M. Rigger, “Testing database engines via query plan guidance,”inProceedings of IEEE/ACM International Conference on Software Engineering (ICSE), 2023.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 70,
+      "text": "M. Kamm, M. Rigger, C. Zhang, and Z. Su, “Testing graph database engines via query partitioning,” in Proceedings of ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA), 2023.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 71,
+      "text": "J. Liang, Y. Chen, Z. Wu, J. Fu, M. Wang, Y. Jiang, X. Huang, T. Chen, J. Wang, and J. Li, “Sequence-oriented DBMS fuzzing,” in Proceedings of IEEE International Conference on Data Engineering (ICDE), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Z.-M. Jiang, J.-J. Bai, and Z. Su, “DynSQL: Stateful fuzzing for database management systems with complex and valid SQL query generation,” in Proceedings of USENIX Security Symposium (USENIX Security), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "Z. Hua, W. Lin, L. Ren, Z. Li, L. Zhang, W. Jiao, and T. Xie, “GDsmith: Detecting bugs in Cypher graph database engines,” in Proceedings of ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "W. Lin, Z. Hua, L. Zhang, and T. Xie, “GDiff: Automated differential performance testing for graph database systems,” in Proceedings of IEEE/ACM International Conference on Software Engineering (ICSE), 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "Y. Deng, P. Frankl, and Z. Chen, “Testing database transaction concurrency,” in Proceedings of IEEE International Conference on Automated Software Engineering (ASE), 2003, pp. 184–193.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "H. Luo, M. Masud, and H. Ural, “Detecting ofﬂine transaction concurrency problems,” Journal of Software, vol. 7, pp. 1855–1860, 2012.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "L. Brutschy, D. Dimitrov, P. M ¨uller, and M. V echev, “Static serializability analysis for causal consistency,” in Proceedings of SIGPLAN Conference on Programming Language Design and Implementation (PLDI) ,2018, pp. 90–104.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "K. Rahmani, K. Nagar, B. Delaware, and S. Jagannathan, “CLOTHO: Directed test generation for weakly consistent database systems,” Proceedings of the ACM on Programming Languages, vol. 3, no. OOPSLA, pp. 117:1–117:28, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "Y. Gan, X. Ren, D. Ripberger, S. Blanas, and Y. Wang, “IsoDiff: Debugging anomalies caused by weak isolation,” Proceedings of the VLDB Endowment (VLDB), vol. 13, no. 12, pp. 2773–2786, 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "R. Biswas, D. Kakwani, J. V edurada, C. Enea, and A. Lal, “MonkeyDB: Effectively testing correctness under weak isolation levels,” Proceedings of the ACM on Programming Languages, vol. 5, no. OOPSLA, pp. 132:1–132:27, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 81,
+      "text": "C. Tang, Z. Wang, X. Zhang, Q. Y u, B. Zang, H. Guan, and H. Chen, “Ad hoc transactions in web applications: The good, the bad, and the ugly,” in Proceedings of International Conference on Management of Data (SIGMOD), 2022, pp. 4–18. 1135",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 26,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI), 2020, pp. 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 27,
+      "text": "——, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 211:1–211:30, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 28,
+      "text": "——, “Detecting optimization bugs in database engines via nonoptimizing reference engine construction,” in Proceedings of ACM Joint European Software Engineering Conference and Symposium on theF oundations of Software Engineering (ESEC/FSE), 2020, pp. 1140– 1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 49,
+      "text": "(2022) SQLancer. [Online]. Available: https://www.manuelrigger.at/ dbms-bugs/",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 69,
+      "text": "J. Ba and M. Rigger, “Testing database engines via query plan guidance,”inProceedings of IEEE/ACM International Conference on Software Engineering (ICSE), 2023.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 70,
+      "text": "M. Kamm, M. Rigger, C. Zhang, and Z. Su, “Testing graph database engines via query partitioning,” in Proceedings of ACMSIGSOFT International Symposium on Software Testing and Analysis (ISSTA), 2023.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[24]–[28]",
+      "technique": "pqs",
+      "sentence": "Automatic database testing approaches [24]–[28] can support these complex features in modern DBMSs, and have beenproved as an effective technique to detect bugs in DBMSs.",
+      "context_before": "(key), respectively. Specially, the value in Elle’s data model [23] should be accumulative, e.g., AppendList. However, modern DBMSs, e.g., MySQLand TiDB, usually adopt a much more complex relational data model. They support many complex data structures (e.g.,various data types, primary keys, and indexes), and access datawith complex interface (e.g., reading / writing multiple rowsthrough SQL). This introduces unique challenges to ensurethe correctness of transaction processing mechanisms. Existingveriﬁcation approaches cannot be generalized to verify trans-actions that utilize these features.",
+      "context_after": "Akey challenge for automatic database testing is to constructan effective test oracle, which can detect whether a DBMSbehaves correctly. Existing approaches can construct sometest oracles for single queries (i.e., SELECT statements). For example, SQLancer constructs the query partitioning oracle[27] and the containment oracle [26] for a single query. However, these testing approaches do not involve transactions,and cannot construct a test oracle for concurrent transactionsat a certain isolation level, thus failing to detect isolation bugs. 1123 1558-1225/23/$31.00 ©2023 IEEEDOI 10.1109/ICSE48",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 4468,
+      "cited_reference": {
+        "number": 26,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For example, SQLancer constructs the query partitioning oracle[27] and the containment oracle [26] for a single query.",
+      "context_before": "troduces unique challenges to ensurethe correctness of transaction processing mechanisms. Existingveriﬁcation approaches cannot be generalized to verify trans-actions that utilize these features. Automatic database testing approaches [24]–[28] can support these complex features in modern DBMSs, and have beenproved as an effective technique to detect bugs in DBMSs. Akey challenge for automatic database testing is to constructan effective test oracle, which can detect whether a DBMSbehaves correctly. Existing approaches can construct sometest oracles for single queries (i.e., SELECT statements).",
+      "context_after": "However, these testing approaches do not involve transactions,and cannot construct a test oracle for concurrent transactionsat a certain isolation level, thus failing to detect isolation bugs. 1123 1558-1225/23/$31.00 ©2023 IEEEDOI 10.1109/ICSE48619.2023.00101 c1 c2 10 0 10 20 10 20c1 c2 null 0 10 null 0tx1 tx2 s12: update t set c1=10; s22: update t set c2=20 where c1;s11: begin; s13: commit;s21: begin; s23: commit; Expected result Actual result Initial table޽޾޿ ߀ ߁ŝŚśŜ Şş c1 c2 10 20 10 20 10 20 Fig. 1. An illustrative example that triggers a serious isolation bug in MySQL [29]. tx1and tx2ar",
+      "section": "I INTRODUCTION",
+      "page": 1,
+      "char_offset": 4873,
+      "found_by_all": [
+        "name",
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp",
+        "pqs"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Automatic database testing approaches like SQLancer [26]–[28] detect logic bugs for single queries (i.",
+      "context_before": "n which all data in column c1are 10, and all data in column c2are 20. However, the actual execution obtains an incorrect database state shown in the middle table, in which column c2 in the ﬁrst row (with value 0) is not changed as expected. We reported this bug to MySQL developers, and they classiﬁed it asserious. However, MySQL developers have not ﬁgured out why this bug occurs yet. Revealing the above isolation bug is challenging. We lack a transaction oracle to judge whether the result of the actual transaction execution is correct. Existing approaches are ineffective in detecting this bug.",
+      "context_after": "e., SELECT statements) without considering concurrent transactions, and cannot be applied on other statements, e.g., UPDATE statements in s12ands22. Transaction veriﬁcation approaches, e.g., Cobra [22] and Elle [23], use read / write operation histories based on a key-value data model, and cannot handle this table structure (without a key) and multiple rows accessed in one SQL statement (e.g., s12). To effectively detect isolation bugs in modern DBMSs, we propose a novel and general transaction testing approach,Transaction o racle c onstruction (Troc ). The core idea is to solve the oracle pro",
+      "section": "I INTRODUCTION",
+      "page": 2,
+      "char_offset": 7338,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Troc’s database and SQL statement generation mainly bases on SQLancer [49].",
+      "context_before": "e.g., SELECT and UPDATE). Troc treats database and SQL statement execution as a black box (e.g., without understanding SQL statements’ concrete semantics by interpreting SQL statements), and does not limit data structures and SQL statements (except JOIN, UNION, sub queries and cross-table queries that we cannot support) for target DBMSs. C. Database and SQL Statement Generation Random database [41]–[46] and SQL statement [24], [25], [47], [48] generation has been widely explored, and is not a contribution of this work. Troc can utilize existing database and SQL statement generation approaches.",
+      "context_after": "Here, we explain our database and SQL statement generation approach only for completeness. For database generation, we use the CREATE TABLE statement to create a table with at most maxCol (5 by default) columns. For each column, we randomly assign a column type and add column constraints, e.g., PRIMARY KEY ,NOT NULL and UNIQUE. We further use the CREATE INDEX statement with randomly selected columns to add indexes on the table. To populate random data into the generated database, we use at most maxInsert INSERT statements to insert at most maxInsert rows. We observe that isolation bugs can usu",
+      "section": "C Database and SQL Statement Generation",
+      "page": 5,
+      "char_offset": 21752,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ", primary keys, indexes, various data types, and conditions that are supported by SQLancer [49].",
+      "context_before": "ctive DBMSs, and constructs valid SQL statements speciﬁc to respective DBMSs. We use the database schema to generate valid column references if needed. For constants used in these SQL statements, e.g., inserted values, we randomly use one of the following twostrategies. (1) We randomly generate a new value. (2) We randomly pick up a value from the corresponding column’s value cache, which stores the generated values for the column. Note that, we require that all statements in two transactions act on the same table. For now, Troc can support many complex data structures and SQL statements, e.g.",
+      "context_after": "But, Troc cannot support JOIN, UNION, sub queries, etc. Multiple tables and JOIN can introduce complex cases for transaction oracle construction, we leave them as our future work. D. Transaction Test Case Generation Transaction generation. We ﬁrst randomly generate at most txSize SQL statements in Listing 1 using the method illustrated in Section III-C, and add them into a transaction. We further append a start statement BEGIN, and an ending statement COMMIT or ROLLBACK, which are randomly chosen.txSize is a conﬁgurable parameter that can be used to make a tradeoff between the transaction comp",
+      "section": "C Database and SQL Statement Generation",
+      "page": 5,
+      "char_offset": 24359,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ", SQLsmith [24], SQLancer [26]–[28], Elle [23] and Cobra [22].",
+      "context_before": "een ﬁxed by developers. The remaining 5 isolation bugs are marked as duplicate (Duplicate). We list all our found new bugs in Table V. For these 7 new bugs, 4 bugs leave the database into incorrect states, and 3 bugs return incorrect query results. 1 isolation bug in MySQL is classiﬁed as serious, 3 isolation bugs in MariaDB are classiﬁed ascritical, 1 isolation bugs in TiDB is classiﬁed as moderate, and the remaining 2 transaction bugs are classiﬁed as moderate and minor, respectively. Comparison. We further investigate whether these 12 unique bugs can be revealed by existing approaches, e.g.",
+      "context_after": "These approaches cannot generate the bug-revealing data structures and SQL queries, or construct the corresponding transaction oracle. Thus, none of these bugs can be detected by these approaches theoretically. Speciﬁcally, existing veriﬁcation approaches on isolation bugs, e.g., Elle [23] and Cobra [22], can only work on a simple key -value data model, which accesses data with read (key)andwrite (key). They cannot detect any of the 10 isolation bugs reported by Troc, which involve complex relational data models and SQL queries, e.g., writing multiple rows in the SQL statement s22 of Fig. 1.",
+      "section": "B Overall Bug Detection Results",
+      "page": 9,
+      "char_offset": 45429,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ", SQLsmith [24] and SQLancer [26]–[28], cannot generate transaction test cases, and do not have a test oracle for transaction test cases.",
+      "context_before": "evealing data structures and SQL queries, or construct the corresponding transaction oracle. Thus, none of these bugs can be detected by these approaches theoretically. Speciﬁcally, existing veriﬁcation approaches on isolation bugs, e.g., Elle [23] and Cobra [22], can only work on a simple key -value data model, which accesses data with read (key)andwrite (key). They cannot detect any of the 10 isolation bugs reported by Troc, which involve complex relational data models and SQL queries, e.g., writing multiple rows in the SQL statement s22 of Fig. 1. Existing testing techniques for DBMSs, e.g.",
+      "context_after": "We also investigate whether the 6 isolation bugs (which contain complete test cases) reported by Elle [23] and Cobra [22] can potentially be detected by Troc, i.e., whether their test cases violate Troc’s oracle. Troc can detect 5 of these 6 isolation bugs. The remaining one isolation bug that Troc cannot detect requires more than two transactions to trigger, which is not supported by Troc now. Developer feedbacks. For the 7 newly detected bugs, developers have ﬁxed 1 isolation bug in MariaDB [54]. The remaining 6 bugs have not been ﬁxed yet. Based on the feedbacks from developers, these 6 bu",
+      "section": "B Overall Bug Detection Results",
+      "page": 9,
+      "char_offset": 46134,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker",
+      "surface": "[25]–[28]",
+      "technique": "pqs",
+      "sentence": ", logic bugs [25]–[28].",
+      "context_before": ", we instrument MySQL and MariaDB1, and run Troc on them for 24 hours. Troc achieves 20.6% and 25.1% line coverage for MySQL and MariaDB, respectively. The coverage appears to be low. However, this is expected, because Troc currently only focuses on transaction implementations. DBMSs also provide other features that we do not test, e.g., user management, conﬁguration, and replication. V. DISCUSSION False positives. In Troc, we assume that the execution of a single SQL statement in DBMSs is always correct. In fact, the single SQL statement execution can be incorrect due to various reasons, e.g.",
+      "context_after": "Therefore, our transaction oracle construction may obtain wrong oracle, and potentially introduce false positives. However, we have not observed such false positives in our experiment yet. 1We do not perform coverage experiment on TiDB, since we cannot ﬁnd a proper coverage measure tool for Golang and Rust, which are used in TiDB. 1132 Migrating to new DBMSs. In Troc, SQL and database generation is DBMS-related, since DBMSs usually have different dialects. However, Troc can utilize existing SQL and database generation approaches, e.g., SQLancer [49]. Therefore, Troc can be migrated to new DBM",
+      "section": "V DISCUSSION",
+      "page": 10,
+      "char_offset": 54863,
+      "cited_reference": {
+        "number": 26,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": ", SQLancer [49].",
+      "context_before": "correct due to various reasons, e.g., logic bugs [25]–[28]. Therefore, our transaction oracle construction may obtain wrong oracle, and potentially introduce false positives. However, we have not observed such false positives in our experiment yet. 1We do not perform coverage experiment on TiDB, since we cannot ﬁnd a proper coverage measure tool for Golang and Rust, which are used in TiDB. 1132 Migrating to new DBMSs. In Troc, SQL and database generation is DBMS-related, since DBMSs usually have different dialects. However, Troc can utilize existing SQL and database generation approaches, e.g.",
+      "context_after": "Therefore, Troc can be migrated to new DBMSs with little effort. For example, migrating Troc from MySQL to TiDB only introduces about 100 LOC changes, which are mainly used to access DBMSrelated database structures, e.g., indexes. Supporting new isolation levels. Troc has supported 4 isolation levels that are implemented in our target DBMSs. There are other isolation levels, e.g., Read Stability in DB2 [60]. To support other isolation levels, we need to adjust data visibility strategies (Table II) and lock strategies (Table III) according to new isolation levels. Troc’s view construction and",
+      "section": "V DISCUSSION",
+      "page": 11,
+      "char_offset": 55427,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "citation_marker",
+      "surface": "[24]–\n[28]",
+      "technique": "pqs",
+      "sentence": "Many approaches have been proposed for DBMS testing and graph database system testing [24]– [28], [48], [61]–[74].",
+      "context_before": "ransactions under the optimistic transaction model. Supporting more concurrent transactions. We mainly focus on the scenarios where only two transactions submit their statements concurrently. Extending Troc to more than two transactions can introduce indeterminacy to transaction oracle construction. For example, given three transactions tx1,tx2 andtx3, both tx1andtx2are blocked by tx3. When tx3 is committed, which transaction is the ﬁrst to be resumed is uncertain. A possible solution is to enumerate all scenarios and take all analysis results as the oracle. VI. RELA TED WORK Database testing.",
+      "context_after": "SQLsmith [24] randomly generates SQL statements to detect crash bugs in DBMSs. Squirrel [48] performs query generation guided by code coverage to test DBMSs. LEGO [71] generates SQL sequences with abundant types to improve DBMS fuzzing coverage. DynSQL [72] utilizes stateful fuzzing to test DBMSs and ﬁnd deep bugs. Rigger et al. presents some approaches to construct oracles for SELECT statements, e.g., PQS [26], TLP [27] and NoREC [28]. QPG [69] utilizes query plans to guide database state mutation for detecting bugs. DQE [67] detects logic bugs by differentially executing SELECT ,UPDATE and DE",
+      "section": "VI RELA TED WORK",
+      "page": 11,
+      "char_offset": 57410,
+      "cited_reference": {
+        "number": 26,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in Proceedings of USENIX Symposium on Operating Systems Design and Implementation (OSDI), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "qpg"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": ", PQS [26], TLP [27] and NoREC [28].",
+      "context_before": "and take all analysis results as the oracle. VI. RELA TED WORK Database testing. Many approaches have been proposed for DBMS testing and graph database system testing [24]– [28], [48], [61]–[74]. SQLsmith [24] randomly generates SQL statements to detect crash bugs in DBMSs. Squirrel [48] performs query generation guided by code coverage to test DBMSs. LEGO [71] generates SQL sequences with abundant types to improve DBMS fuzzing coverage. DynSQL [72] utilizes stateful fuzzing to test DBMSs and ﬁnd deep bugs. Rigger et al. presents some approaches to construct oracles for SELECT statements, e.g.",
+      "context_after": "QPG [69] utilizes query plans to guide database state mutation for detecting bugs. DQE [67] detects logic bugs by differentially executing SELECT ,UPDATE and DELETE statements in DBMSs. APOLLO [61] detects performance regression bugs by generating regression-triggering queries. Amoeba [63] detects performance bugs by generating two semantically equivalent queries and comparing their executiontime. Some works utilize differential testing to effectively test DBMSs and graph database systems [25], [64], [65], [68], [74]. However, these approaches cannot construct test oracle for detecting isolati",
+      "section": "VI RELA TED WORK",
+      "page": 11,
+      "char_offset": 57929,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "tlp",
+        "norec"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "QPG",
+      "technique": "qpg",
+      "sentence": "QPG [69] utilizes query plans to guide database state mutation for detecting bugs.",
+      "context_before": "e oracle. VI. RELA TED WORK Database testing. Many approaches have been proposed for DBMS testing and graph database system testing [24]– [28], [48], [61]–[74]. SQLsmith [24] randomly generates SQL statements to detect crash bugs in DBMSs. Squirrel [48] performs query generation guided by code coverage to test DBMSs. LEGO [71] generates SQL sequences with abundant types to improve DBMS fuzzing coverage. DynSQL [72] utilizes stateful fuzzing to test DBMSs and ﬁnd deep bugs. Rigger et al. presents some approaches to construct oracles for SELECT statements, e.g., PQS [26], TLP [27] and NoREC [28].",
+      "context_after": "DQE [67] detects logic bugs by differentially executing SELECT ,UPDATE and DELETE statements in DBMSs. APOLLO [61] detects performance regression bugs by generating regression-triggering queries. Amoeba [63] detects performance bugs by generating two semantically equivalent queries and comparing their executiontime. Some works utilize differential testing to effectively test DBMSs and graph database systems [25], [64], [65], [68], [74]. However, these approaches cannot construct test oracle for detecting isolation bugs in DBMSs. Transaction veriﬁcation. Biswas et al. [21] utilizes an axiomatic",
+      "section": "VI RELA TED WORK",
+      "page": 11,
+      "char_offset": 57965,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    }
+  ],
+  "artifact": {
+    "url": "https://github.com/criszy/Troc",
+    "markers": [
+      "renamed_sqlancer_package",
+      "sqlancer_source_content_match"
+    ],
+    "evidence": [
+      {
+        "source_url": "https://github.com/criszy/Troc",
+        "source_type": "github_repository",
+        "excerpt": "Artifact for \"Detecting Isolation Bugs via Transaction Oracle Construction\"\n# Troc\r\n\r\nThis is the artifact for the paper \"Detecting Isolation Bugs via Transaction Oracle Construction\". \r\nSee [paper](http://www.tcse.cn/~cuiziyu20/papers/2023-icse-troc.pdf) to learn more details.",
+        "note": "Repository names this paper.",
+        "retrieved_at": "2026-09-10T15:15:32Z",
+        "first_seen": "2026-09-10T15:15:32Z",
+        "last_verified": "2026-09-10T15:15:32Z",
+        "excerpt_is_verbatim": true
+      },
+      {
+        "source_url": "https://github.com/criszy/Troc/blob/main/src/main/java/troc/Randomly.java",
+        "source_type": "github_code",
+        "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.SOPHISTICATED;",
+        "excerpt_is_verbatim": true,
+        "note": "src/main/java/troc/Randomly.java is SQLancer's Randomly.java, with the package renamed to troc (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+        "content_sha256": "sha256:e3a0454aa2987f2613383e0ec21b0ef330cb2a0d3164871b093ac235acbba125",
+        "retrieved_at": "2026-09-10T15:15:32Z",
+        "first_seen": "2026-09-10T15:15:32Z",
+        "last_verified": "2026-09-10T15:15:32Z"
+      }
+    ]
+  },
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T17:00:23Z",
+    "is_model_written": true,
+    "summary": "Troc detects isolation bugs by constructing an oracle for transactions rather than for single queries. It converts a concurrent transaction schedule into an equivalent set of serial statements whose expected result is computable, so a discrepancy identifies an isolation bug. This addresses a gap the paper states directly: single-query testing approaches neither generate transaction test cases nor have an oracle for them.",
+    "narrative": "SQLancer supplies Troc's generation and defines the gap Troc fills. The paper states that Troc's database and SQL statement generation is mainly based on SQLancer, and that the schema features it works with -- primary keys, indexes, data types and conditions -- are those SQLancer supports. SQLancer is also among the tools measured against, where the paper's point is structural: it and SQLsmith cannot generate transaction test cases and have no oracle for them, so isolation bugs are outside their reach entirely. PQS, TLP, NoREC and QPG are described as the single-query oracles this work is positioned beyond.",
+    "roles": {
+      "M1": "background",
+      "M2": "definition",
+      "M3": "motivation",
+      "M4": "reuse_component",
+      "M5": "reuse_component",
+      "M6": "baseline",
+      "M7": "result_comparison",
+      "M8": "background",
+      "M9": "incidental",
+      "M10": "background",
+      "M11": "definition",
+      "M12": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "yes",
+        "mention_ids": [
+          "M4",
+          "M5"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M4",
+            "sentence": "Troc’s database and SQL statement generation mainly bases on SQLancer [49].",
+            "section": "C Database and SQL Statement Generation",
+            "page": 5
+          },
+          {
+            "mention_id": "M5",
+            "sentence": ", primary keys, indexes, various data types, and conditions that are supported by SQLancer [49].",
+            "section": "C Database and SQL Statement Generation",
+            "page": 5
+          }
+        ],
+        "reasoning": "M4 states Troc's database and SQL statement generation is mainly based on SQLancer, and M5 that the supported schema features are SQLancer's. The transaction oracle on top is Troc's own.",
+        "reuse_kind": "generator"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Troc constructs an oracle for transaction schedules, which M3 and M7 present as covering what the single-query oracles cannot address rather than generalising one of them."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M6",
+          "M7"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M6",
+            "sentence": ", SQLsmith [24], SQLancer [26]–[28], Elle [23] and Cobra [22].",
+            "section": "B Overall Bug Detection Results",
+            "page": 9
+          },
+          {
+            "mention_id": "M7",
+            "sentence": ", SQLsmith [24] and SQLancer [26]–[28], cannot generate transaction test cases, and do not have a test oracle for transaction test cases.",
+            "section": "B Overall Bug Detection Results",
+            "page": 9
+          }
+        ],
+        "reasoning": "M6 names SQLancer among the tools in the overall bug detection comparison, and M7 reports the outcome: it cannot generate transaction test cases and has no oracle for them, so it finds none of these bugs."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Automatic testing approaches are called effective at detecting bugs in DBMSs, which is not a claim that SQLancer is the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

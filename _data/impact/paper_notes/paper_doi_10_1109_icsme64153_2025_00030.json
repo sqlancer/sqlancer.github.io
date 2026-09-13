@@ -1,0 +1,180 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "paper": {
+    "id": "paper:doi:10.1109/icsme64153.2025.00030",
+    "title": "TSGuard: Detecting Logic Bugs in Time Series Management Systems Via Time Series Algebra",
+    "authors": [
+      "Lingwei Kuang",
+      "Liang Liu",
+      "Wen-Jing Wang",
+      "Ning Cao",
+      "Shijie Li",
+      "Fan Liu",
+      "Haolong Chen",
+      "WenJian Liao"
+    ],
+    "year": 2025,
+    "venue": "IEEE International Conference on Software Maintenance and Evolution",
+    "doi": "10.1109/icsme64153.2025.00030",
+    "url": "https://doi.org/10.1109/icsme64153.2025.00030"
+  },
+  "summary": {
+    "text": "TSGuard detects logic bugs in time series management systems, where the authors say the problem was open because time series SQL differs enough from relational SQL, syntactically and semantically, that existing tools do not apply. It converts a time series SQL query into an equivalent time series algebra expression, evaluates that expression to obtain the expected result set, and compares it against what the system returned. A feedback mechanism for query generation and per-system syntax validators improve efficiency. TSGuard found 48 previously unknown bugs, 45 of them logic bugs.",
+    "relationship_to_sqlancer": "SQLancer is its baseline, adapted by the authors to run against time series systems: over 7,200 seconds TSGuard found 38 bugs across three systems where SQLancer found 7, and generated 4.92 times more syntax node sequences and 3.91 times more valid queries. The paper positions its oracle alongside NoREC, TLP and PQS as the established ways of building one.",
+    "is_model_generated": true,
+    "grounded_in_source": true,
+    "written_from": "supplied PDF",
+    "written_from_url": "https://doi.org/10.1109/icsme64153.2025.00030",
+    "source_sha256": "sha256:07ec57ded0bcddf8449c55cffd3400eaa5b375f3b574beeeabe116e2ee9bb5df",
+    "supporting_excerpts": [
+      "Comparison with Other Techniques To evaluate the effectiveness of TSGuard in detecting logic bugs in TSMSs, we adapted the open-source relational database testing tool SQLancer as a baseline for comparison.",
+      "The results show that TSGuard detected 38 bugs across the three TSMSs, whereas SQLancer detected only 7.",
+      "Additionally, TSGuard generated 4.92 times more syntax node sequences and 3.91 times more valid queries than SQLancer, while generating only 38.36% as many invalid queries."
+    ],
+    "model": "claude-opus-5",
+    "generated_by": "claude_code_session",
+    "classifier_version": null,
+    "generated_at": "2026-09-07T15:21:49Z"
+  },
+  "evidence": [
+    {
+      "relationship": "references",
+      "title": "Cites SQLancer",
+      "value": "yes",
+      "method": "citation_graph",
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp",
+        "qpg"
+      ],
+      "sources": [
+        {
+          "source_url": "https://doi.org/10.1109/icsme64153.2025.00030",
+          "source_type": "paper_citation_context",
+          "excerpt": "For instance, PQS [12] synthesizes a query Q based on an expected result set (i.e., the pivot row) and verifies whether the actual result set is a superset of the expected result set to detect logic bugs.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-07T15:10:19Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/icsme64153.2025.00030",
+          "source_type": "paper_citation_context",
+          "excerpt": "NOREC [10] transforms an original query into a non-optimized but semantically equivalent SQL query, detecting logic bugs by comparing their execution results.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Non-optimizing Reference Engine Construction (NoREC), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-07T15:10:19Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/icsme64153.2025.00030",
+          "source_type": "paper_citation_context",
+          "excerpt": "For example, NoREC [10] detects logic bugs in database optimizers by mutating the original query into a non-optimized query and comparing their result sets.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Non-optimizing Reference Engine Construction (NoREC), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-07T15:10:19Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/icsme64153.2025.00030",
+          "source_type": "paper_citation_context",
+          "excerpt": "This technique has been widely applied to both RDBMSs and GDBMSs. PQS [12] randomly selects specific rows from the database and synthesizes test cases, verifying that the results of these test cases contain the selected rows to detect logic bugs.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-07T15:10:19Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/icsme64153.2025.00030",
+          "source_type": "paper_citation_context",
+          "excerpt": "Similarly, TLP [11] mutates the original query into multiple partitioned queries, reassembles their result sets, and verifies consistency with the original result set to detect logic bugs.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Ternary Logic Partitioning (TLP), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-07T15:10:19Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/icsme64153.2025.00030",
+          "source_type": "paper_citation_context",
+          "excerpt": "QPG [28] guides database state mutation using query plans and applies logic bug oracles to identify logic bugs across various database states.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Query Plan Guidance (QPG), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-07T15:10:19Z"
+        }
+      ]
+    },
+    {
+      "relationship": "uses_infrastructure",
+      "title": "Uses the SQLancer codebase",
+      "value": "yes",
+      "method": "artifact_inspection",
+      "techniques": [],
+      "sources": [
+        {
+          "source_url": "https://github.com/LingweiKuang/TSGuard",
+          "source_type": "github_repository",
+          "excerpt": "TSGuard: Detecting Logic Bugs in Time Series Management Systems via Time Series Algebra\n# TSGuard-Detecting-Logic-Bugs-in-Time-Series-Management-Systems-via-Time-Series-Algebra\nTSGuard: Detecting Logic Bugs in Time Series Management Systems via Time Series Algebra",
+          "excerpt_is_verbatim": true,
+          "note": "Repository names this paper.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://github.com/LingweiKuang/TSGuard/blob/main/TSGuard/tsFuzzy/src/main/java/com/fuzzy/Randomly.java",
+          "source_type": "github_code",
+          "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.SOPHISTICATED;",
+          "excerpt_is_verbatim": true,
+          "note": "TSGuard/tsFuzzy/src/main/java/com/fuzzy/Randomly.java is SQLancer's Randomly.java, with the package renamed to com.fuzzy (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    },
+    {
+      "relationship": "compares_with",
+      "title": "Compares against SQLancer",
+      "value": "yes",
+      "method": "deterministic",
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp",
+        "qpg"
+      ],
+      "sources": [
+        {
+          "source_url": "https://doi.org/10.1109/icsme64153.2025.00030",
+          "source_type": "paper",
+          "excerpt": "Comparison with Other Techniques To evaluate the effectiveness of TSGuard in detecting logic bugs in TSMSs, we adapted the open-source relational database testing tool SQLancer as a baseline for comparison.",
+          "excerpt_is_verbatim": true,
+          "note": "The paper states that it evaluates against SQLancer or one of its techniques.",
+          "retrieved_at": "2026-09-07T15:10:19Z"
+        }
+      ]
+    },
+    {
+      "relationship": "artifact",
+      "title": "Artifact",
+      "value": "https://github.com/LingweiKuang/TSGuard",
+      "method": "artifact_inspection",
+      "techniques": [],
+      "markers": [
+        "renamed_sqlancer_package",
+        "sqlancer_source_content_match"
+      ],
+      "sources": [
+        {
+          "source_url": "https://github.com/LingweiKuang/TSGuard",
+          "source_type": "github_repository",
+          "excerpt": "TSGuard: Detecting Logic Bugs in Time Series Management Systems via Time Series Algebra\n# TSGuard-Detecting-Logic-Bugs-in-Time-Series-Management-Systems-via-Time-Series-Algebra\nTSGuard: Detecting Logic Bugs in Time Series Management Systems via Time Series Algebra",
+          "excerpt_is_verbatim": true,
+          "note": "Repository names this paper.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://github.com/LingweiKuang/TSGuard/blob/main/TSGuard/tsFuzzy/src/main/java/com/fuzzy/Randomly.java",
+          "source_type": "github_code",
+          "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.SOPHISTICATED;",
+          "excerpt_is_verbatim": true,
+          "note": "TSGuard/tsFuzzy/src/main/java/com/fuzzy/Randomly.java is SQLancer's Randomly.java, with the package renamed to com.fuzzy (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    }
+  ]
+}

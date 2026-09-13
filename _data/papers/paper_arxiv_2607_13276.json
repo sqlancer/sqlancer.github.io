@@ -1,0 +1,433 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:23:35Z",
+  "paper": {
+    "id": "paper:arxiv:2607.13276",
+    "title": "Aurora DSQL: Scalable, Multi-Region OLTP",
+    "authors": [
+      "Marc Brooker",
+      "Mark Bowes",
+      "Mike Hershey",
+      "Zak van der Merwe",
+      "James Morle",
+      "Matthys Strydom"
+    ],
+    "year": 2026,
+    "venue": null,
+    "doi": null,
+    "arxiv_id": "2607.13276",
+    "s2_paper_id": "07b3167f54375c3db6c83026a77b0aa8bc8f93ce",
+    "url": "https://arxiv.org/abs/2607.13276",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2607.13276",
+      "retrieved_at": "2026-09-08T15:23:35Z",
+      "chars": 79337,
+      "content_sha256": "sha256:1702e6b8a3260b88ffba05a2bd098d5f6a8afdfa30f58685cac51b600ae0969c"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 13,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 1320
+      },
+      {
+        "number": "2",
+        "title": "ARCHITECTURE OVERVIEW",
+        "start": 6345
+      },
+      {
+        "number": "2.1",
+        "title": "Multi-tenancy and Security",
+        "start": 11669
+      },
+      {
+        "number": "2.3",
+        "title": "Multi-Region Architecture",
+        "start": 16078
+      },
+      {
+        "number": "2.4",
+        "title": "Snapshot Isolation and Strong Consistency",
+        "start": 18542
+      },
+      {
+        "number": "2.5",
+        "title": "Impact of Architectural Properties on",
+        "start": 20594
+      },
+      {
+        "number": "2.6",
+        "title": "Comparisons To Other Systems, Briefly",
+        "start": 24296
+      },
+      {
+        "number": "3",
+        "title": "HOSTING THE SQL ENGINE",
+        "start": 25934
+      },
+      {
+        "number": "4.1",
+        "title": "Shard Scheme",
+        "start": 34766
+      },
+      {
+        "number": "5.1",
+        "title": "Detecting Conflicts, More Formally",
+        "start": 39798
+      },
+      {
+        "number": "5.2",
+        "title": "Index Maintenance",
+        "start": 44255
+      },
+      {
+        "number": "5.3",
+        "title": "Garbage Collection",
+        "start": 46241
+      },
+      {
+        "number": "5.4",
+        "title": "The Journal and Erasure Coding",
+        "start": 47683
+      },
+      {
+        "number": "5.5",
+        "title": "Exceptions to Snapshot Isolation",
+        "start": 49958
+      },
+      {
+        "number": "5.6",
+        "title": "Effects of Clock Skew",
+        "start": 51615
+      },
+      {
+        "number": "8.1",
+        "title": "Commit Size Limits",
+        "start": 62153
+      },
+      {
+        "number": "8.2",
+        "title": "Foreign Key Constraints",
+        "start": 63658
+      },
+      {
+        "number": "8.3",
+        "title": "Sequences and Indexes",
+        "start": 64773
+      },
+      {
+        "number": "8.4",
+        "title": "Strong Consistency",
+        "start": 65627
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Daniel Abadi. 2012. Consistency Tradeoffs in Modern Distributed Database System Design: CAP is Only Part of the Story.Computer45, 2 (2012), 37–42. https://doi.org/10.1109/MC.2012.33",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "Alexandru Agache, Marc Brooker, Alexandra Iordache, Anthony Liguori, Rolf Neugebauer, Phil Piwonka, and Diana-Maria Popa. 2020. Firecracker: Lightweight Virtualization for Serverless Applications. In17th {USENIX}Symposium on Networked Systems Design and Implementation ({NSDI}20). 419–434.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Nikos Armenatzoglou, Sanuj Basu, Naga Bhanoori, Mengchu Cai, Naresh Chainani, Kiran Chinta, Venkatraman Govindaraju, Todd J. Green, Monish Gupta, Sebastian Hillig, Eric Hotinger, Yan Leshinksy, Jintian Liang, Michael McCreedy, Fabian Nagel, Ippokratis Pandis, Panos Parchas, Rahul Pathak, Orestis Polychroniou, Foyzur Rahman, Gaurav Saxena, Gokul Soundararajan, Sriram Subramanian, and Doug Terry. 20",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In (ICSE). IEEE, 2060–2071.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 5,
+      "text": "Bradley Barnhart, Marc Brooker, Daniil Chinenkov, Tony Hooper, Jihoun Im, Prakash Chandra Jha, Tim Kraska, Ashok Kurakula, Alexey Kuznetsov, Grant McAlister, et al .2024. Resource Management in Aurora Serverless.Proceedings of the VLDB Endowment17, 12 (2024), 4038–4050.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "Hal Berenson, Phil Bernstein, Jim Gray, Jim Melton, Elizabeth O’Neil, and Patrick O’Neil. 1995. A Critique of ANSI SQL Isolation Levels. InProceedings of the 1995 ACMSIGMOD International Conference on Management of Data(San Jose, California, USA)(SIGMOD ’95). Association for Computing Machinery, New York, NY, USA, 1–10. https://doi.org/10.1145/223784.223785",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Marc Brooker and Ankush Desai. 2025. Systems Correctness Practices at Amazon Web Services.Commun. ACM68, 6 (2025), 38–42.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "James C. Corbett, Jeffrey Dean, Michael Epstein, Andrew Fikes, Christopher Frost, JJ Furman, Sanjay Ghemawat, Andrey Gubarev, Christopher Heiser, Peter Hochschild, Wilson Hsieh, Sebastian Kanthak, Eugene Kogan, Hongyi Li, Alexander Lloyd, Sergey Melnik, David Mwaura, David Nagle, Sean Quinlan, Rajesh Rao, Lindsay Rolig, Yasushi Saito, Michal Szymaniak, Christopher Taylor, Ruth Wang, and Dale Woodf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Natacha Crooks, Youer Pu, Lorenzo Alvisi, and Allen Clement. 2017. Seeing is Believing: A Client-Centric Specification of Database Isolation. InProceedings of the ACM Symposium on Principles of Distributed Computing(Washington, DC, USA)(PODC ’17). Association for Computing Machinery, New York, NY, USA, 73–82. https://doi.org/10.1145/3087801.3087802",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Umur Cubukcu, Ozgun Erdogan, Sumedh Pathak, Sudhakar Sannakkayala, and Marco Slot. 2021. Citus: Distributed PostgreSQL for Data-Intensive Applications. InProceedings of the 2021 International Conference on Management of Data(Virtual Event, China)(SIGMOD ’21). Association for Computing Machinery, New York, NY, USA, 2490–2502. https://doi.org/10.1145/3448016.3457551",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Khuzaima Daudjee and Kenneth Salem. 2006. Lazy Database Replication with Snapshot Isolation. InProceedings of the 32nd International Conference on Very Large Data Bases(Seoul, Korea)(VLDB ’06). VLDB Endowment, 715–726.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Giuseppe DeCandia, Deniz Hastorun, Madan Jampani, Gunavardhan Kakulapati, Avinash Lakshman, Alex Pilchin, Swaminathan Sivasubramanian, Peter Vosshall, and Werner Vogels. 2007. Dynamo: Amazon’s highly available key-value store. ACMSIGOPS operating systems review41, 6 (2007), 205–220.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Mostafa Elhemali, Niall Gallagher, Nick Gordon, Joseph Idziorek, Richard Krog, Colin Lazier, Erben Mo, Akhilesh Mritunjai, Somasundaram Perianayagam, Tim Rath, Swami Sivasubramanian, James Christopher Sorenson III, Sroaj Sosothikul, Doug Terry, and Akshat Vig. 2022. Amazon DynamoDB: A Scalable, Predictably Performant, and Fully Managed NoSQL Database Service. In2022 USENIX Annual Technical Confere",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Robert Escriva, Bernard Wong, and Emin Gün Sirer. 2015. Warp: Lightweight Multi-Key Transactions for Key-Value Stores. https://doi.org/10.48550/ARXIV. 1509.07815",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Jim Gray and Leslie Lamport. 2006. Consensus on transaction commit.ACM Transactions on Database Systems (TODS)31, 1 (2006), 133–160. Aurora DSQL: Scalable, Multi-Region OLTP",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Anurag Gupta, Deepak Agarwal, Derek Tan, Jakub Kulesza, Rahul Pathak, Stefano Stefani, and Vidhya Srinivasan. 2015. Amazon Redshift and the Case for Simpler Data Warehouses. InProceedings of the 2015 ACMSIGMOD International Conference on Management of Data(Melbourne, Victoria, Australia)(SIGMOD ’15). Association for Computing Machinery, New York, NY, USA, 1917–1923. https://doi.org/10.1145/2723372",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Joseph M. Hellerstein and Peter Alvaro. 2020. Keeping CALM: When Distributed Consistency is Easy.Commun. ACM63, 9 (aug 2020), 72–81. https://doi.org/10. 1145/3369736",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Lexiang Huang, Matthew Magnusson, Abishek Bangalore Muralikrishna, Salman Estyak, Rebecca Isaacs, Abutalib Aghayev, Timothy Zhu, and Aleksey Charapko. 2022. Metastable Failures in the Wild. In16th USENIX Symposium on Operating Systems Design and Implementation (OSDI 22). USENIX Association, Carlsbad, CA, 73–90. https://www.usenix.org/conference/osdi22/presentation/huang-lexiang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Joseph Idziorek, Alex Keyes, Colin Lazier, Somu Perianayagam, Prithvi Ramanathan, James Christopher Sorenson III, Doug Terry, and Akshat Vig. 2023. Distributed Transactions at Scale in Amazon DynamoDB. In2023 USENIX Annual Technical Conference (USENIX ATC 23). USENIX Association, Boston, MA, 705–717. https://www.usenix.org/conference/atc23/presentation/idziorek",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Rebecca Isaacs, Peter Alvaro, Rupak Majumdar, Kiran-Kumar Muniswamy-Reddy, Mahmoud Salamati, and Sadegh Soudjani. 2025. Analyzing Metastable Failures. InProceedings of the 2025 Workshop on Hot Topics in Operating Systems(Banff, AB, Canada)(HotOS ’25). Association for Computing Machinery, New York, NY, USA, 172–178. https://doi.org/10.1145/3713082.3730380",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Spencer Kimball and Irfan Sharif. 2022. Living without atomic clocks: Where CockroachDB and Spanner diverge. https://www.cockroachlabs.com/blog/ living-without-atomic-clocks/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "H. T. Kung and John T. Robinson. 1981. On Optimistic Methods for Concurrency Control.ACM Trans. Database Syst.6, 2 (jun 1981), 213–226. https://doi.org/10. 1145/319566.319567",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "John DC Little. 1961. A proof for the queuing formula: L= 𝜆W.Operations research9, 3 (1961), 383–387.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "David Lomet, Rick Anderson, TK Rengarajan, and Peter Spiro. 1992. How the Rdb/VMS data sharing system became fast.DEC Cambridge Research Lab Technical Report CRL92, 4 (1992).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "Chris Newcombe, Tim Rath, Fan Zhang, Bogdan Munteanu, Marc Brooker, and Michael Deardeuff. 2015. How Amazon web services uses formal methods. Commun. ACM58, 4 (2015), 66–73.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Kun Ren, Dennis Li, and Daniel J. Abadi. 2019. SLOG: Serializable, Low-Latency, Geo-Replicated Transactions.Proc. VLDB Endow.12, 11 (jul 2019), 1747–1761. https://doi.org/10.14778/3342263.3342647",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Robbert Van Renesse and Fred B. Schneider. 2004. Chain Replication for Supporting High Throughput and Availability. In6th Symposium on Operating Systems Design and Implementation (OSDI 04). USENIX Association, San Francisco, CA. https://www.usenix.org/conference/osdi-04/chain-replication-supportinghigh-throughput-and-availability",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Bianca Schroeder, Adam Wierman, and Mor Harchol-Balter. 2006. Open versus closed: A cautionary tale. USENIX.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Sugu Sougoumarane and Mike Solomon. 2012. Vitess: Scaling MySQL at YouTube Using Go. USENIX Association, San Diego, CA.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Rebecca Taft, Irfan Sharif, Andrei Matei, Nathan VanBenschoten, Jordan Lewis, Tobias Grieger, Kai Niemi, Andy Woods, Anne Birzin, Raphael Poss, Paul Bardea, Amruta Ranade, Ben Darnell, Bram Gruneir, Justin Jaffray, Lucy Zhang, and Peter Mattis. 2020. CockroachDB: The Resilient Geo-Distributed SQL Database. In Proceedings of the 2020 ACMSIGMOD International Conference on Management of Data(Portland",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Yacine Taleb, Kevin McGehee, Nan Yan, Shawn Wang, Stefan C. Müller, and Allen Samuels. 2024. Amazon MemoryDB: A Fast and Durable Memory-First Cloud Database. InCompanion of the 2024 International Conference on Management of Data(Santiago AA, Chile)(SIGMOD ’24). Association for Computing Machinery, New York, NY, USA, 309–320. https://doi.org/10.1145/3626246.3653380",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Gil Tene. 2012. How Not to Measure Latency. https://qconsf.com/sf2012/dl/qconsanfran-2012/slides/GilTene_HowNotToMeasureLatency.pdf",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Alexander Thomson, Thaddeus Diamond, Shu-Chun Weng, Kun Ren, Philip Shao, and Daniel J Abadi. 2012. Calvin: fast distributed transactions for partitioned database systems. InProceedings of the 2012 ACMSIGMOD International Conference on Management of Data. 1–12.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Alexandre Verbitski, Anurag Gupta, Debanjan Saha, Murali Brahmadesam, Kamal Gupta, Raman Mittal, Sailesh Krishnamurthy, Sandor Maurice, Tengiz Kharatishvili, and Xiaofeng Bao. 2017. Amazon aurora: Design considerations for high throughput cloud-native relational databases. InProceedings of the 2017 ACM International Conference on Management of Data. 1041–1052.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Alexandre Verbitski, Anurag Gupta, Debanjan Saha, James Corey, Kamal Gupta, Murali Brahmadesam, Raman Mittal, Sailesh Krishnamurthy, Sandor Maurice, Tengiz Kharatishvilli, et al .2018. Amazon aurora: On avoiding distributed consensus for i/os, commits, and membership changes. InProceedings of the 2018 International Conference on Management of Data. 789–796.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Werner Vogels. 2009. Eventually Consistent.Commun. ACM52, 1 (jan 2009), 40–44. https://doi.org/10.1145/1435417.1435432",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Ding Yuan, Yu Luo, Xin Zhuang, Guilherme Renna Rodrigues, Xu Zhao, Yongle Zhang, Pranay U Jain, and Michael Stumm. 2014. Simple testing can prevent most critical failures: An analysis of production failures in distributed {DataIntensive}systems. In11th USENIX Symposium on Operating Systems Design and Implementation (OSDI 14). 249–265.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Jingyu Zhou, Meng Xu, Alexander Shraer, Bala Namasivayam, Alex Miller, Evan Tschannen, Steve Atherton, Andrew J Beamon, Rusty Sears, John Leach, et al. 2021. Foundationdb: A distributed unbundled transactional key value store. In Proceedings of the 2021 International Conference on Management of Data. 2653– 2666.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Tobias Ziegler, Philip A Bernstein, Viktor Leis, and Carsten Binnig. 2023. Is Scalable OLTP in the Cloud a Solved Problem? (2023).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Tobias Ziegler, Carsten Binnig, and Viktor Leis. 2022. ScaleStore: A Fast and Cost-Efficient Storage Engine using DRAM, NVMe, and RDMA. InProceedings of the 2022 International Conference on Management of Data(Philadelphia, PA, USA)(SIGMOD ’22). Association for Computing Machinery, New York, NY, USA, 685–699. https://doi.org/10.1145/3514221.3526187",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 4,
+      "text": "Jinsheng Ba and Manuel Rigger. 2023. Testing database engines via query plan guidance. In (ICSE). IEEE, 2060–2071.",
+      "technique": "qpg",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing qpg",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The fuzz-testing approach, building on the approach of SQLancer [ 4], generates millions of example SQL statements and runs them both on DSQL and on AuroraPostgreSQL.",
+      "context_before": "errors and failures. Our experience, and data from Yuan et al [ 37], show that the majority of bugs in complex distributed systems are in error handling logic. Once deployed, we test the system using fault injection testing while under load, validating that the failure handling results from simulation are correct. A subset of our in-production fault injection tests are available to DSQL customers via the AWS Fault Injection Service. To validate that our SQL results match those returned by PostgreSQL, we deployed extensive fuzz testing alongside a static set of hundreds of fixed-function tests.",
+      "context_after": "In cases where our feature set fully overlaps with PostgreSQL, we expect DSQL to generate identical results to PostgreSQL. Some differences in behavior are tolerated where allowed by the SQL specification. For example in a SELECT without an explicit ORDER BY results may be returned in a different order, although the set of results must be identical. This approach has helped us find bugs in edge cases around floating point, collations, and NULL handling. Another pre-design validation was to build a event-based numerical simulation, which allowed us to explore the expected performance of the sy",
+      "section": "5.6 Effects of Clock Skew",
+      "page": 10,
+      "char_offset": 55801,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": [
+        "qpg"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:18:50Z",
+    "is_model_written": true,
+    "summary": "A system description of Aurora DSQL, a serverless multi-region active-active SQL database. Compute, storage and transaction coordination are separated into independently scalable services, with PostgreSQL-compatible query processors running statelessly in Firecracker MicroVMs. It uses multiversion concurrency control with precision timestamps for coordination-free reads and optimistic concurrency control for writes, deferring coordination to commit time.",
+    "narrative": "SQLancer is used in production testing rather than cited as related work: the paper says its fuzz-testing approach builds on SQLancer's, generating millions of SQL statements and running them against both DSQL and a reference. That is an industrial adoption of the approach rather than of the codebase, as far as the mention shows.",
+    "roles": {
+      "M1": "reuse_component"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "uncertain",
+        "mention_ids": [
+          "M1"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M1",
+            "sentence": "The fuzz-testing approach, building on the approach of SQLancer [ 4], generates millions of example SQL statements and runs them both on DSQL and on AuroraPostgreSQL.",
+            "section": "5.6 Effects of Clock Skew",
+            "page": 10
+          }
+        ],
+        "reasoning": "M1 says the fuzz-testing approach builds on the approach of SQLancer and generates millions of statements run against DSQL and a reference. Whether AWS runs SQLancer's code or reimplemented its approach is not settled by the mention.",
+        "reuse_kind": "unclear"
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

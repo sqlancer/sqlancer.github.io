@@ -1,0 +1,953 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-09T01:33:40Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3533767.3534364",
+    "title": "Unicorn: detect runtime errors in time-series databases with hybrid input synthesis",
+    "authors": [
+      "Zhiyong Wu",
+      "Jie Liang",
+      "Mingzhe Wang",
+      "Chijin Zhou",
+      "Yu Jiang"
+    ],
+    "year": 2022,
+    "venue": "International Symposium on Software Testing and Analysis",
+    "doi": "10.1145/3533767.3534364",
+    "arxiv_id": null,
+    "s2_paper_id": "1ac6b3a3904b6c9022206be7c0b9d180b84b1fb4",
+    "url": "https://doi.org/10.1145/3533767.3534364",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3533767.3534364",
+      "retrieved_at": "2026-09-09T01:33:40Z",
+      "chars": 67061,
+      "content_sha256": "sha256:1c75c87c5dec2bb6d7e46f0f5024f36ab94559a3c27bcbf48f0f2e360fdd0ce3"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "INTRODUCTION",
+        "start": 2810
+      },
+      {
+        "number": "2",
+        "title": "TIME-SERIES DATABASES",
+        "start": 9173
+      },
+      {
+        "number": "2.1",
+        "title": "Employing Time-Series Data",
+        "start": 10666
+      },
+      {
+        "number": "2.2",
+        "title": "Handling Exceptions Implicitly",
+        "start": 13046
+      },
+      {
+        "number": "4.1",
+        "title": "Hybrid Input Synthesis",
+        "start": 21475
+      },
+      {
+        "number": "4.1.2",
+        "title": "Time-Series Mutation. With the hybrid input specification,",
+        "start": 24863
+      },
+      {
+        "number": "4.2",
+        "title": "Proactive Exception Detection",
+        "start": 27017
+      },
+      {
+        "number": "4.2.1",
+        "title": "Agent. As Figure 2 shows, time-series databases register a",
+        "start": 29763
+      },
+      {
+        "number": "6.1",
+        "title": "Evaluation Setup",
+        "start": 35887
+      },
+      {
+        "number": "6.2",
+        "title": "Overall Performance",
+        "start": 38385
+      },
+      {
+        "number": "6.3",
+        "title": "Effectiveness of Hybrid Input Synthesis",
+        "start": 43418
+      },
+      {
+        "number": "6.4",
+        "title": "Effectiveness of Exception Detection",
+        "start": 46946
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Mike Aizatsky, Kostya Serebryany, Oliver Chang, Abhishek Arya, and Meredith Whittaker. 2016. Continuous fuzzing for open source software. https://opensource .googleblog .com/2016/12/announcing-oss-fuzz-continuousfuzzing .html. [Online; accessed 15-May-2021].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "ASuherman, Masayoshi KURITA, Katsuhiko Nonomura, and Samurai Chanko. 2016. GridDB: Highly Scalable, In-Memory NoSQL Time Series Database Optimized for IoT and Big Data. https://griddb .org/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Alex Crichton Carl Lerche. 2016. Tokio:Build reliable network applications without compromising speed. https://tokio .rs/. [Online; accessed 15-May-2021].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Peng Chen and Hao Chen. 2018. Angora: Efficient Fuzzing by Principled Search. In 2018, San Francisco, California, USA. IEEE Computer Society, 711–725. https: //doi .org/10 .1109/SP .2018 .00046",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "cppreference. 2017. GESH, MediaWiki. https://en .cppreference .com/w/cpp/ error/exception. [Online; accessed 15-May-2021].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "TAOS Data. 2019. TDengine: Big Data Platform Designed and Optimized for the Internet of Things (IoT). https://www .taosdata .com/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Michael Eddington. 2015. Peach Fuzzer: Discover unknown vulnerabilities. http://web .archive .org/web/20210121202148/https://www .peach .tech/. [Online; accessed 15-May-2021].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Philippe Esling and Carlos Agon. 2012. Time-series data mining. ACM Computing Surveys (CSUR) 45, 1 (2012), 1–34.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Tak-chung Fu. 2011. A review on time series data mining. Engineering Applications of Artificial Intelligence 24, 1 (2011), 164–181.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Google. [n.d.]. AddressSanitizer. https://clang .llvm .org/docs/ AddressSanitizer .html. [Online; May 25, 2022].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Vlad Ilyushchenko, Brian Thomas Smith, and TheTanc. 2014. QuestDB: Database Designed to Process Time Series Data of IoT, Faster. https://github .com/questdb/ questdb",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2020. APOLLO: a toolchain for automatically detecting, reporting, and diagnosing performance bugs in DBMSs. https://github .com/sslab-gatech/apollo",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2020. APOLLO: Automatic Detection and Diagnosis of Performance Regressions in Database Systems (to appear). In Proceedings of the 46th International Conference on Very Large Data Bases (VLDB). Tokyo, Japan.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Seulbae Kim, Meng Xu, Sanidhya Kashyap, Jungyeon Yoon, Wen Xu, and Taesoo Kim. 2019. Finding semantic bugs in file systems with an extensible fuzzing framework. In Proceedings of the 27th ACM Symposium on Operating Systems Principles. 147–161. 261 ISSTA ’22, July 18–22, 2022, Virtual, South Korea Z.Wu, J.Liang, M.Wang, C.Zhou, Y.Jiang",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "lcamtuf. 2017. American Fuzzy Lop (AFL). http://lcamtuf .coredump .cx/afl/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Jie Liang, Mingzhe Wang, Chijin Zhou, Zhiyong Wu, Yu Jiang, Jianzhong Liu, Zhe Liu, and Jiaguang Sun. 2022. PATA: Fuzzing with Path Aware Taint Analysis. In2022. IEEE Computer Society, Los Alamitos, CA, USA. 154ś170.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "libfuzzer@googlegroups.com. 2020. libFuzzer – a library for coverage-guided fuzz testing. https://llvm .org/docs/LibFuzzer .html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Rui Liu and Jun Yuan. 2019. Benchmark Time Series Database with IoTDBBenchmark for IoT Scenarios. CoRR abs/1901.08304 (2019). arXiv:1901.08304 http://arxiv .org/abs/1901 .08304",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Zhengxiong Luo, Feilong Zuo, Yu Jiang, Jian Gao, Xun Jiao, and Jiaguang Sun. 2019. Polar: Function Code Aware Fuzz Testing of ICS Protocol. ACM Trans. Embed. Comput. Syst. 18, 5s (2019), 93:1–93:22. https://doi .org/10 .1145/3358227",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Zhengxiong Luo, Feilong Zuo, Yuheng Shen, Xun Jiao, Wanli Chang, and Yu Jiang. 2020. ICS protocol fuzzing: coverage guided packet crack and generation. In2020 57th ACM/IEEE Design Automation Conference (DAC). IEEE, 1–6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Barton P. Miller, Lars Fredriksen, and Bryan So. 1990. An Empirical Study of the Reliability of UNIX Utilities. Commun. ACM 33, 12, 32–44. https://doi .org/ 10.1145/96267 .96279",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Oracle. 2017. Java Exception. https://docs .oracle .com/javase/tutorial/essential/ exceptions/runtime .html. [Online; accessed 15-May-2021].",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Fernando Paladini and Brian Hawkins. 2014. KairosDB: Fast Time Series Database on Cassandra. https://kairosdb .github .io/",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Manuel Rigger. 2019. Apache IoTDB: Database for Internet of Things. https: //iotdb .apache .org/",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 25,
+      "text": "Manuel Rigger. 2020. SQLancer: detecting logic bugs in DBMS. https: //github .com/sqlancer/sqlancer",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 26,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of the 2020 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (Sacramento, California, United States) (ESEC/FSE 2020). https://doi .org/10 .1145/3368089 .3409710",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 27,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA (2020), 211:1–211:30. https://doi .org/10 .1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 28,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020, Virtual Event, November 4-6, 2020. USENIX Association, 667–682. https://www .usenix .org/conference/osdi20/presentation/ rigger",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 29,
+      "text": "Christoph Rudolf. 2017. SQL, no SQL or new SQL–comparison and applicability for Smart Spaces. Network Architectures and Services (2017).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Mitja Schmakeit, Florian Stinner, DJH Ziegeldorf, Ing Klaus Wehrle, and Ing Dirk Müller. 2017. Performance Evaluation of Low-Overhead Messaging Protocols and Time Series Databases via a Common Middleware. (2017).",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Andreas Seltenreich, Bo Tang, and Sjoerd Mullender. 2018. SQLsmith: a random SQL query generator. https://github .com/anse1/sqlsmith",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Andreas Seltenreich, Bo Tang, and Sjoerd Mullender. 2020. SQLsmith: Score list. https://github .com/anse1/sqlsmith/wiki#score-list",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Donald R. Slutz. [n.d.]. Massive Stochastic Testing of SQL. In VLDB’98, Proceedings of 24rd International Conference on Very Large Data Bases, New York, USA. Morgan Kaufmann, 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Hao Sun, Yuheng Shen, Cong Wang, Jianzhong Liu, Yu Jiang, Ting Chen, and Aiguo Cui. 2021. HEALER: Relation Learning Guided Kernel Fuzzing. In SOSP ’21: ACMSIGOPS 28th Symposium on Operating Systems Principles, Virtual Event / Koblenz, Germany, October 26-29, 2021, Robbert van Renesse and Nickolai Zeldovich (Eds.). ACM, 344–358. https://doi .org/10 .1145/3477132 .3483547",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Chen Wang, Xiangdong Huang, Jialin Qiao, Tian Jiang, Lei Rui, Jinrui Zhang, Rong Kang, Julian Feinauer, Kevin Mcgrail, Peng Wang, Diaohan Luo, Jun Yuan, Jianmin Wang, and Jiaguang Sun. 2020. Apache IoTDB: Time-series database for Internet of Things. Proc. VLDB Endow. 13, 12 (2020), 2901–2904. https: //doi .org/10 .14778/3415478 .3415504",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Mingzhe Wang, Zhiyong Wu, Xinyi Xu, Jie Liang, Chijin Zhou, Huafeng Zhang, and Yu Jiang. 2021. Industry practice of coverage-guided enterprise-level DBMS fuzzing. In Software Engineering in Practice (ICSE-SEIP). IEEE, 328–337.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Wen Xu, Hyungon Moon, Sanidhya Kashyap, Po-Ning Tseng, and Taesoo Kim. 2019. Fuzzing file systems via two-dimensional input space exploration. In. IEEE, 818–834.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Rui Zhong, Yongheng Chen, Hong Hu, Hangfan Zhang, Wenke Lee, and Dinghao Wu. 2020. Squirrel: Testing Database Management Systems with Language Validity and Coverage Feedback. In The ACM Conference on Computer and Communications Security (CCS), 2020.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Chijin Zhou, Mingzhe Wang, Jie Liang, Zhe Liu, and Yu Jiang. 2020. Zeror: Speed up fuzzing with coverage-sensitive tracing and scheduling. In Proceedings of the 35th IEEE/ACM International Conference on Automated Software Engineering. 858–870.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Feilong Zuo, Zhengxiong Luo, Junze Yu, Zhe Liu, and Yu Jiang. 2021. PAVFuzz: State-Sensitive Fuzz Testing of Protocols in Autonomous Vehicles. In 2021 58th ACM/IEEE Design Automation Conference (DAC). IEEE, 823–828. 262",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 24,
+      "text": "Manuel Rigger. 2019. Apache IoTDB: Database for Internet of Things. https: //iotdb .apache .org/",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 25,
+      "text": "Manuel Rigger. 2020. SQLancer: detecting logic bugs in DBMS. https: //github .com/sqlancer/sqlancer",
+      "technique": null,
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 26,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of the 2020 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (Sacramento, California, United States) (ESEC/FSE 2020). https://doi .org/10 .1145/3368089 .3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 27,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via query partitioning. Proc. ACM Program. Lang. 4, OOPSLA (2020), 211:1–211:30. https://doi .org/10 .1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 28,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing Database Engines via Pivoted Query Synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020, Virtual Event, November 4-6, 2020. USENIX Association, 667–682. https://www .usenix .org/conference/osdi20/presentation/ rigger",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, Unicorn outperforms SQLsmith and SQLancer on widely used time-series databases IoTDB, KairosDB, TimescaleDB, TDEngine, QuestDB, and GridDB in the number of basic blocks by 21%-199% and 34%-693%, respectively.",
+      "context_before": "and serious bugs are undetectable because of implicitly handled exceptions. In this paper, we propose Unicorn to secure time-series databases with automated fuzzing. First, we design hybrid input synthesis to generate high-quality queries which not only cover time-series features but also ensure grammar correctness. Then, Unicorn uses proactive exception detection to discover minuscule-symptom bugs which hide behind implicit exception handling. With the specialized design oriented to time-series databases, Unicorn outperforms the state-of-the-art database fuzzers in terms of coverage and bugs.",
+      "context_after": "More importantly, Unicorn has discovered 42 previously unknown bugs. CCSCONCEPTS •Software and its engineering →Software maintenance tools; •Security and privacy →Database and storage security. KEYWORDS Time-series Databases, Runtime Error, Hybrid Input Synthesis ∗Jie Liang and Yu Jiang are the corresponding authors. Request permissions from permissions@acm.org. ISSTA ’22, July 18–22, 2022, Virtual, South Korea ©2022 Association for Computing Machinery. ACMISBN 978-1-4503-9379-9/22/07.. . $15.00 https://doi .org/10 .1145/3533767 .3534364ACM Reference Format: Zhiyong Wu, Jie Liang, Mingzhe Wa",
+      "section": null,
+      "page": 1,
+      "char_offset": 1639,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We also adapted the industrial fuzzers SQLancer [ 25] and SQLsmith [ 31] for comparison.",
+      "context_before": "original seeds and generates new time-series queries by changing the time-series nodes of AST. To detect exceptions handled implicitly, proactive exception detection directly captures exception information from the runtime environment and analyzes whether it is an anomaly. Specifically, instead of passively receiving the program’s state, Unicorn inserts an agent into each process to proactively catch the exceptions and send them to the anomaly detector for analyzing and reporting. For evaluation, we used Unicorn to perform fuzzing on IoTDB, KairosDB, QuestDB, TimescaleDB, TDEngine, and GridDB.",
+      "context_after": "Unicorn covered 115.75% more basic blocks on average than the best results of other fuzzers. In addition, Unicorn detected 42 previously unknown bugs. In conclusion, our paper makes the following contributions:•We observe that current fuzzing approaches are hard to effectively test time-series databases. The two main challenges are generating grammatically correct queries and capturing exceptions handled implicitly. •We propose hybrid input synthesis and proactive exception detection to address the aforementioned challenges. We also implement these approaches in Unicorn. •We evaluate Unicorn",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 8299,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "•We evaluate Unicorn on 6 popular time-series databases against state-of-the-art fuzzers SQLsmith and SQLancer.",
+      "context_before": "[ 31] for comparison. Unicorn covered 115.75% more basic blocks on average than the best results of other fuzzers. In addition, Unicorn detected 42 previously unknown bugs. In conclusion, our paper makes the following contributions:•We observe that current fuzzing approaches are hard to effectively test time-series databases. The two main challenges are generating grammatically correct queries and capturing exceptions handled implicitly. •We propose hybrid input synthesis and proactive exception detection to address the aforementioned challenges. We also implement these approaches in Unicorn.",
+      "context_after": "The results show that Unicorn outperforms others and 42 previously-unknown bugs are detected. 2 TIME-SERIES DATABASES As an infrastructure for IoT data storage and analysis, time-series databases play an important role in promoting the development of Internet of Things. Generally, the time-series database is a kind of large-scale software to manipulate and manage IoT data, it handles the operation requests from various clients (including IoT devices, PC, etc.), and carries out unified management and control to ensure the security and integrity of IoT data [ 18]. In embedded application scenar",
+      "section": "1 INTRODUCTION",
+      "page": 2,
+      "char_offset": 8966,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker",
+      "surface": "[ 4,7,15,25,31]",
+      "technique": null,
+      "sentence": "3 CHALLENGES INFUZZING TIME-SERIES DATABASES Fuzzing has achieved remarkable results in the field of software testing [ 4,7,15,25,31].",
+      "context_before": "ndling Mechanism Device Client1 Device Client2 Device Client3Worker1 Worker2 Worker3Figure 2: Implicit exception handling mechanism in a famous time-series database Apache IoTDB. In the single-node running model of IoTDB, a server is connected by lots of device clients. The server generally has three core modules, namely Time-Series Storage, Time-Oriented Query, and IoT Data Management. The interactions of the three components are frequent and complex. When an exception (e.g loss of data) happens in any component, the IoTDB will implicitly handle it to ensure the whole system running normally.",
+      "context_after": "However, due to the two major characteristics in time-series databases, there are two major challenges for fuzzing time-series databases, namely generating grammatically-correct time-series queries andcapturing exceptions handled implicitly. To demonstrate the challenges of performing fuzzing in timeseries databases, we present a bug causing damage to the database integrity of Apache IoTDB. As one of the most important features of databases, database integrity requires that the data stored in the database is logically consistent, correct, and valid. It reflects that create timeseries root. st",
+      "section": "2.2 Handling Exceptions Implicitly",
+      "page": 3,
+      "char_offset": 15222,
+      "cited_reference": {
+        "number": 25,
+        "text": "Manuel Rigger. 2020. SQLancer: detecting logic bugs in DBMS. https: //github .com/sqlancer/sqlancer",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "6 EVALUATION In this section, we evaluate the effectiveness of Unicorn in terms of coverage and bug discovery against state-of-the-art database fuzzers—SQLsmith and SQLancer.",
+      "context_before": "specification. We instrument databases to collect coverage feedback. For Java databases, we implement it on ASM framework. And for C/C++ databases, we implement it based on Clang. Proactive Exception Detection. Detection is based on agent and anomaly detector. For VM-based time-series databases, the agent is implemented in 2,147 lines of Java code with ASM framework. For OS-based databases, the agent is implemented in 1,646 lines of C++ and Rust code and leverages ptrace for subprocesses error detection. In addition, we implemented the anomaly detector in Unicorn with 1,345 lines of Rust code.",
+      "context_after": "Besides, we also evaluate the effectiveness of two parts of Unicorn, namely hybrid input synthesis, as well as proactive exception detection. 6.1 Evaluation Setup Target Time-Series Databases. To evaluate the generality of Unicorn, six popular and widely-used open-source time-series databases are selected as the targets, namely IoTDB, KairosDB,QuestDB, TimescaleDB, TDEngine, and GridDB. Table 1 shows the features of those target databases. Table 1: Features of Chosen Time-series Databases Target Language Schema Grammar Dependency IoTDB Java tree-based SQL-like N/A KairosDB Java tag-based Http",
+      "section": "4.2.1 Agent. As Figure 2 shows, time-series databases register a",
+      "page": 7,
+      "char_offset": 35569,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Table 1: Features of Chosen Time-series Databases Target Language Schema Grammar Dependency IoTDB Java tree-based SQL-like N/A KairosDB Java tag-based Http API Cassandra QuestDB Java column-based SQL-like N/A TDEngine C++ table-based SQL-like N/A TimescaleDB C relational SQL-like PostgreSQL GridDB C++ tag-based SQL-like N/A Compared Fuzzers For the performance comparison, we have also adapted the blackbox fuzzers SQLsmith and SQLancer, which are widely used to test relational databases in industry, to those time-series databases.",
+      "context_before": "is section, we evaluate the effectiveness of Unicorn in terms of coverage and bug discovery against state-of-the-art database fuzzers—SQLsmith and SQLancer. Besides, we also evaluate the effectiveness of two parts of Unicorn, namely hybrid input synthesis, as well as proactive exception detection. 6.1 Evaluation Setup Target Time-Series Databases. To evaluate the generality of Unicorn, six popular and widely-used open-source time-series databases are selected as the targets, namely IoTDB, KairosDB,QuestDB, TimescaleDB, TDEngine, and GridDB. Table 1 shows the features of those target databases.",
+      "context_after": "Other fuzzers such as Sqirrel [38] are preliminary evaluated in Section Section 7 because of the limitation of their language support. •SQLsmith [31] is one of the state-of-the-art generationbased DBMS Fuzzer. It continuously generates a large amount of syntactically correct database inputs with the pre-built abstract syntax tree model and sends them to the target database server. If the database server crashes, a bug is very likely to be detected. •SQLancer [25] is a fuzzer for hunting logic bugs in DBMS. It detects logic bugs by constructing invariant oracles [ 26– 28] and checking whether",
+      "section": "6.1 Evaluation Setup",
+      "page": 7,
+      "char_offset": 36188,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "•SQLancer [25] is a fuzzer for hunting logic bugs in DBMS.",
+      "context_before": "adapted the blackbox fuzzers SQLsmith and SQLancer, which are widely used to test relational databases in industry, to those time-series databases. Other fuzzers such as Sqirrel [38] are preliminary evaluated in Section Section 7 because of the limitation of their language support. •SQLsmith [31] is one of the state-of-the-art generationbased DBMS Fuzzer. It continuously generates a large amount of syntactically correct database inputs with the pre-built abstract syntax tree model and sends them to the target database server. If the database server crashes, a bug is very likely to be detected.",
+      "context_after": "It detects logic bugs by constructing invariant oracles [ 26– 28] and checking whether results violate semantic logic. For example, it synthesizes queries to fetch a random row from an existing relational table in the database. If the database fails to fetch that, then the database might have a bug. Performance Metrics. We use the number of basic blocks covered and the number of bugs detected as two basic metrics. For a fair comparison, when we finish fuzzing, we collect the seeds generated by each fuzzer and dry-run the seeds to uniform the basic block coverage. To deduplicate unique bugs, w",
+      "section": "6.1 Evaluation Setup",
+      "page": 7,
+      "char_offset": 37177,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker",
+      "surface": "[ 26–\n28]",
+      "technique": "norec",
+      "sentence": "It detects logic bugs by constructing invariant oracles [ 26– 28] and checking whether results violate semantic logic.",
+      "context_before": "re widely used to test relational databases in industry, to those time-series databases. Other fuzzers such as Sqirrel [38] are preliminary evaluated in Section Section 7 because of the limitation of their language support. •SQLsmith [31] is one of the state-of-the-art generationbased DBMS Fuzzer. It continuously generates a large amount of syntactically correct database inputs with the pre-built abstract syntax tree model and sends them to the target database server. If the database server crashes, a bug is very likely to be detected. •SQLancer [25] is a fuzzer for hunting logic bugs in DBMS.",
+      "context_after": "For example, it synthesizes queries to fetch a random row from an existing relational table in the database. If the database fails to fetch that, then the database might have a bug. Performance Metrics. We use the number of basic blocks covered and the number of bugs detected as two basic metrics. For a fair comparison, when we finish fuzzing, we collect the seeds generated by each fuzzer and dry-run the seeds to uniform the basic block coverage. To deduplicate unique bugs, we extract and compare their call stacks. We also manually trace back to their relevant source code to further confirm.",
+      "section": "6.1 Evaluation Setup",
+      "page": 7,
+      "char_offset": 37236,
+      "cited_reference": {
+        "number": 26,
+        "text": "Manuel Rigger and Zhendong Su. 2020. Detecting Optimization Bugs in Database Engines via Non-Optimizing Reference Engine Construction. In Proceedings of the 2020 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (Sacramento, C",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing norec",
+          "prints the DOI of the paper introducing norec",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "2 Overall Performance Unicorn performs better than SQLsmith and SQLancer both in the number of basic blocks covered and bugs triggered.",
+      "context_before": "sic block coverage. To deduplicate unique bugs, we extract and compare their call stacks. We also manually trace back to their relevant source code to further confirm. For evaluations, we ran each fuzzing instance (one fuzzer + one target database) for 12 hours with 5 repeated times. Experiment Environment. We perform the evaluation on a machine with 40 cores (Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz), 256 GiB RAM, and Ubuntu 20.04 as the operating system. Each fuzzing instance ran individually with 1 CPU and 8GiB of RAM. The initial seeds were collected from the built-in integration tests. 6.",
+      "context_after": "Specifically, in our 12-hour experiment, Unicorn covered 115.75% more basic blocks on four successfully adapted databases than other fuzzers’ best results on average. Also, it found 42 previously unknown bugs, while other fuzzers detected 2 at most. Coverage. Table 2 demonstrates the number of basic blocks covered by each fuzzer in 12-hour experiments. From the table, 257 ISSTA ’22, July 18–22, 2022, Virtual, South Korea Z.Wu, J.Liang, M.Wang, C.Zhou, Y.Jiang Figure 7: The growing trend of the number of basic blocks covered when fuzzing each time-series database by Unicorn, SQLsmith, and SQL",
+      "section": "6.2 Overall Performance",
+      "page": 7,
+      "char_offset": 38387,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Figure 7: The growing trend of the number of basic blocks covered when fuzzing each time-series database by Unicorn, SQLsmith, and SQLancer over 5 runs in 12 hours.",
+      "context_before": "Overall Performance Unicorn performs better than SQLsmith and SQLancer both in the number of basic blocks covered and bugs triggered. Specifically, in our 12-hour experiment, Unicorn covered 115.75% more basic blocks on four successfully adapted databases than other fuzzers’ best results on average. Also, it found 42 previously unknown bugs, while other fuzzers detected 2 at most. Coverage. Table 2 demonstrates the number of basic blocks covered by each fuzzer in 12-hour experiments. From the table, 257 ISSTA ’22, July 18–22, 2022, Virtual, South Korea Z.Wu, J.Liang, M.Wang, C.Zhou, Y.Jiang",
+      "context_after": "Displayed are the median and the 95% confidence intervals. we can see that Unicorn outperformed other fuzzers in terms of basic block coverage. Compared to SQLsmith and SQLancer, on the four successfully adapted databases for both of them (i.e. IoTDB, QuestDB, TDEngine, and TimescaleDB), Unicorn covered 115.75% more basic blocks on average than their best results. In particular, Unicorn covered 690% more basic blocks than SQLancer in GridDB. Unicorn outperforms other fuzzers because it promises syntax correctness and time series by hybrid input synthesis. In contrast, SQLsmith and SQLancer do",
+      "section": "6.2 Overall Performance",
+      "page": 8,
+      "char_offset": 38988,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Compared to SQLsmith and SQLancer, on the four successfully adapted databases for both of them (i.",
+      "context_before": "it found 42 previously unknown bugs, while other fuzzers detected 2 at most. Coverage. Table 2 demonstrates the number of basic blocks covered by each fuzzer in 12-hour experiments. From the table, 257 ISSTA ’22, July 18–22, 2022, Virtual, South Korea Z.Wu, J.Liang, M.Wang, C.Zhou, Y.Jiang Figure 7: The growing trend of the number of basic blocks covered when fuzzing each time-series database by Unicorn, SQLsmith, and SQLancer over 5 runs in 12 hours. Displayed are the median and the 95% confidence intervals. we can see that Unicorn outperformed other fuzzers in terms of basic block coverage.",
+      "context_after": "e. IoTDB, QuestDB, TDEngine, and TimescaleDB), Unicorn covered 115.75% more basic blocks on average than their best results. In particular, Unicorn covered 690% more basic blocks than SQLancer in GridDB. Unicorn outperforms other fuzzers because it promises syntax correctness and time series by hybrid input synthesis. In contrast, SQLsmith and SQLancer do not match the time-series characteristics because SQLsmith and SQLancer only focus on the relational query in the relational model. In addition, Unicorn performs well on all tested time-series databases while SQLancer and SQLsmith both can ha",
+      "section": "6.2 Overall Performance",
+      "page": 8,
+      "char_offset": 39296,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M12",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In particular, Unicorn covered 690% more basic blocks than SQLancer in GridDB.",
+      "context_before": ", 2022, Virtual, South Korea Z.Wu, J.Liang, M.Wang, C.Zhou, Y.Jiang Figure 7: The growing trend of the number of basic blocks covered when fuzzing each time-series database by Unicorn, SQLsmith, and SQLancer over 5 runs in 12 hours. Displayed are the median and the 95% confidence intervals. we can see that Unicorn outperformed other fuzzers in terms of basic block coverage. Compared to SQLsmith and SQLancer, on the four successfully adapted databases for both of them (i.e. IoTDB, QuestDB, TDEngine, and TimescaleDB), Unicorn covered 115.75% more basic blocks on average than their best results.",
+      "context_after": "Unicorn outperforms other fuzzers because it promises syntax correctness and time series by hybrid input synthesis. In contrast, SQLsmith and SQLancer do not match the time-series characteristics because SQLsmith and SQLancer only focus on the relational query in the relational model. In addition, Unicorn performs well on all tested time-series databases while SQLancer and SQLsmith both can hardly adapt to KairosDB. Because KairosDB does not accept the SQL-like inputs but the JSON format input by HTTP-API, the generation model of SQLsmith and SQLancer can hardly generate inputs like that. Ins",
+      "section": "6.2 Overall Performance",
+      "page": 8,
+      "char_offset": 39519,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M13",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In contrast, SQLsmith and SQLancer do not match the time-series characteristics because SQLsmith and SQLancer only focus on the relational query in the relational model.",
+      "context_before": "and SQLancer over 5 runs in 12 hours. Displayed are the median and the 95% confidence intervals. we can see that Unicorn outperformed other fuzzers in terms of basic block coverage. Compared to SQLsmith and SQLancer, on the four successfully adapted databases for both of them (i.e. IoTDB, QuestDB, TDEngine, and TimescaleDB), Unicorn covered 115.75% more basic blocks on average than their best results. In particular, Unicorn covered 690% more basic blocks than SQLancer in GridDB. Unicorn outperforms other fuzzers because it promises syntax correctness and time series by hybrid input synthesis.",
+      "context_after": "In addition, Unicorn performs well on all tested time-series databases while SQLancer and SQLsmith both can hardly adapt to KairosDB. Because KairosDB does not accept the SQL-like inputs but the JSON format input by HTTP-API, the generation model of SQLsmith and SQLancer can hardly generate inputs like that. Instead, Unicorn constructs the hybrid input specification for input generation by adding the time-series elements to the JSON grammar specification. As a result, Unicorn adapts KairosDB well to explore its state space. Table 2: Average Number of Basic Blocks on Time-Series Databases For",
+      "section": "6.2 Overall Performance",
+      "page": 8,
+      "char_offset": 39714,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M14",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "In addition, Unicorn performs well on all tested time-series databases while SQLancer and SQLsmith both can hardly adapt to KairosDB.",
+      "context_before": "ck coverage. Compared to SQLsmith and SQLancer, on the four successfully adapted databases for both of them (i.e. IoTDB, QuestDB, TDEngine, and TimescaleDB), Unicorn covered 115.75% more basic blocks on average than their best results. In particular, Unicorn covered 690% more basic blocks than SQLancer in GridDB. Unicorn outperforms other fuzzers because it promises syntax correctness and time series by hybrid input synthesis. In contrast, SQLsmith and SQLancer do not match the time-series characteristics because SQLsmith and SQLancer only focus on the relational query in the relational model.",
+      "context_after": "Because KairosDB does not accept the SQL-like inputs but the JSON format input by HTTP-API, the generation model of SQLsmith and SQLancer can hardly generate inputs like that. Instead, Unicorn constructs the hybrid input specification for input generation by adding the time-series elements to the JSON grammar specification. As a result, Unicorn adapts KairosDB well to explore its state space. Table 2: Average Number of Basic Blocks on Time-Series Databases For Each Fuzzer. Target SQLsmith SQLancer Unicorn IoTDB 4, 857 3, 754 14, 532 KairosDB N/A N/A 26, 489 QuestDB 5, 742 3, 298 10, 486 TDEng",
+      "section": "6.2 Overall Performance",
+      "page": 8,
+      "char_offset": 39884,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M15",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Because KairosDB does not accept the SQL-like inputs but the JSON format input by HTTP-API, the generation model of SQLsmith and SQLancer can hardly generate inputs like that.",
+      "context_before": "gine, and TimescaleDB), Unicorn covered 115.75% more basic blocks on average than their best results. In particular, Unicorn covered 690% more basic blocks than SQLancer in GridDB. Unicorn outperforms other fuzzers because it promises syntax correctness and time series by hybrid input synthesis. In contrast, SQLsmith and SQLancer do not match the time-series characteristics because SQLsmith and SQLancer only focus on the relational query in the relational model. In addition, Unicorn performs well on all tested time-series databases while SQLancer and SQLsmith both can hardly adapt to KairosDB.",
+      "context_after": "Instead, Unicorn constructs the hybrid input specification for input generation by adding the time-series elements to the JSON grammar specification. As a result, Unicorn adapts KairosDB well to explore its state space. Table 2: Average Number of Basic Blocks on Time-Series Databases For Each Fuzzer. Target SQLsmith SQLancer Unicorn IoTDB 4, 857 3, 754 14, 532 KairosDB N/A N/A 26, 489 QuestDB 5, 742 3, 298 10, 486 TDEngine 3, 245 1, 423 8, 473 TimescaleDB 26, 423 13, 485 32, 124 GridDB N/A 2, 286 18, 145 Total 40, 276 24, 246 110, 249Figure 7 shows the growth trends of the number of basic blo",
+      "section": "6.2 Overall Performance",
+      "page": 8,
+      "char_offset": 40018,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M16",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Target SQLsmith SQLancer Unicorn IoTDB 4, 857 3, 754 14, 532 KairosDB N/A N/A 26, 489 QuestDB 5, 742 3, 298 10, 486 TDEngine 3, 245 1, 423 8, 473 TimescaleDB 26, 423 13, 485 32, 124 GridDB N/A 2, 286 18, 145 Total 40, 276 24, 246 110, 249Figure 7 shows the growth trends of the number of basic blocks for each fuzzer over 12 hours.",
+      "context_before": ", Unicorn performs well on all tested time-series databases while SQLancer and SQLsmith both can hardly adapt to KairosDB. Because KairosDB does not accept the SQL-like inputs but the JSON format input by HTTP-API, the generation model of SQLsmith and SQLancer can hardly generate inputs like that. Instead, Unicorn constructs the hybrid input specification for input generation by adding the time-series elements to the JSON grammar specification. As a result, Unicorn adapts KairosDB well to explore its state space. Table 2: Average Number of Basic Blocks on Time-Series Databases For Each Fuzzer.",
+      "context_after": "By comparing the curves of Unicorn, SQLsmith and SQLancer in each sub-figure, we find that Unicorn is faster to cover basic blocks on target time-series databases than both SQLsmith and SQLancer. Specifically, in Figure 7 (a), Unicorn covers more basic blocks in IoTDB than SQLsmith and SQLancer from start to the end. The results on other time-series databases also have similar trends. The main reason is that the inputs generated by SQLsmith and SQLancer lack time-series elements, so most of them are invalid. Unicorn introduces time-series elements through hybrid input synthesis. The initial s",
+      "section": "6.2 Overall Performance",
+      "page": 8,
+      "char_offset": 40496,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M17",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "By comparing the curves of Unicorn, SQLsmith and SQLancer in each sub-figure, we find that Unicorn is faster to cover basic blocks on target time-series databases than both SQLsmith and SQLancer.",
+      "context_before": "ybrid input specification for input generation by adding the time-series elements to the JSON grammar specification. As a result, Unicorn adapts KairosDB well to explore its state space. Table 2: Average Number of Basic Blocks on Time-Series Databases For Each Fuzzer. Target SQLsmith SQLancer Unicorn IoTDB 4, 857 3, 754 14, 532 KairosDB N/A N/A 26, 489 QuestDB 5, 742 3, 298 10, 486 TDEngine 3, 245 1, 423 8, 473 TimescaleDB 26, 423 13, 485 32, 124 GridDB N/A 2, 286 18, 145 Total 40, 276 24, 246 110, 249Figure 7 shows the growth trends of the number of basic blocks for each fuzzer over 12 hours.",
+      "context_after": "Specifically, in Figure 7 (a), Unicorn covers more basic blocks in IoTDB than SQLsmith and SQLancer from start to the end. The results on other time-series databases also have similar trends. The main reason is that the inputs generated by SQLsmith and SQLancer lack time-series elements, so most of them are invalid. Unicorn introduces time-series elements through hybrid input synthesis. The initial seeds are syntactically correct, which come from the test cases of time-series databases themselves. Based on them, hybrid input synthesis generates more valid inputs, which are helpful to explore",
+      "section": "6.2 Overall Performance",
+      "page": 8,
+      "char_offset": 40828,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M18",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, in Figure 7 (a), Unicorn covers more basic blocks in IoTDB than SQLsmith and SQLancer from start to the end.",
+      "context_before": "Average Number of Basic Blocks on Time-Series Databases For Each Fuzzer. Target SQLsmith SQLancer Unicorn IoTDB 4, 857 3, 754 14, 532 KairosDB N/A N/A 26, 489 QuestDB 5, 742 3, 298 10, 486 TDEngine 3, 245 1, 423 8, 473 TimescaleDB 26, 423 13, 485 32, 124 GridDB N/A 2, 286 18, 145 Total 40, 276 24, 246 110, 249Figure 7 shows the growth trends of the number of basic blocks for each fuzzer over 12 hours. By comparing the curves of Unicorn, SQLsmith and SQLancer in each sub-figure, we find that Unicorn is faster to cover basic blocks on target time-series databases than both SQLsmith and SQLancer.",
+      "context_after": "The results on other time-series databases also have similar trends. The main reason is that the inputs generated by SQLsmith and SQLancer lack time-series elements, so most of them are invalid. Unicorn introduces time-series elements through hybrid input synthesis. The initial seeds are syntactically correct, which come from the test cases of time-series databases themselves. Based on them, hybrid input synthesis generates more valid inputs, which are helpful to explore the states of the target time-series databases. Therefore, Unicorn achieves higher coverage at the beginning and keeps ahea",
+      "section": "6.2 Overall Performance",
+      "page": 8,
+      "char_offset": 41024,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M19",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "The main reason is that the inputs generated by SQLsmith and SQLancer lack time-series elements, so most of them are invalid.",
+      "context_before": "ngine 3, 245 1, 423 8, 473 TimescaleDB 26, 423 13, 485 32, 124 GridDB N/A 2, 286 18, 145 Total 40, 276 24, 246 110, 249Figure 7 shows the growth trends of the number of basic blocks for each fuzzer over 12 hours. By comparing the curves of Unicorn, SQLsmith and SQLancer in each sub-figure, we find that Unicorn is faster to cover basic blocks on target time-series databases than both SQLsmith and SQLancer. Specifically, in Figure 7 (a), Unicorn covers more basic blocks in IoTDB than SQLsmith and SQLancer from start to the end. The results on other time-series databases also have similar trends.",
+      "context_after": "Unicorn introduces time-series elements through hybrid input synthesis. The initial seeds are syntactically correct, which come from the test cases of time-series databases themselves. Based on them, hybrid input synthesis generates more valid inputs, which are helpful to explore the states of the target time-series databases. Therefore, Unicorn achieves higher coverage at the beginning and keeps ahead to the end. Table 3: Total Number of Detected Bugs on Time-Series Databases By Each Fuzzer. Target SQLsmith SQLancer Unicorn IoTDB 1 0 18 KairosDB N/A N/A 2 QuestDB 0 0 3 TDEngine 0 0 6 Timesca",
+      "section": "6.2 Overall Performance",
+      "page": 8,
+      "char_offset": 41216,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M20",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Target SQLsmith SQLancer Unicorn IoTDB 1 0 18 KairosDB N/A N/A 2 QuestDB 0 0 3 TDEngine 0 0 6 TimescaleDB 1 1 3 GridDB N/A 0 10 Total 2 1 42 Bugs.",
+      "context_before": "the inputs generated by SQLsmith and SQLancer lack time-series elements, so most of them are invalid. Unicorn introduces time-series elements through hybrid input synthesis. The initial seeds are syntactically correct, which come from the test cases of time-series databases themselves. Based on them, hybrid input synthesis generates more valid inputs, which are helpful to explore the states of the target time-series databases. Therefore, Unicorn achieves higher coverage at the beginning and keeps ahead to the end. Table 3: Total Number of Detected Bugs on Time-Series Databases By Each Fuzzer.",
+      "context_after": "Table 3 shows the number of bugs discovered in six timeseries databases by Unicorn, SQLsmith, and SQLancer. All these bugs have been confirmed by the database developers. Totally, 258 Unicorn: Detect Runtime Errors in Time-Series Databases with Hybrid Input Synthesis ISSTA ’22, July 18–22, 2022, Virtual, South Korea Unicorn detected 42 previously unknown bugs. Among them, 23 were from databases implemented in Java, which run in VM. Furthermore, 2 bugs were also found by SQLsmith, while SQLancer did not detect any bug. Unicorn found more bugs mainly for two reasons. First, Unicorn finds more b",
+      "section": "6.2 Overall Performance",
+      "page": 8,
+      "char_offset": 41840,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M21",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Table 3 shows the number of bugs discovered in six timeseries databases by Unicorn, SQLsmith, and SQLancer.",
+      "context_before": "ugh hybrid input synthesis. The initial seeds are syntactically correct, which come from the test cases of time-series databases themselves. Based on them, hybrid input synthesis generates more valid inputs, which are helpful to explore the states of the target time-series databases. Therefore, Unicorn achieves higher coverage at the beginning and keeps ahead to the end. Table 3: Total Number of Detected Bugs on Time-Series Databases By Each Fuzzer. Target SQLsmith SQLancer Unicorn IoTDB 1 0 18 KairosDB N/A N/A 2 QuestDB 0 0 3 TDEngine 0 0 6 TimescaleDB 1 1 3 GridDB N/A 0 10 Total 2 1 42 Bugs.",
+      "context_after": "All these bugs have been confirmed by the database developers. Totally, 258 Unicorn: Detect Runtime Errors in Time-Series Databases with Hybrid Input Synthesis ISSTA ’22, July 18–22, 2022, Virtual, South Korea Unicorn detected 42 previously unknown bugs. Among them, 23 were from databases implemented in Java, which run in VM. Furthermore, 2 bugs were also found by SQLsmith, while SQLancer did not detect any bug. Unicorn found more bugs mainly for two reasons. First, Unicorn finds more basic blocks. With more basic blocks covered, Unicorn could explore more state space in the target time-serie",
+      "section": "6.2 Overall Performance",
+      "page": 8,
+      "char_offset": 41987,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M22",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Furthermore, 2 bugs were also found by SQLsmith, while SQLancer did not detect any bug.",
+      "context_before": "s By Each Fuzzer. Target SQLsmith SQLancer Unicorn IoTDB 1 0 18 KairosDB N/A N/A 2 QuestDB 0 0 3 TDEngine 0 0 6 TimescaleDB 1 1 3 GridDB N/A 0 10 Total 2 1 42 Bugs. Table 3 shows the number of bugs discovered in six timeseries databases by Unicorn, SQLsmith, and SQLancer. All these bugs have been confirmed by the database developers. Totally, 258 Unicorn: Detect Runtime Errors in Time-Series Databases with Hybrid Input Synthesis ISSTA ’22, July 18–22, 2022, Virtual, South Korea Unicorn detected 42 previously unknown bugs. Among them, 23 were from databases implemented in Java, which run in VM.",
+      "context_after": "Unicorn found more bugs mainly for two reasons. First, Unicorn finds more basic blocks. With more basic blocks covered, Unicorn could explore more state space in the target time-series databases, which assigns more possibility for Unicorn to detect more bugs. Second, Unicorn is able to detect bugs that are handled implicitly, while others cannot. For instance, of the discovered 18 bugs in IoTDB, only 5 bugs directly cause the server crash. Although some unchecked exceptions are caused by real bugs, such as returning the wrong results to the client, storing wrong time-series data, and memory e",
+      "section": "6.2 Overall Performance",
+      "page": 9,
+      "char_offset": 42423,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M23",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For example, SQLancer uses 8,134 lines of Java code to support generating syntax-correct queries.",
+      "context_before": "exception detection, only 5 crashes were found. Overall, while monitoring all exceptions increases the overhead of Unicorn, It also assigns the ability to detect bugs that may cause serious damage to time-series databases in production applications. We believe reducing the overhead is significant to speed fuzzing. We plan to optimize it by reducing capture messages of agent. Cost of Adapting to New Time-series Databases. The scalability of database fuzzers plays a crucial role in industrial applications. Generally, the most labor-consuming task is building the input model of target databases.",
+      "context_after": "Different from conventional fuzzers, Unicorn doesn’t cost much to adapt to new time-series databases. With the collected ANTLR format grammar of traditional SQL specification, we only need to manually append less than 100 lines of code for the time-oriented model. Compare Against Coverage-Guided Database Fuzzers. Most coverage-guided database fuzzers are unable to test time-series databases directly because their instrumentation only supports C/C++. In contrast, Unicorn supports the heterogeneous implementation of C/C++ and Java. To further investigate Unicorn ’s performance, we also compare",
+      "section": "6.4 Effectiveness of Exception Detection",
+      "page": 10,
+      "char_offset": 52047,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M24",
+      "found_by": "citation_marker",
+      "surface": "[ 13,25–27,31,33,38]",
+      "technique": null,
+      "sentence": "Various test oracles have been proposed to detect various bugs in databases and have achieved good results [ 13,25–27,31,33,38].",
+      "context_before": "he relational storage model of relational databases. It can not perform well for the time-series storage model. Unlike these works, Unicorn automatically constructs hybrid input specification for each time-series database by combining timeoriented models and traditional SQL specifications. With the timeoriented model, the generated queries have abundant time-series features. Besides, Unicorn is adaptable. Generally, it only needs to append less than 100 lines of code to the traditional specification for the time-oriented model to adapt to a new time-series database. Test Oracles for Databases.",
+      "context_after": "The basic test oracle is monitoring whether the tested databases crashes. SQLsmith [ 31] determines bugs in databases through the running state of the server. In other words, if the server crashes, there might be a bug in the database. Sqirrel [38] and Ratel [36] focuses on detecting memory corruption bugs in databases with the help of AddressSanitizer (ASAN) [ 10]. It records bugs when ASAN crashes the program. However, limited by the dependency on ASAN, it can only detect bugs in the C/C++ databases. Therefore, it can hardly detect problems for the database implemented in memorysafe languag",
+      "section": "6.4 Effectiveness of Exception Detection",
+      "page": 11,
+      "char_offset": 54747,
+      "cited_reference": {
+        "number": 25,
+        "text": "Manuel Rigger. 2020. SQLancer: detecting logic bugs in DBMS. https: //github .com/sqlancer/sqlancer",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M25",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer [ 25] designs three test oracles according to the logic characteristics of relational databases.",
+      "context_before": "SQLsmith [ 31] determines bugs in databases through the running state of the server. In other words, if the server crashes, there might be a bug in the database. Sqirrel [38] and Ratel [36] focuses on detecting memory corruption bugs in databases with the help of AddressSanitizer (ASAN) [ 10]. It records bugs when ASAN crashes the program. However, limited by the dependency on ASAN, it can only detect bugs in the C/C++ databases. Therefore, it can hardly detect problems for the database implemented in memorysafe languages such as Java. Other tools focus on oracles related to logic correctness.",
+      "context_after": "Specifically, it constructs inputs to fetch a randomly selected row from a relational table. If the database server fails to return the rows, it should contain a bug. Some other works define test oracles based on differential testing. RAGS [ 33] detects correctness bugs in databases through differential testing. It generates and executes queries in multiple databases. Any inconsistency among results indicates at least one database contains bugs. Apollo [12,13] is proposed to detect performance regression bugs by comparing the execution time with the same inputs on different versions of the sa",
+      "section": "6.4 Effectiveness of Exception Detection",
+      "page": 11,
+      "char_offset": 55551,
+      "found_by_all": [
+        "name",
+        "citation_marker"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M26",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 2,6,11,23,24]",
+      "technique": null,
+      "sentence": "In addition to performance testing, many time-series databases developers [ 2,6,11,23,24] also use a large amount of unit tests to ensure their security.",
+      "context_before": "fferent languages. IoT Domain Testing. With the development of IoT devices, time-series database testing has attracted more and more attention. And a large number of test benches for time-series databases have been designed. Schemakeit [ 30] has created a test bench focusing on the writing speed, CPU time, memory usage of time-series databases. Rudoly [ 29] evaluates different time-series databases for smart space. However, these test benches only test the performance of time-series databases. Different from them, Unicorn detects security problems (e.g. memory errors) in time-series databases.",
+      "context_after": "However, unit tests can only cover basic functionalities of time-series databases, and some hidden bugs can not be discovered due to low coverage. Differently, Unicorn tests target databases as a whole system. In other words, Unicorn could detect anomalies triggered by the interactions from different components in one database. More importantly, Unicorn generatesa large amount of time-series queries automatically, which can cover more basic blocks and detect hidden bugs. 9 CONCLUSION In this paper, we present Unicorn to automatically detect anomalies in time-series databases with time-series",
+      "section": "6.4 Effectiveness of Exception Detection",
+      "page": 11,
+      "char_offset": 57282,
+      "cited_reference": {
+        "number": 24,
+        "text": "Manuel Rigger. 2019. Apache IoTDB: Database for Internet of Things. https: //iotdb .apache .org/",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M3",
+        "M5",
+        "M12"
+      ],
+      "extends_technique": [
+        "M6"
+      ],
+      "describes_as_state_of_the_art": [
+        "M3",
+        "M5"
+      ]
+    },
+    "suppressed": [
+      {
+        "mention_id": "M2",
+        "pattern": "extends_technique",
+        "suppressed_because": "the sentence says the tool was taken up as a baseline, which is comparison rather than reuse or extension"
+      }
+    ]
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:16:44Z",
+    "is_model_written": true,
+    "summary": "Unicorn fuzzes time-series databases, whose inputs combine SQL-like queries with time-series-specific schema and data constraints that relational fuzzers do not model. It synthesises inputs from a hybrid of grammar-based generation and dependency handling, and adds exception handling so that a rejected statement does not end a run. Across IoTDB, KairosDB, QuestDB, TDEngine, TimescaleDB and GridDB it covered 21-199% more basic blocks than SQLsmith and 34-693% more than SQLancer, and found 42 bugs.",
+    "narrative": "SQLancer is Unicorn's principal baseline. The authors adapted it to each of the six time-series systems and report coverage and bug counts side by side across the whole evaluation, and they call it a state-of-the-art database fuzzer when introducing that comparison. Their explanation for the gap is about scope rather than quality: SQLancer targets the relational model, so its generated queries lack time-series elements and most are invalid on these systems, and it cannot address KairosDB at all because that system takes JSON over HTTP rather than SQL. They also cite SQLancer's three test oracles as the prior work on oracle design.",
+    "roles": {
+      "M1": "result_comparison",
+      "M2": "baseline",
+      "M3": "state_of_the_art",
+      "M4": "background",
+      "M5": "state_of_the_art",
+      "M6": "incidental",
+      "M7": "definition",
+      "M8": "definition",
+      "M9": "result_comparison",
+      "M10": "result_comparison",
+      "M11": "result_comparison",
+      "M12": "result_comparison",
+      "M13": "result_comparison",
+      "M14": "result_comparison",
+      "M15": "result_comparison",
+      "M16": "result_comparison",
+      "M17": "result_comparison",
+      "M18": "result_comparison",
+      "M19": "result_comparison",
+      "M20": "result_comparison",
+      "M21": "result_comparison",
+      "M22": "result_comparison",
+      "M23": "incidental",
+      "M24": "background",
+      "M25": "definition",
+      "M26": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer was adapted so it could be run as a baseline, which is comparison rather than reuse: nothing in Unicorn's own implementation is built on SQLancer's code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No SQLancer technique is extended; the work takes a different approach."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M2",
+          "M5",
+          "M9",
+          "M22"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M2",
+            "sentence": "We also adapted the industrial fuzzers SQLancer [ 25] and SQLsmith [ 31] for comparison.",
+            "section": "1 INTRODUCTION",
+            "page": 2
+          },
+          {
+            "mention_id": "M5",
+            "sentence": "6 EVALUATION In this section, we evaluate the effectiveness of Unicorn in terms of coverage and bug discovery against state-of-the-art database fuzzers—SQLsmith and SQLancer.",
+            "section": "4.2.1 Agent. As Figure 2 shows, time-series databases register a",
+            "page": 7
+          },
+          {
+            "mention_id": "M9",
+            "sentence": "2 Overall Performance Unicorn performs better than SQLsmith and SQLancer both in the number of basic blocks covered and bugs triggered.",
+            "section": "6.2 Overall Performance",
+            "page": 7
+          },
+          {
+            "mention_id": "M22",
+            "sentence": "Furthermore, 2 bugs were also found by SQLsmith, while SQLancer did not detect any bug.",
+            "section": "6.2 Overall Performance",
+            "page": 9
+          }
+        ],
+        "reasoning": "M2 states the authors adapted SQLancer for comparison, M5 names it as one of the fuzzers Unicorn is evaluated against, and M9 and M22 report the outcome in both coverage and bugs found."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M3",
+          "M5"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M3",
+            "sentence": "•We evaluate Unicorn on 6 popular time-series databases against state-of-the-art fuzzers SQLsmith and SQLancer.",
+            "section": "1 INTRODUCTION",
+            "page": 2
+          },
+          {
+            "mention_id": "M5",
+            "sentence": "6 EVALUATION In this section, we evaluate the effectiveness of Unicorn in terms of coverage and bug discovery against state-of-the-art database fuzzers—SQLsmith and SQLancer.",
+            "section": "4.2.1 Agent. As Figure 2 shows, time-series databases register a",
+            "page": 7
+          }
+        ],
+        "reasoning": "M3 and M5 both introduce SQLancer as one of the state-of-the-art fuzzers the evaluation measures against."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

@@ -1,0 +1,742 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:26:30Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3650212.3680311",
+    "title": "Testing Graph Database Systems with Graph-State Persistence Oracle",
+    "authors": [
+      "Shuang Liu",
+      "Junhao Lan",
+      "Xiaoning Du",
+      "Jiyuan Li",
+      "Wei Lu",
+      "Jiajun Jiang",
+      "Xiaoyong Du"
+    ],
+    "year": 2024,
+    "venue": "International Symposium on Software Testing and Analysis",
+    "doi": "10.1145/3650212.3680311",
+    "arxiv_id": null,
+    "s2_paper_id": "ada7405e20ac861d632055bcb871ee4d57afc710",
+    "url": "https://doi.org/10.1145/3650212.3680311",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "supplied_pdf",
+      "url": "https://doi.org/10.1145/3650212.3680311",
+      "retrieved_at": "2026-09-08T15:26:30Z",
+      "chars": 70962,
+      "content_sha256": "sha256:9f0ec7acfb451549cf53f94569af9d267fd92cf25be46a194cb66321d1722a25"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 12,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 3406
+      },
+      {
+        "number": "2",
+        "title": "Preliminary",
+        "start": 11174
+      },
+      {
+        "number": "2.1",
+        "title": "LabeledProperty GraphandCypher",
+        "start": 11188
+      },
+      {
+        "number": "2.2",
+        "title": "GraphIsomorphism",
+        "start": 14017
+      },
+      {
+        "number": "4.1",
+        "title": "QueryGeneration",
+        "start": 26589
+      },
+      {
+        "number": "4.2",
+        "title": "Mutation Rules",
+        "start": 28069
+      },
+      {
+        "number": "4.3",
+        "title": "Oracle",
+        "start": 31579
+      },
+      {
+        "number": "5.1",
+        "title": "EvaluationSetup",
+        "start": 39551
+      },
+      {
+        "number": "5.2",
+        "title": "RQ1: Ability on Detecting Unknown Bugs",
+        "start": 41958
+      },
+      {
+        "number": "5.4",
+        "title": "RQ3: Comparisonwith Baselines",
+        "start": 44514
+      },
+      {
+        "number": "5.4.1",
+        "title": "DetectedUniqueBugs. Table7showsthecomparisonresults",
+        "start": 45533
+      },
+      {
+        "number": "5.5",
+        "title": "Threatsto Validity",
+        "start": 52676
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "2007.StructuredQueryLanguage. SpringerBerlinHeidelberg,Berlin,Heidelberg, 111–212. https://doi.org/10.1007/978-3-540-48399-1_4",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "2024.03. AgensGraphOﬃcialWebsite. https://bitnine.net/agensgraph/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "2024.03.CypherforgremlinPlugin. https://github.com/opencypher/cypher-forgremlin/tree/master/tinkerpop/cypher-gremlin-server-client.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "2024.03.The DBRanking Website. https://db-engines.com/en/ranking/graph+ dbms/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "2024.03.GraphDatabasemarketshare. https://www.marketsandmarkets.com/ Market-Reports/graph-database-market-126230231.html..",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "2024.03. Graph isomorphism problem for labeled graphs, computer science. https://cs.stackexchange.com/questions/28714/graph-isomorphismproblem-for-labeled-graphs.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "2024.03.Limitations of RedisGraph .https://github.com/RedisGraph/RedisGraph/ blob/master/docs/docs/known_limitations.md.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "2024.03. MemGraph OﬃcialWebsite. https://memgraph.com/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "2024.03.Neo4j Oﬃcial Documents: Clauses in the Cypher Query Language .https: //neo4j.com/docs/cypher-manual/current/clauses/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "2024.03. Neo4j Oﬃcial Website. https://neo4j.com/product/neo4j-graphdatabase/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "2024.03. RedisGraph Oﬃcial Website. https://docs.redis.com/latest/stack/ deprecated-features/graph/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "AsimAnsari,SkanderEssegaier,andRajeevKohli.2000.Internetrecommendation systems. https://doi.org/10.1509/jmkr.37.3.363.18779",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Marcelo Arenas, Claudio Gutiérrez, and Juan F Sequeda. 2021. Querying in the age of graph databases and knowledge graphs. In Proceedings of the 2021 International Conference on Management of Data. 2821–2828. https://doi.org/10. 1145/3448016.3457545",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "L.P.Cordella,P.Foggia,C.Sansone,andM.Vento.2004. A(sub)graphisomorphismalgorithmformatchinglargegraphs. IEEETransactionsonPatternAnalysis andMachineIntelligence 26,10(2004),1367–1372. https://doi.org/10.1109/TPAMI. 2004.75",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "WenqiFan,YaoMa,QingLi,YuanHe,EricZhao,JiliangTang,andDaweiYin. 2019. Graph neural networks for social recommendation. In The world wide web conference. 417–426. https://doi.org/10.1145/3308558.3313488",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "PasqualeFoggia,CarloSansone,MarioVento,etal .2001. Aperformancecomparison of /f_ive algorithms for graph isomorphism. In Proceedings of the 3rd IAPRTC-15 Workshop on Graph-basedRepresentations inPatternRecognition. Citeseer, 188–199. https://src.acm.org/binaries/content/assets/src/2009/sara-voss.pdf 676 ISSTA ’24, September16–20, 2024,Vienna, Austria Shuang Liu, Junhao Lan,XiaoningDu,Jiyuan Li, We",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Nadime Francis, Alastair Green, Paolo Guagliardo, Leonid Libkin, Tobias Lindaaker, Victor Marsault, Stefan Plantikow, Mats Rydberg, Martin Schuster, Petra Selmer, et al .2018. Formal semantics of the language cypher. arXiv preprint arXiv:1802.09984 (2018).https://dblp.org/rec/journals/corr/abs-1802-09984.html",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Nadime Francis, Alastair Green, Paolo Guagliardo, Leonid Libkin, Tobias Lindaaker, Victor Marsault, Stefan Plantikow, Mats Rydberg, Petra Selmer, and AndrésTaylor.2018. Cypher:Anevolvingquerylanguageforpropertygraphs. InProceedings of the 2018 international conference on management of data. 1433– 1445.https://doi.org/10.1145/3183713.3190657",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Shu-Ming Hsieh, Chiun-Chieh Hsu, and Li-Fu Hsu. 2006. Eﬃcient method to perform isomorphism testing of labeled graphs. In Computational Science and Its Applications-ICCSA2006:InternationalConference,Glasgow,UK,May8-11,2006, Proceedings,Part V6. Springer, 422–431. https://doi.org/10.1007/11751649_46",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Ziyue Hua, Wei Lin, Luyao Ren, Zongyang Li, Lu Zhang, Wenpin Jiao, and Tao Xie. 2023. GDsmith: Detecting bugs in Cypher graph database engines. InProceedingsofthe32ndACMSIGSOFT InternationalSymposiumonSoftware Testingand Analysis. 163–174. https://doi.org/10.1145/3597926.3598046",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang,andManuel Rigger.2023. Detecting LogicBugsin GraphDatabaseManagementSystemsviaInjectiveandSurjectiveGraphQueryTransformation.In 2024IEEE/ACM46thInternationalConferenceonSoftwareEngineering(ICSE) .IEEE Computer Society, 531–542. https://doi.org/10.1145/3597503.3623307",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 22,
+      "text": "Matteo Kamm. 2022. Testing GraphDatabases using Predicate Partitioning. Master’s thesis. ETHZurich. https://doi.org/10.1145/3597926.3598044",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "MAO Linfan.2016. Labeledgraph—Amathematical element. In/f_inite Study.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "ShuangLiu,JunhaoLan,XiaoningDu,JiyuanLi,WeiLu,JiajunJiang,andXiaoyong Du. 2024. Testing Graph Database Systems with Graph-State Persistence Oracle. Zenodo. https://doi.org/10.5281/zenodo.12670528",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "QiuyangMang,AoyangFang,BoxiYu,HanfeiChen,andPinjiaHe.2024. Testing Graph Database Systems via Equivalent Query Rewriting. (2024). https://doi. org/10.1145/3597503.3639200",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Neo4j. 2024.03. Recommendation Graph .https://github.com/neo4j-graphexamples/recommendations/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Neo4joﬃcial.2023.12. CypherQueryLanguage .https://neo4j.com/developer/ cypher/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Paul Resnick and Hal R Varian. 1997. Recommender systems. Commun. ACM 40, 3 (1997), 56–58. https://doi.org/10.1145/245108.245121",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and SymposiumontheFoundationsofSoftwareEngineering .1140–1152. https://doi. org/10.1145/3368089.3409710",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 30,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via querypartitioning. ProceedingsoftheACMonProgrammingLanguages 4,OOPSLA(2020), 1–30. https://doi.org/10.1145/3428279",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 31,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation(OSDI 20). 667–682. https://doi.org/10.5555/3488766.3488804",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 32,
+      "text": "CarlosRRiveroandHasanMJamil.2017. Eﬃcientandscalablelabeledsubgraph matchingusing SGMatch. KnowledgeandInformationSystems 51,1(2017),61–87. https://doi.org/10.1007/s10115-016-0968-2",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Ian Robinson, Jim Webber, and Emil Eifrem. 2015. Graph databases: new opportunities for connected data. \" O’Reilly Media, Inc.\". https://doi.org/10.5555/2846367",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "MarkoARodriguez.2015. Thegremlingraphtraversalmachineandlanguage (invited talk). In Proceedings of the 15th Symposium on Database Programming Languages. 1–10.https://doi.org/10.1145/2815072.2815073",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "MarkoA.Rodriguez.2015. TheGremlinGraphTraversalMachineandLanguage (InvitedTalk).In Proceedingsofthe15thSymposiumonDatabaseProgramming Languages (Pittsburgh,PA,USA) (DBPL2015) .AssociationforComputingMachinery, NewYork, NY, USA,1–10. https://doi.org/10.1145/2815072.2815073",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "ChristosTjortjis.2023. GraphDatabases:ApplicationsonSocial MediaAnalytics and SmartCities. CRC Press. https://doi.org/10.1201/9781003183532",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "J. R. Ullmann. 1976. An Algorithm for Subgraph Isomorphism. J. ACM23, 1 (jan 1976),31–42. https://doi.org/10.1145/321921.321925",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "RongjingXiang,JenniferNeville,andMonicaRogati.2010. Modelingrelationshipstrengthinonlinesocialnetworks.In Proceedingsofthe19thinternational conference on World wide web. 981–990. https://doi.org/10.1145/1772690.1772790",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Chen Yang, Junjie Chen, Xingyu Fan, Jiajun Jiang, and Jun Sun. 2023. Silent Compiler Bug De-duplication via Three-Dimensional Analysis. In Proceedings of the32ndACMSIGSOFTInternationalSymposiumonSoftwareTestingandAnalysis (Seattle, WA, USA) (ISSTA 2023). Association for Computing Machinery, New York, NY, USA,677–689. https://doi.org/10.1145/3597926.3598087",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "JunZengy,XiangWang,JiahaoLiu,YinfangChen,ZhenkaiLiang,Tat-SengChua, and Zheng Leong Chua. 2022. Shadewatcher: Recommendation-guided cyber threat analysis using system audit records.In and Privacy (SP). IEEE,489–506. https://doi.org/10.1109/SP46214.2022.9833669",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "YingyingZheng,WenshengDou,YichengWang,ZhengQin,LeiTang,YuGao, DongWang,WeiWang,andJunWei.2022. FindingbugsinGremlin-basedgraph databasesystemsviarandomizeddiﬀerentialtesting.In Proceedingsofthe31st ACMSIGSOFTInternationalSymposiumonSoftwareTestingandAnalysis .302–313. https://doi.org/10.1145/3533767.3534409",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "ZeyangZhuang,PenghuiLi,PingchuanMa,WeiMeng,andShuaiWang.2023. Testing Graph Database Systems via Graph-Aware Metamorphic Relations. Proceedings of the VLDB Endowment 17, 4 (2023), 836–848. https://doi.org/10.14778/ 3636218.3636236 Received 2024-04-12; accepted 2024-07-03 677",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 21,
+      "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang,andManuel Rigger.2023. Detecting LogicBugsin GraphDatabaseManagementSystemsviaInjectiveandSurjectiveGraphQueryTransformation.In 2024IEEE/ACM46thInternationalConferenceonSoftwareEngineering(ICSE) .IEEE Computer Society, 531–542. https://doi.org/10.1145/3597503.3623307",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    },
+    {
+      "number": 29,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Detecting optimization bugs in database engines via non-optimizing reference engine construction. In Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and SymposiumontheFoundationsofSoftwareEngineering .1140–1152. https://doi. org/10.1145/3368089.3409710",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "prints the DOI of the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 30,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Finding bugs in database systems via querypartitioning. ProceedingsoftheACMonProgrammingLanguages 4,OOPSLA(2020), 1–30. https://doi.org/10.1145/3428279",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "prints the DOI of the paper introducing tlp"
+      ]
+    },
+    {
+      "number": 31,
+      "text": "Manuel Rigger and Zhendong Su. 2020. Testing database engines via pivoted query synthesis. In 14th USENIX Symposium on Operating Systems Design and Implementation(OSDI 20). 667–682. https://doi.org/10.5555/3488766.3488804",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 20–22,41]",
+      "technique": null,
+      "sentence": "Recognizing this challenge, the software testing community has devoted increasing attention to uncovering bugsin DBMS, with a particular focus on GDBMSs [ 20–22,41].",
+      "context_before": "000organizations,includingindustryleaderssuchasAdobe,eBayandUBS[ 36] Similartootherdatabasesmanagementsystems(DBMSs),GDBM-Ssacceptuserqueriesasinputandreturnthecorrespondingquery results. These user queries convey requests to store, manipulate, or retrieve data from the databases. To ensure better reliability and eﬃciency,DBMSsdemandsoundandoptimizedimplementationsof transactionmanagement,indexingandstoragemanagement,query optimization,andconcurrencycontrol.Thecombinationofthese factors, coupled with the inherent complexity of database systems, renders their implementation susceptible to bugs.",
+      "context_after": "In order to reveal the deeply buried logic bugs in GDBMSs, one ofthebiggestchallengesliesindevisingpowerfultestoracles.As a countermeasure, diﬀerential testing [ 20,41] and metamorphic testing [21,22,25,42] play an crucial role in existing works on GDBMStesting.Theinsightbehinddiﬀerentialtestingisthatdiﬀerent GDBMS implementations should return the same results when dealingwithidenticaluserrequests.However,diﬀerentGDBMSs may adopt diﬀerent graph query languages, such as Cypher [ 18] andGremlin[ 34],whichlimitstheapplicationofdiﬀerentialtesting approachestoaspeci/f_icgroupofimplementationsthat",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 4870,
+      "cited_reference": {
+        "number": 21,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang,andManuel Rigger.2023. Detecting LogicBugsin GraphDatabaseManagementSystemsviaInjectiveandSurjectiveGraphQueryTransformation.In 2024IEEE/ACM46thInternationalConferenceonSoftwareEngineering(ICSE) .IEEE Computer Society, 53",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[21,22,25,42]",
+      "technique": null,
+      "sentence": "As a countermeasure, diﬀerential testing [ 20,41] and metamorphic testing [21,22,25,42] play an crucial role in existing works on GDBMStesting.",
+      "context_before": "nsure better reliability and eﬃciency,DBMSsdemandsoundandoptimizedimplementationsof transactionmanagement,indexingandstoragemanagement,query optimization,andconcurrencycontrol.Thecombinationofthese factors, coupled with the inherent complexity of database systems, renders their implementation susceptible to bugs. Recognizing this challenge, the software testing community has devoted increasing attention to uncovering bugsin DBMS, with a particular focus on GDBMSs [ 20–22,41]. In order to reveal the deeply buried logic bugs in GDBMSs, one ofthebiggestchallengesliesindevisingpowerfultestoracles.",
+      "context_after": "Theinsightbehinddiﬀerentialtestingisthatdiﬀerent GDBMS implementations should return the same results when dealingwithidenticaluserrequests.However,diﬀerentGDBMSs may adopt diﬀerent graph query languages, such as Cypher [ 18] andGremlin[ 34],whichlimitstheapplicationofdiﬀerentialtesting approachestoaspeci/f_icgroupofimplementationsthatsupportthe samequery language.GDSmith[ 20]and Grand[ 41]are thestateof-the-art diﬀerential testing approaches for GDBMSs, respectively supporting Cypher and Gremlin. Another factor that in/f_luences theeﬀectivenessofdiﬀerentialtestingistheabsenceofstandard speci/",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 5156,
+      "cited_reference": {
+        "number": 21,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang,andManuel Rigger.2023. Detecting LogicBugsin GraphDatabaseManagementSystemsviaInjectiveandSurjectiveGraphQueryTransformation.In 2024IEEE/ACM46thInternationalConferenceonSoftwareEngineering(ICSE) .IEEE Computer Society, 53",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 21]",
+      "technique": null,
+      "sentence": "Failing to carefullyverifywhethertwoimplementationsadheretothesame speci/f_ication alsoresult infalse alarms [ 21].",
+      "context_before": "dealingwithidenticaluserrequests.However,diﬀerentGDBMSs may adopt diﬀerent graph query languages, such as Cypher [ 18] andGremlin[ 34],whichlimitstheapplicationofdiﬀerentialtesting approachestoaspeci/f_icgroupofimplementationsthatsupportthe samequery language.GDSmith[ 20]and Grand[ 41]are thestateof-the-art diﬀerential testing approaches for GDBMSs, respectively supporting Cypher and Gremlin. Another factor that in/f_luences theeﬀectivenessofdiﬀerentialtestingistheabsenceofstandard speci/f_icationsforgraphquerylanguages,leadingtodiﬀerentimplementation choices even for the same query language.",
+      "context_after": "In contrast, metamorphic testing approaches oﬀer more precise oracles for testing GDBMSs, and a body of works surge in this line, including GDBMeter [ 22], GraphGenie [ 21], and GRev [ 25]. They have particularly focused on the data retrieval functionalityof GDBMSsanddesignedmetamorphicrelationsthatcapture whether and how the query results are aﬀected when particular transformations are made to the matching conditions. For example, GRevproposesrepresentingthematchingpatternswithAbstract Syntax Graph (ASG) and developing an algorithm to extract equivalent matching conditions from the graph, whi",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 6005,
+      "cited_reference": {
+        "number": 21,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang,andManuel Rigger.2023. Detecting LogicBugsin GraphDatabaseManagementSystemsviaInjectiveandSurjectiveGraphQueryTransformation.In 2024IEEE/ACM46thInternationalConferenceonSoftwareEngineering(ICSE) .IEEE Computer Society, 53",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M4",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 21]",
+      "technique": null,
+      "sentence": "In contrast, metamorphic testing approaches oﬀer more precise oracles for testing GDBMSs, and a body of works surge in this line, including GDBMeter [ 22], GraphGenie [ 21], and GRev [ 25].",
+      "context_before": "18] andGremlin[ 34],whichlimitstheapplicationofdiﬀerentialtesting approachestoaspeci/f_icgroupofimplementationsthatsupportthe samequery language.GDSmith[ 20]and Grand[ 41]are thestateof-the-art diﬀerential testing approaches for GDBMSs, respectively supporting Cypher and Gremlin. Another factor that in/f_luences theeﬀectivenessofdiﬀerentialtestingistheabsenceofstandard speci/f_icationsforgraphquerylanguages,leadingtodiﬀerentimplementation choices even for the same query language. Failing to carefullyverifywhethertwoimplementationsadheretothesame speci/f_ication alsoresult infalse alarms [ 21].",
+      "context_after": "They have particularly focused on the data retrieval functionalityof GDBMSsanddesignedmetamorphicrelationsthatcapture whether and how the query results are aﬀected when particular transformations are made to the matching conditions. For example, GRevproposesrepresentingthematchingpatternswithAbstract Syntax Graph (ASG) and developing an algorithm to extract equivalent matching conditions from the graph, which describes exactly theoriginalpatternbutwithadiﬀerentsetofconditions,thereby rewriting the queries. If the query results diﬀer, a bug is caught. Additionally,GAMERA[ 42]proposesmetamorphic",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 6121,
+      "cited_reference": {
+        "number": 21,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang,andManuel Rigger.2023. Detecting LogicBugsin GraphDatabaseManagementSystemsviaInjectiveandSurjectiveGraphQueryTransformation.In 2024IEEE/ACM46thInternationalConferenceonSoftwareEngineering(ICSE) .IEEE Computer Society, 53",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 21,25]",
+      "technique": null,
+      "sentence": "Note that diﬀerent from existing approaches on testing GDBMS [ 21,25], where only identical result setsareregardedascorrect,ourmutationrulesmaygeneratequery pairswhichresultindiﬀerentresultsets(e.",
+      "context_before": "Isomorphic. Query result correctness. Since the queries with writing clauses mayalsohavereturnresults,weneedalsocheckthecorrectness ofthequeryresultsaspartofouroracletoreducepotentialfalse negatives,i.e.,thecaseswheregraph-stateiscorrectlypreserved yetthereturnresultsareincorrect.ThisstepsimplycheckwhetherTable 3:Informationon The Tested GDBMS. GDBMS Rank GithubStars Init Release LoC Neo4j 1 12.4k 2007 1,304K RedisGraph-2.0k 2018 1,298K MemGraph 8 2.1k 2017 268K AgensGraph 30 1.3k 2016 1,510K the returned result sets satisfy the relations ( =,⊂,⊃) introduced by the corresponding mutation rule.",
+      "context_after": "g.,rules18-20inTable 2), making our oracle able to detect bugs that are not detectable by oracles ofexisting approaches. 5 Evaluations Weimplementourprototype GraspDB withover11Knon-comment lines of Java code. GraspDB uses Neo4j Java Driver 4.1.1 to connectand interactwith Neo4jand Memgraph,JRedisGraph2.5.1to connectandinteractwithRedisGraphandAgensGraphJavaDriver 1.4.2 to connect and interact with AgensGraph. All evaluations are conductedonacomputerwithInteli5-8400CPU,16GBofmemory and Windows 11 OS. We aim to address the following research questionsinour evaluation. •RQ1:CanGraspDB detectunkn",
+      "section": "4.3 Oracle",
+      "page": 7,
+      "char_offset": 38579,
+      "cited_reference": {
+        "number": 21,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang,andManuel Rigger.2023. Detecting LogicBugsin GraphDatabaseManagementSystemsviaInjectiveandSurjectiveGraphQueryTransformation.In 2024IEEE/ACM46thInternationalConferenceonSoftwareEngineering(ICSE) .IEEE Computer Society, 53",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[21]",
+      "technique": null,
+      "sentence": "We compare GraspDB with GDSmith [ 20] and GraphGenie[21].",
+      "context_before": "cessing capabilities.Memgraph[ 8]isanin-memorygraphdatabasedesignedfor real-time data analytics. It supports openCypher and is compatible withNeo4j.AgensGraph[ 2]isbasedonthepowerfulPostgreSQL RDBMS,andisoptimizedforhandlingcomplexconnectedgraph data and provides plenty of powerful database features essential to the enterprise database environment. We test the Neo4j CommunityEditionfromv5.6.0tov5.12.0,RedisGraphfromv2.10.9to v2.12.10,MemGraphCommunityEditionfromv2.7.0tov2.11.0and AgensGraphCommunityEdition2.13.1.Alltheseversionsarelatest duringour testingperiodfrom 2023.4to 2023.10. Baselines.",
+      "context_after": "GDSmithisthelatestdiﬀerentialtestingapproachon graph databases that is capable of generating syntax and semantic correct Cypher queries. GraphGenie is an metamorphic testing 672 ISSTA ’24, September16–20, 2024,Vienna, Austria Shuang Liu, Junhao Lan,XiaoningDu,Jiyuan Li, We Lu,Jiajun Jiang,andXiaoyong Du Table 4:BugsDetected by GraspDB. GDBMS Detected Con/f_irmed Fixed Duplicate Writing-related GSO-related Neo4j 35 33 30 2 18 2 RedisGraph 15 12 6 1 6 4 MemGraph 17 13 7 0 7 4 AgensGraph 10 0 0 0 0 0 Total 77 58 43 3 31 10 Table 5:TypesofThe Con/f_irmed Bugs GDBMS Logic Error Crash Inconsistency",
+      "section": "5.1 EvaluationSetup",
+      "page": 7,
+      "char_offset": 40720,
+      "cited_reference": {
+        "number": 21,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang,andManuel Rigger.2023. Detecting LogicBugsin GraphDatabaseManagementSystemsviaInjectiveandSurjectiveGraphQueryTransformation.In 2024IEEE/ACM46thInternationalConferenceonSoftwareEngineering(ICSE) .IEEE Computer Society, 53",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 21]",
+      "technique": null,
+      "sentence": "GraphGeniehasshownstate-of-the-artperformanceindetectingbugs in GDBMS [ 21]and outperformsother metamorphic testingapproachessuchas GDBMeter[ 22].",
+      "context_before": "d Duplicate Writing-related GSO-related Neo4j 35 33 30 2 18 2 RedisGraph 15 12 6 1 6 4 MemGraph 17 13 7 0 7 4 AgensGraph 10 0 0 0 0 0 Total 77 58 43 3 31 10 Table 5:TypesofThe Con/f_irmed Bugs GDBMS Logic Error Crash Inconsistency Neo4j 2 29 0 2 RedisGraph 4 2 6 0 MemGraph 5 1 7 0 Total 11 32 13 2 Table 6:DistinctBugsDetected by Variants of GraspDB Method Neo4j RedisGraph MemGraph GraspDB 8 7 10 GraspDB-GSO 7 6 7 GraspDB-AWC 7 6 9 GraspDB-MWC 6 4 6 GraspDB-MRC 6 5 8 approach,whichconductsgraphpatterntransformationsguided by injective and surjective relations to generate comparable query pairs.",
+      "context_after": "Therefore,wechoose GDSmithandGraphGenieas baselinesfor comparison. 5.2 RQ1: Ability on Detecting Unknown Bugs Table4showthebugsthat GraspDB detectedonthefourtesting subjects. GraspDB detected 77 bugs during the testing period of around6months.Amongthosebugs,58arecon/f_irmedand43have been/f_ixed.Amongthecon/f_irmedbugs,31isdetectedbywriting clausesinthegeneratedqueries,10aredetectedbyourgraph-state persistent oracle andand13 viaour mutation rules. Table5showsthetypesofthecon/f_irmedbugs.Wecanobserved thatthemajorityofbugscauseerrorsorsystemcrashes,indicating thatthewriting-relatedfunctionalitie",
+      "section": "5.1 EvaluationSetup",
+      "page": 8,
+      "char_offset": 41747,
+      "cited_reference": {
+        "number": 21,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang,andManuel Rigger.2023. Detecting LogicBugsin GraphDatabaseManagementSystemsviaInjectiveandSurjectiveGraphQueryTransformation.In 2024IEEE/ACM46thInternationalConferenceonSoftwareEngineering(ICSE) .IEEE Computer Society, 53",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M8",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 21]",
+      "technique": null,
+      "sentence": "This is a common limitation for diﬀerential testing approaches andsimilar /f_indings is also reported by GraphGenie [ 21].",
+      "context_before": "null, null (a)ExamplefalsealarmbyGDSmithduetodiﬀerentsemantic implementations on GDBMSs 1OPTIONAL MATCH (c)-[:PP]-() WHERE false RETURN count (c) 2−−Return Result: 0 3OPTIONAL MATCH (c)-[:PP]-() WHERE false RETURN count (*) 4−−Return Result: 1 (b) Example false alarm by GraphGenie due to nonequivalent semantics of Count(c) and Count(*) 1CREATE (),(); 2MATCH()UNWIND [1,1]asa WITH DISTINCT *RETURN a; 3−−Return Result: 1 4CREATE (),(); 5MATCHpath=() UNWIND [1,1]asa WITH DISTINCT *RETURN a; 6−−Return Result: 1 ,1 (c) False alarmof GraspDB due to addinga variable Figure 5:False alarm examples GDBMSs.",
+      "context_after": "Thislimitationleadstoheavymanualeﬀortsinanalyzingthelarge amountbugreportstoruleoutfalsepositives.AsshowninTable 7, 87 false alarms have been identi/f_ied from the 250 bug reports of GDsmith, making more than 1/3 of the reported bugs false positives.Allofthefalsealarmsarecausedbydiﬀerentimplementation choices by diﬀerent GDBMSs, Among which 70 are due to unde/f_inedbehaviorinCypherdocumentation,and17areduetodiﬀerent numericalrepresentationformats.Onesuchfalsealarmexample isshowninFigure 5(a),whereNeo4jandMemGraphhavediﬀerent implementation choices for the return clause which returns aggregate",
+      "section": "5.4.1 DetectedUniqueBugs. Table7showsthecomparisonresults",
+      "page": 9,
+      "char_offset": 50308,
+      "cited_reference": {
+        "number": 21,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang,andManuel Rigger.2023. Detecting LogicBugsin GraphDatabaseManagementSystemsviaInjectiveandSurjectiveGraphQueryTransformation.In 2024IEEE/ACM46thInternationalConferenceonSoftwareEngineering(ICSE) .IEEE Computer Society, 53",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M9",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "GDBMeter [ 22] is the /f_irst metamorphic testing approach which applied the TLP [ 30] from relational DBMS to graph DBMS and found 40 unique, previously unknown bugs.",
+      "context_before": "theGremlinlanguage.Fortestcasegeneration,Grandusesamodelbased approach to generate valid Gremlin queries. GDsmith [ 20] is anotherdiﬀerentialtestingapproachtotestGDBMSswhichsupporttheCypherquerylanguage,anotherpopularquerylanguage for GDBMS.Fortestcasegeneration,GDsmithusesskeletongenerationandcompletiontogeneratesemanticallyvalidCypherqueries. Themajordrawbackofdiﬀerentialtestingisthatbugscannotbe detectedwhendiﬀerentDBMSssuﬀerfromthesameones.Furthermore,diﬀerentialtestingapproachessuﬀerfromhighfalsealarm ratesduetodiﬀerentimplementationchoicesofGDBMSs,ashas been discussedinshowninSection 5.4.",
+      "context_after": "GraphGenie [ 21] proposes injective and surjective Graph Query Transformation (GQT) to detect logic bugs. It leverages graph properties to generate follow-upqueriesbymutatinggraphquerypatternsanddetected 25unknownbugs.GRev[ 25]adaptsEquivalentQueryRewriting (EQR) to GDBMS queries by Random Walking on Abstract SyntaxGraph (ASG), an abstractiontheyproposedtorepresentquery paths.Gamera[ 42]developsthreeclassesofgraph-awaremetamorphic relations, i.e., elementary MRs, compound MRsand dynamic MRs, which directly applies to labeled property graphs, for testing GDBMS. Diﬀerent from GraspDB, non of ex",
+      "section": "5.5 Threatsto Validity",
+      "page": 11,
+      "char_offset": 59081,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M10",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 21]",
+      "technique": null,
+      "sentence": "GraphGenie [ 21] proposes injective and surjective Graph Query Transformation (GQT) to detect logic bugs.",
+      "context_before": "whichsupporttheCypherquerylanguage,anotherpopularquerylanguage for GDBMS.Fortestcasegeneration,GDsmithusesskeletongenerationandcompletiontogeneratesemanticallyvalidCypherqueries. Themajordrawbackofdiﬀerentialtestingisthatbugscannotbe detectedwhendiﬀerentDBMSssuﬀerfromthesameones.Furthermore,diﬀerentialtestingapproachessuﬀerfromhighfalsealarm ratesduetodiﬀerentimplementationchoicesofGDBMSs,ashas been discussedinshowninSection 5.4. GDBMeter [ 22] is the /f_irst metamorphic testing approach which applied the TLP [ 30] from relational DBMS to graph DBMS and found 40 unique, previously unknown bugs.",
+      "context_after": "It leverages graph properties to generate follow-upqueriesbymutatinggraphquerypatternsanddetected 25unknownbugs.GRev[ 25]adaptsEquivalentQueryRewriting (EQR) to GDBMS queries by Random Walking on Abstract SyntaxGraph (ASG), an abstractiontheyproposedtorepresentquery paths.Gamera[ 42]developsthreeclassesofgraph-awaremetamorphic relations, i.e., elementary MRs, compound MRsand dynamic MRs, which directly applies to labeled property graphs, for testing GDBMS. Diﬀerent from GraspDB, non of existing metamorphic testingapproachesfocusondetectingbugscausedbywritingoperations, and the oracles in thei",
+      "section": "5.5 Threatsto Validity",
+      "page": 11,
+      "char_offset": 59249,
+      "cited_reference": {
+        "number": 21,
+        "text": "Yuancheng Jiang, Jiahao Liu, Jinsheng Ba, Roland Hock Chuan Yap, Zhenkai Liang,andManuel Rigger.2023. Detecting LogicBugsin GraphDatabaseManagementSystemsviaInjectiveandSurjectiveGraphQueryTransformation.In 2024IEEE/ACM46thInternationalConferenceonSoftwareEngineering(ICSE) .IEEE Computer Society, 53",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "Ternary Logic Partitioning",
+      "technique": "tlp",
+      "sentence": "Ternary Logic Partitioning (TLP) [30], a metamorphic testing approach /f_irst proposed for testing RDBMSs,has alsobeenappliedtotest GDBMS[ 22].",
+      "context_before": "uivalentQueryRewriting (EQR) to GDBMS queries by Random Walking on Abstract SyntaxGraph (ASG), an abstractiontheyproposedtorepresentquery paths.Gamera[ 42]developsthreeclassesofgraph-awaremetamorphic relations, i.e., elementary MRs, compound MRsand dynamic MRs, which directly applies to labeled property graphs, for testing GDBMS. Diﬀerent from GraspDB, non of existing metamorphic testingapproachesfocusondetectingbugscausedbywritingoperations, and the oracles in their approach are not able to detect labeled property graph changes, thus unable to capture those bugs. Metamorphic Testing of RDBMS.",
+      "context_after": "Thistool has been used to /f_ind 175 bugs in widely deployed RDBMSs. (PQS) isageneralandhighly-eﬀectiveapproachto/f_indingbugsinDBMS. The core idea of PQS [ 31] is to automatically synthesize queries which guarantees to fetch a speci/f_ic, randomly selected row, called the pivot row. If the DBMS fails to fetch the pivot row, it likely causes a bug in the RDBMS. Non-optimizing Reference Engine Construction (NoREC) [ 29] is another widely-known metamorphic testing approach to test RDBMS. It compares the execution results ofagivenoptimizedquerywiththenon-optimizedversionthatthey rewrittenbased on",
+      "section": "5.5 Threatsto Validity",
+      "page": 11,
+      "char_offset": 60085,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "(PQS) isageneralandhighly-eﬀectiveapproachto/f_indingbugsinDBMS.",
+      "context_before": "i.e., elementary MRs, compound MRsand dynamic MRs, which directly applies to labeled property graphs, for testing GDBMS. Diﬀerent from GraspDB, non of existing metamorphic testingapproachesfocusondetectingbugscausedbywritingoperations, and the oracles in their approach are not able to detect labeled property graph changes, thus unable to capture those bugs. Metamorphic Testing of RDBMS. Ternary Logic Partitioning (TLP) [30], a metamorphic testing approach /f_irst proposed for testing RDBMSs,has alsobeenappliedtotest GDBMS[ 22].Thistool has been used to /f_ind 175 bugs in widely deployed RDBMSs.",
+      "context_after": "The core idea of PQS [ 31] is to automatically synthesize queries which guarantees to fetch a speci/f_ic, randomly selected row, called the pivot row. If the DBMS fails to fetch the pivot row, it likely causes a bug in the RDBMS. Non-optimizing Reference Engine Construction (NoREC) [ 29] is another widely-known metamorphic testing approach to test RDBMS. It compares the execution results ofagivenoptimizedquerywiththenon-optimizedversionthatthey rewrittenbased ontheoriginalquery, todetectoptimizationbugs in DBMS.The metamorphic testing approaches on RDBMSs share similar purposes and scenarios a",
+      "section": "5.5 Threatsto Validity",
+      "page": 11,
+      "char_offset": 60295,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "The core idea of PQS [ 31] is to automatically synthesize queries which guarantees to fetch a speci/f_ic, randomly selected row, called the pivot row.",
+      "context_before": "y applies to labeled property graphs, for testing GDBMS. Diﬀerent from GraspDB, non of existing metamorphic testingapproachesfocusondetectingbugscausedbywritingoperations, and the oracles in their approach are not able to detect labeled property graph changes, thus unable to capture those bugs. Metamorphic Testing of RDBMS. Ternary Logic Partitioning (TLP) [30], a metamorphic testing approach /f_irst proposed for testing RDBMSs,has alsobeenappliedtotest GDBMS[ 22].Thistool has been used to /f_ind 175 bugs in widely deployed RDBMSs. (PQS) isageneralandhighly-eﬀectiveapproachto/f_indingbugsinDBMS.",
+      "context_after": "If the DBMS fails to fetch the pivot row, it likely causes a bug in the RDBMS. Non-optimizing Reference Engine Construction (NoREC) [ 29] is another widely-known metamorphic testing approach to test RDBMS. It compares the execution results ofagivenoptimizedquerywiththenon-optimizedversionthatthey rewrittenbased ontheoriginalquery, todetectoptimizationbugs in DBMS.The metamorphic testing approaches on RDBMSs share similar purposes and scenarios as GDBMSs, and can potentially be applicable to GDBMSs. 8 Conclusion Inthispaper,wepresent GraspDB ,the/f_irstmetamorphictesting approachspeci/f_icallyd",
+      "section": "5.5 Threatsto Validity",
+      "page": 11,
+      "char_offset": 60360,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Non-optimizing Reference Engine Construction (NoREC) [ 29] is another widely-known metamorphic testing approach to test RDBMS.",
+      "context_before": "abeled property graph changes, thus unable to capture those bugs. Metamorphic Testing of RDBMS. Ternary Logic Partitioning (TLP) [30], a metamorphic testing approach /f_irst proposed for testing RDBMSs,has alsobeenappliedtotest GDBMS[ 22].Thistool has been used to /f_ind 175 bugs in widely deployed RDBMSs. (PQS) isageneralandhighly-eﬀectiveapproachto/f_indingbugsinDBMS. The core idea of PQS [ 31] is to automatically synthesize queries which guarantees to fetch a speci/f_ic, randomly selected row, called the pivot row. If the DBMS fails to fetch the pivot row, it likely causes a bug in the RDBMS.",
+      "context_after": "It compares the execution results ofagivenoptimizedquerywiththenon-optimizedversionthatthey rewrittenbased ontheoriginalquery, todetectoptimizationbugs in DBMS.The metamorphic testing approaches on RDBMSs share similar purposes and scenarios as GDBMSs, and can potentially be applicable to GDBMSs. 8 Conclusion Inthispaper,wepresent GraspDB ,the/f_irstmetamorphictesting approachspeci/f_icallydesignedtoidentifybugsrelatedtowritingoperationsingraphdatabasesystems.Inparticular,wede/f_inetheconcepts of Labeled Property Graph Isomorphism (LPG-Isomorphism) and Labeled Property Subgraph Isomorphism (LP",
+      "section": "5.5 Threatsto Validity",
+      "page": 11,
+      "char_offset": 60590,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T16:58:40Z",
+    "is_model_written": true,
+    "summary": "GraspDB tests graph database systems with a graph-state persistence oracle: mutation rules transform a query in ways whose effect on the graph state is known, so the expected relationship between the two results is known even when the result sets differ. That distinguishes it from the existing metamorphic graph testers, whose oracles treat only identical result sets as correct and are therefore confined to transformations that preserve results exactly.",
+    "narrative": "TLP reaches this paper as the technique GDBMeter carried into graph databases -- the paper describes GDBMeter as the first metamorphic approach to apply TLP from relational DBMSs to graph DBMSs, finding 40 previously unknown bugs, and notes elsewhere that TLP was first proposed for relational systems and has since been applied to graph ones. PQS and NoREC are described alongside as the relational approaches, with PQS called general and highly effective. GraspDB's own baselines are GDsmith and GraphGenie rather than GDBMeter, on the stated grounds that GraphGenie has shown state-of-the-art performance and outperforms GDBMeter.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "background",
+      "M4": "background",
+      "M5": "motivation",
+      "M6": "baseline",
+      "M7": "background",
+      "M8": "background",
+      "M9": "definition",
+      "M10": "definition",
+      "M11": "definition",
+      "M12": "state_of_the_art",
+      "M13": "definition",
+      "M14": "definition"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "Nothing describes reuse of SQLancer's code; GraspDB implements its own mutation rules and oracle."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The graph-state persistence oracle admits transformations whose result sets differ, which M5 gives as the departure from the existing approaches rather than a development of TLP."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "M6 states the comparison is with GDsmith and GraphGenie, and M7 explains GDBMeter was left out because GraphGenie outperforms it. Neither TLP nor a TLP-based tool is run against GraspDB."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "yes",
+        "mention_ids": [
+          "M12"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M12",
+            "sentence": "(PQS) isageneralandhighly-eﬀectiveapproachto/f_indingbugsinDBMS.",
+            "section": "5.5 Threatsto Validity",
+            "page": 11
+          }
+        ],
+        "reasoning": "M12 calls PQS a general and highly-effective approach to finding bugs in DBMSs. The state-of-the-art claim in M7 attaches to GraphGenie, not to a SQLancer technique."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

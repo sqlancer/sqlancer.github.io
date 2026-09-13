@@ -1,0 +1,1247 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-10T15:06:52Z",
+  "paper": {
+    "id": "paper:arxiv:2312.04941",
+    "title": "Detecting DBMS Bugs with Context-Sensitive Instantiation and Multi-Plan Execution",
+    "authors": [
+      "Jiaqi Li",
+      "Ke Wang",
+      "Yaoguang Chen",
+      "Yajin Zhou",
+      "Lei Wu",
+      "Jiashui Wang"
+    ],
+    "year": 2023,
+    "venue": "arXiv.org",
+    "doi": null,
+    "arxiv_id": "2312.04941",
+    "s2_paper_id": "95db0384945786d61210ca73bf62b5e59bbe266e",
+    "url": "https://arxiv.org/abs/2312.04941",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2312.04941",
+      "retrieved_at": "2026-09-10T15:06:52Z",
+      "chars": 79515,
+      "content_sha256": "sha256:248fe572e5e4aecc30d80568219c0f72d60b3043d6f5f13d8e2dcb66c6d1d808"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 15,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 1552
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 8671
+      },
+      {
+        "number": "2.1",
+        "title": "Structured Query Language",
+        "start": 8685
+      },
+      {
+        "number": "2.2",
+        "title": "SQL Query Processing",
+        "start": 9545
+      },
+      {
+        "number": "2.3",
+        "title": "Levels of DBMS Testing",
+        "start": 11464
+      },
+      {
+        "number": "2.4",
+        "title": "DBMS Testing",
+        "start": 13493
+      },
+      {
+        "number": "3",
+        "title": "Motivating Examples",
+        "start": 15688
+      },
+      {
+        "number": "3.1",
+        "title": "Context-Sensitive Instantiation",
+        "start": 15819
+      },
+      {
+        "number": "3.2",
+        "title": "Multi-Plan Execution",
+        "start": 21475
+      },
+      {
+        "number": "4",
+        "title": "Design",
+        "start": 27665
+      },
+      {
+        "number": "4.1",
+        "title": "Overall Design",
+        "start": 27675
+      },
+      {
+        "number": "4.2",
+        "title": "Parser Generation",
+        "start": 32631
+      },
+      {
+        "number": "4.3",
+        "title": "Parse Tree Mutation",
+        "start": 33861
+      },
+      {
+        "number": "4.4",
+        "title": "Context-Sensitive Instantiation",
+        "start": 34810
+      },
+      {
+        "number": "4.5",
+        "title": "Multi-Plan Execution",
+        "start": 43977
+      },
+      {
+        "number": "4.6",
+        "title": "Prototype Implementation",
+        "start": 48506
+      },
+      {
+        "number": "5",
+        "title": "Evaluation",
+        "start": 49668
+      },
+      {
+        "number": "5.1",
+        "title": "Detecting Bugs in Real-world DBMSs",
+        "start": 50908
+      },
+      {
+        "number": "5.2",
+        "title": "Generating Valid Queries",
+        "start": 51640
+      },
+      {
+        "number": "5.3",
+        "title": "Comparisons with Existing Tools",
+        "start": 56798
+      },
+      {
+        "number": "5.4",
+        "title": "Benefits of the Two Key Techniques",
+        "start": 60432
+      },
+      {
+        "number": "6",
+        "title": "Discussion",
+        "start": 63308
+      },
+      {
+        "number": "7",
+        "title": "Related Work",
+        "start": 65702
+      },
+      {
+        "number": "8",
+        "title": "Conclusion",
+        "start": 69671
+      },
+      {
+        "number": "Z",
+        "title": "Chen, “Collafl: Path sensitive fuzzing,” in. IEEE,",
+        "start": 74735
+      },
+      {
+        "number": "S",
+        "title": "Khurshid, “Query-aware test generation using a",
+        "start": 75090
+      },
+      {
+        "number": "T",
+        "title": "Wei, and L. Lu, “Savior: Towards bug-driven hybrid",
+        "start": 76145
+      },
+      {
+        "number": "J",
+        "title": "Cappos, M. Schl ¨ogel, N. Korshun, A. Abbasi,",
+        "start": 76487
+      },
+      {
+        "number": "M",
+        "title": "Schweighauser, S. Schinzel, S. Schumilo et al.,",
+        "start": 76536
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "“Well-known users of sqlite,” https://www.sqlite.org/f amous.html, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "“Mysql customers,” https://www.mysql.com/customer s/, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "A. Bannister, “Sqlite patches use-after-free bug that left apps open to code execution, denial-of-service exploits.” https://portswigger.net/daily-swig/sqlite-pat ches-use-after-free-bug-that-left-apps-open-to-code-e xecution-denial-of-service-exploits, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "C. Cimpanu, “Google chrome impacted by new magellan 2.0 vulnerabilities.” https://www.zdnet.com/article/google-chrome-imp acted-by-new-magellan-2-0-vulnerabilities/, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "J. Jung, H. Hu, J. Arulraj, T. Kim, and W. Kang, “Apollo: Automatic detection and diagnosis of performance regressions in database systems,” Proceedings of the VLDB Endowment, vol. 13, no. 1, pp. 57–70, 2019.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 6,
+      "text": "R. Zhong, Y. Chen, H. Hu, H. Zhang, W. Lee, and D. Wu, “Squirrel: Testing database management systems with language validity and coverage feedback,” inProceedings of the 2020 ACMSIGSAC Conference on Computer and Communications Security, 2020, pp. 955–970.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "S. M. Andreas Seltenreich, Bo Tang, “Sqlsmith,” https: //github.com/anse1/sqlsmith/, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Y. Chen, R. Zhong, H. Hu, H. Zhang, Y. Yang, D. Wu, and W. Lee, “One engine to fuzz’em all: Generic language processor testing with semantic validation,” in (SP). IEEE, 2021, pp. 642–658.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "X. Liu, Q. Zhou, J. Arulraj, and A. Orso, “Automated performance bug detection in database systems,” arXiv e-prints, pp. arXiv–2105, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Y. Zhang, P. Yao, R. Wu, and C. Zhang, “Duplicatesensitivity guided transformation synthesis for dbms correctness bug detection,” arXiv preprint arXiv:2107.03660, 2021.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "B. Ghit, N. Poggi, J. Rosen, R. Xin, and P. Boncz, “Sparkfuzz: Searching correctness regressions in modern query engines,” in Proceedings of the workshop on Testing Database Systems, 2020, pp. 1–6.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "“Addresssanitizer,” https://github.com/google/sanitize rs/, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Y. Liang, S. Liu, and H. Hu, “Detecting logical bugs of{DBMS }with coverage-based guidance,” in 31st USENIX Security Symposium (USENIX Security 22), 2022, pp. 4309–4326.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 15,
+      "text": "——, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 16,
+      "text": "——, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 1–30, 2020.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 17,
+      "text": "X. Tang, S. Wu, D. Zhang, F. Li, and G. Chen, “Detecting logic bugs of join optimizations in dbms,” Proceedings of the ACM on Management of Data, vol. 1, no. 1, pp. 1–26, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "“Sqlite homepage,” https://www.sqlite.org/, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "“Postgresql homepage,” https://www.postgresql.org/, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "“Mysql homepage,” https://www.mysql.com/, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "“Common vulnerabilities and exposures,” https://en.wikipedia.org/wiki/Common Vulnerabili ties and Exposures, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "D. D. Chamberlin and R. F. Boyce, “Sequel: A structured english query language,” in Proceedings of the 1974 ACMSIGFIDET (now SIGMOD) workshop on Data description, access and control, 1974, pp. 249–264.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "“American Fuzzy Lop (2.56b),” https://lcamtuf.coredu mp.cx/afl/, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "M. Sutton, A. Greene, and P. Amini, Fuzzing: brute force vulnerability discovery. Pearson Education, 2007.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "J. Neystadt, “Automated penetration testing with whitebox fuzzing,” MSDN Library, 2008.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "J. Wang, B. Chen, L. Wei, and Y. Liu, “Superion: Grammar-aware greybox fuzzing,” in 2019 IEEE/ACM 41st International Conference on Software Engineering (ICSE). IEEE, 2019, pp. 724–735.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "D. R. Slutz, “Massive stochastic testing of sql,” in VLDB, vol. 98. Citeseer, 1998, pp. 618–622.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "“Bugs found in database management systems,” https: //www.manuelrigger.at/dbms-bugs/, 2022.",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 29,
+      "text": "“Unit testing,” https://en.wikipedia.org/wiki/Unit testi ng, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "“Randomized depth-first search,” https://en.wikipedia .org/wiki/Maze generation algorithm, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "D. E. Knuth, “Backus normal form vs. backus naur form,” Communications of the ACM, vol. 7, no. 12, pp. 735–736, 1964.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "“Constraint satisfaction problem,” https://en.wikipedia .org/wiki/Constraint satisfaction problem, 2023.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "S. Gan, C. Zhang, X. Qin, X. Tu, K. Li, Z. Pei, and Z. Chen, “Collafl: Path sensitive fuzzing,” in. IEEE, 2018, pp. 679–696.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "“How sqlite is tested,” https://www.sqlite.org/testing.h tml, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "J. Postel et al., “Transmission control protocol,” p. 13, 1981.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "“Proof of concept,” https://en.wikipedia.org/wiki/Proo fofconcept#Security, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "S. A. Khalek, B. Elkarablieh, Y. O. Laleye, and S. Khurshid, “Query-aware test generation using a relational constraint solver,” in 2008 23rd IEEE/ACM International Conference on Automated Software Engineering. IEEE, 2008, pp. 238–247.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "C. Binnig, D. Kossmann, E. Lo, and M. T. ¨Ozsu, “Qagen: generating query-aware test databases,” in Proceedings of the 2007 ACMSIGMOD international conference on Management of data, 2007, pp. 341– 352.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "“Alloy,” https://alloytools.org/, 2022.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "N. Stephens, J. Grosen, C. Salls, A. Dutcher, R. Wang, J. Corbetta, Y. Shoshitaishvili, C. Kruegel, and G. Vigna, “Driller: Augmenting fuzzing through selective symbolic execution.” in NDSS, vol. 16, no. 2016, 2016, pp. 1–16.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "I. Yun, S. Lee, M. Xu, Y. Jang, and T. Kim, “ {QSYM }: A practical concolic execution engine tailored for hybrid fuzzing,” in 27th USENIX Security Symposium (USENIX Security 18), 2018, pp. 745–761.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "P. Chen and H. Chen, “Angora: Efficient fuzzing by principled search,” in rity and Privacy (SP). IEEE, 2018, pp. 711–725.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Y. Chen, P. Li, J. Xu, S. Guo, R. Zhou, Y. Zhang, T. Wei, and L. Lu, “Savior: Towards bug-driven hybrid testing,” in Privacy (SP). IEEE, 2020, pp. 1580–1596.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "S. Gan, C. Zhang, P. Chen, B. Zhao, X. Qin, D. Wu, and Z. Chen, “ {GREYONE }: Data flow sensitive fuzzing,” in 29th USENIX Security Symposium (USENIX Security 20), 2020, pp. 2577–2594.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "T. Blazytko, M. Bishop, C. Aschermann, J. Cappos, M. Schl ¨ogel, N. Korshun, A. Abbasi, M. Schweighauser, S. Schinzel, S. Schumilo et al., “{GRIMOIRE }: Synthesizing structure while fuzzing,” in28th USENIX Security Symposium (USENIX Security 19), 2019, pp. 1985–2002.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "H. Bati, L. Giakoumakis, S. Herbert, and A. Surna, “A genetic approach for random testing of database systems,” in Proceedings of the 33rd international conference on Very large data bases, 2007, pp. 1243– 1251.Appendix A. PoC Generation Strategies MPE can only conduct the PoC on modified DBMSs. To build PoC on unmodified DBMSs, our goal is to make the buggy query plan to be optimal. The ways to a",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 14,
+      "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+      "technique": "pqs",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing pqs",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 15,
+      "text": "——, “Detecting optimization bugs in database engines via non-optimizing reference engine construction,” in Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2020, pp. 1140–1152.",
+      "technique": "norec",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing norec",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 16,
+      "text": "——, “Finding bugs in database systems via query partitioning,” Proceedings of the ACM on Programming Languages, vol. 4, no. OOPSLA, pp. 1–30, 2020.",
+      "technique": "tlp",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing tlp",
+        "names SQLancer or one of its techniques"
+      ]
+    },
+    {
+      "number": 28,
+      "text": "“Bugs found in database management systems,” https: //www.manuelrigger.at/dbms-bugs/, 2022.",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker",
+      "surface": "[13–17]",
+      "technique": "pqs",
+      "sentence": "Second, oracles used by existing systems [13–17] to detect logic bugs have strict requirements on the SQL statements.",
+      "context_before": "ion of a test case, they only consider limited semantic constraints. As a result, they will generate invalid SQL statements that cannot pass the semantic check of a DBMS. For instance, Squirrel [6] proposed semantics-guided instantiation and the follow-up work SQLRight [13] proposed Context-based IR instantiation to improve the semantic correctness of generated SQL statements. For simplicity, we will refer to their approaches as type-sensitive instantiation in this paper since they utilize a context-free strategy that only considers the correctness of the identifier type (e.g., table, column).",
+      "context_after": "This makes the fuzzing system only explore a narrow space of inputs, leading to limited bugs that can be detected. For example, NoREC [15] requires that the effective SQL query in a test case has WHERE clauses, thus it can only detect logic bugs due to the optimization of WHERE clauses. Another recent work, TQS [17], focusing on detecting logic bugs caused by equal-join optimization, fails to identify bugs arising from other types of optimization. Furthermore, both NoREC and TQS attempt to explore multiple query plans of queries but are only capable of covering partial query plans. Hence, an",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 3923,
+      "cited_reference": {
+        "number": 14,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M2",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "For example, NoREC [15] requires that the effective SQL query in a test case has WHERE clauses, thus it can only detect logic bugs due to the optimization of WHERE clauses.",
+      "context_before": "tion and the follow-up work SQLRight [13] proposed Context-based IR instantiation to improve the semantic correctness of generated SQL statements. For simplicity, we will refer to their approaches as type-sensitive instantiation in this paper since they utilize a context-free strategy that only considers the correctness of the identifier type (e.g., table, column). Second, oracles used by existing systems [13–17] to detect logic bugs have strict requirements on the SQL statements. This makes the fuzzing system only explore a narrow space of inputs, leading to limited bugs that can be detected.",
+      "context_after": "Another recent work, TQS [17], focusing on detecting logic bugs caused by equal-join optimization, fails to identify bugs arising from other types of optimization. Furthermore, both NoREC and TQS attempt to explore multiple query plans of queries but are only capable of covering partial query plans. Hence, an oracle that can be applied to SQL statements without strict requirements and explore more query plans is needed. Our Solution This work proposes two key techniques to address the limitations and solve the two innate challenges. The first key technique is called context-sensitive instanti",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 4156,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Furthermore, both NoREC and TQS attempt to explore multiple query plans of queries but are only capable of covering partial query plans.",
+      "context_before": "er type (e.g., table, column). Second, oracles used by existing systems [13–17] to detect logic bugs have strict requirements on the SQL statements. This makes the fuzzing system only explore a narrow space of inputs, leading to limited bugs that can be detected. For example, NoREC [15] requires that the effective SQL query in a test case has WHERE clauses, thus it can only detect logic bugs due to the optimization of WHERE clauses. Another recent work, TQS [17], focusing on detecting logic bugs caused by equal-join optimization, fails to identify bugs arising from other types of optimization.",
+      "context_after": "Hence, an oracle that can be applied to SQL statements without strict requirements and explore more query plans is needed. Our Solution This work proposes two key techniques to address the limitations and solve the two innate challenges. The first key technique is called context-sensitive instantiation. It performs context-sensitive analysis to collect all static semantic constraints (including but not limited to the identifier type) to improve the semantic correctnessarXiv:2312.04941v1 [cs.DB] 8 Dec 2023 of generated inputs. For instance, a SQL statement SELECT x1+ i1 FROM x2 WHERE x3=x4 has",
+      "section": "1 Introduction",
+      "page": 1,
+      "char_offset": 4493,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M4",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We also compared Kangaroo with leading DBMS testing tools, such as Squirrel, SQLancer, and SQLRight.",
+      "context_before": "Prototype and Evaluation In this study, we implemented a prototype named Kangaroo and applied it to three widelyused database management systems (DBMSs): SQLite [18], PostgreSQL [19], and MySQL [20], to evaluate its effectiveness. Despite the fact that state-of-the-art tools have already extensively tested these DBMSs, Kangaroo successfully identified 50 new bugs, consisting of 9 logic bugs, 19 crash-causing bugs, and 22 assertion failure-inducing bugs. As of the time of writing, 28 of these bugs have been fixed, with 11 assigned CVEs [21]. These results demonstrate the efficacy of our system.",
+      "context_after": "Our evaluation reveals that Kangaroo surpasses these tools in terms of generating semantically valid SQL queries, exploring code paths, and detecting bugs. Specifically, after conducting a 24-hour test on the three DBMSs, Kangaroo successfully detected 17 bugs, while SQLancer, Squirrel, and SQLRight only identified 1, 3, and 6 bugs, respectively. In addition, Kangaroo proved more effective in generating valid SQL queries, achieving a 1.6x-1.9x improvement compared to the mutation-based tool Squirrel, and it explored 1.16x-1.3x more program states than the rule-based tool SQLancer. This work m",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 7241,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M5",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Specifically, after conducting a 24-hour test on the three DBMSs, Kangaroo successfully detected 17 bugs, while SQLancer, Squirrel, and SQLRight only identified 1, 3, and 6 bugs, respectively.",
+      "context_before": "e-of-the-art tools have already extensively tested these DBMSs, Kangaroo successfully identified 50 new bugs, consisting of 9 logic bugs, 19 crash-causing bugs, and 22 assertion failure-inducing bugs. As of the time of writing, 28 of these bugs have been fixed, with 11 assigned CVEs [21]. These results demonstrate the efficacy of our system. We also compared Kangaroo with leading DBMS testing tools, such as Squirrel, SQLancer, and SQLRight. Our evaluation reveals that Kangaroo surpasses these tools in terms of generating semantically valid SQL queries, exploring code paths, and detecting bugs.",
+      "context_after": "In addition, Kangaroo proved more effective in generating valid SQL queries, achieving a 1.6x-1.9x improvement compared to the mutation-based tool Squirrel, and it explored 1.16x-1.3x more program states than the rule-based tool SQLancer. This work makes the following main contributions. •We revealed the challenges of effectively detecting DBMS bugs and the limitations of existing solutions. •We proposed two key techniques to solve the challenges, including context-sensitive instantiation to improve the semantic correctness of the mutated SQL queries and the MPE that can be applied to differen",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 7498,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M6",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "3x more program states than the rule-based tool SQLancer.",
+      "context_before": "leading DBMS testing tools, such as Squirrel, SQLancer, and SQLRight. Our evaluation reveals that Kangaroo surpasses these tools in terms of generating semantically valid SQL queries, exploring code paths, and detecting bugs. Specifically, after conducting a 24-hour test on the three DBMSs, Kangaroo successfully detected 17 bugs, while SQLancer, Squirrel, and SQLRight only identified 1, 3, and 6 bugs, respectively. In addition, Kangaroo proved more effective in generating valid SQL queries, achieving a 1.6x-1.9x improvement compared to the mutation-based tool Squirrel, and it explored 1.16x-1.",
+      "context_after": "This work makes the following main contributions. •We revealed the challenges of effectively detecting DBMS bugs and the limitations of existing solutions. •We proposed two key techniques to solve the challenges, including context-sensitive instantiation to improve the semantic correctness of the mutated SQL queries and the MPE that can be applied to different types of SQL queries to detect logic bugs. •We implemented and applied a prototype system to three popular DBMSs. Our system successfully detected 50 new bugs. The micro-benchmark also shows our system outperforms existing ones in genera",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 7873,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M7",
+      "found_by": "citation_marker",
+      "surface": "[14–17, 24]",
+      "technique": "pqs",
+      "sentence": "The rule-based ones [14–17, 24] generate test cases following a predefined model to ensurethe generated SQL queries can pass the SQL parser.",
+      "context_before": ", Squirrel has to limit the complexity of generated queries to tolerate its incomplete and inaccurate constraints. What’s worse, the complexity of constraints dramatically increases with the complexity of the statement and the strictness of the DBMS checks. To better explore the core modules of DBMS, we propose a new method to generate more diverse and complex test cases, while at the same time, they can be statically confirming (level-7). 2.4. DBMS Testing Test Case Generation DBMS testing aims to trigger bugs by constructing abundant test cases. There are two methods to generate SQL queries.",
+      "context_after": "However, building a precise model requires domain knowledge. Besides, the generated inputs cannot efficiently explore the program’s state space since it wastes much effort on similar queries. The mutation-based method [6, 13, 25] generates new test cases by mutating seed queries. However, the general mutation strategies, like flipping bits, can not generate valid SQL queries that can pass the SQL parser. To address this issue, a common approach is to perform mutations based on grammar rules [6, 26]. It first generates a syntax tree for a given input, then creates specific mutations by using m",
+      "section": "2.4 DBMS Testing",
+      "page": 3,
+      "char_offset": 13649,
+      "cited_reference": {
+        "number": 14,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M8",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC [15] is an oracle for logic bug detection.",
+      "context_before": "n oracle is a mechanism for determining whether the actual outputs match the expected outcomes. Differential testing uses different implementations of the same functionality as cross-referencing oracles. It provides the same inputs to a series of similar systems and then obverses the results. Any inconsistency between the results may indicate a potential bug. RAGS [27] is the first work that applies differential testing to find logic bugs for DBMS. Metamorphic testing addresses the test oracle problem based on the observation that a transformation of the input has a known effect on the output.",
+      "context_after": "It translates a query that is potentially optimized by DBMS to a query that can hardly be optimized. Although this approach has been effective in detecting bugs in widely-used DBMS [28], it can only be applied to a subset of SQL that can be translated. Our system leverages the idea of differential testing to compare the execution results of multiple query plans, hence named multi-plan execution (MPE). 3. Motivating Examples In this section, we use two real examples to demonstrate the advantages of our system’s two key techniques. 3.1. Context-Sensitive Instantiation We propose context-sensiti",
+      "section": "2.4 DBMS Testing",
+      "page": 3,
+      "char_offset": 15233,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M9",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[28]",
+      "technique": null,
+      "sentence": "Although this approach has been effective in detecting bugs in widely-used DBMS [28], it can only be applied to a subset of SQL that can be translated.",
+      "context_before": "the same functionality as cross-referencing oracles. It provides the same inputs to a series of similar systems and then obverses the results. Any inconsistency between the results may indicate a potential bug. RAGS [27] is the first work that applies differential testing to find logic bugs for DBMS. Metamorphic testing addresses the test oracle problem based on the observation that a transformation of the input has a known effect on the output. NoREC [15] is an oracle for logic bug detection. It translates a query that is potentially optimized by DBMS to a query that can hardly be optimized.",
+      "context_after": "Our system leverages the idea of differential testing to compare the execution results of multiple query plans, hence named multi-plan execution (MPE). 3. Motivating Examples In this section, we use two real examples to demonstrate the advantages of our system’s two key techniques. 3.1. Context-Sensitive Instantiation We propose context-sensitive instantiation because of two observations. First, previous works [6, 13] have proven the importance of semantic correctness to fuzzing efficiency, but existing type-sensitive instantiation still has large room for improvement. Second, MPE requires st",
+      "section": "2.4 DBMS Testing",
+      "page": 3,
+      "char_offset": 15383,
+      "cited_reference": {
+        "number": 28,
+        "text": "“Bugs found in database management systems,” https: //www.manuelrigger.at/dbms-bugs/, 2022.",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M10",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "proposed three oracles for DBMS logic bug detection, including PQS [14], NoREC [15], and TLP [16], all of them put limitations on the SQL queries.",
+      "context_before": ". In TableReference x2 JOIN x3, columns x4and x5, which belong to the join constraint of the joined table, can only be the column of the joined table. Besides, each column should have a unique name within its dependent table. These additional constraints guarantee the semantic correctness of this SELECT statement that does not contain dynamic constraints. Enforcing dynamic constraints requires emulating the execution of statements, which is challenging. Thus, our semantic analysis ignores dynamic constraints and leaves it as part of future work. 3.2. Multi-Plan Execution Although Rigger et al.",
+      "context_after": "Similarly, TQS [17], which aims at detecting logic bugs in equal-join optimization, also limits the diversity of SQL statements. In addition, both TQS and NoREC attempt to explore different query plans for queries. NoREC only compares two distinct plans by transforming queries into semantically similar ones. TQS uses DBMS-specific features such as optimization switches and hints to iterate different query plans. However, this approach is not general and only covers partial query plans. To this end, we propose MPE, which has no such limitation. The basic idea is that our system hooks into the",
+      "section": "3.2 Multi-Plan Execution",
+      "page": 4,
+      "char_offset": 21523,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M11",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "In addition, both TQS and NoREC attempt to explore different query plans for queries.",
+      "context_before": "c correctness of this SELECT statement that does not contain dynamic constraints. Enforcing dynamic constraints requires emulating the execution of statements, which is challenging. Thus, our semantic analysis ignores dynamic constraints and leaves it as part of future work. 3.2. Multi-Plan Execution Although Rigger et al. proposed three oracles for DBMS logic bug detection, including PQS [14], NoREC [15], and TLP [16], all of them put limitations on the SQL queries. Similarly, TQS [17], which aims at detecting logic bugs in equal-join optimization, also limits the diversity of SQL statements.",
+      "context_after": "NoREC only compares two distinct plans by transforming queries into semantically similar ones. TQS uses DBMS-specific features such as optimization switches and hints to iterate different query plans. However, this approach is not general and only covers partial query plans. To this end, we propose MPE, which has no such limitation. The basic idea is that our system hooks into the DBMS optimizer to execute all query plans and compare their results. If the result of one query plan is different from the others, a logic bug is detected. CREATE TABLE t0(c0 INT); CREATE TABLE t1(c1 INT, c2 INT); I",
+      "section": "3.2 Multi-Plan Execution",
+      "page": 4,
+      "char_offset": 21799,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M12",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC only compares two distinct plans by transforming queries into semantically similar ones.",
+      "context_before": "rcing dynamic constraints requires emulating the execution of statements, which is challenging. Thus, our semantic analysis ignores dynamic constraints and leaves it as part of future work. 3.2. Multi-Plan Execution Although Rigger et al. proposed three oracles for DBMS logic bug detection, including PQS [14], NoREC [15], and TLP [16], all of them put limitations on the SQL queries. Similarly, TQS [17], which aims at detecting logic bugs in equal-join optimization, also limits the diversity of SQL statements. In addition, both TQS and NoREC attempt to explore different query plans for queries.",
+      "context_after": "TQS uses DBMS-specific features such as optimization switches and hints to iterate different query plans. However, this approach is not general and only covers partial query plans. To this end, we propose MPE, which has no such limitation. The basic idea is that our system hooks into the DBMS optimizer to execute all query plans and compare their results. If the result of one query plan is different from the others, a logic bug is detected. CREATE TABLE t0(c0 INT); CREATE TABLE t1(c1 INT, c2 INT); INSER TINT O t0 VALUES(0); INSER TINT O t1 VALUES(0, 1); CREATE INDEX t1_c1 ON t1(c1); SELECT *",
+      "section": "3.2 Multi-Plan Execution",
+      "page": 4,
+      "char_offset": 21885,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M13",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Why Existing Works Cannot Detect the Bug NoREC is one of the most effective DBMS logic bug detection oracles which requires the SELECT statements to satisfy some predefined rules, e.",
+      "context_before": "hat triggers a logic bug in SQLite. There are four query plans for the mutated SELECT statement Q1. One of them (the fourth one) returns a non-empty result that is different from the others. In the following, we use the proof-of-concept of one real-world bug of SQLite in Figure 2 to illustrate why the existing system cannot explore enough program states to detect the logic bug and how the MPE can capture such a bug. When the test case is executed, the DBMS optimizer finds four query plans for the SELECT statement. Plan one is optimal among four query plans and is executed by SQLite by default.",
+      "context_after": "g., having a WHERE and FROM clause. It shifts the condition in WHERE clause to the SELECT_TARGET, and then executes both to compare the execution result. However, the SELECT statement Q1 in Figure 2 does not meet the requirement (lacks WHERE clause), thus missing the bug triggered by the test case. TQS relies on optimization switches and hints to iterate different query plans, which limits its exploration of query plans. First, the optimization switches cannot force optimization adoptions nor control the scope of optimizations. Hints enables more fine-grained control than optimization switches",
+      "section": "3.2 Multi-Plan Execution",
+      "page": 5,
+      "char_offset": 24049,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M14",
+      "found_by": "citation_marker",
+      "surface": "[13–17]",
+      "technique": "pqs",
+      "sentence": "in previous works [13–17], since other statements typically lack returning results to be checked.",
+      "context_before": "2 Attribute INSERT INTO x1(x2) VALUES (i1); Attr(x2)!=GENERATED x2 should not be a generated column Value SELECT * FROM x1 ORDER BY i1; i1∈{1,2,...,Size (x1)} i1 is an integer up to the number of columns of table x1 Dependency SELECT x1 FROM (SELECT x2, x3 FROM x4) x5; x1∈{x2,x3} x1 could be column x2 or x3 Distinct INSERT INTO x1(x2, x3) ...; DISTINCT [x2,x3] x2 and x3 should be two different column Composite SELECT (x1, x2) IN (TABLE x3) FROM x4; (DataType (x1),DataType (x2)))∈The data type of x2 and x3 should be {DataType (x3,1),DataType (x3,2)}the same as the first two columns in table x3.",
+      "context_after": "Adopting MPE to DBMSs is not straightforward. The first challenge is how to make DBMS execute all query plans with a small modification. Our key observation is that DBMS typically employs a plan choose function to compare the estimated cost of different query plans (including their sub-plans) and choose the best one. Therefore, we can execute any query plan by hooking the plan choose function. In addition, we added a loop before the entry function for query processing so that it can be executed multiple times with different plans until all plans are executed. Such modification has two advanta",
+      "section": "4.5 Multi-Plan Execution",
+      "page": 9,
+      "char_offset": 45587,
+      "cited_reference": {
+        "number": 14,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M15",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We use NoREC for SQLancer and SQLRight.",
+      "context_before": "406080100Validity(%) (d) SQLite query validity0 4 8 12 16 20 240102030Validity(%) (e) PostgreSQL query validity0 4 8 12 16 20 240255075100Validity(%) (f) MySQL query validity 0 4 8 12 16 20 24024681012unique bugs (g) SQLite unique bugs0 4 8 12 16 20 240246810unique bugs (h) MySQL unique bugs SQLancer Squirrel Kangaroo SQLRight Squirrelmultiplan Kangaroo!multiplanFigure 6: Comparison with existing tools. It also illustrates the contributions of context-sensitive instantiation and multi-plan execution. We exclude the results of detected bugs in PostgreSQL since only Kangaroo found one memory bug.",
+      "context_after": "Since SQLancer does not implement NoREC for MySQL, we use TLP instead. TABLE 5: The percentage of semantic correctness of query validation. SQLite PostgreSQL MySQL Squirrel 24,792(53.1%) 5,869(17.9%) 16,283(15.1%) SQLRight 28,710(61.5%) 8,508(26.0%) 35,012(32.5%) Kangaroo 32,880(70.4%) 16,269(49.7%) 46,763(43.4%) Total 46,672 32,753 107,693 type mismatch error in PostgreSQL. 5.3. Comparisons with Existing Tools We compare Kangaroo with three state-of-the-art and open source systems: Squirrel, SQLancer, and SQLRight. Similar to the previous ones, we also select SQLite, PostgreSQL, and MySQL fo",
+      "section": "5.2 Generating Valid Queries",
+      "page": 11,
+      "char_offset": 56379,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M16",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Since SQLancer does not implement NoREC for MySQL, we use TLP instead.",
+      "context_before": "lidity0 4 8 12 16 20 240102030Validity(%) (e) PostgreSQL query validity0 4 8 12 16 20 240255075100Validity(%) (f) MySQL query validity 0 4 8 12 16 20 24024681012unique bugs (g) SQLite unique bugs0 4 8 12 16 20 240246810unique bugs (h) MySQL unique bugs SQLancer Squirrel Kangaroo SQLRight Squirrelmultiplan Kangaroo!multiplanFigure 6: Comparison with existing tools. It also illustrates the contributions of context-sensitive instantiation and multi-plan execution. We exclude the results of detected bugs in PostgreSQL since only Kangaroo found one memory bug. We use NoREC for SQLancer and SQLRight.",
+      "context_after": "TABLE 5: The percentage of semantic correctness of query validation. SQLite PostgreSQL MySQL Squirrel 24,792(53.1%) 5,869(17.9%) 16,283(15.1%) SQLRight 28,710(61.5%) 8,508(26.0%) 35,012(32.5%) Kangaroo 32,880(70.4%) 16,269(49.7%) 46,763(43.4%) Total 46,672 32,753 107,693 type mismatch error in PostgreSQL. 5.3. Comparisons with Existing Tools We compare Kangaroo with three state-of-the-art and open source systems: Squirrel, SQLancer, and SQLRight. Similar to the previous ones, we also select SQLite, PostgreSQL, and MySQL for evaluation. We feed the same test cases to Squirrel, SQLRight, and Ka",
+      "section": "5.2 Generating Valid Queries",
+      "page": 11,
+      "char_offset": 56419,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M17",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Comparisons with Existing Tools We compare Kangaroo with three state-of-the-art and open source systems: Squirrel, SQLancer, and SQLRight.",
+      "context_before": "es the contributions of context-sensitive instantiation and multi-plan execution. We exclude the results of detected bugs in PostgreSQL since only Kangaroo found one memory bug. We use NoREC for SQLancer and SQLRight. Since SQLancer does not implement NoREC for MySQL, we use TLP instead. TABLE 5: The percentage of semantic correctness of query validation. SQLite PostgreSQL MySQL Squirrel 24,792(53.1%) 5,869(17.9%) 16,283(15.1%) SQLRight 28,710(61.5%) 8,508(26.0%) 35,012(32.5%) Kangaroo 32,880(70.4%) 16,269(49.7%) 46,763(43.4%) Total 46,672 32,753 107,693 type mismatch error in PostgreSQL. 5.3.",
+      "context_after": "Similar to the previous ones, we also select SQLite, PostgreSQL, and MySQL for evaluation. We feed the same test cases to Squirrel, SQLRight, and Kangaroo as the initial corpus and provide the same queries used to initialize the mutation library. SQLancer is a generate-based tool that does not require any initial inputs. We launch five fuzzing instances for each system and run each instance for 24 hours. We report the average result except for the bug number. We collect all bug reports from the five fuzzing instances as the final result and then count their first occurrence time for each uniq",
+      "section": "5.3 Comparisons with Existing Tools",
+      "page": 11,
+      "char_offset": 56802,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M18",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer is a generate-based tool that does not require any initial inputs.",
+      "context_before": "rrel 24,792(53.1%) 5,869(17.9%) 16,283(15.1%) SQLRight 28,710(61.5%) 8,508(26.0%) 35,012(32.5%) Kangaroo 32,880(70.4%) 16,269(49.7%) 46,763(43.4%) Total 46,672 32,753 107,693 type mismatch error in PostgreSQL. 5.3. Comparisons with Existing Tools We compare Kangaroo with three state-of-the-art and open source systems: Squirrel, SQLancer, and SQLRight. Similar to the previous ones, we also select SQLite, PostgreSQL, and MySQL for evaluation. We feed the same test cases to Squirrel, SQLRight, and Kangaroo as the initial corpus and provide the same queries used to initialize the mutation library.",
+      "context_after": "We launch five fuzzing instances for each system and run each instance for 24 hours. We report the average result except for the bug number. We collect all bug reports from the five fuzzing instances as the final result and then count their first occurrence time for each unique bug. Figure 6 shows the evaluation result. Detected Unique Bugs As indicated in Figure 6gh, Kangaroo outperforms existing tools on all three DBMSs. For SQLite, Kangaroo found 12 unique bugs, including eight memory bugs and four logic bugs. SQLRight found three bugs, one of which is a logic bug. Squirrel found only oneb",
+      "section": "5.3 Comparisons with Existing Tools",
+      "page": 11,
+      "char_offset": 57188,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M19",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Squirrel and SQLancer detected five and one memory bugs, respectively.",
+      "context_before": "Bugs As indicated in Figure 6gh, Kangaroo outperforms existing tools on all three DBMSs. For SQLite, Kangaroo found 12 unique bugs, including eight memory bugs and four logic bugs. SQLRight found three bugs, one of which is a logic bug. Squirrel found only onebug which is also covered by Kangaroo. For PostgreSQL, only Kangaroo found one bug. This is not surprising as previous works have revealed that PostgreSQL is more robust than most other DBMSs. As for MySQL, Kangaroo found a total of ten bugs, including eight memory bugs and two logic bugs. SQLRight found two memory bugs and one logic bug.",
+      "context_after": "SQLancer, the only generationbased tool, found the least bugs across all comparisons, demonstrating the advantage of the mutation-based method to detect DBMS bugs. Explored New Edges Figure 6abc shows that Kangaroo performs better than others on all three DBMS systems. It explores 52%, 44%, and 14% more edges than SQLancer, Squirrel, and SQLRight on average, respectively. Considering that MPE modifies only a few lines of code out of millions of lines of DBMS code, we believe its impact on the new edges explored is negligible. This means the improvement is mainly due to context-sensitive insta",
+      "section": "5.3 Comparisons with Existing Tools",
+      "page": 11,
+      "char_offset": 58203,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M20",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLancer, the only generationbased tool, found the least bugs across all comparisons, demonstrating the advantage of the mutation-based method to detect DBMS bugs.",
+      "context_before": "all three DBMSs. For SQLite, Kangaroo found 12 unique bugs, including eight memory bugs and four logic bugs. SQLRight found three bugs, one of which is a logic bug. Squirrel found only onebug which is also covered by Kangaroo. For PostgreSQL, only Kangaroo found one bug. This is not surprising as previous works have revealed that PostgreSQL is more robust than most other DBMSs. As for MySQL, Kangaroo found a total of ten bugs, including eight memory bugs and two logic bugs. SQLRight found two memory bugs and one logic bug. Squirrel and SQLancer detected five and one memory bugs, respectively.",
+      "context_after": "Explored New Edges Figure 6abc shows that Kangaroo performs better than others on all three DBMS systems. It explores 52%, 44%, and 14% more edges than SQLancer, Squirrel, and SQLRight on average, respectively. Considering that MPE modifies only a few lines of code out of millions of lines of DBMS code, we believe its impact on the new edges explored is negligible. This means the improvement is mainly due to context-sensitive instantiation. Generated Valid Queries We treat a query as invalid if DBMS reports any form of error during the execution. As shown in Figure 6def, SQLancer achieves the",
+      "section": "5.3 Comparisons with Existing Tools",
+      "page": 11,
+      "char_offset": 58274,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M21",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "It explores 52%, 44%, and 14% more edges than SQLancer, Squirrel, and SQLRight on average, respectively.",
+      "context_before": "g. This is not surprising as previous works have revealed that PostgreSQL is more robust than most other DBMSs. As for MySQL, Kangaroo found a total of ten bugs, including eight memory bugs and two logic bugs. SQLRight found two memory bugs and one logic bug. Squirrel and SQLancer detected five and one memory bugs, respectively. SQLancer, the only generationbased tool, found the least bugs across all comparisons, demonstrating the advantage of the mutation-based method to detect DBMS bugs. Explored New Edges Figure 6abc shows that Kangaroo performs better than others on all three DBMS systems.",
+      "context_after": "Considering that MPE modifies only a few lines of code out of millions of lines of DBMS code, we believe its impact on the new edges explored is negligible. This means the improvement is mainly due to context-sensitive instantiation. Generated Valid Queries We treat a query as invalid if DBMS reports any form of error during the execution. As shown in Figure 6def, SQLancer achieves the highest query validity. This result is reasonable because SQLancer follows very limited grammar rules to generate SQL statements. For example, SQLancer does not support generating subqueries that are prone to s",
+      "section": "5.3 Comparisons with Existing Tools",
+      "page": 11,
+      "char_offset": 58544,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M22",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "As shown in Figure 6def, SQLancer achieves the highest query validity.",
+      "context_before": "the mutation-based method to detect DBMS bugs. Explored New Edges Figure 6abc shows that Kangaroo performs better than others on all three DBMS systems. It explores 52%, 44%, and 14% more edges than SQLancer, Squirrel, and SQLRight on average, respectively. Considering that MPE modifies only a few lines of code out of millions of lines of DBMS code, we believe its impact on the new edges explored is negligible. This means the improvement is mainly due to context-sensitive instantiation. Generated Valid Queries We treat a query as invalid if DBMS reports any form of error during the execution.",
+      "context_after": "This result is reasonable because SQLancer follows very limited grammar rules to generate SQL statements. For example, SQLancer does not support generating subqueries that are prone to semantic errors. That makes it easier to generate valid statements but limits the diversity. This could be the main reason that it explores the fewest paths among all fuzzers. Benefiting from the richer semantic constraints due to context-sensitive instantiation, Kangaroo achieves a noticeably higher query validity than other mutation-based fuzzers. Oracle Comparsion To eliminate the benefit from context-sensit",
+      "section": "5.3 Comparisons with Existing Tools",
+      "page": 11,
+      "char_offset": 58991,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M23",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "This result is reasonable because SQLancer follows very limited grammar rules to generate SQL statements.",
+      "context_before": "re 6abc shows that Kangaroo performs better than others on all three DBMS systems. It explores 52%, 44%, and 14% more edges than SQLancer, Squirrel, and SQLRight on average, respectively. Considering that MPE modifies only a few lines of code out of millions of lines of DBMS code, we believe its impact on the new edges explored is negligible. This means the improvement is mainly due to context-sensitive instantiation. Generated Valid Queries We treat a query as invalid if DBMS reports any form of error during the execution. As shown in Figure 6def, SQLancer achieves the highest query validity.",
+      "context_after": "For example, SQLancer does not support generating subqueries that are prone to semantic errors. That makes it easier to generate valid statements but limits the diversity. This could be the main reason that it explores the fewest paths among all fuzzers. Benefiting from the richer semantic constraints due to context-sensitive instantiation, Kangaroo achieves a noticeably higher query validity than other mutation-based fuzzers. Oracle Comparsion To eliminate the benefit from context-sensitive instantiation, We build Kangaroo MPE by replacing the context-sensitive instantiation with type-sensit",
+      "section": "5.3 Comparisons with Existing Tools",
+      "page": 11,
+      "char_offset": 59062,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M24",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "For example, SQLancer does not support generating subqueries that are prone to semantic errors.",
+      "context_before": "nd 14% more edges than SQLancer, Squirrel, and SQLRight on average, respectively. Considering that MPE modifies only a few lines of code out of millions of lines of DBMS code, we believe its impact on the new edges explored is negligible. This means the improvement is mainly due to context-sensitive instantiation. Generated Valid Queries We treat a query as invalid if DBMS reports any form of error during the execution. As shown in Figure 6def, SQLancer achieves the highest query validity. This result is reasonable because SQLancer follows very limited grammar rules to generate SQL statements.",
+      "context_after": "That makes it easier to generate valid statements but limits the diversity. This could be the main reason that it explores the fewest paths among all fuzzers. Benefiting from the richer semantic constraints due to context-sensitive instantiation, Kangaroo achieves a noticeably higher query validity than other mutation-based fuzzers. Oracle Comparsion To eliminate the benefit from context-sensitive instantiation, We build Kangaroo MPE by replacing the context-sensitive instantiation with type-sensitive instantiation in Kangaroo, and compare Kangaroo MPE to SQLRight NoREC and SQLRight TLP. Doin",
+      "section": "5.3 Comparisons with Existing Tools",
+      "page": 11,
+      "char_offset": 59168,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M25",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Oracle Comparsion To eliminate the benefit from context-sensitive instantiation, We build Kangaroo MPE by replacing the context-sensitive instantiation with type-sensitive instantiation in Kangaroo, and compare Kangaroo MPE to SQLRight NoREC and SQLRight TLP.",
+      "context_before": "n in Figure 6def, SQLancer achieves the highest query validity. This result is reasonable because SQLancer follows very limited grammar rules to generate SQL statements. For example, SQLancer does not support generating subqueries that are prone to semantic errors. That makes it easier to generate valid statements but limits the diversity. This could be the main reason that it explores the fewest paths among all fuzzers. Benefiting from the richer semantic constraints due to context-sensitive instantiation, Kangaroo achieves a noticeably higher query validity than other mutation-based fuzzers.",
+      "context_after": "Doing an automatic comparison of the MPE and PQS is difficult because PQS requires a generation method to generate statements. Considering that the generation of test cases is also one of the evaluation metrics of the oracle, we include SQLancer PQS as the comparison target. After 5 rounds of 24-hour testing, Kangaroo MPE finds three logic bugs in SQLite and two logic bugs in MySQL, and SQLRight NoREC finds one logic bug in SQLite and one in MySQL. Besides, all logic bugs found by NoREC are covered by MPE. SQLRight TLP and SQLancer PQS fail to detect any logic bug. 5.4. Benefits of the Two Ke",
+      "section": "5.3 Comparisons with Existing Tools",
+      "page": 12,
+      "char_offset": 59599,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec",
+        "tlp"
+      ]
+    },
+    {
+      "id": "M26",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "Doing an automatic comparison of the MPE and PQS is difficult because PQS requires a generation method to generate statements.",
+      "context_before": "rors. That makes it easier to generate valid statements but limits the diversity. This could be the main reason that it explores the fewest paths among all fuzzers. Benefiting from the richer semantic constraints due to context-sensitive instantiation, Kangaroo achieves a noticeably higher query validity than other mutation-based fuzzers. Oracle Comparsion To eliminate the benefit from context-sensitive instantiation, We build Kangaroo MPE by replacing the context-sensitive instantiation with type-sensitive instantiation in Kangaroo, and compare Kangaroo MPE to SQLRight NoREC and SQLRight TLP.",
+      "context_after": "Considering that the generation of test cases is also one of the evaluation metrics of the oracle, we include SQLancer PQS as the comparison target. After 5 rounds of 24-hour testing, Kangaroo MPE finds three logic bugs in SQLite and two logic bugs in MySQL, and SQLRight NoREC finds one logic bug in SQLite and one in MySQL. Besides, all logic bugs found by NoREC are covered by MPE. SQLRight TLP and SQLancer PQS fail to detect any logic bug. 5.4. Benefits of the Two Key Techniques We conduct unit tests to understand the contribution of the two techniques in Kangaroo. To understand the contribu",
+      "section": "5.3 Comparisons with Existing Tools",
+      "page": 12,
+      "char_offset": 59859,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M27",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "Considering that the generation of test cases is also one of the evaluation metrics of the oracle, we include SQLancer PQS as the comparison target.",
+      "context_before": "s the fewest paths among all fuzzers. Benefiting from the richer semantic constraints due to context-sensitive instantiation, Kangaroo achieves a noticeably higher query validity than other mutation-based fuzzers. Oracle Comparsion To eliminate the benefit from context-sensitive instantiation, We build Kangaroo MPE by replacing the context-sensitive instantiation with type-sensitive instantiation in Kangaroo, and compare Kangaroo MPE to SQLRight NoREC and SQLRight TLP. Doing an automatic comparison of the MPE and PQS is difficult because PQS requires a generation method to generate statements.",
+      "context_after": "After 5 rounds of 24-hour testing, Kangaroo MPE finds three logic bugs in SQLite and two logic bugs in MySQL, and SQLRight NoREC finds one logic bug in SQLite and one in MySQL. Besides, all logic bugs found by NoREC are covered by MPE. SQLRight TLP and SQLancer PQS fail to detect any logic bug. 5.4. Benefits of the Two Key Techniques We conduct unit tests to understand the contribution of the two techniques in Kangaroo. To understand the contribution of context-sensitive instantiation, we build Kangaroo !multiplan by disabling the MPE in Kangaroo. Without the MPE, Kangaroo !multiplan focuses",
+      "section": "5.3 Comparisons with Existing Tools",
+      "page": 12,
+      "char_offset": 59986,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M28",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "After 5 rounds of 24-hour testing, Kangaroo MPE finds three logic bugs in SQLite and two logic bugs in MySQL, and SQLRight NoREC finds one logic bug in SQLite and one in MySQL.",
+      "context_before": "iceably higher query validity than other mutation-based fuzzers. Oracle Comparsion To eliminate the benefit from context-sensitive instantiation, We build Kangaroo MPE by replacing the context-sensitive instantiation with type-sensitive instantiation in Kangaroo, and compare Kangaroo MPE to SQLRight NoREC and SQLRight TLP. Doing an automatic comparison of the MPE and PQS is difficult because PQS requires a generation method to generate statements. Considering that the generation of test cases is also one of the evaluation metrics of the oracle, we include SQLancer PQS as the comparison target.",
+      "context_after": "Besides, all logic bugs found by NoREC are covered by MPE. SQLRight TLP and SQLancer PQS fail to detect any logic bug. 5.4. Benefits of the Two Key Techniques We conduct unit tests to understand the contribution of the two techniques in Kangaroo. To understand the contribution of context-sensitive instantiation, we build Kangaroo !multiplan by disabling the MPE in Kangaroo. Without the MPE, Kangaroo !multiplan focuses on memory bug detection. We use Squirrel as a baseline since it performs better than SQLancer in detecting memory bugs. We also ported the MPE module into Squirrel, denoted Squi",
+      "section": "5.3 Comparisons with Existing Tools",
+      "page": 12,
+      "char_offset": 60135,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M29",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "Besides, all logic bugs found by NoREC are covered by MPE.",
+      "context_before": "ing the context-sensitive instantiation with type-sensitive instantiation in Kangaroo, and compare Kangaroo MPE to SQLRight NoREC and SQLRight TLP. Doing an automatic comparison of the MPE and PQS is difficult because PQS requires a generation method to generate statements. Considering that the generation of test cases is also one of the evaluation metrics of the oracle, we include SQLancer PQS as the comparison target. After 5 rounds of 24-hour testing, Kangaroo MPE finds three logic bugs in SQLite and two logic bugs in MySQL, and SQLRight NoREC finds one logic bug in SQLite and one in MySQL.",
+      "context_after": "SQLRight TLP and SQLancer PQS fail to detect any logic bug. 5.4. Benefits of the Two Key Techniques We conduct unit tests to understand the contribution of the two techniques in Kangaroo. To understand the contribution of context-sensitive instantiation, we build Kangaroo !multiplan by disabling the MPE in Kangaroo. Without the MPE, Kangaroo !multiplan focuses on memory bug detection. We use Squirrel as a baseline since it performs better than SQLancer in detecting memory bugs. We also ported the MPE module into Squirrel, denoted Squirrel multiplan. By comparing Squirrel with Squirrel multipl",
+      "section": "5.3 Comparisons with Existing Tools",
+      "page": 12,
+      "char_offset": 60312,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M30",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "SQLRight TLP and SQLancer PQS fail to detect any logic bug.",
+      "context_before": "instantiation in Kangaroo, and compare Kangaroo MPE to SQLRight NoREC and SQLRight TLP. Doing an automatic comparison of the MPE and PQS is difficult because PQS requires a generation method to generate statements. Considering that the generation of test cases is also one of the evaluation metrics of the oracle, we include SQLancer PQS as the comparison target. After 5 rounds of 24-hour testing, Kangaroo MPE finds three logic bugs in SQLite and two logic bugs in MySQL, and SQLRight NoREC finds one logic bug in SQLite and one in MySQL. Besides, all logic bugs found by NoREC are covered by MPE.",
+      "context_after": "5.4. Benefits of the Two Key Techniques We conduct unit tests to understand the contribution of the two techniques in Kangaroo. To understand the contribution of context-sensitive instantiation, we build Kangaroo !multiplan by disabling the MPE in Kangaroo. Without the MPE, Kangaroo !multiplan focuses on memory bug detection. We use Squirrel as a baseline since it performs better than SQLancer in detecting memory bugs. We also ported the MPE module into Squirrel, denoted Squirrel multiplan. By comparing Squirrel with Squirrel multiplan, we can verify that MPE itself is effective. We adopt the",
+      "section": "5.3 Comparisons with Existing Tools",
+      "page": 12,
+      "char_offset": 60371,
+      "found_by_all": [
+        "name",
+        "technique"
+      ],
+      "techniques": [
+        "tlp",
+        "pqs"
+      ]
+    },
+    {
+      "id": "M31",
+      "found_by": "name",
+      "surface": "SQLancer",
+      "technique": null,
+      "sentence": "We use Squirrel as a baseline since it performs better than SQLancer in detecting memory bugs.",
+      "context_before": "ur testing, Kangaroo MPE finds three logic bugs in SQLite and two logic bugs in MySQL, and SQLRight NoREC finds one logic bug in SQLite and one in MySQL. Besides, all logic bugs found by NoREC are covered by MPE. SQLRight TLP and SQLancer PQS fail to detect any logic bug. 5.4. Benefits of the Two Key Techniques We conduct unit tests to understand the contribution of the two techniques in Kangaroo. To understand the contribution of context-sensitive instantiation, we build Kangaroo !multiplan by disabling the MPE in Kangaroo. Without the MPE, Kangaroo !multiplan focuses on memory bug detection.",
+      "context_after": "We also ported the MPE module into Squirrel, denoted Squirrel multiplan. By comparing Squirrel with Squirrel multiplan, we can verify that MPE itself is effective. We adopt the same strategy to measure the number of explored edges, the query validity rate, and the number of unique bugs. Figure 6 shows the evaluation results. Context-Sensitive Instantiation Context-sensitive instantiation directly improves the correctness level (Table 1) of generated test cases, thereby greatly improving the efficiency of fuzzing. As shown in Figure 6def, tools using contextsensitive instantiation achieve sign",
+      "section": "5.4 Benefits of the Two Key Techniques",
+      "page": 12,
+      "char_offset": 60759,
+      "found_by_all": [
+        "name"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M32",
+      "found_by": "technique",
+      "surface": "NoREC",
+      "technique": "norec",
+      "sentence": "NoREC [15] generates equivalent queries by shifting the conditions in the WHERE clause to the SELECT expression.",
+      "context_before": "put with different DBMS systems. Slutz proposed RAGE [27] for finding logic bugs in DBMS by running the same query on different DBMS and comparing their results. Jinho et al. developed APOLLO [5], a system to find performance regression bugs by executing the same query on the DBMSs with different versions. However, RAGE can only be applied to common features of different DBMSs, and APOLLO can only detect bugs introduced or fixed by newer versions. Another approach is based on metamorphic testing which identifies bugs by running two queries with equivalent functionality on the same DBMS system.",
+      "context_after": "TLP [16] partitions a query lacking where clause into three subqueries whose where clause are x IS TRUE ,x IS FALSE, and x IS NULL. Both of them are limited to the queries that can be converted. The last approach tries to build the test case along with the corresponding ground truth result. ADUSA [37] generates all data and the full expected result for a query. However, generating full expected results as ground truth can be expensive which inhibits it from finding more bugs. To simplify the ground truth generation, Pivoted Query Synthesis(PQS) [14] only partly validates a query’s result. It",
+      "section": "7 Related Work",
+      "page": 13,
+      "char_offset": 66520,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "norec"
+      ]
+    },
+    {
+      "id": "M33",
+      "found_by": "technique",
+      "surface": "TLP",
+      "technique": "tlp",
+      "sentence": "TLP [16] partitions a query lacking where clause into three subqueries whose where clause are x IS TRUE ,x IS FALSE, and x IS NULL.",
+      "context_before": "y on different DBMS and comparing their results. Jinho et al. developed APOLLO [5], a system to find performance regression bugs by executing the same query on the DBMSs with different versions. However, RAGE can only be applied to common features of different DBMSs, and APOLLO can only detect bugs introduced or fixed by newer versions. Another approach is based on metamorphic testing which identifies bugs by running two queries with equivalent functionality on the same DBMS system. NoREC [15] generates equivalent queries by shifting the conditions in the WHERE clause to the SELECT expression.",
+      "context_after": "Both of them are limited to the queries that can be converted. The last approach tries to build the test case along with the corresponding ground truth result. ADUSA [37] generates all data and the full expected result for a query. However, generating full expected results as ground truth can be expensive which inhibits it from finding more bugs. To simplify the ground truth generation, Pivoted Query Synthesis(PQS) [14] only partly validates a query’s result. It synthesizes a query that is expected to fetch a single, randomly-selected row. By checking whether this row is fetched, PQS can dete",
+      "section": "7 Related Work",
+      "page": 13,
+      "char_offset": 66633,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "tlp"
+      ]
+    },
+    {
+      "id": "M34",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "To simplify the ground truth generation, Pivoted Query Synthesis(PQS) [14] only partly validates a query’s result.",
+      "context_before": "ystem. NoREC [15] generates equivalent queries by shifting the conditions in the WHERE clause to the SELECT expression. TLP [16] partitions a query lacking where clause into three subqueries whose where clause are x IS TRUE ,x IS FALSE, and x IS NULL. Both of them are limited to the queries that can be converted. The last approach tries to build the test case along with the corresponding ground truth result. ADUSA [37] generates all data and the full expected result for a query. However, generating full expected results as ground truth can be expensive which inhibits it from finding more bugs.",
+      "context_after": "It synthesizes a query that is expected to fetch a single, randomly-selected row. By checking whether this row is fetched, PQS can detect logic bugs in the DBMS. DBMS test cases generation. DBMS requires structural inputs to manipulate data in the database. Structural input generation mainly falls into two categories: generate-based approaches and mutation-based approaches. The generation-based approach [7, 14–17, 27, 37, 38] is effective in generating syntax-correct test cases since it typically follows a grammar model that describes the format of the input. However, these grammar rules are",
+      "section": "7 Related Work",
+      "page": 13,
+      "char_offset": 67114,
+      "found_by_all": [
+        "technique",
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M35",
+      "found_by": "technique",
+      "surface": "PQS",
+      "technique": "pqs",
+      "sentence": "By checking whether this row is fetched, PQS can detect logic bugs in the DBMS.",
+      "context_before": "where clause are x IS TRUE ,x IS FALSE, and x IS NULL. Both of them are limited to the queries that can be converted. The last approach tries to build the test case along with the corresponding ground truth result. ADUSA [37] generates all data and the full expected result for a query. However, generating full expected results as ground truth can be expensive which inhibits it from finding more bugs. To simplify the ground truth generation, Pivoted Query Synthesis(PQS) [14] only partly validates a query’s result. It synthesizes a query that is expected to fetch a single, randomly-selected row.",
+      "context_after": "DBMS test cases generation. DBMS requires structural inputs to manipulate data in the database. Structural input generation mainly falls into two categories: generate-based approaches and mutation-based approaches. The generation-based approach [7, 14–17, 27, 37, 38] is effective in generating syntax-correct test cases since it typically follows a grammar model that describes the format of the input. However, these grammar rules are helpless in improving the semantic correctness of the test case. SQLsmith [7] is a popular DBMS testing tool that can generate syntax-correct test cases from AST.",
+      "section": "7 Related Work",
+      "page": 13,
+      "char_offset": 67311,
+      "found_by_all": [
+        "technique"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    },
+    {
+      "id": "M36",
+      "found_by": "citation_marker",
+      "surface": "[7, 14–17, 27, 37, 38]",
+      "technique": "pqs",
+      "sentence": "The generation-based approach [7, 14–17, 27, 37, 38] is effective in generating syntax-correct test cases since it typically follows a grammar model that describes the format of the input.",
+      "context_before": "generating full expected results as ground truth can be expensive which inhibits it from finding more bugs. To simplify the ground truth generation, Pivoted Query Synthesis(PQS) [14] only partly validates a query’s result. It synthesizes a query that is expected to fetch a single, randomly-selected row. By checking whether this row is fetched, PQS can detect logic bugs in the DBMS. DBMS test cases generation. DBMS requires structural inputs to manipulate data in the database. Structural input generation mainly falls into two categories: generate-based approaches and mutation-based approaches.",
+      "context_after": "However, these grammar rules are helpless in improving the semantic correctness of the test case. SQLsmith [7] is a popular DBMS testing tool that can generate syntax-correct test cases from AST. Despite it having found over 100 memory bugs in popular DBMSs, SQLsmith achieves quite a low accuracy on semantics which might inhibit it from finding bugs hidden in the deep logic. QAGen [38] proves that generating a completely valid queryis NP-complete. It improves semantic correctness by combining traditional query processing and symbolic execution. Previous works also try to improve query generat",
+      "section": "7 Related Work",
+      "page": 13,
+      "char_offset": 67606,
+      "cited_reference": {
+        "number": 14,
+        "text": "M. Rigger and Z. Su, “Testing database engines via pivoted query synthesis,” in 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020, pp. 667–682.",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing pqs",
+          "names SQLancer or one of its techniques"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "pqs"
+      ]
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {
+      "compares_with": [
+        "M4",
+        "M21",
+        "M25",
+        "M31"
+      ],
+      "describes_as_state_of_the_art": [
+        "M4",
+        "M13",
+        "M17"
+      ]
+    },
+    "suppressed": [
+      {
+        "mention_id": "M17",
+        "pattern": "compares_with",
+        "suppressed_because": "the sentence is framed as related work, so it describes somebody else's approach"
+      }
+    ]
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-10T15:11:27Z",
+    "is_model_written": true,
+    "summary": "Kangaroo tests DBMSs with context-sensitive instantiation and multi-plan execution. Its argument is that the existing oracles constrain which SQL they can judge -- NoREC needs a WHERE clause, so it reaches only bugs in WHERE optimisation -- and that they explore only part of a query's plan space. Kangaroo instantiates queries against the live schema and forces execution down several plans. Over 24 hours on three DBMSs it found 17 bugs.",
+    "narrative": "SQLancer is Kangaroo's baseline and the source of the limitation it targets. The paper describes the three oracles -- PQS, NoREC and TLP -- as each placing limitations on the SQL queries they can judge, and works through why NoREC in particular cannot detect the motivating bug. In the comparison against Squirrel, SQLancer and SQLRight, SQLancer found 1 bug to Kangaroo's 17, and Kangaroo reached several times more program states than what the paper calls the rule-based tool SQLancer.",
+    "roles": {
+      "M1": "motivation",
+      "M2": "motivation",
+      "M3": "motivation",
+      "M4": "baseline",
+      "M5": "result_comparison",
+      "M6": "result_comparison",
+      "M7": "background",
+      "M8": "definition",
+      "M9": "background",
+      "M10": "motivation",
+      "M11": "definition",
+      "M12": "definition",
+      "M13": "motivation"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is run as a baseline; Kangaroo's instantiation and multi-plan execution are its own."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The oracles are described as constraining what they can judge, which is the gap Kangaroo addresses with a different mechanism rather than a development of theirs."
+      },
+      "compares_with": {
+        "value": "yes",
+        "mention_ids": [
+          "M4",
+          "M5",
+          "M6"
+        ],
+        "quotes": [
+          {
+            "mention_id": "M4",
+            "sentence": "We also compared Kangaroo with leading DBMS testing tools, such as Squirrel, SQLancer, and SQLRight.",
+            "section": "1 Introduction",
+            "page": 2
+          },
+          {
+            "mention_id": "M5",
+            "sentence": "Specifically, after conducting a 24-hour test on the three DBMSs, Kangaroo successfully detected 17 bugs, while SQLancer, Squirrel, and SQLRight only identified 1, 3, and 6 bugs, respectively.",
+            "section": "1 Introduction",
+            "page": 2
+          },
+          {
+            "mention_id": "M6",
+            "sentence": "3x more program states than the rule-based tool SQLancer.",
+            "section": "1 Introduction",
+            "page": 2
+          }
+        ],
+        "reasoning": "M4 names SQLancer among the leading tools compared against, M5 gives the 24-hour bug counts -- 17 against SQLancer's 1 -- and M6 the difference in program states reached."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is called a leading DBMS testing tool and a rule-based one; the paper stops short of calling it the state of the art, and its argument is about what the oracles cannot reach."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}

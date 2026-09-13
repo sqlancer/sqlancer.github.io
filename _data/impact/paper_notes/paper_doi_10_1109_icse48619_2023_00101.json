@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "impact-policy-v1",
+  "paper": {
+    "id": "paper:doi:10.1109/icse48619.2023.00101",
+    "title": "Detecting Isolation Bugs via Transaction Oracle Construction",
+    "authors": [
+      "Wensheng Dou",
+      "Ziyu Cui",
+      "Qianwang Dai",
+      "Jiansen Song",
+      "Dong Wang",
+      "Yu Gao",
+      "Wei Wang",
+      "Jun Wei",
+      "Lei Chen",
+      "Han Wang",
+      "Hua Zhong",
+      "Tao Huang"
+    ],
+    "year": 2023,
+    "venue": "International Conference on Software Engineering",
+    "doi": "10.1109/icse48619.2023.00101",
+    "url": "https://doi.org/10.1109/icse48619.2023.00101"
+  },
+  "summary": {
+    "text": "Troc detects isolation bugs, where a DBMS violates the transaction isolation level it claims to provide. Its idea is to decouple a transaction into independent statements and execute each against its own database view, constructed according to the claimed isolation level; any divergence between the real transaction execution and the independent statement execution reveals an isolation bug. Implemented for MySQL, MariaDB and TiDB, it found 5 previously unknown isolation bugs in their latest versions.",
+    "relationship_to_sqlancer": "Builds on SQLancer's infrastructure — the paper states that Troc's database and SQL statement generation is mainly based on SQLancer, and that the data structures and statements it supports are those SQLancer supports. It argues that SQLancer's oracles work on single SELECT statements without considering concurrent transactions, which is the gap Troc fills.",
+    "is_model_generated": true,
+    "grounded_in_source": true,
+    "written_from": "supplied PDF",
+    "written_from_url": "https://doi.org/10.1109/icse48619.2023.00101",
+    "source_sha256": "sha256:c0391c612ef8d8c43f4f267e301e2cb659d7cec392d47d0faf0cfccdde856a49",
+    "supporting_excerpts": [
+      "Troc’s database and SQL statement generation mainly bases on SQLancer [49].",
+      "Automatic database testing approaches like SQLancer [26]–[28] detect logic bugs for single queries (i.e., SELECT statements) without considering concurrent transactions, and cannot be applied on other statements, e.g., UPDA TE statements in s12ands22.",
+      "For now, Troc can support many complex data structures and SQL statements, e.g., primary keys, indexes, various data types, and conditions that are supported by SQLancer [49]."
+    ],
+    "model": "claude-opus-5",
+    "generated_by": "claude_code_session",
+    "classifier_version": null,
+    "generated_at": "2026-09-07T15:21:51Z"
+  },
+  "evidence": [
+    {
+      "relationship": "references",
+      "title": "Cites SQLancer",
+      "value": "yes",
+      "method": "citation_graph",
+      "techniques": [
+        "pqs",
+        "norec",
+        "tlp",
+        "qpg"
+      ],
+      "sources": [
+        {
+          "source_url": "https://doi.org/10.1109/icse48619.2023.00101",
+          "source_type": "paper_citation_context",
+          "excerpt": "Automatic database testing approaches like SQLancer [26]–[28] detect logic bugs for single queries (i.e., SELECT statements) without considering concurrent transactions, and cannot be applied on other statements, e.g., UPDATE statements in s 12 and s 22 .",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/icse48619.2023.00101",
+          "source_type": "paper_citation_context",
+          "excerpt": "Existing testing techniques for DBMSs, e.g., SQLsmith [24] and SQLancer [26]–[28], cannot generate transaction test cases, and do not have a test oracle for transaction test cases.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/icse48619.2023.00101",
+          "source_type": "paper_citation_context",
+          "excerpt": "For now, Troc can support many complex data structures and SQL statements, e.g., primary keys, indexes, various data types, and conditions that are supported by SQLancer [49].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/icse48619.2023.00101",
+          "source_type": "paper_citation_context",
+          "excerpt": "Automatic database testing approaches [24]–[28] can support these complex features in modern DBMSs, and have been proved as an effective technique to detect bugs in DBMSs.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Non-optimizing Reference Engine Construction (NoREC), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/icse48619.2023.00101",
+          "source_type": "paper_citation_context",
+          "excerpt": "We further investigate whether these 12 unique bugs can be revealed by existing approaches, e.g., SQLsmith [24], SQLancer [26]–[28], Elle [23] and Cobra [22].",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Pivoted Query Synthesis (PQS), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://doi.org/10.1109/icse48619.2023.00101",
+          "source_type": "paper_citation_context",
+          "excerpt": "QPG [69] utilizes query plans to guide database state mutation for detecting bugs.",
+          "excerpt_is_verbatim": true,
+          "note": "Sentence in this paper citing Query Plan Guidance (QPG), as indexed by Semantic Scholar.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    },
+    {
+      "relationship": "uses_infrastructure",
+      "title": "Uses the SQLancer codebase",
+      "value": "yes",
+      "method": "artifact_inspection",
+      "techniques": [],
+      "sources": [
+        {
+          "source_url": "https://github.com/criszy/Troc",
+          "source_type": "github_repository",
+          "excerpt": "Artifact for \"Detecting Isolation Bugs via Transaction Oracle Construction\"\n# Troc\r\n\r\nThis is the artifact for the paper \"Detecting Isolation Bugs via Transaction Oracle Construction\". \r\nSee [paper](http://www.tcse.cn/~cuiziyu20/papers/2023-icse-troc.pdf) to learn more details.",
+          "excerpt_is_verbatim": true,
+          "note": "Repository names this paper.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://github.com/criszy/Troc/blob/main/src/main/java/troc/Randomly.java",
+          "source_type": "github_code",
+          "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.SOPHISTICATED;",
+          "excerpt_is_verbatim": true,
+          "note": "src/main/java/troc/Randomly.java is SQLancer's Randomly.java, with the package renamed to troc (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    },
+    {
+      "relationship": "artifact",
+      "title": "Artifact",
+      "value": "https://github.com/criszy/Troc",
+      "method": "artifact_inspection",
+      "techniques": [],
+      "markers": [
+        "renamed_sqlancer_package",
+        "sqlancer_source_content_match"
+      ],
+      "sources": [
+        {
+          "source_url": "https://github.com/criszy/Troc",
+          "source_type": "github_repository",
+          "excerpt": "Artifact for \"Detecting Isolation Bugs via Transaction Oracle Construction\"\n# Troc\r\n\r\nThis is the artifact for the paper \"Detecting Isolation Bugs via Transaction Oracle Construction\". \r\nSee [paper](http://www.tcse.cn/~cuiziyu20/papers/2023-icse-troc.pdf) to learn more details.",
+          "excerpt_is_verbatim": true,
+          "note": "Repository names this paper.",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        },
+        {
+          "source_url": "https://github.com/criszy/Troc/blob/main/src/main/java/troc/Randomly.java",
+          "source_type": "github_code",
+          "excerpt": "private static StringGenerationStrategy stringGenerationStrategy = StringGenerationStrategy.SOPHISTICATED;",
+          "excerpt_is_verbatim": true,
+          "note": "src/main/java/troc/Randomly.java is SQLancer's Randomly.java, with the package renamed to troc (8 of 8 identifiers match: StringGenerationStrategy, SOPHISTICATED, cachedLongs, cachedStrings, cachedDoubles).",
+          "retrieved_at": "2026-09-06T15:09:10Z"
+        }
+      ]
+    }
+  ]
+}

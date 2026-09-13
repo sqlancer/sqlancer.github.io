@@ -1,0 +1,793 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-08T15:24:12Z",
+  "paper": {
+    "id": "paper:doi:10.1145/3798245",
+    "title": "Understanding and Finding JIT Compiler Performance Bugs",
+    "authors": [
+      "Zijian Yi",
+      "Chen Ding",
+      "August Shi",
+      "Milos Gligoric"
+    ],
+    "year": 2026,
+    "venue": "Proceedings of the ACM on Programming Languages",
+    "doi": "10.1145/3798245",
+    "arxiv_id": "2603.06551",
+    "s2_paper_id": "c55ef302233eb0c1ccc6c9677eda03b16089b148",
+    "url": "https://doi.org/10.1145/3798245",
+    "also_indexed_as": []
+  },
+  "sources": [
+    {
+      "kind": "fulltext",
+      "route": "arxiv",
+      "url": "https://arxiv.org/pdf/2603.06551",
+      "retrieved_at": "2026-09-08T15:24:12Z",
+      "chars": 107482,
+      "content_sha256": "sha256:47e9a68c78c9ddd30d0a0047506cce030db271d67fa8b6279596d6acbd116932"
+    }
+  ],
+  "document": {
+    "has_fulltext": true,
+    "page_count": 29,
+    "has_outline": true,
+    "sections": [
+      {
+        "number": "1",
+        "title": "Introduction",
+        "start": 2491
+      },
+      {
+        "number": "2",
+        "title": "Background",
+        "start": 11095
+      },
+      {
+        "number": "2.1",
+        "title": "Overview of JIT Compilers",
+        "start": 11428
+      },
+      {
+        "number": "2.2",
+        "title": "Speculative Optimization",
+        "start": 14443
+      },
+      {
+        "number": "2.3",
+        "title": "Tiered Compilation",
+        "start": 17861
+      },
+      {
+        "number": "3",
+        "title": "Study Methodology",
+        "start": 20928
+      },
+      {
+        "number": "3.1",
+        "title": "Bug Collection",
+        "start": 21241
+      },
+      {
+        "number": "3.2",
+        "title": "Bug Filtering and Analysis",
+        "start": 24449
+      },
+      {
+        "number": "3.3",
+        "title": "Research Questions",
+        "start": 26438
+      },
+      {
+        "number": "3.4",
+        "title": "Threats to Validity",
+        "start": 27269
+      },
+      {
+        "number": "4",
+        "title": "Case Study",
+        "start": 28255
+      },
+      {
+        "number": "5",
+        "title": "Characteristics of Bugs",
+        "start": 36096
+      },
+      {
+        "number": "5.1",
+        "title": "RQ1: Input Artifacts",
+        "start": 36504
+      },
+      {
+        "number": "5.2",
+        "title": "RQ2: Symptoms",
+        "start": 39407
+      },
+      {
+        "number": "5.3",
+        "title": "RQ3: Root Causes",
+        "start": 43989
+      },
+      {
+        "number": "5.4",
+        "title": "Fixes",
+        "start": 48163
+      },
+      {
+        "number": "6.1",
+        "title": "Overview",
+        "start": 51050
+      },
+      {
+        "number": "6.2",
+        "title": "Algorithm",
+        "start": 54753
+      },
+      {
+        "number": "6.3",
+        "title": "Filtering False Positives and Duplicates",
+        "start": 59682
+      },
+      {
+        "number": "6.4",
+        "title": "Evaluation",
+        "start": 61273
+      },
+      {
+        "number": "6.5",
+        "title": "Discovered Bugs",
+        "start": 71118
+      }
+    ]
+  },
+  "references": [
+    {
+      "number": 1,
+      "text": "Nader Al Awar, Zijian Yi, George Biros, and Milos Gligoric. 2025. Speeding up the local C++ development cycle with header substitution. InInternational Symposium on Code Generation and Optimization. 704–717. doi:10.1145/3696443. 3708942",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 2,
+      "text": "V Aho Alfred, S Lam Monica, and D Ullman Jeffrey. 2007.Compilers principles, techniques & tools. pearson Education. Proc. ACM Program. Lang., Vol. 10, No. OOPSLA1, Article 137. Publication date: April 2026. 137:26 Zijian Yi, Cheng Ding, August Shi, and Milos Gligoric",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 3,
+      "text": "Matthew Arnold, Stephen J Fink, David Grove, Michael Hind, and Peter F Sweeney. 2005. A survey of adaptive optimization in virtual machines.Proc. IEEE93, 2 (2005), 449–466. doi:10.1109/JPROC.2004.840305",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 4,
+      "text": "Md Abul Kalam Azad, Nafees Iqbal, Foyzul Hassan, and Probir Roy. 2023. An empirical study of high performance computing (HPC) performance bugs. InInternational Conference on Mining Software Repositories. 194–206. doi:10.1109/ MSR59073.2023.00037",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 5,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13. doi:10.1145/3597503.3639076",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 6,
+      "text": "Gergö Barany. 2018. Finding missed compiler optimizations by differential testing. InInternational Conference on Compiler Construction. 82–92. doi:10.1145/3178372.3179521",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 7,
+      "text": "Edd Barrett, Carl Friedrich Bolz-Tereick, Rebecca Killick, Sarah Mount, and Laurence Tratt. 2017. Virtual machine warmup blows hot and cold.Proceedings of the ACM on Programming Languages1, OOPSLA (2017), 1–27. doi:10.1145/ 3133876",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 8,
+      "text": "Aurèle Barrière, Sandrine Blazy, Olivier Flückiger, David Pichardie, and Jan Vitek. 2021. Formally verified speculation and deoptimization in a JIT compiler.Proceedings of the ACM on Programming Languages5, POPL (2021), 1–26. doi:10.1145/3434327",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 9,
+      "text": "Aurèle Barrière, Sandrine Blazy, and David Pichardie. 2023. Formally verified native code generation in an effectful JIT: turning the CompCert backend into a formally verified JIT compiler.Proceedings of the ACM on Programming Languages7, POPL (2023), 249–277. doi:10.1145/3571202",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 10,
+      "text": "Matteo Basso, Aleksandar Prokopec, Andrea Rosà, and Walter Binder. 2023. Optimization-aware compiler-level event profiling.ACM Transactions on Programming Languages and Systems45, 2 (2023), 1–50. doi:10.1145/3591473",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 11,
+      "text": "Stephen M Blackburn, Robin Garner, Chris Hoffmann, Asjad M Khang, Kathryn S McKinley, Rotem Bentzur, Amer Diwan, Daniel Feinberg, Daniel Frampton, Samuel Z Guyer, et al .2006. The DaCapo benchmarks: Java benchmarking development and analysis. InInternational Conference on Object-Oriented Programming, Systems, Languages, and Applications. 169–190. doi:10.1145/1167515.1167488",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 12,
+      "text": "Humphrey Burchell, Octave Larose, and Stefan Marr. 2024. Towards realistic results for instrumentation-based profilers for JIT-compiled systems. InInternational Conference on Managed Programming Languages and Runtimes. 82–89. doi:10.1145/3679007.3685058",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 13,
+      "text": "Stefanos Chaliasos, Thodoris Sotiropoulos, Georgios-Petros Drosos, Charalambos Mitropoulos, Dimitris Mitropoulos, and Diomidis Spinellis. 2021. Well-typed programs can go wrong: A study of typing-related bugs in JVM compilers. Proceedings of the ACM on Programming Languages5, OOPSLA (2021), 1–30. doi:10.1145/3485500",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 14,
+      "text": "Stefanos Chaliasos, Thodoris Sotiropoulos, Diomidis Spinellis, Arthur Gervais, Benjamin Livshits, and Dimitris Mitropoulos. 2022. Finding typing compiler bugs. InProgramming Language Design and Implementation. 183–198. doi:10.1145/3519939.3523427",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 15,
+      "text": "Craig Chambers and David Ungar. 1989. Customization: Optimizing compiler technology for SELF, a dynamically-typed object-oriented programming language. InProgramming Language Design and Implementation. 146–160. doi:10.1145/ 73141.74831",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 16,
+      "text": "Junjie Chen, Yanwei Bai, Dan Hao, Yingfei Xiong, Hongyu Zhang, and Bing Xie. 2017. Learning to prioritize test programs for compiler testing. InInternational Conference on Software Engineering. 700–711. doi:10.1109/ICSE.2017.70",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 17,
+      "text": "Junjie Chen, Yanwei Bai, Dan Hao, Yingfei Xiong, Hongyu Zhang, Lu Zhang, and Bing Xie. 2016. Test case prioritization for compilers: A text-vector based approach. InInternational Conference on Software Testing, Verification and Validation. 266–277. doi:10.1109/ICST.2016.19",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 18,
+      "text": "Junjie Chen, Jibesh Patra, Michael Pradel, Yingfei Xiong, Hongyu Zhang, Dan Hao, and Lu Zhang. 2020. A survey of compiler testing.Comput. Surveys53, 1 (2020), 1–36. doi:10.1145/3363562",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 19,
+      "text": "Yuting Chen, Ting Su, Chengnian Sun, Zhendong Su, and Jianjun Zhao. 2016. Coverage-directed differential testing of JVM implementations. InProgramming Language Design and Implementation. 85–99. doi:10.1145/2908080.2908095",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 20,
+      "text": "Chromium. 2025. Octane 2.0 Benchmark Suite. Accessed Oct 9, 2025 from https://chromium.github.io/octane/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 21,
+      "text": "Keith D Cooper and Linda Torczon. 2022.Engineering a compiler. Morgan Kaufmann.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 22,
+      "text": "Timothy Cramer, Richard Friedman, Terrence Miller, David Seberger, Robert Wilson, and Mario Wolczko. 1997. Compiling Java just in time.IEEE Micro17, 3 (1997), 36–43. doi:10.1109/40.591653",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 23,
+      "text": "Jan de Mooij, Matthew Gaudet, Iain Ireland, Nathan Henderson, and J Nelson Amaral. 2023. CacheIR: The benefits of a structured representation for inline caches. InInternational Conference on Managed Programming Languages and Runtimes. 34–46. doi:10.1145/3617651.3622979",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 24,
+      "text": "Daniele Cono D’Elia and Camil Demetrescu. 2018. On-stack replacement, distilled. InProgramming Language Design and Implementation. 166–180. doi:10.1145/3296979.3192396",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 25,
+      "text": "L Peter Deutsch and Allan M Schiffman. 1984. Efficient implementation of the Smalltalk-80 system. InSymposium on Principles of Programming Languages. 297–302. doi:10.1145/800017.800542 Proc. ACM Program. Lang., Vol. 10, No. OOPSLA1, Article 137. Publication date: April 2026. Understanding and Finding JIT Compiler Performance Bugs 137:27",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 26,
+      "text": "Kyle Dewey, Jared Roesch, and Ben Hardekopf. 2015. Fuzzing the Rust typechecker using CLP (T). InInternational Conference on Automated Software Engineering. 482–493. doi:10.1109/ASE.2015.65",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 27,
+      "text": "Christian Dietrich, Valentin Rothberg, Ludwig Füracker, Andreas Ziegler, and Daniel Lohmann. 2017. {cHash}: Detection of redundant compilations via{AST}hashing. InUSENIX Annual Technical Conference. 527–538.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 28,
+      "text": "Yuyou Fan and John Regehr. 2024. High-Throughput, Formal-Methods-Assisted Fuzzing for LLVM. InInternational Symposium on Code Generation and Optimization. 349–358. doi:10.1109/CGO57630.2024.10444854",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 29,
+      "text": "Olivier Flückiger, Gabriel Scherer, Ming-Ho Yee, Aviral Goel, Amal Ahmed, and Jan Vitek. 2017. Correctness of speculative optimizations with dynamic deoptimization.Proceedings of the ACM on Programming Languages2, POPL (2017), 1–28. doi:10.1145/3158137",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 30,
+      "text": "Fengjuan Gao, Hongyu Chen, Yuewei Zhou, and Ke Wang. 2024. Shoot yourself in the foot–efficient code causes inefficiency in compiler optimizations. InInternational Conference on Automated Software Engineering. 1846–1857. doi:10.1145/3691620.3695548",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 31,
+      "text": "Andy Georges, Dries Buytaert, and Lieven Eeckhout. 2007. Statistically rigorous Java performance evaluation.ACMSIGPLAN Notices42, 10 (2007), 57–76. doi:10.1145/1297027.1297033",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 32,
+      "text": "Liang Gong, Michael Pradel, and Koushik Sen. 2015. JITProf: Pinpointing JIT-unfriendly JavaScript code. InInternational Symposium on the Foundations of Software Engineering. 357–368. doi:10.1145/2786805.2786831",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 33,
+      "text": "Google Corporation and/or its affiliates. 2025. Addressing Performance Regressions. Accessed March 11, 2025 from https://chromium.googlesource.com/chromium/src/+/master/docs/speed/addressing_performance_regressions.md.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 34,
+      "text": "Google Corporation and/or its affiliates. 2025. Chrome Issues for V8 Perf Regression. Accessed Oct 3, 2025 from https://issues.chromium.org/issues?q=%22%5BV8%20JavaScript%20Perf%5D%22.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 35,
+      "text": "Google Corporation and/or its affiliates. 2025. Chromium Issue Tracker. Accessed March 10, 2025 from https: //issues.chromium.org/issues.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 36,
+      "text": "Samuel Groß, Simon Koch, Lukas Bernhard, Thorsten Holz, and Martin Johns. 2023. FUZZILLI: Fuzzing for JavaScript JIT compiler vulnerabilities. InThe Symposium on Network and Distributed System Security. doi:10.14722/ndss.2023.24290",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 37,
+      "text": "Xue Han and Tingting Yu. 2016. An empirical study on performance bugs for highly configurable software systems. In International Symposium on Empirical Software Engineering and Measurement. 1–10. doi:10.1145/2961111.2962602",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 38,
+      "text": "Xue Han, Tingting Yu, and David Lo. 2018. Perflearner: Learning from bug reports to understand and generate performance test frames. InInternational Conference on Automated Software Engineering. 17–28. doi:10.1145/3238147. 3238204",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 39,
+      "text": "Haoxiang Jia, Ming Wen, Zifan Xie, Xiaochen Guo, Rongxin Wu, Maolin Sun, Kang Chen, and Hai Jin. 2023. Detecting JVMJIT compiler bugs via exploring two-dimensional input spaces. InInternational Conference on Software Engineering. 43–55. doi:10.1109/ICSE48619.2023.00016",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 40,
+      "text": "Shan Jiang, Pranoy Kovuri, David Tao, and Zhixun Tan. 2026. CASCADE: LLM-Powered JavaScript deobfuscator at Google. InInternational Conference on Software Engineering, Software Engineering in Practice. doi:10.1145/3786583. 3786873",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 41,
+      "text": "Shan Jiang, Chenguang Zhu, and Sarfraz Khurshid. 2026. OBsmith: LLM-Powered JavaScript obfuscator testing. In OOPSLA. doi:10.1145/3798204",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 42,
+      "text": "Guoliang Jin, Linhai Song, Xiaoming Shi, Joel Scherpelz, and Shan Lu. 2012. Understanding and detecting real-world performance bugs.ACMSIGPLAN Notices47, 6 (2012), 77–88. doi:10.1145/2345156.2254075",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 43,
+      "text": "Jinho Jung, Hong Hu, Joy Arulraj, Taesoo Kim, and Woonhak Kang. 2019. Apollo: Automatic detection and diagnosis of performance regressions in database systems.Proceedings of the VLDB Endowment13, 1 (2019), 57–70. doi:10.14778/ 3357377.3357382",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 44,
+      "text": "Motohiro Kawahito, Hideaki Komatsu, and Toshio Nakatani. 2000. Effective null pointer check elimination utilizing hardware trap.ACMSIGPLAN Notices35, 11 (2000), 139–149. doi:10.1145/356989.357002",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 45,
+      "text": "Prasad A Kulkarni. 2011. JIT compilation policy for modern machines. InInternational Conference on Object-Oriented Programming, Systems, Languages, and Applications. 773–788. doi:10.1145/2048066.2048126",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 46,
+      "text": "Vu Le, Mehrdad Afshari, and Zhendong Su. 2014. Compiler validation via equivalence modulo inputs.ACM Sigplan Notices49, 6 (2014), 216–226. doi:10.1145/2666356.2594334",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 47,
+      "text": "Vu Le, Chengnian Sun, and Zhendong Su. 2015. Finding deep compiler bugs via guided stochastic program mutation. Acm Sigplan Notices50, 10 (2015), 386–399. doi:10.1145/2858965.2814319",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 48,
+      "text": "Caroline Lemieux, Rohan Padhye, Koushik Sen, and Dawn Song. 2018. Perffuzz: Automatically generating pathological inputs. InInternational Symposium on Software Testing and Analysis. 254–265. doi:10.1145/3213846.3213874",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 49,
+      "text": "Xavier Leroy. 2009. Formal verification of a realistic compiler.Commun. ACM52, 7 (2009), 107–115. doi:10.1145/ 1538788.1538814",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 50,
+      "text": "Ao Li, Rohan Padhye, and Vyas Sekar. 2025. SPIDER: Fuzzing for Stateful Performance Issues in the ONOS SoftwareDefined Network Controller. InInternational Conference on Software Testing, Verification and Validation. 1–12. doi:10. 1109/ICST62969.2025.10988999 Proc. ACM Program. Lang., Vol. 10, No. OOPSLA1, Article 137. Publication date: April 2026. 137:28 Zijian Yi, Cheng Ding, August Shi, and Milo",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 51,
+      "text": "Cong Li, Yanyan Jiang, Chang Xu, and Zhendong Su. 2023. Validating JIT compilers via compilation space exploration. InSymposium on Operating Systems Principles. 66–79. doi:10.1145/3600006.3613140",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 52,
+      "text": "Penghui Li, Yinxi Liu, and Wei Meng. 2021. Understanding and detecting performance bugs in markdown compilers. InInternational Conference on Automated Software Engineering. 892–904. doi:10.1109/ASE51524.2021.9678611",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 53,
+      "text": "Shaohua Li, Theodoros Theodoridis, and Zhendong Su. 2024. Boosting compiler testing by injecting real-world code. Proceedings of the ACM on Programming Languages8, PLDI (2024), 223–245. doi:10.1145/3656386",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 54,
+      "text": "Zixi Liu, Yang Feng, Yunbo Ni, Shaohua Li, Xizhe Yin, Qingkai Shi, Baowen Xu, and Zhendong Su. 2025. An empirical study of Rust-specific bugs in the rustc compiler.Proceedings of the ACM on Programming Languages9, OOPSLA2 (2025), 3869–3896. doi:10.1145/3763800",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 55,
+      "text": "Zhibo Liu, Dongwei Xiao, Zongjie Li, Shuai Wang, and Wei Meng. 2023. Exploring missed optimizations in webassembly optimizers. InInternational Symposium on Software Testing and Analysis. 436–448. doi:10.1145/3597926.3598068",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 56,
+      "text": "Vsevolod Livinskii, Dmitry Babokin, and John Regehr. 2023. Fuzzing loop optimizations in compilers for C++ and dataparallel languages.Proceedings of the ACM on Programming Languages7, PLDI (2023), 1826–1847. doi:10.1145/3591295",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 57,
+      "text": "Michaël Marcozzi, Qiyi Tang, Alastair F Donaldson, and Cristian Cadar. 2019. Compiler fuzzing: How much does it matter?Proceedings of the ACM on Programming Languages3, OOPSLA (2019), 1–29. doi:10.1145/3360581",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 58,
+      "text": "William M McKeeman. 1998. Differential testing for software.Digital Technical Journal10, 1 (1998), 100–107.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 59,
+      "text": "Benedikt Meurer. 2024. An Introduction to Speculative Optimization in V8. Accessed March 2, 2025 from https: //benediktmeurer.de/2017/12/13/an-introduction-to-speculative-optimization-in-v8/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 60,
+      "text": "Tipp Moseley, Dirk Grunwald, and Ramesh Peri. 2009. Optiscope: Performance accountability for optimizing compilers. InInternational Symposium on Code Generation and Optimization. 254–264. doi:10.1109/CGO.2009.26",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 61,
+      "text": "Mozilla Corporation and/or its affiliates. 2025. Bugzilla. Accessed March 10, 2025 from https://bugzilla.mozilla.org/ home.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 62,
+      "text": "Mozilla Corporation and/or its affiliates. 2025. SpiderMonkey. Accessed Oct 6, 2025 from https://firefox-sourcedocs.mozilla.org/js/index.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 63,
+      "text": "Oracle Corporation and/or its affiliates. 2025. Graal Issue Tracker. Accessed March 10, 2025 from https://github.com/ oracle/graal/issues.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 64,
+      "text": "Oracle Corporation and/or its affiliates. 2025. HotSpot Compilation Policy. Accessed March 11, 2025 from https: //github.com/openjdk/jdk/blob/master/src/hotspot/share/compiler/compilationPolicy.hpp.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 65,
+      "text": "Oracle Corporation and/or its affiliates. 2025. HotSpot Glossary of Terms. Accessed March 10, 2025 from https: //openjdk.org/groups/hotspot/docs/HotSpotGlossary.html.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 66,
+      "text": "Oracle Corporation and/or its affiliates. 2025. JDK Bug System. Accessed March 10, 2025 from https://bugs.openjdk. java.net/browse/JDK.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 67,
+      "text": "Alberto Parravicini and Rene Mueller. 2021. The cost of speculation: Revisiting overheads in the V8 JavaScript engine. InIEEE International Symposium on Workload Characterization. 13–23. doi:10.1109/IISWC53511.2021.00013",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 68,
+      "text": "Andrej Pečimúth, David Leopoldseder, and Petr Tůma. 2023. Diagnosing Compiler Performance by Comparing Optimization Decisions. InInternational Conference on Managed Programming Languages and Runtimes. 47–61. doi:10. 1145/3617651.3622994",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 69,
+      "text": "Guillermo Polito, Stéphane Ducasse, and Pablo Tesone. 2022. Interpreter-guided differential JIT compiler unit testing. InProgramming Language Design and Implementation. 981–992. doi:10.1145/3519939.3523457",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 70,
+      "text": "Aleksandar Prokopec, Andrea Rosà, David Leopoldseder, Gilles Duboscq, Petr Tůma, Martin Studener, Lubomír Bulej, Yudi Zheng, Alex Villazón, Doug Simon, Thomas Würthinger, and Walter Binder. 2019. Renaissance: benchmarking suite for parallel applications on the JVM. InProgramming Language Design and Implementation. 31–47. doi:10.1145/ 3314221.3314637",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 71,
+      "text": "Python Enhancement Proposals. 2024. PEP 744 - JIT Compilation. Accessed March 2, 2025 from https://peps.python. org/pep-0744/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 72,
+      "text": "Mohammad R. Haghighat. 2018. Java Fuzzer. Accessed March 11, 2025 from https://github.com/AzulSystems/ JavaFuzzer.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 73,
+      "text": "John Regehr, Yang Chen, Pascal Cuoq, Eric Eide, Chucky Ellison, and Xuejun Yang. 2012. Test-case reduction for C compiler bugs. InProgramming Language Design and Implementation. 335–346. doi:10.1145/2345156.2254104",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 74,
+      "text": "Marija Selakovic and Michael Pradel. 2016. Performance issues and optimizations in JavaScript: an empirical study. In International Conference on Software Engineering. 61–72. doi:10.1145/2884781.2884829",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 75,
+      "text": "Naomi Smith, Abhishek Sharma, John Renner, David Thien, Fraser Brown, Hovav Shacham, Ranjit Jhala, and Deian Stefan. 2024. Icarus: Trustworthy just-in-time compilers with symbolic meta-execution. InSymposium on Operating Systems Principles. 473–487. doi:10.1145/3694715.3695949",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 76,
+      "text": "Gabriel Southern and Jose Renau. 2016. Overhead of deoptimization checks in the V8 JavaScript engine. InIEEE International Symposium on Workload Characterization. 1–10. doi:10.1109/IISWC.2016.7581268 Proc. ACM Program. Lang., Vol. 10, No. OOPSLA1, Article 137. Publication date: April 2026. Understanding and Finding JIT Compiler Performance Bugs 137:29",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 77,
+      "text": "Chengnian Sun, Vu Le, Qirun Zhang, and Zhendong Su. 2016. Toward understanding compiler bugs in GCC and LLVM. InInternational Symposium on Software Testing and Analysis. 294–305. doi:10.1145/2931037.2931074",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 78,
+      "text": "Chengnian Sun, Yuanbo Li, Qirun Zhang, Tianxiao Gu, and Zhendong Su. 2018. Perses: Syntax-guided program reduction. InInternational Conference on Software Engineering. 361–371. doi:10.1145/3180155.3180236",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 79,
+      "text": "The PyPy Team. 2025. PyPy. Accessed Oct 3, 2025 from https://pypy.org/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 80,
+      "text": "Theodoros Theodoridis, Manuel Rigger, and Zhendong Su. 2022. Finding missed optimizations through the lens of dead code elimination. InInternational Conference on Architectural Support for Programming Languages and Operating Systems. 697–709. doi:10.1145/3503222.3507764",
+      "is_sqlancer_publication": true
+    },
+    {
+      "number": 81,
+      "text": "Theodoros Theodoridis and Zhendong Su. 2024. Refined input, degraded output: The counterintuitive world of compiler behavior. (2024), 671–691. doi:10.1145/3656404",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 82,
+      "text": "Saeid Tizpaz-Niari, Pavol Čern `y, and Ashutosh Trivedi. 2020. Detecting and understanding real-world differential performance bugs in machine learning libraries. InInternational Symposium on Software Testing and Analysis. 189–199. doi:10.1145/3395363.3404540",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 83,
+      "text": "Luca Della Toffola, Michael Pradel, and Thomas R Gross. 2018. Synthesizing programs that expose performance bottlenecks. InInternational Symposium on Code Generation and Optimization. 314–326. doi:10.1145/3168830",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 84,
+      "text": "Luca Traini, Federico Di Menna, and Vittorio Cortellessa. 2024. AI-driven Java performance testing: Balancing result quality with testing time. InInternational Conference on Automated Software Engineering. 443–454. doi:10.1145/3691620. 3695017",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 85,
+      "text": "V8. 2021. Sparkplug — a non-optimizing JavaScript compiler. Accessed March 10, 2025 from https://v8.dev/blog/ sparkplug.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 86,
+      "text": "V8. 2023. Maglev-V8’s Fastest Optimizing JIT. Accessed March 10, 2025 from https://v8.dev/blog/maglev.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 87,
+      "text": "V8. 2025. TurboFan. Accessed March 10, 2025 from https://v8.dev/docs/turbofan.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 88,
+      "text": "Liam Wachter, Julian Gremminger, Christian Wressnegger, Mathias Payer, and Flavio Toffalini. 2025. DUMPLING: Fine-grained differential JavaScript engine fuzzing. (2025). doi:10.14722/ndss.2025.241411",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 89,
+      "text": "Junjie Wang, Zhiyi Zhang, Shuang Liu, Xiaoning Du, and Junjie Chen. 2023. FuzzJIT: Oracle-Enhanced fuzzing for JavaScript engine JIT compiler. InUSENIX Security Symposium. 1865–1882.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 90,
+      "text": "Webkit. 2025. JetStream 2 Benchmark Suite. Accessed Oct 9, 2025 from https://browserbench.org/JetStream2.0/.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 91,
+      "text": "Wikipedia. 2025. Hardware performance counter. Accessed Oct 9, 2025 from https://en.wikipedia.org/wiki/Hardware_ performance_counter.",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 92,
+      "text": "Wai Kin Wong, Dongwei Xiao, Cheuk Tung Lai, Yiteng Peng, Daoyuan Wu, and Shuai Wang. 2025. Extraction and mutation at a high level: Template-based fuzzing for JavaScript engines.Proceedings of the ACM on Programming Languages9, OOPSLA2 (2025), 2898–2926. doi:10.1145/3763154",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 93,
+      "text": "Xuejun Yang, Yang Chen, Eric Eide, and John Regehr. 2011. Finding and understanding bugs in C compilers. In Programming Language Design and Implementation. 283–294. doi:10.1145/1993316.1993532",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 94,
+      "text": "Shahed Zaman, Bram Adams, and Ahmed E Hassan. 2012. A qualitative study on performance bugs. InInternational Conference on Mining Software Repositories. 199–208. doi:10.1109/MSR.2012.6224281",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 95,
+      "text": "Zhiqiang Zang, Nathaniel Wiatrek, Milos Gligoric, and August Shi. 2022. Compiler Testing using Template Java Programs. InInternational Conference on Automated Software Engineering. 23:1–23:13. doi:10.1145/3551349.3556958",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 96,
+      "text": "Zhiqiang Zang, Fu-Yao Yu, Aditya Thimmaiah, August Shi, and Milos Gligoric. 2024. Java JIT Testing with Template Extraction. InInternational Symposium on the Foundations of Software Engineering. 1129–1151. doi:10.1145/3643777",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 97,
+      "text": "Yingquan Zhao, Zan Wang, Junjie Chen, Mengdi Liu, Mingyuan Wu, Yuqun Zhang, and Lingming Zhang. 2022. History-driven test program synthesis for JVM testing. InInternational Conference on Software Engineering. 1133–1144. doi:10.1145/3510003.3510059",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 98,
+      "text": "Yudi Zheng, Lubomír Bulej, and Walter Binder. 2015. Accurate profiling in the presence of dynamic compilation.ACMSIGPLAN Notices50, 10 (2015), 433–450. doi:10.1145/2858965.2814281",
+      "is_sqlancer_publication": false
+    },
+    {
+      "number": 99,
+      "text": "Yudi Zheng, Lubomír Bulej, and Walter Binder. 2017. An empirical study on deoptimization in the Graal compiler. In European Conference on Object-Oriented Programming. 30:1–30:30. doi:10.4230/LIPIcs.ECOOP.2017.30 Received 2025-10-10; accepted 2026-02-17 Proc. ACM Program. Lang., Vol. 10, No. OOPSLA1, Article 137. Publication date: April 2026.",
+      "is_sqlancer_publication": false
+    }
+  ],
+  "sqlancer_references": [
+    {
+      "number": 5,
+      "text": "Jinsheng Ba and Manuel Rigger. 2024. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13. doi:10.1145/3597503.3639076",
+      "technique": "cert",
+      "matched_as": "sqlancer_publication",
+      "why": [
+        "cites the paper introducing cert",
+        "prints the DOI of the paper introducing cert"
+      ]
+    },
+    {
+      "number": 80,
+      "text": "Theodoros Theodoridis, Manuel Rigger, and Zhendong Su. 2022. Finding missed optimizations through the lens of dead code elimination. InInternational Conference on Architectural Support for Programming Languages and Operating Systems. 697–709. doi:10.1145/3503222.3507764",
+      "technique": null,
+      "matched_as": "project_authored",
+      "why": [
+        "written by an author of the SQLancer project, but not itself a SQLancer paper"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "M1",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 6,30,55,80,81]",
+      "technique": null,
+      "sentence": "There has also been prior work on identifyinglong compilationbugs in C [ 46] and Markdown [ 52] compilers and on reducing compilation time in C++ [ 1,27], as well as studies onhigh-order performance bugs that primarily target missed optimizations in AOT compilers [ 6,30,55,80,81].",
+      "context_before": "performance bugs in JIT compilers. Existing research on performance bugs [ 4,37,42,74,94] mostly focuses on performance bugs in application code that can be fixed by modifying the application source itself. In contrast, performance bugs in JIT compilers cannot be easily, sometimes not even possibly, resolved at the application level. While certain workarounds at the source-code level can make specific code patterns more amenable to JIT optimizations [ 32], it remains desirable to improve JIT compilers themselves to make them more flexible and robust, thereby reducing the burden on developers.",
+      "context_after": "One study that explores JIT compilers [ 68] largely treats them as AOT compilers, focusing solely on optimizationrelated issues. However, JIT compilers exhibit several unique aspects like profiling, speculation, and interactions with other runtime components that are not present in AOT compilers. These aspects can also introduce performance bugs, yet they remain unexplored by prior work. To bridge this gap in understanding JIT compiler performance bugs, we present the first indepth empirical study of JIT compiler performance bugs from real-world Java and JavaScript issue trackers. Our analysi",
+      "section": "1 Introduction",
+      "page": 2,
+      "char_offset": 6774,
+      "cited_reference": {
+        "number": 80,
+        "text": "Theodoros Theodoridis, Manuel Rigger, and Zhendong Su. 2022. Finding missed optimizations through the lens of dead code elimination. InInternational Conference on Architectural Support for Programming Languages and Operating Systems. 697–709. doi:10.1145/3503222.3507764",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    },
+    {
+      "id": "M2",
+      "found_by": "citation_marker",
+      "surface": "[ 5,43]",
+      "technique": "cert",
+      "sentence": "Other domain-specific tools target specialized systems, such as for database engines [ 5,43] and for machine learning libraries [ 82].",
+      "context_before": "studies have also investigated performance bugs from various perspectives [ 4,37,74,94], but all primarily focus on application-level software rather than compiler infrastructures. In addition to empirical analyses, several automated techniques have been proposed to detect performance bugs. Fuzzing-based approaches such as JITProf [ 32], PerfFuzz [ 48], and others [ 38,50, 83] generate diverse test inputs to expose pathological performance behaviors. Li et al. [ 52] studied long compilationbugs in markdown compilers, emphasizing inefficiencies during compilation rather than runtime execution.",
+      "context_after": "Our work differs from these in that we focus on detecting performance bugs in JIT compilers themselves, which are not caused by the application source code but by the compiler’s optimization and code generation phases. Compiler testing. Extensive research has focused on testing functional correctness of both AOT and JIT compilers [ 18], spanning a wide range of languages such as C/C++ [ 28,46,47,53,56,93], Java [19, 39, 51, 72, 95–97], JavaScript [36, 88, 89, 92], and Smalltalk [69]. Zhao et al. [ 97] synthesized realistic test programs by mining code snippets from real-world repositories to",
+      "section": "6.5 Discovered Bugs",
+      "page": 24,
+      "char_offset": 79629,
+      "cited_reference": {
+        "number": 5,
+        "text": "Jinsheng Ba and Manuel Rigger. 2024. Cert: Finding performance issues in database systems through the lens of cardinality estimation. InProceedings of the IEEE/ACM 46th International Conference on Software Engineering. 1–13. doi:10.1145/3597503.3639076",
+        "matched_as": "sqlancer_publication",
+        "why": [
+          "cites the paper introducing cert",
+          "prints the DOI of the paper introducing cert"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker"
+      ],
+      "techniques": [
+        "cert"
+      ]
+    },
+    {
+      "id": "M3",
+      "found_by": "citation_marker_project_authored",
+      "surface": "[ 80,81]",
+      "technique": null,
+      "sentence": "[ 80,81] introduced techniques using dead-code markers and refined information to assess how effectively compilers eliminate redundant computations or exploit precise data-flow facts.",
+      "context_before": "y extended to other semantics-preserving code transformation tools such as JavaScript obfuscators and deobfuscators [40, 41]. Unlike this prior work, we are the first to focus on understanding and detecting performance bugs in JIT compilers. Finding missed optimizations in compilers. Moseley et al. [ 60] investigated performance accountability in optimizing compilers, aiming to better attribute performance effects to specific optimization decisions. Barany [ 6] applied differential testing to identify missed optimizations by analyzing discrepancies in the generated binaries. Theodoridis et al.",
+      "context_after": "Liu et al. [ 55] analyzed missed optimizations in WebAssembly compilers, while Gao et al. [ 30] proposed a source-level transformation framework to detect compiler-induced performance differences. The techniques used in prior works to derive semantically equivalent programs could potentially be extended to testing of JIT compilers. Jitterycan naturally incorporate such similar program pairs by treating them as two distinct configurations. Pečimúth et al. [ 68] studied Java JIT compilers by representing optimizations as trees and comparing them via tree edit distance to identify behavioral dif",
+      "section": "6.5 Discovered Bugs",
+      "page": 24,
+      "char_offset": 81846,
+      "cited_reference": {
+        "number": 80,
+        "text": "Theodoros Theodoridis, Manuel Rigger, and Zhendong Su. 2022. Finding missed optimizations through the lens of dead code elimination. InInternational Conference on Architectural Support for Programming Languages and Operating Systems. 697–709. doi:10.1145/3503222.3507764",
+        "matched_as": "project_authored",
+        "why": [
+          "written by an author of the SQLancer project, but not itself a SQLancer paper"
+        ]
+      },
+      "found_by_all": [
+        "citation_marker_project_authored"
+      ],
+      "techniques": []
+    }
+  ],
+  "artifact": null,
+  "checks": {
+    "checks_version": "paper-checks-v1",
+    "suggests": {},
+    "suppressed": []
+  },
+  "analysis": {
+    "analysis_version": "paper-analysis-v1",
+    "prompt_version": "paper-analysis-v1",
+    "produced_by": "claude_code_session",
+    "model": "claude-opus-5",
+    "generated_at": "2026-09-08T02:19:46Z",
+    "is_model_written": true,
+    "summary": "The first study of performance bugs in just-in-time compilers, which prior automated work had not targeted, having focused on functional bugs. The authors manually analyse 191 bug reports across four Java and JavaScript JIT compilers to characterise triggers, manifestation patterns and root causes, then propose layered differential performance testing implemented as Jittery. It found 12 previously unknown performance bugs in Oracle HotSpot and Graal, 11 confirmed.",
+    "narrative": "The citations here are to papers by SQLancer's authors rather than to SQLancer itself, listing database engines among the specialised systems that domain-specific tools target.",
+    "roles": {
+      "M1": "background",
+      "M2": "background",
+      "M3": "background"
+    },
+    "relationships": {
+      "uses_infrastructure": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "SQLancer is cited, not used; nothing in the mentions describes reusing its code."
+      },
+      "extends_technique": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No technique is extended; the citation is background."
+      },
+      "compares_with": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "No empirical comparison against SQLancer is reported in the mentions."
+      },
+      "describes_as_state_of_the_art": {
+        "value": "no",
+        "mention_ids": [],
+        "quotes": [],
+        "reasoning": "The citation does not characterise SQLancer as the state of the art."
+      }
+    },
+    "disagreements": [],
+    "unresolved": []
+  },
+  "provenance": {
+    "extractor_version": "paper-extract-v1",
+    "inventory_version": "paper-mentions-v1",
+    "checks_version": "paper-checks-v1",
+    "policy_version": "impact-policy-v1"
+  }
+}
